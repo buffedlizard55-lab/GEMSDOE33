@@ -10,10 +10,10 @@
     1.0
   ],
   "zeros": {
-    "path": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
     "bytes": 423456,
     "sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
-    "file": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+    "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
     "checks": {
       "count_is_1": true,
       "dtype_is_float32": true,
@@ -31,10 +31,10 @@
     "pass": true
   },
   "nan": {
-    "path": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
     "bytes": 499842,
     "sha256": "c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc",
-    "file": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+    "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
     "checks": {
       "count_is_1": true,
       "dtype_is_float32": true,
@@ -52,15 +52,15 @@
     "pass": true
   },
   "zip_zeros": {
-    "path": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.zip",
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.zip",
     "bytes": 309684,
-    "sha256": "3fa4118d45a1cd5a2d2f2c409360d4507d8d270cce197e4582a80542be3e98cb",
+    "sha256": "5817e6ca6e697effcaccb1921f5b6efca571c1c469641330af7ef444a1ee1697",
     "members": 1
   },
   "zip_nan": {
-    "path": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.zip",
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.zip",
     "bytes": 387820,
-    "sha256": "bd4426328500e4d8ba6d6a47336b9966b6c9dc090d249d591bc3ce98a068a230",
+    "sha256": "7c16f036219429f78cd3a8b3a165bd40d825f9e93260e77bbaf528d2599cbbf1",
     "members": 1
   },
   "all_checks_pass": true

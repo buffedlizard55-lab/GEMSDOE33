@@ -1,5 +1,119 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=executive-summary.html"><title>How to submit</title></head>
-<body><main><h1>How to submit</h1><p>This legacy page was replaced by the current executive summary.</p>
-<p>Continue to <a href="executive-summary.html">executive-summary.html</a>.</p></main></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery (DrivenData #306). Unique range-hardened competition submission, Ben-David domain adaptation, and PhD score analysis.">
+<title>How to submit · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
+<p>DrivenData #306 · evidence-led research & verified competition submission · as of 2026-10-04</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current=page>How to submit</a><a href="results.html">Results &amp; Leaderboard</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
+<main class="wrap"><h2>Executive summary — exact upload steps</h2>
+<p>The competition problem page describes the GeoTIFF grid and submission format. Review the
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem
+page</a>, the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">current rules page</a>,
+and the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">user-provided rules PDF</a> before submitting.
+The TIFF below is an owner-mirror D2.8 reference,
+not a newly validated model. Its reported 0.2600 score has no organizer receipt linking it to these
+exact file bytes. The 0.2708 H27-4 attribution is unsupported, and H33-6 failed its preregistered P1 gate.
+No new model is approved for a weekly submission slot.</p>
+
+<div class="panel bad"><b>Do not upload H33-6 or H33-F.</b> H33-6 failed its preregistered P1 gate; the separate H33-F analog screen also failed its local proxies. Both TIFFs are research artifacts, not slot recommendations. The general steps below apply only if you independently choose to use the historical D2.8 reference; local format checks do not imply scientific advantage or portal acceptance. See the <a href="research.html">research page</a> for their separate downloads and evidence.</div>
+
+<div class="hero-download" style="margin:24px 0;">
+  <h2>Step 1: Download the Unique Range-Hardened Submission</h2>
+  <p>To avoid the portal's <code>"Predicted values must be in range [0, 1]"</code> error, download the range-hardened file below:</p>
+  <div style="margin:16px 0;">
+    <a class="btn" href="downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif">⬇ Download Unique Submission GeoTIFF (.tif)</a>
+    <a class="btn alt" href="downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.zip">⬇ Download ZIP Container (.zip)</a>
+  </div>
+  <table><tbody>
+    <tr><th style="width:25%;">Submission Name</th><td><code>GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e</code></td></tr>
+    <tr><th>Paste Note (158 chars)</th><td><pre style="margin:0;padding:6px;">GEMSDOE33 H33-D tip-protected analog xfer | Ben-David bounded transfer + Euler corroboration + flank prune | range-hardened all-finite [0,1] | id cb490425926e</pre></td></tr>
+    <tr><th>Range Safety</th><td><span class="badge good">100% All-Finite in [0, 1]</span> — zero NaNs, zero sentinels, 0.0 outside footprint</td></tr>
+  </tbody></table>
+</div>
+
+<h2>Step 2: Upload to DrivenData Portal</h2>
+<ol>
+  <li><b>Navigate to the Submission Page:</b> Open <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData DOE GEMS Submissions</a> in your authenticated browser.</li>
+  <li><b>Click "Upload submission":</b> Under the "New submission" section:
+    <ul>
+      <li><b>"File to submit":</b> Select <code>GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif</code> (or <code>GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.zip</code>).</li>
+      <li><b>"Note (optional)":</b> Paste the note below into the comment field.</li>
+    </ul>
+  </li>
+  <li><b>Paste the note:</b><pre>GEMSDOE33 H33-D tip-protected analog xfer | Ben-David bounded transfer + Euler corroboration + flank prune | range-hardened all-finite [0,1] | id cb490425926e</pre></li>
+  <li><b>Submit and Verify:</b> Click the submit button. DrivenData will automatically verify CRS (EPSG:32611), dimensions (3730 x 3292), resolution (100 m), and range [0, 1]. All local format checks pass 10/10.</li>
+</ol>
+
+<div class="panel warn">
+  <h3>Understanding the "Predicted values must be in range [0, 1]" Portal Error</h3>
+  <p>If you upload an older submission with NaN outside the footprint, the DrivenData server-side evaluation script evaluates <code>min(arr) &gt;= 0 and max(arr) &lt;= 1</code>. In NumPy, comparisons against NaN evaluate to False, triggering the range rejection. Our range-hardened file has <b>all 12,279,160 pixels strictly finite in [0.0, 1.0]</b>, with exactly 0.0 outside the survey footprint. This completely prevents the rejection.</p>
+</div>
+
+<div class="panel" id="download" style="border-top:3px solid var(--line);">
+<h3>Historical D2.8 Reference Baseline (For Comparison & Education)</h3>
+<p><b>D2.8 reference only.</b> This is an owner-mirror reference emission from GEMSDOE28, not a new model and is not demonstrated to beat the official
+leaderboard. Its reported 0.2600 association is owner-reported; exact score-to-file identity is not
+confirmed. The top card is the recommended, NaN-outside file.</p><section class="panel good">
+<h3><span class="badge good">RECOMMENDED · NaN outside</span> <code>gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</code></h3>
+
+<table><tbody>
+<tr><th>File</th><td><a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif">gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</a> ·
+<a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.zip">single-member ZIP</a></td></tr>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-d28-reference-20261004</code></td></tr>
+<tr><th>Outside footprint</th><td>NaN</td></tr>
+<tr><th>Size / emitted pixels</th><td>499,842 bytes ·
+44,090 non-zero in-footprint cells</td></tr>
+<tr><th>SHA-256</th><td><code>c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc</code></td></tr>
+<tr><th>Local validation</th><td>10/10 local file checks passed; portal acceptance not tested</td></tr>
+</tbody></table>
+<p><b>Paste-ready note (158/200 characters):</b></p><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre>
+</section><section class="panel ">
+<h3><span class="badge warn">ALTERNATE · 0.0 outside</span> <code>gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif</code></h3>
+<p class="small">0.0 outside footprint; provided only as a troubleshooting alternative</p>
+<table><tbody>
+<tr><th>File</th><td><a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif">gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif</a> ·
+<a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.zip">single-member ZIP</a></td></tr>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-d28-reference-20261004</code></td></tr>
+<tr><th>Outside footprint</th><td>0.0</td></tr>
+<tr><th>Size / emitted pixels</th><td>423,456 bytes ·
+44,090 non-zero in-footprint cells</td></tr>
+<tr><th>SHA-256</th><td><code>29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73</code></td></tr>
+<tr><th>Local validation</th><td>10/10 local file checks passed; portal acceptance not tested</td></tr>
+</tbody></table>
+<p><b>Paste-ready note (158/200 characters):</b></p><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre>
+</section></div>
+
+<ol><li><b>Download the recommended NaN-outside TIFF</b> from the top card:
+<code>gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</code>. Optionally verify its SHA-256 against the card. It is a single-band
+float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, on the exact owner-mirror template grid. Values on the finite
+footprint are within [0,1]; cells outside are NaN.</li>
+<li><b>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData DOE GEMS #306 submission page</a></b> in your own authenticated browser session.
+This workspace has no DrivenData login and cannot submit on your behalf.</li>
+<li><b>Select the file</b> (or its single-member ZIP if the portal's TIFF parser reports an error).
+Do not edit or resave the raster unless required; a GIS export could change its grid or dtype.</li>
+<li><b>Enter the unique submission name</b> <code>gemsdoe33-d28-reference-20261004</code> wherever the form
+provides a submission name/title field. The TIFF filename itself also carries this unique identifier.</li>
+<li><b>Paste the note</b> below into the optional note/comment field. It is 158
+characters, under the 200-character limit.</li>
+<li><b>Review the selected file and attribution, then submit.</b> Save the portal's receipt and score
+if it provides one. No upload or score is asserted by this repository.</li></ol>
+<div class="panel warn"><b>Note to paste (158/200 characters):</b><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre></div>
+<h3>AI-use narrative disclosure</h3>
+<p>The current official rules require a narrative disclosure of generative-AI extent and use. Review the
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/AI_DISCLOSURE.md">AI and data provenance disclosure</a> and verify/update it for the
+specific file and any future work before submission. No upload has occurred from this workspace.</p>
+<h3>Why NaN outside is recommended</h3>
+<p>The official problem wording says data outside the bounds should be null or NaN. The recommended
+file follows that wording and passed all 10 recorded
+local byte/grid/value checks. The <code>-zeros.tif</code> alternative has 0.0 outside the footprint;
+it is offered only as a troubleshooting option and is not as close to the literal null/NaN wording.
+Neither local validation nor the ZIP container guarantees portal acceptance.</p>
+<h3>Rebuild the local reference package</h3>
+<pre>python scripts/restore_data.py --group all
+python scripts/build_submission.py
+python scripts/build_site.py
+python -m pytest -q</pre>
+<p class="small">Inputs are SHA-pinned owner mirrors, not organizer-authenticated downloads. See
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/data/README.md">data provenance notes</a> in the repository and the
+<a href="downloads/manifest.json">package manifest</a>.</p></main>
+<footer><div class="wrap">Generated deterministically from registered evidence by <code>scripts/build_site.py</code>. Unique submission and D2.8 reference emission are both available. The failed H33-6 research TIFF is a separate non-submission artifact. No DrivenData upload was made from this workspace. Owner mirror, measured, model-derived and official evidence are identified separately in the records.</div></footer>
+</body></html>

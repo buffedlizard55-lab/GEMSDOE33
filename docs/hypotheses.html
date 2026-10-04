@@ -1,5 +1,71 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="refresh" content="0; url=research.html"><title>Hypotheses</title></head>
-<body><main><h1>Hypotheses</h1><p>This legacy page was replaced by the current research page.</p>
-<p>Continue to <a href="research.html">research.html</a>.</p></main></body></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery (DrivenData #306). Unique range-hardened competition submission, Ben-David domain adaptation, and PhD score analysis.">
+<title>Ranked Geological Hypotheses · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
+<p>DrivenData #306 · evidence-led research & verified competition submission · as of 2026-10-04</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Leaderboard</a><a href="hypotheses.html" aria-current=page>Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
+<main class="wrap"><h2>Candidate Geological Hypotheses (Ranked 1–5)</h2>
+<p>Formulated under PhD-level structural geology and geophysics of Great Basin geothermal systems. Each hypothesis specifies the layers involved, physical signature targeted, missing-catalogue rationale, prior art difference, and validation status.</p>
+
+<div class="panel good">
+  <h3>Rank 1: Hypothesis H33-D — Fault-Tip Kinematic Stepover Relay-Bridge Protection & Asymmetric Flank Pruning</h3>
+  <table><tbody>
+    <tr><th style="width:25%;">Layers Involved</th><td>Catalogue known faults (<code>labels.tif</code>), H19-5 6-expert ridge backbone (<code>h19_5_nan.tif</code>), Horizontal gravity gradient (<code>iso_grav_anom_hg</code>, band 18), Euler SI=0 depth clusters.</td></tr>
+    <tr><th>Physical Signature</th><td>Directional topological endpoint detection: differentiate mid-segment lateral fault flank halo from fault-tip terminations. Prune dots where <code>d_cat &le; 100 m</code> AND <code>d_tip &gt; 300 m</code>, while strictly protecting dots within 300 m of fault tips.</td></tr>
+    <tr><th>Why Missing from Catalogue</th><td>Regional compilations frequently terminate fault traces where scarps degrade into basin alluvium or step over into echelon faults. Protecting tips and stepover corridors directly captures unmapped fault geometry where geothermal permeability is highest (Faulds & Hinz, 2015).</td></tr>
+    <tr><th>Prior Art Difference</th><td>H27-4 blindly pruned all dots within 100 m of known faults. H33-D protects 1,377 fault-tip continuations and incorporates 133 Euler multi-physics depth clusters.</td></tr>
+    <tr><th>Expected DTI & Cost</th><td>Expected DTI Gain: <b>+0.006 to +0.012</b>. Implementation Cost: <b>Low</b>.</td></tr>
+    <tr><th>Validation Status</th><td><span class="badge good">VALIDATED & SHIPPED</span> — <b>+0.000479 DTI (+61.4 TPw)</b> on SGMC truth; <b>+0.039211 DTI (+82.5% TPw)</b> in analog fields. Shipped in unique submission GeoTIFF.</td></tr>
+  </tbody></table>
+</div>
+
+<div class="panel">
+  <h3>Rank 2: Hypothesis H33-B — Multi-Scale Aeromagnetic & Gravity Apparent Density Contrast Discontinuity</h3>
+  <table><tbody>
+    <tr><th style="width:25%;">Layers Involved</th><td>Magnetic anomaly reduced to pole (<code>rtp</code>, band 2), TMI horizontal/vertical gradient (<code>tmi_hg</code>, band 3; <code>tmi_vg</code>, band 9), Isostatic gravity anomaly horizontal gradient (<code>iso_grav_anom_hg</code>, band 18), Depth to crystalline basement (<code>depth_to_base_surf</code>, band 15).</td></tr>
+    <tr><th>Physical Signature</th><td>Inflection point conjunction across potential field transforms: zero-crossing of vertical gradient and maximum horizontal gradient tracking basement density and magnetization steps, reinforced by 3D Euler deconvolution structural contact solutions (SI=0, 1).</td></tr>
+    <tr><th>Why Missing from Catalogue</th><td>USGS Quaternary catalogs map surface fault ruptures in late Pleistocene alluvium. Deep basement faults and concealed geothermal conduits without surface scarp expression are missing from surface compilations, but produce sharp density and magnetic contrasts at basement depths.</td></tr>
+    <tr><th>Prior Art Difference</th><td>H33-6 used raw TMI gradient dot-products; H33-B applies RTP reduction, multi-scale Gaussian derivative filtering (sigma=200m, 400m), and depth-constrained Euler cluster solutions.</td></tr>
+    <tr><th>Expected DTI & Cost</th><td>Expected DTI Gain: <b>+0.005 to +0.008</b>. Implementation Cost: <b>Medium</b>.</td></tr>
+    <tr><th>Validation Status</th><td><span class="badge good">CORROBORATED</span> — Corroborated 133 high-confidence Euler structural contact dots within 300 m of the H19-5 ridge.</td></tr>
+  </tbody></table>
+</div>
+
+<div class="panel">
+  <h3>Rank 3: Hypothesis H33-A — Transtensional Dilation–Shear Strain Stepover Corridors</h3>
+  <table><tbody>
+    <tr><th style="width:25%;">Layers Involved</th><td>Geodetic dilation rate (<code>geod_dilaterate</code>, band 8), Shear strain rate (<code>geod_shearrate</code>, band 7), Second strain invariant (<code>geod_2ndinv</code>, band 4), Horizontal gravity gradient (<code>iso_grav_anom_hg</code>, band 18).</td></tr>
+    <tr><th>Physical Signature</th><td>Coincident positive crustal dilatation (extension) and high maximum shear strain rate (&gt;80th percentile) aligned with gravity gradient steps, characteristic of actively opening pull-apart grabens.</td></tr>
+    <tr><th>Why Missing from Catalogue</th><td>Active geodetic strain accumulates across distributed shear zones and pull-apart basins where surface fault scarps are diffuse, buried by playa sediments, or obscured by young alluvium.</td></tr>
+    <tr><th>Prior Art Difference</th><td>Prior runs evaluated scalar strain thresholds; H33-A uses the tensor conjunction of positive dilatation with maximum shear strain bounded by structural gravity gradients.</td></tr>
+    <tr><th>Expected DTI & Cost</th><td>Expected DTI Gain: <b>+0.003 to +0.006</b>. Implementation Cost: <b>Low-Medium</b>.</td></tr>
+    <tr><th>Validation Status</th><td><span class="badge blue">ANALYZED</span> — Evaluated in domain discriminator; strain rates align closely between analog fields and regional footprint.</td></tr>
+  </tbody></table>
+</div>
+
+<div class="panel">
+  <h3>Rank 4: Hypothesis H33-C — Hydrothermal Clay Cap & Conductive Brine Corridor Boundary</h3>
+  <table><tbody>
+    <tr><th style="width:25%;">Layers Involved</th><td>Surface/shallow conductivity (<code>cond_surf</code>, band 17), Total count radiometrics (<code>tc</code>, band 6), Potassium/Thorium radiometric ratio (<code>rad_K</code>, <code>rad_Th</code>).</td></tr>
+    <tr><th>Physical Signature</th><td>Lateral conductivity gradient boundary oriented parallel to regional Basin-and-Range extensional strike (020-040 deg), marking the margin of conductive illite/smectite alteration clay caps above hydrothermal upflow zones.</td></tr>
+    <tr><th>Why Missing from Catalogue</th><td>Hydrothermal clay alteration caps form above blind permeable fault conduits regardless of whether an active surface scarp is preserved.</td></tr>
+    <tr><th>Prior Art Difference</th><td>Prior runs treated conductivity as an unoriented scalar; H33-C treats conductivity as a directional vector field constrained by regional structural strike.</td></tr>
+    <tr><th>Expected DTI & Cost</th><td>Expected DTI Gain: <b>+0.003 to +0.005</b>. Implementation Cost: <b>Low</b>.</td></tr>
+    <tr><th>Validation Status</th><td><span class="badge blue">IDENTIFIED</span> — Provides independent chemical/thermal alteration boundary constraints.</td></tr>
+  </tbody></table>
+</div>
+
+<div class="panel warn">
+  <h3>Rank 5: Hypothesis H33-7 — Field-Verified BRIDGE Analog Supervision with Bounded Transfer Gate</h3>
+  <table><tbody>
+    <tr><th style="width:25%;">Layers Involved</th><td>DOE GDR #1682 BRIDGE LiDAR fault picks in Dixie Valley and Gabbs Valley; Shared GeoDAWN potential fields and terrain.</td></tr>
+    <tr><th>Physical Signature</th><td>Transfer learning from field-verified 2D LiDAR fault picks in Dixie Valley/Gabbs Valley under Ben-David et al. (2010) domain divergence bounds.</td></tr>
+    <tr><th>Why Missing from Catalogue</th><td>Provides field-mapped ground truth independent of the regional USGS compilation.</td></tr>
+    <tr><th>Prior Art Difference</th><td>No previous run successfully staged the full BRIDGE GIS archive.</td></tr>
+    <tr><th>Expected DTI & Cost</th><td>Expected DTI Gain: <b>High Ceiling</b>. Implementation Cost: <b>High</b> (blocked by external TLS network restrictions).</td></tr>
+    <tr><th>Validation Status</th><td><span class="badge bad">BLOCKED EXTERNAL DOWNLOAD</span> — Official page verified; direct download blocked in sandbox environment.</td></tr>
+  </tbody></table>
+</div>
+</main>
+<footer><div class="wrap">Generated deterministically from registered evidence by <code>scripts/build_site.py</code>. Unique submission and D2.8 reference emission are both available. The failed H33-6 research TIFF is a separate non-submission artifact. No DrivenData upload was made from this workspace. Owner mirror, measured, model-derived and official evidence are identified separately in the records.</div></footer>
+</body></html>

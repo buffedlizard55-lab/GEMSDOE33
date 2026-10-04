@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-04T16:00:14+00:00",
+  "generated_utc": "2026-10-04T19:02:20+00:00",
   "evidence_class": "MEASURED from local owner-mirror bytes",
   "provenance_warning": "All competition rasters listed here are owner-supplied public GitHub mirrors, integrity-pinned but NOT organizer-authenticated. Public mirror/hash availability is not proof of original downloadability, coverage, schema or license. Do not contact DrivenData automatically.",
   "registered_inputs": {

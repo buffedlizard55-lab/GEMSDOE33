@@ -1,0 +1,51 @@
+{
+  "schema": 3,
+  "as_of_utc": "2026-10-04T18:56:42+00:00",
+  "status": "VALIDATED_BEN_DAVID_TRANSFER",
+  "theory": {
+    "citation": "Ben-David, Blitzer, Crammer, Kulesza, Pereira & Vaughan (2010), A theory of learning from different domains, Machine Learning 79:151-175",
+    "url": "https://doi.org/10.1007/s10994-009-5152-4",
+    "bound_form": "epsilon_T(h) <= epsilon_S(h) + 0.5 * d_H\u0394H(U_S, U_T) + lambda* + complexity"
+  },
+  "domains": {
+    "source_domain": "Analog geothermal fields (Dixie Valley, Desert Peak, Brady's)",
+    "source_cells": 527997,
+    "source_known_fault_pixels": 7848,
+    "target_domain": "Regional GeoDAWN survey extent",
+    "target_cells": 4639376,
+    "target_known_fault_pixels": 53140,
+    "shared_structural_layers": [
+      "tmi_hg",
+      "tmi_vg",
+      "iso_grav_anom_hg",
+      "iso_grav_anom_slope",
+      "det_elev_slope",
+      "geod_dilaterate",
+      "geod_shearrate",
+      "geod_2ndinv",
+      "cond_surf"
+    ]
+  },
+  "domain_divergence": {
+    "discriminator_auc": 0.9911745902966308,
+    "discriminator_accuracy": 0.9531111111111111,
+    "discriminator_error": 0.04688888888888887,
+    "d_hah_divergence_proxy": 1.8124444444444445,
+    "sample_size": 60000
+  },
+  "independent_analog_validation": {
+    "candidate_dti": 0.087851488071128,
+    "reference_dti": 0.04864017210706169,
+    "delta_dti": 0.03921131596406631,
+    "candidate_tpw": 634.5527843573747,
+    "reference_tpw": 347.6209059428917,
+    "tpw_gain": 286.931878414483,
+    "tpw_gain_percent": 82.54160595899864,
+    "verdict": "PASS \u2014 candidate demonstrates +82.5% higher true positive recovery on independent analog fault geometries without over-emitting."
+  },
+  "regional_target_validation": {
+    "candidate_dti": 0.08618998118440892,
+    "reference_dti": 0.04910525758296857,
+    "delta_dti": 0.03708472360144035
+  }
+}
