@@ -5,7 +5,7 @@ use the publicly supplied catalogue as a prediction mask; holdout callers must
 pass a fold-visible ``catalogue_mask`` and exclude any source geometry within
 the held-out buffer before evaluating spatial generalisation.
 
-  C0  h27-4-r1-solo                owner-reported 0.2708 control
+  C0  h27-4-r1-solo                owner-mirror research reference; score/file pairing unverified
   C1  C0 + H38-1 corroborated dots heat-flow-residual x SI-0 Euler clusters
   C2  C0 + stepover relay-bridge dots (distinct-FID tip pairs, gated)
   C3  rung-3.0 Poisson re-pack of the C0 dot set
@@ -33,7 +33,7 @@ def load_dot_array(path: Path) -> np.ndarray:
 
 
 def c0_control() -> np.ndarray:
-    """Scored 0.2708 control. Local artifact first; fall back to the restored mirror."""
+    """H27-4 owner-mirror research reference. Score/file association is unverified."""
     local = REPO_ROOT / "data" / "artifacts" / "h27-4-r1-solo-d2-8-8acb75e1f2cc-nan.tif"
     mirror = data_dir() / "models" / "h27_4_r1_solo_nan.tif"
     return load_dot_array(local if local.is_file() else mirror)

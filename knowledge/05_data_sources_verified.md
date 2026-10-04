@@ -11,7 +11,7 @@ semantic equivalence, map accuracy, or suitability for the hidden competition ta
 |---|---|---|---|
 | GEMS problem description, metric, and submission format | https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ | [P] | DTI α=0.2, β=0.8, 300 m triangular kernel; single-layer float32 GeoTIFF; competition CRS/grid and value range. Consult page for current rules. |
 | GEMS overview and GeoDAWN context | https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/ | [P] | Competition background and linked literature. |
-| Official public leaderboard | https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ | [P] | Reviewed manually once on 2026-10-04 (America/Los_Angeles) per owner request; did not support the brief's claim that 0.3195 was then the top score. Individual participant rows are not retained or monitored per Terms of Use. |
+| Official public leaderboard | https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/ | [P] | A prior one-time status note dated 2026-10-04 says its spot-check did not support treating the brief's 0.3195 claim as then-current; a separately encountered GEMSDOE28 owner summary dated 2026-10-03 reports it. The conflict is unresolved and no row-level official capture is retained. Do not refresh or monitor without prior written consent or an authorized API. |
 | Official rules PDF | https://docs.nlr.gov/docs/fy26osti/96647.pdf | [P] | September 2026 edition; all 7 parsed chunks fetched/read 2026-10-04. §§3.2, 3.4–3.5 confirm one single-layer 100 m GeoTIFF, up to three feedback submissions/week, one final selection across both prize phases, and a narrative disclosure of generative-AI extent/use. |
 | DrivenData Terms of Use | https://www.drivendata.org/termsofuse/ | [P] | Read 2026-10-04. §Prohibited Uses bars robots/automatic devices for any purpose including monitoring/copying and manual monitoring/copying without prior written consent. No auto-refresh leaderboard feed. |
 | DrivenData robots.txt | https://www.drivendata.org/robots.txt | [P] | Read 2026-10-04. Disallows `/accounts/`, competition search, and `leaderboard_partial`; Terms of Use are stricter on monitoring. |
@@ -21,8 +21,8 @@ semantic equivalence, map accuracy, or suitability for the hidden competition ta
 Competition scores in `registry/score_ledger.json` remain owner-reported unless organizer receipts are
 archived. Holdout proxy values are not scores. The campaign-feed generator reads only the local ledger and
 never scrapes or polls the organizer. Under the Terms of Use reviewed 2026-10-04, the public leaderboard
-is a static dated snapshot here; this repo does not promise an automatically current feed without an
-authorized API or written permission.
+is represented only by a dated status note here; the repository stores no row-level snapshot and does not
+promise an automatically current feed without an authorized API or written permission.
 
 ## Competition data mirrors used (owner-supplied, hash-pinned)
 
@@ -33,7 +33,7 @@ authorized API or written permission.
 | `sample_submission.tif` (grid/footprint template) | GEMSDOE24 @ `07345ea0604953d7efb858d9cfbc21e20c7aca0b` | [B] SHA-256 `2176d08e…`; template only, never truth |
 | H19-5 ridge emission | GEMSDOE24 input `gems19-h19-5-…-e27054cf-nan.tif` | [B] 1,712,322 bytes; 121,131 nonzero pixels |
 | d=2.8 dotted baseline | GEMSDOE24 `…e56ea318af89-nan.tif` | [B] 44,090 dots |
-| h27-4-r1-solo baseline (owner-reported 0.2708) | GEMSDOE28 @ `33cc5942220f1440531d7184889c5c6f5d2f0a3e` | [B] Git blob SHA `12b0a4dd…` and full-file SHA-256 pinned; score is not organizer-authenticated |
+| h27-4-r1-solo baseline (claimed 0.2708 pairing unsupported) | GEMSDOE28 @ `33cc5942220f1440531d7184889c5c6f5d2f0a3e` | [B] Git blob SHA `12b0a4dd…` and full-file SHA-256 pinned; the owner page labels H27-4 unscored/research-only and no organizer receipt/file association exists |
 | Derived SGMC 100 m raster | GEMSDOE24 `data/external/derived_sgmc_faults_100m_u8.tif` | [B] independent P2 proxy; not hidden competition truth |
 | INGENIOUS Quaternary fault shapefile components | `jklinck/geothermal_research` @ `56d78de7a989c12e2dce50cd65a4095df57030d2` | [B] CRS parsed as NAD83; 42.5% of sampled vertices lie within 150 m of supplied catalogue in a geometry cross-check. This does not validate every trace or establish target equivalence. GDR #1391 lists v1 and a newer v2 that supersedes v1; this mirror's exact version correspondence has not been verified. A local HEAD request for the GDR v2 ZIP failed TLS. |
 | Wells/springs, Qfault attributes, DEM links | GEMSDOE24 `data/external/*` | [B] sizes/hashes in `registry/data_manifest.json`; owner-supplied mirrors |
@@ -74,9 +74,19 @@ mask/grid metadata and never reads its values as truth.
 | Hermant et al. (2025), Quaternary fault mapping | https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf | [P] | Scarp-offset context. |
 | Reid et al. (1990), Euler deconvolution, DOI 10.1190/1.1442774 | https://doi.org/10.1190/1.1442774 | [C] | Potential-field method context. |
 
+## New round-two source checks
+
+| Source | Link | Verification / meaning | Use and limits |
+|---|---|---|---|
+| USGS Gabbs Valley 3D fault/stratigraphic surfaces, DOI 10.5066/P9BR3681 | https://www.usgs.gov/data/stratigraphic-and-fault-surfaces-three-dimensional-geologic-map-southeastern-gabbs-valley | [P] Official data page and ScienceBase catalog JSON identify `AllGabbsFaults.zip` (3,047,835 bytes; MD5 `6bcb3f9d90931e091edefa519d3f3338`) and CC0 1.0. Metadata says x/y/z use NAD83 UTM Zone 11N. The listed bounding box falls inside the GeoDAWN grid bounding box. | Catalog/source listing and bbox only. Correct binary endpoint returned HTTP 500 through the research fetcher and shell TLS failed; no ZIP bytes, feature schema, semantics or actual fault-feature overlap were checked. It is not currently a viable transfer source. |
+| USGS Gabbs SIM 3498 | https://pubs.usgs.gov/publication/sim3498 | [P] Official map publication. The mapped surface integrates geologic mapping, gravity inversion and potential-field studies. | Context for the 3D source; the surface is a geological interpretation and not fully independent of the potential-field predictors used in GeoDAWN. |
+| BRIDGE GDR 1682 official page/README | https://gdr.openei.org/submissions/1682 | [P] Public CC BY 4.0 listing, 3.79 MB GIS archive; README limits field verification to Dixie Valley and Gabbs Valley. | Direct binary retrieval failed TLS/HTTP 000; no bytes/schema/CRS/feature overlap were audited. Public listing is not local obtainability. |
+
+The round-two candidate ranking, exact layers, prior-art differences, protocol hash, and H33-6 negative result are in `knowledge/07_hypothesis_slate_20261004.md`, `evidence/hypothesis_slate_20261004_preregistered.json`, and `knowledge/08_h33_6_result_20261004.md`.
+
 ## Campaign-site reads (owner-operated)
 
 | Site | Read status | Key extraction |
 |---|---|---|
-| https://buffedlizard55-lab.github.io/GEMSDOE28/ | [P] | 0.2708 lineage; H27-4/H36-1/H37-1/H38-1; holdout/inversion notes; score remains owner-reported |
+| https://buffedlizard55-lab.github.io/GEMSDOE28/ | [P] | The page labels H27-4 and its H36/H37/H38 variants unscored/research-only and says no GEMSDOE28 score; it does not support the brief's 0.2708 file/score pairing. The page also includes owner-authored historical leaderboard observations, not copied into this repository. |
 | https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html | [P] | Owner-observed IR-PORTAL-01 message, SGMC proxy notes, worming/H41 results; portal error diagnosis remains unconfirmed |

@@ -26,23 +26,39 @@ See the [executive summary and exact upload steps](docs/executive-summary.html).
 
 ## Current honest conclusion
 
-- The official public leaderboard was reviewed once on **2026-10-04** at the owner's request. That observation did not support the brief's claim that `0.3195` was then the current highest score. The page cannot identify local TIFF bytes or prove an account association. Because the [DrivenData Terms of Use](https://www.drivendata.org/termsofuse/) prohibit automated and manual monitoring/copying without prior written consent, detailed rows are not retained or republished; this project does not poll or refresh the page. See [`registry/leaderboard_review.json`](registry/leaderboard_review.json).
-- The claimed H27-4 `0.2708` score/file attribution is unsupported. The [GEMSDOE28 owner page](https://buffedlizard55-lab.github.io/GEMSDOE28/) says **“NO GEMSDOE28 SCORE”** and describes its artifacts as unscored/research-only. No organizer receipt or verified account/file record ties the claim to the owner's TIFF. The D2.8 `0.2600` score/file pairing remains unconfirmed.
-- **No new candidate has demonstrated a valid, independent improvement over the current best. No candidate is approved for a weekly submission slot.** The available download is only the D2.8 reference.
-- Upstream C2 is preserved as research-only in [`archive/legacy_candidates/`](archive/legacy_candidates/). Its earlier P1 pass was withdrawn for leakage; the corrected conditional source-exclusion diagnostic is P1 mean ΔDTI `−0.000722` (0/4 positive), P2 SGMC proxy `+0.000283`, and still **not slot-cleared** because the fixed H19-5 surface was not re-derived per fold and the diagnostic was not a preregistered independent confirmation. See [`evidence/holdout33.json`](evidence/holdout33.json) and [`IR-33-C2-01`](registry/irregularities.json).
-- Initial holdout, reconstruction, pruning and domain-transfer promotion claims were withdrawn after audit. Their scripts/results are retained for provenance in [`archive/withdrawn_first_pass/`](archive/withdrawn_first_pass/); read [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json) and [`registry/irregularities.json`](registry/irregularities.json). Do not reuse the archived metrics as evidence.
+- The `0.3195` target remains unverified as current. A prior one-time official-page status note for **2026-10-04** says the spot-check did not support that claim as then-current, while the GEMSDOE28 owner site contains a separate manual summary dated 2026-10-03 that reports it. That conflict is unresolved; neither observation is a score/file receipt. The [DrivenData Terms of Use](https://www.drivendata.org/termsofuse/) restrict manual/automatic monitoring or copying without prior written consent. This project keeps no row-level data and does not refresh the page. See [`registry/leaderboard_review.json`](registry/leaderboard_review.json) and [`IR-33-SCORE-03`](registry/irregularities.json).
+- The claimed H27-4 `0.2708` score/file attribution is unsupported. The [GEMSDOE28 owner page](https://buffedlizard55-lab.github.io/GEMSDOE28/) labels H27-4 unscored/research-only and reports no GEMSDOE28 score. No organizer receipt or authenticated file/account record ties the claim to that TIFF. The D2.8 `0.2600` pairing is also owner-reported and unconfirmed.
+- **H33-6 failed its preregistered P1 screen:** mean ΔDTI `−0.00273732`, positive in `2/4` folds; P2 SGMC proxy ΔDTI `+0.00015900`. It beat the matched-random mean but not the local H27-4 owner-mirror raster control; that control's score/file pairing is unverified. The arm is stopped; no candidate is approved for a weekly submission slot. See [`knowledge/08_h33_6_result_20261004.md`](knowledge/08_h33_6_result_20261004.md) and [`evidence/holdout_h33_6.json`](evidence/holdout_h33_6.json).
+- A unique H33-6 TIFF is available below **for research/reproduction only**. Its matched-count local format checks pass, but its candidate failed the holdout and the diagnostics are conditional proxies; **do not upload it**. The only top-level recommended package remains the D2.8 reference, not a new model.
+- Upstream C2 is preserved as research-only in [`archive/legacy_candidates/`](archive/legacy_candidates/). Its earlier P1 pass was withdrawn for leakage; the corrected conditional source-exclusion diagnostic is P1 mean ΔDTI `−0.000722` (0/4 positive), P2 SGMC proxy `+0.000283`, and still not slot-cleared because the fixed H19-5 surface was not re-derived per fold and the diagnostic was not an independent preregistered confirmation. See [`evidence/holdout33.json`](evidence/holdout33.json) and [`IR-33-C2-01`](registry/irregularities.json).
+- Initial holdout, reconstruction, pruning and domain-transfer promotion claims were withdrawn after audit. Their scripts/results remain in [`archive/withdrawn_first_pass/`](archive/withdrawn_first_pass/); see [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json). Do not reuse the archived metrics as evidence.
+
+## Unique H33-6 TIFF — research only, do not upload
+
+A distinct, reproducible TIFF was generated from the frozen candidate recipe to satisfy the artifact/download requirement. It **failed** its P1 screen and is explicitly **not slot-approved**. Its 10/10 package checks and separate `scripts/validate_submission.py` audit pass under the stated local policy (finite [0,1] inside; NaN or zero outside); this verifies file format only, not science, private-label accuracy, portal acceptance, or a competition score. See [`evidence/format_check_h33_6_6c888d2ce0f7.json`](evidence/format_check_h33_6_6c888d2ce0f7.json).
+
+- **Direct download (NaN outside):** [`GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif`](docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif) · 482,682 bytes · SHA-256 `18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7`.
+- [Single-member ZIP](docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.zip) · optional [zero-outside alternate](docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.tif).
+- **Unique research identifier:** `GEMSDOE33-H33-6-edge-consensus-research-20261004` (not an upload recommendation).
+- **Paste-ready note (141/200 characters):**
+
+> GEMSDOE33 H33-6 edge consensus | P1 delta DTI -0.002737 (2/4), P2 +0.000159 | RESEARCH ONLY; gate failed, not slot-approved | id 6c888d2ce0f7
+
+See [`h33-6-research-manifest.json`](docs/downloads/research/h33-6-research-manifest.json) for hashes, bands and local format checks. The reproducible builder is `scripts/build_h33_6_research.py`.
 
 ## Ranked geological research hypotheses
 
-The first-pass implementation preceded this shortlist, contrary to the owner's required ordering. The following hypotheses are therefore a **retrospective research shortlist, not preregistration**. They are not validated models; the availability checks below say what was actually verified.
+The round-two five-hypothesis slate and exact H33-6 rule were frozen and SHA-256 recorded **before** its implementation and holdout run. It contains three new concepts (H33-6/7/8) plus the explicitly identified carry-forward/related designs H33-9/10; the prior round's shortlist was retrospective and remains archived separately. Expected improvement is qualitative only; no DTI or contest-score gain is forecast.
 
-| Rank | Hypothesis and candidate layers | Physical signature / why it may find faults absent from USGS/INGENIOUS | Prior-art distinction | Expected upside / cost | Official-data check and status |
-|---:|---|---|---|---|---|
-| 1 | **Field-verified BRIDGE fault-label transfer**. BRIDGE GIS picks plus GeoDAWN `tmi_hg`, `tmi_vg`, `det_elev`, `det_elev_slope`, `iso_grav_anom_hg`, `depth_to_base_surf`. | Multi-scale, orientation-preserving magnetic, gravity, basement and terrain lineaments supervised/tested against field-mapped traces; a separate field label set could test fault signatures outside the regional compilation. BRIDGE is not assumed to be target truth. | Prior emissions use regional catalogue labels and/or LiDAR predictors; no reviewed prior artifact used BRIDGE field-verified picks as independent source labels. | **Highest qualitative upside if transfer gates pass; magnitude unknown. Medium cost.** | [GDR 1682](https://gdr.openei.org/submissions/1682) is public and lists a 3.79 MB GIS archive; its README says picks are field-verified only in Dixie and Gabbs Valleys. Direct download failed TLS/HTTP 000 here; archive contents were not staged or inspected. **Blocked; not viable/validated yet.** |
-| 2 | **USGS ComCat focal-mechanism orientation prior**. Event nodal-plane location, strike/dip/rake plus magnetic, terrain and strain-invariant layers. | Test whether independent candidate lineaments align with reviewed active slip-plane orientations; do not treat earthquake density alone as a fault label. May expose active or blind structures absent from surface-trace inventories. | Prior seismic candidate used density/coherence, not per-event focal-plane geometry. | **Moderate, coverage-dependent upside; medium cost.** | [USGS ComCat docs](https://earthquake.usgs.gov/data/comcat/index.php) and [FDSN API](https://earthquake.usgs.gov/fdsnws/event/1/) were checked: count queries returned focal-mechanism products and an example exposed nodal-plane fields. A full extract was not staged; no validation. |
-| 3 | **Brady–Desert Peak mineral alteration + structural-edge coincidence**. Candidate GDR 1303 mineral layers (their existence/schema still need inspection) plus magnetic, gravity, terrain and LiDAR scarp features. | Test whether field-supported alteration/contact halos coincide with independent structural edges, a potential indicator of persistent permeability or blind faults rather than a raw radiometric anomaly. | Prior hot-spring/geothermometry and radiometric/Euler experiments did not use a verified mineral-classification/edge conjunction. | **Low-to-moderate upside; high cost and high uncertainty.** | [GDR 1303](https://gdr.openei.org/submissions/1303) lists a public CC BY 4.0, 2.58-GB Brady/Desert Peak/Salton Sea archive. It was not downloaded; hyperspectral/mineral layers, overlap and semantics are **unconfirmed**. Do not treat as available until inspected. |
+| Rank | Hypothesis and exact layers | Physical signature / missing-catalogue rationale | Prior-art difference | Expected upside / cost / official source status |
+|---:|---|---|---|---|
+| 1 (runnable) | **H33-6 cross-physics edge-normal consensus:** GeoDAWN band 14 `tmi`, 13 `iso_grav_anom`, 15 `depth_to_base_surf`, 17 `cond_surf`. | Coincident magnetic/gravity edge normals with aligned orientation, boosted by the stronger basement/conductivity edge. Concealed basin faults may offset susceptibility/density/basement or fluid conductance without a clear 100 m surface scarp. | Existing primitives build single-layer derivatives/coherence; no local candidate combines aligned raw-field edge normals, separate basement/conductivity support, and matched-budget reallocation. | **Moderate qualitative upside, unknown magnitude; low–medium cost; no new data.** It failed the preregistered P1 screen (mean ΔDTI `−0.00273732`, 2/4 positive), so this arm is stopped. See the [full result](knowledge/08_h33_6_result_20261004.md). |
+| 2 (blocked, high ceiling) | **H33-7 BRIDGE field-pick transfer:** official GDR #1682 Dixie/Gabbs LiDAR fault picks plus shared GeoDAWN magnetic, gravity, basement-depth and conductivity bands. | Spatially separate field-mapped source labels could test transferable fault signatures; source picks are not target truth. | No implemented field-specific analog-label transfer in this repo; the prior arbitrary well-density discriminator is withdrawn and is not Ben-David `HΔH`. | **Potentially high, wholly unquantified; medium–high cost.** [Official page](https://gdr.openei.org/submissions/1682) and [README](https://gdr.openei.org/files/1682/BRIDGE_README.pdf) say public CC BY 4.0/3.79 MB and field verification limited to Dixie and Gabbs Valleys; archive bytes were blocked by TLS, so not viable yet. |
+| 3 (blocked) | **H33-8 USGS Gabbs 3D surface transfer:** DOI `10.5066/P9BR3681` `AllGabbsFaults.zip`; GeoDAWN bands 3, 9, 13, 14, 15, 18 for edge/geometry checks. | Shallow projection of mapped 3D surfaces may expose subsurface faults missing from Quaternary surface catalogs; the USGS geologic interpretation also uses potential-field evidence. | No 3D-surface projection was implemented locally; differs from BRIDGE's 2D LiDAR picks. | **Moderate–high over narrow footprint; unknown; medium cost.** [USGS source](https://www.sciencebase.gov/catalog/item/62b21845d34e74f0d80f17aa?format=json) lists CC0 1.0 and the 2.91 MB fault ZIP. Catalog bbox lies inside GeoDAWN bbox, but ZIP retrieval failed and no feature overlap was checked. |
+| 4 (continued, unimplemented) | **H33-9 ComCat focal-plane orientation:** event location and nodal-plane strike/dip/rake plus GeoDAWN bands 3, 9, 13, 14, 15. | Test candidate lineament azimuths against reviewed active focal mechanisms; retain nodal-plane ambiguity, and do not treat earthquake density as fault geometry. | Earlier H33-2 already described the design; no local extraction/implementation exists, so this is a continuation rather than a new concept. | **Low–moderate, coverage-dependent; medium cost.** Official [USGS ComCat](https://earthquake.usgs.gov/fdsnws/event/1/) count/example checks exist, but no complete extract is staged and local requests fail TLS. |
+| 5 (partly pre-empted) | **H33-10 signed strain-lobe boundary:** GeoDAWN bands 7 `geod_shearrate`, 8 `geod_dilaterate`, 17 `cond_surf`, 15 `depth_to_base_surf`, 18 `iso_grav_anom_hg`. | Signed mechanical asymmetry across a conductive/basement boundary, aligned to a gravity edge, could mark a buried permeable fault without a surface scarp. | Prior DILCOND/SRCOH/strain screens are close and owner-reported weak; this edge/sign formulation is distinct but novelty is limited. | **Low qualitative upside; low–medium cost; local owner-mirror layers only.** Not tested this round. |
 
-The full layer lists, prior-art notes, expected-rank rationale and individual blockers are in [`registry/hypotheses.json`](registry/hypotheses.json). The currently preferred research lead (BRIDGE) cannot proceed until its official archive is obtained and inspected. No hypothesis has been implemented as a promoted candidate.
+Full physics rationale, prior-art notes, source checks and freeze criteria are in [`knowledge/07_hypothesis_slate_20261004.md`](knowledge/07_hypothesis_slate_20261004.md) and [`registry/hypotheses.json`](registry/hypotheses.json). H33-7/8 are publicly listed but not locally obtainable/validated; no `HΔH` divergence or transfer claim is made.
 
 ## Domain adaptation decision
 
@@ -67,11 +83,13 @@ python scripts/restore_data.py --group all
 python scripts/audit_inputs.py
 python scripts/prepare_data.py --force-bands --skip-detector
 python scripts/build_submission.py
+# The completed H33-6 holdout is frozen in evidence/holdout_h33_6.json; do not rerun or retune it.
+PYTHONPATH=src ./.venv/bin/python scripts/build_h33_6_research.py  # rebuilds the failed research-only TIFF; do not upload
 python scripts/build_site.py
 python -m pytest -q
 ```
 
-`build_submission.py` only repackages the historical D2.8 owner-mirror emission; it does not train a new candidate. The current 121-channel feature cache is research-only. Do not interpret a public-catalogue-trained detector as private hidden-fault validation.
+`build_submission.py` only repackages the historical D2.8 owner-mirror emission; it does not train a new candidate. The frozen H33-6 arm failed and must not be retuned from that result. `build_h33_6_research.py` regenerates only the distinctly named, format-checked research TIFF and labels it not for upload. The current 121-channel feature cache is research-only. Do not interpret a public-catalogue-trained detector as private hidden-fault validation.
 
 ## Site and key records
 
@@ -83,6 +101,9 @@ python -m pytest -q
 - [Complete standing brief (HTML)](docs/standing-prompt.html)
 - [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md)
 - [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json)
+- [`knowledge/07_hypothesis_slate_20261004.md`](knowledge/07_hypothesis_slate_20261004.md) and [`evidence/hypothesis_slate_20261004_preregistered.json`](evidence/hypothesis_slate_20261004_preregistered.json) — frozen five-hypothesis round-two slate and hash
+- [`evidence/holdout_h33_6.json`](evidence/holdout_h33_6.json) and [`knowledge/08_h33_6_result_20261004.md`](knowledge/08_h33_6_result_20261004.md) — H33-6 negative, conditional proxy diagnostic
+- [`docs/downloads/research/h33-6-research-manifest.json`](docs/downloads/research/h33-6-research-manifest.json) — unique H33-6 TIFF hashes and local-only validation; not for upload
 - [`evidence/holdout33.json`](evidence/holdout33.json) — upstream C2 conditional source-exclusion diagnostic; not slot-cleared
 - [`registry/score_ledger.json`](registry/score_ledger.json) — historical owner-reported campaign entries only; H27 claim marked unsupported, no official leaderboard rows
 - [`AGENTS.md`](AGENTS.md) — repository operating safeguards
@@ -91,7 +112,7 @@ python -m pytest -q
 
 ## 1. Complete standing brief — read in full every session
 
-The full operative brief is preserved in [`standing_prompt.md`](standing_prompt.md) and repeated below.
+The full operative brief is preserved in [`standing_prompt.md`](standing_prompt.md) and reproduced below.
 
 ---
 
@@ -210,13 +231,24 @@ only be proposed for use when its source, licence and any share-to-sponsor condi
 
 ## Current project decision (2026-10-04)
 
-The only publicly downloadable recommendation is a locally format-checked **D2.8 reference emission**
-from an owner-mirror. Its `0.2600` association is owner-reported and is not authenticated to the exact
-file by an organizer receipt. A one-time official leaderboard review on 2026-10-04 did not support
-the brief's claim that `0.3195` was then the highest score; detailed rows are intentionally not
-retained or republished because of the DrivenData Terms of Use. The claimed H27-4 `0.2708` pairing is
-unsupported. The first-pass spatial holdout and domain-transfer promotion claims were withdrawn after
-review. No new candidate has been demonstrated to beat the current best; **no candidate is approved
-for a weekly slot**. No leaderboard refresh or reproduction is permitted by this project absent prior
-written consent or an authorized API. See the README and `evidence/first_pass_disposition.json` before
-any future work.
+The top-level recommended download remains a locally format-checked **D2.8 reference emission** from
+an owner-mirror. Its `0.2600` association is owner-reported and is not authenticated to the exact file
+by an organizer receipt. A separate H33-6 TIFF is provided in the research area only: its preregistered
+P1 mean ΔDTI was `−0.002737` (2/4 folds positive), P2 SGMC proxy was `+0.000159`, and the numeric gate
+failed. The unique research artifact is explicitly **not slot-approved and not for upload**. The H27-4
+`0.2708` pairing is unsupported; the GEMSDOE28 owner page describes H27-4 as unscored/research-only.
+The target `0.3195` is user-supplied and not independently confirmed as current here. A prior one-time
+official-page status note dated 2026-10-04 did not support treating it as current/top, while the
+GEMSDOE28 owner site contains a separate manual summary dated 2026-10-03 that reports the claim; this
+conflict is unresolved and neither observation links a score to a local TIFF. Detailed rows are not
+retained, and no official-page refresh or reproduction is permitted absent prior written consent or
+an authorized API.
+
+The first-pass spatial holdout and domain-transfer promotion claims were withdrawn after review.
+Upstream C2's earlier P1 pass was also withdrawn for source/label leakage; its corrected conditional
+source-exclusion diagnostic is P1 mean ΔDTI `−0.000722` (0/4 positive) and P2 SGMC proxy `+0.000283`,
+still not slot-cleared because H19-5 was not re-derived per fold and the correction was not an
+independent preregistered confirmation. H33-6 likewise uses fixed H19-5 and owner-mirror features, so
+its diagnostics remain conditional. **No candidate is approved for a weekly slot.** See
+`knowledge/07_hypothesis_slate_20261004.md`, `knowledge/08_h33_6_result_20261004.md`,
+`evidence/first_pass_disposition.json`, `evidence/holdout33.json`, and `evidence/holdout_h33_6.json`.

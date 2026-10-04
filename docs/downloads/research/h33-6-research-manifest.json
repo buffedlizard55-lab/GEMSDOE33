@@ -1,0 +1,281 @@
+{
+  "schema": 1,
+  "built_utc": "2026-10-04T17:41:08+00:00",
+  "status": "RESEARCH_ONLY_FAILED_HOLDOUT_NOT_SLOT_APPROVED",
+  "recommended_for_upload": false,
+  "slot_cleared": false,
+  "name": "GEMSDOE33-H33-6-edge-consensus-research-20261004",
+  "note": "GEMSDOE33 H33-6 edge consensus | P1 delta DTI -0.002737 (2/4), P2 +0.000159 | RESEARCH ONLY; gate failed, not slot-approved | id 6c888d2ce0f7",
+  "note_chars": 141,
+  "content_id": "6c888d2ce0f7",
+  "emitted_pixels": 40199,
+  "holdout_evidence": "evidence/holdout_h33_6.json",
+  "holdout_status": "CONDITIONAL_GATE_FAIL_NOT_SLOT_CLEARED",
+  "p1_mean_delta_dti": -0.0027373185904038984,
+  "p1_fold_deltas": [
+    -0.004907409306639132,
+    -0.012736283824310524,
+    0.003240816987572573,
+    0.0034536017817614895
+  ],
+  "p2_delta_dti": 0.0001590034879845742,
+  "matched_random_mean_delta_dti": -0.0031881649323868442,
+  "preregistration_sha256": "8662553ddd8d01438ecc1e6fe3ff8dd518674b922acc7a66b70d8059bd4edf1a",
+  "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "h19_5_sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+  "baseline_reconstruction": {
+    "builder": "dot_thin(H19-5 & ~known, 2.8) & (distance_to_known > 1 px)",
+    "min_dist_px": 2.8,
+    "prune_px": 1.0,
+    "known_pixels": 60988,
+    "h19_5_pixels": 121131,
+    "dots_before_flank_prune": 44090,
+    "dots_after_flank_prune": 40199,
+    "pruned_dots": 3891
+  },
+  "feature_bands": {
+    "tmi": {
+      "index": 14,
+      "description": "tmi - Total magnetic intensity - total strength of magnetic field",
+      "dtype": "float32",
+      "nodata": -3.4028234663852886e+38
+    },
+    "iso_grav_anom": {
+      "index": 13,
+      "description": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+      "dtype": "float32",
+      "nodata": -3.4028234663852886e+38
+    },
+    "depth_to_base_surf": {
+      "index": 15,
+      "description": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+      "dtype": "float32",
+      "nodata": -3.4028234663852886e+38
+    },
+    "cond_surf": {
+      "index": 17,
+      "description": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+      "dtype": "float32",
+      "nodata": -3.4028234663852886e+38
+    }
+  },
+  "edge_score_summary": {
+    "algorithm": "sqrt(z_log1p_tmi_gradient * z_log1p_gravity_gradient) * abs(unit_normal_dot) * (0.5 + 0.5*clip(max(z_depth,z_cond)/3,0,1))",
+    "sigma_px": 2.0,
+    "z_clip": 6.0,
+    "support_z_cap": 3.0,
+    "valid_score_cells": 5164312,
+    "positive_score_cells": 1189653,
+    "3x3_local_maxima": 15495,
+    "score_min": 0.0,
+    "score_median": 0.0,
+    "score_p95": 0.5635162591934204,
+    "score_max": 2.9077253341674805,
+    "layers": {
+      "tmi": {
+        "valid_cells": 5164312,
+        "gradient_standardization": {
+          "valid_cells": 5164312,
+          "center": 1.8922918438911438,
+          "scale": 0.9852037804841994,
+          "scale_method": "1.4826*MAD",
+          "dynamic": true,
+          "positive_cells": 2582156,
+          "z_max": 4.356590747833252
+        }
+      },
+      "iso_grav_anom": {
+        "valid_cells": 5164312,
+        "gradient_standardization": {
+          "valid_cells": 5164312,
+          "center": 0.16711760312318802,
+          "scale": 0.10816352654770016,
+          "scale_method": "1.4826*MAD",
+          "dynamic": true,
+          "positive_cells": 2582156,
+          "z_max": 6.0
+        }
+      },
+      "depth_to_base_surf": {
+        "valid_cells": 5164312,
+        "gradient_standardization": {
+          "valid_cells": 5164312,
+          "center": 2.218025326728821,
+          "scale": 1.0033947133541106,
+          "scale_method": "1.4826*MAD",
+          "dynamic": true,
+          "positive_cells": 2582156,
+          "z_max": 2.9111297130584717
+        }
+      },
+      "cond_surf": {
+        "valid_cells": 5164312,
+        "gradient_standardization": {
+          "valid_cells": 5164312,
+          "center": 8.606540359323844e-05,
+          "scale": 0.0001276005673673353,
+          "scale_method": "1.4826*MAD",
+          "dynamic": true,
+          "positive_cells": 2582144,
+          "z_max": 6.0
+        }
+      }
+    }
+  },
+  "full_data_candidate_build": {
+    "mode": "edge_consensus",
+    "control_dots": 40199,
+    "replacement_count": 2009,
+    "removed_dots": 2009,
+    "added_dots": 2009,
+    "candidate_pool_cells": 12281,
+    "random_seed": null,
+    "remaining_control_dots": 38190,
+    "candidate_dots": 40199,
+    "removed_score_mean": 0.0,
+    "added_score_mean": 1.161878228187561,
+    "added_score_min": 0.7974037528038025,
+    "added_score_max": 2.9077253341674805,
+    "added_edge_maxima": 2009
+  },
+  "format_audit_path": "evidence/format_check_h33_6_6c888d2ce0f7.json",
+  "format_audit": {
+    "file": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
+    "sha256": "18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7",
+    "bytes": 482682,
+    "bands": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "epsg": 32611,
+    "template_crs": "EPSG:32611",
+    "template_epsg": 32611,
+    "shape": [
+      3730,
+      3292
+    ],
+    "template_shape": [
+      3730,
+      3292
+    ],
+    "resolution": [
+      100.0,
+      100.0
+    ],
+    "template_resolution": [
+      100.0,
+      100.0
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "template_transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "template_bounds": [
+      243350.0,
+      4135550.0,
+      572550.0,
+      4508550.0
+    ],
+    "shape_match": true,
+    "resolution_match": true,
+    "transform_match": true,
+    "bounds_match": true,
+    "all_finite": false,
+    "nonfinite_count": 7111787,
+    "min": 0.0,
+    "max": 1.0,
+    "in_range_0_1_whole_array": false,
+    "footprint_cells": 5167373,
+    "in_range_0_1_footprint": true,
+    "outside_footprint_all_zero": false,
+    "outside_is_null_or_zero": true,
+    "outside_has_nan": true,
+    "strict_zero_outside_requested": false,
+    "outside_policy_pass": true,
+    "emitted_pixels": 40199,
+    "emitted_fraction_of_footprint": 0.007779388095266202,
+    "pass": true
+  },
+  "artifact_warning": "Do not submit: the preregistered P1 gate failed and all local metrics are catalogue/SGMC proxy diagnostics, not competition scores.",
+  "artifacts": [
+    {
+      "variant": "nan",
+      "file": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
+      "zip": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.zip",
+      "sha256": "18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7",
+      "bytes": 482682,
+      "zip_sha256": "753fa1a5540bc7a9130609726c209e4fc38f70013bee5c567e3bb8478ed2aa75",
+      "zip_bytes": 371937,
+      "outside": "NaN",
+      "validation": {
+        "path": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
+        "bytes": 482682,
+        "sha256": "18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7",
+        "file": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
+        "checks": {
+          "count_is_1": true,
+          "dtype_is_float32": true,
+          "crs_is_epsg_32611": true,
+          "shape_is_3730x3292": true,
+          "georef_matches_template": true,
+          "no_nan_inside_footprint": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "outside_is_null_or_zero": true,
+          "single_band_description": true
+        },
+        "errors": [],
+        "n_checks": 10,
+        "pass": true
+      }
+    },
+    {
+      "variant": "zeros",
+      "file": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.tif",
+      "zip": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.zip",
+      "sha256": "dadd32169f9d31c024dc8ada98e93a6a36c25f802820fc0871781c6c8644a33a",
+      "bytes": 405850,
+      "zip_sha256": "17aa8bfd8e7bb75fb637407dbac03a86874ccacca7afda80f6bba1f42aaac44e",
+      "zip_bytes": 292543,
+      "outside": "0.0",
+      "validation": {
+        "path": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.tif",
+        "bytes": 405850,
+        "sha256": "dadd32169f9d31c024dc8ada98e93a6a36c25f802820fc0871781c6c8644a33a",
+        "file": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.tif",
+        "checks": {
+          "count_is_1": true,
+          "dtype_is_float32": true,
+          "crs_is_epsg_32611": true,
+          "shape_is_3730x3292": true,
+          "georef_matches_template": true,
+          "no_nan_inside_footprint": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "outside_is_null_or_zero": true,
+          "single_band_description": true
+        },
+        "errors": [],
+        "n_checks": 10,
+        "pass": true
+      }
+    }
+  ]
+}

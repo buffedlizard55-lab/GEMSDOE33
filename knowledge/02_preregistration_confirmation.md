@@ -13,7 +13,10 @@ for audit only. Do **not** rerun it or cite its results as evidence. See
 [`evidence/first_pass_disposition.json`](../evidence/first_pass_disposition.json) and
 [`registry/irregularities.json`](../registry/irregularities.json).
 
-No candidate has passed a valid spatially blocked evaluation against the current best comparable
-emission. No candidate is approved for a weekly submission slot. Future candidates must have an
-immutable design and thresholds recorded before any measurement and predictions must be generated
-without the held-out fault geometry.
+This early plan has been superseded by the separately preregistered H33-6 screen in
+[`knowledge/08_h33_6_result_20261004.md`](../knowledge/08_h33_6_result_20261004.md). H33-6 failed its
+P1 gate (mean ΔDTI `−0.00273732`, positive in 2/4 folds) against the local H27-4 owner-mirror raster
+reference; that reference's score/file pairing is unverified. The result is a conditional catalogue
+proxy, not private-label validation. No candidate is approved for a weekly submission slot. Future
+candidates must have an immutable design and thresholds recorded before any measurement and
+predictions must be generated without the held-out fault geometry.

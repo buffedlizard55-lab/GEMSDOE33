@@ -13,7 +13,7 @@
       "id": "competition-leaderboard",
       "title": "DrivenData public leaderboard",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-      "used_for": "One-time review at the owner's request: the brief's claim that 0.3195 was then the current highest score was not supported. No participant/rank/score rows are retained or republished here after reviewing the site's Terms of Use. A public row cannot identify repository file bytes. No polling or recurring access; do not refresh or copy without prior written consent or an authorized API.",
+      "used_for": "A prior one-time official-page status note dated 2026-10-04 said the user claim of 0.3195 was not supported as then-current/top, but its page capture/method is not retained. A separate GEMSDOE28 owner page read surfaced a static 2026-10-03 manual summary containing the same user-provided claim; that is an owner report, not an independent current check. The discrepancy is unresolved. No rows are stored here; a public row cannot identify repository file bytes. Do not refresh or copy without prior written consent or an authorized API.",
       "evidence_class": "OFFICIAL PAGE REVIEWED 2026-10-04; no row content retained; see registry/leaderboard_review.json and Terms of Use"
     },
     {
@@ -153,8 +153,29 @@
       "id": "mirror-GEMSDOE28",
       "title": "GEMSDOE28 public site (status and local-holdout claims)",
       "url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
-      "used_for": "Confirms the H27-4 0.2708 claim is not supported by the site's own status: it displays NO GEMSDOE28 SCORE and describes local/projection results as UNSCORED.",
+      "used_for": "The page labels H27-4 and other GEMSDOE28 local artifacts UNSCORED/research-only and says there is no GEMSDOE28 score, so it does not support the 0.2708 H27-4 score/file attribution. The page also contains an owner-authored manual leaderboard summary dated 2026-10-03; that third-party historical summary is not reproduced here and does not establish current leaderboard status or a score/file association.",
       "evidence_class": "OWNER SITE; fetched 2026-10-04"
+    },
+    {
+      "id": "usgs-gabbs-sim3498",
+      "title": "USGS SIM 3498 — Three-dimensional geologic map of southeastern Gabbs Valley, Nevada",
+      "url": "https://pubs.usgs.gov/publication/sim3498",
+      "used_for": "Official publication related to the Gabbs Valley 3D fault/stratigraphic surface release. The surface model integrates geologic mapping, gravity inversion and potential-field studies; treat the interpretation as an analog source, not independent ground truth for GeoDAWN.",
+      "evidence_class": "OFFICIAL USGS PUBLICATION; reviewed 2026-10-04"
+    },
+    {
+      "id": "usgs-gabbs-data",
+      "title": "USGS stratigraphic and fault surfaces in a 3D geologic map of southeastern Gabbs Valley",
+      "url": "https://www.usgs.gov/data/stratigraphic-and-fault-surfaces-three-dimensional-geologic-map-southeastern-gabbs-valley",
+      "used_for": "Official data-release page for DOI 10.5066/P9BR3681. ScienceBase item 62b21845d34e74f0d80f17aa lists AllGabbsFaults.zip (3,047,835 bytes; MD5 6bcb3f9d90931e091edefa519d3f3338), CC0 1.0. Catalog extent lies within GeoDAWN raster extent, but this is bounding-box overlap only. The file payload failed retrieval (HTTP 500/TLS); no feature geometry or spatial join was inspected.",
+      "evidence_class": "OFFICIAL USGS DATA RELEASE; metadata fetched 2026-10-04; payload not obtained"
+    },
+    {
+      "id": "sciencebase-gabbs-metadata",
+      "title": "USGS ScienceBase catalog item 62b21845d34e74f0d80f17aa and FGDC metadata",
+      "url": "https://www.sciencebase.gov/catalog/item/62b21845d34e74f0d80f17aa?format=json",
+      "used_for": "Catalog JSON and official metadata XML identify fault/stratigraphic surface attachments, checksums, license, NAD83 UTM Zone 11N coordinate basis and catalog extents. The bounds overlap GeoDAWN raster bounds; no ZIP bytes were inspected and bounding-box overlap does not prove fault-feature overlap.",
+      "evidence_class": "OFFICIAL USGS METADATA; fetched 2026-10-04; binary retrieval failed"
     }
   ]
 }

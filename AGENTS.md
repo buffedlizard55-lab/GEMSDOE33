@@ -9,12 +9,14 @@
    note; an official portal upload remains a manual action by the owner.
 3. **No submission slot without valid, fold-safe evidence.** Candidate generation, the baseline,
    catalogue masks, and catalogue-derived source features must be rebuilt or excluded using only
-   each fold's visible information. A candidate must beat the current holdout best on the frozen
-   P1/P2 protocol and pass the exact format audit before a slot is even considered. The old
-   `scripts/run_holdout33.py` result is withdrawn; it is legacy-only. The replacement
-   `scripts/run_holdout33_source_audit.py` is still a conditional diagnostic because its upstream
-   H19-5 surface is not re-derived per fold. Neither result clears a slot unless those limitations
-   are resolved and the gate passes.
+   each fold's visible information. H33-6's preregistered screen failed P1 (mean ΔDTI `−0.00273732`,
+   positive in 2/4 folds) against the local H27-4 owner-mirror raster control; that control's
+   score/file pairing is unverified. Stop this arm: do not rerun the completed screen to repair its
+   post-write logging or retune from its holdout, and do not upload its research-only TIFF. The old `scripts/run_holdout33.py` result is withdrawn; it is legacy-only. The
+   conditional C2 source-audit diagnostic and H33-6 result both retain the unresolved fixed-H19-5
+   upstream provenance limitation. Neither clears a slot. A future candidate needs a fresh, frozen,
+   independent confirmation against a comparable local reference, and must pass the exact format
+   audit before a slot is even considered.
 4. **Submission-output policy**: single-band float32, EPSG:32611, 100 m, same
    shape/geotransform/bounds as the owner-mirror sample. The recommended D2.8 reference uses finite
    `[0,1]` probabilities inside the template footprint and NaN outside to follow the official

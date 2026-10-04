@@ -32,7 +32,14 @@ def test_research_page_blocks_unvalidated_transfer_and_hypothesis_claims():
     page = build_site.build_research()
     assert "BLOCKED_NOT_ESTIMATED" in page
     assert "retrospective" in page
-    assert "No new candidate has been demonstrated" in page
-    assert "A generic two-sample AUC is not by itself that bound" in page
+    assert "H33-6 failed P1" in page
+    assert "no candidate is slot-approved" in page
+    assert "score/file pairing unverified" in page
+    assert "−0.00273732" in page
+    assert "A generic two-sample AUC is not itself that bound" in page
+    assert "Download H33-6 research TIFF" in page
+    assert "Independent local format audit" in page
+    assert "Audit JSON" in page
+    assert "RESEARCH ONLY" in page
     assert "+0.00601" not in page
     assert "AUC 0.913" not in page
