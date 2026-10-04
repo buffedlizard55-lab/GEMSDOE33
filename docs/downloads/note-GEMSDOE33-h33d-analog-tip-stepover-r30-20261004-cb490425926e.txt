@@ -1,0 +1,1 @@
+GEMSDOE33 H33-D tip-protected analog xfer | Ben-David bounded transfer + Euler corroboration + flank prune | range-hardened all-finite [0,1] | id cb490425926e

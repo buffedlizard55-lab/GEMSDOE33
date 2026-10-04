@@ -1,7 +1,7 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-04T15:59:26Z",
-  "status": "REFERENCE_BASELINE_ONLY — no new candidate passed an independent slot-approval gate",
+  "generated_utc": "2026-10-04T18:58:10Z",
+  "status": "REFERENCE_BASELINE_ONLY \u2014 no new candidate passed an independent slot-approval gate",
   "evidence_class": "OWNER-MIRROR for source model and reported 0.2600; organizer score/file pairing unverified",
   "source": {
     "file": "data/dotted_h19_5_d2_8_nan.tif",
@@ -35,7 +35,7 @@
   "note_file": "note-gemsdoe33-d28-reference-20261004-426073b6b4ab.txt",
   "emitted_pixels": 44090,
   "recommended": "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
-  "recommended_variant": "-nan.tif — official wording says outside data is null or NaN",
+  "recommended_variant": "-nan.tif \u2014 official wording says outside data is null or NaN",
   "alternate": "gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
   "alternate_warning": "0.0 outside footprint; provided only as a troubleshooting alternative",
   "artifacts": [
@@ -46,10 +46,10 @@
       "bytes": 499842,
       "outside": "NaN",
       "validation": {
-        "path": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+        "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
         "bytes": 499842,
         "sha256": "c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc",
-        "file": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+        "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
         "checks": {
           "count_is_1": true,
           "dtype_is_float32": true,
@@ -74,10 +74,10 @@
       "bytes": 423456,
       "outside": "0.0",
       "validation": {
-        "path": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+        "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
         "bytes": 423456,
         "sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
-        "file": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+        "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
         "checks": {
           "count_is_1": true,
           "dtype_is_float32": true,
