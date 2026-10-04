@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
-"""Fail-closed format audit for a GEMS competition submission GeoTIFF.
+"""Fail-closed local format audit for a GEMS competition submission GeoTIFF.
 
-The official problem page requires a single-band float32 GeoTIFF on the
-EPSG:32611, 100 m competition grid, with prediction values in [0, 1]. Its
-published format text says out-of-bounds data should be null/NaN. Separately,
-the owner reported an upload-form rejection for NaN values (IR-PORTAL-01).
-For the staged files this project therefore also enforces the locally tested
-policy of finite [0, 1] values over the entire array and zeros outside the
-sample-template footprint. That empirical policy is not presented as an
-organizer-published rule; check the live portal if its behavior changes.
+The official problem wording recorded in the source registry requires one
+float32 band on the 100 m EPSG:32611 grid, probabilities in [0, 1], and null/NaN
+outside the bounds. This validator checks that the footprint is finite and
+in-range, and that outside cells are either null/NaN or zero. The zero variant
+is available as an explicit owner-reported troubleshooting alternative; the
+reported portal rejection of NaN was never confirmed by the organizer.
 
-This audit checks file format only. It is not a competition score or organizer
-approval.
+This checks local file structure only. It is not a competition score or
+organizer approval. Use ``--strict-zero-outside`` only when intentionally
+checking the troubleshooting alternative.
 
 Usage:
   PYTHONPATH=src python scripts/validate_submission.py --submission <file.tif> \\
@@ -53,7 +52,7 @@ def _close_tuple(left, right) -> bool:
     )
 
 
-def audit(submission: Path, template: Path) -> dict:
+def audit(submission: Path, template: Path, *, strict_zero_outside: bool = False) -> dict:
     submission = Path(submission)
     template = Path(template)
     try:
@@ -124,10 +123,21 @@ def audit(submission: Path, template: Path) -> dict:
             checks["outside_footprint_all_zero"] = bool(
                 np.isfinite(outside).all() and np.all(outside == 0.0)
             )
+            checks["outside_is_null_or_zero"] = bool(
+                np.all(np.isnan(outside) | (outside == 0.0))
+            )
+            checks["outside_has_nan"] = bool(np.isnan(outside).any())
         else:
             checks["footprint_cells"] = int(footprint.sum())
             checks["in_range_0_1_footprint"] = False
             checks["outside_footprint_all_zero"] = False
+            checks["outside_is_null_or_zero"] = False
+            checks["outside_has_nan"] = False
+        checks["strict_zero_outside_requested"] = bool(strict_zero_outside)
+        checks["outside_policy_pass"] = bool(
+            checks["outside_footprint_all_zero"] if strict_zero_outside
+            else checks["outside_is_null_or_zero"]
+        )
 
         checks["emitted_pixels"] = int((arr > 0).sum())
         checks["emitted_fraction_of_footprint"] = (
@@ -142,10 +152,8 @@ def audit(submission: Path, template: Path) -> dict:
         checks["resolution_match"],
         checks["transform_match"],
         checks["bounds_match"],
-        checks["all_finite"],
-        checks["in_range_0_1_whole_array"],
         checks["in_range_0_1_footprint"],
-        checks["outside_footprint_all_zero"],
+        checks["outside_policy_pass"],
     ])
     return checks
 
@@ -155,10 +163,12 @@ def main() -> int:
     ap.add_argument("--submission", required=True)
     ap.add_argument("--template", default=None)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--strict-zero-outside", action="store_true",
+                    help="require 0.0 outside the footprint (owner-reported troubleshooting policy)")
     args = ap.parse_args()
 
     template = Path(args.template) if args.template else data_dir() / "core" / "sample_submission.tif"
-    report = audit(Path(args.submission), template)
+    report = audit(Path(args.submission), template, strict_zero_outside=args.strict_zero_outside)
     text = json.dumps(report, indent=1)
     if args.out:
         out = Path(args.out)

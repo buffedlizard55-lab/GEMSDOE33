@@ -54,12 +54,31 @@ class SubmissionAuditTests(unittest.TestCase):
         self.assertEqual(result["emitted_pixels"], 1)
         self.assertTrue(result["outside_footprint_all_zero"])
 
-    def test_nonfinite_anywhere_fails(self):
+    def test_nan_outside_footprint_is_allowed_by_official_policy(self):
         arr = np.zeros((4, 5), dtype=np.float32)
         arr[0, 0] = np.nan
-        path = self._write("nan.tif", arr)
+        path = self._write("nan-outside.tif", arr)
         result = audit(path, self.template)
         self.assertFalse(result["all_finite"])
+        self.assertTrue(result["outside_is_null_or_zero"])
+        self.assertTrue(result["pass"])
+        strict = audit(path, self.template, strict_zero_outside=True)
+        self.assertFalse(strict["pass"])
+
+    def test_nonfinite_inside_footprint_fails(self):
+        arr = np.zeros((4, 5), dtype=np.float32)
+        arr[1, 1] = np.nan
+        path = self._write("nan-inside.tif", arr)
+        result = audit(path, self.template)
+        self.assertFalse(result["in_range_0_1_footprint"])
+        self.assertFalse(result["pass"])
+
+    def test_infinite_outside_footprint_fails(self):
+        arr = np.zeros((4, 5), dtype=np.float32)
+        arr[0, 0] = np.inf
+        path = self._write("infinite-outside.tif", arr)
+        result = audit(path, self.template)
+        self.assertFalse(result["outside_is_null_or_zero"])
         self.assertFalse(result["pass"])
 
     def test_out_of_range_prediction_fails(self):

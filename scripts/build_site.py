@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
 """Build the static, evidence-led GitHub Pages site.
 
-The public pages put the unique H33-F analog-transfer GeoTIFF at the top of the
-overview, with an explicit holdout-fail / not-slot-approved banner. Historical
-D2.8 remains a secondary reference. Withdrawn first-pass claims stay withdrawn.
+The public pages are generated from the download manifest, research registries and evidence files.
+They intentionally make the D2.8 *reference* prominent while refusing to promote withdrawn
+first-pass holdout, score-inversion or domain-transfer claims.
 """
 from __future__ import annotations
 
 import html
 import json
 import re
-import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -88,15 +87,15 @@ def page(title: str, body: str, active: str) -> str:
         f'{" aria-current=page" if url == active else ""}>{esc(label)}</a>'
         for url, label in NAV
     )
-    built = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Auditable DOE GEMS fault-discovery research. Unique H33-F analog-transfer GeoTIFF is format-checked and not slot-approved.">
+<meta name="description" content="Auditable DOE GEMS fault-discovery research; the recommended download is a format-checked D2.8 reference, not a new model.">
 <title>{esc(title)}</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
 <p>DrivenData #306 · evidence-led research · as of 2026-10-04</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
 <main class="wrap">{body}</main>
-<footer><div class="wrap">Generated {built} by <code>scripts/build_site.py</code>. The featured TIFF is the unique H33-F analog-field research emission; it is not slot-approved. No DrivenData upload was made from this workspace. Owner
+<footer><div class="wrap">Generated deterministically from the registered evidence by <code>scripts/build_site.py</code>. The featured top-level TIFF is a
+D2.8 reference emission, not a new model. The failed H33-6 research TIFF is a separate non-submission artifact. No DrivenData upload was made from this workspace. Owner
 mirror, measured, model-derived and official evidence are identified separately in the records.</div></footer>
 </body></html>"""
 
@@ -128,7 +127,8 @@ def download_card(man: dict, artifact: dict, recommended: bool) -> str:
 <h3>{tag} <code>{esc(filename)}</code></h3>
 {warning}
 <table><tbody>
-<tr><th>File</th><td><a class="btn" href="downloads/{esc(filename)}">Download GeoTIFF</a> <a class="btn alt" href="downloads/{esc(artifact['zip'])}">Download ZIP</a><br><code>{esc(filename)}</code></td></tr>
+<tr><th>File</th><td><a href="downloads/{esc(filename)}">{esc(filename)}</a> ·
+<a href="downloads/{esc(artifact['zip'])}">single-member ZIP</a></td></tr>
 <tr><th>Unique submission name</th><td><code>{esc(name)}</code></td></tr>
 <tr><th>Outside footprint</th><td>{esc(artifact.get('outside'))}</td></tr>
 <tr><th>Size / emitted pixels</th><td>{int(artifact.get('bytes', 0)):,} bytes ·
@@ -148,17 +148,10 @@ def package_box() -> str:
         return '<div class="panel bad">No recommended artifact is recorded in the manifest.</div>'
     primary = download_card(man, recommended, True)
     alt = download_card(man, alternate, False) if alternate else ""
-    hold = read_json(ROOT / "evidence" / "holdout_analog.json")
-    p1 = hold.get("p1_mean_delta_dti")
-    p1_pos = hold.get("p1_positive_folds")
-    p1_txt = f"{p1:+.6f}" if isinstance(p1, (int, float)) else "n/a"
-    return f"""<div class="hero-download" id="download"><h2>⬇ Download the unique format-checked GeoTIFF</h2>
-<p><b>Unique H33-F analog-field transfer — research candidate.</b> This file is
-<b>not</b> a copy of the historical D2.8 emission. Predicted values on the footprint
-are in <code>[0, 1]</code>. Local format checks passed. The spatially blocked proxy
-holdout <b>failed</b> (P1 mean ΔDTI {esc(p1_txt)}, {esc(p1_pos)}/4 folds vs rebuilt C0).
-<b>NOT SLOT-APPROVED.</b> Do not spend a weekly submission slot on this file. No live
-score is claimed.</p>{primary}{alt}</div>"""
+    return f"""<div class="hero-download" id="download"><h2>⬇ Download the format-checked reference TIFF</h2>
+<p><b>D2.8 reference only.</b> This is not a new model and is not demonstrated to beat the official
+leaderboard. Its reported 0.2600 association is owner-reported; exact score-to-file identity is not
+confirmed. The top card is the recommended, NaN-outside file.</p>{primary}{alt}</div>"""
 
 
 def build_index() -> str:
@@ -179,28 +172,24 @@ submission receipt exists in this workspace.</p>
 the current highest score was not supported. No participant/rank/score rows are retained or republished
 here after review of the site's <a href="https://www.drivendata.org/termsofuse/">Terms of Use</a>,
 which prohibit automatic monitoring/copying and manual monitoring/copying without prior written consent.
-This project does not poll or refresh the page; no permission for further review or reproduction is
-recorded. A public row cannot establish which local TIFF or account produced a score.</p></div>
+A separate GEMSDOE28 owner-page summary dated 2026-10-03 reports the same claim; the conflict is unresolved,
+and that owner report is not an independent current official check. This project does not poll or refresh
+the page; no permission for further review or reproduction is recorded. A public row cannot establish
+which local TIFF or account produced a score.</p></div>
 <div class="panel bad"><h3>H27-4 score attribution is not supported</h3>
 <p>The owner's GEMSDOE28 page says <b>“NO GEMSDOE28 SCORE”</b> and labels artifacts unscored/research-only.
 No organizer receipt or verified account/file record ties the brief's <code>0.2708</code> claim to
 <code>h27-4-r1-solo-d2-8</code>. See <a href="irregularities.html">the provenance and score
 irregularities</a>; detailed leaderboard rows are intentionally not reproduced.</p></div>
 <h2>Decision status</h2>
-<ul><li>No new candidate has passed a valid independent spatially blocked holdout against the current
-best comparable emission.</li><li>Upstream C2 is archived as research-only: the earlier P1 pass was withdrawn; the corrected
-conditional source-exclusion diagnostic is P1 mean ΔDTI −0.000722 (0/4 positive), P2 SGMC proxy
-+0.000283, and not slot-cleared because H19-5 was not re-derived per fold and the diagnostic was not
-an independent preregistered confirmation. See <a href="irregularities.html">IR-33-C2-01</a> and
-<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout33.json">the evidence</a>.</li>
-<li>First-pass holdout, reconstruction, pruning and domain-transfer promotion claims were withdrawn after
-review; archived results are preserved for audit but are not promotion evidence.</li><li>No weekly submission
-slot is approved or spent. The featured download is the unique H33-F analog-transfer
-GeoTIFF (holdout failed). The historical D2.8 owner-mirror remains in
-<code>docs/downloads/</code> as a non-featured reference.</li></ul>
-<p>For the exact upload procedure, open the <a href="executive-summary.html">executive summary</a>.
-For the geological shortlist and blocked source checks, see <a href="research.html">research</a>.</p>"""
-    return page("GEMSDOE33 · unique analog-transfer TIFF", body, "index.html")
+<ul><li><b>H33-6 failed its preregistered spatial proxy gate:</b> P1 mean ΔDTI −0.00273732 (2/4 folds positive), P2 SGMC proxy +0.00015900. It beat the matched-random mean but not the local H27-4 owner-mirror raster control (score/file pairing unverified). The arm is stopped; see the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/08_h33_6_result_20261004.md">result review</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout_h33_6.json">full evidence</a>.</li>
+<li>A unique H33-6 TIFF is linked on the <a href="research.html">research page</a> for reproducibility only. It is <b>not for upload</b>, not slot-approved, and its local format check is not a scientific validation.</li>
+<li>Earlier H33-F analog transfer also failed local proxies (P1 mean −0.093072, 0/4 positive; P2 −0.016163 vs C0); it is a separate research-only artifact and its discriminator AUC is not an <code>HΔH</code> bound. See the <a href="research.html">research page</a>.</li>
+<li>Upstream C2 is archived as research-only: the earlier P1 pass was withdrawn; the corrected conditional source-exclusion diagnostic is P1 mean ΔDTI −0.000722 (0/4 positive), P2 SGMC proxy +0.000283, and not slot-cleared because H19-5 was not re-derived per fold and the diagnostic was not an independent preregistered confirmation. See <a href="irregularities.html">IR-33-C2-01</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout33.json">the evidence</a>.</li>
+<li>Initial holdout, reconstruction and domain-transfer promotion claims were withdrawn after review. No weekly submission slot is approved or spent. The only top-level recommended package is the D2.8 reference.</li></ul>
+<p>For the exact upload procedure for the reference artifact, open the <a href="executive-summary.html">executive summary</a>.
+For the geological shortlist, blocked source checks and the clearly separated H33-6 research file, see <a href="research.html">research</a>.</p>"""
+    return page("GEMSDOE33 · overview and reference TIFF", body, "index.html")
 
 
 def build_exec() -> str:
@@ -215,9 +204,11 @@ def build_exec() -> str:
 <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem
 page</a>, the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">current rules page</a>,
 and the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">user-provided rules PDF</a> before submitting.
-The TIFF below is the unique H33-F analog-field research emission.
-It is format-checked with in-footprint values in [0,1]. Its spatially blocked proxy holdout failed;
-it is not slot-approved and has no organizer score.</p>
+The TIFF below is an owner-mirror D2.8 reference,
+not a newly validated model. Its reported 0.2600 score has no organizer receipt linking it to these
+exact file bytes. The 0.2708 H27-4 attribution is unsupported, and H33-6 failed its preregistered P1 gate.
+No new model is approved for a weekly submission slot.</p>
+<div class="panel bad"><b>Do not upload H33-6 or H33-F.</b> H33-6 failed its preregistered P1 gate; the separate H33-F analog screen also failed its local proxies. Both TIFFs are research artifacts, not slot recommendations. The general steps below apply only if you independently choose to use the historical D2.8 reference; local format checks do not imply scientific advantage or portal acceptance. See the <a href="research.html">research page</a> for their separate downloads and evidence.</div>
 {package_box()}
 <ol><li><b>Download the recommended NaN-outside TIFF</b> from the top card:
 <code>{esc(fname)}</code>. Optionally verify its SHA-256 against the card. It is a single-band
@@ -234,15 +225,19 @@ characters, under the 200-character limit.</li>
 <li><b>Review the selected file and attribution, then submit.</b> Save the portal's receipt and score
 if it provides one. No upload or score is asserted by this repository.</li></ol>
 <div class="panel warn"><b>Note to paste ({int(man.get('note_chars', 0))}/200 characters):</b><pre>{esc(note)}</pre></div>
+<h3>AI-use narrative disclosure</h3>
+<p>The current official rules require a narrative disclosure of generative-AI extent and use. Review the
+<a href="{GITHUB}/AI_DISCLOSURE.md">AI and data provenance disclosure</a> and verify/update it for the
+specific file and any future work before submission. No upload has occurred from this workspace.</p>
 <h3>Why NaN outside is recommended</h3>
 <p>The official problem wording says data outside the bounds should be null or NaN. The recommended
 file follows that wording and passed all {len(art.get('validation', {}).get('checks', {}))} recorded
 local byte/grid/value checks. The <code>-zeros.tif</code> alternative has 0.0 outside the footprint;
 it is offered only as a troubleshooting option and is not as close to the literal null/NaN wording.
 Neither local validation nor the ZIP container guarantees portal acceptance.</p>
-<h3>Rebuild the unique local package</h3>
+<h3>Rebuild the local reference package</h3>
 <pre>python scripts/restore_data.py --group all
-python scripts/run_analog_campaign.py
+python scripts/build_submission.py
 python scripts/build_site.py
 python -m pytest -q</pre>
 <p class="small">Inputs are SHA-pinned owner mirrors, not organizer-authenticated downloads. See
@@ -273,49 +268,118 @@ def build_research() -> str:
     da = read_json(ROOT / "evidence" / "domain_adaptation_preflight.json")
     blockers = da.get("blocking_gates", [])
     block_list = "<ol>" + "".join(f"<li>{esc(item)}</li>" for item in blockers) + "</ol>"
-    status = esc(da.get("status", "BLOCKED_NOT_ESTIMATED"))
+    da_status = esc(da.get("status", "EXPLORATORY_NOT_LICENSED"))
+    formal_bound_status = esc(da.get("formal_bound_status", "BLOCKED_NOT_ESTIMATED"))
+    prereg_hash_path = ROOT / "evidence" / "hypothesis_slate_20261004_preregistered.sha256"
+    prereg_hash = prereg_hash_path.read_text(encoding="utf-8").split()[0] if prereg_hash_path.exists() else "missing"
+    result = read_json(ROOT / "evidence" / "holdout_h33_6.json")
+    research_manifest = read_json(DOWNLOADS / "research" / "h33-6-research-manifest.json")
+    research_artifact = next((a for a in research_manifest.get("artifacts", []) if a.get("variant") == "nan"), None)
+    if research_artifact:
+        tif_url = research_artifact.get("file", "").removeprefix("docs/")
+        zip_url = research_artifact.get("zip", "").removeprefix("docs/")
+        check_count = len(research_artifact.get("validation", {}).get("checks", {}))
+        format_audit = research_manifest.get("format_audit", {})
+        format_audit_url = f"{GITHUB}/{esc(research_manifest.get('format_audit_path', ''))}"
+        format_audit_text = "PASS" if format_audit.get("pass") else "missing/failed"
+        artifact_card = f"""<div class="panel bad"><b>Research artifact only — do not upload</b>
+<p>The unique H33-6 TIFF passed local grid/value formatting checks, but its preregistered P1 gate failed.
+It is preserved for reproduction and is not a weekly-slot recommendation.</p>
+<p><a class="btn alt" href="{esc(tif_url)}">Download H33-6 research TIFF (NaN outside)</a>
+<a class="btn alt" href="{esc(zip_url)}">Download single-member ZIP</a></p>
+<p><b>Unique identifier:</b> <code>{esc(research_manifest.get('name', ''))}</code><br>
+<b>SHA-256:</b> <code>{esc(research_artifact.get('sha256', ''))}</code> ·
+{int(research_artifact.get('bytes', 0)):,} bytes ·
+{check_count}/{check_count} package checks</p>
+<p><b>Independent local format audit:</b> {esc(format_audit_text)}; NaNs occur only outside the footprint and are allowed by the stated format policy. <a href="{format_audit_url}">Audit JSON</a>. This does not establish scientific validity or portal acceptance.</p>
+<p><b>Paste-ready note (not an upload recommendation):</b></p><pre>{esc(research_manifest.get('note', ''))}</pre>
+<p>Full manifest: <a href="{esc('downloads/research/h33-6-research-manifest.json')}">hashes, source bands and local audit</a>.</p></div>"""
+    else:
+        artifact_card = '<div class="panel bad">H33-6 research artifact manifest is missing.</div>'
+
+    h33f_manifest_path = DOWNLOADS / "research" / "h33-f-analog-transfer-manifest.json"
+    h33f_card = ""
+    if h33f_manifest_path.exists():
+        h33f_manifest = read_json(h33f_manifest_path)
+        h33f_result = read_json(ROOT / "evidence" / "holdout_analog.json")
+        h33f_da = read_json(ROOT / "evidence" / "domain_adaptation_preflight.json")
+        h33f_artifact = next((a for a in h33f_manifest.get("artifacts", []) if a.get("outside") == "NaN"), None)
+        if h33f_artifact:
+            h33f_p1 = float(h33f_result.get("p1_mean_delta_dti", 0.0))
+            h33f_p2 = float(h33f_result.get("p2", {}).get("delta_vs_c0", 0.0))
+            h33f_random = float(h33f_result.get("p2", {}).get("delta_vs_random", 0.0))
+            h33f_auc = h33f_da.get("domain_discriminator", {}).get("held_out_block_auc")
+            h33f_auc_text = f"{float(h33f_auc):.3f}" if h33f_auc is not None else "not estimated"
+            h33f_card = f'''<h2>Earlier H33-F analog-field screen — separate, stopped experiment</h2>
+<div class="panel bad"><b>H33-F also failed; not a submission recommendation</b>
+<p>P1 mean ΔDTI: <code>{h33f_p1:+.6f}</code> ({int(h33f_result.get("p1_positive_folds", 0))}/4 positive folds). P2 SGMC ΔDTI was
+<code>{h33f_p2:+.6f}</code> versus C0 and <code>{h33f_random:+.6f}</code> versus matched-N random. It remains research-only.</p>
+<p>The exploratory 20 km-block domain-classifier AUC was {h33f_auc_text}; it is <b>not</b> a Ben-David <code>HΔH</code> estimate.
+The analog labels were the same public catalogue rather than independent field-pick truth, so the joint-label error <code>lambda</code>
+and transfer bound remain unknown. This is separate from H33-6 and from the D2.8 reference.</p>
+<p><a class="btn alt" href="downloads/{esc(h33f_artifact.get('file', ''))}">Download H33-F research TIFF (NaN outside)</a>
+<a class="btn alt" href="downloads/{esc(h33f_artifact.get('zip', ''))}">Download H33-F ZIP</a></p>
+<p><b>Unique identifier:</b> <code>{esc(h33f_manifest.get('name', ''))}</code> · <b>SHA-256:</b> <code>{esc(h33f_artifact.get('sha256', ''))}</code><br>
+{int(h33f_artifact.get('bytes', 0)):,} bytes · {int(h33f_artifact.get('validation', {}).get('n_checks', 0))}/10 recorded package checks<br>
+<b>Note (not an upload recommendation):</b> <code>{esc(h33f_manifest.get('note', ''))}</code></p>
+<p><a href="{GITHUB}/knowledge/07_analog_transfer.md">H33-F result review</a> ·
+<a href="{GITHUB}/evidence/holdout_analog.json">H33-F proxy evidence</a> ·
+<a href="downloads/research/h33-f-analog-transfer-manifest.json">H33-F manifest</a>. Local file checks do not validate science or portal acceptance.</p></div>'''
+
+    p1_mean = result.get("p1", {}).get("mean_delta_dti")
+    p2_delta = result.get("p2", {}).get("delta_dti")
+    fold_text = ", ".join(f"{float(x):+.6f}" for x in result.get("p1", {}).get("fold_deltas", []))
+    mean_text = f"{float(p1_mean):+.8f}" if p1_mean is not None else "not measured"
+    p2_text = f"{float(p2_delta):+.8f}" if p2_delta is not None else "not measured"
+    random_value = result.get("p1", {}).get("matched_random_mean_delta_dti")
+    random_text = f"{float(random_value):+.8f}" if random_value is not None else "not measured"
     current = esc(hyp.get("status", ""))
     body = f"""<h2>Research status</h2>
-<div class="panel warn"><b>{current}</b><p>The hypothesis registry is retrospective: implementation began before
-it was assembled, so none of these entries is claimed as preregistration. They are research leads,
-not validated candidates or slot approvals. No new candidate has been demonstrated to beat the
-current best.</p></div>
+<div class="panel warn"><b>{current}</b><p>The 2026-10-04 five-hypothesis slate and H33-6 numerical criteria were frozen before
+its code and holdout; preregistration SHA-256 is <code>{esc(prereg_hash)}</code>. The first-round shortlist remains retrospective
+and archived. H33-6 failed P1; no candidate is slot-approved and no numeric DTI/contest-score gain was forecast.</p></div>
+<h2>H33-6 result — stopped for this round</h2>
+<div class="panel bad"><p><b>P1 mean ΔDTI:</b> {esc(mean_text)} ({int(result.get('p1', {}).get('positive_folds', 0))}/4 positive folds; deltas {esc(fold_text)}).<br>
+<b>P2 SGMC proxy ΔDTI:</b> {esc(p2_text)}.<br>
+<b>Matched-random mean P1 ΔDTI:</b> {esc(random_text)}.<br>
+The candidate beat the matched-random mean but was worse than its local H27-4 owner-mirror raster control (score/file pairing unverified) on mean P1. These are catalogue/SGMC proxies, not competition scores. The fixed H19-5 source was not re-derived per fold, so the diagnostic remains conditional.</p>
+<p><a href="{GITHUB}/knowledge/08_h33_6_result_20261004.md">Readable result review</a> ·
+<a href="{GITHUB}/evidence/holdout_h33_6.json">Full fold-level evidence</a> ·
+<a href="{GITHUB}/evidence/hypothesis_slate_20261004_preregistered.json">Frozen protocol</a></p></div>
+{artifact_card}
+{h33f_card}
 <h2>Ranked geological hypotheses</h2>
+<p>Expected improvement is a qualitative research-priority ranking, not a numeric DTI prediction. Source listings
+are not equivalent to downloaded/inspected geometry. See the <a href="{GITHUB}/knowledge/07_hypothesis_slate_20261004.md">full slate</a>.</p>
 <div class="scroll"><table><thead><tr><th>Rank / status</th><th>Layers</th><th>Physical signature</th>
 <th>Why it may find faults absent from USGS/INGENIOUS</th><th>Difference from prior art</th>
 <th>Expected upside / cost</th><th>Official source and availability check</th></tr></thead>
 <tbody>{htable}</tbody></table></div>
 <h2>Ben-David domain adaptation — fail-closed</h2>
-<div class="panel warn"><b>{status}</b><p>Named Dixie Valley / Brady / Desert Peak source masks were built from
-GDR 1391 well/spring names plus official plant coordinates. An exploratory 20 km-block domain
-discriminator was fit on shared GeoDAWN+LiDAR layers. A unique off-catalogue emission was packaged.
-The Ben-David target-error bound is <b>not</b> licensed: lambda is unknown because analog labels are
-the same public catalogue, and the discriminator class is not shown to equal HΔH. GDR 1682/207 GIS
-payloads could not be staged (TLS fail).</p>
-<p>Ben-David et al. (2010), Theorem 2 requires source error plus one half of an empirical
-<code>HΔH</code> divergence, a defensible finite-sample/class-complexity term, and the joint-label
-error <code>lambda</code>. A generic two-sample AUC is not by itself that bound.
+<div class="panel bad"><b>{da_status}</b><p>Formal Ben-David bound status: <b>{formal_bound_status}</b>. No field-specific <code>HΔH</code> divergence was estimated; transfer is neither licensed nor refuted.
+The first-pass well/spring-density split, random pixel discriminator and conclusion were withdrawn.
+BRIDGE GDR #1682 is publicly listed but its archive bytes could not be staged. USGS Gabbs Valley 3D faults
+are also publicly listed; only bounding boxes were compared, and the ZIP/feature geometry were not obtained.</p>
+<p>Ben-David et al. (2010), Theorem 2 uses source error plus one half of an empirical
+<code>HΔH</code> divergence, a justified finite-sample/class-complexity term, and the joint-label error
+<code>lambda</code>. A generic two-sample AUC is not itself that bound. A domain-divergence estimate alone
+would not prove target transfer or reveal target label error.
 <a href="https://link.springer.com/article/10.1007/s10994-009-5152-4">Paper</a> ·
 <a href="{GITHUB}/src/gemsdoe33/domain.py">implementation notes</a>.</p>
 <h3>Blocking gates</h3>{block_list}</div>
-<h2>Review and evidence boundary</h2>
-<p>Initial promotion claims were withdrawn after discovering truth-conditioned prediction
-reconstruction, tuning against owner-reported scores, reused seeds/budgets, a comparator structurally
-biased against some artifact families, invalid domain definitions, and unverified arithmetic on
-quantized radiometric bands. See <a href="{GITHUB}/evidence/first_pass_disposition.json">the disposition</a>
-and <a href="irregularities.html">the irregularities register</a>. No archived score or metric is
-used here to promote a candidate.</p>
+<h2>Prior-art and evidence boundary</h2>
+<p>H19-5 already uses four-line physical corroboration (tip/relay, thermal-geochemical, scarp/openness,
+geopotential/basement) with a second-best-line gate. Therefore generic multi-line fusion is not novel.
+The H33-6 operator is a specific cross-physics edge-normal score; its negative holdout is retained, not tuned away.
+The reported H27-4 <code>0.2708</code> score/file attribution is unsupported: the owner page labels H27-4
+unscored/research-only and no organizer receipt is recorded. See <a href="{GITHUB}/knowledge/01_why_0.2708_won.md">the score-claim review</a>.</p>
 <p>Upstream C2 is also <b>not slot-cleared</b>. Its legacy P1 pass was withdrawn; the corrected conditional
 source-exclusion diagnostic is P1 mean ΔDTI <code>−0.000722</code> (0/4 folds positive), while P2 is
-<code>+0.000283</code> on the separate SGMC proxy. Because the fixed H19-5 surface was not rebuilt per
-fold and the correction was not an independent preregistered confirmation, these figures remain a
-conditional local diagnostic—not score evidence. See <a href="{GITHUB}/evidence/holdout33.json">the
-full diagnostic</a> and <a href="{GITHUB}/archive/legacy_candidates/README.md">the archive-only
-artifact note</a>.</p>
-<p>Source and licence observations are linked from the <a href="sources.html">source register</a>;
-external file availability and footprint/schema checks remain explicitly incomplete where indicated.</p>"""
+<code>+0.000283</code> on the separate SGMC proxy. See the <a href="{GITHUB}/evidence/holdout33.json">full diagnostic</a>
+and <a href="{GITHUB}/archive/legacy_candidates/README.md">archive-only artifact note</a>.</p>
+<p>Reviewable official links and source/license caveats are in the <a href="sources.html">source register</a>.
+No external candidate is treated as viable until its actual bytes, schema, CRS, licence and feature-level overlap are audited.</p>"""
     return page("Research · GEMSDOE33", body, "research.html")
-
 
 def build_sources() -> str:
     data = reg("sources.json")

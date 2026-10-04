@@ -25,7 +25,7 @@
       "owner_mirror_file": "data/dotted_h19_5_d2_8_nan.tif",
       "file_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
       "reported_source_project": "GEMSDOE25 / historical owner materials",
-      "official_board_observation": "two participants are tied at 0.2600; neither row identifies this file",
+      "official_board_observation": "No row-level board content is retained; an official observation cannot authenticate this file or account association.",
       "status": "owner report only; exact score/file pairing remains unconfirmed"
     }
   ],
@@ -60,8 +60,8 @@
   "official_leaderboard_review": {
     "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
     "read_utc": "2026-10-04",
-    "status": "one-time manual review at the owner request; the brief’s claim that 0.3195 was the current highest score was not supported at that observation",
-    "retention": "participant/rank/score rows are not stored or republished here after review of DrivenData Terms of Use; no automated or recurring access is used",
+    "status": "one-time official-page status note dated 2026-10-04 said the user claim was not supported as then-current/top; a third-party GEMSDOE28 owner summary dated 2026-10-03 reports it, so current status remains unresolved",
+    "retention": "no row-level participant/rank/score values are stored or republished here; no automated or recurring access is used",
     "file_identity_limitation": "A public leaderboard row does not identify local TIFF bytes or prove an account association. Do not refresh or republish leaderboard contents without prior written consent or an authorized API."
   }
 }

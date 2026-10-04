@@ -9,18 +9,21 @@
    note; an official portal upload remains a manual action by the owner.
 3. **No submission slot without valid, fold-safe evidence.** Candidate generation, the baseline,
    catalogue masks, and catalogue-derived source features must be rebuilt or excluded using only
-   each fold's visible information. A candidate must beat the current holdout best on the frozen
-   P1/P2 protocol and pass the exact format audit before a slot is even considered. The old
-   `scripts/run_holdout33.py` result is withdrawn; it is legacy-only. The replacement
-   `scripts/run_holdout33_source_audit.py` is still a conditional diagnostic because its upstream
-   H19-5 surface is not re-derived per fold. Neither result clears a slot unless those limitations
-   are resolved and the gate passes.
+   each fold's visible information. H33-6's preregistered screen failed P1 (mean ΔDTI `−0.00273732`,
+   positive in 2/4 folds) against the local H27-4 owner-mirror raster control; that control's
+   score/file pairing is unverified. Stop this arm: do not rerun the completed screen to repair its
+   post-write logging or retune from its holdout, and do not upload its research-only TIFF. The old `scripts/run_holdout33.py` result is withdrawn; it is legacy-only. The
+   conditional C2 source-audit, H33-F and H33-6 results retain the unresolved fixed-H19-5
+   upstream provenance limitation. None clears a slot. A future candidate needs a fresh, frozen,
+   independent confirmation against a comparable local reference, and must pass the exact format
+   audit before a slot is even considered.
 4. **Submission-output policy**: single-band float32, EPSG:32611, 100 m, same
-   shape/geotransform/bounds as the owner-mirror sample. The featured unique H33-F file uses finite
-   `[0,1]` probabilities inside the template footprint and NaN outside to follow the official
-   problem-page wording; a zero-outside alternative is troubleshooting only. Predicted values must
-   be in range `[0, 1]` or the portal returns that error. A local format pass is not organizer
-   acceptance. H33-F is not slot-approved.
+   shape/geotransform/bounds as the owner-mirror sample. The top-level D2.8 file is a historical
+   reference, not a new model or verified score/file pair. Its NaN-outside variant follows the
+   recorded official null/NaN wording; a zero-outside alternative is troubleshooting only. H33-F
+   and H33-6 TIFFs are separate failed research artifacts, not featured submissions. An earlier
+   owner-observed portal range error did not establish that NaN caused it. A local format pass is
+   not organizer acceptance.
 5. **Sample-template values are not truth.** Use only finiteness/grid metadata from the restored
    `sample_submission.tif`. It was found to equal the catalogue labels on all 5,167,373 finite
    footprint cells (IR-SAMPLE-LABEL-01); see `evidence/sample_template_label_overlap.json`.

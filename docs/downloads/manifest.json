@@ -1,18 +1,14 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-04T16:47:54Z",
-  "status": "UNIQUE_RESEARCH_CANDIDATE \u2014 H33-F named analog-field transfer; holdout gate FAIL; not slot-approved",
-  "evidence_class": "MEASURED local proxies; OWNER-MIRROR inputs; no organizer receipt",
-  "hypothesis": "H33-F",
+  "generated_utc": "2026-10-04T15:59:26Z",
+  "status": "REFERENCE_BASELINE_ONLY — no new candidate passed an independent slot-approval gate",
+  "evidence_class": "OWNER-MIRROR for source model and reported 0.2600; organizer score/file pairing unverified",
   "source": {
-    "builder": "scripts/run_analog_campaign.py",
-    "analog_fields": [
-      "dixie_valley",
-      "brady",
-      "desert_peak"
-    ],
-    "emitted_pixels": 44090,
-    "not_a_copy_of_d28": true
+    "file": "data/dotted_h19_5_d2_8_nan.tif",
+    "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+    "reported_score": 0.26,
+    "reported_score_class": "OWNER-REPORT; no organizer receipt in this repository",
+    "note": "the score is not authenticated as the score for these exact bytes"
   },
   "grid": {
     "crs": "EPSG:32611",
@@ -33,32 +29,27 @@
     "dtype": "float32",
     "footprint_cells": 5167373
   },
-  "name": "gemsdoe33-h33f-analog-xfer-20261004",
-  "note": "GEMSDOE33 H33-F analog xfer | Dixie/Brady/DesertPeak wells+GeoDAWN | research not slot-approved | id d042874b26ef",
-  "note_chars": 113,
-  "note_file": "note-gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef.txt",
+  "name": "gemsdoe33-d28-reference-20261004",
+  "note": "GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab",
+  "note_chars": 158,
+  "note_file": "note-gemsdoe33-d28-reference-20261004-426073b6b4ab.txt",
   "emitted_pixels": 44090,
-  "recommended": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
-  "recommended_variant": "-nan.tif \u2014 official wording says outside data is null or NaN",
-  "alternate": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
-  "alternate_warning": "0.0 outside footprint; troubleshooting alternative only",
-  "holdout_gate": {
-    "p1": false,
-    "p2": false,
-    "slot": false
-  },
+  "recommended": "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+  "recommended_variant": "-nan.tif — official wording says outside data is null or NaN",
+  "alternate": "gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+  "alternate_warning": "0.0 outside footprint; provided only as a troubleshooting alternative",
   "artifacts": [
     {
-      "file": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
-      "zip": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.zip",
-      "sha256": "59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d",
-      "bytes": 477936,
+      "file": "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+      "zip": "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.zip",
+      "sha256": "c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc",
+      "bytes": 499842,
       "outside": "NaN",
       "validation": {
-        "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
-        "bytes": 477936,
-        "sha256": "59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d",
-        "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
+        "path": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+        "bytes": 499842,
+        "sha256": "c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc",
+        "file": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
         "checks": {
           "count_is_1": true,
           "dtype_is_float32": true,
@@ -77,16 +68,16 @@
       }
     },
     {
-      "file": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
-      "zip": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.zip",
-      "sha256": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
-      "bytes": 403314,
+      "file": "gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+      "zip": "gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.zip",
+      "sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
+      "bytes": 423456,
       "outside": "0.0",
       "validation": {
-        "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
-        "bytes": 403314,
-        "sha256": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
-        "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
+        "path": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+        "bytes": 423456,
+        "sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
+        "file": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
         "checks": {
           "count_is_1": true,
           "dtype_is_float32": true,
@@ -104,9 +95,5 @@
         "pass": true
       }
     }
-  ],
-  "historical_d28_reference": {
-    "file": "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
-    "role": "historical owner-mirror emission, not the featured unique candidate"
-  }
+  ]
 }

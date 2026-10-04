@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "generated_utc": "2026-10-04T16:47:54Z",
+  "status": "RESEARCH_ONLY_FAILED_HOLDOUT_NOT_SLOT_APPROVED",
+  "evidence_class": "MEASURED local proxies; OWNER-MIRROR inputs; no organizer receipt",
+  "hypothesis": "H33-F",
+  "source": {
+    "builder": "scripts/run_analog_campaign.py",
+    "analog_fields": [
+      "dixie_valley",
+      "brady",
+      "desert_peak"
+    ],
+    "emitted_pixels": 44090,
+    "not_a_copy_of_d28": true
+  },
+  "grid": {
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "pixel_m": 100,
+    "transform_gdal": [
+      243350.0,
+      100.0,
+      0.0,
+      4508550.0,
+      0.0,
+      -100.0
+    ],
+    "bands": 1,
+    "dtype": "float32",
+    "footprint_cells": 5167373
+  },
+  "name": "gemsdoe33-h33f-analog-xfer-20261004",
+  "note": "GEMSDOE33 H33-F analog xfer | Dixie/Brady/DesertPeak wells+GeoDAWN | research not slot-approved | id d042874b26ef",
+  "note_chars": 113,
+  "note_file": "note-gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef.txt",
+  "emitted_pixels": 44090,
+  "holdout_gate": {
+    "p1": false,
+    "p2": false,
+    "slot": false
+  },
+  "artifacts": [
+    {
+      "file": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
+      "zip": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.zip",
+      "sha256": "59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d",
+      "bytes": 477936,
+      "outside": "NaN",
+      "validation": {
+        "path": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
+        "bytes": 477936,
+        "sha256": "59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d",
+        "file": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
+        "checks": {
+          "count_is_1": true,
+          "dtype_is_float32": true,
+          "crs_is_epsg_32611": true,
+          "shape_is_3730x3292": true,
+          "georef_matches_template": true,
+          "no_nan_inside_footprint": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "outside_is_null_or_zero": true,
+          "single_band_description": true
+        },
+        "errors": [],
+        "n_checks": 10,
+        "pass": true
+      },
+      "zip_sha256": "bb890550a1d631b5d61059296b4e8801180492c89e8458d97377f232d2c6c988",
+      "zip_bytes": 355953
+    },
+    {
+      "file": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
+      "zip": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.zip",
+      "sha256": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
+      "bytes": 403314,
+      "outside": "0.0",
+      "validation": {
+        "path": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
+        "bytes": 403314,
+        "sha256": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
+        "file": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
+        "checks": {
+          "count_is_1": true,
+          "dtype_is_float32": true,
+          "crs_is_epsg_32611": true,
+          "shape_is_3730x3292": true,
+          "georef_matches_template": true,
+          "no_nan_inside_footprint": true,
+          "min_ge_0": true,
+          "max_le_1": true,
+          "outside_is_null_or_zero": true,
+          "single_band_description": true
+        },
+        "errors": [],
+        "n_checks": 10,
+        "pass": true
+      },
+      "zip_sha256": "dcefeb00d0e369ca787b99fd979c750796e168a048022fa9b82caf578f16d318",
+      "zip_bytes": 278615
+    }
+  ],
+  "historical_d28_reference": {
+    "file": "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+    "role": "separate historical owner-mirror reference; not the H33-F artifact"
+  },
+  "recommended_for_upload": false,
+  "slot_cleared": false,
+  "artifact_warning": "Do not submit: H33-F failed the catalogue-hidden P1 and SGMC P2 proxy gates; no source/target transfer bound or private-label validation is established.",
+  "research_artifact": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif"
+}

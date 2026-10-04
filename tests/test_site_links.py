@@ -1,4 +1,5 @@
 import hashlib
+import json
 import unittest
 from html.parser import HTMLParser
 from pathlib import Path
@@ -42,13 +43,63 @@ class SiteLinkTests(unittest.TestCase):
         self.assertIn("url=docs/index.html", html)
         self.assertTrue((DOCS / "index.html").is_file())
 
-    def test_unique_download_exists_and_is_not_the_d28_reference(self):
-        unique = DOCS / "downloads" / "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif"
-        d28 = DOCS / "downloads" / "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif"
-        self.assertTrue(unique.is_file(), str(unique))
-        digest = hashlib.sha256(unique.read_bytes()).hexdigest()
-        self.assertEqual(digest, "59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d")
-        if d28.is_file():
-            self.assertNotEqual(digest, hashlib.sha256(d28.read_bytes()).hexdigest())
-        zip_path = DOCS / "downloads" / "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.zip"
-        self.assertTrue(zip_path.is_file())
+    def test_reference_and_failed_research_artifacts_match_their_manifests(self):
+        baseline_manifest = json.loads((DOCS / "downloads" / "manifest.json").read_text())
+        baseline = DOCS / "downloads" / baseline_manifest["recommended"]
+        self.assertTrue(baseline.is_file(), str(baseline))
+        self.assertEqual(hashlib.sha256(baseline.read_bytes()).hexdigest(),
+                         baseline_manifest["artifacts"][0]["sha256"])
+
+        research_path = DOCS / "downloads" / "research" / "h33-6-research-manifest.json"
+        research = json.loads(research_path.read_text())
+        self.assertFalse(research["recommended_for_upload"])
+        self.assertFalse(research["slot_cleared"])
+        self.assertLessEqual(research["note_chars"], 200)
+        self.assertIn("RESEARCH ONLY", research["note"])
+        self.assertLess(research["p1_mean_delta_dti"], 0)
+        self.assertTrue(research["format_audit"]["pass"])
+        self.assertEqual(research["format_audit"]["sha256"], research["artifacts"][0]["sha256"])
+        audit_path = ROOT / research["format_audit_path"]
+        self.assertTrue(audit_path.is_file(), str(audit_path))
+        audit = json.loads(audit_path.read_text())
+        nan_artifact = next(a for a in research["artifacts"] if a["variant"] == "nan")
+        self.assertEqual(audit["sha256"], nan_artifact["sha256"])
+        self.assertTrue(audit["in_range_0_1_footprint"])
+        self.assertTrue(audit["outside_is_null_or_zero"])
+        self.assertTrue(audit["outside_has_nan"])
+        self.assertTrue(audit["pass"])
+        for artifact in research["artifacts"]:
+            for path_key in ("path", "file"):
+                if path_key in artifact["validation"]:
+                    self.assertFalse(Path(artifact["validation"][path_key]).is_absolute())
+            path = ROOT / artifact["file"]
+            zipped = ROOT / artifact["zip"]
+            self.assertTrue(path.is_file(), str(path))
+            self.assertTrue(zipped.is_file(), str(zipped))
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), artifact["sha256"])
+            self.assertEqual(hashlib.sha256(zipped.read_bytes()).hexdigest(), artifact["zip_sha256"])
+            self.assertTrue(artifact["validation"]["pass"])
+
+        h33f_path = DOCS / "downloads" / "research" / "h33-f-analog-transfer-manifest.json"
+        h33f = json.loads(h33f_path.read_text())
+        self.assertFalse(h33f["recommended_for_upload"])
+        self.assertFalse(h33f["slot_cleared"])
+        self.assertNotIn("recommended", h33f)
+        for artifact in h33f["artifacts"]:
+            for path_key in ("path", "file"):
+                if path_key in artifact["validation"]:
+                    self.assertFalse(Path(artifact["validation"][path_key]).is_absolute())
+            path = DOCS / "downloads" / artifact["file"]
+            zipped = DOCS / "downloads" / artifact["zip"]
+            self.assertTrue(path.is_file(), str(path))
+            self.assertTrue(zipped.is_file(), str(zipped))
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), artifact["sha256"])
+            self.assertEqual(hashlib.sha256(zipped.read_bytes()).hexdigest(), artifact["zip_sha256"])
+            self.assertTrue(artifact["validation"]["pass"])
+
+        stale = DOCS / "downloads" / "gems33-c2-stepover-relay-20261004-01f660dd8656.tif"
+        self.assertFalse(stale.exists(), "withdrawn C2 is not distributed from the recommended download directory")
+
+
+if __name__ == "__main__":
+    unittest.main()

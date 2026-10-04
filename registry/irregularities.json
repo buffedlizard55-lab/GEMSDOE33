@@ -1,6 +1,6 @@
 {
   "schema": 2,
-  "session": "GEMSDOE33 / arena/01a107c2-gemsdoe33",
+  "session": "GEMSDOE33 / arena/01a107c3-gemsdoe33",
   "date": "2026-10-04",
   "convention": "Flagged, not silently corrected. Every status says what was measured, what was not, and what the consequence is.",
   "irregularities": [
@@ -8,25 +8,25 @@
       "id": "IR-33-F-01",
       "severity": "high",
       "status": "measured; not slot-cleared",
-      "finding": "H33-F named analog-field transfer (Dixie/Brady/Desert Peak well-cell masks + GeoDAWN/LiDAR) produced a unique 44,090-dot GeoTIFF. Exploratory 20 km-block domain-discriminator AUC was 0.917. Fold-safe P1 mean \u0394DTI vs rebuilt C0 was \u22120.093072 (0/4 folds). P2 SGMC \u0394DTI vs C0 was \u22120.016163; vs matched-N random +0.001234. Ben-David bound not licensed (lambda unknown; analog labels are the same public catalogue). GDR 1682/207 GIS archives were not staged (TLS fail).",
-      "evidence": "evidence/holdout_analog.json; evidence/domain_adaptation_preflight.json; docs/downloads/manifest.json",
-      "consequence": "Unique TIFF is packaged for format-checked download only. Do not spend a weekly submission slot. Do not describe analog transfer as licensed or as a live-score improvement."
+      "finding": "H33-F named analog-field transfer (Dixie/Brady/Desert Peak well-cell masks + GeoDAWN/LiDAR) produced a unique 44,090-dot GeoTIFF. Exploratory 20 km-block domain-discriminator AUC was 0.917. Fold-safe P1 mean ΔDTI vs rebuilt C0 was −0.093072 (0/4 folds). P2 SGMC ΔDTI vs C0 was −0.016163; vs matched-N random +0.001234. Ben-David bound not licensed (lambda unknown; analog labels are the same public catalogue). GDR 1682/207 GIS archives were not staged (TLS fail).",
+      "evidence": "evidence/holdout_analog.json; evidence/domain_adaptation_preflight.json; docs/downloads/research/h33-f-analog-transfer-manifest.json; knowledge/07_analog_transfer.md.",
+      "consequence": "H33-F is a separate research-only artifact and not slot-cleared. Do not spend a weekly slot or describe the exploratory discriminator as a Ben-David HΔH bound or transfer success."
     },
     {
       "id": "IR-33-SCORE-01",
       "severity": "high",
-      "status": "corrected",
-      "finding": "The owner brief says 0.3195 is the current highest score. A one-time official-page review on 2026-10-04 did not support that status. After reviewing the Terms of Use, participant/rank/score rows were removed from the public record; the page does not identify local TIFF contents or account association.",
-      "evidence": "registry/leaderboard_review.json; official page https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/; Terms of Use https://www.drivendata.org/termsofuse/.",
-      "consequence": "Do not treat 0.3195 as the current target based on the brief. This repository keeps no copied leaderboard rows or live feed; do not refresh or republish without prior written consent or an authorized API."
+      "status": "conflicting dated status notes; current target unverified",
+      "finding": "The owner brief supplies 0.3195 as the current highest score. A prior one-time official-page status note dated 2026-10-04 says the spot-check did not support treating it as current/top, but the page capture and review method were not retained. An unrelated read of the GEMSDOE28 owner page surfaced its own manual leaderboard summary dated 2026-10-03 containing the same claim. That is a third-party owner report, not an independent current official check; the discrepancy is unresolved. Neither source links a score to local TIFF bytes or an authenticated account.",
+      "evidence": "registry/leaderboard_review.json; https://buffedlizard55-lab.github.io/GEMSDOE28/ (owner-authored dated summary); https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/; https://www.drivendata.org/termsofuse/.",
+      "consequence": "Treat 0.3195 only as a user-supplied aspirational target, not a confirmed current leader. This repository retains no leaderboard rows, does not refresh the page, and will not copy rows without written consent or an authorized API."
     },
     {
       "id": "IR-33-SCORE-02",
       "severity": "high",
       "status": "corrected",
-      "finding": "The brief attributes 0.2708 to GEMSDOE28's h27-4-r1-solo-d2-8 file. GEMSDOE28's own public page says 'NO GEMSDOE28 SCORE' and describes its artifacts as unscored / research-only. No organizer receipt or verified account/file record links 0.2708 to that TIFF. Raw leaderboard rows are intentionally not retained after review of the Terms of Use.",
+      "finding": "The brief attributes 0.2708 to GEMSDOE28 h27-4-r1-solo-d2-8. The GEMSDOE28 page labels H27-4 unscored/research-only and says there is no GEMSDOE28 score; no organizer receipt or verified account/file record links 0.2708 to that TIFF. The same page also contains a manually assembled historical leaderboard summary, which does not cure the missing H27-4 score/file receipt.",
       "evidence": "https://buffedlizard55-lab.github.io/GEMSDOE28/ ; registry/live_scores.json; registry/leaderboard_review.json; https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/.",
-      "consequence": "No explanation of a 0.2708 GEMSDOE28 score is supported. The featured download is unique H33-F analog-transfer research TIFF; it is not slot-approved. Historical D2.8 remains in docs/downloads/ with unconfirmed 0.2600 pairing."
+      "consequence": "No explanation of an official 0.2708 H27-4 score is supported. The D2.8 0.2600 pairing also remains owner-reported and unconfirmed."
     },
     {
       "id": "IR-33-TERMS-01",
@@ -40,7 +40,7 @@
       "id": "IR-33-C2-01",
       "severity": "critical",
       "status": "conditional diagnostic negative; not slot-cleared",
-      "finding": "Upstream C2 stepover-relay P1 +0.000405 (3/4 folds positive) is withdrawn because the earlier candidate/base construction and Qfaults vectors saw full-catalogue/held-out source geometry. The corrected source-exclusion diagnostic has mean P1 \u0394DTI \u22120.000722 (0/4 positive); across folds 2,643 added dots yielded zero incremental TPw and 2,643 incremental FPw. P2 SGMC proxy \u0394DTI is +0.000283, but this cannot override P1. The corrected run remains conditional: fixed H19-5 was not re-derived per fold, this was not an independent preregistered confirmation, and the community Qfaults mirror is not authenticated to the current official archive.",
+      "finding": "Upstream C2 stepover-relay P1 +0.000405 (3/4 folds positive) is withdrawn because the earlier candidate/base construction and Qfaults vectors saw full-catalogue/held-out source geometry. The corrected source-exclusion diagnostic has mean P1 ΔDTI −0.000722 (0/4 positive); across folds 2,643 added dots yielded zero incremental TPw and 2,643 incremental FPw. P2 SGMC proxy ΔDTI is +0.000283, but this cannot override P1. The corrected run remains conditional: fixed H19-5 was not re-derived per fold, this was not an independent preregistered confirmation, and the community Qfaults mirror is not authenticated to the current official archive.",
       "evidence": "evidence/holdout33.json; evidence/holdout33_legacy_catalogue_only.json; evidence/build_c2_01f660dd8656.json; archive/legacy_candidates/gems33-c2-stepover-relay-20261004-01f660dd8656.tif.",
       "consequence": "C2 remains a research artifact only and is not linked as a download recommendation. No P1/P2 result is a DrivenData score or private-label validation; the corrected diagnostic does not clear a submission slot."
     },
@@ -96,7 +96,7 @@
       "id": "IR-33-DA-01",
       "severity": "high",
       "status": "first-pass domain result withdrawn; analog source pending",
-      "finding": "The first-pass 'source/target' regions were upper/lower quantiles of GDR well/spring record density, not Dixie Valley, Desert Peak or Brady field-specific domains. The 27,092 CSV rows contain only 12,570 unique 100-m cells, so row counts include repeated tables for one site. The discriminator used a random row split on spatially correlated raster features; its HGB class was not shown to equal H\u0394H for the fault model; no finite-sample VC term or lambda (joint-label error) was supplied.",
+      "finding": "The first-pass 'source/target' regions were upper/lower quantiles of GDR well/spring record density, not Dixie Valley, Desert Peak or Brady field-specific domains. The 27,092 CSV rows contain only 12,570 unique 100-m cells, so row counts include repeated tables for one site. The discriminator used a random row split on spatially correlated raster features; its HGB class was not shown to equal HΔH for the fault model; no finite-sample VC term or lambda (joint-label error) was supplied.",
       "evidence": "archive/withdrawn_first_pass/evidence/domain_adaptation.json; archive/withdrawn_first_pass/evidence/domain_log.txt; current fail-closed replacement scripts/run_domain_adaptation.py; Springer paper https://link.springer.com/article/10.1007/s10994-009-5152-4.",
       "consequence": "The archived AUC=1.0 is not a valid Ben-David divergence estimate and neither licenses nor refutes the requested analog transfer. A field-specific source label set and spatially blocked domain test are still required."
     },
@@ -111,10 +111,10 @@
     {
       "id": "IR-33-PREREG-01",
       "severity": "high",
-      "status": "acknowledged",
-      "finding": "First-pass code and measurements were produced before the ranked hypothesis registry was assembled, contrary to the owner's required hypothesis-before-implementation order. The later registry is retrospective, not a preregistration.",
-      "evidence": "Git history and timestamps of scripts/ and registry/hypotheses.json.",
-      "consequence": "No retrospective hypothesis is treated as preregistered. Future candidates must have a committed, immutable design and criteria before their screen/holdout."
+      "status": "historical first-round violation; H33-6 round preregistered before its implementation/run",
+      "finding": "The first-pass code and the earlier first-round shortlist were produced before a ranked hypothesis registry was assembled, contrary to the requested order. That shortlist remains retrospective. For the 2026-10-04 H33-6 round, a five-hypothesis slate and frozen numeric criteria were written and SHA-256 pinned before H33-6 code/holdout; this does not retroactively validate the first round or make the H33-6 result independent.",
+      "evidence": "knowledge/07_hypothesis_slate_20261004.md; evidence/hypothesis_slate_20261004_preregistered.json; evidence/hypothesis_slate_20261004_preregistered.sha256; evidence/holdout_h33_6.json.",
+      "consequence": "The historical first-round results remain withdrawn. H33-6 was screened under a recorded frozen protocol but failed its P1 gate and is not slot-cleared; future candidates still require pre-implementation protocol freezing and an independent confirmation."
     },
     {
       "id": "IR-33-RAD-01",
@@ -144,9 +144,41 @@
       "id": "IR-33-SLOT-01",
       "severity": "standing",
       "status": "no slot spent",
-      "finding": "No submission was uploaded from this session, and no new candidate is being represented as slot-approved.",
+      "finding": "No submission was uploaded from this session, and no candidate is represented as slot-approved. A unique H33-6 research TIFF may be linked separately with an explicit failed-gate warning; the recommended download remains the historical D2.8 reference only.",
       "evidence": "No DrivenData authentication or submission receipt is present in this environment.",
-      "consequence": "The public site exposes only the D2.8 reference baseline and clearly identifies its score as owner-reported."
+      "consequence": "No weekly slot was spent. Local files/format checks do not assert organizer acceptance, a competition score, or a score/file association."
+    },
+    {
+      "id": "IR-33-H33-6-01",
+      "severity": "critical",
+      "status": "frozen screen failed; stopped, not slot-cleared",
+      "finding": "The preregistered cross-physics edge-normal candidate reallocated 5% of H27-4 dots at matched count. Four fold deltas were −0.004907, −0.012736, +0.003241, +0.003454 (mean −0.002737; 2/4 positive). P2 SGMC delta was +0.000159. It beat the matched-random mean but failed the baseline P1 mean and strict-majority gates. The first full run wrote complete JSON evidence but then raised a non-scientific ValueError while printing a relative output path; the path-display bug was fixed without rerunning/altering results.",
+      "evidence": "evidence/holdout_h33_6.json; knowledge/08_h33_6_result_20261004.md; scripts/run_h33_6_holdout.py.",
+      "consequence": "Stop H33-6 for this round. Do not tune or spend a submission slot. P1/P2 are catalogue/SGMC proxy diagnostics, not private-label or competition scores. Fixed H19-5 was not re-derived per fold, so even a numeric pass would have remained conditional."
+    },
+    {
+      "id": "IR-33-GABBS-01",
+      "severity": "medium",
+      "status": "official listing and bbox checked; payload unavailable",
+      "finding": "USGS ScienceBase catalog item 62b21845d34e74f0d80f17aa lists AllGabbsFaults.zip with its size/checksum and an extent whose bbox lies within the GeoDAWN raster bbox. The correct ScienceBase file endpoint returned HTTP 500 through page retrieval, and direct shell TLS failed. No ZIP bytes, schema, feature geometry, or actual feature-level overlap were inspected.",
+      "evidence": "https://www.sciencebase.gov/catalog/item/62b21845d34e74f0d80f17aa?format=json; https://data.usgs.gov/datacatalog/metadata/USGS.62b21845d34e74f0d80f17aa.xml; registry/sources.json; knowledge/07_hypothesis_slate_20261004.md.",
+      "consequence": "Treat the source as publicly listed but not locally obtainable or validated. Bounding-box intersection is not proof of mapped fault overlap or a usable analog-transfer label set; do not implement or call it viable until bytes are pinned and inspected."
+    },
+    {
+      "id": "IR-33-H33-7-01",
+      "severity": "medium",
+      "status": "publicly listed; official GIS payload blocked",
+      "finding": "The official GDR 1682 page and README identify BRIDGE GIS as public CC BY 4.0 and list a 3.79 MB archive; local direct retrieval failed TLS (HTTP 000). No GIS bytes, CRS, schema, or target overlap are audited. The README indicates field verification is limited to Dixie and Gabbs Valleys.",
+      "evidence": "https://gdr.openei.org/submissions/1682; https://gdr.openei.org/files/1682/BRIDGE_README.pdf; registry/sources.json.",
+      "consequence": "H33-7 remains the high-ceiling blocked analog-transfer hypothesis, not a viable candidate. No Ben-David HΔH estimate or transfer claim is made."
+    },
+    {
+      "id": "IR-33-SCORE-03",
+      "severity": "medium",
+      "status": "third-party table observed; not reproduced or used as a current feed",
+      "finding": "The GEMSDOE28 owner-operated public page contains a manually assembled table of participant/rank/score observations dated 2026-10-03. This was encountered while reading the page for its H27-4 status; no table rows were copied into this repository. It conflicts in interpretation with the prior 2026-10-04 official-page status note and cannot show which account or TIFF produced a score.",
+      "evidence": "https://buffedlizard55-lab.github.io/GEMSDOE28/; registry/leaderboard_review.json; registry/sources.json.",
+      "consequence": "Do not use the owner-authored table as a current verified leaderboard or a file/score receipt. Keep row-level values out of this repository, and do not access/refresh the official leaderboard without the required permission or authorized API."
     }
   ]
 }

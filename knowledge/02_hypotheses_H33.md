@@ -1,4 +1,6 @@
-# GEMSDOE33 hypothesis register (2026-10-04)
+# Historical GEMSDOE33 hypothesis register — superseded (2026-10-04)
+
+> This was the retrospective first-round register, not a preregistration or current ranking. Its H27-4 `0.2708` attribution was unsupported. Use `knowledge/07_hypothesis_slate_20261004.md` and `registry/hypotheses.json` for the frozen round-two slate and current status.
 
 Five research candidates, ordered by qualitative expected scientific upside per implementation cost
 (machine-readable copy: `registry/hypotheses.json`). C2 is implemented but its earlier P1 PASS is withdrawn
@@ -13,7 +15,7 @@ are not competition scores.
   community mirror; the hash authenticates those mirror bytes, not official accuracy. GDR #1391 lists
   Quaternary Faults v2 as superseding v1, but this mirror's exact version correspondence has not been
   verified; the C2 result applies only to the pinned mirror input. Band 18 `iso_grav_anom_hg`; h27-4
-  baseline raster (owner-reported 0.2708).
+  H27-4 owner-mirror baseline raster (the `0.2708` score/file pairing is unsupported).
 - **Physical signature:** distinct fault-vector tip pairs separated by 300–2,500 m and differing by at
   most 30° in strike; add sparse bridge dots at about 283 m spacing where band 18 exceeds the local
   in-footprint 80th percentile within 200 m.

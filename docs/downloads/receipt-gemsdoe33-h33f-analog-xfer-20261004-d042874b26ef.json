@@ -10,10 +10,10 @@
     1.0
   ],
   "zeros": {
-    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
+    "path": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
     "bytes": 403314,
     "sha256": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
-    "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
+    "file": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
     "checks": {
       "count_is_1": true,
       "dtype_is_float32": true,
@@ -31,10 +31,10 @@
     "pass": true
   },
   "nan": {
-    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
+    "path": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
     "bytes": 477936,
     "sha256": "59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d",
-    "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
+    "file": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
     "checks": {
       "count_is_1": true,
       "dtype_is_float32": true,
@@ -52,13 +52,13 @@
     "pass": true
   },
   "zip_zeros": {
-    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.zip",
+    "path": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.zip",
     "bytes": 278615,
     "sha256": "dcefeb00d0e369ca787b99fd979c750796e168a048022fa9b82caf578f16d318",
     "members": 1
   },
   "zip_nan": {
-    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.zip",
+    "path": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.zip",
     "bytes": 355953,
     "sha256": "bb890550a1d631b5d61059296b4e8801180492c89e8458d97377f232d2c6c988",
     "members": 1

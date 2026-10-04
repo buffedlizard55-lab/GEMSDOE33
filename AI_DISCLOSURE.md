@@ -24,8 +24,10 @@ were withdrawn after review; see `evidence/first_pass_disposition.json`.
 
 ## Human review / before upload
 
-The primary one-click file is the unique H33-F analog-field research emission. It is
-format-checked with in-footprint values in [0, 1] and is **not slot-approved** (proxy holdout
-failed). Confirm the competition portal accepts the GeoTIFF, inspect it in a GIS, and do not
-spend a weekly slot on it. No file in this repository is claimed to exceed the current official
-public leader.
+The top-level package is the historical D2.8 owner-mirror reference, not a new model; its reported
+0.2600 score/file association is unconfirmed. H33-F and H33-6 are separate unique research TIFFs,
+and both failed local proxy screens; neither is slot-approved or approved for upload. Their format
+checks do not establish private-label accuracy or portal acceptance. The `0.3195` target remains
+conflicted and unverified as current. Before any eventual owner-selected upload, recheck the official
+competition rules, data-sharing terms, and required narrative disclosure. No DrivenData upload was
+made from this workspace.

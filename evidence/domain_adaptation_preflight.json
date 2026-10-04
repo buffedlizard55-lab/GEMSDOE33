@@ -21,7 +21,7 @@
         "field_cells": 355714,
         "catalogue_in_field": 5258,
         "official_source": "https://openei.org/wiki/Dixie_Valley_Geothermal_Area",
-        "official_note": "OpenEI Dixie Valley Geothermal Area; 39\u00b058'3.59\" N, 117\u00b051'18.27\" W"
+        "official_note": "OpenEI Dixie Valley Geothermal Area; 39°58'3.59\" N, 117°51'18.27\" W"
       },
       {
         "id": "brady",
@@ -77,7 +77,7 @@
     "spatial_block_px": 200,
     "held_out_block_auc": 0.9165040932109172,
     "held_out_block_error": 0.17190278601066983,
-    "interpretation": "Classifier two-sample AUC on 20 km even/odd blocks. This is not Ben-David d_H\u0394H, does not estimate lambda, and does not license transfer."
+    "interpretation": "Classifier two-sample AUC on 20 km even/odd blocks. This is not Ben-David d_HΔH, does not estimate lambda, and does not license transfer."
   },
   "source_in_sample_auc": 0.9863276521232678,
   "n_train_pos": 7848,
@@ -85,7 +85,7 @@
   "ben_david": {
     "paper": "https://link.springer.com/article/10.1007/s10994-009-5152-4",
     "bound_computed": false,
-    "reason": "lambda (joint-label error) is unknown because analog labels are the same public catalogue, not independent field-verified extra traces; the discriminator class is not shown to equal the target H\u0394H class."
+    "reason": "lambda (joint-label error) is unknown because analog labels are the same public catalogue, not independent field-verified extra traces; the discriminator class is not shown to equal the target HΔH class."
   },
   "external_gis": {
     "gdr_1682": "https://gdr.openei.org/submissions/1682",
@@ -93,5 +93,15 @@
     "staged": false,
     "direct_download": "curl TLS SSL_ERROR_SYSCALL / HTTP 000 in this sandbox"
   },
-  "decision": "Named analog fields were defined and a unique off-catalogue emission was built. Transfer is not licensed as a Ben-David bound. Slot follows holdout_analog.json."
+  "decision": "Named analog fields were defined and a unique off-catalogue emission was built. Transfer is not licensed as a Ben-David bound. Slot follows holdout_analog.json.",
+  "formal_bound_status": "BLOCKED_NOT_ESTIMATED",
+  "blocking_gates": [
+    "Obtain and inspect the official BRIDGE vector archive; verify CRS, field IDs, confidence/verification attributes, and license conditions.",
+    "Define named, non-overlapping source/target field domains before examining target benchmark outcomes; do not substitute record-density quantiles.",
+    "Declare a common target hypothesis class, label policy, feature schema, spatial resolution, mask, and physically interpretable transformations in both domains.",
+    "Use field/system-level spatial blocks for training, discriminator validation, and evaluation; prevent neighboring pixels or duplicate site records crossing partitions.",
+    "Specify source-risk estimation, the HΔH class/divergence, effective independent sample size, uncertainty intervals, and the finite-sample/class-complexity term.",
+    "Estimate or conservatively bound lambda with an independent shared-label audit; do not set it to zero by assumption.",
+    "Obtain a target-relevant, spatially blocked holdout and compare at matched emission budget before considering any submission-slot decision."
+  ]
 }

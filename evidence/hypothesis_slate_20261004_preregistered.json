@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-04",
+  "hypothesis_slate": "knowledge/07_hypothesis_slate_20261004.md",
+  "status": "FROZEN_BEFORE_H33-6_CODE_AND_HOLDOUT",
+  "ordering_note": "This slate was written before implementing or running H33-6. The all-data baseline reconstruction was separately used to verify the comparator, not to select candidate parameters.",
+  "score_claim_policy": {
+    "h27_4_claimed_score": 0.2708,
+    "status": "UNVERIFIED_OWNER_CLAIM; do not report as an official or file-linked score",
+    "evidence": "GEMSDOE28 public owner page labels H27-4 UNSCORED/research-only; no organizer receipt or authenticated account/file record is in this checkout.",
+    "competition_target": "0.3195 is user-supplied and not independently verified as current; no leaderboard refresh was performed."
+  },
+  "current_comparable_control": {
+    "name": "H27-4 owner-mirror reconstruction",
+    "builder": "dot_thin(H19-5 & ~known, 2.8) & distance_to_known > 1 px",
+    "verified_full_grid_dots": 40199,
+    "exactly_matches_local_reference": true,
+    "holdout_status": "Baseline reference only; upstream H19-5 surface is fixed and not re-derived per fold, so all fold results remain conditional diagnostics."
+  },
+  "ranking_basis": "Qualitative improvement priority among plausible signals, uncertainty, cost, and present executability. No numeric DTI or contest score gain is predicted.",
+  "candidates": [
+    {
+      "id": "H33-6",
+      "rank": 1,
+      "expected_improvement": "Moderate qualitative upside; magnitude unknown. Highest runnable priority, not a measured gain.",
+      "cost": "Low–medium",
+      "status": "FROZEN FOR ONE DIAGNOSTIC; never slot-cleared on this run alone",
+      "layers": ["GeoDAWN band 14 tmi", "band 13 iso_grav_anom", "band 15 depth_to_base_surf", "band 17 cond_surf"],
+      "signature": "At a fixed 2-pixel Gaussian scale, coincident and orientation-aligned magnetic/gravity edge normals, corroborated by the stronger of a basement-depth or conductivity edge; reallocate a matched 5% of H27-4 dots to eligible edge maxima.",
+      "prior_art_difference": "Existing local feature primitives compute individual derivatives/coherence but not this cross-physics normal-agreement plus independent-edge score with matched-budget emission reallocation.",
+      "external_data": "None. The four layers exist in the owner-mirror training raster. Raster byte pins establish mirror identity only, not organizer provenance."
+    },
+    {
+      "id": "H33-7",
+      "rank": 2,
+      "expected_improvement": "Potentially high scientific ceiling, but wholly unquantified and high-risk; not viable until official source bytes are locally auditable.",
+      "cost": "Medium–high",
+      "status": "BLOCKED: not locally obtainable in this run",
+      "layers": ["Official DOE GDR #1682 BRIDGE LiDAR fault picks, field-verified only in Dixie and Gabbs Valleys per its official README", "Shared GeoDAWN magnetic, gravity, basement-depth, and conductivity features"],
+      "signature": "A source-label/domain-transfer experiment on fault picks, with explicit source-target overlap removal and a bounded spatially blocked transfer test; no use of unverified feature-divergence as proof of transfer.",
+      "prior_art_difference": "No implemented transfer from named analog faults exists in this repository. The withdrawn density-quantile/random-pixel discriminator is not evidence of HΔH divergence.",
+      "external_data": "https://gdr.openei.org/submissions/1682; archive https://gdr.openei.org/files/1682/BRIDGE_GIS.zip (official page lists 3.79 MB; public, CC BY 4.0); README https://gdr.openei.org/files/1682/BRIDGE_README.pdf. Page/README fetched; direct payload retrieval failed TLS (HTTP 000). No bytes/schema/CRS/target overlap validated."
+    },
+    {
+      "id": "H33-8",
+      "rank": 3,
+      "expected_improvement": "Moderate–high transfer value over a narrow footprint; unknown DTI, with non-independence caveat because the geologic interpretation uses potential-field evidence.",
+      "cost": "Medium",
+      "status": "BLOCKED: official listing verified, payload not fetched",
+      "layers": ["USGS Gabbs Valley 3D fault surfaces from DOI 10.5066/P9BR3681", "GeoDAWN bands 3, 9, 13, 14, 15, 18"],
+      "signature": "Test shallow projections of 3D mapped fault surfaces against magnetic/gravity/basement edges as a separate source-domain diagnostic, not as competition truth.",
+      "prior_art_difference": "Not implemented locally; distinct from field-picked 2D traces because the source contains 3D surfaces, but not statistically independent of all potential-field target predictors.",
+      "external_data": "Official ScienceBase item https://www.sciencebase.gov/catalog/item/62b21845d34e74f0d80f17aa?format=json lists AllGabbsFaults.zip (3,047,835 bytes; MD5 6bcb3f9d90931e091edefa519d3f3338), CC0 1.0. Catalog bbox is inside competition bbox; this is bbox overlap only. Correct official file URI failed HTTP 500 through page retrieval; shell TLS failed. No geometry inspected."
+    },
+    {
+      "id": "H33-9",
+      "rank": 4,
+      "expected_improvement": "Low–moderate and spatial-coverage-dependent; unknown.",
+      "cost": "Medium",
+      "status": "PRIOR DESIGN H33-2; NOT IMPLEMENTED OR LOCALLY HARVESTED",
+      "layers": ["USGS ANSS ComCat focal-mechanism event products: locations and nodal-plane strike/dip/rake", "GeoDAWN bands 3, 9, 13, 14, 15"],
+      "signature": "Use reviewed focal planes to test the orientation compatibility of candidate lineaments; preserve nodal-plane ambiguity and do not substitute earthquake density for fault geometry.",
+      "prior_art_difference": "Earlier H33-2 design used the same idea but no extraction/implementation exists. This is continued work, not a new concept; it differs from event-density surfaces by using plane geometry.",
+      "external_data": "Official USGS ANSS ComCat/FDSN Event Web Service https://earthquake.usgs.gov/fdsnws/event/1/; previous preflight checked a count query and an example product, but no full response is staged and local TLS retrieval failed. Not viable until a reproducible extract and spatially blocked test exist."
+    },
+    {
+      "id": "H33-10",
+      "rank": 5,
+      "expected_improvement": "Low qualitative upside; no numeric expectation.",
+      "cost": "Low–medium",
+      "status": "LOW PRIORITY; CLOSELY RELATED PRIOR ART",
+      "layers": ["GeoDAWN band 7 geod_shearrate", "band 8 geod_dilaterate", "band 17 cond_surf", "band 15 depth_to_base_surf", "band 18 iso_grav_anom_hg"],
+      "signature": "A signed strain-lobe transition across a sharp conductivity/basement edge, aligned to an independent gravity edge; not raw strain or conductance magnitude.",
+      "prior_art_difference": "Exact sign/edge formulation is not in the local builders reviewed, but prior DILCOND/SRCOH/strain screens are close and have weak owner-reported performance. Novelty is limited and requires ablation against those arms.",
+      "external_data": "None; local owner-mirror raster only, with provenance caveat."
+    }
+  ],
+  "selected_run": "H33-6",
+  "frozen_parameters": {
+    "gaussian_sigma_pixels": 2.0,
+    "replacement_fraction": 0.05,
+    "replacement_count": "floor(0.05 * count of in-footprint control dots)",
+    "score_ties": "row-major cell index for both removal and addition", 
+    "edge_score": "robust within-footprint z scores of log1p(gradient magnitude), clipped to [0,6]; geometric mean of magnetic and gravity edge z; multiplied by absolute edge-normal dot product and a 0.5 + 0.5*clip(max(depth-edge-z, conductivity-edge-z)/3,0,1) corroboration term", 
+    "local_maximum_window": 3,
+    "minimum_spacing_pixels": 2.8,
+    "candidate_catalogue_exclusion_pixels": 1.0,
+    "P1_folds": 4,
+    "P1_fault_system_buffer_pixels": 6,
+    "P1_source_raster_guard_pixels": 1,
+    "P2": "SGMC fault pixels at least 3 pixels from supplied catalogue",
+    "matched_random_controls_per_fold": 10,
+    "random_seed_base": 20261004
+  },
+  "numeric_gate": {
+    "p1_mean_delta_dti_strictly_positive": true,
+    "p1_positive_folds_strict_majority": true,
+    "p2_delta_dti_at_least_minus_0.001": true,
+    "mean_p1_delta_exceeds_mean_matched_random_control": true,
+    "slot_approval": false,
+    "reason": "A pass cannot resolve fixed H19-5 upstream provenance, lack of independent confirmation, or proxy-vs-hidden-label limitations."
+  }
+}

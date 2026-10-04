@@ -1,4 +1,6 @@
-# H33-F named analog-field transfer — what was measured
+# H33-F named analog-field transfer — historical screen result
+
+> **Superseded as the featured-candidate record.** H33-F is a distinct exploratory artifact that failed its local proxy gates and is not slot-approved. H33-6 was evaluated in a later, separately frozen round; its failed result is in `knowledge/08_h33_6_result_20261004.md`. The D2.8 file remains a separate historical owner-mirror reference.
 
 **Date:** 2026-10-04. **Evidence class:** `[MEASURED]` local proxies from owner-mirror rasters;
 `[OFFICIAL]` source pages for field coordinates; **not** an organizer score.
@@ -72,9 +74,4 @@ overfitting to analog-field appearance plus the measured domain shift.
 
 ## What this means for P(Win)
 
-A unique, format-valid GeoTIFF exists and is the featured download. Submitting it would
-spend a weekly slot on an emission that lost a catalogue-hidden proxy by a wide margin
-and did not beat C0 on SGMC off-catalogue. **Do not spend the slot.** Next scientific
-leads (unrun): H33-G conductive-surface × gravity HG; H33-H dilatation-edge × mag HG
-strike-discordant; H33-J LiDAR upface residual; H33-I vent alignments — each still needs
-its own fold-safe gate.
+A unique, format-checked H33-F GeoTIFF was generated, but it lost the catalogue-hidden proxy by a wide margin and did not beat C0 on SGMC off-catalogue. It is a separate research artifact, not the current featured file and not slot-cleared. **Do not spend the slot.** The current top-level package is the historical D2.8 reference, while H33-6 has its own failed, separate research TIFF. The H33-F round had unrun follow-up leads: H33-G conductivity × gravity edge, H33-H dilatation × magnetic edge, H33-I vent alignments, and H33-J LiDAR upface residual. They are historical unvetted leads, not the current ranked slate; see the separately frozen H33-6 slate and result for current research.

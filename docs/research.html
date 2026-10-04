@@ -1,78 +1,110 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Auditable DOE GEMS fault-discovery research. Unique H33-F analog-transfer GeoTIFF is format-checked and not slot-approved.">
+<meta name="description" content="Auditable DOE GEMS fault-discovery research; the recommended download is a format-checked D2.8 reference, not a new model.">
 <title>Research · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
 <p>DrivenData #306 · evidence-led research · as of 2026-10-04</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="research.html" aria-current=page>Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
 <main class="wrap"><h2>Research status</h2>
-<div class="panel warn"><b>H33-F implemented as a unique emission; spatially blocked proxy holdout FAILED (P1 mean ΔDTI −0.093, 0/4 folds; P2 vs C0 −0.016). No weekly submission slot is authorized. Remaining hypotheses are unrun research leads.</b><p>The hypothesis registry is retrospective: implementation began before
-it was assembled, so none of these entries is claimed as preregistration. They are research leads,
-not validated candidates or slot approvals. No new candidate has been demonstrated to beat the
-current best.</p></div>
+<div class="panel warn"><b>H33-6 FROZEN SCREEN FAILED THE P1 CONTROL GATE; no candidate is slot-cleared. H33-7/8 external payloads are blocked.</b><p>The 2026-10-04 five-hypothesis slate and H33-6 numerical criteria were frozen before
+its code and holdout; preregistration SHA-256 is <code>8662553ddd8d01438ecc1e6fe3ff8dd518674b922acc7a66b70d8059bd4edf1a</code>. The first-round shortlist remains retrospective
+and archived. H33-6 failed P1; no candidate is slot-approved and no numeric DTI/contest-score gain was forecast.</p></div>
+<h2>H33-6 result — stopped for this round</h2>
+<div class="panel bad"><p><b>P1 mean ΔDTI:</b> -0.00273732 (2/4 positive folds; deltas -0.004907, -0.012736, +0.003241, +0.003454).<br>
+<b>P2 SGMC proxy ΔDTI:</b> +0.00015900.<br>
+<b>Matched-random mean P1 ΔDTI:</b> -0.00318816.<br>
+The candidate beat the matched-random mean but was worse than its local H27-4 owner-mirror raster control (score/file pairing unverified) on mean P1. These are catalogue/SGMC proxies, not competition scores. The fixed H19-5 source was not re-derived per fold, so the diagnostic remains conditional.</p>
+<p><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/08_h33_6_result_20261004.md">Readable result review</a> ·
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout_h33_6.json">Full fold-level evidence</a> ·
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/hypothesis_slate_20261004_preregistered.json">Frozen protocol</a></p></div>
+<div class="panel bad"><b>Research artifact only — do not upload</b>
+<p>The unique H33-6 TIFF passed local grid/value formatting checks, but its preregistered P1 gate failed.
+It is preserved for reproduction and is not a weekly-slot recommendation.</p>
+<p><a class="btn alt" href="downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif">Download H33-6 research TIFF (NaN outside)</a>
+<a class="btn alt" href="downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.zip">Download single-member ZIP</a></p>
+<p><b>Unique identifier:</b> <code>GEMSDOE33-H33-6-edge-consensus-research-20261004</code><br>
+<b>SHA-256:</b> <code>18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7</code> ·
+482,682 bytes ·
+10/10 package checks</p>
+<p><b>Independent local format audit:</b> PASS; NaNs occur only outside the footprint and are allowed by the stated format policy. <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/format_check_h33_6_6c888d2ce0f7.json">Audit JSON</a>. This does not establish scientific validity or portal acceptance.</p>
+<p><b>Paste-ready note (not an upload recommendation):</b></p><pre>GEMSDOE33 H33-6 edge consensus | P1 delta DTI -0.002737 (2/4), P2 +0.000159 | RESEARCH ONLY; gate failed, not slot-approved | id 6c888d2ce0f7</pre>
+<p>Full manifest: <a href="downloads/research/h33-6-research-manifest.json">hashes, source bands and local audit</a>.</p></div>
+<h2>Earlier H33-F analog-field screen — separate, stopped experiment</h2>
+<div class="panel bad"><b>H33-F also failed; not a submission recommendation</b>
+<p>P1 mean ΔDTI: <code>-0.093072</code> (0/4 positive folds). P2 SGMC ΔDTI was
+<code>-0.016163</code> versus C0 and <code>+0.001234</code> versus matched-N random. It remains research-only.</p>
+<p>The exploratory 20 km-block domain-classifier AUC was 0.917; it is <b>not</b> a Ben-David <code>HΔH</code> estimate.
+The analog labels were the same public catalogue rather than independent field-pick truth, so the joint-label error <code>lambda</code>
+and transfer bound remain unknown. This is separate from H33-6 and from the D2.8 reference.</p>
+<p><a class="btn alt" href="downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif">Download H33-F research TIFF (NaN outside)</a>
+<a class="btn alt" href="downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.zip">Download H33-F ZIP</a></p>
+<p><b>Unique identifier:</b> <code>gemsdoe33-h33f-analog-xfer-20261004</code> · <b>SHA-256:</b> <code>59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d</code><br>
+477,936 bytes · 10/10 recorded package checks<br>
+<b>Note (not an upload recommendation):</b> <code>GEMSDOE33 H33-F analog xfer | Dixie/Brady/DesertPeak wells+GeoDAWN | research not slot-approved | id d042874b26ef</code></p>
+<p><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/07_analog_transfer.md">H33-F result review</a> ·
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout_analog.json">H33-F proxy evidence</a> ·
+<a href="downloads/research/h33-f-analog-transfer-manifest.json">H33-F manifest</a>. Local file checks do not validate science or portal acceptance.</p></div>
 <h2>Ranked geological hypotheses</h2>
+<p>Expected improvement is a qualitative research-priority ranking, not a numeric DTI prediction. Source listings
+are not equivalent to downloaded/inspected geometry. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/07_hypothesis_slate_20261004.md">full slate</a>.</p>
 <div class="scroll"><table><thead><tr><th>Rank / status</th><th>Layers</th><th>Physical signature</th>
 <th>Why it may find faults absent from USGS/INGENIOUS</th><th>Difference from prior art</th>
 <th>Expected upside / cost</th><th>Official source and availability check</th></tr></thead>
-<tbody><tr><td>1 · <code>H33-F</code><br>
-<b>Named analog-field transfer (Dixie Valley, Brady, Desert Peak) on shared GeoDAWN + LiDAR layers</b><br><span class="badge warn">IMPLEMENTED; unique TIFF packaged; exploratory 20 km-block domain AUC 0.917; Ben-David bound NOT licensed (lambda unknown); P1 mean ΔDTI −0.093072 (0/4); P2 vs rebuilt C0 −0.016163; P2 vs matched-N random +0.001234; NOT_SLOT_CLEARED.</span></td>
-<td><ul><li>INGENIOUS GDR 1391 well/spring unique cells whose names match Dixie / Brady / Desert Peak (owner-mirror CSV)</li><li>Published plant/area coordinates: OpenEI Dixie Valley, USGS MRDS Brady Hot Springs, OpenEI Desert Peak II</li><li>GeoDAWN bands: tmi_hg, tmi_vg, iso_grav_anom_hg, iso_grav_anom_slope, det_elev_slope, det_elev, depth_to_base_surf, geod_dilaterate, geod_shearrate, geod_2ndinv, cond_surf, mag_anom, rtp</li><li>LiDAR scarp channels: ex_max, step_max, lapneg_max, downface_max, upface_max, coh100</li></ul></td><td>A classifier trained only on public-catalogue fault pixels inside named, densely explored geothermal fields, applied to the rest of the footprint; emission is off-catalogue analog-score ridges Poisson-thinned at d=2.8.</td>
-<td>Those fields have decades of industry drilling and denser mapping. A signature learned there might flag structurally similar, under-mapped traces elsewhere. It does not add independent extra-catalogue labels: source labels are still USGS/INGENIOUS inside the fields.</td>
-<td>Prior work used the full regional catalogue or LiDAR globally. No reviewed artifact defined named Dixie/Brady/Desert Peak domains from GDR 1391 wells plus official centroids, measured a spatial-block domain discriminator, and emitted a unique off-catalogue analog-score field. GDR 1682/207 GIS payloads were not used (TLS blocked).</td>
-<td>highest qualitative upside if domain shift were small; magnitude unknown a priori<br><b>Cost:</b> medium (implemented this session from already-restored rasters; no new external GIS)</td>
-<td>GDR 1391 <a href="https://gdr.openei.org/submissions/1391">https://gdr.openei.org/submissions/1391</a> ; OpenEI Dixie <a href="https://openei.org/wiki/Dixie_Valley_Geothermal_Area">https://openei.org/wiki/Dixie_Valley_Geothermal_Area</a> ; USGS MRDS Brady <a href="https://mrdata.usgs.gov/mrds/show-mrds.php?dep_id=10221999">https://mrdata.usgs.gov/mrds/show-mrds.php?dep_id=10221999</a> ; OpenEI Desert Peak II <a href="https://openei.org/wiki/Desert_Peak_II_Geothermal_Facility">https://openei.org/wiki/Desert_Peak_II_Geothermal_Facility</a> ; Ben-David et al. 2010 <a href="https://link.springer.com/article/10.1007/s10994-009-5152-4">https://link.springer.com/article/10.1007/s10994-009-5152-4</a><br><br><b>Availability check:</b> Official pages fetched 2026-10-04. Well/spring CSV is an owner-mirror of GDR 1391 (hash-pinned). GDR 1682 GIS and GDR 207 GIS_Faults.zip failed TLS (curl 35) and were not used. Named-field cells measured: Dixie 355,714 / Brady 172,283 / Desert Peak 100,324; union 527,997 with 7,848 catalogue pixels.</td></tr><tr><td>2 · <code>H33-G</code><br>
-<b>Conductive-surface linear edges coinciding with isostatic-gravity horizontal gradient, off-catalogue</b><br><span class="badge warn">NOT RUN. Do not implement as a slot candidate until a fold-safe P1/P2 proxy beats rebuilt C0.</span></td>
-<td><ul><li>GeoDAWN cond_surf (band 17) and a Gaussian horizontal gradient of cond_surf</li><li>iso_grav_anom_hg (band 18)</li><li>public catalogue used only as a 1-px exclusion mask, not as a training label</li></ul></td><td>Ridge/NMS of electrical-conductivity surface gradient where gravity HG is also high. Geothermal fluids along faults create elongated conductors; gravity HG marks density contacts at range fronts and buried steps.</td>
-<td>USGS/INGENIOUS traces are surface ruptures. A conductivity lineament can mark a blind or fluid-filled structure that never produced a Quaternary scarp.</td>
-<td>cond_surf is in the 19-band stack but was not used as a standalone linear-edge × gravity-HG conjunction in H19-5 packing, H27-4 pruning, C2 relays, or H33-F. H38-1 used heat-flow residual × Euler, not conductivity.</td>
-<td>moderate if conductors are sparse and specific; otherwise low<br><b>Cost:</b> low (band 17 already restored)</td>
-<td>Competition training_features.tif band descriptions on <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/</a> ; GeoDAWN <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and</a><br><br><b>Availability check:</b> Band 17 is present in the owner-mirror training raster restored 2026-10-04. No new external download required.</td></tr><tr><td>3 · <code>H33-H</code><br>
-<b>Geodetic dilatation-rate edges × magnetic horizontal-gradient ridges, strike-discordant from the catalogue</b><br><span class="badge warn">NOT RUN.</span></td>
-<td><ul><li>geod_dilaterate (band 8) gradient / zero-contour neighbourhood</li><li>tmi_hg (band 3)</li><li>catalogue strike (local structure-tensor or nearest-trace azimuth) as a discordance gate</li></ul></td><td>Active Basin-and-Range strain localizes on normal faults. Dilatation-rate edges mark hanging-wall/footwall transitions. Magnetic HG ridges whose azimuth differs from nearby mapped traces may be unmapped or newly activated structures.</td>
-<td>The public catalogue is a geologic surface-trace inventory, not a geodetic strain map. Discordant active-strain magnetic edges can exist without a compiled Quaternary trace.</td>
-<td>H19-5 used geodetic bands as generic ensemble features. This hypothesis is a dilatation-edge × mag-HG conjunction with an explicit strike-discordance gate against the catalogue, which was not C2 (tip-to-tip relays) and not H33-F.</td>
-<td>moderate, coverage-dependent<br><b>Cost:</b> low-to-medium</td>
-<td>GeoDAWN / INGENIOUS geodetic layers in training_features.tif; problem page <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/</a><br><br><b>Availability check:</b> Bands 3 and 8 restored 2026-10-04 in the owner-mirror stack. No new external data required.</td></tr><tr><td>4 · <code>H33-J</code><br>
-<b>LiDAR uphill-facing (antislope) scarp residual after removing catalogue-parallel steps</b><br><span class="badge warn">NOT RUN.</span></td>
-<td><ul><li>lidar_scarp_features_u8.tif bands upface_max, strike, valid (USGS 3DEP 1 m aggregated)</li><li>public catalogue strike/distance as a suppression mask</li></ul></td><td>Uphill-facing scarps can mark unrecognized faults, landslide headscarps, or lake shorelines. After suppressing steps whose strike is parallel to a nearby catalogue trace, residual upface ridges are candidate omitted faults.</td>
-<td>H19-5 already used LiDAR scarps supervised/packed toward the visible catalogue. Residuals that are antislope and strike-discordant are the part of the LiDAR field the catalogue-shaped emission is least likely to have spent.</td>
-<td>H19-5 used LiDAR globally. This uses only the uphill-facing channel after catalogue-parallel suppression. Not the same as H27-4&#x27;s 1-px flank prune.</td>
-<td>low-to-moderate; confounded by landslides and shorelines<br><b>Cost:</b> medium (strike residual design + matched-random control required)</td>
-<td>USGS 3DEP 1 m DEM; lidar_scarp_features.json records USGS National Geospatial Program acknowledgement. Competition 1 m DEM links: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">https://www.drivendata.org/competitions/306/competition-doe-gems/data/</a><br><br><b>Availability check:</b> Owner-mirror lidar_scarp_features_u8.tif restored 2026-10-04 (12 bands including upface_max). Official 3DEP tiles were not re-downloaded.</td></tr><tr><td>5 · <code>H33-I</code><br>
-<b>Volcanic-vent alignment corridors as hidden-fault priors</b><br><span class="badge warn">NOT RUN. Small-n; matched-random corridor control would be mandatory.</span></td>
-<td><ul><li>gdr_volcanic_vents_in_footprint.csv (21 vents; owner-mirror of GDR 1391 volcanic features)</li><li>tmi_hg / iso_grav_anom_hg along three-or-more-point alignments</li></ul></td><td>Basaltic vents in the Basin and Range often exploit hidden faults. Alignments of ≥3 vents define a corridor; magnetic/gravity ridges inside a narrow buffer and off-catalogue are the candidate traces.</td>
-<td>Vent locations are magmatic, not a Quaternary fault compilation. A vent-aligned magnetic ridge can mark a structure that never ruptured the surface in the mapped interval.</td>
-<td>No reviewed GEMSDOE emission used the 21-vent CSV as an alignment prior. Distinct from hot-spring conjunctions (H35) and analog-field well polygons (H33-F).</td>
-<td>low; n=21 vents, few alignments, easy to overfit<br><b>Cost:</b> low</td>
-<td>GDR 1391 <a href="https://gdr.openei.org/submissions/1391">https://gdr.openei.org/submissions/1391</a><br><br><b>Availability check:</b> CSV restored 2026-10-04, 21 rows, names null, rock types Basalt/Rhyolite. Official GDR payload not re-downloaded (TLS fail).</td></tr></tbody></table></div>
+<tbody><tr><td>1 · <code>H33-6</code><br>
+<b>Cross-physics edge-normal consensus with matched-budget reallocation</b><br><span class="badge warn">FROZEN SCREEN FAILED P1: mean ΔDTI −0.00273732, 2/4 positive; P2 +0.00015900; conditional only, not slot-cleared. See evidence/holdout_h33_6.json.</span></td>
+<td><ul><li>GeoDAWN training_features.tif band 14 tmi</li><li>band 13 iso_grav_anom</li><li>band 15 depth_to_base_surf</li><li>band 17 cond_surf</li></ul></td><td>At a frozen 2-pixel Gaussian scale, co-located magnetic and gravity gradient edges whose edge-normal vectors align, with the stronger independent basement-depth or conductivity edge providing a bounded corroboration term. Reallocate a matched 5% of control dots to eligible 3x3 edge maxima.</td>
+<td>Buried basin-bounding/intrabasin faults may juxtapose susceptibility, density, basement depth, or conductivity with little preserved 100 m surface scarp. A multi-physics edge conjunction could expose these boundaries; it cannot by itself distinguish a fault from every lithologic contact.</td>
+<td>Local feature primitives include individual gradients, Laplacians, curvature and structure coherence. No reviewed candidate builder uses aligned raw magnetic/gravity edge normals plus a basement/conductivity edge, followed by this matched-budget emission reallocation.</td>
+<td>1 among candidates runnable with current files; moderate qualitative upside, magnitude unknown and no numeric forecast.<br><b>Cost:</b> Low–medium; four local bands, one raster-scale feature pass, four spatial folds and matched random controls.</td>
+<td>No additional external source. Local inputs are in the owner-mirror training raster; see registry/owner_mirror_input_pins.json.<br><br><b>Availability check:</b> All four bands were present in the local owner mirror; descriptions were checked (bands 13, 14, 15, 17) and training_features.tif SHA-256 was recorded in evidence/holdout_h33_6.json. This verifies the mirror bytes only, not organizer provenance.</td></tr><tr><td>2 · <code>H33-7</code><br>
+<b>Field-verified BRIDGE analog supervision with bounded transfer gate</b><br><span class="badge warn">BLOCKED — not viable until official archive bytes are fetched, hashed, schema-audited, and spatially checked.</span></td>
+<td><ul><li>Official DOE GDR #1682 BRIDGE LiDAR fault-pick vectors; the official README says field verification is limited to Dixie Valley and Gabbs Valley</li><li>Shared GeoDAWN magnetic, gravity, basement-depth and conductivity layers</li></ul></td><td>Test a spatially blocked field-pick-to-feature transfer after source/target deduplication, overlap control and uncertainty audit. Domain-divergence is descriptive only and does not itself prove target transfer.</td>
+<td>Independent analog-field fault picks can test whether a field-mapped fault signature is present beyond the target catalogue. Source lines are not assumed to be target truth or private-label substitutes.</td>
+<td>No implemented analog source with named field-verified fault picks exists in this repository. The withdrawn density-quantile/random-pixel discriminator is not evidence of HΔH divergence.</td>
+<td>Potentially high scientific ceiling but entirely unquantified, high uncertainty, and blocked by unavailable source bytes.<br><b>Cost:</b> Medium–high: retrieve/verify GIS, inspect schema/CRS/coverage/licence, deduplicate target overlap, then build a spatial transfer test.</td>
+<td>DOE GDR submission 1682 <a href="https://gdr.openei.org/submissions/1682">https://gdr.openei.org/submissions/1682</a> ; GIS archive <a href="https://gdr.openei.org/files/1682/BRIDGE_GIS.zip">https://gdr.openei.org/files/1682/BRIDGE_GIS.zip</a> ; README <a href="https://gdr.openei.org/files/1682/BRIDGE_README.pdf">https://gdr.openei.org/files/1682/BRIDGE_README.pdf</a><br><br><b>Availability check:</b> Official page/README fetched; page is public/CC BY 4.0 and lists GIS Files.zip at 3.79 MB. Direct archive retrieval from this sandbox failed TLS (HTTP 000). No bytes, schema, CRS, exact coverage or target overlap are validated.</td></tr><tr><td>3 · <code>H33-8</code><br>
+<b>Shallow projection of the USGS Gabbs Valley 3D fault-surface analogue</b><br><span class="badge warn">BLOCKED — publicly listed, not locally obtainable/validated; do not use for transfer until the official bytes are pinned and inspected.</span></td>
+<td><ul><li>USGS ScienceBase data release DOI 10.5066/P9BR3681; AllGabbsFaults.zip</li><li>GeoDAWN bands 3, 9, 13, 14, 15 and 18 for edge and geometry compatibility</li></ul></td><td>Use only verified shallow 3D fault-surface geometry as an independent source-domain diagnostic against local magnetic/gravity/basement edges; do not call it competition truth.</td>
+<td>Detailed subsurface geologic interpretation can include faults not represented as surface Quaternary traces. This is a narrow-area analog test, not evidence that Gabbs faults occur at the target locations.</td>
+<td>No local 3D mapped-fault surface is projected into this campaign; unlike H33-7 field-picked 2D LiDAR lines, it tests mapped 3D surfaces. The USGS geologic interpretation also draws on potential-field evidence, limiting independence.</td>
+<td>Moderate–high transfer value over narrow coverage; unknown magnitude and spatial-feature overlap.<br><b>Cost:</b> Medium; 2.91 MB listed fault ZIP, but feature semantics, schema, CRS and actual spatial intersection remain uninspected.</td>
+<td>USGS ScienceBase item <a href="https://www.sciencebase.gov/catalog/item/62b21845d34e74f0d80f17aa?format=json">https://www.sciencebase.gov/catalog/item/62b21845d34e74f0d80f17aa?format=json</a> ; DOI 10.5066/P9BR3681.<br><br><b>Availability check:</b> Official item lists AllGabbsFaults.zip at 3,047,835 bytes, CC0 1.0. Its bbox lies inside the competition raster bbox; this is bbox overlap only. The correct file URI returned HTTP 500 through page retrieval and shell TLS failed. No geometry was inspected or joined.</td></tr><tr><td>4 · <code>H33-9</code><br>
+<b>USGS ComCat focal-plane orientation as an active-structure consistency test</b><br><span class="badge warn">UNIMPLEMENTED continuation of prior design; no local transfer or holdout result.</span></td>
+<td><ul><li>USGS ANSS ComCat focal-mechanism products (locations and nodal-plane strike/dip/rake)</li><li>GeoDAWN bands 3, 9, 13, 14 and 15</li></ul></td><td>Use reviewed focal-plane orientation to test candidate lineament compatibility; preserve nodal-plane ambiguity and avoid substituting seismicity density for fault geometry.</td>
+<td>Mechanisms constrain active seismogenic slip planes from waveform radiation patterns and can test active blind structure orientations beyond mapped surface traces, but do not label fault traces.</td>
+<td>Already described in earlier H33-2; not a new concept, not implemented or locally harvested. It differs from earthquake-density products by using per-event plane geometry.</td>
+<td>Low–moderate, spatial-coverage and mechanism-quality dependent; unknown.<br><b>Cost:</b> Medium: reproducible API harvest, event/product resolution, nodal-plane uncertainty and spatial holdout.</td>
+<td>USGS ANSS ComCat/FDSN Event Web Service <a href="https://earthquake.usgs.gov/fdsnws/event/1/">https://earthquake.usgs.gov/fdsnws/event/1/</a> and <a href="https://earthquake.usgs.gov/data/comcat/index.php">https://earthquake.usgs.gov/data/comcat/index.php</a><br><br><b>Availability check:</b> A previous official preflight checked a count query and an example product, but no complete response is staged; local shell retrieval fails TLS. Not viable until a pinned extract and product audit exist.</td></tr><tr><td>5 · <code>H33-10</code><br>
+<b>Signed strain-lobe boundary across a conductive basement edge</b><br><span class="badge warn">LOW PRIORITY; related prior art, not tested in this round.</span></td>
+<td><ul><li>GeoDAWN band 7 geod_shearrate</li><li>band 8 geod_dilaterate</li><li>band 17 cond_surf</li><li>band 15 depth_to_base_surf</li><li>band 18 iso_grav_anom_hg</li></ul></td><td>A signed strain transition/asymmetry across a sharp conductor or basement-depth edge, aligned to a separate gravity edge; not raw strain or conductivity amplitude.</td>
+<td>A buried permeable fault may produce mechanical strain asymmetry and a fluid-altered conductor without a preserved scarp; false-positive lithologic boundaries remain likely.</td>
+<td>Exact sign/edge rule is not in the local builders reviewed, but prior DILCOND/SRCOH and strain screens are close and weak in owner-reported history. Novelty is limited and requires a direct ablation.</td>
+<td>Low qualitative upside; no numeric forecast.<br><b>Cost:</b> Low–medium; local owner-mirror bands only.</td>
+<td>No additional source; local owner-mirror layers only.<br><br><b>Availability check:</b> Required bands are present in the local owner mirror; provenance is not organizer-authenticated.</td></tr></tbody></table></div>
 <h2>Ben-David domain adaptation — fail-closed</h2>
-<div class="panel warn"><b>EXPLORATORY_NOT_LICENSED</b><p>Named Dixie Valley / Brady / Desert Peak source masks were built from
-GDR 1391 well/spring names plus official plant coordinates. An exploratory 20 km-block domain
-discriminator was fit on shared GeoDAWN+LiDAR layers. A unique off-catalogue emission was packaged.
-The Ben-David target-error bound is <b>not</b> licensed: lambda is unknown because analog labels are
-the same public catalogue, and the discriminator class is not shown to equal HΔH. GDR 1682/207 GIS
-payloads could not be staged (TLS fail).</p>
-<p>Ben-David et al. (2010), Theorem 2 requires source error plus one half of an empirical
-<code>HΔH</code> divergence, a defensible finite-sample/class-complexity term, and the joint-label
-error <code>lambda</code>. A generic two-sample AUC is not by itself that bound.
+<div class="panel bad"><b>EXPLORATORY_NOT_LICENSED</b><p>Formal Ben-David bound status: <b>BLOCKED_NOT_ESTIMATED</b>. No field-specific <code>HΔH</code> divergence was estimated; transfer is neither licensed nor refuted.
+The first-pass well/spring-density split, random pixel discriminator and conclusion were withdrawn.
+BRIDGE GDR #1682 is publicly listed but its archive bytes could not be staged. USGS Gabbs Valley 3D faults
+are also publicly listed; only bounding boxes were compared, and the ZIP/feature geometry were not obtained.</p>
+<p>Ben-David et al. (2010), Theorem 2 uses source error plus one half of an empirical
+<code>HΔH</code> divergence, a justified finite-sample/class-complexity term, and the joint-label error
+<code>lambda</code>. A generic two-sample AUC is not itself that bound. A domain-divergence estimate alone
+would not prove target transfer or reveal target label error.
 <a href="https://link.springer.com/article/10.1007/s10994-009-5152-4">Paper</a> ·
 <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/src/gemsdoe33/domain.py">implementation notes</a>.</p>
-<h3>Blocking gates</h3><ol></ol></div>
-<h2>Review and evidence boundary</h2>
-<p>Initial promotion claims were withdrawn after discovering truth-conditioned prediction
-reconstruction, tuning against owner-reported scores, reused seeds/budgets, a comparator structurally
-biased against some artifact families, invalid domain definitions, and unverified arithmetic on
-quantized radiometric bands. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/first_pass_disposition.json">the disposition</a>
-and <a href="irregularities.html">the irregularities register</a>. No archived score or metric is
-used here to promote a candidate.</p>
+<h3>Blocking gates</h3><ol><li>Obtain and inspect the official BRIDGE vector archive; verify CRS, field IDs, confidence/verification attributes, and license conditions.</li><li>Define named, non-overlapping source/target field domains before examining target benchmark outcomes; do not substitute record-density quantiles.</li><li>Declare a common target hypothesis class, label policy, feature schema, spatial resolution, mask, and physically interpretable transformations in both domains.</li><li>Use field/system-level spatial blocks for training, discriminator validation, and evaluation; prevent neighboring pixels or duplicate site records crossing partitions.</li><li>Specify source-risk estimation, the HΔH class/divergence, effective independent sample size, uncertainty intervals, and the finite-sample/class-complexity term.</li><li>Estimate or conservatively bound lambda with an independent shared-label audit; do not set it to zero by assumption.</li><li>Obtain a target-relevant, spatially blocked holdout and compare at matched emission budget before considering any submission-slot decision.</li></ol></div>
+<h2>Prior-art and evidence boundary</h2>
+<p>H19-5 already uses four-line physical corroboration (tip/relay, thermal-geochemical, scarp/openness,
+geopotential/basement) with a second-best-line gate. Therefore generic multi-line fusion is not novel.
+The H33-6 operator is a specific cross-physics edge-normal score; its negative holdout is retained, not tuned away.
+The reported H27-4 <code>0.2708</code> score/file attribution is unsupported: the owner page labels H27-4
+unscored/research-only and no organizer receipt is recorded. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/01_why_0.2708_won.md">the score-claim review</a>.</p>
 <p>Upstream C2 is also <b>not slot-cleared</b>. Its legacy P1 pass was withdrawn; the corrected conditional
 source-exclusion diagnostic is P1 mean ΔDTI <code>−0.000722</code> (0/4 folds positive), while P2 is
-<code>+0.000283</code> on the separate SGMC proxy. Because the fixed H19-5 surface was not rebuilt per
-fold and the correction was not an independent preregistered confirmation, these figures remain a
-conditional local diagnostic—not score evidence. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout33.json">the
-full diagnostic</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/archive/legacy_candidates/README.md">the archive-only
-artifact note</a>.</p>
-<p>Source and licence observations are linked from the <a href="sources.html">source register</a>;
-external file availability and footprint/schema checks remain explicitly incomplete where indicated.</p></main>
-<footer><div class="wrap">Generated 2026-10-04 16:53 UTC by <code>scripts/build_site.py</code>. The featured TIFF is the unique H33-F analog-field research emission; it is not slot-approved. No DrivenData upload was made from this workspace. Owner
+<code>+0.000283</code> on the separate SGMC proxy. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout33.json">full diagnostic</a>
+and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/archive/legacy_candidates/README.md">archive-only artifact note</a>.</p>
+<p>Reviewable official links and source/license caveats are in the <a href="sources.html">source register</a>.
+No external candidate is treated as viable until its actual bytes, schema, CRS, licence and feature-level overlap are audited.</p></main>
+<footer><div class="wrap">Generated deterministically from the registered evidence by <code>scripts/build_site.py</code>. The featured top-level TIFF is a
+D2.8 reference emission, not a new model. The failed H33-6 research TIFF is a separate non-submission artifact. No DrivenData upload was made from this workspace. Owner
 mirror, measured, model-derived and official evidence are identified separately in the records.</div></footer>
 </body></html>
