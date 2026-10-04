@@ -1,0 +1,373 @@
+{
+ "run_utc": "2026-10-04T14:57:16+00:00",
+ "status": "CONDITIONAL_SOURCE_EXCLUSION_DIAGNOSTIC_NOT_SLOT_CLEARED",
+ "protocol": "P1 four spatial folds; rebuild H27-4 from each fold-visible catalogue; exclude each Qfaults source-system ID within a 600 m square holdout buffer plus one-pixel raster guard before bridge construction; P2 SGMC off-catalogue",
+ "validity": {
+  "previous_full_catalogue_p1_status": "WITHDRAWN_FOR_PROMOTION",
+  "withdrawal_reason": "The prior P1 runner masked labels only at scoring time. C0 pruning and C2 source/catalogue filters still saw full-catalogue geometry, and C2 used Qfaults traces for the hidden systems.",
+  "fold_specific_catalogue_mask_applied": true,
+  "fold_specific_qfault_source_exclusion_applied": true,
+  "legacy_h19_5_surface_rederived_per_fold": false,
+  "legacy_h19_5_surface_provenance": "The fixed H19-5 ridge raster is described in the owner-supplied campaign record as a scarp/geophysics ensemble; its upstream generation/training code is not in this checkout. This diagnostic cannot certify that upstream surface as fold-independent.",
+  "c2_threshold_preregistration_status": "not_demonstrated_in_repo",
+  "slot_cleared": false,
+  "slot_blockers": [
+   "The legacy H19-5 input is not re-derived per fold and its upstream pipeline is not present.",
+   "This corrective source-exclusion run was prompted by the earlier result and is not an independent preregistered confirmation.",
+   "The pinned Qfaults community mirror is not byte-authenticated against the current official GDR archive.",
+   "A passing local format audit is not portal acceptance or an organizer score."
+  ]
+ },
+ "grid": {
+  "crs": "EPSG:32611",
+  "height": 3730,
+  "width": 3292,
+  "footprint_pixels": 5167373
+ },
+ "inputs": {
+  "catalogue_pixels": 60988,
+  "h19_5_pixels": 121131,
+  "h19_5_sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+  "qfaults_shapefile_sha256": "915b6b4d0ab7cc694360c033ff95816ac16d878bd59f4b4cb7e1281f21965879",
+  "qfaults_segments_in_footprint_margin": 15464,
+  "full_label_c0_rebuild": {
+   "builder": "dot_thin(H19-5 & ~known, 2.8) & (distance_to_known > 1 px)",
+   "min_dist_px": 2.8,
+   "prune_px": 1.0,
+   "known_pixels": 60988,
+   "h19_5_pixels": 121131,
+   "dots_before_flank_prune": 44090,
+   "dots_after_flank_prune": 40199,
+   "pruned_dots": 3891,
+   "matches_h27_4_control_exactly": true,
+   "reference_control_dots": 40199
+  }
+ },
+ "p1": {
+  "fold_buffer_px": 6,
+  "source_guard_px": 1,
+  "source_exclusion_sample_step_m": 50.0,
+  "mean_delta_dti": -0.0007220037985699659,
+  "positive_folds": 0,
+  "n_folds": 4,
+  "fold_deltas": [
+   -0.0007242641696604268,
+   -0.0011430116095243192,
+   -0.000636737864424558,
+   -0.00038400155067055963
+  ],
+  "incremental_contribution_summary": {
+   "delta_tpw_total": 0.0,
+   "delta_fpw_total": 2643.0,
+   "added_dots_total_across_folds": 2643,
+   "no_incremental_true_positive_weight_any_fold": true
+  },
+  "folds": [
+   {
+    "fold": 0,
+    "n_hidden_truth_pixels": 13293,
+    "n_known_pixels_after_buffer": 47695,
+    "control_rebuild": {
+     "builder": "dot_thin(H19-5 & ~known, 2.8) & (distance_to_known > 1 px)",
+     "min_dist_px": 2.8,
+     "prune_px": 1.0,
+     "known_pixels": 47695,
+     "h19_5_pixels": 121131,
+     "dots_before_flank_prune": 44090,
+     "dots_after_flank_prune": 40983,
+     "pruned_dots": 3107
+    },
+    "candidate_build": {
+     "candidate": "C2_stepover_bridges",
+     "qualifying_tip_pairs": 11858,
+     "added_dots": 716,
+     "source_segments_total": 15464,
+     "source_segments_used": 13142,
+     "source_fids_excluded": 40,
+     "catalogue_mask_pixels": 47695,
+     "source_exclusion": {
+      "applied": true,
+      "target_pixels": 13293,
+      "buffer_px": 6,
+      "guard_px": 1,
+      "source_exclusion_radius_px": 7,
+      "source_exclusion_shape": "square/Chebyshev",
+      "sample_step_m": 50.0,
+      "segments_checked": 15464,
+      "sampled_points": 447147,
+      "source_fids_total": 327,
+      "source_fids_excluded": 40,
+      "source_segments_excluded": 2322,
+      "excluded_fids_sha256": "6772eb91cf29ad5b9c1e399af6a1f2ce4216f823d42463104df6f97ecc29f34e",
+      "retained_min_sample_distance_px": 18.973665961010276
+     },
+     "parameters": {
+      "d_min_m": 300.0,
+      "d_max_m": 2500.0,
+      "strike_tol_deg": 30.0,
+      "dot_spacing_px": 2.83,
+      "catalogue_exclusion_px": 2.0,
+      "existing_dot_exclusion_px": 2.5,
+      "gravity_edge_distance_px": 2.0
+     }
+    },
+    "candidate": {
+     "dots": 41699,
+     "dti": 0.09629182448896761,
+     "tpw": 1847.0523066878714,
+     "fpw": 40890.04052028745
+    },
+    "control": {
+     "dots": 40983,
+     "dti": 0.09701608865862804,
+     "tpw": 1847.0523066878714,
+     "fpw": 40174.04052028745
+    },
+    "incremental_contribution": {
+     "delta_tpw": 0.0,
+     "delta_fpw": 716.0,
+     "added_dots": 716
+    },
+    "delta_dti": -0.0007242641696604268
+   },
+   {
+    "fold": 1,
+    "n_hidden_truth_pixels": 12755,
+    "n_known_pixels_after_buffer": 48233,
+    "control_rebuild": {
+     "builder": "dot_thin(H19-5 & ~known, 2.8) & (distance_to_known > 1 px)",
+     "min_dist_px": 2.8,
+     "prune_px": 1.0,
+     "known_pixels": 48233,
+     "h19_5_pixels": 121131,
+     "dots_before_flank_prune": 44090,
+     "dots_after_flank_prune": 41269,
+     "pruned_dots": 2821
+    },
+    "candidate_build": {
+     "candidate": "C2_stepover_bridges",
+     "qualifying_tip_pairs": 12607,
+     "added_dots": 794,
+     "source_segments_total": 15464,
+     "source_segments_used": 14194,
+     "source_fids_excluded": 40,
+     "catalogue_mask_pixels": 48233,
+     "source_exclusion": {
+      "applied": true,
+      "target_pixels": 12755,
+      "buffer_px": 6,
+      "guard_px": 1,
+      "source_exclusion_radius_px": 7,
+      "source_exclusion_shape": "square/Chebyshev",
+      "sample_step_m": 50.0,
+      "segments_checked": 15464,
+      "sampled_points": 450179,
+      "source_fids_total": 327,
+      "source_fids_excluded": 40,
+      "source_segments_excluded": 1270,
+      "excluded_fids_sha256": "ab6611df716287cdb9b9fc441135a223b25fcde2c1c88edf865159e82fdea29a",
+      "retained_min_sample_distance_px": 19.924858845171276
+     },
+     "parameters": {
+      "d_min_m": 300.0,
+      "d_max_m": 2500.0,
+      "strike_tol_deg": 30.0,
+      "dot_spacing_px": 2.83,
+      "catalogue_exclusion_px": 2.0,
+      "existing_dot_exclusion_px": 2.5,
+      "gravity_edge_distance_px": 2.0
+     }
+    },
+    "candidate": {
+     "dots": 42063,
+     "dti": 0.13494842064101858,
+     "tpw": 2551.5168894892836,
+     "fpw": 40965.228237123774
+    },
+    "control": {
+     "dots": 41269,
+     "dti": 0.1360914322505429,
+     "tpw": 2551.5168894892836,
+     "fpw": 40171.228237123774
+    },
+    "incremental_contribution": {
+     "delta_tpw": 0.0,
+     "delta_fpw": 794.0,
+     "added_dots": 794
+    },
+    "delta_dti": -0.0011430116095243192
+   },
+   {
+    "fold": 2,
+    "n_hidden_truth_pixels": 14117,
+    "n_known_pixels_after_buffer": 46871,
+    "control_rebuild": {
+     "builder": "dot_thin(H19-5 & ~known, 2.8) & (distance_to_known > 1 px)",
+     "min_dist_px": 2.8,
+     "prune_px": 1.0,
+     "known_pixels": 46871,
+     "h19_5_pixels": 121131,
+     "dots_before_flank_prune": 44090,
+     "dots_after_flank_prune": 40821,
+     "pruned_dots": 3269
+    },
+    "candidate_build": {
+     "candidate": "C2_stepover_bridges",
+     "qualifying_tip_pairs": 11267,
+     "added_dots": 779,
+     "source_segments_total": 15464,
+     "source_segments_used": 13105,
+     "source_fids_excluded": 40,
+     "catalogue_mask_pixels": 46871,
+     "source_exclusion": {
+      "applied": true,
+      "target_pixels": 14117,
+      "buffer_px": 6,
+      "guard_px": 1,
+      "source_exclusion_radius_px": 7,
+      "source_exclusion_shape": "square/Chebyshev",
+      "sample_step_m": 50.0,
+      "segments_checked": 15464,
+      "sampled_points": 443421,
+      "source_fids_total": 327,
+      "source_fids_excluded": 40,
+      "source_segments_excluded": 2359,
+      "excluded_fids_sha256": "675ae90214e19c17df02e54be74703daf9478718d49fdeaeebe85668363141cb",
+      "retained_min_sample_distance_px": 29.0
+     },
+     "parameters": {
+      "d_min_m": 300.0,
+      "d_max_m": 2500.0,
+      "strike_tol_deg": 30.0,
+      "dot_spacing_px": 2.83,
+      "catalogue_exclusion_px": 2.0,
+      "existing_dot_exclusion_px": 2.5,
+      "gravity_edge_distance_px": 2.0
+     }
+    },
+    "candidate": {
+     "dots": 41600,
+     "dti": 0.08027570379402738,
+     "tpw": 1589.3011788255371,
+     "fpw": 40932.87291515454
+    },
+    "control": {
+     "dots": 40821,
+     "dti": 0.08091244165845193,
+     "tpw": 1589.3011788255371,
+     "fpw": 40153.87291515454
+    },
+    "incremental_contribution": {
+     "delta_tpw": 0.0,
+     "delta_fpw": 779.0,
+     "added_dots": 779
+    },
+    "delta_dti": -0.000636737864424558
+   },
+   {
+    "fold": 3,
+    "n_hidden_truth_pixels": 20823,
+    "n_known_pixels_after_buffer": 40165,
+    "control_rebuild": {
+     "builder": "dot_thin(H19-5 & ~known, 2.8) & (distance_to_known > 1 px)",
+     "min_dist_px": 2.8,
+     "prune_px": 1.0,
+     "known_pixels": 40165,
+     "h19_5_pixels": 121131,
+     "dots_before_flank_prune": 44090,
+     "dots_after_flank_prune": 41614,
+     "pruned_dots": 2476
+    },
+    "candidate_build": {
+     "candidate": "C2_stepover_bridges",
+     "qualifying_tip_pairs": 9371,
+     "added_dots": 354,
+     "source_segments_total": 15464,
+     "source_segments_used": 12854,
+     "source_fids_excluded": 51,
+     "catalogue_mask_pixels": 40165,
+     "source_exclusion": {
+      "applied": true,
+      "target_pixels": 20823,
+      "buffer_px": 6,
+      "guard_px": 1,
+      "source_exclusion_radius_px": 7,
+      "source_exclusion_shape": "square/Chebyshev",
+      "sample_step_m": 50.0,
+      "segments_checked": 15464,
+      "sampled_points": 426293,
+      "source_fids_total": 327,
+      "source_fids_excluded": 51,
+      "source_segments_excluded": 2610,
+      "excluded_fids_sha256": "0f416e27040226b73743cc25741146975c186dc21bbcf146fdc53ea3cbfe3017",
+      "retained_min_sample_distance_px": 19.6468827043885
+     },
+     "parameters": {
+      "d_min_m": 300.0,
+      "d_max_m": 2500.0,
+      "strike_tol_deg": 30.0,
+      "dot_spacing_px": 2.83,
+      "catalogue_exclusion_px": 2.0,
+      "existing_dot_exclusion_px": 2.5,
+      "gravity_edge_distance_px": 2.0
+     }
+    },
+    "candidate": {
+     "dots": 41968,
+     "dti": 0.13780232457097744,
+     "tpw": 3510.9277622985574,
+     "fpw": 40587.07720370668
+    },
+    "control": {
+     "dots": 41614,
+     "dti": 0.138186326121648,
+     "tpw": 3510.9277622985574,
+     "fpw": 40233.07720370668
+    },
+    "incremental_contribution": {
+     "delta_tpw": 0.0,
+     "delta_fpw": 354.0,
+     "added_dots": 354
+    },
+    "delta_dti": -0.00038400155067055963
+   }
+  ],
+  "status": "CONDITIONAL_DIAGNOSTIC_ONLY"
+ },
+ "p2": {
+  "truth_pixels": 63121,
+  "candidate_dti": 0.09689800184183275,
+  "control_dti": 0.0966149000394364,
+  "delta_dti": 0.00028310180239635163,
+  "candidate_dots": 41139,
+  "build": {
+   "candidate": "C2_stepover_bridges",
+   "qualifying_tip_pairs": 12811,
+   "added_dots": 940,
+   "source_segments_total": 15464,
+   "source_segments_used": 15464,
+   "source_fids_excluded": 0,
+   "catalogue_mask_pixels": 60988,
+   "source_exclusion": {
+    "applied": false
+   },
+   "parameters": {
+    "d_min_m": 300.0,
+    "d_max_m": 2500.0,
+    "strike_tol_deg": 30.0,
+    "dot_spacing_px": 2.83,
+    "catalogue_exclusion_px": 2.0,
+    "existing_dot_exclusion_px": 2.5,
+    "gravity_edge_distance_px": 2.0
+   }
+  },
+  "status": "INDEPENDENT_COMPILATION_PROXY_NOT_COMPETITION_TRUTH"
+ },
+ "numeric_proxy_gate": {
+  "p1_above_bar": false,
+  "p1_majority_folds_positive": false,
+  "p2_not_worse": true,
+  "pass": false
+ },
+ "promotion": "NO SLOT: this run is conditional and not an independent preregistered confirmation."
+}

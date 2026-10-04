@@ -7,7 +7,7 @@ python scripts/restore_data.py --group all
 python scripts/prepare_data.py
 ```
 
-See `registry/data_manifest.json` for every pinned file, mirror path, expected byte count and digest.
+See `registry/owner_mirror_input_pins.json` for the 17 audited owner-mirror files, mirror paths, expected byte counts and SHA-256 digests. `registry/data_manifest.json` is the separate upstream C0/C2 restore manifest; do not confuse its candidate-specific inputs with this reference package's pins.
 
 ## Provenance warning
 

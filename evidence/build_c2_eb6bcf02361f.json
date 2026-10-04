@@ -1,0 +1,17 @@
+{
+ "file": "docs/downloads/gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif",
+ "candidate": "C2",
+ "build": {
+  "candidate": "C2_stepover_bridges",
+  "qualifying_tip_pairs": 12851,
+  "added_dots": 944
+ },
+ "content_id": "eb6bcf02361f",
+ "dots_emitted": 41143,
+ "dots_outside_footprint_dropped": 0,
+ "sha256": "5bb604f1cef55c43c686601bd20c132ae47cbbbd70ffe1645621e0099938157f",
+ "bytes": 884316,
+ "built_utc": "2026-10-04T03:35:33+00:00",
+ "status": "SUPERSEDED: replaced by deterministic collision-free C2 build 01f660dd8656; do not distribute this raster as current",
+ "local_upload_safe_policy": "Historical artifact used the conservative finite [0,1] whole-array, zero-outside-footprint policy; this file is superseded and not a current portal result."
+}

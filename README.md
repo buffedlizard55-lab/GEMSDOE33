@@ -29,6 +29,7 @@ See the [executive summary and exact upload steps](docs/executive-summary.html).
 - The official public leaderboard was reviewed once on **2026-10-04** at the owner's request. That observation did not support the brief's claim that `0.3195` was then the current highest score. The page cannot identify local TIFF bytes or prove an account association. Because the [DrivenData Terms of Use](https://www.drivendata.org/termsofuse/) prohibit automated and manual monitoring/copying without prior written consent, detailed rows are not retained or republished; this project does not poll or refresh the page. See [`registry/leaderboard_review.json`](registry/leaderboard_review.json).
 - The claimed H27-4 `0.2708` score/file attribution is unsupported. The [GEMSDOE28 owner page](https://buffedlizard55-lab.github.io/GEMSDOE28/) says **“NO GEMSDOE28 SCORE”** and describes its artifacts as unscored/research-only. No organizer receipt or verified account/file record ties the claim to the owner's TIFF. The D2.8 `0.2600` score/file pairing remains unconfirmed.
 - **No new candidate has demonstrated a valid, independent improvement over the current best. No candidate is approved for a weekly submission slot.** The available download is only the D2.8 reference.
+- Upstream C2 is preserved as research-only in [`archive/legacy_candidates/`](archive/legacy_candidates/). Its earlier P1 pass was withdrawn for leakage; the corrected conditional source-exclusion diagnostic is P1 mean ΔDTI `−0.000722` (0/4 positive), P2 SGMC proxy `+0.000283`, and still **not slot-cleared** because the fixed H19-5 surface was not re-derived per fold and the diagnostic was not a preregistered independent confirmation. See [`evidence/holdout33.json`](evidence/holdout33.json) and [`IR-33-C2-01`](registry/irregularities.json).
 - Initial holdout, reconstruction, pruning and domain-transfer promotion claims were withdrawn after audit. Their scripts/results are retained for provenance in [`archive/withdrawn_first_pass/`](archive/withdrawn_first_pass/); read [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json) and [`registry/irregularities.json`](registry/irregularities.json). Do not reuse the archived metrics as evidence.
 
 ## Ranked geological research hypotheses
@@ -51,7 +52,7 @@ The replacement [`scripts/run_domain_adaptation.py`](scripts/run_domain_adaptati
 
 ## Provenance and data caveats
 
-- The 17 rasters/sidecar inputs in [`registry/data_manifest.json`](registry/data_manifest.json) are owner-published GitHub mirrors with SHA-256 pins, **not organizer-authenticated data**. A matching hash proves byte identity with that mirror only; it does not prove source, license, official schema, or leaderboard attribution.
+- The 17 rasters/sidecar inputs audited for this reference are pinned in [`registry/owner_mirror_input_pins.json`](registry/owner_mirror_input_pins.json); they are owner-published GitHub mirrors, **not organizer-authenticated data**. A matching hash proves byte identity with that mirror only; it does not prove source, license, official schema, or score attribution. The separate [`registry/data_manifest.json`](registry/data_manifest.json) is the upstream C0/C2 candidate-input manifest; its unpinned items remain explicitly unverified.
 - The owner-mirrored `sample_submission.tif` is not blank: its 60,988 in-footprint ones match `labels.tif` positives exactly. It is used only for grid/footprint, never as an absence label.
 - The owner-mirrored sample has 5,167,373 finite in-footprint cells. The 19-band training mirror has 3,061 template cells carrying the nodata sentinel in each of 18 bands; band 6 has 12 further sentinel cells. Reproduction is in [`evidence/input_grid_audit.json`](evidence/input_grid_audit.json) via `scripts/audit_inputs.py`. This corrects an earlier erroneous 1,521-cell count. None of these rasters was downloaded through an authenticated DrivenData session.
 - GDR 1391 (INGENIOUS) and GDR 1682 official source pages were reviewed; local downloads of external archives failed TLS/HTTP 000. The 2.58-GB GDR 1303 archive was not downloaded. USGS ComCat API availability was checked, but no complete extract was staged or used to build the TIFF.
@@ -82,6 +83,9 @@ python -m pytest -q
 - [Complete standing brief (HTML)](docs/standing-prompt.html)
 - [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md)
 - [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json)
+- [`evidence/holdout33.json`](evidence/holdout33.json) — upstream C2 conditional source-exclusion diagnostic; not slot-cleared
+- [`registry/score_ledger.json`](registry/score_ledger.json) — historical owner-reported campaign entries only; H27 claim marked unsupported, no official leaderboard rows
+- [`AGENTS.md`](AGENTS.md) — repository operating safeguards
 
 ---
 

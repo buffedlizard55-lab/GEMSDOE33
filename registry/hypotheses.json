@@ -11,7 +11,8 @@
     "GEMSDOE31 H31-A magnetic residual variogram pilot: the recorded result says its catalogue-proxy gate failed and empirical residual range was unknown.",
     "GEMSDOE32 H61/H62 hypotheses, including tilt-angle and det_elev-curvature screens, plus recorded sample-template/validator and local-holdout limitations.",
     "GEMSDOE28 H38-2 queued a shallow 2 m temperature-probe residual × gravity-edge test but did not run it because the data gate was unresolved; this existing idea is prior art, not a new ranked hypothesis in this shortlist.",
-    "No field-verified BRIDGE GIS fault picks, USGS ComCat focal-mechanism point/plane data, or Brady/Desert Peak hyperspectral geodatabase was used in the prior emission artifacts reviewed here."
+    "No field-verified BRIDGE GIS fault picks, USGS ComCat focal-mechanism point/plane data, or Brady/Desert Peak hyperspectral geodatabase was used in the prior emission artifacts reviewed here.",
+    "Upstream H33-C2 stepover-relay artifact: its legacy P1 pass is withdrawn for label/source leakage; the corrected conditional source-exclusion P1 is negative (−0.000722, 0/4 positive), P2 is +0.000283, and it is not slot-cleared. See evidence/holdout33.json and IR-33-C2-01."
   ],
   "ranking_basis": "Qualitative expected usefulness if the layer and transfer gates pass; no numerical DTI forecasts are asserted. Ranking is upside divided by cost, not evidence of a measured gain.",
   "hypotheses": [

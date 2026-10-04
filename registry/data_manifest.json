@@ -1,218 +1,227 @@
 {
   "schema_version": 1,
-  "provenance_warning": "All competition rasters listed here are owner-supplied public GitHub mirrors, integrity-pinned but NOT organizer-authenticated. Public mirror/hash availability is not proof of original downloadability, coverage, schema or license. Do not contact DrivenData automatically.",
-  "sources": {
-    "training_mirror": {
-      "repo": "buffedlizard55-lab/GEMSDOE",
-      "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
-      "status": "owner-supplied mirror; not organizer-authenticated"
-    },
-    "prior_mirror": {
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "status": "owner-supplied mirror; not organizer-authenticated"
-    },
-    "prior_public_layers": {
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "ee5d7c65ede2d0b891f747619ac8da81e8e76a15",
-      "status": "owner-supplied mirror; not organizer-authenticated"
-    }
-  },
+  "policy": "Hash-pinned public mirrors are required for candidate-critical files. Explicitly unpinned research inputs must be identified as such and are not promoted into candidate gates until verified. This repo never contacts DrivenData. Restore the candidate set with: bash scripts/download_competition_data.sh (uses public GitHub mirrors; the source mirror is not organizer-authenticated).",
   "files": [
     {
       "id": "training_features",
-      "repo": "buffedlizard55-lab/GEMSDOE",
-      "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
-      "parts": [
-        "data/bridge/gems-geodawn-numerical-features.tif.part-000",
-        "data/bridge/gems-geodawn-numerical-features.tif.part-001",
-        "data/bridge/gems-geodawn-numerical-features.tif.part-002",
-        "data/bridge/gems-geodawn-numerical-features.tif.part-003",
-        "data/bridge/gems-geodawn-numerical-features.tif.part-004"
-      ],
-      "dest": "training_features.tif",
-      "group": "core",
+      "dest": "core/training_features.tif",
       "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
       "bytes": 418912844,
-      "provenance": "Owner-supplied mirror of the login-walled competition training_features.tif; 19 float32 bands; not organizer-authenticated.",
-      "path": "data/bridge/gems-geodawn-numerical-features.tif"
+      "parts": [
+        {
+          "repo": "buffedlizard55-lab/GEMSDOE",
+          "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+          "path": "data/bridge/gems-geodawn-numerical-features.tif.part-000",
+          "sha": "f34e5143d5e7c10014b5cfe01c85d01bcede4c0a",
+          "bytes": 94371840
+        },
+        {
+          "repo": "buffedlizard55-lab/GEMSDOE",
+          "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+          "path": "data/bridge/gems-geodawn-numerical-features.tif.part-001",
+          "sha": "4bd98099ae505f63cc6c3733954f259974efd290",
+          "bytes": 94371840
+        },
+        {
+          "repo": "buffedlizard55-lab/GEMSDOE",
+          "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+          "path": "data/bridge/gems-geodawn-numerical-features.tif.part-002",
+          "sha": "d6f883ba8822207ac2765445737ecd2ecdfd2914",
+          "bytes": 94371840
+        },
+        {
+          "repo": "buffedlizard55-lab/GEMSDOE",
+          "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+          "path": "data/bridge/gems-geodawn-numerical-features.tif.part-003",
+          "sha": "976977b4ac84c4c9b6fec72495c4e512341de872",
+          "bytes": 94371840
+        },
+        {
+          "repo": "buffedlizard55-lab/GEMSDOE",
+          "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+          "path": "data/bridge/gems-geodawn-numerical-features.tif.part-004",
+          "sha": "41a7bb7b7603c1e7669d8cc8405cfeb5efb5cf0c",
+          "bytes": 41425484
+        }
+      ],
+      "provenance": "Owner-supplied mirror of the login-walled competition training_features.tif (Dropbox mirror 'gems-geodawn-numerical-features.tif'); 19 float32 bands; verified sha256 this session 2026-10-04."
     },
     {
       "id": "labels",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/bridge/labels.tif",
-      "dest": "labels.tif",
-      "group": "core",
+      "dest": "core/labels.tif",
       "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
       "bytes": 425830,
-      "provenance": "Owner-supplied mirror of the competition catalogue raster; not organizer-authenticated."
-    },
-    {
-      "id": "existing_faults",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/bridge/existing_faults.tif",
-      "dest": "existing_faults.tif",
-      "group": "core",
-      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
-      "bytes": 425830,
-      "provenance": "Owner-supplied mirror; hash-identical to labels.tif in the pinned mirror."
+      "blob": {
+        "repo": "buffedlizard55-lab/GEMSDOE24",
+        "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+        "path": "data/bridge/labels.tif",
+        "sha": "4ad3c1f3f19823e40924589bee7e51e44ae3a2e7"
+      },
+      "provenance": "Owner-supplied mirror of existing_faults.tif (competition catalogue raster)."
     },
     {
       "id": "sample_submission",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/bridge/sample_submission.tif",
-      "dest": "sample_submission.tif",
-      "group": "core",
+      "dest": "core/sample_submission.tif",
       "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
       "bytes": 1599597,
-      "provenance": "Owner-supplied mirror of the sample GeoTIFF; used only for grid/footprint integrity checks, not as truth. Not organizer-authenticated."
+      "blob": {
+        "repo": "buffedlizard55-lab/GEMSDOE24",
+        "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+        "path": "data/bridge/sample_submission.tif",
+        "sha": "7d865a9921a40ed2ea4c742a6a25b1fa2f357c5a"
+      },
+      "provenance": "Owner-supplied mirror of example_submission.tif; grid/footprint template only, never used as truth."
     },
     {
       "id": "h19_5",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
-      "dest": "h19_5_nan.tif",
-      "group": "model",
+      "dest": "models/h19_5_nan.tif",
       "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
       "bytes": 1712322,
-      "provenance": "Owner-supplied, historical H19-5 emission mirror; reported DTI is not independently organizer-verified."
-    },
-    {
-      "id": "dotted_h19_5_d1_5",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan.tif",
-      "dest": "dotted_h19_5_d1_5_nan.tif",
-      "group": "model",
-      "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
-      "bytes": 1632732,
-      "provenance": "Owner-supplied historical d=1.5 thinning artifact; 0.2477 association is a reported claim, not independently linked to an organizer receipt."
+      "blob": {
+        "repo": "buffedlizard55-lab/GEMSDOE24",
+        "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+        "path": "inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif",
+        "sha": "sha:unpinned"
+      },
+      "provenance": "Historical H19-5 ridge emission (121,131 px); parent of the d=2.8 family."
     },
     {
       "id": "dotted_h19_5_d2_8",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
-      "dest": "dotted_h19_5_d2_8_nan.tif",
-      "group": "model",
+      "dest": "models/dotted_h19_5_d2_8_nan.tif",
       "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
       "bytes": 1603424,
-      "provenance": "Owner-supplied D2.8 artifact; reported public score 0.2600 in GEMSDOE28 prompt (not independently linked to an organizer receipt)."
+      "blob": {
+        "repo": "buffedlizard55-lab/GEMSDOE24",
+        "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+        "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif",
+        "sha": "sha:unpinned"
+      },
+      "provenance": "d=2.8 Poisson-thinned H19-5 (44,090 px); owner-reported live 0.2600."
     },
     {
-      "id": "lidar_scarp_features",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/external/lidar_scarp_features_u8.tif",
-      "dest": "lidar_scarp_features_u8.tif",
-      "group": "model",
-      "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
-      "bytes": 36943606,
-      "provenance": "Owner-mirrored 12-band 100 m terrain-descriptor raster, derived from 706 of 716 1 m DEM tiles. This does not authenticate the original tile list, complete challenge coverage or official source bytes."
-    },
-    {
-      "id": "lidar_scarp_features_metadata",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/external/lidar_scarp_features.json",
-      "dest": "lidar_scarp_features.json",
-      "group": "model",
-      "sha256": "9ef0df6e87598a8b0cd52fe821661e5fdb3a00568c5d9b1c5d61fd6b242dcd41",
-      "bytes": 3531,
-      "provenance": "Owner-repository band/quantization metadata for the derived LiDAR descriptor raster, not an official USGS metadata file.",
-      "source": "sibling24"
-    },
-    {
-      "id": "geodawn_extensions",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/external/geodawn_extensions_u8.tif",
-      "dest": "geodawn_extensions_u8.tif",
-      "group": "public",
-      "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
-      "bytes": 27132925,
-      "provenance": "Owner-mirrored 4-band GeoDAWN contractor ratio/upward-continued grids (u8 ranks); not organizer-authenticated."
-    },
-    {
-      "id": "geodawn_rad",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/external/geodawn_rad_u8.tif",
-      "dest": "geodawn_rad_u8.tif",
-      "group": "public",
-      "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
-      "bytes": 26612970,
-      "provenance": "Owner-mirrored 4-band GeoDAWN radiometric grids (u8 ranks); not organizer-authenticated."
+      "id": "h27_4_r1_solo",
+      "dest": "models/h27_4_r1_solo_nan.tif",
+      "sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+      "bytes": 1595850,
+      "blob": {
+        "repo": "buffedlizard55-lab/GEMSDOE28",
+        "ref": "33cc5942220f1440531d7184889c5c6f5d2f0a3e",
+        "path": "docs/downloads/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+        "sha": "12b0a4ddf1cf76f2552621b8a8b1a1b88d783786"
+      },
+      "provenance": "Owner-supplied mirror of the h27-4 raster from GEMSDOE28; Git blob SHA and full-file SHA-256 verified against the pinned public repository commit 33cc594. Competition score remains owner-reported, not organizer-authenticated."
     },
     {
       "id": "derived_sgmc_faults",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/external/derived_sgmc_faults_100m_u8.tif",
-      "dest": "derived_sgmc_faults_100m_u8.tif",
-      "group": "public",
+      "dest": "external/derived_sgmc_faults_100m_u8.tif",
       "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
       "bytes": 198602,
-      "provenance": "Owner-mirrored USGS SGMC geologic-map faults rasterised at 100 m; not organizer-authenticated."
+      "blob": {
+        "repo": "buffedlizard55-lab/GEMSDOE24",
+        "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+        "path": "data/external/derived_sgmc_faults_100m_u8.tif",
+        "sha": "c794f6ee8dd278f9d836576dcb5d02239da1c4f7"
+      },
+      "provenance": "USGS State Geologic Map Compilation faults rasterised at 100 m; independent P2 proxy truth source."
     },
     {
-      "id": "gdr_qfaults_traces",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/external/gdr_qfaults_traces.csv",
-      "dest": "gdr_qfaults_traces.csv",
-      "group": "public",
+      "id": "qfaults_traces",
+      "dest": "external/gdr_qfaults_traces.csv",
       "sha256": "9702f2e5c382a4f472ae834d22b94990983b059677a37adfafd51c50f75e643c",
       "bytes": 126177,
-      "provenance": "Owner-mirrored INGENIOUS/GDR Qfaults per-trace attributes; not organizer-authenticated."
+      "blob": {
+        "repo": "buffedlizard55-lab/GEMSDOE24",
+        "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+        "path": "data/external/gdr_qfaults_traces.csv",
+        "sha": "b2e66237d5e3111c113834ead0d209adbae8443e"
+      },
+      "provenance": "INGENIOUS/GDR Qfaults per-trace attributes."
     },
     {
-      "id": "qfaults_v2_vectors",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "ee5d7c65ede2d0b891f747619ac8da81e8e76a15",
-      "path": "data_external/qfaults_v2_in_footprint.json",
-      "dest": "qfaults_v2_in_footprint.json",
-      "group": "public",
-      "sha256": "4d6efc7bb3659ea2545353fcec574ef085b0acdb189c7590e4420a7c6c57b41c",
-      "bytes": 1252341,
-      "provenance": "Owner-mirrored 1,179 NBMG INGENIOUS Qfaults vector polylines in the GeoDAWN footprint; not organizer-authenticated."
-    },
-    {
-      "id": "gdr_volcanic_vents",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/external/gdr_volcanic_vents_in_footprint.csv",
-      "dest": "gdr_volcanic_vents_in_footprint.csv",
-      "group": "public",
-      "sha256": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf",
-      "bytes": 672,
-      "provenance": "Owner-mirrored INGENIOUS GDR 1391 Quaternary volcanic vents inside the GeoDAWN footprint; not organizer-authenticated."
-    },
-    {
-      "id": "gdr_wellspring",
-      "repo": "buffedlizard55-lab/GEMSDOE24",
-      "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
-      "path": "data/external/gdr_wellspring_in_footprint.csv",
-      "dest": "gdr_wellspring_in_footprint.csv",
-      "group": "public",
+      "id": "wellspring",
+      "dest": "external/gdr_wellspring_in_footprint.csv",
       "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
       "bytes": 2146771,
-      "provenance": "Owner-mirrored INGENIOUS GDR 1391 well and spring temperatures and chemistry inside the GeoDAWN footprint; not organizer-authenticated."
+      "blob": {
+        "repo": "buffedlizard55-lab/GEMSDOE24",
+        "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+        "path": "data/external/gdr_wellspring_in_footprint.csv",
+        "sha": "29182e7a92dddf460afb1e53ecd82c7e2d6219e1"
+      },
+      "provenance": "INGENIOUS well and spring temperatures/chemistry in footprint."
     },
     {
       "id": "dem_links",
-      "repo": "buffedlizard55-lab/GEMSDOE",
-      "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
-      "path": "data/dem_links.json",
-      "dest": "dem_links.json",
-      "group": "public",
+      "dest": "external/dem_links.json",
       "sha256": "8804dbff8754dd885df88bf412cced52b0be6490aa79142f4588700a8e4ada7b",
       "bytes": 541953,
-      "provenance": "Owner-mirrored 716 USGS 3DEP 1 m DEM tile URLs extracted from Digital-elevation-model-links-JSON.pdf; not organizer-authenticated."
+      "blob": {
+        "repo": "buffedlizard55-lab/GEMSDOE",
+        "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+        "path": "data/dem_links.json",
+        "sha": "acb4bf04e6f35ab0705e89c27af11d842a303478"
+      },
+      "provenance": "716 USGS 3DEP 1 m DEM tile URLs extracted from the official DEM-links PDF."
+    },
+    {
+      "id": "jklinck_research_tarball",
+      "dest": "external/jklinck_geothermal_research.tar.gz",
+      "sha256": "refetch-verify",
+      "bytes": 408263889,
+      "url": "https://codeload.github.com/jklinck/geothermal_research/tar.gz/refs/heads/main",
+      "provenance": "Optional owner-mirror archive of a public research repository. URL tracks main and has no immutable SHA-256 pin; its fetched bytes must be treated as unverified and it is excluded from the default candidate restore group. Candidate-critical Quaternary fault components are separately pinned below."
+    },
+    {
+      "id": "qfault_shp",
+      "dest": "external/faults_quaternary_INGENIOUS_regional_data/faults_quaternary_regional.shp",
+      "sha256": "915b6b4d0ab7cc694360c033ff95816ac16d878bd59f4b4cb7e1281f21965879",
+      "bytes": 8713740,
+      "blob": {
+        "repo": "jklinck/geothermal_research",
+        "ref": "56d78de7a989c12e2dce50cd65a4095df57030d2",
+        "path": "faults_quaternary_INGENIOUS_regional_data/faults_quaternary_regional.shp",
+        "sha": "e8c1a60f0f1ac75bacd4a86c54e93e9b4994bc51"
+      },
+      "provenance": "Owner-mirror of the INGENIOUS Quaternary-fault shapefile component faults_quaternary_regional.shp. Pinned to public GitHub commit 56d78de7a989c12e2dce50cd65a4095df57030d2; Git blob SHA-1 and full-file SHA-256 checked locally. This authenticates the mirror bytes, not the official source. See GDR #1391 for the official source listing and terms."
+    },
+    {
+      "id": "qfault_shx",
+      "dest": "external/faults_quaternary_INGENIOUS_regional_data/faults_quaternary_regional.shx",
+      "sha256": "dc6a83a90f8c85267f563f927dba4ed8cc743534caa64114f610ffcd88a53848",
+      "bytes": 177044,
+      "blob": {
+        "repo": "jklinck/geothermal_research",
+        "ref": "56d78de7a989c12e2dce50cd65a4095df57030d2",
+        "path": "faults_quaternary_INGENIOUS_regional_data/faults_quaternary_regional.shx",
+        "sha": "1a408a32664f78e943a1621dd4b699b13cf22958"
+      },
+      "provenance": "Owner-mirror of the INGENIOUS Quaternary-fault shapefile component faults_quaternary_regional.shx. Pinned to public GitHub commit 56d78de7a989c12e2dce50cd65a4095df57030d2; Git blob SHA-1 and full-file SHA-256 checked locally. This authenticates the mirror bytes, not the official source. See GDR #1391 for the official source listing and terms."
+    },
+    {
+      "id": "qfault_dbf",
+      "dest": "external/faults_quaternary_INGENIOUS_regional_data/faults_quaternary_regional.dbf",
+      "sha256": "66a7451ab7b278294c3dc034a5bf5207430863b754aaff6b308bcf5bae1a8570",
+      "bytes": 61864784,
+      "blob": {
+        "repo": "jklinck/geothermal_research",
+        "ref": "56d78de7a989c12e2dce50cd65a4095df57030d2",
+        "path": "faults_quaternary_INGENIOUS_regional_data/faults_quaternary_regional.dbf",
+        "sha": "af9c7443d0650c8ed407b555bef32133d0f4ea73"
+      },
+      "provenance": "Owner-mirror of the INGENIOUS Quaternary-fault shapefile component faults_quaternary_regional.dbf. Pinned to public GitHub commit 56d78de7a989c12e2dce50cd65a4095df57030d2; Git blob SHA-1 and full-file SHA-256 checked locally. This authenticates the mirror bytes, not the official source. See GDR #1391 for the official source listing and terms."
+    },
+    {
+      "id": "qfault_prj",
+      "dest": "external/faults_quaternary_INGENIOUS_regional_data/faults_quaternary_regional.prj",
+      "sha256": "84cf5b9a3c1a444f83ac30ff76f8c5035990223027ba69b2f4d628388adcbd65",
+      "bytes": 167,
+      "blob": {
+        "repo": "jklinck/geothermal_research",
+        "ref": "56d78de7a989c12e2dce50cd65a4095df57030d2",
+        "path": "faults_quaternary_INGENIOUS_regional_data/faults_quaternary_regional.prj",
+        "sha": "5ded4bcacb7e4e3732e302966e8c1aed03ab587c"
+      },
+      "provenance": "Owner-mirror of the INGENIOUS Quaternary-fault shapefile component faults_quaternary_regional.prj. Pinned to public GitHub commit 56d78de7a989c12e2dce50cd65a4095df57030d2; Git blob SHA-1 and full-file SHA-256 checked locally. This authenticates the mirror bytes, not the official source. See GDR #1391 for the official source listing and terms."
     }
   ]
 }

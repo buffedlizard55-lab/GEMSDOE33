@@ -1,0 +1,70 @@
+{
+ "file": "docs/downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif",
+ "sha256": "b64e198f99108b7678c2d0a78864d9677299206cf5b642388c831435c8272f33",
+ "bytes": 881376,
+ "bands": 1,
+ "dtype": "float32",
+ "crs": "EPSG:32611",
+ "epsg": 32611,
+ "template_crs": "EPSG:32611",
+ "template_epsg": 32611,
+ "shape": [
+  3730,
+  3292
+ ],
+ "template_shape": [
+  3730,
+  3292
+ ],
+ "resolution": [
+  100.0,
+  100.0
+ ],
+ "template_resolution": [
+  100.0,
+  100.0
+ ],
+ "transform": [
+  100.0,
+  0.0,
+  243350.0,
+  0.0,
+  -100.0,
+  4508550.0
+ ],
+ "template_transform": [
+  100.0,
+  0.0,
+  243350.0,
+  0.0,
+  -100.0,
+  4508550.0
+ ],
+ "bounds": [
+  243350.0,
+  4135550.0,
+  572550.0,
+  4508550.0
+ ],
+ "template_bounds": [
+  243350.0,
+  4135550.0,
+  572550.0,
+  4508550.0
+ ],
+ "shape_match": true,
+ "resolution_match": true,
+ "transform_match": true,
+ "bounds_match": true,
+ "all_finite": true,
+ "nonfinite_count": 0,
+ "min": 0.0,
+ "max": 1.0,
+ "in_range_0_1_whole_array": true,
+ "footprint_cells": 5167373,
+ "in_range_0_1_footprint": true,
+ "outside_footprint_all_zero": true,
+ "emitted_pixels": 40199,
+ "emitted_fraction_of_footprint": 0.007779388095266202,
+ "pass": true
+}

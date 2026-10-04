@@ -2,7 +2,9 @@
 """Restore hash-pinned owner mirrors into a git-ignored data directory.
 
 The mirrors are public GitHub files, not organizer-authenticated downloads. A SHA-256 match proves only
-that fetched bytes match the registered mirror. This script does not contact DrivenData.
+that fetched bytes match the registered mirror. Pins are in ``registry/owner_mirror_input_pins.json``;
+``registry/data_manifest.json`` is a separate legacy C0/C2 manifest retained from upstream. This script
+does not contact DrivenData.
 
 Examples:
   python scripts/restore_data.py --group core   # training raster, labels, grid template
@@ -21,7 +23,7 @@ import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "registry" / "data_manifest.json"
+MANIFEST = ROOT / "registry" / "owner_mirror_input_pins.json"
 
 
 def sha256_file(path: Path) -> str:

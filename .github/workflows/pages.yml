@@ -2,13 +2,13 @@ name: Deploy project site
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - "docs/**"
       - "scripts/build_site.py"
       - "registry/**"
       - "evidence/domain_adaptation_preflight.json"
+      - "evidence/holdout33.json"
       - "standing_prompt.md"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
@@ -25,10 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Regenerate static site from registries
+      - name: Generate evidence-led static site (no external polling)
         run: python scripts/build_site.py
       - uses: actions/upload-pages-artifact@v3
         with:

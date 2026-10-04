@@ -1,17 +1,21 @@
-# ---- The organiser's competition data is not ours to redistribute ----
-# Competition/external rasters are git-ignored and restored from 17 SHA-pinned owner mirrors.
-# Hash identity to an owner mirror does not authenticate organizer provenance or licensing;
-# see `registry/data_manifest.json` and `data/README.md`.
+# ---- Large local data is not committed ----
+# The 17 current owner-mirror input pins live in registry/owner_mirror_input_pins.json.
+# The upstream candidate restore manifest is registry/data_manifest.json; hashes authenticate only mirrors.
 data/*
 !data/README.md
-
-# ---- Derived intermediate grids (~1.5 GB of .npy) ----
-# Regenerate with `PYTHONPATH=src scripts/prepare_data.py` (about 6 min).
 .cache/
+data/artifacts/*.tif
 
 # ---- Python ----
+.venv/
 __pycache__/
 *.py[cod]
 *.egg-info/
-.venv/
+.mypy_cache/
 .pytest_cache/
+.ruff_cache/
+
+# ---- Optional sibling-campaign working copies ----
+reference/gems28/live_inversion.json
+reference/gems28/h31_1_euler_clusters.csv
+reference/gems28/training_features_README.md

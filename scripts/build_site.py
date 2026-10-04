@@ -168,7 +168,7 @@ owner-mirror template transform · in-footprint values in [0,1]. Recommended out
 checks are in <a href="downloads/manifest.json">the package manifest</a>.</p>
 <p class="panel warn">Local checks are not organizer acceptance. No upload, portal response or
 submission receipt exists in this workspace.</p>
-<h2>Official leaderboard review — one-time, not a feed</h2>
+<h2 id="leaderboard-review">Official leaderboard review — one-time, not a feed</h2>
 <div class="panel warn"><p>The official public <a href="{esc(source_url)}">leaderboard page</a> was reviewed once on
 2026-10-04 at the owner's request. At that observation, the brief's claim that <code>0.3195</code> was
 the current highest score was not supported. No participant/rank/score rows are retained or republished
@@ -183,9 +183,14 @@ No organizer receipt or verified account/file record ties the brief's <code>0.27
 irregularities</a>; detailed leaderboard rows are intentionally not reproduced.</p></div>
 <h2>Decision status</h2>
 <ul><li>No new candidate has passed a valid independent spatially blocked holdout against the current
-best comparable emission.</li><li>First-pass holdout, reconstruction, pruning and domain-transfer promotion
-claims were withdrawn after review; archived results are preserved for audit but are not promotion
-evidence.</li><li>No weekly submission slot is approved or spent. Only the D2.8 reference is packaged.</li></ul>
+best comparable emission.</li><li>Upstream C2 is archived as research-only: the earlier P1 pass was withdrawn; the corrected
+conditional source-exclusion diagnostic is P1 mean ΔDTI −0.000722 (0/4 positive), P2 SGMC proxy
++0.000283, and not slot-cleared because H19-5 was not re-derived per fold and the diagnostic was not
+an independent preregistered confirmation. See <a href="irregularities.html">IR-33-C2-01</a> and
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout33.json">the evidence</a>.</li>
+<li>First-pass holdout, reconstruction, pruning and domain-transfer promotion claims were withdrawn after
+review; archived results are preserved for audit but are not promotion evidence.</li><li>No weekly submission
+slot is approved or spent. Only the D2.8 reference is packaged.</li></ul>
 <p>For the exact upload procedure, open the <a href="executive-summary.html">executive summary</a>.
 For the geological shortlist and blocked source checks, see <a href="research.html">research</a>.</p>"""
     return page("GEMSDOE33 · overview and reference TIFF", body, "index.html")
@@ -290,6 +295,13 @@ biased against some artifact families, invalid domain definitions, and unverifie
 quantized radiometric bands. See <a href="{GITHUB}/evidence/first_pass_disposition.json">the disposition</a>
 and <a href="irregularities.html">the irregularities register</a>. No archived score or metric is
 used here to promote a candidate.</p>
+<p>Upstream C2 is also <b>not slot-cleared</b>. Its legacy P1 pass was withdrawn; the corrected conditional
+source-exclusion diagnostic is P1 mean ΔDTI <code>−0.000722</code> (0/4 folds positive), while P2 is
+<code>+0.000283</code> on the separate SGMC proxy. Because the fixed H19-5 surface was not rebuilt per
+fold and the correction was not an independent preregistered confirmation, these figures remain a
+conditional local diagnostic—not score evidence. See <a href="{GITHUB}/evidence/holdout33.json">the
+full diagnostic</a> and <a href="{GITHUB}/archive/legacy_candidates/README.md">the archive-only
+artifact note</a>.</p>
 <p>Source and licence observations are linked from the <a href="sources.html">source register</a>;
 external file availability and footprint/schema checks remain explicitly incomplete where indicated.</p>"""
     return page("Research · GEMSDOE33", body, "research.html")
@@ -311,7 +323,8 @@ scraped, copied, or refreshed by this project; its Terms of Use require prior wr
 manual monitoring/copying. The registry keeps only a dated status note, not leaderboard rows.</p>
 <div class="scroll"><table><thead><tr><th>Source</th><th>Link</th><th>Use and observed facts</th><th>Evidence class</th></tr></thead>
 <tbody>{rows}</tbody></table></div>
-<p>Data hashes and provenance warnings: <a href="{GITHUB}/registry/data_manifest.json">data manifest</a> ·
+<p>Data hashes and provenance warnings: <a href="{GITHUB}/registry/owner_mirror_input_pins.json">17 audited input pins</a> ·
+<a href="{GITHUB}/registry/data_manifest.json">upstream C0/C2 restore manifest</a> ·
 <a href="{GITHUB}/data/README.md">data README</a>.</p>"""
     return page("Sources · GEMSDOE33", body, "sources.html")
 
@@ -339,6 +352,26 @@ def build_prompt() -> str:
     return page("Standing brief · GEMSDOE33", body, "standing-prompt.html")
 
 
+def legacy_redirect(title: str, target: str, note: str) -> str:
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="refresh" content="0; url={esc(target)}"><title>{esc(title)}</title></head>
+<body><main><h1>{esc(title)}</h1><p>{esc(note)}</p>
+<p>Continue to <a href="{esc(target)}">{esc(target)}</a>.</p></main></body></html>'''
+
+
+def retired_score_feed() -> str:
+    record = {
+        "schema_version": 1,
+        "status": "RETIRED_NO_LEADERBOARD_FEED",
+        "policy": "This endpoint intentionally contains no participant, rank, or score rows. DrivenData Terms of Use prohibits automated monitoring/copying and manual monitoring/copying without prior written consent. This project does not poll or refresh the leaderboard.",
+        "official_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+        "terms_url": "https://www.drivendata.org/termsofuse/",
+        "review_record": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/registry/leaderboard_review.json",
+    }
+    return json.dumps(record, indent=2, ensure_ascii=False) + chr(10)
+
+
 def main() -> int:
     (ASSETS / "site.css").write_text(CSS, encoding="utf-8")
     pages = {
@@ -348,9 +381,14 @@ def main() -> int:
         "sources.html": build_sources(),
         "irregularities.html": build_irregularities(),
         "standing-prompt.html": build_prompt(),
+        "how-to-submit.html": legacy_redirect("How to submit", "executive-summary.html", "This legacy page was replaced by the current executive summary."),
+        "hypotheses.html": legacy_redirect("Hypotheses", "research.html", "This legacy page was replaced by the current research page."),
+        "data-sources.html": legacy_redirect("Data sources", "sources.html", "This legacy page was replaced by the current source register."),
+        "results.html": legacy_redirect("Results and leaderboard", "index.html#leaderboard-review", "This legacy results page and copied leaderboard feed have been retired."),
     }
     for filename, content in pages.items():
         (DOCS / filename).write_text(content, encoding="utf-8")
+    (DOCS / "score-feed.json").write_text(retired_score_feed(), encoding="utf-8")
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")
     (ROOT / "index.html").write_text(
         '<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=docs/index.html">'

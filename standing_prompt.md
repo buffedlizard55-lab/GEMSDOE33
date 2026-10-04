@@ -119,7 +119,10 @@ file by an organizer receipt. A one-time official leaderboard review on 2026-10-
 the brief's claim that `0.3195` was then the highest score; detailed rows are intentionally not
 retained or republished because of the DrivenData Terms of Use. The claimed H27-4 `0.2708` pairing is
 unsupported. The first-pass spatial holdout and domain-transfer promotion claims were withdrawn after
-review. No new candidate has been demonstrated to beat the current best; **no candidate is approved
-for a weekly slot**. No leaderboard refresh or reproduction is permitted by this project absent prior
-written consent or an authorized API. See the README and `evidence/first_pass_disposition.json` before
-any future work.
+review. Upstream C2's earlier P1 pass was also withdrawn for source/label leakage; its corrected
+conditional source-exclusion diagnostic is P1 mean ΔDTI `−0.000722` (0/4 positive) and P2 SGMC proxy
+`+0.000283`, still **not slot-cleared** because H19-5 was not re-derived per fold and the correction
+was not an independent preregistered confirmation. No new candidate has been demonstrated to beat the
+current best; **no candidate is approved for a weekly slot**. No leaderboard refresh or reproduction
+is permitted by this project absent prior written consent or an authorized API. See the README,
+`evidence/first_pass_disposition.json`, and `evidence/holdout33.json` before any future work.

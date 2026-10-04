@@ -15,7 +15,7 @@ import numpy as np
 import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "registry" / "data_manifest.json"
+MANIFEST = ROOT / "registry" / "owner_mirror_input_pins.json"
 DATA = ROOT / "data"
 SENTINEL = np.float32(-3.4028234663852886e38)
 

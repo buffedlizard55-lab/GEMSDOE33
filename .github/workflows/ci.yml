@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,11 +21,7 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-      - name: Install package and test dependencies
+      - name: Install the scientific stack and tests
         run: python -m pip install -e '.[dev]'
-      - name: Run unit and site-copy tests
-        run: python -m pytest -q
-      - name: Regenerate static site
-        run: python scripts/build_site.py
-      - name: Check whitespace errors
-        run: git diff --check
+      - name: Run deterministic tests, site build, and static checks
+        run: bash scripts/run_checks.sh

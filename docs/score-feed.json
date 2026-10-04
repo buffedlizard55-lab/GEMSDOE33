@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "status": "RETIRED_NO_LEADERBOARD_FEED",
+  "policy": "This endpoint intentionally contains no participant, rank, or score rows. DrivenData Terms of Use prohibits automated monitoring/copying and manual monitoring/copying without prior written consent. This project does not poll or refresh the leaderboard.",
+  "official_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "terms_url": "https://www.drivendata.org/termsofuse/",
+  "review_record": "https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/registry/leaderboard_review.json"
+}
