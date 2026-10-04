@@ -21,9 +21,10 @@
 
 <p>Verification labels: <b>[B]</b> bytes downloaded and hash/size-checked in this workspace ·
 <b>[P]</b> official/source page fetched and read · <b>[S]</b> located in a search record · <b>[C]</b> cited by
-an already verified source. Page checks were performed for this session; see
-<code>knowledge/05_data_sources_verified.md</code> for the audit trail. A public listing or mirror hash does
-not certify semantic equivalence, map accuracy, or license terms for every file.</p>
+an already verified source. Verification dates, limitations, and failed retrievals are in
+<code>knowledge/05_data_sources_verified.md</code>. Not every linked source page or binary was rechecked in
+this turn. A public listing or mirror hash does not certify semantic equivalence, map accuracy, or license
+terms for every file.</p>
 
 <h2>Competition rules and score sources</h2>
 <div class="card">
@@ -32,7 +33,8 @@ not certify semantic equivalence, map accuracy, or license terms for every file.
 <tr><td>Problem description, metric and submission format</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">Official competition problem page</a></td><td>[P] · manual reference only</td></tr>
 <tr><td>Competition overview and background</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">Official About page</a></td><td>[P]</td></tr>
 <tr><td>Public leaderboard</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">Official live leaderboard</a></td><td>[P] · static snapshot captured 2026-10-03 local; #1 0.3262</td></tr>
-<tr><td>Official rules PDF</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR / DOE rules PDF</a></td><td>[C]</td></tr>
+<tr><td>Official rules PDF</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">NLR / DOE rules PDF</a></td><td>[P] · September 2026 edition; all 7 chunks read 2026-10-04. §§3.2, 3.4–3.5: format, three-per-week feedback limit, one final choice across both phases, and AI-use narrative</td></tr>
+<tr><td>DrivenData Terms of Use</td><td><a href="https://www.drivendata.org/termsofuse/">Official Terms of Use</a></td><td>[P] · read 2026-10-04; prohibits automated monitoring and manual monitoring/copying without prior written consent. No automated leaderboard feed.</td></tr>
 <tr><td>Reference solution</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">DrivenData reference-solution repository</a></td><td>[C]</td></tr>
 <tr><td>Competition data tab (login-walled)</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">Official data page</a></td><td>[C] · no code attempts to log in or fetch it</td></tr>
 </table>
@@ -46,7 +48,7 @@ Proxy metrics in this project are never entered as leaderboard scores.</p>
 <tr><th>Content</th><th>Hash-pinned mirror</th><th>Verification / caveat</th></tr>
 <tr><td><code>training_features.tif</code> (19 bands, 418,912,844 bytes)</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE/commit/c0c06ac82178f26b94fce3397036ef8f12a2f3a0">buffedlizard55-lab/GEMSDOE @ c0c06ac</a></td><td>[B] SHA-256 4371c82e…; owner-supplied mirror</td></tr>
 <tr><td><code>labels.tif</code> (catalogue raster)</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/commit/07345ea0604953d7efb858d9cfbc21e20c7aca0b">GEMSDOE24 @ 07345ea</a></td><td>[B] SHA-256 7ba308cc…</td></tr>
-<tr><td><code>sample_submission.tif</code> (grid template)</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/commit/07345ea0604953d7efb858d9cfbc21e20c7aca0b">GEMSDOE24 @ 07345ea</a></td><td>[B] SHA-256 2176d08e…; template only, never truth</td></tr>
+<tr><td><code>sample_submission.tif</code> (grid template)</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/commit/07345ea0604953d7efb858d9cfbc21e20c7aca0b">GEMSDOE24 @ 07345ea</a></td><td>[B] SHA-256 2176d08e…; IR-SAMPLE-LABEL-01: exact value-copy of labels on all 5,167,373 finite cells. Code uses only footprint/grid metadata.</td></tr>
 <tr><td>h27-4 baseline (0.2708)</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE28/commit/33cc5942220f1440531d7184889c5c6f5d2f0a3e">GEMSDOE28 @ 33cc594</a></td><td>[B] bytes pinned; score remains owner-reported</td></tr>
 <tr><td>SGMC faults, rasterized for P2</td><td><a href="https://github.com/buffedlizard55-lab/GEMSDOE24/tree/07345ea0604953d7efb858d9cfbc21e20c7aca0b/data/external">GEMSDOE24 data/external</a></td><td>[B] secondary proxy truth, not GeoDAWN truth</td></tr>
 <tr><td>INGENIOUS Quaternary faults</td><td><a href="https://github.com/jklinck/geothermal_research/tree/56d78de7a989c12e2dce50cd65a4095df57030d2/faults_quaternary_INGENIOUS_regional_data">Pinned community mirror files</a></td><td>[B] CRS checked; hashes pin mirror bytes only. GDR #1391 lists v1 and a newer v2 that supersedes v1; the mirror's exact version correspondence is not verified.</td></tr>
@@ -60,7 +62,7 @@ research archive is not restored by default.</p>
 <table>
 <tr><th>Source</th><th>Official/source link</th><th>Level / meaning</th><th>Use</th></tr>
 <tr><td>INGENIOUS compilation, GDR #1391</td><td><a href="https://gdr.openei.org/submissions/1391">GDR #1391</a></td><td>[P] · listing includes fault, geothermal-feature, spring/well, and probe products; CC BY 4.0 listing</td><td>Fault mirror provenance; H33-B probe listing</td></tr>
-<tr><td>Dixie Valley EGS baseline, GDR #207</td><td><a href="https://gdr.openei.org/submissions/207">GDR #207</a></td><td>[P] · lists GIS_Faults.zip; page license CC BY 4.0; check archive lineage/CRS</td><td>H33-A source candidate; not proof every trace is drilling-verified</td></tr>
+<tr><td>Dixie Valley EGS baseline, GDR #207</td><td><a href="https://gdr.openei.org/submissions/207">GDR #207</a></td><td>[P] · lists GIS_Faults.zip; page license CC BY 4.0. Workspace direct archive requests failed TLS/connection setup; no bytes obtained.</td><td>H33-A source candidate; not proof every trace is drilling-verified; not currently runnable</td></tr>
 <tr><td>Desert Peak–Brady preliminary geologic map, NBMG Open-File Report 03-27</td><td><a href="https://pubs.nbmg.unr.edu/Geol_Desert_Peak_Brady_geotherm_p/of2003-27.htm">Official NBMG product page</a></td><td>[P] · lists a free PDF ZIP and geospatial PDF; no GIS vector archive confirmed on that page</td><td>H33-A map/context; inspect contents and terms</td></tr>
 <tr><td>Brady/Desert Peak geothermal feature/classification data, GDR #1288</td><td><a href="https://gdr.openei.org/submissions/1288">GDR #1288</a></td><td>[P] · geothermal features/classification; <b>not fault labels and not the GeoDAWN 19-band raster</b></td><td>H33-A context only; not direct bandwise transfer</td></tr>
 <tr><td>Faulds &amp; Hinz, 2015, favorable tectonic/structural settings (OSTI 1724082)</td><td><a href="https://www.osti.gov/biblio/1724082">OSTI bibliographic record</a></td><td>[P] · Great Basin structural-settings paper, not NBMG OF 03-27</td><td>C2 structural context; not a map download</td></tr>
@@ -82,7 +84,7 @@ research archive is not restored by default.</p>
 <div class="card">
 <p>The <a href="results.html">results page</a> and machine-readable feed are generated from
 <code>registry/score_ledger.json</code>. Scores are owner-reported unless receipts are available; C2's
-holdout values are proxy deltas only. Public GitHub API lookups for the repository names 31GEMSDOE and
+corrected holdout values are proxy deltas only and the earlier P1 pass was withdrawn. Public GitHub API lookups for the repository names 31GEMSDOE and
 32GEMSDOE returned 404 to the configured account. This does not establish whether they are private,
 uncreated, or hosted elsewhere; no URL or result details were supplied.</p>
 </div>

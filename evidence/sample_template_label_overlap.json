@@ -1,0 +1,20 @@
+{
+ "checked_utc": "2026-10-04T15:02:24+00:00",
+ "template": ".cache/gemsdata/core/sample_submission.tif",
+ "labels": ".cache/gemsdata/core/labels.tif",
+ "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+ "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+ "same_grid": true,
+ "template_finite_footprint_pixels": 5167373,
+ "template_nonfinite_pixels": 7111787,
+ "template_finite_value_counts": {
+  "0.0": 5106385,
+  "1.0": 60988
+ },
+ "labels_values_on_template_footprint": {
+  "0": 5106385,
+  "1": 60988
+ },
+ "sample_equals_labels_on_finite_footprint": true,
+ "warning": "The sample template is an anomalous exact value-copy of the label raster on its finite footprint. Use it only for the finite-mask/grid metadata; never use sample values as training truth, holdout truth, or candidate-selection labels."
+}

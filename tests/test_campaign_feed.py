@@ -17,6 +17,10 @@ class CampaignFeedTests(unittest.TestCase):
         self.assertIn("nchuzhoy: 0.3262", html)
         self.assertIn("score-feed.json", html)
         self.assertIn("does not scrape or poll DrivenData", html)
+        self.assertIn("terms of use", html.lower())
+        self.assertIn("no automated monitoring", feed["policy"])
+        self.assertIn("0.2708 campaign best belongs specifically to GEMSDOE28 h27-4-r1-solo-d2-8", html)
+        self.assertIn("H36-1 and H38-1 are separate entries and remain unscored", html)
 
     def test_unscored_rows_remain_explicit(self):
         ledger = campaign_feed.load_ledger()

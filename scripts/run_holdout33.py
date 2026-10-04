@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
-"""GEMSDOE33 proxy gate: evaluate C1/C2/C3 against the scored C0 control.
+"""Legacy catalogue-only diagnostic; retained for historical reproduction only.
 
-Protocol (frozen before looking at any result):
-  P1 catalogue-hidden 4-fold spatial block holdout, paired DeltaDTI vs C0.
-  P2 SGMC off-catalogue DTI (independent state-map compilation, >= 300 m from
-     the supplied catalogue), absolute and paired vs C0.
-  Gate: P1 mean DeltaDTI > 0, majority of folds positive, P2 not worse than
-  -0.001. A pass promotes the candidate to the one-click slot; a fail keeps C0.
+This runner is NOT a valid promotion gate. It masks catalogue labels during
+scoring but its candidate/base builders see the full catalogue, and C2's source
+vectors include held-out systems. Use ``scripts/run_holdout33_source_audit.py``
+for the fold-specific conditional diagnostic. Even that result does not clear a
+submission slot because the upstream H19-5 surface is not re-derived per fold.
 
-Usage:
-  PYTHONPATH=src python scripts/run_holdout33.py --candidates C1,C2,C3 \
-      --out evidence/holdout33.json
+To reproduce the old, withdrawn numeric report explicitly, pass
+``--allow-legacy-diagnostic``. Output defaults to a separate legacy file.
 """
 
 from __future__ import annotations
@@ -29,6 +27,7 @@ from gems33.candidates import c0_control, c1_h38_corroborated, c2_stepover_bridg
 from gems33.grid import load_catalogue, load_template
 from gems33.holdout import evaluate_proxy, gate_summary
 from gems33.metric import inclusion_threshold
+
 
 def c4_repack_plus_corroborated():
     arr, rep = c3_rung30_repack()
@@ -52,17 +51,32 @@ BUILDERS = {
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--candidates", default="C1,C2,C3")
-    ap.add_argument("--out", default="evidence/holdout33.json")
+    ap.add_argument("--out", default="evidence/holdout33_legacy_reproduced.json")
+    ap.add_argument(
+        "--allow-legacy-diagnostic", action="store_true",
+        help="explicitly run a known source-leaking diagnostic; never use it for slot decisions",
+    )
     args = ap.parse_args()
+    if not args.allow_legacy_diagnostic:
+        ap.error(
+            "this catalogue-only runner is invalid for promotion; use "
+            "scripts/run_holdout33_source_audit.py instead"
+        )
 
     control = c0_control()
     footprint, grid = load_template()
     catalogue = load_catalogue()
     report = {
         "run_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-        "protocol": "P1 catalogue-hidden 4-fold spatial block + P2 SGMC off-catalogue; paired vs C0",
+        "status": "LEGACY_INVALID_FOR_SLOT_DECISIONS",
+        "protocol_validity": {
+            "status": "WITHDRAWN",
+            "reason": "full-catalogue base/candidate construction and Qfaults source geometries are not fold-masked",
+            "replacement": "evidence/holdout33.json",
+        },
+        "protocol": "Legacy P1 catalogue-hidden 4-fold + P2 SGMC off-catalogue; paired vs C0",
         "control": {
             "file": "data/artifacts/h27-4-r1-solo-d2-8-8acb75e1f2cc-nan.tif",
             "owner_reported_live_score": 0.2708,
@@ -73,35 +87,45 @@ def main() -> int:
         "catalogue_pixels": int(catalogue.sum()),
         "live_break_even_at_0.2708": inclusion_threshold(0.2708),
         "candidates": {},
-        "gate": {},
+        "legacy_numeric_gate": {},
+        "gate": {"pass": False, "slot_cleared": False, "reason": "legacy P1 validity failure"},
     }
     arrays = {"C0": control}
     for name in [c.strip().upper() for c in args.candidates.split(",") if c.strip()]:
+        if name not in BUILDERS:
+            ap.error(f"unknown candidate: {name}")
         builder = BUILDERS[name]
-        print(f"[build] {name} ...", flush=True)
+        print(f"[legacy build] {name} ...", flush=True)
         arr, build_report = builder()
-        report["candidates"][name] = {"build": build_report, "dots": int(arr.sum()),
-                                      "added_vs_control": int(arr.sum() - control.sum())}
+        report["candidates"][name] = {
+            "build": build_report,
+            "dots": int(arr.sum()),
+            "added_vs_control": int(arr.sum() - control.sum()),
+        }
         arrays[name] = arr
 
     for name, arr in arrays.items():
         if name == "C0":
             continue
-        print(f"[gate ] {name} ...", flush=True)
+        print(f"[legacy score] {name} ...", flush=True)
         rep = evaluate_proxy(arr, control)
         verdict = gate_summary(rep)
         report["candidates"][name]["proxy"] = rep
-        report["gate"][name] = verdict
+        report["legacy_numeric_gate"][name] = verdict
 
     best = max(
-        [n for n in report["gate"] if report["gate"][n]["pass"]] or ["C0"],
+        [n for n in report["legacy_numeric_gate"] if report["legacy_numeric_gate"][n]["pass"]] or ["C0"],
         key=lambda n: (report["candidates"].get(n, {}).get("proxy", {}).get("p1_mean_d_dti") or 0.0),
     )
-    report["promoted"] = best
+    report["legacy_numeric_best"] = best
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=1))
-    print(json.dumps({"promoted": best, "gate": report["gate"]}, indent=1))
+    out.write_text(json.dumps(report, indent=1) + "\n", encoding="utf-8")
+    print(json.dumps({
+        "legacy_numeric_best": best,
+        "promotion": "WITHDRAWN",
+        "legacy_numeric_gate": report["legacy_numeric_gate"],
+    }, indent=1))
     return 0
 
 

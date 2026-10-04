@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-"""Build the GEMSDOE33 one-click candidate GeoTIFF.
+"""Build a research candidate GeoTIFF and run its local format audit.
 
-Emits the frozen candidate (default C2: h27-4 base + stepover relay-bridge
-dots that passed the local P1/P2 proxy gate in evidence/holdout33.json) as a
-single-band float32 GeoTIFF on the sample grid. The project's conservative
-upload-safe policy enforces finite [0, 1] values over the full array and zero
-outside the survey footprint. The owner observed a range-validation error for
-an earlier NaN-outside file (IR-PORTAL-01); the cause was not confirmed by the
-organizer. This local build/audit is not organizer approval.
+C2 remains reproducible as a research experiment, but its earlier P1 proxy
+PASS was withdrawn after a fold/source-leakage audit. The file is not cleared
+for a submission slot. This builder checks only the single-band float32 grid
+and local value policy; it is not organizer approval. The project's
+conservative policy enforces finite [0, 1] values over the full array and zero
+outside the survey footprint after the owner observed a range-validation error
+for an earlier NaN-outside file (IR-PORTAL-01). The cause was not confirmed by
+the organizer.
 
 The file is written to docs/downloads/ with a content-id derived from the
 SHA-256 of the emitted array, then format-audited with validate_submission.py.
@@ -42,14 +43,23 @@ BUILDERS = {
     "C2": c2_stepover_bridges,
     "C3": c3_rung30_repack,
 }
+FILE_SLUGS = {
+    "C0": "c0-scored-reference",
+    "C1": "c1-h38-corroborated",
+    "C2": "c2-stepover-relay",
+    "C3": "c3-rung30-repack",
+}
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--candidate", default="C2")
     args = ap.parse_args()
+    candidate = args.candidate.upper()
+    if candidate not in BUILDERS:
+        ap.error(f"unknown candidate: {args.candidate}")
 
-    arr, build_report = BUILDERS[args.candidate.upper()]()
+    arr, build_report = BUILDERS[candidate]()
     dots = arr > 0
     content_id = hashlib.sha256(dots.tobytes()).hexdigest()[:12]
     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%d")
@@ -64,9 +74,7 @@ def main() -> int:
     n_outside = int((dots & ~footprint).sum())
 
     profile.update(dtype="float32", count=1, compress="lzw", predictor=3, nodata=None)
-    name = f"gems33-{args.candidate.lower()}-stepover-relay-{stamp}-{content_id}.tif"
-    if args.candidate.upper() == "C0":
-        name = f"gems33-c0-scored-reference-{stamp}-{content_id}.tif"
+    name = f"gems33-{FILE_SLUGS[candidate]}-{stamp}-{content_id}.tif"
     downloads = ROOT / "docs" / "downloads"
     downloads.mkdir(parents=True, exist_ok=True)
     out_path = downloads / name
@@ -75,7 +83,9 @@ def main() -> int:
 
     receipt = {
         "file": f"docs/downloads/{name}",
-        "candidate": args.candidate.upper(),
+        "candidate": candidate,
+        "artifact_status": "RESEARCH_BUILD_NOT_SLOT_CLEARED",
+        "slot_cleared": False,
         "build": build_report,
         "content_id": content_id,
         "dots_emitted": int(dots.sum()),

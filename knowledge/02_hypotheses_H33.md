@@ -1,12 +1,13 @@
 # GEMSDOE33 hypothesis register (2026-10-04)
 
 Five research candidates, ordered by qualitative expected scientific upside per implementation cost
-(machine-readable copy: `registry/hypotheses.json`). Only C2 and C5 have current proxy results. Numerical
-score priors are withheld where source data, label compatibility, or a validated transfer estimate is
-missing. Every candidate must pass the frozen P1/P2 proxy gate and the exact format audit before any
-weekly submission slot. Proxies are not competition scores.
+(machine-readable copy: `registry/hypotheses.json`). C2 is implemented but its earlier P1 PASS is withdrawn
+because the test used full-catalogue labels and Qfaults source geometries. The corrected conditional
+source-exclusion diagnostic is negative; no candidate is cleared for a weekly slot. Numerical score priors
+are withheld where source data, label compatibility, or a validated transfer estimate is missing. Proxies
+are not competition scores.
 
-## Rank 1 — H33-C2 stepover relay-bridge faults — IMPLEMENTED, PROXY-GATED PASS, UNSCORED
+## Rank 1 — H33-C2 stepover relay-bridge faults — IMPLEMENTED, CORRECTED P1 DIAGNOSTIC FAIL, NOT SLOT-CLEARED
 
 - **Layers:** Quaternary-fault vectors from the INGENIOUS GDR #1391 compilation, retrieved from a pinned
   community mirror; the hash authenticates those mirror bytes, not official accuracy. GDR #1391 lists
@@ -21,9 +22,17 @@ weekly submission slot. Proxies are not competition scores.
   (<https://www.osti.gov/biblio/1724082>); it is not the NBMG OF 03-27 map report and does not certify any
   emitted bridge as an unmapped fault. Test the proposed connectors against the independent proxies.
 - **Difference from prior work:** GEMSDOE27 T-v2 filled within-polyline gaps and failed its owner-reported
-  live result; C2 restricts to distinct feature IDs, adds a gravity-edge gate, and validates before a slot.
-- **Current result:** 940 added dots; 41,139 total. P1 mean ΔDTI **+0.0004051587** (3/4 folds positive);
-  P2 ΔDTI **+0.0002831018**. Proxy gate PASS. Artifact:
+  live result; C2 restricts to distinct feature IDs and adds a gravity-edge gate. Its initial P1 test was
+  invalid: held-out Qfaults source systems and the full catalogue remained visible to candidate/base
+  construction.
+- **Corrected conditional diagnostic:** C2 adds 940 dots to the full-data 40,199-dot base (41,139
+  total). With a fold-rebuilt base and Qfaults system IDs excluded within the 600 m square holdout buffer
+  plus a 100 m raster guard, P1 mean ΔDTI is **−0.0007220038** (folds −0.0007243, −0.0011430,
+  −0.0006367, −0.0003840; 0/4 positive). Across folds, the candidate adds 2,643 dots and zero
+  incremental TPw; its added FPw equals those 2,643 dots. P2 remains **+0.0002831018**. The numeric
+  gate FAILS; the artifact is **not slot-cleared**. The frozen
+  H19-5 source surface is not regenerated per fold, so this is a conditional diagnostic, not an independent
+  confirmation. Artifact (research only):
   `docs/downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif`, SHA-256
   `7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7`. No live score.
 
@@ -54,8 +63,9 @@ weekly submission slot. Proxies are not competition scores.
   equivalence is established. The supplied campaign ledger does not document a completed, audited
   source-to-target fault transfer. H33-A is a research plan, not a result.
 - **Expected DTI / cost:** unknown until data and labels are aligned; potentially high upside, high
-  uncertainty, medium-high integration and validation cost. Official source pages are accessible, but
-  files have not been ingested or audited in this working tree.
+  uncertainty, medium-high integration and validation cost. Official source pages are accessible. A direct
+  attempt to retrieve GDR #207's listed archive failed TLS/connection setup; no bytes were obtained, so
+  this branch is not currently runnable. Other source files also have not been ingested or audited here.
 
 ## Rank 3 — H33-B shallow thermal-probe residuals × gravity edges — DESIGNED, NOT RUN
 
@@ -96,11 +106,15 @@ weekly submission slot. Proxies are not competition scores.
 - **Cost:** low per candidate when provenance is captured during construction; potentially high downside
   if mapping evidence or semantics are misrepresented.
 
-## Proxy failures retained as controls
+## Legacy variants and valid conclusions
 
-- **C1** failed the strict P1 majority rule (0/4 positive folds) despite a small positive P2 change.
-- **C3** rung-3.0 re-pack failed P1 (−0.00123361, 0/4) and P2 (−0.00813709).
-- **C4** also failed. **C5** passed, but includes the C1 arm; C2 is preferred for parsimony.
+- Old C1–C5 P1 deltas are preserved in `evidence/holdout33_legacy_catalogue_only.json` but are invalid for
+  promotion because candidate/base construction was not fold-masked. Do not describe C1, C3, C4, or C5 as
+  P1-validated or P1-refuted from that run.
+- Their SGMC P2 deltas remain local comparisons against an independent compilation, subject to its vintage
+  and scope. They are not contest scores and do not clear a slot.
+- C2's corrected conditional P1 diagnostic is negative in all four folds. C2 is a research artifact only;
+  no one-click file is currently recommended for competition submission.
 
-All figures are from `evidence/holdout33.json`, not competition scores. The current C2 file is the sole
-one-click proxy-gated candidate; manual owner upload is required for any live score.
+The corrected evidence is `evidence/holdout33.json`. The exact C2 file passes only the project's local
+format audit; it has no organizer score and no slot clearance.

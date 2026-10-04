@@ -70,7 +70,8 @@ def make_feed(ledger: dict[str, Any]) -> dict[str, Any]:
         "ledger_updated_utc": ledger.get("updated_utc"),
         "policy": (
             "Historical campaign scores are owner-reported unless an organizer receipt is linked. "
-            "The leaderboard rows are a dated snapshot; this project does not scrape or poll DrivenData."
+            "The leaderboard rows are a dated snapshot; no automated monitoring is used because the "
+            "DrivenData Terms of Use restrict monitoring/copying without prior written consent."
         ),
         "official_leaderboard_snapshot": ledger["leaderboard_snapshot"],
         "campaign_submissions": rows,
@@ -111,8 +112,10 @@ def render_block(feed: dict[str, Any]) -> str:
 <h2>Official public leaderboard snapshot — checked {checked}</h2>
 <div class="card">
   <p>At the time checked, the public leader was <b>{_e(best['participant'])}: {float(best['score']):.4f}</b>.
-  This is a dated snapshot, not an automatically polled value. Open the
-  <a href="{source_url}" rel="noopener">official live leaderboard</a> for the current ranking.</p>
+  This is a dated snapshot, not an automatically polled value. Under the current
+  <a href="https://www.drivendata.org/termsofuse/" rel="noopener">Terms of Use</a>, this site does not
+  monitor or copy leaderboard values automatically. Open the <a href="{source_url}" rel="noopener">official
+  leaderboard</a> through an authorized method for the current ranking.</p>
   <table>
     <thead><tr><th>Rank</th><th>Participant</th><th>Public score</th><th>Submissions shown</th></tr></thead>
     <tbody>{top_table}</tbody>
@@ -134,6 +137,8 @@ def render_block(feed: dict[str, Any]) -> str:
     <tbody>{''.join(rows)}</tbody>
   </table></div>
   <p class="mut">No score is inferred for blank/unscored entries. A dash means the brief supplied no score.</p>
+  <p class="mut">The owner-reported 0.2708 campaign best belongs specifically to GEMSDOE28 h27-4-r1-solo-d2-8.
+  H36-1 and H38-1 are separate entries and remain unscored; model projections are not scores.</p>
 </div>
 <script>
 (() => {{

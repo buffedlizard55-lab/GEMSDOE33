@@ -1,6 +1,6 @@
 {
   "session": "GEMSDOE33",
-  "updated_utc": "2026-10-04T04:32:55Z",
+  "updated_utc": "2026-10-04T14:50:00Z",
   "metric_context": {
     "metric": "distance-weighted Tversky index, alpha=0.2 beta=0.8, 300 m triangular kernel",
     "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
@@ -19,27 +19,37 @@
     "break_even_credit_per_fp_at_0.2708": 0.0573,
     "target_gap_note": "The earlier 0.3195 target calculation is stale: official public leaderboard snapshot is 0.3262. Recompute target-budget algebra from the frozen 0.2708 artifact counts before quoting a required recall or pixel budget; no projection is asserted here."
   },
-  "ranking_rule": "expected incremental DTI per engineering cost, risk-adjusted; ranges are subjective priors that include zero; a candidate must pass the frozen P1/P2 proxy gate (evidence/holdout33.json protocol) before any weekly slot",
+  "ranking_rule": "expected incremental DTI per engineering cost, risk-adjusted; ranges are subjective priors that include zero; candidate construction and source features must be fold-masked before P1 is used; no candidate is currently slot-cleared",
   "hypotheses": [
     {
       "rank": 1,
       "id": "H33-C2",
       "name": "Stepover relay-bridge faults between distinct mapped structures",
-      "status": "IMPLEMENTED; deterministic IDs; P1/P2 PROXY-GATED PASS; still UNSCORED",
+      "status": "IMPLEMENTED; EARLIER P1 PASS WITHDRAWN; CORRECTED CONDITIONAL P1 FAIL; NOT SLOT-CLEARED; UNSCORED",
       "layers": [
         "INGENIOUS Quaternary-fault vectors from a pinned public GitHub community mirror of GDR #1391 (NAD83; hashes pin mirror bytes, not official accuracy; GDR lists a newer v2 archive superseding v1, but the mirror version correspondence is unverified)",
         "training band 18 iso_grav_anom_hg (>= in-footprint 80th percentile within 200 m)",
         "scored h27-4 base raster (8acb75e1f2cc, 40,199 dots)"
       ],
-      "physical_signature": "tip-to-tip approach of DISTINCT fault-vector identities (300–2500 m gap, strike difference <= 30 deg) defines a candidate relay; sparse ~283 m-spaced bridge dots are emitted along the tip line only where band 18 (iso_grav_anom_hg) exceeds the in-footprint 80th percentile within 200 m",
+      "physical_signature": "tip-to-tip approach of DISTINCT fault-vector identities (300\u20132500 m gap, strike difference <= 30 deg) defines a candidate relay; sparse ~283 m-spaced bridge dots are emitted along the tip line only where band 18 (iso_grav_anom_hg) exceeds the in-footprint 80th percentile within 200 m",
       "why_off_catalogue": "The 2015 Faulds & Hinz regional structural-settings paper (OSTI 1724082) reports relays and other fault patterns as favorable settings for geothermal systems. C2 tests a candidate connector, but the paper is not NBMG OF 03-27, does not identify any emitted bridge, and does not establish that a bridge is absent from the target truth.",
-      "difference_from_prior_work": "GEMSDOE27's T-v2 filled gaps INSIDE the same polyline and failed live (0.00210 credit/dot vs 0.0495 break-even; 230/345 links were same-FID compiler artifacts). C2 is restricted to distinct-FID tip pairs and gated by a potential-field edge; it is an addition arm, validated before any slot",
+      "difference_from_prior_work": "GEMSDOE27's T-v2 filled gaps inside the same polyline and failed live (0.00210 credit/dot vs 0.0495 break-even; 230/345 links were same-FID compiler artifacts). C2 is restricted to distinct-FID tip pairs and gated by a potential-field edge, but its original P1 run leaked full-catalogue labels and source vectors; the fold/source-excluded diagnostic is negative.",
       "proxy_result": {
-        "p1_catalogue_hidden_mean_d_dti": 0.00040515868618011194,
-        "p1_positive_folds": "3/4",
+        "p1_legacy_full_catalogue_mean_d_dti": 0.00040515868618011194,
+        "p1_legacy_status": "WITHDRAWN: full-catalogue base/candidate construction and Qfaults source vectors leaked held-out systems",
+        "p1_source_excluded_mean_d_dti": -0.0007220037985699659,
+        "p1_source_excluded_fold_d_dti": [
+          -0.0007242641696604268,
+          -0.0011430116095243192,
+          -0.000636737864424558,
+          -0.00038400155067055963
+        ],
+        "p1_positive_folds": "0/4",
         "p2_sgmc_off_catalogue_d_dti": 0.00028310180239635163,
-        "gate": "PASS",
-        "evidence": "evidence/holdout33.json"
+        "numeric_gate": "FAIL",
+        "slot_cleared": false,
+        "evidence": "evidence/holdout33.json",
+        "legacy_evidence": "evidence/holdout33_legacy_catalogue_only.json"
       },
       "expected_live_delta": "Unscored; no conversion from P1/P2 proxy deltas to a leaderboard delta is justified.",
       "cost": "low-medium (candidate group restores 419 MB feature raster plus pinned vector components; no model training)",
@@ -58,20 +68,21 @@
           "license": "CC BY 4.0; this artifact uses a separately pinned community mirror"
         }
       ],
-      "data_source_caveat": "GDR #1391 lists Quaternary Faults v2 as superseding v1. The pinned community mirror version has not been compared byte-for-byte with either official archive; a local HEAD request for the official v2 ZIP failed TLS. Current C2 proxy evidence applies only to the hash-pinned mirror input."
+      "data_source_caveat": "GDR #1391 lists Quaternary Faults v2 as superseding v1. The pinned community mirror version has not been compared byte-for-byte with either official archive; a local HEAD request for the official v2 ZIP failed TLS. Current C2 proxy evidence applies only to the hash-pinned mirror input.",
+      "artifact_status": "Research artifact only; local format audit passes, but do not use a competition slot."
     },
     {
       "rank": 2,
       "id": "H33-A",
-      "name": "Analogue-field transfer protocol with an explicit domain-adaptation bound (Dixie Valley / Desert Peak / Brady’s)",
+      "name": "Analogue-field transfer protocol with an explicit domain-adaptation bound (Dixie Valley / Desert Peak / Brady\u2019s)",
       "status": "DESIGNED ONLY; official source listings are public; data alignment, label audit, and transfer experiment NOT completed",
       "layers": [
         "Dixie Valley fault-map files GIS_Faults.zip listed on GDR #207 (CC BY 4.0 page; inspect archive layer lineage and CRS; public-domain geoscience/well data do not prove every trace is drilling-verified)",
-        "Desert Peak–Brady preliminary geologic map, NBMG OF 03-27 official product page lists a free PDF ZIP and geospatial PDF; no GIS vector archive is confirmed on that page",
+        "Desert Peak\u2013Brady preliminary geologic map, NBMG OF 03-27 official product page lists a free PDF ZIP and geospatial PDF; no GIS vector archive is confirmed on that page",
         "GDR #1288 geothermal/non-geothermal classification dataset and covariates, including fault density (CC BY 4.0; geothermal labels are not fault-trace truth)",
         "Only source/target features demonstrably available, geolocated, semantically compatible, and equivalently processed; do not assume analogs contain the GeoDAWN 19-band stack"
       ],
-      "physical_signature": "Protocol, not a geological transform: estimate the HΔH domain divergence with a pre-registered balanced classifier two-sample test on a defined common representation. The Ben-David et al. bound has three terms: target error <= source error + (1/2) HΔH-divergence + λ, where λ is the joint error of the best shared hypothesis. The C2ST estimates only a divergence term; small divergence alone is not a certificate of transfer. Evaluate label-definition compatibility and λ proxies with field/site-blocked source holdouts before any target use.",
+      "physical_signature": "Protocol, not a geological transform: estimate the H\u0394H domain divergence with a pre-registered balanced classifier two-sample test on a defined common representation. The Ben-David et al. bound has three terms: target error <= source error + (1/2) H\u0394H-divergence + \u03bb, where \u03bb is the joint error of the best shared hypothesis. The C2ST estimates only a divergence term; small divergence alone is not a certificate of transfer. Evaluate label-definition compatibility and \u03bb proxies with field/site-blocked source holdouts before any target use.",
       "why_off_catalogue": "Regional analog-field map material could expose structural detail not present in the GeoDAWN-area catalogue, but neither the target omission class nor cross-field label equivalence is established. GDR #207 documents a characterized Dixie Valley field and public-domain geoscience/well data; it does not establish that every map trace is drilling-verified. The NBMG OF 03-27 page links a map PDF/geospatial PDF, not a confirmed vector GIS archive.",
       "difference_from_prior_work": "No GEMSDOE campaign in the supplied ledger has implemented and validated a source-to-target transfer using an audited off-region fault-map layer. This is a plan, not a result; H41 used catalogue-derived features.",
       "expected_live_delta": "Unknown; do not estimate until data/label alignment, divergence, source holdouts, and target proxies are measured.",
@@ -98,7 +109,7 @@
           "license": "journal article; citation/terms at DOI landing page"
         }
       ],
-      "data_gate": "Official source listings and download links were checked. GDR #207 lists GIS_Faults.zip; GDR #1288 lists geothermal class labels and covariates; NBMG OF 03-27 lists a free PDF ZIP and geospatial PDF, with no GIS vector archive confirmed. Source files have not been ingested/geolocated/semantically aligned in this working tree; no transfer result exists."
+      "data_gate": "Official source listings and download links were checked. GDR #207 lists GIS_Faults.zip; GDR #1288 lists geothermal class labels and covariates; NBMG OF 03-27 lists a free PDF ZIP and geospatial PDF, with no GIS vector archive confirmed. Source files have not been ingested/geolocated/semantically aligned in this working tree; no transfer result exists. The workspace direct request for GDR #207 GIS_Faults.zip failed during TLS/connection setup; no archive bytes were obtained or validated."
     },
     {
       "rank": 3,
@@ -139,7 +150,7 @@
       ],
       "physical_signature": "Test whether spatially coherent K/eU and Th/K anomalies align with independent gravity lineaments, with survey-edge and surface-effect controls; this is a proposed proxy, not a confirmed alteration signature.",
       "why_off_catalogue": "Radiometric anomalies could mark alteration associated with an old or buried fluid pathway that lacks a mapped Quaternary surface scarp. This is an untested hypothesis and does not imply that every such anomaly marks a fault.",
-      "difference_from_prior_work": "Repository notes an earlier GEMSDOE29 radiometric arm on seeds 280–289, but its primary result record was not retrievable in this session (IR-EVIDENCE-01); do not call H33-D novel or rerun until reconciled.",
+      "difference_from_prior_work": "Repository notes an earlier GEMSDOE29 radiometric arm on seeds 280\u2013289, but its primary result record was not retrievable in this session (IR-EVIDENCE-01); do not call H33-D novel or rerun until reconciled.",
       "expected_live_delta": "Unknown; reconcile the earlier GEMSDOE29 experiment and run a leakage-controlled proxy test before estimating.",
       "cost": "low-to-medium after prior-result recovery, band/provenance verification, and controlled validation",
       "official_sources_verified": [
@@ -176,8 +187,8 @@
     {
       "id": "C3",
       "name": "Rung-3.0 Poisson re-pack of the h27-4 dot set",
-      "result": "FAILS both proxies locally: P1 mean dDTI -0.00123 (0/4 folds positive), P2 dDTI -0.00814. The GEMSDOE28 H36-1 re-pack passed on the full H19-5 surface with flank prune; re-packing an already-pruned 40k set removes credit-bearing dots. Not promoted.",
-      "evidence": "evidence/holdout33.json"
+      "result": "Legacy P1 result is withdrawn because full-catalogue candidate/base construction leaked fold information. Its P2 SGMC off-catalogue delta was -0.008137, which is a negative independent-compilation proxy result only; it is not a competition-score refutation.",
+      "evidence": "evidence/holdout33_legacy_catalogue_only.json"
     }
   ]
 }
