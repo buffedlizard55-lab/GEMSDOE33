@@ -35,6 +35,14 @@ The latest public leaderboard snapshot stored here (checked 2026-10-03 local) is
 copying without prior written consent, so this repository cannot lawfully promise an automatically current
 leaderboard feed under the terms reviewed here. Use only an authorized method if DrivenData provides one.
 
+## Website entry and deployment
+
+The public site is served at <https://buffedlizard55-lab.github.io/GEMSDOE33/>. Its pages live under
+`docs/`; the Pages Actions workflow publishes that directory as the site root. The small repository-root
+`index.html` redirects to `docs/index.html` as a fallback for GitHub Pages configurations that publish
+from the `main` branch root. This keeps the project URL from returning GitHub's default 404 if the Pages
+source is set to `/` instead of using the workflow.
+
 ## Current candidate result and decision
 
 **No candidate is cleared for a submission slot.** The first C1–C5 run reported a C2 numeric pass, but a

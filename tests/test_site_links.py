@@ -22,7 +22,8 @@ class LinkParser(HTMLParser):
 class SiteLinkTests(unittest.TestCase):
     def test_all_local_html_links_resolve(self):
         missing = []
-        for html_path in sorted(DOCS.glob("*.html")):
+        html_files = [ROOT / "index.html", *sorted(DOCS.glob("*.html"))]
+        for html_path in html_files:
             parser = LinkParser()
             parser.feed(html_path.read_text(encoding="utf-8"))
             for href in parser.hrefs:
@@ -33,6 +34,13 @@ class SiteLinkTests(unittest.TestCase):
                 if not target.is_file():
                     missing.append(f"{html_path.relative_to(ROOT)} -> {href}")
         self.assertEqual(missing, [], "broken local links:\n" + "\n".join(missing))
+
+    def test_repository_root_redirects_to_the_docs_site(self):
+        root_index = ROOT / "index.html"
+        html = root_index.read_text(encoding="utf-8").lower()
+        self.assertIn('http-equiv="refresh"', html)
+        self.assertIn("url=docs/index.html", html)
+        self.assertTrue((DOCS / "index.html").is_file())
 
     def test_main_download_artifacts_exist_and_c2_hash_matches(self):
         baseline = DOCS / "downloads" / "gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif"
