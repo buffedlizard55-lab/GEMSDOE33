@@ -165,5 +165,29 @@
     ],
     "policy": "The D2.8 owner-mirror is the only ready reference file. No new candidate is promoted in this session. A new transfer candidate must be evaluated on spatially withheld fault systems with the prediction built without the held-out geometry, use an independently defined matched-comparison budget, and beat a current-best comparable artifact in fresh confirmation. A local catalogue holdout is a proxy for generalization among mapped faults, not a test of the competition's absent/hidden fault population."
   },
-  "promotion_policy": "H33-6 failed the preregistered P1 screen (−0.00273732 mean, 2/4 positive folds) and is stopped for this round. No submission slot is approved. External analog candidates remain blocked until official bytes are locally available and audited; any future transfer requires a fold-safe, spatially blocked validation and independent confirmation."
+  "promotion_policy": "H33-6 failed the preregistered P1 screen (−0.00273732 mean, 2/4 positive folds) and is stopped for this round. No submission slot is approved. External analog candidates remain blocked until official bytes are locally available and audited; any future transfer requires a fold-safe, spatially blocked validation and independent confirmation.",
+  "earlier_experiments": [
+    {
+      "id": "H33-F",
+      "title": "Named analog-field transfer (Dixie Valley, Brady, Desert Peak)",
+      "status": "EXPLORATORY_SCREEN_FAILED; research-only; not slot-cleared; not a preregistered independent confirmation",
+      "p1_mean_delta_dti": -0.09307234094867774,
+      "p1_positive_folds": 0,
+      "p1_folds": [
+        -0.06717191845023161,
+        -0.12922784853806604,
+        -0.07528121886697658,
+        -0.10060837793943672
+      ],
+      "p2_delta_dti_vs_c0": -0.016163485257184418,
+      "p2_delta_dti_vs_matched_random": 0.001233749259946501,
+      "domain_classifier_auc": 0.917,
+      "domain_classifier_is_hdelta_h": false,
+      "transfer_bound_licensed": false,
+      "caveat": "Analog-domain labels are the same public catalogue, not independent BRIDGE field-pick labels; lambda and the target-error bound remain unknown. H19-5 is not re-derived per fold. GDR 1682/207 GIS payloads were unavailable.",
+      "artifact_manifest": "docs/downloads/research/h33-f-analog-transfer-manifest.json",
+      "result_review": "knowledge/07_analog_transfer.md",
+      "evidence": "evidence/holdout_analog.json"
+    }
+  ]
 }

@@ -28,6 +28,21 @@ It is preserved for reproduction and is not a weekly-slot recommendation.</p>
 <p><b>Independent local format audit:</b> PASS; NaNs occur only outside the footprint and are allowed by the stated format policy. <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/format_check_h33_6_6c888d2ce0f7.json">Audit JSON</a>. This does not establish scientific validity or portal acceptance.</p>
 <p><b>Paste-ready note (not an upload recommendation):</b></p><pre>GEMSDOE33 H33-6 edge consensus | P1 delta DTI -0.002737 (2/4), P2 +0.000159 | RESEARCH ONLY; gate failed, not slot-approved | id 6c888d2ce0f7</pre>
 <p>Full manifest: <a href="downloads/research/h33-6-research-manifest.json">hashes, source bands and local audit</a>.</p></div>
+<h2>Earlier H33-F analog-field screen — separate, stopped experiment</h2>
+<div class="panel bad"><b>H33-F also failed; not a submission recommendation</b>
+<p>P1 mean ΔDTI: <code>-0.093072</code> (0/4 positive folds). P2 SGMC ΔDTI was
+<code>-0.016163</code> versus C0 and <code>+0.001234</code> versus matched-N random. It remains research-only.</p>
+<p>The exploratory 20 km-block domain-classifier AUC was 0.917; it is <b>not</b> a Ben-David <code>HΔH</code> estimate.
+The analog labels were the same public catalogue rather than independent field-pick truth, so the joint-label error <code>lambda</code>
+and transfer bound remain unknown. This is separate from H33-6 and from the D2.8 reference.</p>
+<p><a class="btn alt" href="downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif">Download H33-F research TIFF (NaN outside)</a>
+<a class="btn alt" href="downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.zip">Download H33-F ZIP</a></p>
+<p><b>Unique identifier:</b> <code>gemsdoe33-h33f-analog-xfer-20261004</code> · <b>SHA-256:</b> <code>59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d</code><br>
+477,936 bytes · 10/10 recorded package checks<br>
+<b>Note (not an upload recommendation):</b> <code>GEMSDOE33 H33-F analog xfer | Dixie/Brady/DesertPeak wells+GeoDAWN | research not slot-approved | id d042874b26ef</code></p>
+<p><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/07_analog_transfer.md">H33-F result review</a> ·
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout_analog.json">H33-F proxy evidence</a> ·
+<a href="downloads/research/h33-f-analog-transfer-manifest.json">H33-F manifest</a>. Local file checks do not validate science or portal acceptance.</p></div>
 <h2>Ranked geological hypotheses</h2>
 <p>Expected improvement is a qualitative research-priority ranking, not a numeric DTI prediction. Source listings
 are not equivalent to downloaded/inspected geometry. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/07_hypothesis_slate_20261004.md">full slate</a>.</p>
@@ -66,7 +81,7 @@ are not equivalent to downloaded/inspected geometry. See the <a href="https://gi
 <td>Low qualitative upside; no numeric forecast.<br><b>Cost:</b> Low–medium; local owner-mirror bands only.</td>
 <td>No additional source; local owner-mirror layers only.<br><br><b>Availability check:</b> Required bands are present in the local owner mirror; provenance is not organizer-authenticated.</td></tr></tbody></table></div>
 <h2>Ben-David domain adaptation — fail-closed</h2>
-<div class="panel bad"><b>BLOCKED_NOT_ESTIMATED</b><p>No field-specific <code>HΔH</code> divergence was estimated; transfer is neither licensed nor refuted.
+<div class="panel bad"><b>EXPLORATORY_NOT_LICENSED</b><p>Formal Ben-David bound status: <b>BLOCKED_NOT_ESTIMATED</b>. No field-specific <code>HΔH</code> divergence was estimated; transfer is neither licensed nor refuted.
 The first-pass well/spring-density split, random pixel discriminator and conclusion were withdrawn.
 BRIDGE GDR #1682 is publicly listed but its archive bytes could not be staged. USGS Gabbs Valley 3D faults
 are also publicly listed; only bounding boxes were compared, and the ZIP/feature geometry were not obtained.</p>
@@ -76,7 +91,7 @@ are also publicly listed; only bounding boxes were compared, and the ZIP/feature
 would not prove target transfer or reveal target label error.
 <a href="https://link.springer.com/article/10.1007/s10994-009-5152-4">Paper</a> ·
 <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/src/gemsdoe33/domain.py">implementation notes</a>.</p>
-<h3>Blocking gates</h3><ol><li>Obtain and inspect the official BRIDGE vector archive; verify coordinate reference system, field IDs, confidence/verification attributes, and license conditions.</li><li>Define source and target as named, non-overlapping field polygons before examining target benchmark outcomes; do not substitute record-density quantiles.</li><li>Declare identical target hypothesis class, label policy, feature schema, spatial resolution, mask, and physically interpretable covariate transformations in both fields.</li><li>Use field/system-level spatial blocks for train, domain-discriminator validation, and evaluation; prevent neighboring pixels or duplicate site records crossing partitions.</li><li>Specify how source risk, the HΔH class/divergence, effective independent sample size and confidence intervals will be estimated.</li><li>Estimate or conservatively bound lambda with an independent shared-label audit; do not set lambda to zero by assumption.</li><li>Obtain a target-relevant, spatially blocked holdout and compare transferred candidates at matched emission budget before any submission-slot decision.</li></ol></div>
+<h3>Blocking gates</h3><ol><li>Obtain and inspect the official BRIDGE vector archive; verify CRS, field IDs, confidence/verification attributes, and license conditions.</li><li>Define named, non-overlapping source/target field domains before examining target benchmark outcomes; do not substitute record-density quantiles.</li><li>Declare a common target hypothesis class, label policy, feature schema, spatial resolution, mask, and physically interpretable transformations in both domains.</li><li>Use field/system-level spatial blocks for training, discriminator validation, and evaluation; prevent neighboring pixels or duplicate site records crossing partitions.</li><li>Specify source-risk estimation, the HΔH class/divergence, effective independent sample size, uncertainty intervals, and the finite-sample/class-complexity term.</li><li>Estimate or conservatively bound lambda with an independent shared-label audit; do not set it to zero by assumption.</li><li>Obtain a target-relevant, spatially blocked holdout and compare at matched emission budget before considering any submission-slot decision.</li></ol></div>
 <h2>Prior-art and evidence boundary</h2>
 <p>H19-5 already uses four-line physical corroboration (tip/relay, thermal-geochemical, scarp/openness,
 geopotential/basement) with a second-best-line gate. Therefore generic multi-line fusion is not novel.

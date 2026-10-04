@@ -184,6 +184,7 @@ irregularities</a>; detailed leaderboard rows are intentionally not reproduced.<
 <h2>Decision status</h2>
 <ul><li><b>H33-6 failed its preregistered spatial proxy gate:</b> P1 mean ΔDTI −0.00273732 (2/4 folds positive), P2 SGMC proxy +0.00015900. It beat the matched-random mean but not the local H27-4 owner-mirror raster control (score/file pairing unverified). The arm is stopped; see the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/08_h33_6_result_20261004.md">result review</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout_h33_6.json">full evidence</a>.</li>
 <li>A unique H33-6 TIFF is linked on the <a href="research.html">research page</a> for reproducibility only. It is <b>not for upload</b>, not slot-approved, and its local format check is not a scientific validation.</li>
+<li>Earlier H33-F analog transfer also failed local proxies (P1 mean −0.093072, 0/4 positive; P2 −0.016163 vs C0); it is a separate research-only artifact and its discriminator AUC is not an <code>HΔH</code> bound. See the <a href="research.html">research page</a>.</li>
 <li>Upstream C2 is archived as research-only: the earlier P1 pass was withdrawn; the corrected conditional source-exclusion diagnostic is P1 mean ΔDTI −0.000722 (0/4 positive), P2 SGMC proxy +0.000283, and not slot-cleared because H19-5 was not re-derived per fold and the diagnostic was not an independent preregistered confirmation. See <a href="irregularities.html">IR-33-C2-01</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout33.json">the evidence</a>.</li>
 <li>Initial holdout, reconstruction and domain-transfer promotion claims were withdrawn after review. No weekly submission slot is approved or spent. The only top-level recommended package is the D2.8 reference.</li></ul>
 <p>For the exact upload procedure for the reference artifact, open the <a href="executive-summary.html">executive summary</a>.
@@ -207,7 +208,7 @@ The TIFF below is an owner-mirror D2.8 reference,
 not a newly validated model. Its reported 0.2600 score has no organizer receipt linking it to these
 exact file bytes. The 0.2708 H27-4 attribution is unsupported, and H33-6 failed its preregistered P1 gate.
 No new model is approved for a weekly submission slot.</p>
-<div class="panel bad"><b>Do not upload the H33-6 TIFF.</b> It is a failed-gate research artifact, not a slot recommendation. The general steps below apply only if you independently choose to use the historical D2.8 reference; local format checks do not imply scientific advantage or portal acceptance. See the <a href="research.html">research page</a> for H33-6's direct download and failure report.</div>
+<div class="panel bad"><b>Do not upload H33-6 or H33-F.</b> H33-6 failed its preregistered P1 gate; the separate H33-F analog screen also failed its local proxies. Both TIFFs are research artifacts, not slot recommendations. The general steps below apply only if you independently choose to use the historical D2.8 reference; local format checks do not imply scientific advantage or portal acceptance. See the <a href="research.html">research page</a> for their separate downloads and evidence.</div>
 {package_box()}
 <ol><li><b>Download the recommended NaN-outside TIFF</b> from the top card:
 <code>{esc(fname)}</code>. Optionally verify its SHA-256 against the card. It is a single-band
@@ -224,6 +225,10 @@ characters, under the 200-character limit.</li>
 <li><b>Review the selected file and attribution, then submit.</b> Save the portal's receipt and score
 if it provides one. No upload or score is asserted by this repository.</li></ol>
 <div class="panel warn"><b>Note to paste ({int(man.get('note_chars', 0))}/200 characters):</b><pre>{esc(note)}</pre></div>
+<h3>AI-use narrative disclosure</h3>
+<p>The current official rules require a narrative disclosure of generative-AI extent and use. Review the
+<a href="{GITHUB}/AI_DISCLOSURE.md">AI and data provenance disclosure</a> and verify/update it for the
+specific file and any future work before submission. No upload has occurred from this workspace.</p>
 <h3>Why NaN outside is recommended</h3>
 <p>The official problem wording says data outside the bounds should be null or NaN. The recommended
 file follows that wording and passed all {len(art.get('validation', {}).get('checks', {}))} recorded
@@ -263,7 +268,8 @@ def build_research() -> str:
     da = read_json(ROOT / "evidence" / "domain_adaptation_preflight.json")
     blockers = da.get("blocking_gates", [])
     block_list = "<ol>" + "".join(f"<li>{esc(item)}</li>" for item in blockers) + "</ol>"
-    da_status = esc(da.get("status", "BLOCKED_NOT_ESTIMATED"))
+    da_status = esc(da.get("status", "EXPLORATORY_NOT_LICENSED"))
+    formal_bound_status = esc(da.get("formal_bound_status", "BLOCKED_NOT_ESTIMATED"))
     prereg_hash_path = ROOT / "evidence" / "hypothesis_slate_20261004_preregistered.sha256"
     prereg_hash = prereg_hash_path.read_text(encoding="utf-8").split()[0] if prereg_hash_path.exists() else "missing"
     result = read_json(ROOT / "evidence" / "holdout_h33_6.json")
@@ -291,6 +297,35 @@ It is preserved for reproduction and is not a weekly-slot recommendation.</p>
     else:
         artifact_card = '<div class="panel bad">H33-6 research artifact manifest is missing.</div>'
 
+    h33f_manifest_path = DOWNLOADS / "research" / "h33-f-analog-transfer-manifest.json"
+    h33f_card = ""
+    if h33f_manifest_path.exists():
+        h33f_manifest = read_json(h33f_manifest_path)
+        h33f_result = read_json(ROOT / "evidence" / "holdout_analog.json")
+        h33f_da = read_json(ROOT / "evidence" / "domain_adaptation_preflight.json")
+        h33f_artifact = next((a for a in h33f_manifest.get("artifacts", []) if a.get("outside") == "NaN"), None)
+        if h33f_artifact:
+            h33f_p1 = float(h33f_result.get("p1_mean_delta_dti", 0.0))
+            h33f_p2 = float(h33f_result.get("p2", {}).get("delta_vs_c0", 0.0))
+            h33f_random = float(h33f_result.get("p2", {}).get("delta_vs_random", 0.0))
+            h33f_auc = h33f_da.get("domain_discriminator", {}).get("held_out_block_auc")
+            h33f_auc_text = f"{float(h33f_auc):.3f}" if h33f_auc is not None else "not estimated"
+            h33f_card = f'''<h2>Earlier H33-F analog-field screen — separate, stopped experiment</h2>
+<div class="panel bad"><b>H33-F also failed; not a submission recommendation</b>
+<p>P1 mean ΔDTI: <code>{h33f_p1:+.6f}</code> ({int(h33f_result.get("p1_positive_folds", 0))}/4 positive folds). P2 SGMC ΔDTI was
+<code>{h33f_p2:+.6f}</code> versus C0 and <code>{h33f_random:+.6f}</code> versus matched-N random. It remains research-only.</p>
+<p>The exploratory 20 km-block domain-classifier AUC was {h33f_auc_text}; it is <b>not</b> a Ben-David <code>HΔH</code> estimate.
+The analog labels were the same public catalogue rather than independent field-pick truth, so the joint-label error <code>lambda</code>
+and transfer bound remain unknown. This is separate from H33-6 and from the D2.8 reference.</p>
+<p><a class="btn alt" href="downloads/{esc(h33f_artifact.get('file', ''))}">Download H33-F research TIFF (NaN outside)</a>
+<a class="btn alt" href="downloads/{esc(h33f_artifact.get('zip', ''))}">Download H33-F ZIP</a></p>
+<p><b>Unique identifier:</b> <code>{esc(h33f_manifest.get('name', ''))}</code> · <b>SHA-256:</b> <code>{esc(h33f_artifact.get('sha256', ''))}</code><br>
+{int(h33f_artifact.get('bytes', 0)):,} bytes · {int(h33f_artifact.get('validation', {}).get('n_checks', 0))}/10 recorded package checks<br>
+<b>Note (not an upload recommendation):</b> <code>{esc(h33f_manifest.get('note', ''))}</code></p>
+<p><a href="{GITHUB}/knowledge/07_analog_transfer.md">H33-F result review</a> ·
+<a href="{GITHUB}/evidence/holdout_analog.json">H33-F proxy evidence</a> ·
+<a href="downloads/research/h33-f-analog-transfer-manifest.json">H33-F manifest</a>. Local file checks do not validate science or portal acceptance.</p></div>'''
+
     p1_mean = result.get("p1", {}).get("mean_delta_dti")
     p2_delta = result.get("p2", {}).get("delta_dti")
     fold_text = ", ".join(f"{float(x):+.6f}" for x in result.get("p1", {}).get("fold_deltas", []))
@@ -312,6 +347,7 @@ The candidate beat the matched-random mean but was worse than its local H27-4 ow
 <a href="{GITHUB}/evidence/holdout_h33_6.json">Full fold-level evidence</a> ·
 <a href="{GITHUB}/evidence/hypothesis_slate_20261004_preregistered.json">Frozen protocol</a></p></div>
 {artifact_card}
+{h33f_card}
 <h2>Ranked geological hypotheses</h2>
 <p>Expected improvement is a qualitative research-priority ranking, not a numeric DTI prediction. Source listings
 are not equivalent to downloaded/inspected geometry. See the <a href="{GITHUB}/knowledge/07_hypothesis_slate_20261004.md">full slate</a>.</p>
@@ -320,7 +356,7 @@ are not equivalent to downloaded/inspected geometry. See the <a href="{GITHUB}/k
 <th>Expected upside / cost</th><th>Official source and availability check</th></tr></thead>
 <tbody>{htable}</tbody></table></div>
 <h2>Ben-David domain adaptation — fail-closed</h2>
-<div class="panel bad"><b>{da_status}</b><p>No field-specific <code>HΔH</code> divergence was estimated; transfer is neither licensed nor refuted.
+<div class="panel bad"><b>{da_status}</b><p>Formal Ben-David bound status: <b>{formal_bound_status}</b>. No field-specific <code>HΔH</code> divergence was estimated; transfer is neither licensed nor refuted.
 The first-pass well/spring-density split, random pixel discriminator and conclusion were withdrawn.
 BRIDGE GDR #1682 is publicly listed but its archive bytes could not be staged. USGS Gabbs Valley 3D faults
 are also publicly listed; only bounding boxes were compared, and the ZIP/feature geometry were not obtained.</p>

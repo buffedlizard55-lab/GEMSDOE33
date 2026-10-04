@@ -5,6 +5,14 @@
   "convention": "Flagged, not silently corrected. Every status says what was measured, what was not, and what the consequence is.",
   "irregularities": [
     {
+      "id": "IR-33-F-01",
+      "severity": "high",
+      "status": "measured; not slot-cleared",
+      "finding": "H33-F named analog-field transfer (Dixie/Brady/Desert Peak well-cell masks + GeoDAWN/LiDAR) produced a unique 44,090-dot GeoTIFF. Exploratory 20 km-block domain-discriminator AUC was 0.917. Fold-safe P1 mean ΔDTI vs rebuilt C0 was −0.093072 (0/4 folds). P2 SGMC ΔDTI vs C0 was −0.016163; vs matched-N random +0.001234. Ben-David bound not licensed (lambda unknown; analog labels are the same public catalogue). GDR 1682/207 GIS archives were not staged (TLS fail).",
+      "evidence": "evidence/holdout_analog.json; evidence/domain_adaptation_preflight.json; docs/downloads/research/h33-f-analog-transfer-manifest.json; knowledge/07_analog_transfer.md.",
+      "consequence": "H33-F is a separate research-only artifact and not slot-cleared. Do not spend a weekly slot or describe the exploratory discriminator as a Ben-David HΔH bound or transfer success."
+    },
+    {
       "id": "IR-33-SCORE-01",
       "severity": "high",
       "status": "conflicting dated status notes; current target unverified",

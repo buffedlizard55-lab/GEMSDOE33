@@ -24,7 +24,10 @@ were withdrawn after review; see `evidence/first_pass_disposition.json`.
 
 ## Human review / before upload
 
-The primary one-click file is a D2.8 reference emission, **not a new model**. Its claimed 0.2600 score
-is owner-reported, and the score-to-exact-file pairing is unverified. Confirm the competition portal
-accepts the GeoTIFF, inspect it in a GIS, and verify the note and score attribution before relying on
-it. No file in this repository is claimed to exceed the current official public leader.
+The top-level package is the historical D2.8 owner-mirror reference, not a new model; its reported
+0.2600 score/file association is unconfirmed. H33-F and H33-6 are separate unique research TIFFs,
+and both failed local proxy screens; neither is slot-approved or approved for upload. Their format
+checks do not establish private-label accuracy or portal acceptance. The `0.3195` target remains
+conflicted and unverified as current. Before any eventual owner-selected upload, recheck the official
+competition rules, data-sharing terms, and required narrative disclosure. No DrivenData upload was
+made from this workspace.

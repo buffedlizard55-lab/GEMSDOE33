@@ -176,6 +176,27 @@
       "url": "https://www.sciencebase.gov/catalog/item/62b21845d34e74f0d80f17aa?format=json",
       "used_for": "Catalog JSON and official metadata XML identify fault/stratigraphic surface attachments, checksums, license, NAD83 UTM Zone 11N coordinate basis and catalog extents. The bounds overlap GeoDAWN raster bounds; no ZIP bytes were inspected and bounding-box overlap does not prove fault-feature overlap.",
       "evidence_class": "OFFICIAL USGS METADATA; fetched 2026-10-04; binary retrieval failed"
+    },
+    {
+      "id": "openei-dixie",
+      "title": "OpenEI Dixie Valley Geothermal Area",
+      "url": "https://openei.org/wiki/Dixie_Valley_Geothermal_Area",
+      "used_for": "Named analog-field centroid 39°58'3.59\" N, 117°51'18.27\" W. Page returned Under Maintenance on re-fetch 2026-10-04; coordinates taken from the indexed OpenEI record.",
+      "evidence_class": "OFFICIAL OPENEI; page under maintenance on re-fetch 2026-10-04"
+    },
+    {
+      "id": "usgs-mrds-brady",
+      "title": "USGS MRDS Brady Hot Springs dep_id 10221999",
+      "url": "https://mrdata.usgs.gov/mrds/show-mrds.php?dep_id=10221999",
+      "used_for": "Named analog-field centroid 39.7866 N, 119.01319 W WGS84; location accuracy 100 m.",
+      "evidence_class": "OFFICIAL USGS MRDS"
+    },
+    {
+      "id": "openei-desert-peak-ii",
+      "title": "OpenEI Desert Peak II Geothermal Facility",
+      "url": "https://openei.org/wiki/Desert_Peak_II_Geothermal_Facility",
+      "used_for": "Named analog-field centroid 39.753855 N, 118.953781 W.",
+      "evidence_class": "OFFICIAL OPENEI"
     }
   ]
 }

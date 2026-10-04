@@ -10,10 +10,10 @@
     1.0
   ],
   "zeros": {
-    "path": "/home/user/GEMSDOE33/docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.tif",
+    "path": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.tif",
     "bytes": 405850,
     "sha256": "dadd32169f9d31c024dc8ada98e93a6a36c25f802820fc0871781c6c8644a33a",
-    "file": "/home/user/GEMSDOE33/docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.tif",
+    "file": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.tif",
     "checks": {
       "count_is_1": true,
       "dtype_is_float32": true,
@@ -31,10 +31,10 @@
     "pass": true
   },
   "nan": {
-    "path": "/home/user/GEMSDOE33/docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
+    "path": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
     "bytes": 482682,
     "sha256": "18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7",
-    "file": "/home/user/GEMSDOE33/docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
+    "file": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
     "checks": {
       "count_is_1": true,
       "dtype_is_float32": true,
@@ -52,13 +52,13 @@
     "pass": true
   },
   "zip_zeros": {
-    "path": "/home/user/GEMSDOE33/docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.zip",
+    "path": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.zip",
     "bytes": 292543,
     "sha256": "17aa8bfd8e7bb75fb637407dbac03a86874ccacca7afda80f6bba1f42aaac44e",
     "members": 1
   },
   "zip_nan": {
-    "path": "/home/user/GEMSDOE33/docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.zip",
+    "path": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.zip",
     "bytes": 371937,
     "sha256": "753fa1a5540bc7a9130609726c209e4fc38f70013bee5c567e3bb8478ed2aa75",
     "members": 1

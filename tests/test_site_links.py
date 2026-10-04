@@ -80,6 +80,23 @@ class SiteLinkTests(unittest.TestCase):
             self.assertEqual(hashlib.sha256(zipped.read_bytes()).hexdigest(), artifact["zip_sha256"])
             self.assertTrue(artifact["validation"]["pass"])
 
+        h33f_path = DOCS / "downloads" / "research" / "h33-f-analog-transfer-manifest.json"
+        h33f = json.loads(h33f_path.read_text())
+        self.assertFalse(h33f["recommended_for_upload"])
+        self.assertFalse(h33f["slot_cleared"])
+        self.assertNotIn("recommended", h33f)
+        for artifact in h33f["artifacts"]:
+            for path_key in ("path", "file"):
+                if path_key in artifact["validation"]:
+                    self.assertFalse(Path(artifact["validation"][path_key]).is_absolute())
+            path = DOCS / "downloads" / artifact["file"]
+            zipped = DOCS / "downloads" / artifact["zip"]
+            self.assertTrue(path.is_file(), str(path))
+            self.assertTrue(zipped.is_file(), str(zipped))
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), artifact["sha256"])
+            self.assertEqual(hashlib.sha256(zipped.read_bytes()).hexdigest(), artifact["zip_sha256"])
+            self.assertTrue(artifact["validation"]["pass"])
+
         stale = DOCS / "downloads" / "gems33-c2-stepover-relay-20261004-01f660dd8656.tif"
         self.assertFalse(stale.exists(), "withdrawn C2 is not distributed from the recommended download directory")
 

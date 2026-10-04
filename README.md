@@ -46,6 +46,15 @@ A distinct, reproducible TIFF was generated from the frozen candidate recipe to 
 
 See [`h33-6-research-manifest.json`](docs/downloads/research/h33-6-research-manifest.json) for hashes, bands and local format checks. The reproducible builder is `scripts/build_h33_6_research.py`.
 
+## Earlier H33-F analog-field screen — separate and not slot-cleared
+
+H33-F is an earlier, distinct exploratory run, not part of the frozen H33-6 slate and not a submission recommendation. It also failed its local proxies: P1 mean ΔDTI `−0.093072` (0/4 positive), P2 `−0.016163` vs the local C0 raster and `+0.001234` vs matched-N random. The exploratory domain-classifier AUC `0.917` is **not** an `HΔH` estimate; source-label compatibility and joint-label error `lambda` remain unresolved. Its unique file is preserved for research only:
+
+- [H33-F NaN-outside TIFF](docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif) · [separate H33-F artifact manifest](docs/downloads/research/h33-f-analog-transfer-manifest.json).
+- [H33-F result review](knowledge/07_analog_transfer.md) · [proxy evidence](evidence/holdout_analog.json).
+
+**Do not upload or spend a slot on H33-F.** Its H19-5 baseline provenance remains conditional, and the BRIDGE/GDR 207 GIS payloads were unavailable.
+
 ## Ranked geological research hypotheses
 
 The round-two five-hypothesis slate and exact H33-6 rule were frozen and SHA-256 recorded **before** its implementation and holdout run. It contains three new concepts (H33-6/7/8) plus the explicitly identified carry-forward/related designs H33-9/10; the prior round's shortlist was retrospective and remains archived separately. Expected improvement is qualitative only; no DTI or contest-score gain is forecast.
@@ -235,8 +244,11 @@ The top-level recommended download remains a locally format-checked **D2.8 refer
 an owner-mirror. Its `0.2600` association is owner-reported and is not authenticated to the exact file
 by an organizer receipt. A separate H33-6 TIFF is provided in the research area only: its preregistered
 P1 mean ΔDTI was `−0.002737` (2/4 folds positive), P2 SGMC proxy was `+0.000159`, and the numeric gate
-failed. The unique research artifact is explicitly **not slot-approved and not for upload**. The H27-4
-`0.2708` pairing is unsupported; the GEMSDOE28 owner page describes H27-4 as unscored/research-only.
+failed. The unique research artifact is explicitly **not slot-approved and not for upload**. A separate earlier
+H33-F analog-field experiment also failed its local proxies (P1 mean ΔDTI `−0.093072`, 0/4 positive;
+P2 `−0.016163` vs C0); its exploratory discriminator AUC `0.917` is not `HΔH`, and no transfer bound
+is licensed. Its TIFF is a distinct research artifact, not a recommendation. The H27-4 `0.2708`
+pairing is unsupported; the GEMSDOE28 owner page describes H27-4 as unscored/research-only.
 The target `0.3195` is user-supplied and not independently confirmed as current here. A prior one-time
 official-page status note dated 2026-10-04 did not support treating it as current/top, while the
 GEMSDOE28 owner site contains a separate manual summary dated 2026-10-03 that reports the claim; this

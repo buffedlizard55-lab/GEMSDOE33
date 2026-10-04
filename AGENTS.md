@@ -13,16 +13,17 @@
    positive in 2/4 folds) against the local H27-4 owner-mirror raster control; that control's
    score/file pairing is unverified. Stop this arm: do not rerun the completed screen to repair its
    post-write logging or retune from its holdout, and do not upload its research-only TIFF. The old `scripts/run_holdout33.py` result is withdrawn; it is legacy-only. The
-   conditional C2 source-audit diagnostic and H33-6 result both retain the unresolved fixed-H19-5
-   upstream provenance limitation. Neither clears a slot. A future candidate needs a fresh, frozen,
+   conditional C2 source-audit, H33-F and H33-6 results retain the unresolved fixed-H19-5
+   upstream provenance limitation. None clears a slot. A future candidate needs a fresh, frozen,
    independent confirmation against a comparable local reference, and must pass the exact format
    audit before a slot is even considered.
 4. **Submission-output policy**: single-band float32, EPSG:32611, 100 m, same
-   shape/geotransform/bounds as the owner-mirror sample. The recommended D2.8 reference uses finite
-   `[0,1]` probabilities inside the template footprint and NaN outside to follow the official
-   problem-page wording; a zero-outside alternative is troubleshooting only. An earlier owner-observed
-   portal range error did not establish that NaN was its cause. A local format pass is not organizer
-   acceptance.
+   shape/geotransform/bounds as the owner-mirror sample. The top-level D2.8 file is a historical
+   reference, not a new model or verified score/file pair. Its NaN-outside variant follows the
+   recorded official null/NaN wording; a zero-outside alternative is troubleshooting only. H33-F
+   and H33-6 TIFFs are separate failed research artifacts, not featured submissions. An earlier
+   owner-observed portal range error did not establish that NaN caused it. A local format pass is
+   not organizer acceptance.
 5. **Sample-template values are not truth.** Use only finiteness/grid metadata from the restored
    `sample_submission.tif`. It was found to equal the catalogue labels on all 5,167,373 finite
    footprint cells (IR-SAMPLE-LABEL-01); see `evidence/sample_template_label_overlap.json`.

@@ -1,0 +1,67 @@
+{
+  "name": "gemsdoe33-h33f-analog-xfer-20261004",
+  "content_id": "d042874b26ef",
+  "note": "GEMSDOE33 H33-F analog xfer | Dixie/Brady/DesertPeak wells+GeoDAWN | research not slot-approved | id d042874b26ef",
+  "note_chars": 113,
+  "emitted_pixels": 44090,
+  "emitted_fraction_of_footprint": 0.00853238192791579,
+  "value_range_inside": [
+    0.0,
+    1.0
+  ],
+  "zeros": {
+    "path": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
+    "bytes": 403314,
+    "sha256": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
+    "file": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
+    "checks": {
+      "count_is_1": true,
+      "dtype_is_float32": true,
+      "crs_is_epsg_32611": true,
+      "shape_is_3730x3292": true,
+      "georef_matches_template": true,
+      "no_nan_inside_footprint": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "outside_is_null_or_zero": true,
+      "single_band_description": true
+    },
+    "errors": [],
+    "n_checks": 10,
+    "pass": true
+  },
+  "nan": {
+    "path": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
+    "bytes": 477936,
+    "sha256": "59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d",
+    "file": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
+    "checks": {
+      "count_is_1": true,
+      "dtype_is_float32": true,
+      "crs_is_epsg_32611": true,
+      "shape_is_3730x3292": true,
+      "georef_matches_template": true,
+      "no_nan_inside_footprint": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "outside_is_null_or_zero": true,
+      "single_band_description": true
+    },
+    "errors": [],
+    "n_checks": 10,
+    "pass": true
+  },
+  "zip_zeros": {
+    "path": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.zip",
+    "bytes": 278615,
+    "sha256": "dcefeb00d0e369ca787b99fd979c750796e168a048022fa9b82caf578f16d318",
+    "members": 1
+  },
+  "zip_nan": {
+    "path": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.zip",
+    "bytes": 355953,
+    "sha256": "bb890550a1d631b5d61059296b4e8801180492c89e8458d97377f232d2c6c988",
+    "members": 1
+  },
+  "all_checks_pass": true
+}

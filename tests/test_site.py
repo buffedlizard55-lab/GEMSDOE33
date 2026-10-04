@@ -25,11 +25,15 @@ def test_executive_summary_has_exact_name_note_and_upload_caveat():
     assert "Paste the note" in page
     assert "NaN" in page
     assert "No upload or score is asserted" in page
+    assert "Do not upload H33-6 or H33-F" in page
+    assert "AI-use narrative disclosure" in page
+    assert "AI and data provenance disclosure" in page
     assert "portal acceptance" in page
 
 
 def test_research_page_blocks_unvalidated_transfer_and_hypothesis_claims():
     page = build_site.build_research()
+    assert "EXPLORATORY_NOT_LICENSED" in page
     assert "BLOCKED_NOT_ESTIMATED" in page
     assert "retrospective" in page
     assert "H33-6 failed P1" in page
@@ -41,5 +45,10 @@ def test_research_page_blocks_unvalidated_transfer_and_hypothesis_claims():
     assert "Independent local format audit" in page
     assert "Audit JSON" in page
     assert "RESEARCH ONLY" in page
+    assert "Earlier H33-F analog-field screen" in page
+    assert "-0.093072" in page
+    assert "Ben-David" in page
+    assert "not</b> a Ben-David" in page
+    assert "Download H33-F research TIFF" in page
     assert "+0.00601" not in page
     assert "AUC 0.913" not in page
