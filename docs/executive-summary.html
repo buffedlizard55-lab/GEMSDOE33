@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEMSDOE33 · Executive summary</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="row">
+  <h1>GEMS<span>DOE33</span> · Executive summary</h1>
+  <nav>
+    <a href="index.html">Download</a>
+    <a class="on" href="executive-summary.html">Executive summary</a>
+    <a href="how-to-submit.html">How to submit</a>
+    <a href="hypotheses.html">Hypotheses</a>
+    <a href="results.html">Results</a>
+    <a href="data-sources.html">Data sources</a>
+  </nav>
+</div></header>
+<main>
+
+<h2>Mission</h2>
+<div class="card">
+<p>Win the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize
+Challenge</a>: map geological faults in the GeoDAWN region (northwestern Great Basin) that are
+<b>missing from the public USGS/INGENIOUS catalogue</b>, because those are exactly the faults the
+expert panel labelled as ground truth. Current standing: owner-reported campaign best <b>0.2708</b>
+(h27-4-r1-solo) vs public leader <b>0.3195</b> (“DARD”).</p>
+<p><b>This session's download:</b>
+<a class="btn" href="downloads/gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif" download>⬇ gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif</a>
+<span class="pill ok">format audit PASS</span> <span class="pill warn">unscored</span></p>
+</div>
+
+<h2>Why 0.2708 won, and the plan past it</h2>
+<div class="card">
+<ul>
+  <li><b>Metric:</b> distance-weighted Tversky index, α=0.2 / β=0.8, 300 m triangular kernel —
+  false positives are cheap but unbounded; false negatives are capped by the hidden truth |G| ≈ 12,226 px.</li>
+  <li><b>The 0.2708 file</b> = 40,199 sparse dots from the H19-5 scarp/geophysics ridge ensemble,
+  Poisson-thinned to 2.8 px spacing, with the blind 1-px catalogue-flank prune (H27-4). Dots near known
+  catalogue faults can never earn credit because the scoring truth is off-catalogue by construction.</li>
+  <li><b>Reaching 0.3195</b> requires ~+24% credited truth mass at the same dot budget, or ~half the dots
+  at equal credit. Packing tricks are exhausted (marginal return 0.031 credit/dot &lt; 0.055 break-even).
+  The only route is <b>new, high-specificity off-catalogue evidence</b>.</li>
+</ul>
+</div>
+
+<h2>This session's strategy: bounded analog-field transfer + stepover relays</h2>
+<div class="card">
+<p><b>1. Borrow ground truth from better-mapped analog fields, with the transfer bounded.</b>
+Dixie Valley, Desert Peak and Brady's have decades of industry-drilling-verified fault mapping.
+Ben-David et al. (2010, <a href="https://doi.org/10.1007/s10994-009-5152-4">DOI 10.1007/s10994-009-5152-4</a>)
+bound target-domain error by source-domain error plus the measured divergence between feature
+distributions (classifier-two-sample-test / d<sub>A</sub>-distance). Where divergence is small, analog
+geometries become a genuinely independent validation set never touched by the GeoDAWN catalogue.
+Sources verified obtainable: GDR #207 GIS_Faults.zip (Dixie Valley), NBMG OF 03-27 (Desert Peak–Brady's),
+GDR #1288 labelled grids. Bytes require an unrestricted machine (sandbox egress is GitHub-only).</p>
+<p><b>2. Stepover relay bridges (implemented, proxy-gated, shipped above).</b> Both Desert Peak and
+Brady's geothermal fields are hosted in fault <b>step-overs</b> (Faulds et al., OSTI 1110517): relay ramps
+between fault tips concentrate dense unmapped strands. We emit sparse bridge dots between distinct-FID
+tip pairs (300–2500 m approach, ≤30° strike) gated by an isostatic-gravity horizontal-gradient edge —
+mechanistically distinct from the failed T-v2 rule, which filled same-polyline compiler gaps.</p>
+</div>
+
+<h2>Validation discipline</h2>
+<div class="card">
+<ul>
+  <li><b>P1</b>: catalogue-hidden 4-fold spatial block holdout (LOSFO-style, 600 m system grouping) — paired ΔDTI vs the scored control.</li>
+  <li><b>P2</b>: SGMC off-catalogue faults ≥300 m from the catalogue — an independent compilation as truth substitute.</li>
+  <li><b>Gate</b>: P1 mean ΔDTI &gt; 0, majority folds positive, P2 not worse than −0.001. <b>C2 passed; C3 re-pack refuted.</b></li>
+  <li>No weekly slot is ever spent on a file that has not beaten the current holdout best. Proxies are labelled proxies — never scores.</li>
+</ul>
+</div>
+
+<h2>Headline results</h2>
+<div class="card">
+<table>
+<tr><th>Candidate</th><th>Δ dots</th><th>P1 mean ΔDTI</th><th>P2 ΔDTI</th><th>Gate</th></tr>
+<tr><td>C1 corroborated Euler dots (+12)</td><td>+12</td><td>−0.00000</td><td>+0.00002</td><td>neutral</td></tr>
+<tr><td><b>C2 stepover relay bridges (+944)</b></td><td>+944</td><td><b>+0.00043 (3/4 folds)</b></td><td><b>+0.00028</b></td><td><b>PASS → shipped</b></td></tr>
+<tr><td>C3 rung-3.0 re-pack</td><td>−5,725</td><td>−0.00123 (0/4)</td><td>−0.00814</td><td>FAIL (refuted)</td></tr>
+<tr><td>C4 = C3+C1</td><td>−5,713</td><td>−0.00124</td><td>−0.00810</td><td>FAIL</td></tr>
+<tr><td>C5 = C2+C1</td><td>+956</td><td>+0.00042</td><td>+0.00030</td><td>PASS (superseded by C2 on parsimony)</td></tr>
+</table>
+<p class="mut">Evidence: <code>evidence/holdout33.json</code> · metric unit tests: 7/7 · data placement: <code>evidence/data_placement.json</code></p>
+</div>
+
+<h2>Limitations & next actions</h2>
+<div class="card">
+<ul>
+  <li>⚠ <b>IR-NET-01</b>: sandbox egress is GitHub-only; USGS/GDR/Dropbox/DrivenData bytes need an unrestricted machine
+  (mirrors are hash-pinned and the restore script is idempotent: <code>bash scripts/download_competition_data.sh</code>).</li>
+  <li>⚠ No DrivenData auth by policy — uploads remain manual; the staged file + paste-ready note are on the <a href="index.html">download page</a>.</li>
+  <li>Next session: (1) pull analog-field vectors and run the d<sub>A</sub> divergence audit (H33-A);
+  (2) 2 m probe residual lineaments (H33-B) from local mirrors;
+  (3) reconcile the GEMSDOE29 radiometric record (IR-EVIDENCE-01) before H33-D;
+  (4) GPU path for a supervised 1 m DEM scarp detector — the credible route to 0.3195.</li>
+</ul>
+</div>
+
+</main>
+<footer>GEMSDOE33 · research workflow · proxies are not scores · never contacts DrivenData</footer>
+</body></html>

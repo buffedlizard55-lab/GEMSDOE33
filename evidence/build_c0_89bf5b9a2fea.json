@@ -1,0 +1,14 @@
+{
+ "file": "docs/downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif",
+ "candidate": "C0",
+ "build": {
+  "candidate": "C0_scored_reference"
+ },
+ "content_id": "89bf5b9a2fea",
+ "dots_emitted": 40199,
+ "dots_outside_footprint_dropped": 0,
+ "sha256": "b64e198f99108b7678c2d0a78864d9677299206cf5b642388c831435c8272f33",
+ "bytes": 881376,
+ "built_utc": "2026-10-04T03:35:56+00:00",
+ "portal_rule": "finite [0,1] whole array; zero outside footprint (IR-PORTAL-01)"
+}

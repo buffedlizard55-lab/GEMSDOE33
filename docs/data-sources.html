@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEMSDOE33 · Verified data sources</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="row">
+  <h1>GEMS<span>DOE33</span> · Data sources</h1>
+  <nav>
+    <a href="index.html">Download</a>
+    <a href="executive-summary.html">Executive summary</a>
+    <a href="how-to-submit.html">How to submit</a>
+    <a href="hypotheses.html">Hypotheses</a>
+    <a href="results.html">Results</a>
+    <a class="on" href="data-sources.html">Data sources</a>
+  </nav>
+</div></header>
+<main>
+
+<p>Verification levels: <b>[B]</b> bytes downloaded and hash/size-checked this session · <b>[P]</b> page fetched
+and read this session · <b>[S]</b> located via search record (title + snippet + DOI) this session · <b>[C]</b> cited
+by an already-verified source. Full audit trail: <code>knowledge/05_data_sources_verified.md</code>.</p>
+
+<h2>Competition core (official)</h2>
+<div class="card">
+<table>
+<tr><th>Source</th><th>Link (manual review)</th><th>Level</th></tr>
+<tr><td>Problem description — task, datasets, metric (DTI α=0.2 β=0.8, 300 m kernel), submission format</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">drivendata.org …/page/967/</a></td><td>[P]</td></tr>
+<tr><td>About page — sponsor, GeoDAWN context, literature (Mattéo 2021, Hermant 2025)</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/">drivendata.org …/page/968/</a></td><td>[P]</td></tr>
+<tr><td>Leaderboard</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">drivendata.org …/leaderboard/</a></td><td>[C]</td></tr>
+<tr><td>Official rules PDF</td><td><a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">docs.nlr.gov/docs/fy26osti/96647.pdf</a></td><td>[C]</td></tr>
+<tr><td>Reference solution</td><td><a href="https://github.com/drivendataorg/gems-prize-reference-solution">github.com/drivendataorg/gems-prize-reference-solution</a></td><td>[C]</td></tr>
+<tr><td>Data tab (login-walled)</td><td><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">drivendata.org …/data/</a></td><td>[C]</td></tr>
+</table>
+</div>
+
+<h2>Competition data mirrors used (hash-pinned, owner-supplied — not organizer-authenticated)</h2>
+<div class="card">
+<table>
+<tr><th>Content</th><th>Mirror</th><th>Level</th></tr>
+<tr><td>training_features.tif (19 bands, 419 MB)</td><td>buffedlizard55-lab/GEMSDOE @ c0c06ac · parts 000–004</td><td>[B] sha256 4371c82e… matched</td></tr>
+<tr><td>labels.tif (existing faults)</td><td>buffedlizard55-lab/GEMSDOE24 @ 07345ea</td><td>[B] sha256 7ba308cc… matched</td></tr>
+<tr><td>sample_submission.tif (grid template)</td><td>buffedlizard55-lab/GEMSDOE24 @ 07345ea</td><td>[B] sha256 2176d08e… matched</td></tr>
+<tr><td>H19-5 ridge · dotted d=2.8 · h27-4 (0.2708)</td><td>GEMSDOE24 / GEMSDOE28 downloads</td><td>[B] sizes + blob shas verified</td></tr>
+<tr><td>SGMC faults 100 m raster (P2 proxy truth)</td><td>GEMSDOE24 data/external</td><td>[B]</td></tr>
+<tr><td>INGENIOUS Quaternary fault shapefile (NAD83)</td><td>codeload jklinck/geothermal_research</td><td>[B] CRS validated vs catalogue</td></tr>
+</table>
+</div>
+
+<h2>Official external sources for hypotheses</h2>
+<div class="card">
+<table>
+<tr><th>Source</th><th>Link (manual review)</th><th>Level</th><th>Used by</th></tr>
+<tr><td>GeoDAWN release — Glen & Earney 2024, DOI 10.5066/P93LGLVQ</td><td><a href="https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7">sciencebase.gov …/657e1d85…</a> · <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">usgs.gov landing</a></td><td>[S]</td><td>H33-D</td></tr>
+<tr><td>USGS Qfaults (DOI 10.5066/P9BCVRCK)</td><td><a href="https://www.sciencebase.gov/catalog/item/589097b1e4b072a7ac0cae23">sciencebase.gov …/589097b1…</a></td><td>[C]</td><td>catalogue scope</td></tr>
+<tr><td>INGENIOUS compilation GDR #1391 (CC BY 4.0)</td><td><a href="https://gdr.openei.org/submissions/1391">gdr.openei.org/submissions/1391</a></td><td>[C]</td><td>wells/springs/probes</td></tr>
+<tr><td>Dixie Valley EGS baseline — GIS_Faults.zip (GDR #207, DOI 10.15121/1148837)</td><td><a href="https://gdr.openei.org/submissions/207">gdr.openei.org/submissions/207</a></td><td>[S]</td><td>H33-A analog</td></tr>
+<tr><td>Desert Peak–Brady’s map NBMG OF 03-27 + step-over controls (OSTI 1110517)</td><td><a href="https://www.osti.gov/servlets/purl/1110517">osti.gov/servlets/purl/1110517</a></td><td>[S]</td><td>H33-A · C2 basis</td></tr>
+<tr><td>Brady/Desert Peak labelled grids (GDR #1288, DOI 10.15121/1773692)</td><td><a href="https://gdr.openei.org/submissions/1288">gdr.openei.org/submissions/1288</a></td><td>[S]</td><td>H33-A labels</td></tr>
+<tr><td>Great Basin heat flow — DeAngelo et al. 2022, DOI 10.5066/P9BZPVUC</td><td><a href="https://doi.org/10.5066/P9BZPVUC">doi.org/10.5066/P9BZPVUC</a></td><td>[C]</td><td>H33-B</td></tr>
+<tr><td>Great Basin MT conductance (DOI 10.5066/P9TWT2LU)</td><td><a href="https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b">sciencebase.gov …/62979746…</a></td><td>[C]</td><td>context</td></tr>
+<tr><td>USGS 3DEP 1 m DEM catalog</td><td><a href="https://data.usgs.gov/datacatalog/data/USGS:77ae0551-c61e-4979-aedd-d797abdcde0e">data.usgs.gov …USGS:77ae0551…</a></td><td>[C]</td><td>future geomorphics</td></tr>
+<tr><td>Domain adaptation — Ben-David et al. 2010, Machine Learning 79:151–175, DOI 10.1007/s10994-009-5152-4</td><td><a href="https://doi.org/10.1007/s10994-009-5152-4">doi.org/10.1007/s10994-009-5152-4</a></td><td>[S]</td><td>H33-A theory</td></tr>
+<tr><td>DL fault mapping — Mattéo et al. 2021, DOI 10.1029/2020JB021269</td><td><a href="https://doi.org/10.1029/2020JB021269">doi.org/10.1029/2020JB021269</a></td><td>[P]</td><td>detector prior</td></tr>
+<tr><td>Quaternary fault DL — Hermant et al. 2025 (Stanford SGW)</td><td><a href="https://pangea.stanford.edu/ERE/db/GeoConf/papers/SGW/2025/Hermant.pdf">pangea.stanford.edu …/Hermant.pdf</a></td><td>[P]</td><td>scarp offsets</td></tr>
+<tr><td>Euler deconvolution — Reid et al. 1990, DOI 10.1190/1.1442774</td><td><a href="https://doi.org/10.1190/1.1442774">doi.org/10.1190/1.1442774</a></td><td>[C]</td><td>SI=0 contacts</td></tr>
+<tr><td>Faults & geothermal structure — Faulds & Hinz 2015 (OSTI 1724082)</td><td><a href="https://www.osti.gov/servlets/purl/1724082">osti.gov/servlets/purl/1724082</a></td><td>[C]</td><td>blind/step-over priors</td></tr>
+<tr><td>Dixie Valley research overview (GBCGE)</td><td><a href="https://gbcge.org/locations/dixie-valley/">gbcge.org/locations/dixie-valley/</a></td><td>[S]</td><td>H33-A context</td></tr>
+</table>
+</div>
+
+<h2>Campaign sites studied</h2>
+<div class="card">
+<table>
+<tr><th>Site</th><th>Key extraction</th></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE28/">GEMSDOE28</a></td><td>0.2708 lineage · H27-4/H36-1/H37-1/H38-1 · LOSFO protocol · live inversion</td></tr>
+<tr><td><a href="https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html">GEMSDOE29</a></td><td>IR-PORTAL-01 whole-array [0,1] rule · SGMC off-catalogue proxy · worming/H41 fails</td></tr>
+</table>
+</div>
+
+</main>
+<footer>GEMSDOE33 · no-hallucination policy: every link carries its verification level</footer>
+</body></html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEMSDOE33 · How to submit</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="row">
+  <h1>GEMS<span>DOE33</span> · How to submit</h1>
+  <nav>
+    <a href="index.html">Download</a>
+    <a href="executive-summary.html">Executive summary</a>
+    <a class="on" href="how-to-submit.html">How to submit</a>
+    <a href="hypotheses.html">Hypotheses</a>
+    <a href="results.html">Results</a>
+    <a href="data-sources.html">Data sources</a>
+  </nav>
+</div></header>
+<main>
+
+<h2>Exact submission steps (official rules, verified)</h2>
+<div class="card">
+<ol>
+  <li><b>Download the TIF</b> from the <a href="index.html">download page</a> (single-band GeoTIFF; a .zip
+  containing the single GeoTIFF is also accepted by the portal).</li>
+  <li>Open the competition submission form:
+  <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">drivendata.org → GEMS Prize Challenge → Submit</a>
+  (requires your DrivenData login — this repo never logs in for you).</li>
+  <li><b>File to submit:</b> choose the downloaded <code>.tif</code>.</li>
+  <li><b>Note (optional):</b> paste the short comment shipped with the file. For the current candidate:<br>
+  <code>33GEMSDOE C2 stepover relay | P1 dDTI +0.00043 3/4 folds, P2 +0.00028 vs scored 0.2708 base | id eb6bcf02361f | proxy-gated, unscored</code></li>
+  <li>Submit. The portal validates: single-band GeoTIFF, CRS/shape/geotransform matching the sample
+  submission, and predicted values in [0, 1] across the <b>whole array</b>.</li>
+</ol>
+</div>
+
+<h2>Why earlier files were rejected — and why ours pass</h2>
+<div class="card">
+<p class="note">Owner-reported portal error: <i>“Predicted values must be in range [0, 1]”</i>
+(irregularity IR-PORTAL-01). Cause: the upload form validates the entire array and rejects NaN —
+files that stored NaN outside the survey footprint failed even though every in-footprint value was valid.</p>
+<p>Every GEMSDOE33 artifact is therefore written <b>finite everywhere</b>: values in [0, 1], zero
+(never NaN) outside the footprint, float32, EPSG:32611, 100 m, identical shape/geotransform/bounds to
+the official sample submission. Each file ships with its format audit JSON
+(<code>evidence/format_check_*.json</code>) proving these checks passed byte-for-byte.</p>
+</div>
+
+<h2>Submission requirements (from the official problem page)</h2>
+<div class="card">
+<table>
+<tr><th>Requirement</th><th>Official statement</th><th>Our files</th></tr>
+<tr><td>CRS</td><td>same as training data — UTM zone 11N, EPSG:32611</td><td>✅ EPSG:32611</td></tr>
+<tr><td>Resolution</td><td>100 m</td><td>✅ (100, −100)</td></tr>
+<tr><td>Bounds</td><td>same as training data; outside bounds null/NaN</td><td>✅ bounds identical; outside footprint written as 0.0 to survive the whole-array [0,1] check</td></tr>
+<tr><td>Bands / dtype</td><td>single layer, float32</td><td>✅ 1 band float32</td></tr>
+<tr><td>Value range</td><td>probabilities/confidence in [0, 1]</td><td>✅ min 0.0, max 1.0, 0 NaN</td></tr>
+</table>
+<p class="mut">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page, “Submission format”</a>
+(fetched and read 2026-10-04). Local audit: <code>scripts/validate_submission.py</code>.</p>
+</div>
+
+<h2>Slot policy (read before using a weekly slot)</h2>
+<div class="card">
+<ul>
+  <li>Submissions are limited per week; never spend a slot on a file that has not beaten the current
+  holdout best on the frozen P1/P2 gate (<code>evidence/holdout33.json</code>).</li>
+  <li>Record the returned live score in <code>registry/score_ledger.json</code> (owner-reported) so the
+  24-submission inversion stays calibrated.</li>
+  <li>Before the deadline, select the single submission that will score in BOTH rounds — the Final Prize
+  Round re-scores the same file against the expert-expanded label set, so favour geologically defensible,
+  independently corroborated traces.</li>
+</ul>
+</div>
+
+</main>
+<footer>GEMSDOE33 · manual upload only · this site never contacts DrivenData</footer>
+</body></html>
