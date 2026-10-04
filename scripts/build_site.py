@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Build the static, evidence-led GitHub Pages site.
 
-The public pages are generated from the download manifest, research registries and evidence files.
-They intentionally make the D2.8 *reference* prominent while refusing to promote withdrawn
-first-pass holdout, score-inversion or domain-transfer claims.
+The public pages put the unique H33-F analog-transfer GeoTIFF at the top of the
+overview, with an explicit holdout-fail / not-slot-approved banner. Historical
+D2.8 remains a secondary reference. Withdrawn first-pass claims stay withdrawn.
 """
 from __future__ import annotations
 
@@ -91,13 +91,12 @@ def page(title: str, body: str, active: str) -> str:
     built = time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime())
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Auditable DOE GEMS fault-discovery research; the recommended download is a format-checked D2.8 reference, not a new model.">
+<meta name="description" content="Auditable DOE GEMS fault-discovery research. Unique H33-F analog-transfer GeoTIFF is format-checked and not slot-approved.">
 <title>{esc(title)}</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
 <p>DrivenData #306 · evidence-led research · as of 2026-10-04</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
 <main class="wrap">{body}</main>
-<footer><div class="wrap">Generated {built} by <code>scripts/build_site.py</code>. The featured TIFF is a
-D2.8 reference emission, not a new model. No DrivenData upload was made from this workspace. Owner
+<footer><div class="wrap">Generated {built} by <code>scripts/build_site.py</code>. The featured TIFF is the unique H33-F analog-field research emission; it is not slot-approved. No DrivenData upload was made from this workspace. Owner
 mirror, measured, model-derived and official evidence are identified separately in the records.</div></footer>
 </body></html>"""
 
@@ -129,8 +128,7 @@ def download_card(man: dict, artifact: dict, recommended: bool) -> str:
 <h3>{tag} <code>{esc(filename)}</code></h3>
 {warning}
 <table><tbody>
-<tr><th>File</th><td><a href="downloads/{esc(filename)}">{esc(filename)}</a> ·
-<a href="downloads/{esc(artifact['zip'])}">single-member ZIP</a></td></tr>
+<tr><th>File</th><td><a class="btn" href="downloads/{esc(filename)}">Download GeoTIFF</a> <a class="btn alt" href="downloads/{esc(artifact['zip'])}">Download ZIP</a><br><code>{esc(filename)}</code></td></tr>
 <tr><th>Unique submission name</th><td><code>{esc(name)}</code></td></tr>
 <tr><th>Outside footprint</th><td>{esc(artifact.get('outside'))}</td></tr>
 <tr><th>Size / emitted pixels</th><td>{int(artifact.get('bytes', 0)):,} bytes ·
@@ -150,10 +148,17 @@ def package_box() -> str:
         return '<div class="panel bad">No recommended artifact is recorded in the manifest.</div>'
     primary = download_card(man, recommended, True)
     alt = download_card(man, alternate, False) if alternate else ""
-    return f"""<div class="hero-download" id="download"><h2>⬇ Download the format-checked reference TIFF</h2>
-<p><b>D2.8 reference only.</b> This is not a new model and is not demonstrated to beat the official
-leaderboard. Its reported 0.2600 association is owner-reported; exact score-to-file identity is not
-confirmed. The top card is the recommended, NaN-outside file.</p>{primary}{alt}</div>"""
+    hold = read_json(ROOT / "evidence" / "holdout_analog.json")
+    p1 = hold.get("p1_mean_delta_dti")
+    p1_pos = hold.get("p1_positive_folds")
+    p1_txt = f"{p1:+.6f}" if isinstance(p1, (int, float)) else "n/a"
+    return f"""<div class="hero-download" id="download"><h2>⬇ Download the unique format-checked GeoTIFF</h2>
+<p><b>Unique H33-F analog-field transfer — research candidate.</b> This file is
+<b>not</b> a copy of the historical D2.8 emission. Predicted values on the footprint
+are in <code>[0, 1]</code>. Local format checks passed. The spatially blocked proxy
+holdout <b>failed</b> (P1 mean ΔDTI {esc(p1_txt)}, {esc(p1_pos)}/4 folds vs rebuilt C0).
+<b>NOT SLOT-APPROVED.</b> Do not spend a weekly submission slot on this file. No live
+score is claimed.</p>{primary}{alt}</div>"""
 
 
 def build_index() -> str:
@@ -190,10 +195,12 @@ an independent preregistered confirmation. See <a href="irregularities.html">IR-
 <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout33.json">the evidence</a>.</li>
 <li>First-pass holdout, reconstruction, pruning and domain-transfer promotion claims were withdrawn after
 review; archived results are preserved for audit but are not promotion evidence.</li><li>No weekly submission
-slot is approved or spent. Only the D2.8 reference is packaged.</li></ul>
+slot is approved or spent. The featured download is the unique H33-F analog-transfer
+GeoTIFF (holdout failed). The historical D2.8 owner-mirror remains in
+<code>docs/downloads/</code> as a non-featured reference.</li></ul>
 <p>For the exact upload procedure, open the <a href="executive-summary.html">executive summary</a>.
 For the geological shortlist and blocked source checks, see <a href="research.html">research</a>.</p>"""
-    return page("GEMSDOE33 · overview and reference TIFF", body, "index.html")
+    return page("GEMSDOE33 · unique analog-transfer TIFF", body, "index.html")
 
 
 def build_exec() -> str:
@@ -208,9 +215,9 @@ def build_exec() -> str:
 <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem
 page</a>, the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">current rules page</a>,
 and the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">user-provided rules PDF</a> before submitting.
-The TIFF below is an owner-mirror D2.8 reference,
-not a newly validated model. Its reported 0.2600 score has no organizer receipt linking it to these
-exact file bytes.</p>
+The TIFF below is the unique H33-F analog-field research emission.
+It is format-checked with in-footprint values in [0,1]. Its spatially blocked proxy holdout failed;
+it is not slot-approved and has no organizer score.</p>
 {package_box()}
 <ol><li><b>Download the recommended NaN-outside TIFF</b> from the top card:
 <code>{esc(fname)}</code>. Optionally verify its SHA-256 against the card. It is a single-band
@@ -233,9 +240,9 @@ file follows that wording and passed all {len(art.get('validation', {}).get('che
 local byte/grid/value checks. The <code>-zeros.tif</code> alternative has 0.0 outside the footprint;
 it is offered only as a troubleshooting option and is not as close to the literal null/NaN wording.
 Neither local validation nor the ZIP container guarantees portal acceptance.</p>
-<h3>Rebuild the local reference package</h3>
+<h3>Rebuild the unique local package</h3>
 <pre>python scripts/restore_data.py --group all
-python scripts/build_submission.py
+python scripts/run_analog_campaign.py
 python scripts/build_site.py
 python -m pytest -q</pre>
 <p class="small">Inputs are SHA-pinned owner mirrors, not organizer-authenticated downloads. See
@@ -279,9 +286,12 @@ current best.</p></div>
 <th>Expected upside / cost</th><th>Official source and availability check</th></tr></thead>
 <tbody>{htable}</tbody></table></div>
 <h2>Ben-David domain adaptation — fail-closed</h2>
-<div class="panel bad"><b>{status}</b><p>No source/target divergence was estimated and no transfer is licensed or refused.
-The first-pass well/spring-density split, random pixel discriminator and its conclusion were withdrawn.
-The official BRIDGE GIS archive payload could not be staged in this sandbox.</p>
+<div class="panel warn"><b>{status}</b><p>Named Dixie Valley / Brady / Desert Peak source masks were built from
+GDR 1391 well/spring names plus official plant coordinates. An exploratory 20 km-block domain
+discriminator was fit on shared GeoDAWN+LiDAR layers. A unique off-catalogue emission was packaged.
+The Ben-David target-error bound is <b>not</b> licensed: lambda is unknown because analog labels are
+the same public catalogue, and the discriminator class is not shown to equal HΔH. GDR 1682/207 GIS
+payloads could not be staged (TLS fail).</p>
 <p>Ben-David et al. (2010), Theorem 2 requires source error plus one half of an empirical
 <code>HΔH</code> divergence, a defensible finite-sample/class-complexity term, and the joint-label
 error <code>lambda</code>. A generic two-sample AUC is not by itself that bound.

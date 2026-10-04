@@ -42,16 +42,13 @@ class SiteLinkTests(unittest.TestCase):
         self.assertIn("url=docs/index.html", html)
         self.assertTrue((DOCS / "index.html").is_file())
 
-    def test_main_download_artifacts_exist_and_c2_hash_matches(self):
-        baseline = DOCS / "downloads" / "gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif"
-        candidate = DOCS / "downloads" / "gems33-c2-stepover-relay-20261004-01f660dd8656.tif"
-        for path in (baseline, candidate):
-            self.assertTrue(path.is_file(), str(path))
-        digest = hashlib.sha256(candidate.read_bytes()).hexdigest()
-        self.assertEqual(digest, "7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7")
-        stale = DOCS / "downloads" / "gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif"
-        self.assertFalse(stale.exists(), "superseded nondeterministic C2 must not be distributed")
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_unique_download_exists_and_is_not_the_d28_reference(self):
+        unique = DOCS / "downloads" / "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif"
+        d28 = DOCS / "downloads" / "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif"
+        self.assertTrue(unique.is_file(), str(unique))
+        digest = hashlib.sha256(unique.read_bytes()).hexdigest()
+        self.assertEqual(digest, "59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d")
+        if d28.is_file():
+            self.assertNotEqual(digest, hashlib.sha256(d28.read_bytes()).hexdigest())
+        zip_path = DOCS / "downloads" / "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.zip"
+        self.assertTrue(zip_path.is_file())

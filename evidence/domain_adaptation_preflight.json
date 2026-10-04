@@ -1,34 +1,97 @@
 {
-  "schema": 2,
-  "generated_utc": "2026-10-04T15:42:22+00:00",
-  "status": "BLOCKED_NOT_ESTIMATED",
-  "source_candidate": "BRIDGE GDR submission 1682: Dixie Valley or Gabbs Valley LiDAR fault picks",
-  "target_candidate": "DOE GEMS competition raster footprint; target-label completeness is not established",
-  "reference": {
-    "citation": "Ben-David, Blitzer, Crammer, Kulesza, Pereira & Vaughan (2010), A theory of learning from different domains, Machine Learning 79, 151-175.",
-    "url": "https://link.springer.com/article/10.1007/s10994-009-5152-4",
-    "theorem_2_form": "epsilon_T(h) <= epsilon_S(h) + 0.5*d_hat_HDeltaH(U_S,U_T) + finite-sample complexity + lambda",
-    "required_terms": [
-      "source error for the declared target hypothesis class",
-      "empirical H\u0394H divergence estimated under an explicit shared class and sampling design",
-      "finite-sample term with defensible effective sample size and class complexity",
-      "lambda, the joint error of the best shared hypothesis"
-    ]
-  },
-  "availability": {
-    "official_gdr_page": "https://gdr.openei.org/submissions/1682",
-    "official_page_and_license_checked": true,
-    "archive_payload_staged_or_inspected": false,
-    "direct_download_result": "TLS/HTTP 000 in this sandbox; no source vectors were used"
-  },
-  "blocking_gates": [
-    "Obtain and inspect the official BRIDGE vector archive; verify coordinate reference system, field IDs, confidence/verification attributes, and license conditions.",
-    "Define source and target as named, non-overlapping field polygons before examining target benchmark outcomes; do not substitute record-density quantiles.",
-    "Declare identical target hypothesis class, label policy, feature schema, spatial resolution, mask, and physically interpretable covariate transformations in both fields.",
-    "Use field/system-level spatial blocks for train, domain-discriminator validation, and evaluation; prevent neighboring pixels or duplicate site records crossing partitions.",
-    "Specify how source risk, the H\u0394H class/divergence, effective independent sample size and confidence intervals will be estimated.",
-    "Estimate or conservatively bound lambda with an independent shared-label audit; do not set lambda to zero by assumption.",
-    "Obtain a target-relevant, spatially blocked holdout and compare transferred candidates at matched emission budget before any submission-slot decision."
+  "schema": 3,
+  "generated_utc": "2026-10-04T16:47:54+00:00",
+  "status": "EXPLORATORY_NOT_LICENSED",
+  "source_domains": [
+    "Dixie Valley",
+    "Brady Hot Springs",
+    "Desert Peak"
   ],
-  "decision": "No transfer is implemented, licensed, rejected, or slot-approved by this report."
+  "target_domain": "GeoDAWN competition footprint minus analog masks",
+  "inventory": {
+    "union_cells": 527997,
+    "union_catalogue": 7848,
+    "fields": [
+      {
+        "id": "dixie_valley",
+        "n_named_well_cells": 69,
+        "centroid_row": 840.3171780470075,
+        "centroid_col": 1836.2615810184197,
+        "centroid_in_footprint": false,
+        "field_cells": 355714,
+        "catalogue_in_field": 5258,
+        "official_source": "https://openei.org/wiki/Dixie_Valley_Geothermal_Area",
+        "official_note": "OpenEI Dixie Valley Geothermal Area; 39\u00b058'3.59\" N, 117\u00b051'18.27\" W"
+      },
+      {
+        "id": "brady",
+        "n_named_well_cells": 136,
+        "centroid_row": 1025.3916644725105,
+        "centroid_col": 842.6446331998172,
+        "centroid_in_footprint": true,
+        "field_cells": 172283,
+        "catalogue_in_field": 2590,
+        "official_source": "https://mrdata.usgs.gov/mrds/show-mrds.php?dep_id=10221999",
+        "official_note": "USGS MRDS Brady Hot Springs dep_id 10221999; 39.7866 N, 119.01319 W"
+      },
+      {
+        "id": "desert_peak",
+        "n_named_well_cells": 28,
+        "centroid_row": 1062.86533932764,
+        "centroid_col": 892.7258981736691,
+        "centroid_in_footprint": true,
+        "field_cells": 100324,
+        "catalogue_in_field": 1437,
+        "official_source": "https://openei.org/wiki/Desert_Peak_II_Geothermal_Facility",
+        "official_note": "OpenEI Desert Peak II Geothermal Facility; 39.753855 N, 118.953781 W"
+      }
+    ],
+    "well_buffer_px": 120,
+    "centroid_buffer_px": 150,
+    "label_policy": "public USGS/INGENIOUS catalogue inside named analog fields; not independent BRIDGE GIS"
+  },
+  "features": [
+    "tmi_hg",
+    "tmi_vg",
+    "iso_grav_anom_hg",
+    "iso_grav_anom_slope",
+    "det_elev_slope",
+    "det_elev",
+    "depth_to_base_surf",
+    "geod_dilaterate",
+    "geod_shearrate",
+    "geod_2ndinv",
+    "cond_surf",
+    "mag_anom",
+    "rtp",
+    "lidar_ex_max",
+    "lidar_step_max",
+    "lidar_lapneg_max",
+    "lidar_downface_max",
+    "lidar_upface_max",
+    "lidar_coh100"
+  ],
+  "domain_discriminator": {
+    "status": "EXPLORATORY_NOT_A_BOUND",
+    "n_per_domain": 40000,
+    "spatial_block_px": 200,
+    "held_out_block_auc": 0.9165040932109172,
+    "held_out_block_error": 0.17190278601066983,
+    "interpretation": "Classifier two-sample AUC on 20 km even/odd blocks. This is not Ben-David d_H\u0394H, does not estimate lambda, and does not license transfer."
+  },
+  "source_in_sample_auc": 0.9863276521232678,
+  "n_train_pos": 7848,
+  "n_train_neg": 7848,
+  "ben_david": {
+    "paper": "https://link.springer.com/article/10.1007/s10994-009-5152-4",
+    "bound_computed": false,
+    "reason": "lambda (joint-label error) is unknown because analog labels are the same public catalogue, not independent field-verified extra traces; the discriminator class is not shown to equal the target H\u0394H class."
+  },
+  "external_gis": {
+    "gdr_1682": "https://gdr.openei.org/submissions/1682",
+    "gdr_207": "https://gdr.openei.org/submissions/207",
+    "staged": false,
+    "direct_download": "curl TLS SSL_ERROR_SYSCALL / HTTP 000 in this sandbox"
+  },
+  "decision": "Named analog fields were defined and a unique off-catalogue emission was built. Transfer is not licensed as a Ben-David bound. Slot follows holdout_analog.json."
 }

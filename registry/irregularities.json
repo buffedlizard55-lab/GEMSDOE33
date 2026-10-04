@@ -1,9 +1,17 @@
 {
   "schema": 2,
-  "session": "GEMSDOE33 / arena/01a104ca-gemsdoe33",
+  "session": "GEMSDOE33 / arena/01a107c2-gemsdoe33",
   "date": "2026-10-04",
   "convention": "Flagged, not silently corrected. Every status says what was measured, what was not, and what the consequence is.",
   "irregularities": [
+    {
+      "id": "IR-33-F-01",
+      "severity": "high",
+      "status": "measured; not slot-cleared",
+      "finding": "H33-F named analog-field transfer (Dixie/Brady/Desert Peak well-cell masks + GeoDAWN/LiDAR) produced a unique 44,090-dot GeoTIFF. Exploratory 20 km-block domain-discriminator AUC was 0.917. Fold-safe P1 mean \u0394DTI vs rebuilt C0 was \u22120.093072 (0/4 folds). P2 SGMC \u0394DTI vs C0 was \u22120.016163; vs matched-N random +0.001234. Ben-David bound not licensed (lambda unknown; analog labels are the same public catalogue). GDR 1682/207 GIS archives were not staged (TLS fail).",
+      "evidence": "evidence/holdout_analog.json; evidence/domain_adaptation_preflight.json; docs/downloads/manifest.json",
+      "consequence": "Unique TIFF is packaged for format-checked download only. Do not spend a weekly submission slot. Do not describe analog transfer as licensed or as a live-score improvement."
+    },
     {
       "id": "IR-33-SCORE-01",
       "severity": "high",
@@ -18,7 +26,7 @@
       "status": "corrected",
       "finding": "The brief attributes 0.2708 to GEMSDOE28's h27-4-r1-solo-d2-8 file. GEMSDOE28's own public page says 'NO GEMSDOE28 SCORE' and describes its artifacts as unscored / research-only. No organizer receipt or verified account/file record links 0.2708 to that TIFF. Raw leaderboard rows are intentionally not retained after review of the Terms of Use.",
       "evidence": "https://buffedlizard55-lab.github.io/GEMSDOE28/ ; registry/live_scores.json; registry/leaderboard_review.json; https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/.",
-      "consequence": "No explanation of a 0.2708 GEMSDOE28 score is supported. The project's downloadable file is an owner-mirror D2.8 reference; its 0.2600 score/file pairing remains unconfirmed."
+      "consequence": "No explanation of a 0.2708 GEMSDOE28 score is supported. The featured download is unique H33-F analog-transfer research TIFF; it is not slot-approved. Historical D2.8 remains in docs/downloads/ with unconfirmed 0.2600 pairing."
     },
     {
       "id": "IR-33-TERMS-01",
@@ -32,7 +40,7 @@
       "id": "IR-33-C2-01",
       "severity": "critical",
       "status": "conditional diagnostic negative; not slot-cleared",
-      "finding": "Upstream C2 stepover-relay P1 +0.000405 (3/4 folds positive) is withdrawn because the earlier candidate/base construction and Qfaults vectors saw full-catalogue/held-out source geometry. The corrected source-exclusion diagnostic has mean P1 ΔDTI −0.000722 (0/4 positive); across folds 2,643 added dots yielded zero incremental TPw and 2,643 incremental FPw. P2 SGMC proxy ΔDTI is +0.000283, but this cannot override P1. The corrected run remains conditional: fixed H19-5 was not re-derived per fold, this was not an independent preregistered confirmation, and the community Qfaults mirror is not authenticated to the current official archive.",
+      "finding": "Upstream C2 stepover-relay P1 +0.000405 (3/4 folds positive) is withdrawn because the earlier candidate/base construction and Qfaults vectors saw full-catalogue/held-out source geometry. The corrected source-exclusion diagnostic has mean P1 \u0394DTI \u22120.000722 (0/4 positive); across folds 2,643 added dots yielded zero incremental TPw and 2,643 incremental FPw. P2 SGMC proxy \u0394DTI is +0.000283, but this cannot override P1. The corrected run remains conditional: fixed H19-5 was not re-derived per fold, this was not an independent preregistered confirmation, and the community Qfaults mirror is not authenticated to the current official archive.",
       "evidence": "evidence/holdout33.json; evidence/holdout33_legacy_catalogue_only.json; evidence/build_c2_01f660dd8656.json; archive/legacy_candidates/gems33-c2-stepover-relay-20261004-01f660dd8656.tif.",
       "consequence": "C2 remains a research artifact only and is not linked as a download recommendation. No P1/P2 result is a DrivenData score or private-label validation; the corrected diagnostic does not clear a submission slot."
     },
@@ -88,7 +96,7 @@
       "id": "IR-33-DA-01",
       "severity": "high",
       "status": "first-pass domain result withdrawn; analog source pending",
-      "finding": "The first-pass 'source/target' regions were upper/lower quantiles of GDR well/spring record density, not Dixie Valley, Desert Peak or Brady field-specific domains. The 27,092 CSV rows contain only 12,570 unique 100-m cells, so row counts include repeated tables for one site. The discriminator used a random row split on spatially correlated raster features; its HGB class was not shown to equal HΔH for the fault model; no finite-sample VC term or lambda (joint-label error) was supplied.",
+      "finding": "The first-pass 'source/target' regions were upper/lower quantiles of GDR well/spring record density, not Dixie Valley, Desert Peak or Brady field-specific domains. The 27,092 CSV rows contain only 12,570 unique 100-m cells, so row counts include repeated tables for one site. The discriminator used a random row split on spatially correlated raster features; its HGB class was not shown to equal H\u0394H for the fault model; no finite-sample VC term or lambda (joint-label error) was supplied.",
       "evidence": "archive/withdrawn_first_pass/evidence/domain_adaptation.json; archive/withdrawn_first_pass/evidence/domain_log.txt; current fail-closed replacement scripts/run_domain_adaptation.py; Springer paper https://link.springer.com/article/10.1007/s10994-009-5152-4.",
       "consequence": "The archived AUC=1.0 is not a valid Ben-David divergence estimate and neither licenses nor refutes the requested analog transfer. A field-specific source label set and spatially blocked domain test are still required."
     },
