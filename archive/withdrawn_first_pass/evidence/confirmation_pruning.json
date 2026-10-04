@@ -1,0 +1,842 @@
+{
+  "generated_utc": "2026-10-04T14:47:09Z",
+  "preregistration": "knowledge/02_preregistration_confirmation.md",
+  "trim": 0.1,
+  "keep_n": 39681,
+  "seeds": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "radii": [
+    3,
+    4
+  ],
+  "n_cells": 16,
+  "arms": {
+    "base_d280_44090": 44090,
+    "prune_det_inc": 39681,
+    "prune_det_only": 39681,
+    "prune_inc_only": 39681,
+    "prune_random": 39681
+  },
+  "by_radius": {
+    "radius_3": {
+      "base_d280_44090": {
+        "mean_dti": 0.2241678332332804,
+        "std_dti": 0.04946684974087436,
+        "n_cells": 16,
+        "mean_emitted": 10832.375,
+        "mean_TPw": 1033.8470045882925
+      },
+      "prune_det_inc": {
+        "mean_dti": 0.22927322165548658,
+        "std_dti": 0.05062760661408834,
+        "n_cells": 16,
+        "mean_emitted": 9797.6875,
+        "mean_TPw": 1010.5927713751437,
+        "delta_vs_base": 0.005105388422206203,
+        "std_delta": 0.004443974460021693,
+        "sem_delta": 0.0011109936150054233,
+        "cells_ahead": 15,
+        "per_cell_delta": [
+          {
+            "seed": 0,
+            "fold": 0,
+            "delta": 0.001123
+          },
+          {
+            "seed": 0,
+            "fold": 1,
+            "delta": 0.010345
+          },
+          {
+            "seed": 0,
+            "fold": 2,
+            "delta": 0.008355
+          },
+          {
+            "seed": 0,
+            "fold": 3,
+            "delta": -0.000366
+          },
+          {
+            "seed": 1,
+            "fold": 0,
+            "delta": 0.003139
+          },
+          {
+            "seed": 1,
+            "fold": 1,
+            "delta": 0.010095
+          },
+          {
+            "seed": 1,
+            "fold": 2,
+            "delta": 0.008425
+          },
+          {
+            "seed": 1,
+            "fold": 3,
+            "delta": 0.000237
+          },
+          {
+            "seed": 2,
+            "fold": 0,
+            "delta": 0.001363
+          },
+          {
+            "seed": 2,
+            "fold": 1,
+            "delta": 0.007026
+          },
+          {
+            "seed": 2,
+            "fold": 2,
+            "delta": 0.008629
+          },
+          {
+            "seed": 2,
+            "fold": 3,
+            "delta": 0.000364
+          },
+          {
+            "seed": 3,
+            "fold": 0,
+            "delta": 0.001817
+          },
+          {
+            "seed": 3,
+            "fold": 1,
+            "delta": 0.011862
+          },
+          {
+            "seed": 3,
+            "fold": 2,
+            "delta": 0.009077
+          },
+          {
+            "seed": 3,
+            "fold": 3,
+            "delta": 0.000195
+          }
+        ]
+      },
+      "prune_det_only": {
+        "mean_dti": 0.22511902301534625,
+        "std_dti": 0.050571359999180186,
+        "n_cells": 16,
+        "mean_emitted": 9719.625,
+        "mean_TPw": 983.8003348777831,
+        "delta_vs_base": 0.0009511897820658529,
+        "std_delta": 0.003130745774489443,
+        "sem_delta": 0.0007826864436223607,
+        "cells_ahead": 10,
+        "per_cell_delta": [
+          {
+            "seed": 0,
+            "fold": 0,
+            "delta": -0.002995
+          },
+          {
+            "seed": 0,
+            "fold": 1,
+            "delta": 0.005086
+          },
+          {
+            "seed": 0,
+            "fold": 2,
+            "delta": -0.000881
+          },
+          {
+            "seed": 0,
+            "fold": 3,
+            "delta": -0.000465
+          },
+          {
+            "seed": 1,
+            "fold": 0,
+            "delta": -0.001065
+          },
+          {
+            "seed": 1,
+            "fold": 1,
+            "delta": 0.005643
+          },
+          {
+            "seed": 1,
+            "fold": 2,
+            "delta": 0.001989
+          },
+          {
+            "seed": 1,
+            "fold": 3,
+            "delta": 0.001039
+          },
+          {
+            "seed": 2,
+            "fold": 0,
+            "delta": -0.003809
+          },
+          {
+            "seed": 2,
+            "fold": 1,
+            "delta": 0.00124
+          },
+          {
+            "seed": 2,
+            "fold": 2,
+            "delta": 0.000979
+          },
+          {
+            "seed": 2,
+            "fold": 3,
+            "delta": 0.001505
+          },
+          {
+            "seed": 3,
+            "fold": 0,
+            "delta": -0.002272
+          },
+          {
+            "seed": 3,
+            "fold": 1,
+            "delta": 0.00788
+          },
+          {
+            "seed": 3,
+            "fold": 2,
+            "delta": 0.001009
+          },
+          {
+            "seed": 3,
+            "fold": 3,
+            "delta": 0.000338
+          }
+        ]
+      },
+      "prune_inc_only": {
+        "mean_dti": 0.22750056200364382,
+        "std_dti": 0.04976496572510931,
+        "n_cells": 16,
+        "mean_emitted": 9849.9375,
+        "mean_TPw": 1007.1136959252894,
+        "delta_vs_base": 0.003332728770363419,
+        "std_delta": 0.0029591741643442008,
+        "sem_delta": 0.0007397935410860502,
+        "cells_ahead": 12,
+        "per_cell_delta": [
+          {
+            "seed": 0,
+            "fold": 0,
+            "delta": 0.0036
+          },
+          {
+            "seed": 0,
+            "fold": 1,
+            "delta": 0.003205
+          },
+          {
+            "seed": 0,
+            "fold": 2,
+            "delta": 0.005696
+          },
+          {
+            "seed": 0,
+            "fold": 3,
+            "delta": -0.001615
+          },
+          {
+            "seed": 1,
+            "fold": 0,
+            "delta": 0.003486
+          },
+          {
+            "seed": 1,
+            "fold": 1,
+            "delta": 0.005564
+          },
+          {
+            "seed": 1,
+            "fold": 2,
+            "delta": 0.006031
+          },
+          {
+            "seed": 1,
+            "fold": 3,
+            "delta": -0.000936
+          },
+          {
+            "seed": 2,
+            "fold": 0,
+            "delta": 0.002774
+          },
+          {
+            "seed": 2,
+            "fold": 1,
+            "delta": 0.003049
+          },
+          {
+            "seed": 2,
+            "fold": 2,
+            "delta": 0.0062
+          },
+          {
+            "seed": 2,
+            "fold": 3,
+            "delta": -0.000317
+          },
+          {
+            "seed": 3,
+            "fold": 0,
+            "delta": 0.002903
+          },
+          {
+            "seed": 3,
+            "fold": 1,
+            "delta": 0.006648
+          },
+          {
+            "seed": 3,
+            "fold": 2,
+            "delta": 0.00785
+          },
+          {
+            "seed": 3,
+            "fold": 3,
+            "delta": -0.000813
+          }
+        ]
+      },
+      "prune_random": {
+        "mean_dti": 0.2207197498067371,
+        "std_dti": 0.04974606129498916,
+        "n_cells": 16,
+        "mean_emitted": 9783.125,
+        "mean_TPw": 971.9685610414713,
+        "delta_vs_base": -0.003448083426543312,
+        "std_delta": 0.0017284494502698585,
+        "sem_delta": 0.0004321123625674646,
+        "cells_ahead": 0,
+        "per_cell_delta": [
+          {
+            "seed": 0,
+            "fold": 0,
+            "delta": -0.001874
+          },
+          {
+            "seed": 0,
+            "fold": 1,
+            "delta": -0.006452
+          },
+          {
+            "seed": 0,
+            "fold": 2,
+            "delta": -0.0036
+          },
+          {
+            "seed": 0,
+            "fold": 3,
+            "delta": -0.004987
+          },
+          {
+            "seed": 1,
+            "fold": 0,
+            "delta": -0.002147
+          },
+          {
+            "seed": 1,
+            "fold": 1,
+            "delta": -0.002682
+          },
+          {
+            "seed": 1,
+            "fold": 2,
+            "delta": -0.006735
+          },
+          {
+            "seed": 1,
+            "fold": 3,
+            "delta": -0.00378
+          },
+          {
+            "seed": 2,
+            "fold": 0,
+            "delta": -0.001007
+          },
+          {
+            "seed": 2,
+            "fold": 1,
+            "delta": -0.00254
+          },
+          {
+            "seed": 2,
+            "fold": 2,
+            "delta": -0.003175
+          },
+          {
+            "seed": 2,
+            "fold": 3,
+            "delta": -0.005532
+          },
+          {
+            "seed": 3,
+            "fold": 0,
+            "delta": -0.003719
+          },
+          {
+            "seed": 3,
+            "fold": 1,
+            "delta": -0.003627
+          },
+          {
+            "seed": 3,
+            "fold": 2,
+            "delta": -0.001605
+          },
+          {
+            "seed": 3,
+            "fold": 3,
+            "delta": -0.001708
+          }
+        ]
+      }
+    },
+    "radius_4": {
+      "base_d280_44090": {
+        "mean_dti": 0.29032549765309523,
+        "std_dti": 0.049227038337102014,
+        "n_cells": 16,
+        "mean_emitted": 11162.0,
+        "mean_TPw": 1356.1542205700475
+      },
+      "prune_det_inc": {
+        "mean_dti": 0.29723017414749264,
+        "std_dti": 0.0507424795089202,
+        "n_cells": 16,
+        "mean_emitted": 10122.0625,
+        "mean_TPw": 1328.1388987600185,
+        "delta_vs_base": 0.006904676494397402,
+        "std_delta": 0.006234941295308937,
+        "sem_delta": 0.0015587353238272342,
+        "cells_ahead": 15,
+        "per_cell_delta": [
+          {
+            "seed": 0,
+            "fold": 0,
+            "delta": 0.000987
+          },
+          {
+            "seed": 0,
+            "fold": 1,
+            "delta": 0.013423
+          },
+          {
+            "seed": 0,
+            "fold": 2,
+            "delta": 0.011172
+          },
+          {
+            "seed": 0,
+            "fold": 3,
+            "delta": -8.5e-05
+          },
+          {
+            "seed": 1,
+            "fold": 0,
+            "delta": 0.002703
+          },
+          {
+            "seed": 1,
+            "fold": 1,
+            "delta": 0.014387
+          },
+          {
+            "seed": 1,
+            "fold": 2,
+            "delta": 0.011192
+          },
+          {
+            "seed": 1,
+            "fold": 3,
+            "delta": 0.000568
+          },
+          {
+            "seed": 2,
+            "fold": 0,
+            "delta": 0.002022
+          },
+          {
+            "seed": 2,
+            "fold": 1,
+            "delta": 0.011315
+          },
+          {
+            "seed": 2,
+            "fold": 2,
+            "delta": 0.011874
+          },
+          {
+            "seed": 2,
+            "fold": 3,
+            "delta": 0.000776
+          },
+          {
+            "seed": 3,
+            "fold": 0,
+            "delta": 0.000604
+          },
+          {
+            "seed": 3,
+            "fold": 1,
+            "delta": 0.016034
+          },
+          {
+            "seed": 3,
+            "fold": 2,
+            "delta": 0.012986
+          },
+          {
+            "seed": 3,
+            "fold": 3,
+            "delta": 0.000517
+          }
+        ]
+      },
+      "prune_det_only": {
+        "mean_dti": 0.2916248017128531,
+        "std_dti": 0.05059834871778803,
+        "n_cells": 16,
+        "mean_emitted": 10035.375,
+        "mean_TPw": 1292.5950271854185,
+        "delta_vs_base": 0.0012993040597578873,
+        "std_delta": 0.004412542707261433,
+        "sem_delta": 0.0011031356768153582,
+        "cells_ahead": 11,
+        "per_cell_delta": [
+          {
+            "seed": 0,
+            "fold": 0,
+            "delta": -0.00519
+          },
+          {
+            "seed": 0,
+            "fold": 1,
+            "delta": 0.006625
+          },
+          {
+            "seed": 0,
+            "fold": 2,
+            "delta": -0.000262
+          },
+          {
+            "seed": 0,
+            "fold": 3,
+            "delta": 0.000249
+          },
+          {
+            "seed": 1,
+            "fold": 0,
+            "delta": -0.00315
+          },
+          {
+            "seed": 1,
+            "fold": 1,
+            "delta": 0.007583
+          },
+          {
+            "seed": 1,
+            "fold": 2,
+            "delta": 0.00303
+          },
+          {
+            "seed": 1,
+            "fold": 3,
+            "delta": 0.001373
+          },
+          {
+            "seed": 2,
+            "fold": 0,
+            "delta": -0.004294
+          },
+          {
+            "seed": 2,
+            "fold": 1,
+            "delta": 0.002579
+          },
+          {
+            "seed": 2,
+            "fold": 2,
+            "delta": 0.000891
+          },
+          {
+            "seed": 2,
+            "fold": 3,
+            "delta": 0.002598
+          },
+          {
+            "seed": 3,
+            "fold": 0,
+            "delta": -0.003868
+          },
+          {
+            "seed": 3,
+            "fold": 1,
+            "delta": 0.010983
+          },
+          {
+            "seed": 3,
+            "fold": 2,
+            "delta": 0.000953
+          },
+          {
+            "seed": 3,
+            "fold": 3,
+            "delta": 0.000689
+          }
+        ]
+      },
+      "prune_inc_only": {
+        "mean_dti": 0.2943610515851983,
+        "std_dti": 0.04945074482712506,
+        "n_cells": 16,
+        "mean_emitted": 10169.75,
+        "mean_TPw": 1319.5463425370294,
+        "delta_vs_base": 0.0040355539321030726,
+        "std_delta": 0.003359166449173662,
+        "sem_delta": 0.0008397916122934155,
+        "cells_ahead": 12,
+        "per_cell_delta": [
+          {
+            "seed": 0,
+            "fold": 0,
+            "delta": 0.0036
+          },
+          {
+            "seed": 0,
+            "fold": 1,
+            "delta": 0.004179
+          },
+          {
+            "seed": 0,
+            "fold": 2,
+            "delta": 0.007246
+          },
+          {
+            "seed": 0,
+            "fold": 3,
+            "delta": -0.001412
+          },
+          {
+            "seed": 1,
+            "fold": 0,
+            "delta": 0.004473
+          },
+          {
+            "seed": 1,
+            "fold": 1,
+            "delta": 0.00586
+          },
+          {
+            "seed": 1,
+            "fold": 2,
+            "delta": 0.00668
+          },
+          {
+            "seed": 1,
+            "fold": 3,
+            "delta": -0.000901
+          },
+          {
+            "seed": 2,
+            "fold": 0,
+            "delta": 0.002871
+          },
+          {
+            "seed": 2,
+            "fold": 1,
+            "delta": 0.004931
+          },
+          {
+            "seed": 2,
+            "fold": 2,
+            "delta": 0.006651
+          },
+          {
+            "seed": 2,
+            "fold": 3,
+            "delta": -0.000134
+          },
+          {
+            "seed": 3,
+            "fold": 0,
+            "delta": 0.003277
+          },
+          {
+            "seed": 3,
+            "fold": 1,
+            "delta": 0.007201
+          },
+          {
+            "seed": 3,
+            "fold": 2,
+            "delta": 0.01028
+          },
+          {
+            "seed": 3,
+            "fold": 3,
+            "delta": -0.000232
+          }
+        ]
+      },
+      "prune_random": {
+        "mean_dti": 0.29116365749996853,
+        "std_dti": 0.05170652253565728,
+        "n_cells": 16,
+        "mean_emitted": 10119.0,
+        "mean_TPw": 1300.134568074223,
+        "delta_vs_base": 0.0008381598468732727,
+        "std_delta": 0.0032256725717264034,
+        "sem_delta": 0.0008064181429316008,
+        "cells_ahead": 10,
+        "per_cell_delta": [
+          {
+            "seed": 0,
+            "fold": 0,
+            "delta": 0.003673
+          },
+          {
+            "seed": 0,
+            "fold": 1,
+            "delta": 0.002011
+          },
+          {
+            "seed": 0,
+            "fold": 2,
+            "delta": -0.003858
+          },
+          {
+            "seed": 0,
+            "fold": 3,
+            "delta": 0.00033
+          },
+          {
+            "seed": 1,
+            "fold": 0,
+            "delta": 0.001245
+          },
+          {
+            "seed": 1,
+            "fold": 1,
+            "delta": 0.004975
+          },
+          {
+            "seed": 1,
+            "fold": 2,
+            "delta": -0.006139
+          },
+          {
+            "seed": 1,
+            "fold": 3,
+            "delta": -0.001955
+          },
+          {
+            "seed": 2,
+            "fold": 0,
+            "delta": -0.000337
+          },
+          {
+            "seed": 2,
+            "fold": 1,
+            "delta": 0.004723
+          },
+          {
+            "seed": 2,
+            "fold": 2,
+            "delta": -0.001156
+          },
+          {
+            "seed": 2,
+            "fold": 3,
+            "delta": -1.1e-05
+          },
+          {
+            "seed": 3,
+            "fold": 0,
+            "delta": 0.000597
+          },
+          {
+            "seed": 3,
+            "fold": 1,
+            "delta": 0.006128
+          },
+          {
+            "seed": 3,
+            "fold": 2,
+            "delta": 0.001243
+          },
+          {
+            "seed": 3,
+            "fold": 3,
+            "delta": 0.00194
+          }
+        ]
+      }
+    }
+  },
+  "verdict": {
+    "prune_det_inc": {
+      "mean_delta": 0.006005032458301802,
+      "per_radius_delta": {
+        "3": 0.005105388422206203,
+        "4": 0.006904676494397402
+      },
+      "C1_direction": true,
+      "C2_margin": true,
+      "C3_cells": true,
+      "C4_beats_random": true,
+      "C5_both_radii": true,
+      "PROMOTE": true
+    },
+    "prune_det_only": {
+      "mean_delta": 0.00112524692091187,
+      "per_radius_delta": {
+        "3": 0.0009511897820658529,
+        "4": 0.0012993040597578873
+      },
+      "C1_direction": true,
+      "C2_margin": true,
+      "C3_cells": false,
+      "C4_beats_random": true,
+      "C5_both_radii": true,
+      "PROMOTE": false
+    },
+    "prune_inc_only": {
+      "mean_delta": 0.0036841413512332458,
+      "per_radius_delta": {
+        "3": 0.003332728770363419,
+        "4": 0.0040355539321030726
+      },
+      "C1_direction": true,
+      "C2_margin": true,
+      "C3_cells": false,
+      "C4_beats_random": true,
+      "C5_both_radii": true,
+      "PROMOTE": false
+    },
+    "prune_random": {
+      "mean_delta": -0.0013049617898350198,
+      "per_radius_delta": {
+        "3": -0.003448083426543312,
+        "4": 0.0008381598468732727
+      },
+      "C1_direction": false,
+      "C2_margin": false,
+      "C3_cells": false,
+      "C4_beats_random": false,
+      "C5_both_radii": false,
+      "PROMOTE": false
+    }
+  }
+}

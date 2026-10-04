@@ -1,0 +1,86 @@
+{
+  "generated_utc": "2026-10-04T14:54:16Z",
+  "reference": "Ben-David, Blitzer, Crammer, Kulesza, Pereira & Vaughan, 'A theory of learning from different domains', Machine Learning 79 (2010) 151-175, DOI 10.1007/s10994-009-5152-4",
+  "source_definition": "top 3.00% of footprint cells by GDR exploration intensity (gdr_wellspring_in_footprint.csv, GDR submission 1391)",
+  "target_definition": "bottom 55.00%",
+  "source_cells": 155022,
+  "target_cells": 2842055,
+  "intensity_cut_source": 0.03383489325642586,
+  "intensity_cut_target": 0.0013705706223845482,
+  "prevalence": {
+    "source_cells": 155022,
+    "target_cells": 2842055,
+    "source_fault_prevalence": 0.01103714311517075,
+    "target_fault_prevalence": 0.011196827647600063,
+    "prevalence_ratio": 0.9857384129277421
+  },
+  "divergence": {
+    "n_per_domain": 155022,
+    "balanced_error": 0.0,
+    "roc_auc": 1.0,
+    "d_hdh_hat": 2.0,
+    "chance_error": 0.5,
+    "separable": true
+  },
+  "ben_david_bound_illustration": {
+    "formula": "eps_T(h) <= eps_S(h) + d_hdh + lambda",
+    "d_hdh_hat": 2.0,
+    "note": "d_hdh is an additional error term, not an error rate; it is compared with the source error's own scale, not with 1."
+  },
+  "top_separating_channels": [
+    {
+      "channel": "geod_shearrate",
+      "importance": 0.17399
+    },
+    {
+      "channel": "ieq_n100a15",
+      "importance": 0.10173
+    },
+    {
+      "channel": "geod_2ndinv",
+      "importance": 0.09469
+    },
+    {
+      "channel": "deq_n100a15",
+      "importance": 0.06411
+    },
+    {
+      "channel": "det_elev",
+      "importance": 0.06235
+    },
+    {
+      "channel": "cond_surf",
+      "importance": 0.0345
+    },
+    {
+      "channel": "lid_valid",
+      "importance": 0.02265
+    },
+    {
+      "channel": "geod_dilaterate",
+      "importance": 0.02253
+    },
+    {
+      "channel": "depth_to_base_surf",
+      "importance": 0.00023
+    },
+    {
+      "channel": "iso_grav_anom_hg",
+      "importance": 0.0001
+    },
+    {
+      "channel": "lid_ex_max",
+      "importance": 5e-05
+    },
+    {
+      "channel": "iso_grav_anom",
+      "importance": 2e-05
+    }
+  ],
+  "verdict": {
+    "transfer_licensed": false,
+    "decision_rule": "licensed iff discriminator ROC AUC <= 0.75",
+    "reason": "the two domains are separable on the shared feature layers, so the H-dH term dominates any plausible source-error term"
+  },
+  "seconds": 753.5
+}

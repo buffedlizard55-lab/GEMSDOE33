@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Auditable DOE GEMS fault-discovery research; the recommended download is a format-checked D2.8 reference, not a new model.">
+<title>How to submit · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
+<p>DrivenData #306 · evidence-led research · as of 2026-10-04</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current=page>How to submit</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
+<main class="wrap"><h2>Executive summary — exact upload steps</h2>
+<p>The competition problem page describes the GeoTIFF grid and submission format. Review the
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem
+page</a>, the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">current rules page</a>,
+and the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">user-provided rules PDF</a> before submitting.
+The TIFF below is an owner-mirror D2.8 reference,
+not a newly validated model. Its reported 0.2600 score has no organizer receipt linking it to these
+exact file bytes.</p>
+<div class="hero-download" id="download"><h2>⬇ Download the format-checked reference TIFF</h2>
+<p><b>D2.8 reference only.</b> This is not a new model and is not demonstrated to beat the official
+leaderboard. Its reported 0.2600 association is owner-reported; exact score-to-file identity is not
+confirmed. The top card is the recommended, NaN-outside file.</p><section class="panel good">
+<h3><span class="badge good">RECOMMENDED · NaN outside</span> <code>gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</code></h3>
+
+<table><tbody>
+<tr><th>File</th><td><a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif">gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</a> ·
+<a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.zip">single-member ZIP</a></td></tr>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-d28-reference-20261004</code></td></tr>
+<tr><th>Outside footprint</th><td>NaN</td></tr>
+<tr><th>Size / emitted pixels</th><td>499,842 bytes ·
+44,090 non-zero in-footprint cells</td></tr>
+<tr><th>SHA-256</th><td><code>c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc</code></td></tr>
+<tr><th>Local validation</th><td>10/10 local file checks passed; portal acceptance not tested</td></tr>
+</tbody></table>
+<p><b>Paste-ready note (158/200 characters):</b></p><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre>
+</section><section class="panel ">
+<h3><span class="badge warn">ALTERNATE · 0.0 outside</span> <code>gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif</code></h3>
+<p class="small">0.0 outside footprint; provided only as a troubleshooting alternative</p>
+<table><tbody>
+<tr><th>File</th><td><a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif">gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif</a> ·
+<a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.zip">single-member ZIP</a></td></tr>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-d28-reference-20261004</code></td></tr>
+<tr><th>Outside footprint</th><td>0.0</td></tr>
+<tr><th>Size / emitted pixels</th><td>423,456 bytes ·
+44,090 non-zero in-footprint cells</td></tr>
+<tr><th>SHA-256</th><td><code>29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73</code></td></tr>
+<tr><th>Local validation</th><td>10/10 local file checks passed; portal acceptance not tested</td></tr>
+</tbody></table>
+<p><b>Paste-ready note (158/200 characters):</b></p><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre>
+</section></div>
+<ol><li><b>Download the recommended NaN-outside TIFF</b> from the top card:
+<code>gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</code>. Optionally verify its SHA-256 against the card. It is a single-band
+float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, on the exact owner-mirror template grid. Values on the finite
+footprint are within [0,1]; cells outside are NaN.</li>
+<li><b>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData DOE GEMS #306 submission page</a></b> in your own authenticated browser session.
+This workspace has no DrivenData login and cannot submit on your behalf.</li>
+<li><b>Select the file</b> (or its single-member ZIP if the portal's TIFF parser reports an error).
+Do not edit or resave the raster unless required; a GIS export could change its grid or dtype.</li>
+<li><b>Enter the unique submission name</b> <code>gemsdoe33-d28-reference-20261004</code> wherever the form
+provides a submission name/title field. The TIFF filename itself also carries this unique identifier.</li>
+<li><b>Paste the note</b> below into the optional note/comment field. It is 158
+characters, under the 200-character limit.</li>
+<li><b>Review the selected file and attribution, then submit.</b> Save the portal's receipt and score
+if it provides one. No upload or score is asserted by this repository.</li></ol>
+<div class="panel warn"><b>Note to paste (158/200 characters):</b><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre></div>
+<h3>Why NaN outside is recommended</h3>
+<p>The official problem wording says data outside the bounds should be null or NaN. The recommended
+file follows that wording and passed all 10 recorded
+local byte/grid/value checks. The <code>-zeros.tif</code> alternative has 0.0 outside the footprint;
+it is offered only as a troubleshooting option and is not as close to the literal null/NaN wording.
+Neither local validation nor the ZIP container guarantees portal acceptance.</p>
+<h3>Rebuild the local reference package</h3>
+<pre>python scripts/restore_data.py --group all
+python scripts/build_submission.py
+python scripts/build_site.py
+python -m pytest -q</pre>
+<p class="small">Inputs are SHA-pinned owner mirrors, not organizer-authenticated downloads. See
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/data/README.md">data provenance notes</a> in the repository and the
+<a href="downloads/manifest.json">package manifest</a>.</p></main>
+<footer><div class="wrap">Generated 2026-10-04 15:58 UTC by <code>scripts/build_site.py</code>. The featured TIFF is a
+D2.8 reference emission, not a new model. No DrivenData upload was made from this workspace. Owner
+mirror, measured, model-derived and official evidence are identified separately in the records.</div></footer>
+</body></html>

@@ -1,0 +1,9 @@
+/home/user/GEMSDOE33/src/gemsdoe33/features.py:121: RuntimeWarning: invalid value encountered in cast
+  py = np.clip(np.rint(yy + uy).astype(int), 0, H - 1)
+/home/user/GEMSDOE33/src/gemsdoe33/features.py:122: RuntimeWarning: invalid value encountered in cast
+  px = np.clip(np.rint(xx + ux).astype(int), 0, W - 1)
+/home/user/GEMSDOE33/src/gemsdoe33/features.py:123: RuntimeWarning: invalid value encountered in cast
+  ny = np.clip(np.rint(yy - uy).astype(int), 0, H - 1)
+/home/user/GEMSDOE33/src/gemsdoe33/features.py:124: RuntimeWarning: invalid value encountered in cast
+  nx = np.clip(np.rint(xx - ux).astype(int), 0, W - 1)
+names 129 {'n_channels': 129, 'footprint_cells': 5167373} elapsed 158.5s

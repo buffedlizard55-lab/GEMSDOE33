@@ -1,0 +1,7 @@
+# Runtime versions used to rebuild the local raster and feature artifacts in this session.
+# Any dependency upgrade should rerun the unit tests and format validator. No performance claim is
+# made from the withdrawn first-pass holdout or model-selection results.
+numpy==2.4.6
+scipy==1.17.1
+scikit-learn==1.9.1
+rasterio==1.4.4

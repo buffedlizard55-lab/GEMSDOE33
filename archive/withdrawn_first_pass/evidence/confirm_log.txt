@@ -1,0 +1,28 @@
+incumbent 44,090 px -> keep 39,681 (drop 4,409 = 10.0%)
+  base_d280_44090       44,090
+  prune_det_inc         39,681
+  prune_det_only        39,681
+  prune_inc_only        39,681
+  prune_random          39,681
+
+=== radius 3 (n=16 cells) ===
+  base_d280_44090      dti=0.22417
+  prune_det_inc        dti=0.22927  delta=+0.00511 +/-0.00111 ahead=15/16
+  prune_det_only       dti=0.22512  delta=+0.00095 +/-0.00078 ahead=10/16
+  prune_inc_only       dti=0.22750  delta=+0.00333 +/-0.00074 ahead=12/16
+  prune_random         dti=0.22072  delta=-0.00345 +/-0.00043 ahead=0/16
+
+=== radius 4 (n=16 cells) ===
+  base_d280_44090      dti=0.29033
+  prune_det_inc        dti=0.29723  delta=+0.00690 +/-0.00156 ahead=15/16
+  prune_det_only       dti=0.29162  delta=+0.00130 +/-0.00110 ahead=11/16
+  prune_inc_only       dti=0.29436  delta=+0.00404 +/-0.00084 ahead=12/16
+  prune_random         dti=0.29116  delta=+0.00084 +/-0.00081 ahead=10/16
+
+=== verdict (frozen gate, see knowledge/02) ===
+  prune_det_inc        delta=+0.00601 C1=1 C2=1 C3=1 C4=1 C5=1  PROMOTE=True
+  prune_det_only       delta=+0.00113 C1=1 C2=1 C3=0 C4=1 C5=1  PROMOTE=False
+  prune_inc_only       delta=+0.00368 C1=1 C2=1 C3=0 C4=1 C5=1  PROMOTE=False
+  prune_random         delta=-0.00130 C1=0 C2=0 C3=0 C4=0 C5=0  PROMOTE=False
+
+wrote /home/user/GEMSDOE33/evidence/confirmation_pruning.json (319s)

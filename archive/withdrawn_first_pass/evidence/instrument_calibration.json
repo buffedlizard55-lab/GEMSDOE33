@@ -1,0 +1,345 @@
+{
+  "generated_utc": "2026-10-04T13:53:12Z",
+  "emissions": {
+    "d280_44090": {
+      "pixels": 44090,
+      "live_owner_reported": 0.26,
+      "file": "dotted_h19_5_d2_8_nan.tif"
+    },
+    "d150_60069": {
+      "pixels": 60069,
+      "live_owner_reported": 0.2477,
+      "file": "dotted_h19_5_d1_5_nan.tif"
+    },
+    "h19_5_121131": {
+      "pixels": 121131,
+      "live_owner_reported": 0.1922,
+      "file": "h19_5_nan.tif"
+    }
+  },
+  "variants": {
+    "A_whole_catalogue_truth": {
+      "description": "truth = all 60,988 catalogue px; emission allowed anywhere in footprint",
+      "scores": {
+        "d280_44090": {
+          "mean_dti": 0.16177197800339896,
+          "n_emitted": 44090,
+          "n_truth": 60988
+        },
+        "d150_60069": {
+          "mean_dti": 0.17192870429585141,
+          "n_emitted": 60069,
+          "n_truth": 60988
+        },
+        "h19_5_121131": {
+          "mean_dti": 0.16635123963245285,
+          "n_emitted": 121131,
+          "n_truth": 60988
+        }
+      },
+      "reproduces_live_ordering": false
+    },
+    "B_catalogue_blind_domain": {
+      "description": "truth = all 60,988 catalogue px, domain = whole footprint (no visible catalogue survives, so nothing is removed)",
+      "scores": {
+        "d280_44090": {
+          "mean_dti": 0.16177197800339896,
+          "n_emitted": 44090,
+          "n_truth": 60988
+        },
+        "d150_60069": {
+          "mean_dti": 0.17192870429585141,
+          "n_emitted": 60069,
+          "n_truth": 60988
+        },
+        "h19_5_121131": {
+          "mean_dti": 0.16635123963245285,
+          "n_emitted": 121131,
+          "n_truth": 60988
+        }
+      },
+      "reproduces_live_ordering": false
+    },
+    "B2_visible_removed_uniform_truth": {
+      "description": "truth = 12,226 uniformly drawn catalogue px; the remaining 48,762 visible catalogue px (collared 1 px) are removed from the emission domain",
+      "scores": {
+        "d280_44090": {
+          "mean_dti": 0.009004935645447265,
+          "n_cells": 3
+        },
+        "d150_60069": {
+          "mean_dti": 0.007911062932871324,
+          "n_cells": 3
+        },
+        "h19_5_121131": {
+          "mean_dti": 0.004960404910623452,
+          "n_cells": 3
+        }
+      },
+      "reproduces_live_ordering": true
+    },
+    "C_calibrated_truth_size": {
+      "description": "truth = 12,226 catalogue px drawn uniformly; catalogue-blind domain; 3 seeds",
+      "scores": {
+        "d280_44090": {
+          "mean_dti": 0.009004935645447265,
+          "std_dti": 0.00016471889462103738,
+          "n_cells": 3,
+          "mean_emitted": 39362.333333333336,
+          "mean_TPw": 75.71847290530918,
+          "mean_FPw": 39292.76969857503
+        },
+        "d150_60069": {
+          "mean_dti": 0.007911062932871324,
+          "std_dti": 0.0002498757685786811,
+          "n_cells": 3,
+          "mean_emitted": 53611.333333333336,
+          "mean_TPw": 89.0487792443206,
+          "mean_FPw": 53517.46314823554
+        },
+        "h19_5_121131": {
+          "mean_dti": 0.004960404910623452,
+          "std_dti": 0.00023718812236834426,
+          "n_cells": 3,
+          "mean_emitted": 108882.66666666667,
+          "mean_TPw": 110.59403815931533,
+          "mean_FPw": 108691.82141073444
+        }
+      },
+      "settings": {
+        "n_truth": 12226,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "quadrant": false,
+        "n_cells": 3,
+        "incompleteness": false
+      },
+      "check": {
+        "order": [
+          "d280_44090",
+          "d150_60069",
+          "h19_5_121131"
+        ],
+        "means": [
+          0.009005,
+          0.007911,
+          0.00496
+        ],
+        "reproduces_live_ordering": true
+      }
+    },
+    "D_incompleteness_weighted": {
+      "description": "truth = 12,226 catalogue px drawn preferentially from poorly-explored ground; catalogue-blind domain; 3 seeds",
+      "scores": {
+        "d280_44090": {
+          "mean_dti": 0.009363743785646665,
+          "std_dti": 0.00023307826308998622,
+          "n_cells": 3,
+          "mean_emitted": 39355.333333333336,
+          "mean_TPw": 79.49124209937229,
+          "mean_FPw": 39283.60567365501
+        },
+        "d150_60069": {
+          "mean_dti": 0.008364382268780553,
+          "std_dti": 0.00035297662459689034,
+          "n_cells": 3,
+          "mean_emitted": 53607.333333333336,
+          "mean_TPw": 94.83076744270572,
+          "mean_FPw": 53509.9019205241
+        },
+        "h19_5_121131": {
+          "mean_dti": 0.005536365190917166,
+          "std_dti": 0.00038344768750448306,
+          "n_cells": 3,
+          "mean_emitted": 108866.0,
+          "mean_TPw": 123.86927884735623,
+          "mean_FPw": 108662.3985313863
+        }
+      },
+      "settings": {
+        "n_truth": 12226,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "quadrant": false,
+        "n_cells": 3,
+        "incompleteness": true
+      },
+      "check": {
+        "order": [
+          "d280_44090",
+          "d150_60069",
+          "h19_5_121131"
+        ],
+        "means": [
+          0.009364,
+          0.008364,
+          0.005536
+        ],
+        "reproduces_live_ordering": true
+      }
+    },
+    "E_quadrant_blocked": {
+      "description": "as D but the hidden set is drawn per quadrant fold (4 folds x 2 seeds), so truth and model never share a quadrant",
+      "scores": {
+        "d280_44090": {
+          "mean_dti": 0.0035634413265724922,
+          "std_dti": 0.0023730354006545914,
+          "n_cells": 8,
+          "mean_emitted": 39094.75,
+          "mean_TPw": 28.708350117525644,
+          "mean_FPw": 39069.70958234763
+        },
+        "d150_60069": {
+          "mean_dti": 0.003297621405101154,
+          "std_dti": 0.0021385445168287842,
+          "n_cells": 8,
+          "mean_emitted": 53260.5,
+          "mean_TPw": 35.902751003431376,
+          "mean_FPw": 53225.061568917234
+        },
+        "h19_5_121131": {
+          "mean_dti": 0.0020587583096500477,
+          "std_dti": 0.0012578517374613363,
+          "n_cells": 8,
+          "mean_emitted": 108123.0,
+          "mean_TPw": 44.99092371448544,
+          "mean_FPw": 108048.38340398698
+        }
+      },
+      "settings": {
+        "n_truth": 3056,
+        "seeds": [
+          0,
+          1
+        ],
+        "quadrant": true,
+        "n_cells": 8,
+        "incompleteness": true
+      },
+      "check": {
+        "order": [
+          "d280_44090",
+          "d150_60069",
+          "h19_5_121131"
+        ],
+        "means": [
+          0.003563,
+          0.003298,
+          0.002059
+        ],
+        "reproduces_live_ordering": true
+      }
+    },
+    "F_shadow_reconstructed": {
+      "description": "as D plus reconstruction of the catalogue mask on the hidden draw (hidden pixels within 2 px of an emitted dot get their dot back)",
+      "scores": {
+        "d280_44090": {
+          "mean_dti": 0.024348719543946785,
+          "std_dti": 0.0008677677582259479,
+          "n_cells": 3,
+          "mean_emitted": 39554.333333333336,
+          "mean_TPw": 207.32627300090815,
+          "mean_FPw": 39283.60567365501
+        },
+        "d150_60069": {
+          "mean_dti": 0.02035219897712745,
+          "std_dti": 0.0005798743957361814,
+          "n_cells": 3,
+          "mean_emitted": 53831.333333333336,
+          "mean_TPw": 231.29931292456158,
+          "mean_FPw": 53509.9019205241
+        },
+        "h19_5_121131": {
+          "mean_dti": 0.01203008304592193,
+          "std_dti": 0.0006861243778487635,
+          "n_cells": 3,
+          "mean_emitted": 109128.66666666667,
+          "mean_TPw": 269.5096376164496,
+          "mean_FPw": 108662.3985313863
+        }
+      },
+      "settings": {
+        "n_truth": 12226,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "quadrant": false,
+        "n_cells": 3,
+        "incompleteness": true
+      },
+      "check": {
+        "order": [
+          "d280_44090",
+          "d150_60069",
+          "h19_5_121131"
+        ],
+        "means": [
+          0.024349,
+          0.020352,
+          0.01203
+        ],
+        "reproduces_live_ordering": true
+      }
+    },
+    "G_quadrant_reconstructed": {
+      "description": "as F with the hidden set drawn per quadrant fold (4 folds x 2 seeds)",
+      "scores": {
+        "d280_44090": {
+          "mean_dti": 0.009085165411456665,
+          "std_dti": 0.005987340852688079,
+          "n_cells": 8,
+          "mean_emitted": 39165.5,
+          "mean_TPw": 73.29671563761109,
+          "mean_FPw": 39069.70958234763
+        },
+        "d150_60069": {
+          "mean_dti": 0.007637620215805227,
+          "std_dti": 0.004990918475997755,
+          "n_cells": 8,
+          "mean_emitted": 53341.875,
+          "mean_TPw": 83.25864928484984,
+          "mean_FPw": 53225.061568917234
+        },
+        "h19_5_121131": {
+          "mean_dti": 0.004271755143710501,
+          "std_dti": 0.002756356200658584,
+          "n_cells": 8,
+          "mean_emitted": 108214.75,
+          "mean_TPw": 93.42558981441732,
+          "mean_FPw": 108048.38340398697
+        }
+      },
+      "settings": {
+        "n_truth": 3056,
+        "seeds": [
+          0,
+          1
+        ],
+        "quadrant": true,
+        "n_cells": 8,
+        "incompleteness": true
+      },
+      "check": {
+        "order": [
+          "d280_44090",
+          "d150_60069",
+          "h19_5_121131"
+        ],
+        "means": [
+          0.009085,
+          0.007638,
+          0.004272
+        ],
+        "reproduces_live_ordering": true
+      }
+    }
+  }
+}

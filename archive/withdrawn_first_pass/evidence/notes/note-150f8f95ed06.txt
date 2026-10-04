@@ -1,0 +1,1 @@
+33GEMSDOE H33-A prune on GEMSDOE28 H38-1 | +0.0051 within family, +0.0081 over matched random | NOT approved vs incumbent, see IR-33-FLANK-01 | id 150f8f95ed06

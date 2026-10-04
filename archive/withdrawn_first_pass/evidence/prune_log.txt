@@ -1,0 +1,60 @@
+incumbent 44,090 px
+  base_d280_44090               44,090
+  base_prune_det_40000          40,000
+  base_prune_inc_40000          40,000
+  base_prune_det_inc_40000      40,000
+  base_prune_random_40000       40,000
+  base_prune_det_35000          35,000
+  base_prune_inc_35000          35,000
+  base_prune_det_inc_35000      35,000
+  base_prune_random_35000       35,000
+  base_prune_det_30000          30,000
+  base_prune_inc_30000          30,000
+  base_prune_det_inc_30000      30,000
+  base_prune_random_30000       30,000
+
+=== radius 3 ===
+  base_d280_44090              dti=0.22449
+  base_prune_det_40000         dti=0.22525  delta=+0.00077 ahead=4/8
+  base_prune_inc_40000         dti=0.22796  delta=+0.00347 ahead=6/8
+  base_prune_det_inc_40000     dti=0.22977  delta=+0.00529 ahead=7/8
+  base_prune_random_40000      dti=0.21924  delta=-0.00524 ahead=0/8
+  base_prune_det_35000         dti=0.22433  delta=-0.00016 ahead=4/8
+  base_prune_inc_35000         dti=0.21395  delta=-0.01053 ahead=0/8
+  base_prune_det_inc_35000     dti=0.22963  delta=+0.00515 ahead=6/8
+  base_prune_random_35000      dti=0.21481  delta=-0.00967 ahead=0/8
+  base_prune_det_30000         dti=0.21834  delta=-0.00615 ahead=1/8
+  base_prune_inc_30000         dti=0.19905  delta=-0.02543 ahead=0/8
+  base_prune_det_inc_30000     dti=0.22503  delta=+0.00055 ahead=3/8
+  base_prune_random_30000      dti=0.20078  delta=-0.02371 ahead=0/8
+
+=== radius 4 ===
+  base_d280_44090              dti=0.29106
+  base_prune_det_40000         dti=0.29216  delta=+0.00110 ahead=5/8
+  base_prune_inc_40000         dti=0.29539  delta=+0.00434 ahead=7/8
+  base_prune_det_inc_40000     dti=0.29792  delta=+0.00686 ahead=8/8
+  base_prune_random_40000      dti=0.28934  delta=-0.00172 ahead=1/8
+  base_prune_det_35000         dti=0.29104  delta=-0.00002 ahead=4/8
+  base_prune_inc_35000         dti=0.27578  delta=-0.01528 ahead=0/8
+  base_prune_det_inc_35000     dti=0.29689  delta=+0.00584 ahead=6/8
+  base_prune_random_35000      dti=0.28881  delta=-0.00225 ahead=2/8
+  base_prune_det_30000         dti=0.28495  delta=-0.00611 ahead=1/8
+  base_prune_inc_30000         dti=0.25649  delta=-0.03456 ahead=0/8
+  base_prune_det_inc_30000     dti=0.29269  delta=+0.00163 ahead=5/8
+  base_prune_random_30000      dti=0.27918  delta=-0.01188 ahead=0/8
+
+=== verdict ===
+  base_prune_det_40000         delta=+0.00093 G1=1 G2=1 G3=0 G4=1 PROMOTE=False
+  base_prune_inc_40000         delta=+0.00390 G1=1 G2=1 G3=0 G4=1 PROMOTE=False
+  base_prune_det_inc_40000     delta=+0.00608 G1=1 G2=1 G3=0 G4=1 PROMOTE=False
+  base_prune_random_40000      delta=-0.00348 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  base_prune_det_35000         delta=-0.00009 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  base_prune_inc_35000         delta=-0.01291 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  base_prune_det_inc_35000     delta=+0.00549 G1=1 G2=1 G3=0 G4=1 PROMOTE=False
+  base_prune_random_35000      delta=-0.00596 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  base_prune_det_30000         delta=-0.00613 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  base_prune_inc_30000         delta=-0.03000 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  base_prune_det_inc_30000     delta=+0.00109 G1=1 G2=1 G3=0 G4=1 PROMOTE=False
+  base_prune_random_30000      delta=-0.01779 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+
+wrote /home/user/GEMSDOE33/evidence/prune_incumbent.json (394s)

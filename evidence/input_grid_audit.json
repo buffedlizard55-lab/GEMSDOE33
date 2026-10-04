@@ -1,0 +1,349 @@
+{
+  "schema": 1,
+  "generated_utc": "2026-10-04T16:00:14+00:00",
+  "evidence_class": "MEASURED from local owner-mirror bytes",
+  "provenance_warning": "All competition rasters listed here are owner-supplied public GitHub mirrors, integrity-pinned but NOT organizer-authenticated. Public mirror/hash availability is not proof of original downloadability, coverage, schema or license. Do not contact DrivenData automatically.",
+  "registered_inputs": {
+    "expected": 17,
+    "verified": 17,
+    "pins": [
+      {
+        "id": "training_features",
+        "path": "training_features.tif",
+        "bytes": 418912844,
+        "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "pass": true
+      },
+      {
+        "id": "labels",
+        "path": "labels.tif",
+        "bytes": 425830,
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pass": true
+      },
+      {
+        "id": "existing_faults",
+        "path": "existing_faults.tif",
+        "bytes": 425830,
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "pass": true
+      },
+      {
+        "id": "sample_submission",
+        "path": "sample_submission.tif",
+        "bytes": 1599597,
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "pass": true
+      },
+      {
+        "id": "h19_5",
+        "path": "h19_5_nan.tif",
+        "bytes": 1712322,
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "pass": true
+      },
+      {
+        "id": "dotted_h19_5_d1_5",
+        "path": "dotted_h19_5_d1_5_nan.tif",
+        "bytes": 1632732,
+        "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "pass": true
+      },
+      {
+        "id": "dotted_h19_5_d2_8",
+        "path": "dotted_h19_5_d2_8_nan.tif",
+        "bytes": 1603424,
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "pass": true
+      },
+      {
+        "id": "lidar_scarp_features",
+        "path": "lidar_scarp_features_u8.tif",
+        "bytes": 36943606,
+        "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+        "pass": true
+      },
+      {
+        "id": "lidar_scarp_features_metadata",
+        "path": "lidar_scarp_features.json",
+        "bytes": 3531,
+        "sha256": "9ef0df6e87598a8b0cd52fe821661e5fdb3a00568c5d9b1c5d61fd6b242dcd41",
+        "pass": true
+      },
+      {
+        "id": "geodawn_extensions",
+        "path": "geodawn_extensions_u8.tif",
+        "bytes": 27132925,
+        "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+        "pass": true
+      },
+      {
+        "id": "geodawn_rad",
+        "path": "geodawn_rad_u8.tif",
+        "bytes": 26612970,
+        "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+        "pass": true
+      },
+      {
+        "id": "derived_sgmc_faults",
+        "path": "derived_sgmc_faults_100m_u8.tif",
+        "bytes": 198602,
+        "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+        "pass": true
+      },
+      {
+        "id": "gdr_qfaults_traces",
+        "path": "gdr_qfaults_traces.csv",
+        "bytes": 126177,
+        "sha256": "9702f2e5c382a4f472ae834d22b94990983b059677a37adfafd51c50f75e643c",
+        "pass": true
+      },
+      {
+        "id": "qfaults_v2_vectors",
+        "path": "qfaults_v2_in_footprint.json",
+        "bytes": 1252341,
+        "sha256": "4d6efc7bb3659ea2545353fcec574ef085b0acdb189c7590e4420a7c6c57b41c",
+        "pass": true
+      },
+      {
+        "id": "gdr_volcanic_vents",
+        "path": "gdr_volcanic_vents_in_footprint.csv",
+        "bytes": 672,
+        "sha256": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf",
+        "pass": true
+      },
+      {
+        "id": "gdr_wellspring",
+        "path": "gdr_wellspring_in_footprint.csv",
+        "bytes": 2146771,
+        "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+        "pass": true
+      },
+      {
+        "id": "dem_links",
+        "path": "dem_links.json",
+        "bytes": 541953,
+        "sha256": "8804dbff8754dd885df88bf412cced52b0be6490aa79142f4588700a8e4ada7b",
+        "pass": true
+      }
+    ]
+  },
+  "sample_mirror": {
+    "width": 3292,
+    "height": 3730,
+    "count": 1,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "finite_footprint_cells": 5167373,
+    "nan_outside_cells": 7111787,
+    "positive_cells": 60988
+  },
+  "labels_mirror": {
+    "positive_cells_within_template": 60988
+  },
+  "sample_vs_labels": {
+    "positive_set_disagreement_cells": 0,
+    "exact_positive_set_match": true
+  },
+  "training_mirror": {
+    "width": 3292,
+    "height": 3730,
+    "count": 19,
+    "dtype": "float32",
+    "crs": "EPSG:32611",
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "nodata": -3.4028234663852886e+38,
+    "descriptions": [
+      "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+      "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+      "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+      "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+      "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+      "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+      "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+      "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+      "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+      "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+      "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+      "det_elev - Detrended elevation - topography with regional trends removed",
+      "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+      "tmi - Total magnetic intensity - total strength of magnetic field",
+      "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+      "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+      "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+      "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+      "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending"
+    ],
+    "per_band_coverage": [
+      {
+        "index": 1,
+        "description": "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 2,
+        "description": "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 3,
+        "description": "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 4,
+        "description": "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 5,
+        "description": "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 6,
+        "description": "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+        "non_sentinel_finite_cells_in_template": 5164300,
+        "sentinel_cells_in_template": 3073,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 7,
+        "description": "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 8,
+        "description": "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 9,
+        "description": "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 10,
+        "description": "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 11,
+        "description": "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 12,
+        "description": "det_elev - Detrended elevation - topography with regional trends removed",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 13,
+        "description": "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 14,
+        "description": "tmi - Total magnetic intensity - total strength of magnetic field",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 15,
+        "description": "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 16,
+        "description": "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 17,
+        "description": "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 18,
+        "description": "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      },
+      {
+        "index": 19,
+        "description": "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending",
+        "non_sentinel_finite_cells_in_template": 5164312,
+        "sentinel_cells_in_template": 3061,
+        "nan_or_inf_cells_in_template": 0,
+        "sentinel_cells_outside_template": 7110247
+      }
+    ]
+  },
+  "errors": [],
+  "pass": true
+}

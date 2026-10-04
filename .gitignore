@@ -1,0 +1,17 @@
+# ---- The organiser's competition data is not ours to redistribute ----
+# Competition/external rasters are git-ignored and restored from 17 SHA-pinned owner mirrors.
+# Hash identity to an owner mirror does not authenticate organizer provenance or licensing;
+# see `registry/data_manifest.json` and `data/README.md`.
+data/*
+!data/README.md
+
+# ---- Derived intermediate grids (~1.5 GB of .npy) ----
+# Regenerate with `PYTHONPATH=src scripts/prepare_data.py` (about 6 min).
+.cache/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/

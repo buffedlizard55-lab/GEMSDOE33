@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "read_utc": "2026-10-04",
+  "evidence_class": "OFFICIAL source page observations plus local command results",
+  "candidate_sources": [
+    {
+      "id": "BRIDGE_GIS_faults",
+      "source_page": "https://gdr.openei.org/submissions/1682",
+      "specific_file": "https://gdr.openei.org/files/1682/BRIDGE_GIS.zip",
+      "official_page_observation": {
+        "public_access": true,
+        "license": "CC BY 4.0",
+        "GIS_Files_archive_size": "3.79 MB",
+        "README_url": "https://gdr.openei.org/files/1682/BRIDGE_README.pdf",
+        "README_says": "The GIS map package includes LiDAR fault picks covering the southern half of Dixie Valley, Fairview Valley, Bell Flat, Gabbs Valley, Lee Allen, and Walker Lake Valley. It says picks have been field verified only in Dixie Valley and Gabbs Valley."
+      },
+      "local_download_test": {
+        "command": "curl -L --http1.1 --retry 2 -A Mozilla/5.0 -o data/external/dixie_valley_GIS_Faults.zip https://gdr.openei.org/files/207/GIS_Faults.zip",
+        "result": "TLS/SSL connection closed (HTTP 000); no file downloaded",
+        "note": "A separate GDR 207 Dixie Valley fault-map archive is publicly listed, CC BY 4.0, 15.1 MB/650 files; its payload was also unavailable from this sandbox. BRIDGE/GDR 1682 is the preferred prospect-specific candidate source."
+      },
+      "decision": "Source listing and terms checked; binary not obtainable from this sandbox session, so no transfer is implemented or claimed."
+    },
+    {
+      "id": "USGS_ComCat_focal_mechanisms",
+      "source_docs": "https://earthquake.usgs.gov/data/comcat/index.php",
+      "query_api": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "query_bbox_wgs84": {"west": -119.897, "east": -116.141, "south": 37.331, "north": 40.725},
+      "official_count_queries": [
+        {"period": "1900-01-01 through 2026-10-04", "minimum_magnitude": 2.5, "producttype": "focal-mechanism", "count": 6168},
+        {"period": "1900-01-01 through 2026-10-04", "minimum_magnitude": 3.5, "producttype": "focal-mechanism", "count": 754},
+        {"period": "1900-01-01 through 2026-10-04", "minimum_magnitude": 4.0, "producttype": "focal-mechanism", "count": 233}
+      ],
+      "sample_event": {
+        "eventid": "nn00924139",
+        "detail_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?eventid=nn00924139&format=geojson",
+        "product_fields_returned": ["nodal-plane-1-strike", "nodal-plane-1-dip", "nodal-plane-1-rake", "nodal-plane-2-strike", "nodal-plane-2-dip", "nodal-plane-2-rake"],
+        "evaluation_status": "preliminary",
+        "note": "This establishes that the official API can return focal-plane products; it does not establish spatial coverage quality or a fault-label dataset."
+      },
+      "local_download_test": "Direct curl from this sandbox returned TLS/HTTP 000; the official web endpoint was queryable via the research page-fetch tool.",
+      "decision": "Official API and schema availability checked; full spatial extract is not locally staged, so no validation or submission is claimed."
+    },
+    {
+      "id": "Brady_DesertPeak_GeothermalAI_geodatabase",
+      "source_page": "https://gdr.openei.org/submissions/1303",
+      "direct_file": "https://gdr.openei.org/files/1303/DOE_GDB.zip",
+      "official_page_observation": {"public_access": true, "license": "CC BY 4.0", "archive_size": "2.58 GB", "sites": ["Brady", "Desert Peak", "Salton Sea"]},
+      "decision": "Source listing checked; archive not downloaded or inspected. High-cost research lead only."
+    }
+  ]
+}

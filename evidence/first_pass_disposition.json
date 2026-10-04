@@ -1,0 +1,74 @@
+{
+  "schema": 2,
+  "date": "2026-10-04",
+  "status": "WITHDRAWN FROM PROMOTION — first-pass numerical results are retained as historical exploratory artifacts only; do not cite them as a valid spatially blocked holdout, a Ben-David divergence bound, a score estimate, or expected leaderboard performance.",
+  "reasons": [
+    {
+      "id": "W1_truth_conditioned_prediction_reconstruction",
+      "files": [
+        "archive/withdrawn_first_pass/scripts/sweep_reconstruction.py",
+        "archive/withdrawn_first_pass/scripts/run_blocked_holdout.py",
+        "archive/withdrawn_first_pass/evidence/reconstruction_sweep.json",
+        "archive/withdrawn_first_pass/evidence/blocked_holdout.json"
+      ],
+      "finding": "The pseudo-hidden truth was sampled from catalogue pixels, then reconstruct_shadow(emission, hidden) added prediction at sampled hidden locations when an emission was within the selected radius. The scored prediction therefore used held-out truth coordinates. The radius was swept after comparison with owner-reported scores. This is direct label leakage and test-set calibration, not validation."
+    },
+    {
+      "id": "W2_same_seed_and_budget_reuse",
+      "files": [
+        "archive/withdrawn_first_pass/scripts/prune_incumbent.py",
+        "archive/withdrawn_first_pass/scripts/confirm_pruning.py",
+        "archive/withdrawn_first_pass/evidence/prune_incumbent.json",
+        "archive/withdrawn_first_pass/evidence/confirmation_pruning.json",
+        "knowledge/02_preregistration_confirmation.md"
+      ],
+      "finding": "Confirmation seeds 0 and 1 were reused from exploratory operator selection, and the trim was selected after the budget sweep. The nominal fold-by-seed cells are not independent confirmation, and frozen criteria do not repair the leaked/selected evaluation design."
+    },
+    {
+      "id": "W3_wrong_comparator_family",
+      "files": [
+        "archive/withdrawn_first_pass/scripts/head_to_head.py",
+        "archive/withdrawn_first_pass/evidence/head_to_head.json"
+      ],
+      "finding": "The pseudo-truth was sampled from the visible catalogue while H27/H36/H38 artifacts remove pixels near that same catalogue. The construction is structurally biased against those artifact families. A loss cannot refute H36/H38; a within-family pruning gain cannot validate transfer to private faults."
+    },
+    {
+      "id": "W4_domain_proxy_not_analog_transfer",
+      "files": [
+        "archive/withdrawn_first_pass/evidence/domain_adaptation.json",
+        "archive/withdrawn_first_pass/evidence/domain_log.txt",
+        "src/gemsdoe33/domain.py",
+        "scripts/run_domain_adaptation.py"
+      ],
+      "finding": "The former source/target regions were well/spring-record-density quantiles, not named fields. The 27,092 source CSV rows include repeated attributes at 12,570 unique cells. A random row split ignored spatial autocorrelation, the fitted discriminator was not shown to match the model's HΔH class, and no valid finite-sample term or lambda (joint-label error) was supplied. The archived AUC is not a Ben-David divergence estimate and neither licenses nor refutes field transfer. The active runner is now fail-closed."
+    },
+    {
+      "id": "W5_radiometric_AUC_and_transform_claims",
+      "files": [
+        "archive/withdrawn_first_pass/scripts/channel_screen_unreviewed.py",
+        "archive/withdrawn_first_pass/evidence/channel_screen_unverified.json",
+        "src/gemsdoe33/features.py",
+        "scripts/channel_screen.py"
+      ],
+      "finding": "The previous hand-coded ROC AUC mixed tied-rank conventions; associated numbers are archived and not reused. Earlier arithmetic K/Th, U/K and K*U/Th transforms were calculated from owner-mirror uint8 encodings without verified per-band scale/offset metadata, so they were not established as physical ratios. Any resulting 'below chance' claim is withdrawn. The active screen now uses sklearn and is explicitly exploratory against owner-mirror SGMC map faults, not competition holdout evidence."
+    },
+    {
+      "id": "W6_hypotheses_not_preregistered",
+      "files": [
+        "registry/hypotheses.json",
+        "archive/withdrawn_first_pass/knowledge/02_preregistration_confirmation_historical.md"
+      ],
+      "finding": "First-pass implementation and measurements predated the ranked hypothesis registry. The current three-hypothesis list is retrospective, not a preregistration. The historical confirmation plan is preserved but explicitly withdrawn."
+    },
+    {
+      "id": "W7_score_inversion_not_independent_evidence",
+      "files": [
+        "archive/withdrawn_first_pass/evidence/live_scores_inversion_withdrawn.json",
+        "archive/withdrawn_first_pass/evidence/instrument_calibration.json",
+        "registry/live_scores.json"
+      ],
+      "finding": "The previous live-score inversion and reconstructed DTI scale used owner-reported score/file pairings and a hidden-population model that could not be checked against private labels. Combined with the truth-conditioned radius reconstruction, those estimates are not valid predictions or a calibrated validation instrument and have been removed from the active score registry."
+    }
+  ],
+  "consequence": "No +0.00601 promotion claim, channel-ranking promotion claim, reconstructed leaderboard/DTI score, hidden-truth-size inversion, or domain-transfer verdict is treated as evidence. Experimental TIFFs and stale upload-note files were removed from docs/downloads. The only recommended download is the D2.8 owner-mirror reference; its 0.2600 association is owner-reported and score-to-file identity remains unconfirmed."
+}

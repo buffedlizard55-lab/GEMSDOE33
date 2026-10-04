@@ -1,0 +1,45 @@
+fitting spatially-blocked detector ...
+  fold 0: trained on 3 quadrants, scored 1,154,738 px
+  fold 1: trained on 3 quadrants, scored 1,427,727 px
+  fold 2: trained on 3 quadrants, scored 1,428,627 px
+  fold 3: trained on 3 quadrants, scored 1,156,281 px
+  wrote OOF field
+
+arms:
+  base_d280_44090       44,090 px
+  thin_d2.0             60,293 px
+  prio_d2.0             56,852 px
+  thin_d2.828           44,271 px
+  prio_d2.828           40,794 px
+  thin_d3.5             35,128 px
+  prio_d3.5             31,984 px
+
+fold areas {0: 1154738, 1: 1427727, 2: 1428627, 3: 1156281} -> truth per fold {0: 2732, 1: 3378, 2: 3380, 3: 2736}
+
+=== radius 3 ===
+  base_d280_44090      dti=0.22449  delta=+0.00000  folds_ahead=None
+  thin_d2.0            dti=0.21468  delta=-0.00981  folds_ahead=0
+  prio_d2.0            dti=0.21566  delta=-0.00882  folds_ahead=1
+  thin_d2.828          dti=0.22485  delta=+0.00036  folds_ahead=3
+  prio_d2.828          dti=0.22316  delta=-0.00133  folds_ahead=4
+  thin_d3.5            dti=0.21660  delta=-0.00789  folds_ahead=0
+  prio_d3.5            dti=0.21253  delta=-0.01195  folds_ahead=0
+
+=== radius 4 ===
+  base_d280_44090      dti=0.29106  delta=+0.00000  folds_ahead=None
+  thin_d2.0            dti=0.26876  delta=-0.02230  folds_ahead=0
+  prio_d2.0            dti=0.27295  delta=-0.01811  folds_ahead=0
+  thin_d2.828          dti=0.29185  delta=+0.00079  folds_ahead=4
+  prio_d2.828          dti=0.29478  delta=+0.00372  folds_ahead=6
+  thin_d3.5            dti=0.29773  delta=+0.00668  folds_ahead=7
+  prio_d3.5            dti=0.29496  delta=+0.00391  folds_ahead=7
+
+=== verdict ===
+  thin_d2.0            delta=-0.01605  G1=False G2=False G3=False G4=False  PROMOTE=False
+  prio_d2.0            delta=-0.01347  G1=False G2=False G3=False G4=False  PROMOTE=False
+  thin_d2.828          delta=+0.00058  G1=True G2=True G3=False G4=True  PROMOTE=False
+  prio_d2.828          delta=+0.00120  G1=True G2=True G3=False G4=False  PROMOTE=False
+  thin_d3.5            delta=-0.00061  G1=False G2=False G3=False G4=False  PROMOTE=False
+  prio_d3.5            delta=-0.00402  G1=False G2=False G3=False G4=False  PROMOTE=False
+
+wrote /home/user/GEMSDOE33/evidence/blocked_holdout.json (536s)
