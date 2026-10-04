@@ -1,36 +1,114 @@
-# GEMSDOE33 — GEMS Prize Challenge: bounded analog-field transfer & stepover relay discovery
+# GEMSDOE33 — GEMS Prize Challenge research & submission campaign
 
-**Goal: beat the owner-reported 0.2708 campaign best and reach for the 0.3195 public leader on
-[DrivenData #306 — The Geologic Enhanced Mapping System (GEMS) Prize Challenge](https://www.drivendata.org/competitions/306/competition-doe-gems/).**
+**Project status checked 2026-10-04 (America/Los_Angeles); the public leaderboard snapshot is dated 2026-10-03.**
+The goal is to beat the owner-reported campaign best of **0.2708** and pursue the official leaderboard
+leader, currently **0.3262** in the dated snapshot below. These are different kinds of evidence: 0.2708 is
+owner-reported from a prior manual submission; 0.3262 is a point-in-time reading of the public organizer
+leaderboard. Nothing in this repository has been submitted for a live score.
 
-## ⬇ One-click submission (portal-safe, format-audited)
+## ⬇ One-click GeoTIFF
 
-| File | What it is | Status |
+| File | Description | Status |
 |---|---|---|
-| [`docs/downloads/gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif`](docs/downloads/gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif) | Scored h27-4 base (0.2708) + 944 stepover relay-bridge dots that passed the frozen P1/P2 proxy gate | proxy-gated, **unscored** |
-| [`docs/downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif`](docs/downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif) | Portal-safe re-pack of the 0.2708-scored h27-4-r1-solo raster | owner-reported **0.2708** |
+| [`gems33-c2-stepover-relay-20261004-01f660dd8656.tif`](docs/downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif) | Deterministic-ID rebuild of the h27-4 base plus 940 stepover-relay bridge dots; SHA-256 `7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7` | **P1/P2 proxy-gated; not organizer-scored** |
+| [`gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif`](docs/downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif) | Locally format-audited re-pack of the h27-4-r1-solo-d2-8 baseline | Owner-reported **0.2708**; not organizer-authenticated in this repository |
 
-Both files are single-band float32, EPSG:32611, 100 m, identical shape/geotransform/bounds to the
-official sample submission, and **finite [0, 1] over the whole array** (zero outside the survey
-footprint) — the exact portal rule that rejected earlier NaN-outside files with
-"Predicted values must be in range [0, 1]" (irregularity IR-PORTAL-01, fixed).
-See [docs/index.html](docs/index.html) (deployed as GitHub Pages) for the executive summary,
-the how-to-submit guide, hypothesis ranking, and verified data-source tables.
+Both files pass the current format audit: one band, float32, EPSG:32611, 100 m, exact 3,730 × 3,292
+sample-grid shape/transform/bounds, finite values in `[0,1]` over the whole array, and zero outside the
+survey footprint. This is the project's conservative upload-safe policy. The owner reported a portal
+validation error for an earlier NaN-outside file; attributing that error to NaNs is an inference, not an
+organizer support ruling. See [the upload guide](docs/how-to-submit.html) for the manual steps and the
+paste-ready note. **Upload manually as the owner; no code here logs in to or uploads to DrivenData.**
+
+The current public leaderboard snapshot (checked 2026-10-03 local) is #1 `nchuzhoy` 0.3262, #2
+`kinghorton42` 0.3222, #3 `DARD` 0.3195. It is static, dated evidence, not a live feed. The
+[results page](docs/results.html) shows the snapshot, links to the organizer's live leaderboard, and
+renders the campaign ledger without scraping or polling DrivenData.
+
+## Current candidate result and decision
+
+C2 is the current simplest promoted candidate. Against the frozen local holdouts:
+
+- P1 catalogue-hidden spatial folds: mean ΔDTI **+0.0004051587**, positive in **3/4** folds.
+- P2 independent SGMC off-catalogue proxy: ΔDTI **+0.0002831018**.
+- Gate: **PASS** under the pre-registered proxy rules. The gate says only that this candidate improved
+  these two proxies; **these are not competition scores and cannot be converted into leaderboard points**.
+- Rebuilt raster: **41,139 dots**, 940 above the baseline; SHA-256 is listed above.
+- Candidate C5 also passed, but C2 is the simpler implementation. C1, C3, and C4 failed; the C3
+  rung-3.0 re-pack degraded both proxies.
+
+Evidence: [`evidence/holdout33.json`](evidence/holdout33.json),
+[`evidence/build_c2_01f660dd8656.json`](evidence/build_c2_01f660dd8656.json), and the
+[ranked hypothesis register](registry/hypotheses.json). H33-A analog-field transfer remains a **plan**:
+source data have not been geolocated, semantically aligned, or validated against the target. GDR #1288's
+geothermal-feature/classification layers are not the GeoDAWN 19-band training raster and are not fault
+labels. No direct bandwise analog transfer is claimed. See the [executive summary](docs/executive-summary.html)
+and [limitations/access register](knowledge/04_limitations_and_access.md).
 
 ## Quick start
 
+Install the project dependencies, restore the hash-checked public inputs, and reproduce the C2
+holdout/build. The downloader defaults to the candidate group; it does not use DrivenData.
+
 ```bash
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
-bash scripts/download_competition_data.sh     # restores hash-pinned public mirrors (never contacts DrivenData)
-PYTHONPATH=src .venv/bin/python tests/test_metric.py                     # metric unit tests
-PYTHONPATH=src .venv/bin/python scripts/run_holdout33.py --candidates C1,C2,C3,C4,C5 --out evidence/holdout33.json
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+GEMS_DATA_DIR="$PWD/.cache/gemsdata" PYTHON=".venv/bin/python" bash scripts/download_competition_data.sh
+
+# Full holdout evaluation and deterministic candidate rebuild
+PYTHONPATH=src .venv/bin/python scripts/run_holdout33.py \
+  --candidates C1,C2,C3,C4,C5 --out evidence/holdout33.json
 PYTHONPATH=src .venv/bin/python scripts/build_submission33.py --candidate C2
-PYTHONPATH=src .venv/bin/python scripts/validate_submission.py --submission docs/downloads/<file>.tif
+
+# Fast tests, feed freshness, local links, and both deliverable format audits.
+# Restores only the small sample grid template if it is not already present.
+bash scripts/run_checks.sh
 ```
 
----
+The build command generates a new uniquely named file from the current timestamp/content ID. Update all
+published pointers and evidence from its build report before replacing the one-click asset. The checked-in
+C2 filename above is the deterministic build used by the current ledger and site. A score-gated artifact
+still requires manual owner review and upload; never consume a competition slot on a proxy-only claim.
 
-## Standing brief (the prompt this repo is built against)
+## Results, methods, and evidence
+
+- Executive summary and one-click download: [`docs/index.html`](docs/index.html)
+- Executive research summary: [`docs/executive-summary.html`](docs/executive-summary.html)
+- Manual upload steps and paste-ready competition note: [`docs/how-to-submit.html`](docs/how-to-submit.html)
+- Static results feed, official snapshot, and live leaderboard link: [`docs/results.html`](docs/results.html),
+  [`docs/score-feed.json`](docs/score-feed.json)
+- Five ranked H33 hypotheses: [`registry/hypotheses.json`](registry/hypotheses.json),
+  [`docs/hypotheses.html`](docs/hypotheses.html)
+- Why the prior best scored 0.2708: [`knowledge/01_why_0.2708_won.md`](knowledge/01_why_0.2708_won.md)
+- Proxy results: [`knowledge/03_proxy_results.md`](knowledge/03_proxy_results.md)
+- Limitations, access needs, and decision gates: [`knowledge/04_limitations_and_access.md`](knowledge/04_limitations_and_access.md)
+- Verified data sources: [`knowledge/05_data_sources_verified.md`](knowledge/05_data_sources_verified.md),
+  [`docs/data-sources.html`](docs/data-sources.html)
+- Cross-campaign score source: [`registry/score_ledger.json`](registry/score_ledger.json)
+
+Rows with no score remain explicitly unscored. Public GitHub API lookups for the repositories named
+`31GEMSDOE` and `32GEMSDOE` returned 404 to the configured public account; that does **not** establish
+whether either repository is private, uncreated, or hosted elsewhere. The original request supplied no
+submission name, URL, or score for those headings, so the feed records only that missing information.
+
+## Restored data and provenance
+
+`registry/data_manifest.json` pins the core training raster, labels, and sample-grid template, plus the
+candidate inputs (including H27-4 and the Quaternary-fault shapefile components). H27-4 comes from an
+owner-maintained public mirror; its hash pins the bytes but does not make the score organizer-authenticated.
+The Quaternary-fault files are from a pinned community mirror of GDR #1391; those hashes likewise pin the
+fetched bytes, not an organizer certification. GDR #1391 lists Quaternary Faults v1 and a newer v2 that
+supersedes v1; this mirror's exact version correspondence has not been verified. A local HEAD request for
+the official v2 ZIP failed TLS, so C2's passing proxy result applies only to the currently pinned mirror.
+`scripts/restore_data.py` supports `core` and `candidate` groups; the optional unpinned research archive
+is excluded from the default candidate restore.
+
+The cached inputs live under `.cache/gemsdata/` and may need to be restored after a clean checkout. The
+candidate downloader verifies SHA-256 and the core grid before a build. The GDR data listing is evidence
+that the source exposes specific downloadable layers, not evidence that those layers are equivalent to
+GeoDAWN labels or its 19 training bands.
+
+## Standing brief (original user prompt, retained verbatim)
 
 > Review the repo.
 >
@@ -84,20 +162,34 @@ PYTHONPATH=src .venv/bin/python scripts/validate_submission.py --submission docs
 > use your model to generate predictions that match the submission format. Find free publicly available
 > sources and data from official and verified sources for any 3rd party or external data.
 
+> **Status note:** the original prompt's 0.3195 leaderboard value is preserved above as part of the brief;
+> it is now rank 3 in the 2026-10-03 official snapshot. The current leader is 0.3262; see the dated
+> [results page](docs/results.html). H33-A analog transfer has not been executed and is explicitly subject to
+> feature compatibility, geographic alignment, provenance checks, and holdout validation.
+
 ### Session-status pointer
 
-* Answer to "why did 0.2708 win" → [`knowledge/01_why_0.2708_won.md`](knowledge/01_why_0.2708_won.md)
-* The 5 ranked new hypotheses → [`registry/hypotheses.json`](registry/hypotheses.json) and [`knowledge/02_hypotheses_H33.md`](knowledge/02_hypotheses_H33.md)
-* This session's proxy validation (C2 passes, C3 refuted) → [`evidence/holdout33.json`](evidence/holdout33.json), [`knowledge/03_proxy_results.md`](knowledge/03_proxy_results.md)
-* Limitations & access needs → [`knowledge/04_limitations_and_access.md`](knowledge/04_limitations_and_access.md)
-* Verified official data-source table → [`knowledge/05_data_sources_verified.md`](knowledge/05_data_sources_verified.md)
-* Score ledger across all campaign sites → [`registry/score_ledger.json`](registry/score_ledger.json)
+* Answer to “why did 0.2708 win” → [`knowledge/01_why_0.2708_won.md`](knowledge/01_why_0.2708_won.md)
+* Five ranked new hypotheses → [`registry/hypotheses.json`](registry/hypotheses.json) and [`knowledge/02_hypotheses_H33.md`](knowledge/02_hypotheses_H33.md)
+* Current proxy validation → [`evidence/holdout33.json`](evidence/holdout33.json), [`knowledge/03_proxy_results.md`](knowledge/03_proxy_results.md)
+* Limitations and access needs → [`knowledge/04_limitations_and_access.md`](knowledge/04_limitations_and_access.md)
+* Verified sources → [`knowledge/05_data_sources_verified.md`](knowledge/05_data_sources_verified.md)
+* Score ledger → [`registry/score_ledger.json`](registry/score_ledger.json)
+
+### No-automation / submission policy
+
+Code and CI may fetch only public repository data sources listed in the manifest. No code may log into,
+upload to, scrape, or poll DrivenData. The official leaderboard is manually checked and recorded as a
+static dated snapshot. The human owner must review the artifact and upload it manually. A weekly competition
+slot is reserved for candidates that improve the frozen proxy holdouts and pass all format checks.
 
 ### Known irregularities (flagged for review)
 
 | ID | Finding |
 |---|---|
-| IR-PORTAL-01 | Upload form validates the whole array against [0,1] and rejects NaN; all session outputs are zero-outside instead of NaN-outside |
-| IR-QFAULTS-01 | GEMSDOE24 mirror `qfaults_v2_in_footprint.json` geometry is in a non-invertible shifted coordinate frame; replaced by the authoritative INGENIOUS shapefile (NAD83, validated) |
-| IR-EVIDENCE-01 | GEMSDOE29's GeoDAWN-radiometric experiment record (seeds 280–289) could not be retrieved via the GitHub API this session; H33-D is marked partially pre-empted until reconciled |
-| IR-NET-01 | This sandbox has egress only to github.com/api.github.com/codeload.github.com; USGS/GDR/Dropbox/DrivenData bytes require an unrestricted machine |
+| IR-PORTAL-01 | Owner observed “Predicted values must be in range [0, 1]” while using an earlier NaN-outside file. NaNs are a plausible cause, not an organizer-confirmed diagnosis. The project's current policy is finite `[0,1]` across the array and zero outside the footprint. |
+| IR-QFAULTS-01 | GEMSDOE24 mirror `qfaults_v2_in_footprint.json` geometry is in a non-invertible shifted coordinate frame; candidate construction uses the separately pinned INGENIOUS shapefile mirror instead. |
+| IR-QFAULTS-02 | GDR #1391 lists Quaternary Faults v2 as superseding v1; the pinned community mirror's exact version is not confirmed. A direct local HEAD request for the official v2 ZIP failed TLS. C2's current proxy evidence applies to the mirror as pinned; re-audit before swapping inputs. |
+| IR-EVIDENCE-01 | GEMSDOE29's radiometric experiment record (seeds 280–289) could not be retrieved through the available public GitHub API lookup; H33-D is marked partially pre-empted until reconciled. |
+| IR-NET-01 | Official GDR/NBMG/USGS file downloads were not fully restored for analog transfer; source-listing availability is not the same as local data readiness. Do not run H33-A until location, labels, common features, and license/provenance are audited. |
+| IR-REPO-31-32 | Public GitHub API lookups of repositories named `31GEMSDOE` and `32GEMSDOE` returned 404. They may be private, uncreated, or elsewhere; no URL/name/score was supplied. |

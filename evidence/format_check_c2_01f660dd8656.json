@@ -1,11 +1,13 @@
 {
- "file": "/home/user/GEMSDOE33/docs/downloads/gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif",
- "sha256": "5bb604f1cef55c43c686601bd20c132ae47cbbbd70ffe1645621e0099938157f",
- "bytes": 884316,
+ "file": "docs/downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif",
+ "sha256": "7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7",
+ "bytes": 884296,
  "bands": 1,
  "dtype": "float32",
  "crs": "EPSG:32611",
+ "epsg": 32611,
  "template_crs": "EPSG:32611",
+ "template_epsg": 32611,
  "shape": [
   3730,
   3292
@@ -13,6 +15,14 @@
  "template_shape": [
   3730,
   3292
+ ],
+ "resolution": [
+  100.0,
+  100.0
+ ],
+ "template_resolution": [
+  100.0,
+  100.0
  ],
  "transform": [
   100.0,
@@ -42,15 +52,19 @@
   572550.0,
   4508550.0
  ],
+ "shape_match": true,
+ "resolution_match": true,
+ "transform_match": true,
+ "bounds_match": true,
  "all_finite": true,
- "nan_count": 0,
+ "nonfinite_count": 0,
  "min": 0.0,
  "max": 1.0,
  "in_range_0_1_whole_array": true,
+ "footprint_cells": 5167373,
  "in_range_0_1_footprint": true,
- "emitted_pixels": 41143,
- "emitted_fraction_of_footprint": 0.007962072797918787,
  "outside_footprint_all_zero": true,
- "pass": true,
- "status": "SUPERSEDED: audit applies to prior nondeterministic C2 file only"
+ "emitted_pixels": 41139,
+ "emitted_fraction_of_footprint": 0.007961298710195684,
+ "pass": true
 }

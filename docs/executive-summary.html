@@ -8,7 +8,7 @@
 <body>
 <header class="site"><div class="row">
   <h1>GEMS<span>DOE33</span> · Executive summary</h1>
-  <nav>
+  <nav aria-label="Main navigation">
     <a href="index.html">Download</a>
     <a class="on" href="executive-summary.html">Executive summary</a>
     <a href="how-to-submit.html">How to submit</a>
@@ -19,85 +19,110 @@
 </div></header>
 <main>
 
-<h2>Mission</h2>
+<h2>Mission and current standing</h2>
 <div class="card">
-<p>Win the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize
-Challenge</a>: map geological faults in the GeoDAWN region (northwestern Great Basin) that are
-<b>missing from the public USGS/INGENIOUS catalogue</b>, because those are exactly the faults the
-expert panel labelled as ground truth. Current standing: owner-reported campaign best <b>0.2708</b>
-(h27-4-r1-solo) vs public leader <b>0.3195</b> (“DARD”).</p>
-<p><b>This session's download:</b>
-<a class="btn" href="downloads/gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif" download>⬇ gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif</a>
-<span class="pill ok">format audit PASS</span> <span class="pill warn">unscored</span></p>
+<p>The <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize
+Challenge</a> asks for fault predictions in the GeoDAWN region of the northwestern Great Basin. The
+prior best, <b>0.2708</b> for h27-4-r1-solo-d2-8, is an owner-reported manual result, not an organizer
+receipt archived here. The official public leaderboard snapshot checked 2026-10-03 local lists
+<b>nchuzhoy at 0.3262</b>; it is dated and may change. The current C2 artifact has not been submitted
+and has no competition score.</p>
+<p><b>Current one-click candidate:</b>
+<a class="btn" href="downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif" download>
+⬇ gems33-c2-stepover-relay-20261004-01f660dd8656.tif</a>
+<span class="pill ok">local format audit PASS</span>
+<span class="pill warn">proxy-gated; unscored</span></p>
+<p>SHA-256 <code>7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7</code>.
+Use the <a href="how-to-submit.html">manual upload guide</a>; this project does not automate competition access.</p>
 </div>
 
-<h2>Why 0.2708 won, and the plan past it</h2>
+<h2>Why the owner-reported 0.2708 did well</h2>
 <div class="card">
 <ul>
-  <li><b>Metric:</b> distance-weighted Tversky index, α=0.2 / β=0.8, 300 m triangular kernel —
-  false positives are cheap but unbounded; false negatives are capped by the hidden truth |G| ≈ 12,226 px.</li>
-  <li><b>The 0.2708 file</b> = 40,199 sparse dots from the H19-5 scarp/geophysics ridge ensemble,
-  Poisson-thinned to 2.8 px spacing, with the blind 1-px catalogue-flank prune (H27-4). Dots near known
-  catalogue faults can never earn credit because the scoring truth is off-catalogue by construction.</li>
-  <li><b>Reaching 0.3195</b> requires ~+24% credited truth mass at the same dot budget, or ~half the dots
-  at equal credit. Packing tricks are exhausted (marginal return 0.031 credit/dot &lt; 0.055 break-even).
-  The only route is <b>new, high-specificity off-catalogue evidence</b>.</li>
+  <li><b>Metric:</b> distance-weighted Tversky index (α=0.2, β=0.8) with a 300 m triangular credit
+  kernel. The owner-reported score sequence indicates that precision/recall balance and location quality
+  mattered more than drawing continuous fault traces.</li>
+  <li><b>Construction:</b> the h27-4 raster is reported as 40,199 sparse dots based on the H19-5
+  scarp/geophysics ridge ensemble, Poisson-thinned to 2.8 px, with a blind one-pixel catalogue-flank
+  prune. Pixels near known catalogue faults do not explain the off-catalogue target by themselves.</li>
+  <li><b>What the next score requires:</b> new, independent off-catalogue information plus conservative
+  error control. A previous numerical budget calculation was tied to the old 0.3195 leaderboard value;
+  it is stale against the 0.3262 snapshot. Recompute it from the exact baseline counts before quoting any
+  required recall, dot count, or probability of winning. No live-score gain is projected from a proxy.</li>
 </ul>
+<p>The reported 0.2708 explains why a sparse, catalogue-aware baseline is valuable; it does not prove each
+removal is a false positive or guarantee that further thinning will help. See the
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/01_why_0.2708_won.md" rel="noopener">full metric and error-budget analysis</a>.</p>
 </div>
 
-<h2>This session's strategy: bounded analog-field transfer + stepover relays</h2>
+<h2>Candidate science: what is tested and what is not</h2>
 <div class="card">
-<p><b>1. Borrow ground truth from better-mapped analog fields, with the transfer bounded.</b>
-Dixie Valley, Desert Peak and Brady's have decades of industry-drilling-verified fault mapping.
-Ben-David et al. (2010, <a href="https://doi.org/10.1007/s10994-009-5152-4">DOI 10.1007/s10994-009-5152-4</a>)
-bound target-domain error by source-domain error plus the measured divergence between feature
-distributions (classifier-two-sample-test / d<sub>A</sub>-distance). Where divergence is small, analog
-geometries become a genuinely independent validation set never touched by the GeoDAWN catalogue.
-Sources verified obtainable: GDR #207 GIS_Faults.zip (Dixie Valley), NBMG OF 03-27 (Desert Peak–Brady's),
-GDR #1288 labelled grids. Bytes require an unrestricted machine (sandbox egress is GitHub-only).</p>
-<p><b>2. Stepover relay bridges (implemented, proxy-gated, shipped above).</b> Both Desert Peak and
-Brady's geothermal fields are hosted in fault <b>step-overs</b> (Faulds et al., OSTI 1110517): relay ramps
-between fault tips concentrate dense unmapped strands. We emit sparse bridge dots between distinct-FID
-tip pairs (300–2500 m approach, ≤30° strike) gated by an isostatic-gravity horizontal-gradient edge —
-mechanistically distinct from the failed T-v2 rule, which filled same-polyline compiler gaps.</p>
+<p><b>C2 is implemented.</b> It proposes short, sparse bridges between tips of distinct mapped fault
+features where band 18, <code>iso_grav_anom_hg</code>, is high. The rule uses a 300–2,500 m tip gap,
+≤30° strike difference, and band-18 threshold; it adds 940 dots. This is a structural hypothesis,
+not proof that any candidate bridge is a hidden fault. The literature citation
+(<a href="https://www.osti.gov/biblio/1724082">Faulds &amp; Hinz, 2015, regional Great Basin structural-settings study</a>)
+provides regional structural context. It is <b>not</b> the NBMG OF 03-27 map report; the official NBMG
+product is linked separately in <a href="data-sources.html">data sources</a>.</p>
+<p><b>H33-A analog transfer is a design only, not a validated result.</b> Dixie Valley / Desert Peak /
+Brady source maps must first be geolocated and their fault/thermal labels audited. The set of usable
+features must be established from the actual spatial overlap and equivalent processing; do not assume
+that analog products contain or match the GeoDAWN 19-band raster. GDR #1288 supplies geothermal-feature
+and classification material, not GeoDAWN truth labels or an equivalent 19-band raster. Transfer cannot
+be claimed without label-definition compatibility, CRS/resolution/coverage checks, shared-feature
+construction, source holdouts, and target-side proxy validation.</p>
+<p>A formal adaptation bound is a useful warning, not a shortcut:
+<code>εT(h) ≤ εS(h) + ½ dHΔH(DS, DT) + λ</code>, where λ is the joint error of the best shared
+hypothesis. A classifier-two-sample test can estimate a divergence term only for a pre-defined common
+representation; it does not establish a small λ, compatible labels, or reliable target predictions.
+The register ranks H33-A and four alternatives by expected value/cost while clearly marking unknowns.</p>
+<p><b>H33-B is also unrun.</b> The 2 m temperature-probe archive is listed on GDR #1391 but is not in the
+current restored candidate cache. Its residual surface would need its own background model and sampling
+bias checks. USGS conductive heat-flow and well-residual products are distinct evidence, not the same
+thing as 2 m probe temperature. Band 5 is <code>iso_grav_anom_slope</code>, a gravity derivative; it is
+not a thermal feature.</p>
 </div>
 
-<h2>Validation discipline</h2>
+<h2>Validation discipline and current proxy results</h2>
 <div class="card">
 <ul>
-  <li><b>P1</b>: catalogue-hidden 4-fold spatial block holdout (LOSFO-style, 600 m system grouping) — paired ΔDTI vs the scored control.</li>
-  <li><b>P2</b>: SGMC off-catalogue faults ≥300 m from the catalogue — an independent compilation as truth substitute.</li>
-  <li><b>Gate</b>: P1 mean ΔDTI &gt; 0, majority folds positive, P2 not worse than −0.001. <b>C2 passed; C3 re-pack refuted.</b></li>
-  <li>No weekly slot is ever spent on a file that has not beaten the current holdout best. Proxies are labelled proxies — never scores.</li>
+  <li><b>P1:</b> catalogue-hidden four-fold spatial block holdout, paired against the h27-4 baseline.</li>
+  <li><b>P2:</b> SGMC off-catalogue faults at least 300 m from the supplied catalogue; this is a proxy, not organizer truth.</li>
+  <li><b>Gate:</b> P1 mean ΔDTI &gt; 0, a strict majority of P1 folds positive, and P2 ΔDTI ≥ −0.001.
+  Both gates must pass, then the exact artifact must pass the format audit.</li>
+  <li><b>No score interpolation:</b> proxy deltas are not leaderboard deltas. No candidate has earned a live score until the owner submits it and receives an organizer result.</li>
 </ul>
-</div>
-
-<h2>Headline results</h2>
-<div class="card">
 <table>
-<tr><th>Candidate</th><th>Δ dots</th><th>P1 mean ΔDTI</th><th>P2 ΔDTI</th><th>Gate</th></tr>
-<tr><td>C1 corroborated Euler dots (+12)</td><td>+12</td><td>−0.00000</td><td>+0.00002</td><td>neutral</td></tr>
-<tr><td><b>C2 stepover relay bridges (+944)</b></td><td>+944</td><td><b>+0.00043 (3/4 folds)</b></td><td><b>+0.00028</b></td><td><b>PASS → shipped</b></td></tr>
-<tr><td>C3 rung-3.0 re-pack</td><td>−5,725</td><td>−0.00123 (0/4)</td><td>−0.00814</td><td>FAIL (refuted)</td></tr>
-<tr><td>C4 = C3+C1</td><td>−5,713</td><td>−0.00124</td><td>−0.00810</td><td>FAIL</td></tr>
-<tr><td>C5 = C2+C1</td><td>+956</td><td>+0.00042</td><td>+0.00030</td><td>PASS (superseded by C2 on parsimony)</td></tr>
+<tr><th>Candidate</th><th>Δ dots</th><th>P1 mean ΔDTI</th><th>P2 ΔDTI</th><th>Decision</th></tr>
+<tr><td>C1 corroborated Euler dots</td><td>+12</td><td>−0.00000411 (0/4)</td><td>+0.00002237</td><td>Fail gate</td></tr>
+<tr><td><b>C2 stepover relay bridges</b></td><td>+940</td><td><b>+0.000405 (3/4)</b></td><td><b>+0.000283</b></td><td><b>Pass; unscored</b></td></tr>
+<tr><td>C3 rung-3.0 re-pack</td><td>−5,725</td><td>−0.001234 (0/4)</td><td>−0.008137</td><td>Fail</td></tr>
+<tr><td>C4 = C3+C1</td><td>−5,713</td><td>−0.001238</td><td>−0.008101</td><td>Fail</td></tr>
+<tr><td>C5 = C2+C1</td><td>+952</td><td>+0.000401 (3/4)</td><td>+0.000305</td><td>Pass; C2 preferred for parsimony</td></tr>
 </table>
-<p class="mut">Evidence: <code>evidence/holdout33.json</code> · metric unit tests: 7/7 · data placement: <code>evidence/data_placement.json</code></p>
+<p class="mut">Evidence: <code>evidence/holdout33.json</code>. C2 has 41,139 dots total. These figures are proxy results only.</p>
 </div>
 
-<h2>Limitations & next actions</h2>
+<h2>Limitations and next decision gates</h2>
 <div class="card">
 <ul>
-  <li>⚠ <b>IR-NET-01</b>: sandbox egress is GitHub-only; USGS/GDR/Dropbox/DrivenData bytes need an unrestricted machine
-  (mirrors are hash-pinned and the restore script is idempotent: <code>bash scripts/download_competition_data.sh</code>).</li>
-  <li>⚠ No DrivenData auth by policy — uploads remain manual; the staged file + paste-ready note are on the <a href="index.html">download page</a>.</li>
-  <li>Next session: (1) pull analog-field vectors and run the d<sub>A</sub> divergence audit (H33-A);
-  (2) 2 m probe residual lineaments (H33-B) from local mirrors;
-  (3) reconcile the GEMSDOE29 radiometric record (IR-EVIDENCE-01) before H33-D;
-  (4) GPU path for a supervised 1 m DEM scarp detector — the credible route to 0.3195.</li>
+  <li><b>H33-A:</b> fetch/inspect the official source data, geolocate and normalize candidate fault layers,
+  establish label semantics, construct genuinely common features, and run spatial/source validation.
+  Do not treat GDR geothermal-feature files as the GeoDAWN 19-band training raster.</li>
+  <li><b>H33-B:</b> restore and audit the 2 m probe archive listed on GDR #1391; distinguish shallow probe
+  anomalies from the USGS heat-flow residual products.</li>
+  <li><b>H33-D:</b> reconcile GEMSDOE29's radiometric record before calling the idea novel or running it.</li>
+  <li><b>Submission:</b> manually upload only if both proxy gates and the exact format audit pass, then
+  record the actual organizer receipt. No code logs in, uploads, scrapes, or polls DrivenData.</li>
+  <li><b>Reproducibility:</b> the local cache may need restoration with
+  <code>bash scripts/download_competition_data.sh</code>; restore code pins/checks public mirrors and
+  never fetches competition submissions from DrivenData.</li>
 </ul>
+<p>Read the <a href="hypotheses.html">ranked hypotheses</a>,
+<a href="data-sources.html">verified source table</a>, and
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/04_limitations_and_access.md" rel="noopener">limitations register</a>.</p>
 </div>
 
 </main>
-<footer>GEMSDOE33 · research workflow · proxies are not scores · never contacts DrivenData</footer>
+<footer>GEMSDOE33 · research workflow · no DrivenData automation · proxies are not scores</footer>
 </body></html>

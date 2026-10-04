@@ -111,15 +111,30 @@ def evaluate_proxy(pred: np.ndarray, control: np.ndarray, *, buffer_px: int = 6,
 
 
 def gate_summary(report: dict, bar_mean_d_dti: float = 0.0) -> dict:
-    """Frozen promotion gate: P1 paired mean > bar AND majority folds positive
-    AND P2 not worse than -0.001 (tolerance for proxy noise)."""
+    """Fail-closed promotion gate for the frozen P1/P2 proxy protocol.
+
+    A candidate must have a positive paired P1 mean, strictly more than half
+    of the nonempty folds positive, and a measured P2 delta no worse than
+    -0.001. Missing folds or a missing P2 measurement never count as a pass.
+    """
     p1 = report.get("p1_mean_d_dti")
     p2 = (report.get("p2") or {}).get("d_dti")
-    folds_ok = report.get("p1_positive_folds", 0) * 2 >= report.get("p1_n_folds", 1)
+    try:
+        n_folds = int(report.get("p1_n_folds", 0))
+        positive_folds = int(report.get("p1_positive_folds", 0))
+        p1_value = float(p1)
+        p2_value = float(p2)
+        bar_value = float(bar_mean_d_dti)
+    except (TypeError, ValueError):
+        n_folds = positive_folds = 0
+        p1_value = p2_value = float("nan")
+        bar_value = float(bar_mean_d_dti)
+
+    folds_ok = n_folds > 0 and 0 <= positive_folds <= n_folds and 2 * positive_folds > n_folds
     verdict = {
-        "p1_above_bar": (p1 is not None) and (p1 > bar_mean_d_dti),
+        "p1_above_bar": bool(np.isfinite(p1_value) and p1_value > bar_value),
         "p1_majority_folds_positive": bool(folds_ok),
-        "p2_not_worse": (p2 is None) or (p2 >= -0.001),
+        "p2_not_worse": bool(np.isfinite(p2_value) and p2_value >= -0.001),
     }
     verdict["pass"] = all(verdict.values())
     return verdict

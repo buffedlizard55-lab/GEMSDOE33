@@ -88,20 +88,22 @@ def c1_h38_corroborated(base: np.ndarray | None = None, max_ridge_dist_px: float
 
 
 def _qfaults_tip_segments() -> list[dict]:
-    """INGENIOUS Quaternary fault polylines (jklinck mirror of the NBMG/USGS
-    regional compilation), NAD83 lon/lat -> EPSG:32611, clipped to the
+    """INGENIOUS Quaternary fault polylines from a pinned community mirror of
+    the GDR #1391 compilation, NAD83 lon/lat -> EPSG:32611, clipped to the
     competition footprint with a 3 km margin.
 
     Note IR-QFAULTS-01: the GEMSDOE24 mirror ``qfaults_v2_in_footprint.json``
     carries geometry in a non-invertible shifted frame and is NOT used; the
-    shapefile's .prj (GCS_North_American_1983) is authoritative and was
-    validated at 42.5% vertex proximity to the supplied catalogue raster.
+    shapefile's .prj is parsed as GCS_North_American_1983. A 42.5% sample-vertex
+    proximity check against the supplied catalogue is only a geometry
+    diagnostic, not validation of every trace or of target-label equivalence.
+    The mirror hashes authenticate fetched bytes, not the source provenance.
     """
     import shapefile
     from rasterio.warp import transform as warp_transform
 
-    shp_path = (data_dir() / "external" / "geothermal_research-main" /
-                "faults_quaternary_INGENIOUS_regional_data" / "faults_quaternary_regional.shp")
+    shp_path = (data_dir() / "external" / "faults_quaternary_INGENIOUS_regional_data" /
+                "faults_quaternary_regional.shp")
     with rasterio.open(data_dir() / "core" / "sample_submission.tif") as ds:
         b = ds.bounds
         transform = ds.transform
@@ -115,12 +117,25 @@ def _qfaults_tip_segments() -> list[dict]:
 
     sf = shapefile.Reader(str(shp_path))
     segs = []
+    # The source NUM field is often alphanumeric (e.g. "829a"), so casting
+    # it to int and falling back to Python's randomized hash(name) made the
+    # feature IDs unstable and allowed hash collisions to merge fault systems.
+    # Use stable, collision-free integer IDs keyed by the original identity.
+    fid_by_identity: dict[tuple[str, str], int] = {}
     for sr in sf.iterShapeRecords():
         a = sr.record
         try:
-            name = str(a["NAME"])
+            name = str(a["NAME"]).strip()
         except Exception:
             name = ""
+        try:
+            num = str(a["NUM"]).strip()
+        except Exception:
+            num = ""
+        identity = ("num", num) if num else ("name", name)
+        if identity not in fid_by_identity:
+            fid_by_identity[identity] = len(fid_by_identity)
+        fid = fid_by_identity[identity]
         bbox = sr.shape.bbox  # [xmin, ymin, xmax, ymax] in lon/lat
         if bbox[2] < lon_min or bbox[0] > lon_max or bbox[3] < lat_min or bbox[1] > lat_max:
             continue
@@ -132,22 +147,22 @@ def _qfaults_tip_segments() -> list[dict]:
                 continue
             E, N = warp_transform("EPSG:4326", "EPSG:32611", pts_ll[:, 0].tolist(), pts_ll[:, 1].tolist())
             pts = np.column_stack([E, N])
-            segs.append({"fid": int(a["NUM"]) if str(a["NUM"]).isdigit() else hash(name) % 100000,
-                         "name": name, "pts": pts})
+            segs.append({"fid": fid, "name": name, "pts": pts})
     return segs
 
 
 def c2_stepover_bridges(base: np.ndarray | None = None, d_min_m: float = 300.0, d_max_m: float = 2500.0,
                         strike_tol_deg: float = 30.0, dot_spacing_px: float = 2.83) -> tuple[np.ndarray, dict]:
-    """Relay-ramp bridge dots between interacting tips of DISTINCT fault polylines.
+    """Candidate relay-bridge dots between interacting tips of DISTINCT fault polylines.
 
-    Mechanism (Faulds & Hinz 2015): stepovers, terminations and intersections of
-    mapped faults concentrate unmapped synthetic/antithetic structures. This is
-    deliberately different from GEMSDOE27's failed T-v2 rule, which filled
-    gaps inside the same polyline (230/345 links were same-FID compiler
-    artifacts). Here only distinct-FID tip pairs with near-parallel strikes and
-    close tip approach qualify, and the bridge is gated by the potential-field
-    edge layer (iso_grav_anom_hg >= in-footprint 80th percentile within 200 m).
+    Faulds & Hinz (2015, OSTI 1724082) report step-overs/relay ramps among
+    favorable regional geothermal settings; this motivates, but does not verify,
+    the target-domain bridge hypothesis. This is deliberately different from
+    GEMSDOE27's failed T-v2 rule, which filled gaps inside the same polyline
+    (230/345 links were same-FID compiler artifacts). Here only distinct-FID
+    tip pairs with near-parallel strikes and close tip approach qualify, and
+    the bridge is gated by the potential-field edge layer
+    (iso_grav_anom_hg >= in-footprint 80th percentile within 200 m).
     """
     import rasterio
 

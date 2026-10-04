@@ -8,7 +8,7 @@
 <body>
 <header class="site"><div class="row">
   <h1>GEMS<span>DOE33</span> · Candidate hypotheses</h1>
-  <nav>
+  <nav aria-label="Main navigation">
     <a href="index.html">Download</a>
     <a href="executive-summary.html">Executive summary</a>
     <a href="how-to-submit.html">How to submit</a>
@@ -19,68 +19,113 @@
 </div></header>
 <main>
 
-<p class="mut">Machine-readable copy: <code>registry/hypotheses.json</code>. Every candidate must pass the frozen
-P1/P2 proxy gate before a weekly slot. Expected ΔDTI ranges are subjective priors that include zero; proxies are not scores.
-Each entry names: layers · physical signature · why it catches faults missing from the catalogue · difference from prior work.</p>
+<p class="mut">Machine-readable copy: <code>registry/hypotheses.json</code>. Ordered by expected scientific
+upside per implementation cost, with uncertainty stated; this is a qualitative research priority, not a
+score forecast. Only C2 and C5 have current proxy tests. A candidate needs both frozen holdout gates and an
+exact format audit before any weekly submission slot. Proxy deltas are not competition scores.</p>
 
-<h2>Rank 1 — H33-C2 stepover relay-bridge faults <span class="pill ok">IMPLEMENTED · PROXY-GATED PASS</span></h2>
+<h2>Rank 1 — H33-C2 stepover relay-bridge faults <span class="pill ok">IMPLEMENTED · PROXY-GATED PASS · UNSCORED</span></h2>
 <div class="card">
 <ul>
-<li><b>Layers:</b> INGENIOUS Quaternary fault vectors (NBMG/USGS regional shapefile, NAD83, validated 42.5% vertex proximity to catalogue); training band 18 <code>iso_grav_anom_hg</code> (≥80th pctile within 200 m); scored h27-4 base.</li>
-<li><b>Signature:</b> tip-to-tip approach of <b>distinct</b> polylines (300–2500 m, ≤30° strike) ⇒ relay ramp; sparse 283 m bridge dots gated by the gravity edge.</li>
-<li><b>Why off-catalogue:</b> stepovers/terminations/intersections concentrate unmapped strands & blind tips (Faulds & Hinz 2015); Desert Peak & Brady’s are both step-over-hosted (OSTI 1110517). The catalogue lists major strands, not relay splays.</li>
-<li><b>Novelty:</b> T-v2 filled same-polyline compiler gaps and failed live; C2 uses distinct-FID pairs + edge gate + pre-slot validation.</li>
-<li><b>Result:</b> P1 +0.00043 (3/4 folds), P2 +0.00028 → PASS. Shipped as the one-click file.</li>
+<li><b>Layers:</b> INGENIOUS Quaternary-fault vectors from a pinned community mirror of the GDR #1391
+compilation (NAD83; hashes pin mirror bytes, not official accuracy). GDR #1391 lists a newer Quaternary Faults v2 that supersedes v1; the mirror's exact version correspondence is unverified. Training band 18,
+<code>iso_grav_anom_hg</code>; h27-4 owner-reported 0.2708 baseline.</li>
+<li><b>Physical signature:</b> approach of tips belonging to <b>distinct feature IDs</b> (300–2,500 m
+separation, ≤30° strike difference), bridged by sparse dots about 283 m apart only where band 18 is above
+the local in-footprint 80th percentile within 200 m.</li>
+<li><b>Why it may find an omitted fault:</b> the bridge represents a structural connector/relay hypothesis;
+its existence and omission from the target truth are not independently confirmed. The 2015 regional Great
+Basin structural-settings paper provides context; it is <b>not</b> the NBMG OF 03-27
+map source (<a href="https://www.osti.gov/biblio/1724082">OSTI record 1724082</a>).</li>
+<li><b>Difference from prior work:</b> GEMSDOE27 T-v2 filled same-polyline compiler gaps and failed a live
+result; C2 restricts to distinct feature IDs and adds a gravity-edge gate, then tests against spatial
+proxies before any submission.</li>
+<li><b>Current test:</b> 940 added dots; total 41,139. P1 mean ΔDTI +0.0004051587 (3/4 folds positive);
+P2 +0.0002831018; proxy gate PASS. No live score.</li>
 </ul>
 </div>
 
-<h2>Rank 2 — H33-A analog-field transfer with a measured domain-adaptation bound <span class="pill warn">DESIGNED · data-gated</span></h2>
+<h2>Rank 2 — H33-A analog-field transfer with a domain-adaptation bound <span class="pill warn">DESIGN ONLY · UNVALIDATED</span></h2>
 <div class="card">
 <ul>
-<li><b>Layers:</b> Dixie Valley field fault map (GDR #207, DOI 10.15121/1148837); Desert Peak–Brady’s map (NBMG OF 03-27); GDR #1288 labelled grids (DOI 10.15121/1773692); shared 19-band features resampled locally.</li>
-<li><b>Signature (protocol):</b> pretrain/co-train on the analog field’s drilling-verified catalogue; measure source→target divergence on shared features with a classifier two-sample test (d<sub>A</sub>); Ben-David et al. 2010 (DOI 10.1007/s10994-009-5152-4) bounds target error by source error + divergence — analog geometries become an independent validation set never touched by the GeoDAWN catalogue.</li>
-<li><b>Why off-catalogue:</b> analog fields contain verified geometries of the exact omission class (blind/buried/low-scarp strands).</li>
-<li><b>Novelty:</b> no campaign has used off-region labelled faults.</li>
-<li><b>Viability:</b> sources confirmed public & downloadable; bytes need an unrestricted machine (IR-NET-01).</li>
+<li><b>Potential layers:</b> Dixie Valley fault-map files listed by
+<a href="https://gdr.openei.org/submissions/207">GDR #207</a>; the Desert Peak–Brady preliminary map is described on the official <a href="https://pubs.nbmg.unr.edu/Geol_Desert_Peak_Brady_geotherm_p/of2003-27.htm">NBMG OF 03-27 product page</a> (free PDF ZIP and geospatial PDF listed; no GIS vector archive confirmed there);
+<a href="https://gdr.openei.org/submissions/1288">GDR #1288</a> geothermal-feature/classification layers.
+The analog data are not yet aligned or audited in this repo.</li>
+<li><b>Feature compatibility:</b> geolocate the actual source data, check CRS/resolution/coverage and label
+semantics, then define only genuinely overlapping, equivalently processed variables. Do not assume that
+analog sites have the GeoDAWN 19-band training raster. GDR #1288's geothermal features and class labels
+are not fault labels and are not equivalent to those 19 bands.</li>
+<li><b>Bound and test:</b> Ben-David et al. (2010) give
+<code>εT(h) ≤ εS(h) + ½ dHΔH(DS, DT) + λ</code>, with λ the joint error of the best shared hypothesis.
+A classifier-two-sample test on the pre-defined common features can estimate a divergence term; it does
+not bound λ by itself or prove label compatibility. Use site-blocked source holdouts, geospatial/label
+QC, and target proxies before transferring anything.</li>
+<li><b>Why it may add information / difference from prior work:</b> analog maps may resolve structures
+missing from regional compilations, but that omission class and equivalent labels remain unverified.
+The supplied campaign ledger does not document a completed transfer experiment; H33-A is a plan, not a
+result.</li>
+<li><b>Expected DTI and cost:</b> unknown until data alignment and validation; potentially high upside but
+high uncertainty and medium-high integration cost. Public listings were verified; bytes are not ingested.</li>
 </ul>
 </div>
 
-<h2>Rank 3 — H33-B 2 m thermal-probe residual lineaments × gravity edges <span class="pill warn">DESIGNED · runnable from local mirrors</span></h2>
+<h2>Rank 3 — H33-B shallow thermal-probe residuals × gravity edges <span class="pill warn">DESIGNED · NOT RUN</span></h2>
 <div class="card">
 <ul>
-<li><b>Layers:</b> INGENIOUS 2 m temperature probe archive (mirrored; GDR #1391 CC BY 4.0); training bands 5/18; USGS heat-flow residual (DOI 10.5066/P9BZPVUC) once fetched.</li>
-<li><b>Signature:</b> aligned positive 2 m residuals above the de-convected background co-aligned with a gravity-gradient edge — warm shallow ground along a buried conduit without a scarp.</li>
-<li><b>Why off-catalogue:</b> fluid ascent warms the shallow subsurface even without Quaternary surface rupture.</li>
-<li><b>Novelty:</b> H35-1 used discharge points and failed below a random control; H33-B uses the continuous probe field + residual definition.</li>
+<li><b>Layers:</b> GDR #1391 lists a 2 m temperature-probe archive; its bytes are not in the restored
+candidate cache. Band 18 <code>iso_grav_anom_hg</code> is the candidate edge gate; band 5 is
+<code>iso_grav_anom_slope</code> (gravity derivative, not thermal). The USGS DOI
+<a href="https://www.sciencebase.gov/catalog/item/6297d2fad34ec53d276c5b28">10.5066/P9BZPVUC</a>
+heat-flow/well-residual products would be independent context, not the same product as 2 m probes.</li>
+<li><b>Physical signature:</b> residualize shallow probe temperatures against a pre-registered regional
+and topographic background, then test coherent positive residuals near gravity edges with spatially
+blocked, matched controls.</li>
+<li><b>Why it may find an omitted fault / difference:</b> shallow fluid-flow anomalies could occur without
+a preserved surface scarp. This is confounded by springs, season, elevation, land cover, and uneven probe
+density. Unlike discharge-point screens, this tests a residualized spatial field; no result yet.</li>
+<li><b>Expected DTI and cost:</b> unknown; medium effort after archive retrieval and sampling/provenance
+review.</li>
 </ul>
 </div>
 
-<h2>Rank 4 — H33-D radiometric K/Th alteration corridors <span class="pill warn">PARTIALLY PRE-EMPTED · reconcile IR-EVIDENCE-01 first</span></h2>
+<h2>Rank 4 — H33-D radiometric K/Th alteration corridors <span class="pill warn">PARTIALLY PRE-EMPTED · RECONCILE FIRST</span></h2>
 <div class="card">
 <ul>
-<li><b>Layers:</b> GeoDAWN K/eU/Th grids (mirrored; native DOI 10.5066/P93LGLVQ); gravity bands 13/18.</li>
-<li><b>Signature:</b> argillic leaching ⇒ K/eU and Th/K lows elongated along an independent gravity lineament — altered conduits with no Quaternary rupture.</li>
-<li><b>Novelty flag:</b> GEMSDOE29 ran a radiometric arm (seeds 280–289); record unretrievable this session — reconcile before executing.</li>
+<li><b>Layers:</b> GeoDAWN radiometric K/eU/Th grids and gravity context (bands 13/18 as recorded in the
+training metadata).</li>
+<li><b>Physical signature:</b> test whether spatially coherent K/eU and Th/K anomalies align with
+independent gravity lineaments, with land-surface and survey-edge controls.</li>
+<li><b>Why it may find an omitted fault / difference:</b> alteration could mark a fluid pathway without a
+Quaternary scarp, but this is an indirect and confounded signal. GEMSDOE29 appears to have tried a
+radiometric arm; its primary record is not retrieved, so novelty and expected improvement are unknown.</li>
+<li><b>Cost:</b> low-to-medium only after the old result, bands, and preprocessing are reconciled. Do not
+rerun or claim novelty before that audit.</li>
 </ul>
 </div>
 
-<h2>Rank 5 — H33-E expert-panel dossier (Final Round optionality) <span class="pill">STRATEGY</span></h2>
+<h2>Rank 5 — H33-E expert-panel evidence dossier <span class="pill">STRATEGY · METRIC-BLIND</span></h2>
 <div class="card">
 <ul>
-<li><b>Mechanism:</b> the Final Prize Round re-scores every submission against the expert-expanded label set;
-well-localised, independently corroborated traces that experts accept become new truth.</li>
-<li><b>Content:</b> C1/C2 corroborated dots + SGMC off-catalogue traces, each with its corroboration dossier.</li>
-<li><b>Economics:</b> ~zero Initial-Round value, positive Final-Round optionality.</li>
+<li><b>Mechanism:</b> maintain provenance and independent geological corroboration for every candidate.
+The competition description says the expert panel reviews submissions and the Final Prize Round uses an
+expanded label set to evaluate the selected submission; acceptance of a proposed feature is unknown.</li>
+<li><b>Why distinct:</b> this is a review/selection strategy, not a raster transform and not an Initial-Round
+DTI improvement. It cannot be assigned a numerical expected DTI gain.</li>
+<li><b>Cost:</b> low per candidate if provenance is recorded at creation; high consequence if evidence is
+weak or a mapped source is misrepresented.</li>
 </ul>
 </div>
 
-<h2>Refuted this session</h2>
+<h2>Proxy failures retained as controls</h2>
 <div class="card">
-<p><b>C3 rung-3.0 re-pack of h27-4:</b> fails both local proxies (P1 −0.00123, 0/4 folds; P2 −0.00814).
-GEMSDOE28’s H36-1 re-pack passed because it re-packed the full H19-5 surface with a flank prune; re-packing an
-already-pruned set removes credit-bearing dots. Kept as an honest control — not shipped.</p>
+<p><b>C1</b> failed the strict P1 majority rule (0/4 positive folds) despite a small positive P2 delta.
+<b>C3</b> rung-3.0 re-pack failed both P1 (−0.00123361, 0/4) and P2 (−0.00813709). C4 failed as well.
+C5 passed but adds the C1 material; C2 is preferred for parsimony. These outcomes are local proxy
+results only, not leaderboard scores. Exact values are in <code>evidence/holdout33.json</code> and
+<a href="results.html">the results page</a>.</p>
 </div>
 
 </main>
-<footer>GEMSDOE33 · hypotheses ranked by expected ΔDTI per cost · proxies are not scores</footer>
+<footer>GEMSDOE33 · geological hypotheses are testable proposals · proxies are not scores</footer>
 </body></html>
