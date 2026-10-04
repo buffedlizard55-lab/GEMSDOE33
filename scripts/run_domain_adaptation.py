@@ -59,7 +59,15 @@ def build_report() -> dict:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=ROOT / "evidence" / "domain_adaptation_preflight.json")
+    parser.add_argument("--overwrite-campaign", action="store_true",
+                        help="replace an existing EXPLORATORY_NOT_LICENSED campaign report")
     args = parser.parse_args()
+    if args.out.exists() and not args.overwrite_campaign:
+        existing = json.loads(args.out.read_text(encoding="utf-8"))
+        if existing.get("status") == "EXPLORATORY_NOT_LICENSED":
+            print(f"keeping campaign report {args.out} (status={existing['status']}); "
+                  "pass --overwrite-campaign to replace")
+            return 0
     report = build_report()
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

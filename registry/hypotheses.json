@@ -1,72 +1,107 @@
 {
-  "schema": 2,
-  "session": "GEMSDOE33 / arena/01a104ca-gemsdoe33",
+  "schema": 3,
+  "session": "GEMSDOE33 / arena/01a107c2-gemsdoe33",
   "as_of": "2026-10-04",
-  "status": "RESEARCH SHORTLIST ONLY — no hypothesis has passed a trustworthy spatially-blocked validation against a current-best comparable emission; no new weekly submission slot is authorized.",
-  "process_note": "The first-pass code was implemented before this shortlist was assembled. That violates the owner's requested hypotheses-before-implementation order; these rankings are retrospective and are NOT preregistration. IR-33-PREREG-01.",
+  "status": "H33-F implemented as a unique emission; spatially blocked proxy holdout FAILED (P1 mean ΔDTI −0.093, 0/4 folds; P2 vs C0 −0.016). No weekly submission slot is authorized. Remaining hypotheses are unrun research leads.",
+  "process_note": "This shortlist was written in the same session as H33-F implementation. Rank 1 was the requested analog-field transfer. It is not a preregistration of a live score.",
   "prior_art_reviewed": [
-    "GEMSDOE19/24/25: H19-5 LiDAR/geophysics blend and d=1.5/d=2.8 thinning ladder; 0.1922/0.2477/0.2600 are owner-reported, no score-to-file receipt.",
-    "GEMSDOE28: H27-4 blind 1-px catalogue-flank pruning, H36-1 rung-3 re-pack, H38-1 heat-flow residual x Euler corroboration; all described on its page as unscored/local evidence. The brief's 0.2708 H27-4 attribution is unsupported.",
-    "GEMSDOE28 H31/H32 Euler and structural-step screens; H33-1 slip-tendency; H34 packing; H35 hydrothermal addition; H36-1/H37-1/H37-3/H38-1 experiments. Their local results are owner-mirror reports, not DrivenData validation.",
-    "GEMSDOE31 H31-A magnetic residual variogram pilot: the recorded result says its catalogue-proxy gate failed and empirical residual range was unknown.",
-    "GEMSDOE32 H61/H62 hypotheses, including tilt-angle and det_elev-curvature screens, plus recorded sample-template/validator and local-holdout limitations.",
-    "GEMSDOE28 H38-2 queued a shallow 2 m temperature-probe residual × gravity-edge test but did not run it because the data gate was unresolved; this existing idea is prior art, not a new ranked hypothesis in this shortlist.",
-    "No field-verified BRIDGE GIS fault picks, USGS ComCat focal-mechanism point/plane data, or Brady/Desert Peak hyperspectral geodatabase was used in the prior emission artifacts reviewed here.",
-    "Upstream H33-C2 stepover-relay artifact: its legacy P1 pass is withdrawn for label/source leakage; the corrected conditional source-exclusion P1 is negative (−0.000722, 0/4 positive), P2 is +0.000283, and it is not slot-cleared. See evidence/holdout33.json and IR-33-C2-01."
+    "GEMSDOE19/24/25: H19-5 LiDAR/geophysics blend and d=1.5/d=2.8 thinning; owner-reported 0.1922/0.2477/0.2600, no score-to-file receipt.",
+    "GEMSDOE28: H27-4 1-px catalogue-flank prune, H36-1 rung-3 re-pack, H38-1 heat-flow residual × Euler; public page says NO GEMSDOE28 SCORE. Brief 0.2708 attribution unsupported.",
+    "Upstream C2 stepover-relay: corrected P1 −0.000722 (0/4), not slot-cleared.",
+    "Prior GEMSDOE33 shortlist (H33-1 BRIDGE GIS, H33-2 ComCat focal planes, H33-3 GDR 1303 minerals) remains blocked on external archives (TLS to gdr.openei.org failed). Those ideas are not re-ranked here as new.",
+    "No prior emission used named Dixie/Brady/Desert Peak well-cell polygons as source domains for a GeoDAWN-layer classifier."
   ],
-  "ranking_basis": "Qualitative expected usefulness if the layer and transfer gates pass; no numerical DTI forecasts are asserted. Ranking is upside divided by cost, not evidence of a measured gain.",
+  "ranking_basis": "Qualitative expected usefulness if gates pass; no numerical live-DTI forecasts. Rank 1 was implemented and failed its proxy gate.",
   "hypotheses": [
     {
-      "id": "H33-1",
+      "id": "H33-F",
       "rank": 1,
-      "title": "Field-verified BRIDGE LiDAR faults as bounded analog-source supervision",
+      "title": "Named analog-field transfer (Dixie Valley, Brady, Desert Peak) on shared GeoDAWN + LiDAR layers",
       "layers": [
-        "BRIDGE GIS fault picks from GDR submission 1682 (source line labels, field-verified only in Dixie Valley and Gabbs Valley per its official README)",
-        "GeoDAWN training features: tmi_hg (band 3), tmi_vg (9), det_elev (12), det_elev_slope (19), iso_grav_anom_hg (18), depth_to_base_surf (15)"
+        "INGENIOUS GDR 1391 well/spring unique cells whose names match Dixie / Brady / Desert Peak (owner-mirror CSV)",
+        "Published plant/area coordinates: OpenEI Dixie Valley, USGS MRDS Brady Hot Springs, OpenEI Desert Peak II",
+        "GeoDAWN bands: tmi_hg, tmi_vg, iso_grav_anom_hg, iso_grav_anom_slope, det_elev_slope, det_elev, depth_to_base_surf, geod_dilaterate, geod_shearrate, geod_2ndinv, cond_surf, mag_anom, rtp",
+        "LiDAR scarp channels: ex_max, step_max, lapneg_max, downface_max, upface_max, coh100"
       ],
-      "physical_signature": "A multi-scale, orientation-preserving lineament/edge response in magnetic, gravity, basement-surface and terrain layers, trained/checked against the source's mapped fault polylines. Transfer is only considered after the shared-layer domain discriminator and spatially blocked source/target tests.",
-      "why_it_targets_faults_absent_from_USGS_INGENIOUS": "The GDR BRIDGE README describes LiDAR fault picks that were field verified in Dixie Valley and Gabbs Valley. Those mapped scarps are an independent source label population; they can test whether the feature signature of a field-mapped fault appears beyond the published regional catalogue. They are not assumed to be new target faults, and they are not used as a score label without spatial/geographic holdout.",
-      "difference_from_prior_art": "Earlier H19/H27/H36/H38 artifacts use the same regional fault catalogue and/or LiDAR-derived scarp features as predictors. No reviewed earlier artifact used BRIDGE field-verified fault picks as independent source labels or measured transfer divergence against them.",
-      "expected_DTI_improvement_rank": "highest qualitative upside; unknown magnitude",
-      "implementation_cost": "medium (official GIS archive lists 3.79 MB; reprojection, attribution checks, exact footprint overlap, deduplication and spatial holdout still needed)",
-      "specific_free_official_source": "DOE Geothermal Data Repository submission 1682, https://gdr.openei.org/submissions/1682; direct GIS file https://gdr.openei.org/files/1682/BRIDGE_GIS.zip; README https://gdr.openei.org/files/1682/BRIDGE_README.pdf",
-      "obtainability_check": "Official page fetch succeeded 2026-10-04. It marks the submission public and CC BY 4.0 and lists GIS Files.zip at 3.79 MB. README says LiDAR fault picks were field verified only in Dixie Valley and Gabbs Valley. Local curl to the file URL failed TLS (HTTP 000); bytes not staged or inspected.",
-      "status": "BLOCKED — do not call viable or run transfer until the official archive is downloaded, hash-recorded, feature schema/CRS/coverage inspected, and all share-to-sponsor terms confirmed. No holdout or slot run."
+      "physical_signature": "A classifier trained only on public-catalogue fault pixels inside named, densely explored geothermal fields, applied to the rest of the footprint; emission is off-catalogue analog-score ridges Poisson-thinned at d=2.8.",
+      "why_it_targets_faults_absent_from_USGS_INGENIOUS": "Those fields have decades of industry drilling and denser mapping. A signature learned there might flag structurally similar, under-mapped traces elsewhere. It does not add independent extra-catalogue labels: source labels are still USGS/INGENIOUS inside the fields.",
+      "difference_from_prior_art": "Prior work used the full regional catalogue or LiDAR globally. No reviewed artifact defined named Dixie/Brady/Desert Peak domains from GDR 1391 wells plus official centroids, measured a spatial-block domain discriminator, and emitted a unique off-catalogue analog-score field. GDR 1682/207 GIS payloads were not used (TLS blocked).",
+      "expected_DTI_improvement_rank": "highest qualitative upside if domain shift were small; magnitude unknown a priori",
+      "implementation_cost": "medium (implemented this session from already-restored rasters; no new external GIS)",
+      "specific_free_official_source": "GDR 1391 https://gdr.openei.org/submissions/1391 ; OpenEI Dixie https://openei.org/wiki/Dixie_Valley_Geothermal_Area ; USGS MRDS Brady https://mrdata.usgs.gov/mrds/show-mrds.php?dep_id=10221999 ; OpenEI Desert Peak II https://openei.org/wiki/Desert_Peak_II_Geothermal_Facility ; Ben-David et al. 2010 https://link.springer.com/article/10.1007/s10994-009-5152-4",
+      "obtainability_check": "Official pages fetched 2026-10-04. Well/spring CSV is an owner-mirror of GDR 1391 (hash-pinned). GDR 1682 GIS and GDR 207 GIS_Faults.zip failed TLS (curl 35) and were not used. Named-field cells measured: Dixie 355,714 / Brady 172,283 / Desert Peak 100,324; union 527,997 with 7,848 catalogue pixels.",
+      "status": "IMPLEMENTED; unique TIFF packaged; exploratory 20 km-block domain AUC 0.917; Ben-David bound NOT licensed (lambda unknown); P1 mean ΔDTI −0.093072 (0/4); P2 vs rebuilt C0 −0.016163; P2 vs matched-N random +0.001234; NOT_SLOT_CLEARED."
     },
     {
-      "id": "H33-2",
+      "id": "H33-G",
       "rank": 2,
-      "title": "USGS ComCat focal-mechanism orientation prior for active lineaments",
+      "title": "Conductive-surface linear edges coinciding with isostatic-gravity horizontal gradient, off-catalogue",
       "layers": [
-        "USGS ComCat focal-mechanism product: event location plus nodal-plane strike/dip/rake",
-        "GeoDAWN tmi_hg (3), tmi_vg (9), det_elev (12), det_elev_slope (19), geod_2ndinv (4), geod_shearrate (7), geod_dilaterate (8)"
+        "GeoDAWN cond_surf (band 17) and a Gaussian horizontal gradient of cond_surf",
+        "iso_grav_anom_hg (band 18)",
+        "public catalogue used only as a 1-px exclusion mask, not as a training label"
       ],
-      "physical_signature": "An orientation-conditioned line filter: reward candidate magnetic/geomorphic lineaments whose azimuth and dip direction are mechanically compatible with nearby, reviewed normal/strike-slip focal mechanisms; do not rasterize earthquake density as a fault label.",
-      "why_it_targets_faults_absent_from_USGS_INGENIOUS": "Focal mechanisms constrain active seismogenic slip planes from waveform radiation patterns rather than from the surface fault traces compiled in USGS/INGENIOUS. A lineament consistent with those mechanisms but absent from the surface inventory is a candidate for an unmapped or blind structure.",
-      "difference_from_prior_art": "GEMSDOE32 H61-2 proposed seismicity-density ridge/coherence, and supplied band 16 is earthquake intensity/density. This uses individual event focal-plane geometry, not density or proximity alone.",
-      "expected_DTI_improvement_rank": "moderate; strongly coverage- and mechanism-quality-dependent",
-      "implementation_cost": "medium (API harvesting, duplicate-event/product resolution, uncertainty filters, spatially blocked evaluation)",
-      "specific_free_official_source": "USGS ANSS ComCat docs https://earthquake.usgs.gov/data/comcat/index.php and FDSN query API https://earthquake.usgs.gov/fdsnws/event/1/",
-      "obtainability_check": "Official API count query returned 6,168 focal-mechanism products in the approximate footprint for M>=2.5 and 233 for M>=4 through 2026-10-04. A fetched example event product contains nodal-plane strike/dip/rake. Local curl failed TLS (HTTP 000), so a full response was not saved locally.",
-      "status": "DESK-CHECKED SOURCE; not locally harvested, not validated, not viable for submission yet."
+      "physical_signature": "Ridge/NMS of electrical-conductivity surface gradient where gravity HG is also high. Geothermal fluids along faults create elongated conductors; gravity HG marks density contacts at range fronts and buried steps.",
+      "why_it_targets_faults_absent_from_USGS_INGENIOUS": "USGS/INGENIOUS traces are surface ruptures. A conductivity lineament can mark a blind or fluid-filled structure that never produced a Quaternary scarp.",
+      "difference_from_prior_art": "cond_surf is in the 19-band stack but was not used as a standalone linear-edge × gravity-HG conjunction in H19-5 packing, H27-4 pruning, C2 relays, or H33-F. H38-1 used heat-flow residual × Euler, not conductivity.",
+      "expected_DTI_improvement_rank": "moderate if conductors are sparse and specific; otherwise low",
+      "implementation_cost": "low (band 17 already restored)",
+      "specific_free_official_source": "Competition training_features.tif band descriptions on https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ ; GeoDAWN https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "obtainability_check": "Band 17 is present in the owner-mirror training raster restored 2026-10-04. No new external download required.",
+      "status": "NOT RUN. Do not implement as a slot candidate until a fold-safe P1/P2 proxy beats rebuilt C0."
     },
     {
-      "id": "H33-3",
+      "id": "H33-H",
       "rank": 3,
-      "title": "Brady–Desert Peak alteration/structure coincidence (mineral layers unconfirmed)",
+      "title": "Geodetic dilatation-rate edges × magnetic horizontal-gradient ridges, strike-discordant from the catalogue",
       "layers": [
-        "Candidate alteration/mineral indicator layers, if present in DOE GDR submission 1303; the official listing does not confirm a hyperspectral product or these layer semantics, and the archive has not been inspected",
-        "GeoDAWN tmi_hg (3), iso_grav_anom_hg (18), det_elev (12) and existing LiDAR-scarp channels"
+        "geod_dilaterate (band 8) gradient / zero-contour neighbourhood",
+        "tmi_hg (band 3)",
+        "catalogue strike (local structure-tensor or nearest-trace azimuth) as a discordance gate"
       ],
-      "physical_signature": "If the official archive contains quality-controlled silica/clay/evaporite mineral-assemblage layers, test whether their contact/halo boundaries coincide with independent magnetic/gravity/terrain lineaments rather than using raw K/Th/U amplitude. If those layers are absent or semantically unsuitable, retire the hypothesis instead of substituting an unverified proxy.",
-      "why_it_targets_faults_absent_from_USGS_INGENIOUS": "Hydrothermal alteration can mark long-lived permeability and upflow above blind faults without requiring a preserved Quaternary scarp. A spatial association with an independent structural edge is more specific than alteration alone.",
-      "difference_from_prior_art": "H35-1 used hot spring/well temperatures, one quartz geothermometry threshold, radiometric masks and Euler proximity; H38-1 used conductive heat-flow residual plus Euler. This hypothesis would test verified mineral-assemblage/contact layers with an independent edge-coincidence gate, if those layers actually exist in GDR 1303. No such layer is confirmed or used here.",
-      "expected_DTI_improvement_rank": "low-to-moderate; plausible only as a strict structural conjunction",
-      "implementation_cost": "high (official page lists a 2.58 GB multi-site DOE geodatabase; geodatabase extraction, CRS/coverage, pixel scale and mineral-class semantics need audit)",
-      "specific_free_official_source": "DOE GDR submission 1303, https://gdr.openei.org/submissions/1303; DOE_GDB.zip link listed as https://gdr.openei.org/files/1303/DOE_GDB.zip",
-      "obtainability_check": "Official page fetched 2026-10-04; public, CC BY 4.0, lists the 2.58 GB geodatabase for Brady, Desert Peak and Salton Sea. The archive was not downloaded, so overlap and raster schemas remain unknown.",
-      "status": "BLOCKED — do not call the mineral/hyperspectral layers available; inspect the official archive, layer schema, footprint overlap, provenance and license conditions first."
+      "physical_signature": "Active Basin-and-Range strain localizes on normal faults. Dilatation-rate edges mark hanging-wall/footwall transitions. Magnetic HG ridges whose azimuth differs from nearby mapped traces may be unmapped or newly activated structures.",
+      "why_it_targets_faults_absent_from_USGS_INGENIOUS": "The public catalogue is a geologic surface-trace inventory, not a geodetic strain map. Discordant active-strain magnetic edges can exist without a compiled Quaternary trace.",
+      "difference_from_prior_art": "H19-5 used geodetic bands as generic ensemble features. This hypothesis is a dilatation-edge × mag-HG conjunction with an explicit strike-discordance gate against the catalogue, which was not C2 (tip-to-tip relays) and not H33-F.",
+      "expected_DTI_improvement_rank": "moderate, coverage-dependent",
+      "implementation_cost": "low-to-medium",
+      "specific_free_official_source": "GeoDAWN / INGENIOUS geodetic layers in training_features.tif; problem page https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "obtainability_check": "Bands 3 and 8 restored 2026-10-04 in the owner-mirror stack. No new external data required.",
+      "status": "NOT RUN."
+    },
+    {
+      "id": "H33-J",
+      "rank": 4,
+      "title": "LiDAR uphill-facing (antislope) scarp residual after removing catalogue-parallel steps",
+      "layers": [
+        "lidar_scarp_features_u8.tif bands upface_max, strike, valid (USGS 3DEP 1 m aggregated)",
+        "public catalogue strike/distance as a suppression mask"
+      ],
+      "physical_signature": "Uphill-facing scarps can mark unrecognized faults, landslide headscarps, or lake shorelines. After suppressing steps whose strike is parallel to a nearby catalogue trace, residual upface ridges are candidate omitted faults.",
+      "why_it_targets_faults_absent_from_USGS_INGENIOUS": "H19-5 already used LiDAR scarps supervised/packed toward the visible catalogue. Residuals that are antislope and strike-discordant are the part of the LiDAR field the catalogue-shaped emission is least likely to have spent.",
+      "difference_from_prior_art": "H19-5 used LiDAR globally. This uses only the uphill-facing channel after catalogue-parallel suppression. Not the same as H27-4's 1-px flank prune.",
+      "expected_DTI_improvement_rank": "low-to-moderate; confounded by landslides and shorelines",
+      "implementation_cost": "medium (strike residual design + matched-random control required)",
+      "specific_free_official_source": "USGS 3DEP 1 m DEM; lidar_scarp_features.json records USGS National Geospatial Program acknowledgement. Competition 1 m DEM links: https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+      "obtainability_check": "Owner-mirror lidar_scarp_features_u8.tif restored 2026-10-04 (12 bands including upface_max). Official 3DEP tiles were not re-downloaded.",
+      "status": "NOT RUN."
+    },
+    {
+      "id": "H33-I",
+      "rank": 5,
+      "title": "Volcanic-vent alignment corridors as hidden-fault priors",
+      "layers": [
+        "gdr_volcanic_vents_in_footprint.csv (21 vents; owner-mirror of GDR 1391 volcanic features)",
+        "tmi_hg / iso_grav_anom_hg along three-or-more-point alignments"
+      ],
+      "physical_signature": "Basaltic vents in the Basin and Range often exploit hidden faults. Alignments of ≥3 vents define a corridor; magnetic/gravity ridges inside a narrow buffer and off-catalogue are the candidate traces.",
+      "why_it_targets_faults_absent_from_USGS_INGENIOUS": "Vent locations are magmatic, not a Quaternary fault compilation. A vent-aligned magnetic ridge can mark a structure that never ruptured the surface in the mapped interval.",
+      "difference_from_prior_art": "No reviewed GEMSDOE emission used the 21-vent CSV as an alignment prior. Distinct from hot-spring conjunctions (H35) and analog-field well polygons (H33-F).",
+      "expected_DTI_improvement_rank": "low; n=21 vents, few alignments, easy to overfit",
+      "implementation_cost": "low",
+      "specific_free_official_source": "GDR 1391 https://gdr.openei.org/submissions/1391",
+      "obtainability_check": "CSV restored 2026-10-04, 21 rows, names null, rock types Basalt/Rhyolite. Official GDR payload not re-downloaded (TLS fail).",
+      "status": "NOT RUN. Small-n; matched-random corridor control would be mandatory."
     }
   ],
-  "promotion_policy": "The D2.8 owner-mirror is the only ready reference file. No new candidate is promoted in this session. A new transfer candidate must be evaluated on spatially withheld fault systems with the prediction built without the held-out geometry, use an independently defined matched-comparison budget, and beat a current-best comparable artifact in fresh confirmation. A local catalogue holdout is a proxy for generalization among mapped faults, not a test of the competition's absent/hidden fault population."
+  "promotion_policy": "A unique GeoTIFF may be packaged for format audit without being slot-approved. Slot approval still requires fold-safe candidate construction, P1 majority-fold gain vs the current-best comparable emission, non-loss on P2, and matched-random control when the operator changes count or placement. H33-F does not meet that gate."
 }

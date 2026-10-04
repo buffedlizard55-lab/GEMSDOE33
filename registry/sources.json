@@ -4,7 +4,7 @@
   "sources": [
     {
       "id": "competition-problem",
-      "title": "DrivenData DOE GEMS Prize Challenge — problem description, scoring metric, submission format",
+      "title": "DrivenData DOE GEMS Prize Challenge \u2014 problem description, scoring metric, submission format",
       "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
       "used_for": "Task definition; held-out faults are newly expert-mapped faults absent from public USGS; metric equations; 300 m kernel; EPSG:32611 / 100 m / float32 / probability range [0,1] / null or NaN outside bounds.",
       "evidence_class": "OFFICIAL; fetched 2026-10-04"
@@ -32,7 +32,7 @@
     },
     {
       "id": "rules-pdf",
-      "title": "NREL/TP-5700-96647 — GEMS Prize rules PDF supplied by user",
+      "title": "NREL/TP-5700-96647 \u2014 GEMS Prize rules PDF supplied by user",
       "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
       "used_for": "User-provided rules reference. Specific slot caps and award terms should be rechecked against the current official contest rules before submission.",
       "evidence_class": "USER-PROVIDED LINK; document not re-downloaded in this session"
@@ -67,7 +67,7 @@
     },
     {
       "id": "gdr-1391",
-      "title": "INGENIOUS — Great Basin Regional Dataset Compilation, DOE Geothermal Data Repository submission 1391",
+      "title": "INGENIOUS \u2014 Great Basin Regional Dataset Compilation, DOE Geothermal Data Repository submission 1391",
       "url": "https://gdr.openei.org/submissions/1391",
       "used_for": "Official description/license and data inventory for Quaternary faults, 2 m temperature probes, wells/springs, geochemistry, heat flow, geodetics and other regional layers. The page says the compilation is publicly accessible under CC BY 4.0, describes shallow probe temperatures as possible subtle geothermal-anomaly indicators, and lists a 1.03 MB probe ZIP; the local archive was not downloaded or inspected, so its schema, seasonal/sampling metadata and target-footprint coverage remain unknown. The working CSV/TIFFs here are still owner-mirror copies.",
       "evidence_class": "OFFICIAL DOE GDR; page fetched 2026-10-04; payload not staged"
@@ -88,7 +88,7 @@
     },
     {
       "id": "gdr-1682-readme",
-      "title": "BRIDGE README (GDR 1682) — data structure and field verification note",
+      "title": "BRIDGE README (GDR 1682) \u2014 data structure and field verification note",
       "url": "https://gdr.openei.org/files/1682/BRIDGE_README.pdf",
       "used_for": "Describes map package/shapefiles for LiDAR fault picks across Dixie Valley and nearby prospects, and states the picks were field verified in Dixie Valley and Gabbs Valley.",
       "evidence_class": "OFFICIAL DOE GDR; fetched 2026-10-04"
@@ -116,21 +116,21 @@
     },
     {
       "id": "comcat-api",
-      "title": "USGS FDSN Event Web Service — query API",
+      "title": "USGS FDSN Event Web Service \u2014 query API",
       "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
-      "used_for": "Candidate orientation data source. Official count query returned 6,168 events with focal-mechanism products for the GeoDAWN bounding box, M≥2.5, 1900–2026-10-04; 233 at M≥4. A sample event product exposes strike/dip/rake. Direct curl from this sandbox failed TLS/HTTP 000; source checked through the official web endpoint, not locally harvested.",
+      "used_for": "Candidate orientation data source. Official count query returned 6,168 events with focal-mechanism products for the GeoDAWN bounding box, M\u22652.5, 1900\u20132026-10-04; 233 at M\u22654. A sample event product exposes strike/dip/rake. Direct curl from this sandbox failed TLS/HTTP 000; source checked through the official web endpoint, not locally harvested.",
       "evidence_class": "OFFICIAL USGS; checked 2026-10-04"
     },
     {
       "id": "ben-david-2010",
-      "title": "Ben-David, Blitzer, Crammer, Kulesza, Pereira & Vaughan — A theory of learning from different domains",
+      "title": "Ben-David, Blitzer, Crammer, Kulesza, Pereira & Vaughan \u2014 A theory of learning from different domains",
       "url": "https://link.springer.com/article/10.1007/s10994-009-5152-4",
-      "used_for": "Theorem 2 uses source error + one half the empirical HΔH divergence + finite-sample complexity + the ideal joint-hypothesis error λ. Lemma 2 links an optimal symmetric domain discriminator to empirical H-divergence. The paper does not license replacing field-specific source/target definition, λ, VC dimension, or spatial sampling assumptions with an arbitrary random pixel split.",
+      "used_for": "Theorem 2 uses source error + one half the empirical H\u0394H divergence + finite-sample complexity + the ideal joint-hypothesis error \u03bb. Lemma 2 links an optimal symmetric domain discriminator to empirical H-divergence. The paper does not license replacing field-specific source/target definition, \u03bb, VC dimension, or spatial sampling assumptions with an arbitrary random pixel split.",
       "evidence_class": "PEER-REVIEWED OPEN-ACCESS ARTICLE; Springer PDF fetched 2026-10-04"
     },
     {
       "id": "epsg-32611",
-      "title": "EPSG:32611 — WGS 84 / UTM zone 11N",
+      "title": "EPSG:32611 \u2014 WGS 84 / UTM zone 11N",
       "url": "https://epsg.io/32611",
       "used_for": "CRS reference for the output grid.",
       "evidence_class": "EPSG DATABASE"
@@ -155,6 +155,27 @@
       "url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
       "used_for": "Confirms the H27-4 0.2708 claim is not supported by the site's own status: it displays NO GEMSDOE28 SCORE and describes local/projection results as UNSCORED.",
       "evidence_class": "OWNER SITE; fetched 2026-10-04"
+    },
+    {
+      "id": "openei-dixie",
+      "title": "OpenEI Dixie Valley Geothermal Area",
+      "url": "https://openei.org/wiki/Dixie_Valley_Geothermal_Area",
+      "used_for": "Named analog-field centroid 39\u00b058'3.59\" N, 117\u00b051'18.27\" W. Page returned Under Maintenance on re-fetch 2026-10-04; coordinates taken from the indexed OpenEI record.",
+      "evidence_class": "OFFICIAL OPENEI; page under maintenance on re-fetch 2026-10-04"
+    },
+    {
+      "id": "usgs-mrds-brady",
+      "title": "USGS MRDS Brady Hot Springs dep_id 10221999",
+      "url": "https://mrdata.usgs.gov/mrds/show-mrds.php?dep_id=10221999",
+      "used_for": "Named analog-field centroid 39.7866 N, 119.01319 W WGS84; location accuracy 100 m.",
+      "evidence_class": "OFFICIAL USGS MRDS"
+    },
+    {
+      "id": "openei-desert-peak-ii",
+      "title": "OpenEI Desert Peak II Geothermal Facility",
+      "url": "https://openei.org/wiki/Desert_Peak_II_Geothermal_Facility",
+      "used_for": "Named analog-field centroid 39.753855 N, 118.953781 W.",
+      "evidence_class": "OFFICIAL OPENEI"
     }
   ]
 }

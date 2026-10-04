@@ -2,90 +2,87 @@
 
 **Start here each session:** read this README and the full [standing brief](standing_prompt.md) before changing code. The complete operative brief is reproduced below in §1. This project is maintained under Arena's core values: **Maximize P(Win)** and **Own the Outcome**.
 
-## Download a format-checked D2.8 reference
+## Download a unique format-checked GeoTIFF
 
-> **This is a reference emission, not a new model or a demonstrated leaderboard improvement.** The source is an owner-published mirror. Its claimed `0.2600` score is owner-reported; no organizer receipt ties that score to these exact bytes.
+> **Unique H33-F analog-field transfer. Research candidate. NOT slot-approved.**
+> In-footprint predicted values are in `[0, 1]`. Outside the footprint is NaN on the recommended file.
+> Spatially blocked proxy holdout **failed** (P1 mean ΔDTI −0.093072, 0/4 folds vs rebuilt C0).
+> Do **not** spend a weekly submission slot on this file. No live score is claimed.
 
 | | Recommended — follows the null/NaN-outside wording | Troubleshooting alternative |
 |---|---|---|
-| GeoTIFF | [Download the NaN-outside TIFF](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif) | [Download the zero-outside TIFF](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif) |
-| SHA-256 | `c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc` | `29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73` |
-| Bytes | 499,842 | 423,456 |
+| GeoTIFF | [Download the unique NaN-outside TIFF](docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif) | [Download the unique zero-outside TIFF](docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif) |
+| SHA-256 | `59a68dcd752fc31d774b856e46fddbb9b0e3a9e9c7ab4abb06f77e99b218b10d` | `05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27` |
+| Bytes | 477,936 | 403,314 |
 | Outside footprint | NaN | `0.0` (not as close to the official null/NaN wording) |
 | Local file checks | 10/10 passed | 10/10 passed |
+| Copy of D2.8? | **No** | **No** |
 
-Both are single-band `float32`, `EPSG:32611`, `3730 × 3292`, 100 m, on the registered owner-mirror template transform; in-footprint values are within `[0,1]`. These are **local file checks only**, not proof of portal acceptance. The `[manifest](docs/downloads/manifest.json)` records the checks and hashes.
+Both are single-band `float32`, `EPSG:32611`, `3730 × 3292`, 100 m, on the registered owner-mirror template transform; in-footprint values are within `[0,1]`. These are **local file checks only**, not proof of portal acceptance. The [manifest](docs/downloads/manifest.json) records the checks and hashes.
 
-**Unique submission name:** `gemsdoe33-d28-reference-20261004`
+**Unique submission name:** `gemsdoe33-h33f-analog-xfer-20261004`
 
-**Paste-ready note (158/200 characters):**
+**Paste-ready note (113/200 characters):**
 
-> GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab
+> GEMSDOE33 H33-F analog xfer | Dixie/Brady/DesertPeak wells+GeoDAWN | research not slot-approved | id d042874b26ef
 
 See the [executive summary and exact upload steps](docs/executive-summary.html). No submission was uploaded from this session.
 
+Historical D2.8 owner-mirror (not featured): [NaN-outside](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif) — owner-reported 0.2600, score/file pairing unconfirmed.
+
 ## Current honest conclusion
 
-- The official public leaderboard was reviewed once on **2026-10-04** at the owner's request. That observation did not support the brief's claim that `0.3195` was then the current highest score. The page cannot identify local TIFF bytes or prove an account association. Because the [DrivenData Terms of Use](https://www.drivendata.org/termsofuse/) prohibit automated and manual monitoring/copying without prior written consent, detailed rows are not retained or republished; this project does not poll or refresh the page. See [`registry/leaderboard_review.json`](registry/leaderboard_review.json).
-- The claimed H27-4 `0.2708` score/file attribution is unsupported. The [GEMSDOE28 owner page](https://buffedlizard55-lab.github.io/GEMSDOE28/) says **“NO GEMSDOE28 SCORE”** and describes its artifacts as unscored/research-only. No organizer receipt or verified account/file record ties the claim to the owner's TIFF. The D2.8 `0.2600` score/file pairing remains unconfirmed.
-- **No new candidate has demonstrated a valid, independent improvement over the current best. No candidate is approved for a weekly submission slot.** The available download is only the D2.8 reference.
-- Upstream C2 is preserved as research-only in [`archive/legacy_candidates/`](archive/legacy_candidates/). Its earlier P1 pass was withdrawn for leakage; the corrected conditional source-exclusion diagnostic is P1 mean ΔDTI `−0.000722` (0/4 positive), P2 SGMC proxy `+0.000283`, and still **not slot-cleared** because the fixed H19-5 surface was not re-derived per fold and the diagnostic was not a preregistered independent confirmation. See [`evidence/holdout33.json`](evidence/holdout33.json) and [`IR-33-C2-01`](registry/irregularities.json).
-- Initial holdout, reconstruction, pruning and domain-transfer promotion claims were withdrawn after audit. Their scripts/results are retained for provenance in [`archive/withdrawn_first_pass/`](archive/withdrawn_first_pass/); read [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json) and [`registry/irregularities.json`](registry/irregularities.json). Do not reuse the archived metrics as evidence.
+- A **unique** analog-field transfer GeoTIFF was generated this session from named Dixie Valley, Brady Hot Springs and Desert Peak domains (GDR 1391 well/spring names + official centroids) and shared GeoDAWN/LiDAR layers. It is not a copy of a previous submission.
+- Exploratory 20 km-block domain-discriminator AUC = **0.917**. Ben-David et al. (2010) target-error bound is **not licensed** (λ unknown; analog labels are the same public catalogue, not independent BRIDGE GIS — GDR 1682/207 TLS-failed).
+- Fold-safe P1 mean ΔDTI vs rebuilt C0 = **−0.093072** (0/4 folds). P2 SGMC vs C0 = **−0.016163**; vs matched-N random = **+0.001234**. **No weekly submission slot is approved.**
+- The official public leaderboard was reviewed once on **2026-10-04** at the owner's request. That observation did not support the brief's claim that `0.3195` was then the current highest score. DrivenData [Terms of Use](https://www.drivendata.org/termsofuse/) prohibit automated and manual monitoring/copying without prior written consent. See [`registry/leaderboard_review.json`](registry/leaderboard_review.json).
+- The claimed H27-4 `0.2708` score/file attribution is unsupported. The [GEMSDOE28 owner page](https://buffedlizard55-lab.github.io/GEMSDOE28/) says **“NO GEMSDOE28 SCORE”**.
+- Upstream C2 remains research-only (P1 −0.000722, not slot-cleared). First-pass promotion claims remain withdrawn.
 
 ## Ranked geological research hypotheses
 
-The first-pass implementation preceded this shortlist, contrary to the owner's required ordering. The following hypotheses are therefore a **retrospective research shortlist, not preregistration**. They are not validated models; the availability checks below say what was actually verified.
+Five leads. Rank 1 (the requested analog transfer) was implemented and failed its proxy gate. Ranks 2–5 are unrun. Full records: [`registry/hypotheses.json`](registry/hypotheses.json).
 
-| Rank | Hypothesis and candidate layers | Physical signature / why it may find faults absent from USGS/INGENIOUS | Prior-art distinction | Expected upside / cost | Official-data check and status |
-|---:|---|---|---|---|---|
-| 1 | **Field-verified BRIDGE fault-label transfer**. BRIDGE GIS picks plus GeoDAWN `tmi_hg`, `tmi_vg`, `det_elev`, `det_elev_slope`, `iso_grav_anom_hg`, `depth_to_base_surf`. | Multi-scale, orientation-preserving magnetic, gravity, basement and terrain lineaments supervised/tested against field-mapped traces; a separate field label set could test fault signatures outside the regional compilation. BRIDGE is not assumed to be target truth. | Prior emissions use regional catalogue labels and/or LiDAR predictors; no reviewed prior artifact used BRIDGE field-verified picks as independent source labels. | **Highest qualitative upside if transfer gates pass; magnitude unknown. Medium cost.** | [GDR 1682](https://gdr.openei.org/submissions/1682) is public and lists a 3.79 MB GIS archive; its README says picks are field-verified only in Dixie and Gabbs Valleys. Direct download failed TLS/HTTP 000 here; archive contents were not staged or inspected. **Blocked; not viable/validated yet.** |
-| 2 | **USGS ComCat focal-mechanism orientation prior**. Event nodal-plane location, strike/dip/rake plus magnetic, terrain and strain-invariant layers. | Test whether independent candidate lineaments align with reviewed active slip-plane orientations; do not treat earthquake density alone as a fault label. May expose active or blind structures absent from surface-trace inventories. | Prior seismic candidate used density/coherence, not per-event focal-plane geometry. | **Moderate, coverage-dependent upside; medium cost.** | [USGS ComCat docs](https://earthquake.usgs.gov/data/comcat/index.php) and [FDSN API](https://earthquake.usgs.gov/fdsnws/event/1/) were checked: count queries returned focal-mechanism products and an example exposed nodal-plane fields. A full extract was not staged; no validation. |
-| 3 | **Brady–Desert Peak mineral alteration + structural-edge coincidence**. Candidate GDR 1303 mineral layers (their existence/schema still need inspection) plus magnetic, gravity, terrain and LiDAR scarp features. | Test whether field-supported alteration/contact halos coincide with independent structural edges, a potential indicator of persistent permeability or blind faults rather than a raw radiometric anomaly. | Prior hot-spring/geothermometry and radiometric/Euler experiments did not use a verified mineral-classification/edge conjunction. | **Low-to-moderate upside; high cost and high uncertainty.** | [GDR 1303](https://gdr.openei.org/submissions/1303) lists a public CC BY 4.0, 2.58-GB Brady/Desert Peak/Salton Sea archive. It was not downloaded; hyperspectral/mineral layers, overlap and semantics are **unconfirmed**. Do not treat as available until inspected. |
-
-The full layer lists, prior-art notes, expected-rank rationale and individual blockers are in [`registry/hypotheses.json`](registry/hypotheses.json). The currently preferred research lead (BRIDGE) cannot proceed until its official archive is obtained and inspected. No hypothesis has been implemented as a promoted candidate.
+| Rank | Hypothesis | Layers / signature | Why it may catch omitted faults | vs prior art | Upside / cost | Official source check |
+|---:|---|---|---|---|---|---|
+| 1 | **H33-F named analog-field transfer** (IMPLEMENTED, holdout FAIL) | Dixie/Brady/Desert Peak well-cell + centroid masks; GeoDAWN mag/grav/geodetic/conductivity + LiDAR scarps; off-catalogue analog-score ridges, d=2.8 | Signature of densely explored geothermal fields applied to under-mapped ground. Source labels are still the public catalogue inside those fields. | No prior emission used these named fields as source domains | Highest a priori; **measured P1 −0.093** | [GDR 1391](https://gdr.openei.org/submissions/1391), [OpenEI Dixie](https://openei.org/wiki/Dixie_Valley_Geothermal_Area), [USGS MRDS Brady](https://mrdata.usgs.gov/mrds/show-mrds.php?dep_id=10221999), [OpenEI Desert Peak II](https://openei.org/wiki/Desert_Peak_II_Geothermal_Facility). GDR 1682/207 GIS TLS-failed. |
+| 2 | **H33-G cond_surf edges × gravity HG** | Band 17 conductivity gradient ∩ band 18 iso_grav_anom_hg; catalogue as exclusion only | Blind fluid-filled conductors without a Quaternary scarp | cond_surf not previously a standalone conjunction | Moderate / low cost | Problem page layers; already restored. **Not run.** |
+| 3 | **H33-H dilatation-rate edges × mag HG, strike-discordant** | geod_dilaterate ∩ tmi_hg with catalogue-azimuth gate | Active strain vs geologic surface-trace inventory | Not C2 relays; not generic H19-5 ensemble use | Moderate / low-medium | Restored bands 3 and 8. **Not run.** |
+| 4 | **H33-J LiDAR upface residual** | upface_max after suppressing catalogue-parallel strikes | Antislope scarps the catalogue-shaped H19-5 emission is least likely to have spent | Not H27-4 1-px prune | Low-moderate / medium | Owner-mirror lidar_scarp_features. **Not run.** |
+| 5 | **H33-I volcanic-vent alignments** | 21 GDR 1391 vents; mag/grav ridges in corridors | Magmatic alignments independent of Qfault compilations | Not H35 springs; not H33-F wells | Low / low; n=21 | CSV restored. **Not run.** |
 
 ## Domain adaptation decision
 
-The requested analogy—learn from field-mapped faults in Dixie Valley, Desert Peak or Brady—has **not** been completed. The old experiment used GDR well/spring record-density quantiles instead of named field domains, random raster rows despite spatial autocorrelation and duplicate site rows, and an arbitrary discriminator whose class was not shown to match the model's `HΔH` class. It also omitted a defensible joint-label error `lambda` and the finite-sample/class-complexity term. Its AUC and transfer verdict are withdrawn.
-
-The replacement [`scripts/run_domain_adaptation.py`](scripts/run_domain_adaptation.py) is fail-closed: it writes `BLOCKED_NOT_ESTIMATED` and does not fit a classifier, report a divergence, or license transfer. A usable Ben-David et al. (2010) target-error bound requires source error, a justified empirical `HΔH` divergence, a finite-sample/class-complexity term and `lambda` (joint-label error). See the [paper](https://link.springer.com/article/10.1007/s10994-009-5152-4), [`src/gemsdoe33/domain.py`](src/gemsdoe33/domain.py), and [`evidence/preflight.json`](evidence/preflight.json). BRIDGE's official page and license listing were checked, but its GIS payload could not be downloaded in this sandbox. No transfer is licensed, rejected, or slot-approved.
+Named analog fields **were** defined and a unique emission **was** built. Transfer is **EXPLORATORY_NOT_LICENSED**. See [`evidence/domain_adaptation_preflight.json`](evidence/domain_adaptation_preflight.json), [`evidence/holdout_analog.json`](evidence/holdout_analog.json), [`knowledge/07_analog_transfer.md`](knowledge/07_analog_transfer.md), and [Ben-David et al. 2010](https://link.springer.com/article/10.1007/s10994-009-5152-4).
 
 ## Provenance and data caveats
 
-- The 17 rasters/sidecar inputs audited for this reference are pinned in [`registry/owner_mirror_input_pins.json`](registry/owner_mirror_input_pins.json); they are owner-published GitHub mirrors, **not organizer-authenticated data**. A matching hash proves byte identity with that mirror only; it does not prove source, license, official schema, or score attribution. The separate [`registry/data_manifest.json`](registry/data_manifest.json) is the upstream C0/C2 candidate-input manifest; its unpinned items remain explicitly unverified.
-- The owner-mirrored `sample_submission.tif` is not blank: its 60,988 in-footprint ones match `labels.tif` positives exactly. It is used only for grid/footprint, never as an absence label.
-- The owner-mirrored sample has 5,167,373 finite in-footprint cells. The 19-band training mirror has 3,061 template cells carrying the nodata sentinel in each of 18 bands; band 6 has 12 further sentinel cells. Reproduction is in [`evidence/input_grid_audit.json`](evidence/input_grid_audit.json) via `scripts/audit_inputs.py`. This corrects an earlier erroneous 1,521-cell count. None of these rasters was downloaded through an authenticated DrivenData session.
-- GDR 1391 (INGENIOUS) and GDR 1682 official source pages were reviewed; local downloads of external archives failed TLS/HTTP 000. The 2.58-GB GDR 1303 archive was not downloaded. USGS ComCat API availability was checked, but no complete extract was staged or used to build the TIFF.
-- The recommended NaN-outside file passed 10 local grid/value/format checks, but no portal upload occurred. The zero-outside alternative is offered only for troubleshooting and is less literal to the outside-mask wording.
+- The 17 rasters/sidecar inputs are pinned in [`registry/owner_mirror_input_pins.json`](registry/owner_mirror_input_pins.json); they are owner-published GitHub mirrors, **not organizer-authenticated data**.
+- The owner-mirrored `sample_submission.tif` is not blank: its 60,988 in-footprint ones match `labels.tif` positives exactly. Grid/footprint only.
+- GDR 1682 and GDR 207 official pages were reviewed; local downloads failed TLS (`curl: (35)`). USGS ComCat TLS also failed. No analog GIS vectors were used.
+- The unique NaN-outside file passed 10 local grid/value/format checks. No portal upload occurred.
 
 ## Reproduce local artifacts
 
-The model inputs under `data/` and caches under `.cache/` are git-ignored. Restoration uses owner mirrors; see the warning in `data/README.md`.
-
 ```bash
 python scripts/restore_data.py --group all
-python scripts/audit_inputs.py
-python scripts/prepare_data.py --force-bands --skip-detector
-python scripts/build_submission.py
+python scripts/run_analog_campaign.py
 python scripts/build_site.py
 python -m pytest -q
 ```
 
-`build_submission.py` only repackages the historical D2.8 owner-mirror emission; it does not train a new candidate. The current 121-channel feature cache is research-only. Do not interpret a public-catalogue-trained detector as private hidden-fault validation.
+`run_analog_campaign.py` trains the analog-field classifier, writes the unique GeoTIFF, and records the fold-safe proxy holdout. It does not contact DrivenData.
 
 ## Site and key records
 
-- [Project overview](docs/index.html)
+- [Project overview — unique download](docs/index.html)
 - [Executive summary / upload steps](docs/executive-summary.html)
 - [Research and hypotheses](docs/research.html)
 - [Sources](docs/sources.html)
 - [Irregularities](docs/irregularities.html)
 - [Complete standing brief (HTML)](docs/standing-prompt.html)
 - [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md)
-- [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json)
-- [`evidence/holdout33.json`](evidence/holdout33.json) — upstream C2 conditional source-exclusion diagnostic; not slot-cleared
-- [`registry/score_ledger.json`](registry/score_ledger.json) — historical owner-reported campaign entries only; H27 claim marked unsupported, no official leaderboard rows
-- [`AGENTS.md`](AGENTS.md) — repository operating safeguards
+- [`AGENTS.md`](AGENTS.md)
 
 ---
 
@@ -208,15 +205,18 @@ only be proposed for use when its source, licence and any share-to-sponsor condi
   actually performed. No DrivenData account/session is available in this workspace unless a verified
   receipt is explicitly added.
 
-## Current project decision (2026-10-04)
+## Current project decision (2026-10-04, session arena/01a107c2)
 
-The only publicly downloadable recommendation is a locally format-checked **D2.8 reference emission**
-from an owner-mirror. Its `0.2600` association is owner-reported and is not authenticated to the exact
-file by an organizer receipt. A one-time official leaderboard review on 2026-10-04 did not support
-the brief's claim that `0.3195` was then the highest score; detailed rows are intentionally not
-retained or republished because of the DrivenData Terms of Use. The claimed H27-4 `0.2708` pairing is
-unsupported. The first-pass spatial holdout and domain-transfer promotion claims were withdrawn after
-review. No new candidate has been demonstrated to beat the current best; **no candidate is approved
-for a weekly slot**. No leaderboard refresh or reproduction is permitted by this project absent prior
-written consent or an authorized API. See the README and `evidence/first_pass_disposition.json` before
-any future work.
+The featured download is a **unique H33-F analog-field transfer GeoTIFF**
+(`gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif`): single-band float32, EPSG:32611,
+100 m, template grid, in-footprint values in `[0,1]`, NaN outside. It is **not** a copy of D2.8.
+Named Dixie Valley / Brady / Desert Peak source masks were built from GDR 1391 well/spring names
+plus official centroids. An exploratory 20 km-block domain discriminator AUC was 0.917. The
+Ben-David (2010) bound was **not** licensed (λ unknown; analog labels are the same public
+catalogue). Fold-safe P1 mean ΔDTI vs rebuilt C0 was **−0.093072** (0/4 folds); P2 vs C0
+**−0.016163**. **NOT slot-approved. Do not spend a weekly submission slot.** Historical D2.8
+remains in `docs/downloads/` as a non-featured reference. A one-time official leaderboard review
+on 2026-10-04 did not support the brief's claim that `0.3195` was then the highest score; detailed
+rows are not retained because of the DrivenData Terms of Use. The claimed H27-4 `0.2708` pairing is
+unsupported. C2 remains not slot-cleared. See `evidence/holdout_analog.json`,
+`evidence/domain_adaptation_preflight.json`, and `knowledge/07_analog_transfer.md`.

@@ -111,18 +111,18 @@ only be proposed for use when its source, licence and any share-to-sponsor condi
   actually performed. No DrivenData account/session is available in this workspace unless a verified
   receipt is explicitly added.
 
-## Current project decision (2026-10-04)
+## Current project decision (2026-10-04, session arena/01a107c2)
 
-The only publicly downloadable recommendation is a locally format-checked **D2.8 reference emission**
-from an owner-mirror. Its `0.2600` association is owner-reported and is not authenticated to the exact
-file by an organizer receipt. A one-time official leaderboard review on 2026-10-04 did not support
-the brief's claim that `0.3195` was then the highest score; detailed rows are intentionally not
-retained or republished because of the DrivenData Terms of Use. The claimed H27-4 `0.2708` pairing is
-unsupported. The first-pass spatial holdout and domain-transfer promotion claims were withdrawn after
-review. Upstream C2's earlier P1 pass was also withdrawn for source/label leakage; its corrected
-conditional source-exclusion diagnostic is P1 mean ΔDTI `−0.000722` (0/4 positive) and P2 SGMC proxy
-`+0.000283`, still **not slot-cleared** because H19-5 was not re-derived per fold and the correction
-was not an independent preregistered confirmation. No new candidate has been demonstrated to beat the
-current best; **no candidate is approved for a weekly slot**. No leaderboard refresh or reproduction
-is permitted by this project absent prior written consent or an authorized API. See the README,
-`evidence/first_pass_disposition.json`, and `evidence/holdout33.json` before any future work.
+The featured download is a **unique H33-F analog-field transfer GeoTIFF**
+(`gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif`): single-band float32, EPSG:32611,
+100 m, template grid, in-footprint values in `[0,1]`, NaN outside. It is **not** a copy of D2.8.
+Named Dixie Valley / Brady / Desert Peak source masks were built from GDR 1391 well/spring names
+plus official centroids. An exploratory 20 km-block domain discriminator AUC was 0.917. The
+Ben-David (2010) bound was **not** licensed (λ unknown; analog labels are the same public
+catalogue). Fold-safe P1 mean ΔDTI vs rebuilt C0 was **−0.093072** (0/4 folds); P2 vs C0
+**−0.016163**. **NOT slot-approved. Do not spend a weekly submission slot.** Historical D2.8
+remains in `docs/downloads/` as a non-featured reference. A one-time official leaderboard review
+on 2026-10-04 did not support the brief's claim that `0.3195` was then the highest score; detailed
+rows are not retained because of the DrivenData Terms of Use. The claimed H27-4 `0.2708` pairing is
+unsupported. C2 remains not slot-cleared. See `evidence/holdout_analog.json`,
+`evidence/domain_adaptation_preflight.json`, and `knowledge/07_analog_transfer.md`.

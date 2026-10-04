@@ -16,11 +16,11 @@
    H19-5 surface is not re-derived per fold. Neither result clears a slot unless those limitations
    are resolved and the gate passes.
 4. **Submission-output policy**: single-band float32, EPSG:32611, 100 m, same
-   shape/geotransform/bounds as the owner-mirror sample. The recommended D2.8 reference uses finite
+   shape/geotransform/bounds as the owner-mirror sample. The featured unique H33-F file uses finite
    `[0,1]` probabilities inside the template footprint and NaN outside to follow the official
-   problem-page wording; a zero-outside alternative is troubleshooting only. An earlier owner-observed
-   portal range error did not establish that NaN was its cause. A local format pass is not organizer
-   acceptance.
+   problem-page wording; a zero-outside alternative is troubleshooting only. Predicted values must
+   be in range `[0, 1]` or the portal returns that error. A local format pass is not organizer
+   acceptance. H33-F is not slot-approved.
 5. **Sample-template values are not truth.** Use only finiteness/grid metadata from the restored
    `sample_submission.tif`. It was found to equal the catalogue labels on all 5,167,373 finite
    footprint cells (IR-SAMPLE-LABEL-01); see `evidence/sample_template_label_overlap.json`.

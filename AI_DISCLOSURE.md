@@ -24,7 +24,8 @@ were withdrawn after review; see `evidence/first_pass_disposition.json`.
 
 ## Human review / before upload
 
-The primary one-click file is a D2.8 reference emission, **not a new model**. Its claimed 0.2600 score
-is owner-reported, and the score-to-exact-file pairing is unverified. Confirm the competition portal
-accepts the GeoTIFF, inspect it in a GIS, and verify the note and score attribution before relying on
-it. No file in this repository is claimed to exceed the current official public leader.
+The primary one-click file is the unique H33-F analog-field research emission. It is
+format-checked with in-footprint values in [0, 1] and is **not slot-approved** (proxy holdout
+failed). Confirm the competition portal accepts the GeoTIFF, inspect it in a GIS, and do not
+spend a weekly slot on it. No file in this repository is claimed to exceed the current official
+public leader.
