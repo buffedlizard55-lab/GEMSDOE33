@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "policy": "Hash-pinned public mirrors only. This repo never contacts DrivenData. A SHA-256 match proves the bytes equal the registered mirror; it does not authenticate the mirror against the organizer. Restore with: bash scripts/download_competition_data.sh (needs GitHub API access; on unrestricted machines codeload/raw also work).",
+  "files": [
+    {
+      "id": "training_features",
+      "dest": "core/training_features.tif",
+      "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+      "bytes": 418912844,
+      "parts": [
+        {"repo": "buffedlizard55-lab/GEMSDOE", "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0", "path": "data/bridge/gems-geodawn-numerical-features.tif.part-000", "sha": "f34e5143d5e7c10014b5cfe01c85d01bcede4c0a", "bytes": 94371840},
+        {"repo": "buffedlizard55-lab/GEMSDOE", "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0", "path": "data/bridge/gems-geodawn-numerical-features.tif.part-001", "sha": "4bd98099ae505f63cc6c3733954f259974efd290", "bytes": 94371840},
+        {"repo": "buffedlizard55-lab/GEMSDOE", "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0", "path": "data/bridge/gems-geodawn-numerical-features.tif.part-002", "sha": "d6f883ba8822207ac2765445737ecd2ecdfd2914", "bytes": 94371840},
+        {"repo": "buffedlizard55-lab/GEMSDOE", "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0", "path": "data/bridge/gems-geodawn-numerical-features.tif.part-003", "sha": "976977b4ac84c4c9b6fec72495c4e512341de872", "bytes": 94371840},
+        {"repo": "buffedlizard55-lab/GEMSDOE", "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0", "path": "data/bridge/gems-geodawn-numerical-features.tif.part-004", "sha": "41a7bb7b7603c1e7669d8cc8405cfeb5efb5cf0c", "bytes": 41425484}
+      ],
+      "provenance": "Owner-supplied mirror of the login-walled competition training_features.tif (Dropbox mirror 'gems-geodawn-numerical-features.tif'); 19 float32 bands; verified sha256 this session 2026-10-04."
+    },
+    {
+      "id": "labels",
+      "dest": "core/labels.tif",
+      "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+      "bytes": 425830,
+      "blob": {"repo": "buffedlizard55-lab/GEMSDOE24", "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b", "path": "data/bridge/labels.tif", "sha": "4ad3c1f3f19823e40924589bee7e51e44ae3a2e7"},
+      "provenance": "Owner-supplied mirror of existing_faults.tif (competition catalogue raster)."
+    },
+    {
+      "id": "sample_submission",
+      "dest": "core/sample_submission.tif",
+      "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+      "bytes": 1599597,
+      "blob": {"repo": "buffedlizard55-lab/GEMSDOE24", "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b", "path": "data/bridge/sample_submission.tif", "sha": "7d865a9921a40ed2ea4c742a6a25b1fa2f357c5a"},
+      "provenance": "Owner-supplied mirror of example_submission.tif; grid/footprint template only, never used as truth."
+    },
+    {
+      "id": "h19_5",
+      "dest": "models/h19_5_nan.tif",
+      "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+      "bytes": 1712322,
+      "blob": {"repo": "buffedlizard55-lab/GEMSDOE24", "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b", "path": "inputs/gems19-h19-5-powerlaw-budget-multiline-corroborated-20260930-e27054cf-nan.tif", "sha": "sha:unpinned"},
+      "provenance": "Historical H19-5 ridge emission (121,131 px); parent of the d=2.8 family."
+    },
+    {
+      "id": "dotted_h19_5_d2_8",
+      "dest": "models/dotted_h19_5_d2_8_nan.tif",
+      "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+      "bytes": 1603424,
+      "blob": {"repo": "buffedlizard55-lab/GEMSDOE24", "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b", "path": "docs/downloads/gems24-h25-1-dotted-h19-5-d2-8-20261002-e56ea318af89-nan.tif", "sha": "sha:unpinned"},
+      "provenance": "d=2.8 Poisson-thinned H19-5 (44,090 px); owner-reported live 0.2600."
+    },
+    {
+      "id": "h27_4_r1_solo",
+      "dest": "models/h27_4_r1_solo_nan.tif",
+      "sha256": "unverified-this-session",
+      "bytes": 1595850,
+      "blob": {"repo": "buffedlizard55-lab/GEMSDOE28", "ref": "main", "path": "docs/downloads/gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif", "sha": "12b0a4ddf1cf76f2552621b8a8b1a1b88d783786"},
+      "provenance": "Scored 0.2708 file (owner-reported); blob git-sha verified at fetch 2026-10-04. Local copy at data/artifacts/h27-4-r1-solo-d2-8-8acb75e1f2cc-nan.tif."
+    },
+    {
+      "id": "derived_sgmc_faults",
+      "dest": "external/derived_sgmc_faults_100m_u8.tif",
+      "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+      "bytes": 198602,
+      "blob": {"repo": "buffedlizard55-lab/GEMSDOE24", "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b", "path": "data/external/derived_sgmc_faults_100m_u8.tif", "sha": "c794f6ee8dd278f9d836576dcb5d02239da1c4f7"},
+      "provenance": "USGS State Geologic Map Compilation faults rasterised at 100 m; independent P2 proxy truth source."
+    },
+    {
+      "id": "qfaults_traces",
+      "dest": "external/gdr_qfaults_traces.csv",
+      "sha256": "9702f2e5c382a4f472ae834d22b94990983b059677a37adfafd51c50f75e643c",
+      "bytes": 126177,
+      "blob": {"repo": "buffedlizard55-lab/GEMSDOE24", "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b", "path": "data/external/gdr_qfaults_traces.csv", "sha": "b2e66237d5e3111c113834ead0d209adbae8443e"},
+      "provenance": "INGENIOUS/GDR Qfaults per-trace attributes."
+    },
+    {
+      "id": "wellspring",
+      "dest": "external/gdr_wellspring_in_footprint.csv",
+      "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+      "bytes": 2146771,
+      "blob": {"repo": "buffedlizard55-lab/GEMSDOE24", "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b", "path": "data/external/gdr_wellspring_in_footprint.csv", "sha": "29182e7a92dddf460afb1e53ecd82c7e2d6219e1"},
+      "provenance": "INGENIOUS well and spring temperatures/chemistry in footprint."
+    },
+    {
+      "id": "dem_links",
+      "dest": "external/dem_links.json",
+      "sha256": "8804dbff8754dd885df88bf412cced52b0be6490aa79142f4588700a8e4ada7b",
+      "bytes": 541953,
+      "blob": {"repo": "buffedlizard55-lab/GEMSDOE", "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0", "path": "data/dem_links.json", "sha": "acb4bf04e6f35ab0705e89c27af11d842a303478"},
+      "provenance": "716 USGS 3DEP 1 m DEM tile URLs extracted from the official DEM-links PDF."
+    },
+    {
+      "id": "jklinck_research_tarball",
+      "dest": "external/jklinck_geothermal_research.tar.gz",
+      "sha256": "refetch-verify",
+      "bytes": 408263889,
+      "url": "https://codeload.github.com/jklinck/geothermal_research/tar.gz/refs/heads/main",
+      "provenance": "Public research repo mirroring INGENIOUS regional datasets (Quaternary fault shapefile NAD83, seismicity rate-density products, 2 m temperature probes, GeoDAWN native grids). Shapefile CRS verified against catalogue raster (42.5% vertex proximity) 2026-10-04. Pin a commit hash before production use."
+    }
+  ]
+}

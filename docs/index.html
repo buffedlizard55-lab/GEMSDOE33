@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GEMSDOE33 · Submission download</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site"><div class="row">
+  <h1>GEMS<span>DOE33</span> · Great Basin fault discovery</h1>
+  <nav>
+    <a class="on" href="index.html">Download</a>
+    <a href="executive-summary.html">Executive summary</a>
+    <a href="how-to-submit.html">How to submit</a>
+    <a href="hypotheses.html">Hypotheses</a>
+    <a href="results.html">Results</a>
+    <a href="data-sources.html">Data sources</a>
+  </nav>
+</div></header>
+<main>
+
+<div class="card hero">
+  <h2 style="margin-top:0;border:none">⬇ Download the submission GeoTIFF</h2>
+  <p>Single-band float32 · EPSG:32611 · 100 m · identical shape/geotransform/bounds to the official
+  sample submission · <b>finite [0, 1] over the whole array</b> (zero outside the survey footprint) —
+  the exact rule that fixes the “Predicted values must be in range [0, 1]” upload rejection.</p>
+  <a class="btn" href="downloads/gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif" download>
+    ⬇ gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif</a>
+  <a class="btn alt" href="downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif" download>
+    ⬇ gems33-c0-scored-reference (0.2708 base)</a>
+  <p class="mut">
+    Primary candidate: scored 0.2708 base + 944 stepover relay-bridge dots, passed the frozen
+    P1/P2 proxy gate (P1 mean ΔDTI +0.00043, 3/4 folds; P2 +0.00028). 41,143 dots.
+    <b>Unscored research artifact — proxy-gated, not an organizer score.</b></p>
+  <p><b>Paste-ready submission note (≤200 chars):</b><br>
+  <code>33GEMSDOE C2 stepover relay | P1 dDTI +0.00043 3/4 folds, P2 +0.00028 vs scored 0.2708 base | id eb6bcf02361f | proxy-gated, unscored</code></p>
+</div>
+
+<div class="stat-grid">
+  <div class="stat"><b>0.2708</b> owner-reported campaign best (h27-4-r1-solo)</div>
+  <div class="stat"><b>0.3195</b> public leader “DARD” (one-off leaderboard read, 2026-10-03)</div>
+  <div class="stat"><b>+0.00043</b> C2 proxy ΔDTI, catalogue-hidden 4-fold holdout</div>
+  <div class="stat"><b>7/7</b> DTI metric unit tests passing</div>
+</div>
+
+<h2>Why the 0.2708 file won (short version)</h2>
+<div class="card">
+  <p>The hidden test set is expert-labelled faults <b>not in the USGS/INGENIOUS catalogue</b>, scored with a
+  distance-weighted Tversky index (α=0.2, β=0.8, 300 m triangular kernel). Three compounding effects:</p>
+  <ol>
+    <li><b>Dotting beats solid lines</b> — dots spaced ≤3 px keep ≥0.5 kernel credit on every midpoint while costing 1 FP unit each (0.1922 → 0.2477 → 0.2600).</li>
+    <li><b>Off-catalogue placement</b> — dots on/near known catalogue traces are pure denominator mass.</li>
+    <li><b>Blind flank removal</b> — pruning 1-px catalogue-flank dots removed FP mass that could never earn credit (+0.0108 live).</li>
+  </ol>
+  <p>Beating 0.3195 needs ~+24% credited truth mass at the same budget, or half the dots at equal credit —
+  a detection/ranking problem that needs <b>new independent information</b>. This session's answer:
+  <a href="hypotheses.html">bounded analog-field transfer (Dixie Valley / Desert Peak / Brady's)</a> plus
+  stepover relay bridges, which have independent physical backing (both fields are hosted in fault step-overs).</p>
+  <p><a href="executive-summary.html">Read the executive summary →</a></p>
+</div>
+
+<h2>Session status (2026-10-04)</h2>
+<div class="card">
+  <table>
+    <tr><th>Deliverable</th><th>Status</th></tr>
+    <tr><td>One-click portal-safe submission TIF (+ scored reference)</td><td>✅ built, format-audited, above</td></tr>
+    <tr><td>Full competition data placement (hash-verified mirrors, 419 MB stack included)</td><td>✅ <code>evidence/data_placement.json</code></td></tr>
+    <tr><td>5 ranked new hypotheses (layers · signature · why off-catalogue · novelty)</td><td>✅ <a href="hypotheses.html">hypotheses</a> · <code>registry/hypotheses.json</code></td></tr>
+    <tr><td>Top candidate validated on spatially-blocked holdout before any slot</td><td>✅ C2 PASS, C3 honestly refuted · <code>evidence/holdout33.json</code></td></tr>
+    <tr><td>Executive summary + how-to-submit subpages</td><td>✅ linked above</td></tr>
+    <tr><td>Verified official source table (no hallucinations policy)</td><td>✅ <a href="data-sources.html">data sources</a></td></tr>
+    <tr><td>Analog-field vectors (GDR #207, NBMG OF 03-27, GDR #1288)</td><td>⚠ availability verified; bytes need an unrestricted machine (IR-NET-01)</td></tr>
+  </table>
+  <p class="note">Irregularities flagged this session: IR-PORTAL-01 (NaN rejection, fixed), IR-QFAULTS-01
+  (shifted mirror geometry, replaced), IR-EVIDENCE-01 (GEMSDOE29 radiometric record unretrievable),
+  IR-NET-01 (sandbox egress). Details in README.</p>
+</div>
+
+</main>
+<footer>GEMSDOE33 · research workflow, not a submission bot · never contacts DrivenData · proxies are not scores</footer>
+</body></html>

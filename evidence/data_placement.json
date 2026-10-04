@@ -1,0 +1,73 @@
+{
+ "checked_utc": "2026-10-04T03:38:30+00:00",
+ "data_dir": "/home/user/GEMSDOE33/.cache/gemsdata",
+ "files": {
+  "training_features": {
+   "path": "core/training_features.tif",
+   "present": true,
+   "crs": "EPSG:32611",
+   "width": 3292,
+   "height": 3730,
+   "res": [
+    100.0,
+    100.0
+   ],
+   "bounds": [
+    243350.0,
+    4135550.0,
+    572550.0,
+    4508550.0
+   ],
+   "bands": 19,
+   "dtype": "float32",
+   "sha256_match": true,
+   "grid_match": true,
+   "ok": true
+  },
+  "labels": {
+   "path": "core/labels.tif",
+   "present": true,
+   "crs": "EPSG:32611",
+   "width": 3292,
+   "height": 3730,
+   "res": [
+    100.0,
+    100.0
+   ],
+   "bounds": [
+    243350.0,
+    4135550.0,
+    572550.0,
+    4508550.0
+   ],
+   "bands": 1,
+   "dtype": "int8",
+   "sha256_match": true,
+   "grid_match": true,
+   "ok": true
+  },
+  "sample_submission": {
+   "path": "core/sample_submission.tif",
+   "present": true,
+   "crs": "EPSG:32611",
+   "width": 3292,
+   "height": 3730,
+   "res": [
+    100.0,
+    100.0
+   ],
+   "bounds": [
+    243350.0,
+    4135550.0,
+    572550.0,
+    4508550.0
+   ],
+   "bands": 1,
+   "dtype": "float32",
+   "sha256_match": true,
+   "grid_match": true,
+   "ok": true
+  }
+ },
+ "pass": true
+}

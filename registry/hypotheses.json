@@ -1,0 +1,126 @@
+{
+  "session": "GEMSDOE33",
+  "updated_utc": "2026-10-04T03:40:00Z",
+  "metric_context": {
+    "metric": "distance-weighted Tversky index, alpha=0.2 beta=0.8, 300 m triangular kernel",
+    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "owner_best_live": {"file": "h27-4-r1-solo-d2-8 (8acb75e1f2cc)", "score": 0.2708, "status": "owner-reported"},
+    "public_leader_best": {"label": "DARD", "score": 0.3195, "status": "owner-reported one-off leaderboard read 2026-10-03"},
+    "break_even_credit_per_fp_at_0.2708": 0.0573,
+    "what_0.3195_requires": "at ~40k dots, weighted recall of the hidden truth must rise from ~0.39 to ~0.52 (+24% credited mass) or dot count must fall to ~25k at equal credit; both are ranking/detection problems, not packing problems (GEMSDOE28 knowledge/01)"
+  },
+  "ranking_rule": "expected incremental DTI per engineering cost, risk-adjusted; ranges are subjective priors that include zero; a candidate must pass the frozen P1/P2 proxy gate (evidence/holdout33.json protocol) before any weekly slot",
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H33-C2",
+      "name": "Stepover relay-bridge faults between distinct mapped structures",
+      "status": "IMPLEMENTED AND PROXY-GATED this session",
+      "layers": [
+        "INGENIOUS Quaternary fault vectors (NBMG/USGS regional compilation; jklinck mirror of faults_quaternary_regional.shp, NAD83, validated 42.5% vertex proximity to supplied catalogue)",
+        "training band 18 iso_grav_anom_hg (>= in-footprint 80th percentile within 200 m)",
+        "scored h27-4 base raster (8acb75e1f2cc, 40,199 dots)"
+      ],
+      "physical_signature": "tip-to-tip approach of DISTINCT fault polylines (300-2500 m gap, strike difference <= 30 deg) defines a relay ramp; sparse 283 m-spaced bridge dots are emitted along the tip line only where an independent isostatic-gravity horizontal-gradient edge passes within 200 m",
+      "why_off_catalogue": "stepovers, terminations and intersections of mapped faults concentrate unmapped synthetic/antithetic strands and blind tips (Faulds & Hinz 2015, OSTI 1110517; Desert Peak and Brady's geothermal fields are both hosted in fault step-overs). The supplied catalogue lists the major strands, not the relay-ramp splays, so bridges target exactly the omission class the expert panel labelled",
+      "difference_from_prior_work": "GEMSDOE27's T-v2 filled gaps INSIDE the same polyline and failed live (0.00210 credit/dot vs 0.0495 break-even; 230/345 links were same-FID compiler artifacts). C2 is restricted to distinct-FID tip pairs and gated by a potential-field edge; it is an addition arm, validated before any slot",
+      "proxy_result": {
+        "p1_catalogue_hidden_mean_d_dti": 0.00043,
+        "p1_positive_folds": "3/4",
+        "p2_sgmc_off_catalogue_d_dti": 0.00028,
+        "gate": "PASS",
+        "evidence": "evidence/holdout33.json"
+      },
+      "expected_live_delta": "+0.000 to +0.002 (proxy-anchored judgment; proxies are not scores)",
+      "cost": "low (built from local mirrors)",
+      "artifact": "docs/downloads/gems33-c2-stepover-relay-20261004-eb6bcf02361f.tif"
+    },
+    {
+      "rank": 2,
+      "id": "H33-A",
+      "name": "Analog-field ground-truth transfer with a measured domain-adaptation bound (Dixie Valley / Desert Peak / Brady's)",
+      "status": "DESIGNED; external vectors availability-verified, bytes not yet restored in this sandbox",
+      "layers": [
+        "Dixie Valley field fault map GIS_Faults.zip, GDR #207, DOI 10.15121/1148837 (Iovenitti; LiDAR + field-verified traces)",
+        "Desert Peak / Brady's detailed mapping, NBMG Open-File Report 03-27 (Faulds & Garside 2003)",
+        "GDR #1288 labelled training grids for Brady/Desert Peak, DOI 10.15121/1773692",
+        "shared feature layers: training_features.tif bands 1-19 resampled at each analog field"
+      ],
+      "physical_signature": "not a transform: a transfer protocol. Pretrain/co-train a fault detector on the analog field's denser, drilling-verified catalogue; measure source->target divergence on the shared GeoDAWN-type feature layers with a classifier-two-sample test (d_A-distance); where divergence is small, Ben-David et al. (2010, DOI 10.1007/s10994-009-5152-4) bound target error by source error plus divergence, licensing the analog geometries as a genuinely independent validation set never touched by the GeoDAWN catalogue",
+      "why_off_catalogue": "the analog fields were mapped by industry-funded fieldwork and dense drilling, so they contain verified fault geometries of the exact class (blind, buried, low-scarp strands) that a regional USGS/INGENIOUS compilation never captured in GeoDAWN; the transfer is bounded, not assumed",
+      "difference_from_prior_work": "no GEMSDOE campaign has used off-region labelled faults; the repo's only labelled truth is the supplied catalogue (and proxies derived from it). H41 used slip-rate-weighted corridor columns of the SAME catalogue",
+      "expected_live_delta": "+0.000 to +0.005 (ceiling set by divergence; unknown until measured)",
+      "cost": "medium (vector downloads + feature clips; one-time)",
+      "official_sources_verified": [
+        {"name": "GDR #207 Dixie Valley EGS baseline (GIS_Faults.zip)", "url": "https://gdr.openei.org/submissions/207", "license": "DOE GDR open"},
+        {"name": "NBMG OF 03-27 Desert Peak-Brady map (Faulds & Garside 2003)", "url": "https://www.osti.gov/servlets/purl/1110517", "license": "public domain (cited body)"},
+        {"name": "GDR #1288 Brady/Desert Peak labelled grids", "url": "https://gdr.openei.org/submissions/1288", "license": "DOE GDR open"},
+        {"name": "Ben-David et al. 2010 domain-adaptation theory", "url": "https://doi.org/10.1007/s10994-009-5152-4", "license": "n/a (theory)"}
+      ],
+      "data_gate": "GDR/NBMG bytes are unreachable from this sandbox (egress allow-list); fetchable on any unrestricted machine via scripts/download_external_analogs.sh"
+    },
+    {
+      "rank": 3,
+      "id": "H33-B",
+      "name": "Shallow thermal-probe residual lineaments x gravity edges",
+      "status": "DESIGNED; inputs mirrored locally (runnable next session)",
+      "layers": [
+        "INGENIOUS 2 m temperature probe archive (GEMSDOE24 mirror of 2m_temperature_probe_INGENIOUS_regional_data.zip; original at GDR #1391, CC BY 4.0)",
+        "training band 18 iso_grav_anom_hg and band 5 iso_grav_anom_slope",
+        "USGS Great Basin conductive heat-flow residual (DeAngelo et al. 2022, DOI 10.5066/P9BZPVUC) once fetched"
+      ],
+      "physical_signature": "aligned positive 2 m temperature residuals (probe kriging residual above the de-convected background) that co-align with a gravity-gradient edge; warm shallow ground along a buried structural conduit without a mapped scarp",
+      "why_off_catalogue": "fluid ascent along blind faults warms the shallow subsurface measurably at 2 m even where no Quaternary surface rupture exists; the catalogue needs surface evidence, the probe field does not",
+      "difference_from_prior_work": "GEMSDOE28 H35-1 (spring/well discharge-point conjunction) FAILED its far-field gate below a matched random control; H33-B uses the spatially continuous 2 m probe field and a residual-above-background definition, not discharge points. GEMSDOE28 H38-2 queued this idea but never ran it (data gate)",
+      "expected_live_delta": "+0.000 to +0.0025",
+      "cost": "low-medium (zips already mirrored)",
+      "official_sources_verified": [
+        {"name": "GDR #1391 INGENIOUS compilation", "url": "https://gdr.openei.org/submissions/1391", "license": "CC BY 4.0"},
+        {"name": "USGS heat flow DOI 10.5066/P9BZPVUC", "url": "https://doi.org/10.5066/P9BZPVUC", "license": "public domain"}
+      ]
+    },
+    {
+      "rank": 4,
+      "id": "H33-D",
+      "name": "Radiometric K-Th alteration halo corridors on gravity lineaments",
+      "status": "PARTIALLY PRE-EMPTED (check GEMSDOE29 seeds 280-289 radiometric experiment before spending a slot)",
+      "layers": [
+        "GeoDAWN radiometric K, eU, Th grids (GEMSDOE24 geodawn_rad_u8.tif mirror; native grids CC0 via USGS ScienceBase 657e1d85d34e23d3533209f7)",
+        "training bands 13/18 isostatic gravity anomaly and horizontal gradient"
+      ],
+      "physical_signature": "hydrothermal alteration destroys K-feldspar and redistributes K/Th (argillic leaching); K/eU and Th/K ratio lows elongated along an independent gravity lineament mark an altered fault conduit",
+      "why_off_catalogue": "alteration halos persist around old or buried conduits that lack any Quaternary surface rupture, i.e. the class the Quaternary-scope catalogue cannot list",
+      "difference_from_prior_work": "GEMSDOE29 ran a GeoDAWN-radiometric arm on seeds 280-289 (its result record was not retrievable this session - flagged IR-EVIDENCE-01); H33-D must be reconciled against that record before execution",
+      "expected_live_delta": "+0.000 to +0.0015",
+      "cost": "low",
+      "official_sources_verified": [
+        {"name": "GeoDAWN survey release", "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and", "license": "public domain"}
+      ]
+    },
+    {
+      "rank": 5,
+      "id": "H33-E",
+      "name": "Expert-panel strategy: geologically defensible isolated traces for the Final Prize Round",
+      "status": "STRATEGY (metric-blind by design)",
+      "layers": [
+        "all corroborated candidate dots from C1/C2 plus SGMC off-catalogue fault pixels >= 300 m from the supplied catalogue"
+      ],
+      "physical_signature": "no transform: the Final Prize Round re-scores every submission against an EXPANDED label set built by an expert panel that reviews all submissions; well-localised, independently corroborated traces that experts accept become new truth",
+      "why_off_catalogue": "by construction it targets only features absent from the catalogue; its value is invisible to the Initial Round DTI, which is why it is carried as a parallel objective rather than a gated arm",
+      "difference_from_prior_work": "GEMSDOE28 knowledge/01 notes the same incentive; no campaign has yet shipped a panel-oriented dossier file",
+      "expected_live_delta": "Initial round: ~0 (or slightly negative); Final round: positive optionality",
+      "cost": "low (reuses validated candidates)",
+      "official_sources_verified": [
+        {"name": "Competition structure page (two-round design)", "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/", "license": "n/a"}
+      ]
+    }
+  ],
+  "refuted_this_session": [
+    {
+      "id": "C3",
+      "name": "Rung-3.0 Poisson re-pack of the h27-4 dot set",
+      "result": "FAILS both proxies locally: P1 mean dDTI -0.00123 (0/4 folds positive), P2 dDTI -0.00814. The GEMSDOE28 H36-1 re-pack passed on the full H19-5 surface with flank prune; re-packing an already-pruned 40k set removes credit-bearing dots. Not promoted.",
+      "evidence": "evidence/holdout33.json"
+    }
+  ]
+}
