@@ -4,8 +4,10 @@
 
 | ID | Limitation | Consequence | Mitigation / next check |
 |---|---|---|---|
-| IR-NET-01 | Core/candidate binaries are restored from pinned public GitHub mirrors. Official GDR/NBMG/USGS source pages were read through the research interface, but analog/thermal source files have not been downloaded into this checkout. A local HEAD request to the GDR Quaternary Faults v2 ZIP failed with a TLS EOF. | H33-A and H33-B have not been geolocated, semantically audited, or validated; no analog-transfer result exists. | Use the official downloadable files below; record byte hashes, CRS, coverage, license, and labels before analysis. A public page listing is not proof that this workspace fetched the file. |
-| NO-AUTOMATION | Project policy forbids DrivenData login, upload, scraping, and polling in code. | Competition submission and any new live score require the human owner. Public leaderboard values can change. | Manually review/upload if desired; save an organizer receipt. The published leaderboard is a static dated snapshot with a live link. |
+| IR-NET-01 | Core/candidate binaries are restored from pinned public GitHub mirrors. Official GDR/NBMG/USGS source pages were read, but analog/thermal source files have not been downloaded into this checkout. Direct workspace requests for GDR #207 `GIS_Faults.zip` and the GDR Quaternary Faults v2 ZIP failed at TLS/connection setup. | H33-A and H33-B have not been geolocated, semantically audited, or validated; no analog-transfer result exists. | Use the official downloadable files only through an authorized channel; record byte hashes, CRS, coverage, license, and labels before analysis. A public page listing is not proof that this workspace fetched the file. |
+| IR-HOLDOUT-LEAKAGE-01 | The original P1 runner masked labels only at scoring time. C0's one-pixel catalogue prune and C2's catalogue filters used the full label raster; Qfaults-derived candidate features also retained the held-out fault geometries. | The old C2 `+0.000405` P1 result and all old C1–C5 P1 values are withdrawn for promotion. A corrected, fold-specific C0/Qfaults diagnostic gives C2 mean ΔDTI `−0.000722` (0/4 folds); P2 remains `+0.000283`. No new candidate clears a slot. | See `evidence/holdout33_legacy_catalogue_only.json` and corrected `evidence/holdout33.json`. Re-derive/audit the upstream H19-5 surface, preregister a fresh protocol, and rerun before any slot decision. |
+| IR-SAMPLE-LABEL-01 | The restored `sample_submission.tif` exactly equals `labels.tif` on its 5,167,373 finite-footprint cells (60,988 ones; 5,106,385 zeros) and is nonfinite outside. | Treating its finite values as a submission example/truth would leak the known catalogue. The official task's sample semantics are not confirmed for these owner-supplied mirror bytes. | Project code may use only the finite footprint/grid metadata. The anomaly is recorded in `evidence/sample_template_label_overlap.json`; do not read the sample values as labels. |
+| NO-AUTOMATION | Project policy forbids DrivenData login, upload, scraping, or polling in code. The official [Terms of Use](https://www.drivendata.org/termsofuse/) (read 2026-10-04) prohibit automated monitoring and manual monitoring/copying without prior written consent. | The results feed cannot be automatically kept current under the present access policy; a public-leader value is only a dated snapshot. Submission and any new live score require the human owner. | Keep a static, clearly dated snapshot and link to the official page. Do not add a scheduled fetcher unless DrivenData provides an authorized API/written permission. |
 | COMPUTE | Workspace has limited CPU/RAM and no GPU; full 1 m DEM coverage is large. | A supervised 1 m scarp detector is not feasible here; no such model was trained in this session. | Prioritize small, falsifiable proxy experiments and external compute only after data/label checks. |
 | TRUTH | Organizer's expert-labelled target is private. | P1 catalogue-hidden and P2 SGMC evaluations are imperfect local proxies. | Report them only as proxies; do not infer live score from their deltas. |
 | LABELS | H33-A sources differ in location, mapping method, feature type, and label semantics. GDR #1288 is a geothermal classification dataset with a fault-density input, not fault-trace truth or a 19-band GeoDAWN raster. | A naive analog transfer would conflate geothermal favorability, fault density, and expert fault labels. | Geolocate; audit each source layer; define a genuinely shared, comparable representation; assess label compatibility and spatial holdouts before transfer. |
@@ -44,28 +46,37 @@ does not certify the joint-error term λ or target accuracy.
 
 ## Next actions ranked by value / cost
 
-1. **Potential slot:** current C2 has passed both frozen proxies and the exact local format audit. The
-   owner may manually review it, but it remains unscored. Do not claim a live improvement absent a receipt.
-   Current file: `docs/downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif`; paste-ready note is
-   on `docs/how-to-submit.html`.
-2. **Highest scientific upside, high risk:** obtain and audit Dixie Valley `GIS_Faults.zip`; identify
-   which geometries are authoritative and geolocate them. Investigate NBMG OF 03-27 only as its official
-   PDF/geospatial PDF unless a separate official vector layer is found. Audit GDR #1288 as geothermal
-   feature/classification data, not fault truth. Then specify common features and spatial source holdouts.
-3. **Moderate cost:** retrieve the GDR #1391 2 m probe archive and audit season, coordinate, sampling,
-   and bias metadata. Keep it distinct from USGS heat-flow residual products.
-4. **P2 hygiene:** inspect the 2026 SGMC replacement release and decide whether the current proxy should
-   be rebuilt from it.
-5. **Novelty hygiene:** recover GEMSDOE29's radiometric experiment record before H33-D is rerun.
+1. **No submission slot now:** the old C2 P1 pass is withdrawn. Fold-specific label masking and Qfaults
+   source exclusion changed the mean P1 delta from `+0.000405` (3/4 positive, invalid legacy run) to
+   `−0.000722` (0/4 positive). P2 remains `+0.000283`, but that cannot override the P1 failure. Keep the
+   C2 TIFF as a research artifact only; the C0 TIFF is a reference, not a recommendation to spend a slot.
+2. **Audit the baseline provenance before another P1 decision:** the fold-safe diagnostic reconstructs the
+   H27-4 base exactly from H19-5 plus fold-visible labels, but the upstream H19-5 raster-generation code is
+   not in this checkout. Re-derive it per fold or document/verify its feature-only provenance; preregister
+   a fresh spatial/source holdout before using results to consider a slot.
+3. **Highest scientific upside, high risk:** obtain and audit Dixie Valley `GIS_Faults.zip` through an
+   authorized channel; identify which geometries are authoritative and geolocate them. Investigate NBMG
+   OF 03-27 only as its official PDF/geospatial PDF unless a separate official vector layer is found. Audit
+   GDR #1288 as geothermal feature/classification data, not fault truth. Then specify common features and
+   spatial source holdouts.
+4. **Moderate cost:** retrieve the GDR #1391 2 m probe archive through an authorized channel and audit
+   season, coordinate, sampling, and bias metadata. Keep it distinct from USGS heat-flow residual products.
+5. **P2/novelty hygiene:** inspect the 2026 SGMC replacement release and recover GEMSDOE29's radiometric
+   experiment record before refreshing P2 or rerunning H33-D.
+6. **Submission compliance:** the official rules require a narrative disclosure of generative-AI use and
+   allow three submissions per week but only one final submission across both prize phases. See
+   `docs/how-to-submit.html`; the disclosure there is a draft requiring owner review.
 
 ## Completed in this workspace
 
 - Restored and hash-verified core grid, labels, 19-band feature stack, H27-4, SGMC proxy, and pinned
   Quaternary-fault shapefile components from public repository mirrors; the optional unpinned archive is
   excluded from the default candidate restore.
-- Corrected C2 feature IDs to be deterministic and collision-free; rebuilt the 41,139-dot C2 artifact.
-- Re-ran the frozen P1/P2 proxy suite: C2 and C5 pass; C1, C3, and C4 fail. C2 selected for parsimony.
-- Rebuilt the current standalone format report. C2 is one-band float32, EPSG:32611, 100 m, exact sample
-  grid, finite in [0,1] over the whole array, and zero outside the template footprint.
-- Added metric, gate, format, feed, and site-link tests plus a no-DrivenData CI workflow.
-- Generated a static campaign feed from the committed ledger. It does not poll or scrape the organizer.
+- Corrected C2 feature IDs to be deterministic (including a unique fallback for blank source identifiers); rebuilt the 41,139-dot C2 research artifact. Its byte hash remains unchanged.
+- Audited the P1 feature/label path. The original P1 run was invalid for promotion because candidate construction used the held-out catalogue and Qfaults geometries. The archived values are explicitly withdrawn.
+- Rebuilt C0 per fold from fold-visible catalogue labels, removed whole Qfaults source IDs within a 600 m square holdout buffer plus a 100 m raster guard, and reran the diagnostic: C2 mean P1 ΔDTI `−0.000722`, 0/4 positive; P2 `+0.000283`; no numeric gate pass and no slot clearance. The fixed H19-5 upstream provenance remains an explicit limitation.
+- Confirmed the fold-specific C0 rebuild exactly reproduces the pinned 40,199-dot H27-4 control when the full catalogue is visible.
+- Rebuilt the standalone C2 format report. The research TIFF is one-band float32, EPSG:32611, 100 m, exact sample grid, finite `[0,1]` whole-array, and zero outside the template footprint. This is not organizer acceptance.
+- Added tests for deterministic dot thinning, fold-specific C0 reconstruction, and source-system exclusion, in addition to metric/gate/format/feed/site-link checks.
+- Re-read the full official-rules PDF (all 7 parsed chunks) and DrivenData Terms of Use. AI disclosure is required in the narrative; automated/manual leaderboard monitoring/copying without written consent is prohibited under the current Terms of Use. The feed remains static and date-stamped.
+- Recorded the sample/label value-copy anomaly in `evidence/sample_template_label_overlap.json`; code uses only the template's finite mask.

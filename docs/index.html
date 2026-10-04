@@ -20,21 +20,25 @@
 <main>
 
 <div class="card hero">
-  <h2 style="margin-top:0;border:none">⬇ Download the current candidate GeoTIFF</h2>
-  <p>Single-band float32 · EPSG:32611 · 100 m · exact 3,730 × 3,292 sample grid · finite values in
-  <b>[0, 1] over the whole array</b> · zero outside the survey footprint. The file passed the local
-  format audit; this is not an organizer score or endorsement.</p>
+  <h2 style="margin-top:0;border:none">⚠ No new candidate is cleared for a submission slot</h2>
+  <p>The earlier C2 P1 proxy PASS was <b>withdrawn</b> after a source/label leakage audit. The corrected
+  conditional P1 diagnostic is −0.000722 (0/4 folds positive); P2 is +0.000283. Do not upload C2 as a new
+  submission. The links below are a reproducible research artifact and a baseline reference only.</p>
+  <p>Both files pass the local format audit: single-band float32 · EPSG:32611 · 100 m · exact
+  3,730 × 3,292 sample grid · finite values in <b>[0, 1] over the whole array</b> · zero outside the
+  survey footprint. A local format pass is not organizer acceptance.</p>
   <p><a class="btn" href="downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif" download>
-    ⬇ gems33-c2-stepover-relay-20261004-01f660dd8656.tif</a></p>
+    ⬇ Download C2 research artifact · NOT slot-cleared</a></p>
   <p><a class="btn alt" href="downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif" download>
-    ⬇ Baseline reference · owner-reported 0.2708</a></p>
-  <p class="mut"><b>C2 stepover-relay candidate.</b> Rebuilt with deterministic, collision-free fault IDs;
-  41,139 dots total, including 940 added bridge dots. SHA-256:
-  <code>7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7</code>.</p>
-  <p class="mut"><b>Proxy result, not score:</b> P1 mean ΔDTI +0.0004051587 (3/4 folds positive); P2
-  ΔDTI +0.0002831018. C2 passed both frozen local proxies. No live DrivenData result exists for this file.</p>
-  <p><b>Paste-ready submission note (candidate description, not a score claim):</b><br>
-  <code>33GEMSDOE C2 stepover relay | P1 proxy +0.000405 (3/4), P2 proxy +0.000283 vs 0.2708 owner-reported base | id 01f660dd8656 | unscored</code></p>
+    ⬇ Download baseline reference · owner-reported 0.2708</a></p>
+  <p class="mut"><b>C2 stepover-relay research artifact.</b> 41,139 dots total, including 940 added bridge
+  dots. SHA-256: <code>7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7</code>.</p>
+  <p class="mut"><b>Corrected conditional P1 result, not a score:</b> mean ΔDTI −0.0007220038 (0/4 folds
+  positive); the candidate-only dots earn zero incremental TPw across folds. P2 ΔDTI +0.0002831018.
+  Numeric gate FAIL. The earlier +0.000405 P1 result is withdrawn for source leakage. No live DrivenData
+  result exists for this file.</p>
+  <p><b>Artifact ID (research tracking only; do not paste as a submission claim):</b><br>
+  <code>GEMSDOE33-C2-source-audit-01f660dd8656 · unscored · slot not cleared</code></p>
   <p><a href="how-to-submit.html"><b>Manual upload steps →</b></a> ·
   <a href="results.html">Dated results &amp; leaderboard →</a></p>
 </div>
@@ -42,13 +46,15 @@
 <div class="stat-grid">
   <div class="stat"><b>0.2708</b> owner-reported prior campaign best (h27-4-r1-solo)</div>
   <div class="stat"><b>0.3262</b> official public leader snapshot · nchuzhoy · 2026-10-03</div>
-  <div class="stat"><b>+0.000405</b> C2 P1 proxy mean ΔDTI · not a competition score</div>
-  <div class="stat"><b>25</b> automated checks in the local/CI suite (7 metric + 18 other tests)</div>
+  <div class="stat"><b>−0.000722</b> corrected C2 P1 diagnostic · 0/4 · not a competition score</div>
+  <div class="stat"><b>36</b> unit tests passing in the local/CI suite (2026-10-04)</div>
 </div>
 
 <h2>Why the owner-reported 0.2708 file did well</h2>
 <div class="card">
-  <p>The competition describes the hidden target as expert-labelled faults missing from existing
+  <p>The <b>0.2708</b> value is specifically the owner-reported GEMSDOE28
+  <code>h27-4-r1-solo-d2-8</code> result. H36-1 and H38-1 are separate GEMSDOE28 experiments and remain
+  unscored. The competition describes the hidden target as expert-labelled faults missing from existing
   public catalogues, scored with a distance-weighted Tversky index (α=0.2, β=0.8, 300 m triangular
   kernel). Owner-reported campaign history points to three compounding effects:</p>
   <ol>
@@ -72,19 +78,19 @@
 <div class="card">
   <table>
     <tr><th>Deliverable</th><th>Status</th></tr>
-    <tr><td>One-click C2 candidate and scored-reference baseline</td><td>✅ both pass local format validation; C2 remains unscored</td></tr>
-    <tr><td>Core and candidate inputs</td><td>✅ restored locally from hash-pinned mirrors; optional archive excluded</td></tr>
-    <tr><td>Five ranked H33 hypotheses</td><td>✅ <a href="hypotheses.html">hypothesis register</a></td></tr>
-    <tr><td>Spatially blocked holdout</td><td>✅ C2/C5 pass; C1/C3/C4 fail; proxies are not scores</td></tr>
-    <tr><td>Executive summary and explicit manual upload guide</td><td>✅ linked above</td></tr>
-    <tr><td>Static results feed</td><td>✅ generated from the committed ledger; no polling</td></tr>
+    <tr><td>One-click C2 research file and baseline reference</td><td>✅ both pass local format validation; C2 is <b>not slot-cleared</b></td></tr>
+    <tr><td>Core and candidate inputs</td><td>✅ restored locally from hash-pinned mirrors; official Qfaults version correspondence remains unverified</td></tr>
+    <tr><td>Five ranked H33 hypotheses</td><td>✅ <a href="hypotheses.html">hypothesis register</a>; no new submission candidate cleared</td></tr>
+    <tr><td>Spatially blocked holdout</td><td>⚠ earlier PASS withdrawn for source leakage; corrected conditional C2 P1 is −0.000722 (0/4)</td></tr>
+    <tr><td>Executive summary and upload/compliance guide</td><td>✅ linked above; includes required AI-disclosure draft</td></tr>
+    <tr><td>Static results feed</td><td>✅ date-stamped ledger; no automated monitoring under current Terms of Use</td></tr>
     <tr><td>Analog transfer</td><td>⚠ design only; no aligned source data or validated transfer</td></tr>
   </table>
-  <p class="note">IR-PORTAL-01: NaNs are a plausible explanation for an owner-observed range error, not an
-  organizer-confirmed diagnosis. IR-QFAULTS-01: a shifted mirror geometry was excluded. IR-EVIDENCE-01:
-  an earlier radiometric result is unretrieved. IR-QFAULTS-02: GDR lists a newer fault archive whose
-  exact relationship to the pinned mirror is not verified. IR-NET-01: analog data need geospatial, label,
-  and license review before H33-A is run. Full details are in the README and limitations register.</p>
+  <p class="note">IR-HOLDOUT-LEAKAGE-01: the old P1 PASS is withdrawn; corrected C2 P1 is negative. IR-SAMPLE-LABEL-01:
+  the sample TIFF copies the labels on its finite footprint; only its grid/finite mask is used. IR-PORTAL-01:
+  NaNs are a plausible explanation for the owner-observed range error, not an organizer-confirmed diagnosis.
+  IR-QFAULTS-02: GDR lists a newer archive whose relationship to the mirror is unverified. IR-NET-01: official
+  analog bytes were not obtained here. Full details are in the README and limitations register.</p>
 </div>
 
 </main>

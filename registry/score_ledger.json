@@ -1,6 +1,6 @@
 {
   "description": "Cross-campaign score ledger. Historical GEMSDOE-site scores were supplied by the owner in the project brief and remain owner-reported unless an organizer receipt is recorded. The official public leaderboard snapshot is sourced separately below.",
-  "updated_utc": "2026-10-04T04:32:55Z",
+  "updated_utc": "2026-10-04T14:50:00Z",
   "public_leader": {
     "label": "nchuzhoy",
     "score": 0.3262,
@@ -266,7 +266,8 @@
       "site": "GEMSDOE33",
       "name": "gems33-c2-stepover-relay-20261004-01f660dd8656",
       "score": null,
-      "note": "unscored; deterministic-ID rebuild; 940 bridge dots; P1 +0.000405 (3/4), P2 +0.000283; proxy-gated only"
+      "note": "unscored research artifact; 940 bridge dots; legacy P1 +0.000405 (3/4) WITHDRAWN for source leakage; corrected conditional P1 -0.000722 (0/4); P2 +0.000283; NOT slot-cleared",
+      "status": "unscored / holdout result withdrawn; not slot-cleared"
     },
     {
       "site": "31GEMSDOE",

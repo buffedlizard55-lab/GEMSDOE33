@@ -2,8 +2,12 @@
 
 IMPORTANT: the competition is scored against *new expert-labelled faults that
 are not in the public catalogue*. The catalogue itself is therefore a proxy
-truth, not the scoring truth. Two proxies are implemented, both frozen before
-any candidate is scored on them:
+truth, not the scoring truth. These proxy metrics are not competition scores.
+The catalogue-hidden evaluator below scores a pre-built prediction; it does not
+rebuild candidates or exclude source geometries per fold, so it is invalid for
+promotion when candidate construction can depend on catalogue-derived inputs.
+Use the source-audit runner for conditional C2 diagnostics. Candidate-specific
+threshold preregistration must be established separately; see evidence/holdout33.json.
 
 P1 ``catalogue_hidden``  — spatially blocked leave-fold-out over catalogue fault
    systems (600 m grouping buffer, 2x2 quadrant folds). Each fold hides one
@@ -58,9 +62,12 @@ def catalogue_hidden_folds(buffer_px: int = 6, n_folds: int = 4) -> list[np.ndar
 
 def evaluate_proxy(pred: np.ndarray, control: np.ndarray, *, buffer_px: int = 6,
                    n_folds: int = 4, use_sgmc: bool = True) -> dict:
-    """Paired proxy evaluation of ``pred`` vs ``control`` (both {0,1} arrays).
+    """Legacy paired evaluation of pre-built ``pred`` vs ``control`` arrays.
 
-    Returns fold-wise and mean DeltaDTI for P1 plus absolute DTI on P2.
+    Returns fold-wise and mean DeltaDTI for P1 plus absolute DTI on P2. This
+    function masks labels only during scoring; it does not rebuild either
+    array per fold or exclude catalogue-derived source geometry. Do not use it
+    as a promotion gate for source-dependent candidates.
     """
     footprint, _ = load_template()
     catalogue = load_catalogue()
@@ -111,11 +118,13 @@ def evaluate_proxy(pred: np.ndarray, control: np.ndarray, *, buffer_px: int = 6,
 
 
 def gate_summary(report: dict, bar_mean_d_dti: float = 0.0) -> dict:
-    """Fail-closed promotion gate for the frozen P1/P2 proxy protocol.
+    """Fail-closed numeric P1/P2 threshold check; not a protocol-validity check.
 
-    A candidate must have a positive paired P1 mean, strictly more than half
+    A numeric pass requires a positive paired P1 mean, strictly more than half
     of the nonempty folds positive, and a measured P2 delta no worse than
     -0.001. Missing folds or a missing P2 measurement never count as a pass.
+    The caller must independently establish that candidate construction and
+    source features were fold-safe before any slot decision.
     """
     p1 = report.get("p1_mean_d_dti")
     p2 = (report.get("p2") or {}).get("d_dti")

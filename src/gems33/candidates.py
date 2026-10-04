@@ -1,7 +1,11 @@
-"""GEMSDOE33 candidate builders (all label-free at construction time).
+"""GEMSDOE33 candidate builders and fold-aware source audits.
 
-Candidates are {0,1} float32 arrays on the canonical grid:
-  C0  h27-4-r1-solo                scored 0.2708 (control)
+Candidates are {0,1} float32 arrays on the canonical grid. Constructors may
+use the publicly supplied catalogue as a prediction mask; holdout callers must
+pass a fold-visible ``catalogue_mask`` and exclude any source geometry within
+the held-out buffer before evaluating spatial generalisation.
+
+  C0  h27-4-r1-solo                owner-reported 0.2708 control
   C1  C0 + H38-1 corroborated dots heat-flow-residual x SI-0 Euler clusters
   C2  C0 + stepover relay-bridge dots (distinct-FID tip pairs, gated)
   C3  rung-3.0 Poisson re-pack of the C0 dot set
@@ -9,14 +13,15 @@ Candidates are {0,1} float32 arrays on the canonical grid:
 
 from __future__ import annotations
 
-import json
+import hashlib
 from pathlib import Path
 
 import numpy as np
 import rasterio
-from scipy.ndimage import distance_transform_edt
+from scipy.ndimage import binary_dilation, distance_transform_edt
 
 from .grid import data_dir, load_catalogue, load_raster, load_template
+from .thinning import dot_thin
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -32,6 +37,36 @@ def c0_control() -> np.ndarray:
     local = REPO_ROOT / "data" / "artifacts" / "h27-4-r1-solo-d2-8-8acb75e1f2cc-nan.tif"
     mirror = data_dir() / "models" / "h27_4_r1_solo_nan.tif"
     return load_dot_array(local if local.is_file() else mirror)
+
+
+def rebuild_c0_from_known(known: np.ndarray, raw_ridge: np.ndarray | None = None,
+                          *, min_dist_px: float = 2.8, prune_px: float = 1.0) -> tuple[np.ndarray, dict]:
+    """Rebuild the H27-4 control using only the catalogue mask visible in one fold.
+
+    The legacy H27-4 raster is exactly ``dot_thin(H19-5, 2.8)`` with dots at
+    distance <= 1 pixel from the known catalogue removed. Recomputing both
+    steps from the fold-visible ``known`` mask prevents the precomputed final
+    raster from carrying hidden-fold catalogue geometry into P1.
+    """
+    known = np.asarray(known, dtype=bool)
+    if known.ndim != 2:
+        raise ValueError("known must be a 2-D mask")
+    raw = h19_5_ridge() if raw_ridge is None else np.asarray(raw_ridge, dtype=bool)
+    if raw.shape != known.shape:
+        raise ValueError("raw H19-5 ridge and known mask must have the same shape")
+    base = dot_thin(raw & ~known, float(min_dist_px))
+    d_known = distance_transform_edt(~known) if known.any() else np.full(known.shape, np.inf)
+    result = base & (d_known > float(prune_px))
+    return result.astype(np.float32), {
+        "builder": "dot_thin(H19-5 & ~known, 2.8) & (distance_to_known > 1 px)",
+        "min_dist_px": float(min_dist_px),
+        "prune_px": float(prune_px),
+        "known_pixels": int(known.sum()),
+        "h19_5_pixels": int(raw.sum()),
+        "dots_before_flank_prune": int(base.sum()),
+        "dots_after_flank_prune": int(result.sum()),
+        "pruned_dots": int((base & ~result).sum()),
+    }
 
 
 def h19_5_ridge() -> np.ndarray:
@@ -120,9 +155,10 @@ def _qfaults_tip_segments() -> list[dict]:
     # The source NUM field is often alphanumeric (e.g. "829a"), so casting
     # it to int and falling back to Python's randomized hash(name) made the
     # feature IDs unstable and allowed hash collisions to merge fault systems.
-    # Use stable, collision-free integer IDs keyed by the original identity.
+    # Use stable, collision-free integer IDs keyed by normalized NUM/NAME; blank
+    # identifiers fall back to the stable shapefile record index.
     fid_by_identity: dict[tuple[str, str], int] = {}
-    for sr in sf.iterShapeRecords():
+    for record_index, sr in enumerate(sf.iterShapeRecords()):
         a = sr.record
         try:
             name = str(a["NAME"]).strip()
@@ -132,7 +168,14 @@ def _qfaults_tip_segments() -> list[dict]:
             num = str(a["NUM"]).strip()
         except Exception:
             num = ""
-        identity = ("num", num) if num else ("name", name)
+        if num:
+            identity = ("num", num.casefold())
+        elif name:
+            identity = ("name", name.casefold())
+        else:
+            # A blank NUM and NAME must not make unrelated unnamed records a
+            # single fictitious fault system; retain a stable record identity.
+            identity = ("record", str(record_index))
         if identity not in fid_by_identity:
             fid_by_identity[identity] = len(fid_by_identity)
         fid = fid_by_identity[identity]
@@ -151,8 +194,117 @@ def _qfaults_tip_segments() -> list[dict]:
     return segs
 
 
+def exclude_source_fids_near_mask(segments: list[dict], target_mask: np.ndarray, transform,
+                                  *, buffer_px: int = 6, guard_px: int = 1,
+                                  sample_step_m: float = 50.0) -> tuple[set[int], dict]:
+    """Find source fault systems that overlap a buffered target/holdout mask.
+
+    Each source polyline is sampled at <= ``sample_step_m`` intervals in the
+    projected CRS. Any segment entering the Chebyshev buffer is enough to
+    exclude its entire fault-system ID from a fold's C2 candidate generation.
+    ``guard_px`` adds a rasterization guard beyond the fold's label buffer.
+    """
+    target = np.asarray(target_mask, dtype=bool)
+    if target.ndim != 2:
+        raise ValueError("target_mask must be a 2-D array")
+    if buffer_px < 0 or guard_px < 0 or not np.isfinite(sample_step_m) or sample_step_m <= 0:
+        raise ValueError("buffer/guard must be non-negative and sample_step_m positive")
+    if not target.any():
+        return set(), {
+            "applied": True,
+            "target_pixels": 0,
+            "buffer_px": int(buffer_px),
+            "guard_px": int(guard_px),
+            "source_exclusion_radius_px": int(buffer_px + guard_px),
+            "sample_step_m": float(sample_step_m),
+            "segments_checked": int(len(segments)),
+            "source_fids_total": int(len({seg.get("fid") for seg in segments})),
+            "source_fids_excluded": 0,
+            "source_segments_excluded": 0,
+            "excluded_fids_sha256": hashlib.sha256(b"").hexdigest(),
+            "retained_min_sample_distance_px": None,
+        }
+
+    radius_px = int(buffer_px + guard_px)
+    pad = radius_px + 2
+    padded_target = np.pad(target, pad, mode="constant", constant_values=False)
+    exclusion_zone = binary_dilation(
+        padded_target,
+        structure=np.ones((2 * radius_px + 1, 2 * radius_px + 1), dtype=bool),
+    )
+    distance_to_target = distance_transform_edt(~padded_target)
+
+    a, e = float(transform.a), float(transform.e)
+    c, f = float(transform.c), float(transform.f)
+    if a <= 0 or e >= 0 or abs(float(transform.b)) > 1e-9 or abs(float(transform.d)) > 1e-9:
+        raise ValueError("source exclusion expects a north-up projected grid")
+    padded_height, padded_width = padded_target.shape
+
+    excluded_fids: set[int] = set()
+    min_distance_by_fid: dict[int, float] = {}
+    checked_samples = 0
+    for seg in segments:
+        fid = int(seg["fid"])
+        pts = np.asarray(seg.get("pts", []), dtype=float)
+        if pts.ndim != 2 or pts.shape[1] != 2 or len(pts) < 2 or not np.isfinite(pts).all():
+            continue
+        min_distance = min_distance_by_fid.get(fid, float("inf"))
+        enters_buffer = False
+        for p0, p1 in zip(pts[:-1], pts[1:]):
+            length_m = float(np.hypot(*(p1 - p0)))
+            n_intervals = max(1, int(np.ceil(length_m / sample_step_m)))
+            fractions = np.linspace(0.0, 1.0, n_intervals + 1)
+            samples = p0[None, :] + fractions[:, None] * (p1 - p0)[None, :]
+            cols = np.floor((samples[:, 0] - c) / a).astype(np.int64) + pad
+            rows = np.floor((samples[:, 1] - f) / e).astype(np.int64) + pad
+            in_grid = ((rows >= 0) & (rows < padded_height) &
+                       (cols >= 0) & (cols < padded_width))
+            if not in_grid.any():
+                continue
+            rows = rows[in_grid]
+            cols = cols[in_grid]
+            checked_samples += int(rows.size)
+            min_distance = min(min_distance, float(distance_to_target[rows, cols].min()))
+            if exclusion_zone[rows, cols].any():
+                enters_buffer = True
+                break
+        if enters_buffer:
+            excluded_fids.add(fid)
+        min_distance_by_fid[fid] = min_distance
+
+    unique_fids = {int(seg["fid"]) for seg in segments}
+    excluded_payload = ",".join(str(fid) for fid in sorted(excluded_fids)).encode("ascii")
+    retained_distances = [
+        dist for fid, dist in min_distance_by_fid.items()
+        if fid not in excluded_fids and np.isfinite(dist)
+    ]
+    excluded_segments = sum(int(seg["fid"]) in excluded_fids for seg in segments)
+    return excluded_fids, {
+        "applied": True,
+        "target_pixels": int(target.sum()),
+        "buffer_px": int(buffer_px),
+        "guard_px": int(guard_px),
+        "source_exclusion_radius_px": radius_px,
+        "source_exclusion_shape": "square/Chebyshev",
+        "sample_step_m": float(sample_step_m),
+        "segments_checked": int(len(segments)),
+        "sampled_points": int(checked_samples),
+        "source_fids_total": int(len(unique_fids)),
+        "source_fids_excluded": int(len(excluded_fids)),
+        "source_segments_excluded": int(excluded_segments),
+        "excluded_fids_sha256": hashlib.sha256(excluded_payload).hexdigest(),
+        "retained_min_sample_distance_px": (
+            float(min(retained_distances)) if retained_distances else None
+        ),
+    }
+
+
 def c2_stepover_bridges(base: np.ndarray | None = None, d_min_m: float = 300.0, d_max_m: float = 2500.0,
-                        strike_tol_deg: float = 30.0, dot_spacing_px: float = 2.83) -> tuple[np.ndarray, dict]:
+                        strike_tol_deg: float = 30.0, dot_spacing_px: float = 2.83, *,
+                        catalogue_mask: np.ndarray | None = None,
+                        source_segments: list[dict] | None = None,
+                        excluded_source_fids: set[int] | None = None,
+                        source_exclusion_report: dict | None = None) -> tuple[np.ndarray, dict]:
     """Candidate relay-bridge dots between interacting tips of DISTINCT fault polylines.
 
     Faulds & Hinz (2015, OSTI 1724082) report step-overs/relay ramps among
@@ -162,15 +314,23 @@ def c2_stepover_bridges(base: np.ndarray | None = None, d_min_m: float = 300.0, 
     (230/345 links were same-FID compiler artifacts). Here only distinct-FID
     tip pairs with near-parallel strikes and close tip approach qualify, and
     the bridge is gated by the potential-field edge layer
-    (iso_grav_anom_hg >= in-footprint 80th percentile within 200 m).
+    (iso_grav_anom_hg >= in-footprint 80th percentile within 200 m). For a
+    spatial holdout, pass the fold-visible catalogue mask and exclude every
+    source FID intersecting the buffered held-out target before construction;
+    the defaults below are for the full-data production map only.
     """
     import rasterio
 
     if base is None:
         base = c0_control()
-    catalogue = load_catalogue()
+    catalogue = load_catalogue() if catalogue_mask is None else np.asarray(catalogue_mask, dtype=bool)
     footprint, _ = load_template()
-    segs = _qfaults_tip_segments()
+    base = np.asarray(base)
+    if base.shape != footprint.shape or catalogue.shape != footprint.shape:
+        raise ValueError("base, catalogue mask, and template must share the canonical grid")
+    segs = _qfaults_tip_segments() if source_segments is None else source_segments
+    excluded_source_fids = set(excluded_source_fids or ())
+    active_segs = [seg for seg in segs if int(seg["fid"]) not in excluded_source_fids]
 
     # gravity horizontal gradient gate
     with rasterio.open(data_dir() / "core" / "training_features.tif") as ds:
@@ -180,9 +340,9 @@ def c2_stepover_bridges(base: np.ndarray | None = None, d_min_m: float = 300.0, 
     grav_edge = (ghg >= thr) & footprint
     d_grav = distance_transform_edt(~grav_edge)
 
-    # tip list: both ends of every segment, with local strike at the tip
+    # tip list: both ends of every retained segment, with local strike at the tip
     tips = []
-    for seg in segs:
+    for seg in active_segs:
         pts = seg["pts"]
         for which in ("start", "end"):
             i = 0 if which == "start" else len(pts) - 1
@@ -243,7 +403,25 @@ def c2_stepover_bridges(base: np.ndarray | None = None, d_min_m: float = 300.0, 
                         out[row, col] = 1.0
                         added += 1
                 pairs += 1
-    report = {"candidate": "C2_stepover_bridges", "qualifying_tip_pairs": pairs, "added_dots": added}
+    report = {
+        "candidate": "C2_stepover_bridges",
+        "qualifying_tip_pairs": pairs,
+        "added_dots": added,
+        "source_segments_total": int(len(segs)),
+        "source_segments_used": int(len(active_segs)),
+        "source_fids_excluded": int(len(excluded_source_fids)),
+        "catalogue_mask_pixels": int(catalogue.sum()),
+        "source_exclusion": source_exclusion_report or {"applied": False},
+        "parameters": {
+            "d_min_m": float(d_min_m),
+            "d_max_m": float(d_max_m),
+            "strike_tol_deg": float(strike_tol_deg),
+            "dot_spacing_px": float(dot_spacing_px),
+            "catalogue_exclusion_px": 2.0,
+            "existing_dot_exclusion_px": 2.5,
+            "gravity_edge_distance_px": 2.0,
+        },
+    }
     return out, report
 
 

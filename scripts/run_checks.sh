@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Fast local verification. Downloads only the small public sample grid template;
-# never contacts DrivenData and does not restore the 419 MB feature stack.
+# checks the static ledger and local artifacts; never contacts DrivenData or restores the feature stack.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 PY="${PYTHON:-$( [ -x .venv/bin/python ] && echo .venv/bin/python || echo python3 )}"

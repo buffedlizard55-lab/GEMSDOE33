@@ -21,10 +21,11 @@
 
 <p class="mut">Machine-readable copy: <code>registry/hypotheses.json</code>. Ordered by expected scientific
 upside per implementation cost, with uncertainty stated; this is a qualitative research priority, not a
-score forecast. Only C2 and C5 have current proxy tests. A candidate needs both frozen holdout gates and an
-exact format audit before any weekly submission slot. Proxy deltas are not competition scores.</p>
+score forecast. C2 is implemented, but its earlier P1 PASS is withdrawn after the fold/source-leakage
+audit. The corrected conditional diagnostic is negative, so no candidate is cleared for a slot. Proxy
+deltas are not competition scores.</p>
 
-<h2>Rank 1 — H33-C2 stepover relay-bridge faults <span class="pill ok">IMPLEMENTED · PROXY-GATED PASS · UNSCORED</span></h2>
+<h2>Rank 1 — H33-C2 stepover relay-bridge faults <span class="pill warn">IMPLEMENTED · CORRECTED P1 FAIL · NOT SLOT-CLEARED</span></h2>
 <div class="card">
 <ul>
 <li><b>Layers:</b> INGENIOUS Quaternary-fault vectors from a pinned community mirror of the GDR #1391
@@ -38,10 +39,13 @@ its existence and omission from the target truth are not independently confirmed
 Basin structural-settings paper provides context; it is <b>not</b> the NBMG OF 03-27
 map source (<a href="https://www.osti.gov/biblio/1724082">OSTI record 1724082</a>).</li>
 <li><b>Difference from prior work:</b> GEMSDOE27 T-v2 filled same-polyline compiler gaps and failed a live
-result; C2 restricts to distinct feature IDs and adds a gravity-edge gate, then tests against spatial
-proxies before any submission.</li>
-<li><b>Current test:</b> 940 added dots; total 41,139. P1 mean ΔDTI +0.0004051587 (3/4 folds positive);
-P2 +0.0002831018; proxy gate PASS. No live score.</li>
+result; C2 restricts to distinct feature IDs and adds a gravity-edge gate. Its first P1 run leaked full
+catalogue labels and Qfaults source systems into the test.</li>
+<li><b>Corrected conditional diagnostic:</b> the full-data artifact has 940 added dots (41,139 total), but
+fold-specific base rebuilding and Qfaults source-ID exclusion give P1 mean ΔDTI <b>−0.0007220038</b>
+(0/4 folds positive). Across folds, 2,643 added dots earn zero incremental TPw and add 2,643 FPw.
+P2 remains +0.0002831018. Numeric gate FAIL; no slot. The fixed H19-5 ridge is not re-derived per fold,
+so the result is conditional.</li>
 </ul>
 </div>
 
@@ -51,7 +55,7 @@ P2 +0.0002831018; proxy gate PASS. No live score.</li>
 <li><b>Potential layers:</b> Dixie Valley fault-map files listed by
 <a href="https://gdr.openei.org/submissions/207">GDR #207</a>; the Desert Peak–Brady preliminary map is described on the official <a href="https://pubs.nbmg.unr.edu/Geol_Desert_Peak_Brady_geotherm_p/of2003-27.htm">NBMG OF 03-27 product page</a> (free PDF ZIP and geospatial PDF listed; no GIS vector archive confirmed there);
 <a href="https://gdr.openei.org/submissions/1288">GDR #1288</a> geothermal-feature/classification layers.
-The analog data are not yet aligned or audited in this repo.</li>
+The analog data are not yet aligned or audited in this repo; the GDR #207 archive request failed TLS/connection setup and no bytes were obtained, so that path is not currently runnable.</li>
 <li><b>Feature compatibility:</b> geolocate the actual source data, check CRS/resolution/coverage and label
 semantics, then define only genuinely overlapping, equivalently processed variables. Do not assume that
 analog sites have the GeoDAWN 19-band training raster. GDR #1288's geothermal features and class labels
@@ -117,13 +121,13 @@ weak or a mapped source is misrepresented.</li>
 </ul>
 </div>
 
-<h2>Proxy failures retained as controls</h2>
+<h2>Legacy variants and current validation status</h2>
 <div class="card">
-<p><b>C1</b> failed the strict P1 majority rule (0/4 positive folds) despite a small positive P2 delta.
-<b>C3</b> rung-3.0 re-pack failed both P1 (−0.00123361, 0/4) and P2 (−0.00813709). C4 failed as well.
-C5 passed but adds the C1 material; C2 is preferred for parsimony. These outcomes are local proxy
-results only, not leaderboard scores. Exact values are in <code>evidence/holdout33.json</code> and
-<a href="results.html">the results page</a>.</p>
+<p>The old C1–C5 P1 values are retained in <code>evidence/holdout33_legacy_catalogue_only.json</code>
+but are invalid for promotion because the full catalogue and source vectors were not fold-masked. Their
+P2 deltas are separate SGMC proxy comparisons. The corrected C2 P1 diagnostic is negative in all four
+folds. C2 remains a downloadable research artifact, not a submission recommendation. See
+<a href="results.html">the corrected results and leakage audit</a>; none of these are leaderboard scores.</p>
 </div>
 
 </main>
