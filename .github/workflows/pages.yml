@@ -16,6 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Render score feed from the committed ledger (no external polling)
+        run: python3 scripts/build_campaign_feed.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs

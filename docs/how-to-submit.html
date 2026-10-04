@@ -8,7 +8,7 @@
 <body>
 <header class="site"><div class="row">
   <h1>GEMS<span>DOE33</span> · How to submit</h1>
-  <nav>
+  <nav aria-label="Main navigation">
     <a href="index.html">Download</a>
     <a href="executive-summary.html">Executive summary</a>
     <a class="on" href="how-to-submit.html">How to submit</a>
@@ -19,60 +19,66 @@
 </div></header>
 <main>
 
-<h2>Exact submission steps (official rules, verified)</h2>
+<h2>Manual upload steps</h2>
 <div class="card">
 <ol>
-  <li><b>Download the TIF</b> from the <a href="index.html">download page</a> (single-band GeoTIFF; a .zip
-  containing the single GeoTIFF is also accepted by the portal).</li>
-  <li>Open the competition submission form:
-  <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">drivendata.org → GEMS Prize Challenge → Submit</a>
-  (requires your DrivenData login — this repo never logs in for you).</li>
-  <li><b>File to submit:</b> choose the downloaded <code>.tif</code>.</li>
-  <li><b>Note (optional):</b> paste the short comment shipped with the file. For the current candidate:<br>
-  <code>33GEMSDOE C2 stepover relay | P1 dDTI +0.00043 3/4 folds, P2 +0.00028 vs scored 0.2708 base | id eb6bcf02361f | proxy-gated, unscored</code></li>
-  <li>Submit. The portal validates: single-band GeoTIFF, CRS/shape/geotransform matching the sample
-  submission, and predicted values in [0, 1] across the <b>whole array</b>.</li>
+  <li>Download the current candidate from the <a href="index.html">download page</a>. It is a single
+  GeoTIFF, not a zip or a bundle.</li>
+  <li>Open the official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE
+  GEMS Prize Challenge page</a> and navigate to its submission form. Sign in yourself if the site asks;
+  this repository does not log in for you.</li>
+  <li>Select the downloaded <code>.tif</code> as the submission file and review the portal's current
+  validation message before continuing.</li>
+  <li>If the portal provides an optional description/note field, paste the candidate note below. It
+  describes local proxy evidence and explicitly says the file is unscored.</li>
+  <li>Review the file name and candidate, then submit manually. Save the organizer's actual receipt/result
+  and update the ledger only after it exists.</li>
 </ol>
+<p><b>Current candidate note:</b><br>
+<code>33GEMSDOE C2 stepover relay | P1 proxy +0.000405 (3/4), P2 proxy +0.000283 vs 0.2708 owner-reported base | id 01f660dd8656 | unscored</code></p>
+<p><b>Important:</b> this note reports holdout proxy changes, not a predicted DrivenData score. The C2
+GeoTIFF has not been submitted. Manual owner review and upload are required.</p>
 </div>
 
-<h2>Why earlier files were rejected — and why ours pass</h2>
+<h2>Artifact format and audit</h2>
 <div class="card">
-<p class="note">Owner-reported portal error: <i>“Predicted values must be in range [0, 1]”</i>
-(irregularity IR-PORTAL-01). Cause: the upload form validates the entire array and rejects NaN —
-files that stored NaN outside the survey footprint failed even though every in-footprint value was valid.</p>
-<p>Every GEMSDOE33 artifact is therefore written <b>finite everywhere</b>: values in [0, 1], zero
-(never NaN) outside the footprint, float32, EPSG:32611, 100 m, identical shape/geotransform/bounds to
-the official sample submission. Each file ships with its format audit JSON
-(<code>evidence/format_check_*.json</code>) proving these checks passed byte-for-byte.</p>
-</div>
-
-<h2>Submission requirements (from the official problem page)</h2>
-<div class="card">
+<p>The official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">submission-format
+instructions</a> specify a single-layer float32 GeoTIFF on the competition grid (UTM Zone 11N,
+EPSG:32611, 100 m) with predictions in [0,1]. They describe null/NaN outside the prediction bounds.
+The repository's fail-closed audit compares the candidate against the supplied sample-grid template and
+also enforces a conservative local policy of finite values everywhere and zeros in template cells outside
+the survey footprint. That project policy is deliberately distinguished from the organizer's published
+format rules.</p>
+<p class="note">Owner-observed portal message: “Predicted values must be in range [0, 1]” while using an
+older NaN-outside file (IR-PORTAL-01). NaNs are a plausible cause; no organizer support ruling confirming
+the cause is available. The current artifacts avoid NaNs and pass the local audit, but a local pass is not
+a guarantee of portal acceptance.</p>
 <table>
-<tr><th>Requirement</th><th>Official statement</th><th>Our files</th></tr>
-<tr><td>CRS</td><td>same as training data — UTM zone 11N, EPSG:32611</td><td>✅ EPSG:32611</td></tr>
-<tr><td>Resolution</td><td>100 m</td><td>✅ (100, −100)</td></tr>
-<tr><td>Bounds</td><td>same as training data; outside bounds null/NaN</td><td>✅ bounds identical; outside footprint written as 0.0 to survive the whole-array [0,1] check</td></tr>
-<tr><td>Bands / dtype</td><td>single layer, float32</td><td>✅ 1 band float32</td></tr>
-<tr><td>Value range</td><td>probabilities/confidence in [0, 1]</td><td>✅ min 0.0, max 1.0, 0 NaN</td></tr>
+<tr><th>Check</th><th>Current C0 reference and C2 candidate</th></tr>
+<tr><td>Band count / dtype</td><td>1 band · float32</td></tr>
+<tr><td>CRS / resolution</td><td>EPSG:32611 · 100 × 100 m</td></tr>
+<tr><td>Grid</td><td>Exact sample-template shape, transform, and bounds (3,730 × 3,292)</td></tr>
+<tr><td>Values</td><td>Finite over whole array · within [0,1] · zero outside footprint</td></tr>
+<tr><td>Audit evidence</td><td><code>evidence/format_check_c0_89bf5b9a2fea.json</code> and <code>evidence/format_check_c2_01f660dd8656.json</code></td></tr>
 </table>
-<p class="mut">Source: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page, “Submission format”</a>
-(fetched and read 2026-10-04). Local audit: <code>scripts/validate_submission.py</code>.</p>
 </div>
 
-<h2>Slot policy (read before using a weekly slot)</h2>
+<h2>Slot and result policy</h2>
 <div class="card">
 <ul>
-  <li>Submissions are limited per week; never spend a slot on a file that has not beaten the current
-  holdout best on the frozen P1/P2 gate (<code>evidence/holdout33.json</code>).</li>
-  <li>Record the returned live score in <code>registry/score_ledger.json</code> (owner-reported) so the
-  24-submission inversion stays calibrated.</li>
-  <li>Before the deadline, select the single submission that will score in BOTH rounds — the Final Prize
-  Round re-scores the same file against the expert-expanded label set, so favour geologically defensible,
-  independently corroborated traces.</li>
+  <li>Do not use a weekly submission slot unless the candidate passes the documented frozen P1/P2 gate
+  (positive P1 mean, a strict majority of P1 folds positive, and P2 ΔDTI ≥ −0.001) and the exact output
+  file passes the format audit.</li>
+  <li>Log the returned result as owner-reported until an organizer receipt is archived. Do not infer a
+  score from proxy performance.</li>
+  <li>The official challenge description says the expert panel reviews submissions and the Final Prize
+  Round uses expanded labels to evaluate the selected submission. Preserve a geologically defensible
+  provenance record for every proposed trace.</li>
+  <li>This codebase, its feed generator, and its CI workflow do not log in to, upload to, scrape, or poll
+  DrivenData. The leaderboard shown on the results page is a manually checked dated snapshot.</li>
 </ul>
 </div>
 
 </main>
-<footer>GEMSDOE33 · manual upload only · this site never contacts DrivenData</footer>
+<footer>GEMSDOE33 · manual upload only · local format validation is not organizer acceptance</footer>
 </body></html>

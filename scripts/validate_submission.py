@@ -1,22 +1,20 @@
 #!/usr/bin/env python3
-"""Exact-file format audit for GEMS competition submissions.
+"""Fail-closed format audit for a GEMS competition submission GeoTIFF.
 
-Checks the rules stated on the official problem page
-(https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/):
-  * single-band GeoTIFF, float32
-  * same CRS as training data (EPSG:32611), same 100 m resolution
-  * same shape, geotransform and bounds as the sample submission template
-  * values in [0, 1]
+The official problem page requires a single-band float32 GeoTIFF on the
+EPSG:32611, 100 m competition grid, with prediction values in [0, 1]. Its
+published format text says out-of-bounds data should be null/NaN. Separately,
+the owner reported an upload-form rejection for NaN values (IR-PORTAL-01).
+For the staged files this project therefore also enforces the locally tested
+policy of finite [0, 1] values over the entire array and zeros outside the
+sample-template footprint. That empirical policy is not presented as an
+organizer-published rule; check the live portal if its behavior changes.
 
-PLUS the portal behaviour recorded as IR-PORTAL-01 by the owner:
-the upload form validates the WHOLE array against [0, 1] and rejects NaN
-("Predicted values must be in range [0, 1]"). A submission must therefore be
-finite everywhere — zero (never NaN) outside the survey footprint.
-
-This audit is format-only: it is not a score and not an approval.
+This audit checks file format only. It is not a competition score or organizer
+approval.
 
 Usage:
-  PYTHONPATH=src python scripts/validate_submission.py --submission <file.tif> \
+  PYTHONPATH=src python scripts/validate_submission.py --submission <file.tif> \\
       [--template <sample_submission.tif>] [--out evidence/format_check.json]
 """
 
@@ -25,6 +23,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -33,7 +32,10 @@ import rasterio
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from gems33.grid import data_dir
+from gems33.grid import data_dir  # noqa: E402
+
+TARGET_EPSG = 32611
+TARGET_RESOLUTION = (100.0, 100.0)
 
 
 def sha256_file(path: Path) -> str:
@@ -44,45 +46,106 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _close_tuple(left, right) -> bool:
+    return len(left) == len(right) and all(
+        math.isclose(float(a), float(b), rel_tol=0.0, abs_tol=1e-9)
+        for a, b in zip(left, right)
+    )
+
+
 def audit(submission: Path, template: Path) -> dict:
-    checks: dict[str, object] = {"file": str(submission), "sha256": sha256_file(submission),
-                                 "bytes": submission.stat().st_size}
+    submission = Path(submission)
+    template = Path(template)
+    try:
+        report_path = submission.resolve().relative_to(Path(__file__).resolve().parents[1]).as_posix()
+    except ValueError:
+        report_path = str(submission)
+    checks: dict[str, object] = {
+        "file": report_path,
+        "sha256": sha256_file(submission),
+        "bytes": submission.stat().st_size,
+    }
+
     with rasterio.open(template) as tds, rasterio.open(submission) as ds:
         arr = ds.read(1)
         tmpl = tds.read(1)
         footprint = np.isfinite(tmpl)
+        same_shape = ds.shape == tds.shape
+        epsg = ds.crs.to_epsg() if ds.crs else None
+        template_epsg = tds.crs.to_epsg() if tds.crs else None
+        transform = tuple(ds.transform)[:6]
+        template_transform = tuple(tds.transform)[:6]
+        bounds = tuple(ds.bounds)
+        template_bounds = tuple(tds.bounds)
+        resolution = tuple(ds.res)
+        template_resolution = tuple(tds.res)
 
-        checks["bands"] = ds.count
-        checks["dtype"] = ds.dtypes[0]
-        checks["crs"] = ds.crs.to_string() if ds.crs else None
-        checks["template_crs"] = tds.crs.to_string() if tds.crs else None
-        checks["shape"] = list(ds.shape)
-        checks["template_shape"] = list(tds.shape)
-        checks["transform"] = list(ds.transform)[:6]
-        checks["template_transform"] = list(tds.transform)[:6]
-        checks["bounds"] = list(ds.bounds)
-        checks["template_bounds"] = list(tds.bounds)
+        checks.update({
+            "bands": ds.count,
+            "dtype": ds.dtypes[0],
+            "crs": ds.crs.to_string() if ds.crs else None,
+            "epsg": epsg,
+            "template_crs": tds.crs.to_string() if tds.crs else None,
+            "template_epsg": template_epsg,
+            "shape": list(ds.shape),
+            "template_shape": list(tds.shape),
+            "resolution": list(resolution),
+            "template_resolution": list(template_resolution),
+            "transform": list(transform),
+            "template_transform": list(template_transform),
+            "bounds": list(bounds),
+            "template_bounds": list(template_bounds),
+            "shape_match": bool(same_shape),
+            "resolution_match": bool(_close_tuple(resolution, TARGET_RESOLUTION)
+                                      and _close_tuple(resolution, template_resolution)),
+            "transform_match": bool(transform == template_transform),
+            "bounds_match": bool(_close_tuple(bounds, template_bounds)),
+        })
 
         finite = np.isfinite(arr)
-        inside = arr[footprint]
+        finite_values = arr[finite]
         checks["all_finite"] = bool(finite.all())
-        checks["nan_count"] = int((~finite).sum())
-        checks["min"] = float(np.nanmin(arr)) if finite.any() else None
-        checks["max"] = float(np.nanmax(arr)) if finite.any() else None
-        checks["in_range_0_1_whole_array"] = bool(finite.all() and (arr.min() >= 0.0) and (arr.max() <= 1.0))
-        checks["in_range_0_1_footprint"] = bool(np.isfinite(inside).all() and (inside.min() >= 0) and (inside.max() <= 1))
+        checks["nonfinite_count"] = int((~finite).sum())
+        checks["min"] = float(finite_values.min()) if finite_values.size else None
+        checks["max"] = float(finite_values.max()) if finite_values.size else None
+        checks["in_range_0_1_whole_array"] = bool(
+            finite.all() and finite_values.size > 0
+            and finite_values.min() >= 0.0 and finite_values.max() <= 1.0
+        )
+
+        if same_shape:
+            inside = arr[footprint]
+            outside = arr[~footprint]
+            checks["footprint_cells"] = int(footprint.sum())
+            checks["in_range_0_1_footprint"] = bool(
+                np.isfinite(inside).all() and inside.size > 0
+                and inside.min() >= 0.0 and inside.max() <= 1.0
+            )
+            checks["outside_footprint_all_zero"] = bool(
+                np.isfinite(outside).all() and np.all(outside == 0.0)
+            )
+        else:
+            checks["footprint_cells"] = int(footprint.sum())
+            checks["in_range_0_1_footprint"] = False
+            checks["outside_footprint_all_zero"] = False
+
         checks["emitted_pixels"] = int((arr > 0).sum())
-        checks["emitted_fraction_of_footprint"] = float((arr > 0).sum() / footprint.sum())
-        checks["outside_footprint_all_zero"] = bool((arr[~footprint] == 0).all()) if (~footprint).any() else True
+        checks["emitted_fraction_of_footprint"] = (
+            float((arr > 0).sum() / footprint.sum()) if same_shape and footprint.any() else None
+        )
 
     checks["pass"] = all([
         checks["bands"] == 1,
         checks["dtype"] == "float32",
-        checks["crs"] == checks["template_crs"] == "EPSG:32611",
-        checks["shape"] == checks["template_shape"],
-        checks["transform"] == checks["template_transform"],
+        checks["epsg"] == checks["template_epsg"] == TARGET_EPSG,
+        checks["shape_match"],
+        checks["resolution_match"],
+        checks["transform_match"],
+        checks["bounds_match"],
         checks["all_finite"],
         checks["in_range_0_1_whole_array"],
+        checks["in_range_0_1_footprint"],
+        checks["outside_footprint_all_zero"],
     ])
     return checks
 

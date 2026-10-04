@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Build the GEMSDOE33 one-click submission GeoTIFF (portal-safe).
+"""Build the GEMSDOE33 one-click candidate GeoTIFF.
 
-Emits the frozen candidate (default C2: scored h27-4 base + stepover
-relay-bridge dots that passed the P1/P2 proxy gate in evidence/holdout33.json)
-as a single-band float32 GeoTIFF that satisfies the portal's whole-array
-[0, 1] validation (IR-PORTAL-01): finite everywhere, zero outside the
-survey footprint.
+Emits the frozen candidate (default C2: h27-4 base + stepover relay-bridge
+dots that passed the local P1/P2 proxy gate in evidence/holdout33.json) as a
+single-band float32 GeoTIFF on the sample grid. The project's conservative
+upload-safe policy enforces finite [0, 1] values over the full array and zero
+outside the survey footprint. The owner observed a range-validation error for
+an earlier NaN-outside file (IR-PORTAL-01); the cause was not confirmed by the
+organizer. This local build/audit is not organizer approval.
 
 The file is written to docs/downloads/ with a content-id derived from the
 SHA-256 of the emitted array, then format-audited with validate_submission.py.
@@ -81,17 +83,24 @@ def main() -> int:
         "sha256": hashlib.sha256(out_path.read_bytes()).hexdigest(),
         "bytes": out_path.stat().st_size,
         "built_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-        "portal_rule": "finite [0,1] whole array; zero outside footprint (IR-PORTAL-01)",
+        "local_upload_safe_policy": "finite [0,1] whole array; zero outside footprint; conservative policy after owner-observed IR-PORTAL-01, not an organizer-confirmed cause",
     }
-    (ROOT / "evidence").mkdir(exist_ok=True)
-    (ROOT / "evidence" / f"build_{args.candidate.lower()}_{content_id}.json").write_text(json.dumps(receipt, indent=1))
-
+    evidence_dir = ROOT / "evidence"
+    evidence_dir.mkdir(exist_ok=True)
+    build_record = evidence_dir / f"build_{args.candidate.lower()}_{content_id}.json"
+    format_record = evidence_dir / f"format_check_{args.candidate.lower()}_{content_id}.json"
     check = subprocess.run(
         [sys.executable, str(ROOT / "scripts" / "validate_submission.py"),
-         "--submission", str(out_path),
-         "--out", str(ROOT / "evidence" / f"format_check_{args.candidate.lower()}_{content_id}.json")],
+         "--submission", str(out_path), "--template", str(template_path),
+         "--out", str(format_record)],
         cwd=ROOT, capture_output=True, text=True)
-    receipt["format_audit"] = json.loads(check.stdout) if check.stdout.strip().startswith("{") else check.stdout
+    try:
+        receipt["format_audit"] = json.loads(check.stdout)
+    except json.JSONDecodeError:
+        receipt["format_audit"] = {"output": check.stdout, "error": check.stderr}
+    receipt["format_audit_path"] = format_record.relative_to(ROOT).as_posix()
+    receipt["format_audit_pass"] = check.returncode == 0
+    build_record.write_text(json.dumps(receipt, indent=1) + "\n")
     print(json.dumps(receipt, indent=1))
     return 0 if check.returncode == 0 else 2
 

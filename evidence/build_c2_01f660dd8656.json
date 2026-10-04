@@ -1,20 +1,22 @@
 {
- "file": "docs/downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif",
- "candidate": "C0",
+ "file": "docs/downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif",
+ "candidate": "C2",
  "build": {
-  "candidate": "C0_scored_reference"
+  "candidate": "C2_stepover_bridges",
+  "qualifying_tip_pairs": 12811,
+  "added_dots": 940
  },
- "content_id": "89bf5b9a2fea",
- "dots_emitted": 40199,
+ "content_id": "01f660dd8656",
+ "dots_emitted": 41139,
  "dots_outside_footprint_dropped": 0,
- "sha256": "b64e198f99108b7678c2d0a78864d9677299206cf5b642388c831435c8272f33",
- "bytes": 881376,
- "built_utc": "2026-10-04T04:25:29+00:00",
+ "sha256": "7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7",
+ "bytes": 884296,
+ "built_utc": "2026-10-04T04:25:05+00:00",
  "local_upload_safe_policy": "finite [0,1] whole array; zero outside footprint; conservative policy after owner-observed IR-PORTAL-01, not an organizer-confirmed cause",
  "format_audit": {
-  "file": "docs/downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif",
-  "sha256": "b64e198f99108b7678c2d0a78864d9677299206cf5b642388c831435c8272f33",
-  "bytes": 881376,
+  "file": "docs/downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif",
+  "sha256": "7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7",
+  "bytes": 884296,
   "bands": 1,
   "dtype": "float32",
   "crs": "EPSG:32611",
@@ -77,10 +79,10 @@
   "footprint_cells": 5167373,
   "in_range_0_1_footprint": true,
   "outside_footprint_all_zero": true,
-  "emitted_pixels": 40199,
-  "emitted_fraction_of_footprint": 0.007779388095266202,
+  "emitted_pixels": 41139,
+  "emitted_fraction_of_footprint": 0.007961298710195684,
   "pass": true
  },
- "format_audit_path": "evidence/format_check_c0_89bf5b9a2fea.json",
+ "format_audit_path": "evidence/format_check_c2_01f660dd8656.json",
  "format_audit_pass": true
 }
