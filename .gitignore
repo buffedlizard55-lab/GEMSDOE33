@@ -1,17 +1,21 @@
-# Large working data (restored from hash-pinned mirrors; never committed)
+# ---- Large local data is not committed ----
+# The 17 current owner-mirror input pins live in registry/owner_mirror_input_pins.json.
+# The upstream candidate restore manifest is registry/data_manifest.json; hashes authenticate only mirrors.
+data/*
+!data/README.md
 .cache/
 data/artifacts/*.tif
-!docs/downloads/*.tif
 
-# Python
+# ---- Python ----
 .venv/
 __pycache__/
-*.pyc
+*.py[cod]
+*.egg-info/
 .mypy_cache/
 .pytest_cache/
 .ruff_cache/
 
-# Reference material from sibling campaigns (large working copies only)
+# ---- Optional sibling-campaign working copies ----
 reference/gems28/live_inversion.json
 reference/gems28/h31_1_euler_clusters.csv
 reference/gems28/training_features_README.md

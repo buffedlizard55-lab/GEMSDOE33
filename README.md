@@ -1,230 +1,222 @@
-# GEMSDOE33 — GEMS Prize Challenge research & submission campaign
+# GEMSDOE33 — DOE GEMS fault-discovery project (DrivenData #306)
 
-**Project status checked 2026-10-04 UTC; the latest authorized static leaderboard snapshot in this repository is dated 2026-10-03 (local).**
-The goal is to beat the owner-reported campaign best of **0.2708** and pursue the official leaderboard
-leader, listed as **0.3262** in that dated snapshot. These are different kinds of evidence: 0.2708 is
-owner-reported from a prior manual submission; 0.3262 is a point-in-time public organizer leaderboard
-observation, not the private prize-round score. The 0.2708 belongs specifically to GEMSDOE28's
-`h27-4-r1-solo-d2-8`; its separate H36-1 and H38-1 experiments remain unscored and are not the source
-of that result. Nothing in this repository has been submitted for a live
-score. **No new candidate is currently cleared for a submission slot.** The earlier C2 proxy PASS was
-withdrawn after the P1 audit found held-out-label and Qfaults-source leakage; see
-[`evidence/holdout33.json`](evidence/holdout33.json) and the archived legacy report.
+**Start here each session:** read this README and the full [standing brief](standing_prompt.md) before changing code. The complete operative brief is reproduced below in §1. This project is maintained under Arena's core values: **Maximize P(Win)** and **Own the Outcome**.
 
-## ⬇ One-click GeoTIFF
+## Download a format-checked D2.8 reference
 
-| File | Description | Status |
+> **This is a reference emission, not a new model or a demonstrated leaderboard improvement.** The source is an owner-published mirror. Its claimed `0.2600` score is owner-reported; no organizer receipt ties that score to these exact bytes.
+
+| | Recommended — follows the null/NaN-outside wording | Troubleshooting alternative |
 |---|---|---|
-| [`gems33-c2-stepover-relay-20261004-01f660dd8656.tif`](docs/downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif) | C0 reference plus 940 stepover-relay bridge dots; SHA-256 `7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7` | **Research artifact only; earlier P1 PASS withdrawn; do not use a slot** |
-| [`gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif`](docs/downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif) | Locally format-audited reference re-pack of the h27-4-r1-solo-d2-8 baseline | Owner-reported **0.2708**; reference only, not an organizer-authenticated score or a new candidate |
+| GeoTIFF | [Download the NaN-outside TIFF](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif) | [Download the zero-outside TIFF](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif) |
+| SHA-256 | `c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc` | `29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73` |
+| Bytes | 499,842 | 423,456 |
+| Outside footprint | NaN | `0.0` (not as close to the official null/NaN wording) |
+| Local file checks | 10/10 passed | 10/10 passed |
 
-Both files pass the local format audit: one band, float32, EPSG:32611, 100 m, exact 3,730 × 3,292
-sample-grid shape/transform/bounds, finite values in `[0,1]` over the whole array, and zero outside the
-survey footprint. This is the project's conservative local policy, not organizer acceptance. The owner
-reported a portal validation error for an earlier NaN-outside file; attributing that error to NaNs is an
-inference, not an organizer support ruling. The C2 file is **not slot-cleared** after the P1 leakage audit;
-its download is for research/reproduction, not an upload recommendation. The C0 file is a reference, not a
-recommendation to resubmit the old baseline. See [the upload guide](docs/how-to-submit.html) for the
-manual steps, official-rule constraints, and AI-disclosure draft. **This repo never logs in to or uploads
-to DrivenData.**
+Both are single-band `float32`, `EPSG:32611`, `3730 × 3292`, 100 m, on the registered owner-mirror template transform; in-footprint values are within `[0,1]`. These are **local file checks only**, not proof of portal acceptance. The `[manifest](docs/downloads/manifest.json)` records the checks and hashes.
 
-The latest public leaderboard snapshot stored here (checked 2026-10-03 local) is #1 `nchuzhoy` 0.3262,
-#2 `kinghorton42` 0.3222, #3 `DARD` 0.3195. It is dated evidence, not a live feed. The
-[results page](docs/results.html) shows the snapshot and the organizer link. The official
-[Terms of Use](https://www.drivendata.org/termsofuse/) prohibit automated monitoring and manual monitoring/
-copying without prior written consent, so this repository cannot lawfully promise an automatically current
-leaderboard feed under the terms reviewed here. Use only an authorized method if DrivenData provides one.
+**Unique submission name:** `gemsdoe33-d28-reference-20261004`
 
-## Website entry and deployment
+**Paste-ready note (158/200 characters):**
 
-The public site is served at <https://buffedlizard55-lab.github.io/GEMSDOE33/>. Its pages live under
-`docs/`; the Pages Actions workflow publishes that directory as the site root. The small repository-root
-`index.html` redirects to `docs/index.html` as a fallback for GitHub Pages configurations that publish
-from the `main` branch root. This keeps the project URL from returning GitHub's default 404 if the Pages
-source is set to `/` instead of using the workflow.
+> GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab
 
-## Current candidate result and decision
+See the [executive summary and exact upload steps](docs/executive-summary.html). No submission was uploaded from this session.
 
-**No candidate is cleared for a submission slot.** The first C1–C5 run reported a C2 numeric pass, but a
-subsequent protocol audit found that its P1 test masked labels only at scoring time: the baseline's blind
-catalogue-flank prune and C2's catalogue-distance filter still saw the full catalogue, while the Qfaults
-source vectors still contained the held-out systems. That P1 result is withdrawn for promotion.
+## Current honest conclusion
 
-A corrected conditional diagnostic rebuilds the H27-4 base using only each fold's visible catalogue and
-excludes entire Qfaults source IDs within a 600 m square buffer plus a 100 m raster guard. It gives:
+- The official public leaderboard was reviewed once on **2026-10-04** at the owner's request. That observation did not support the brief's claim that `0.3195` was then the current highest score. The page cannot identify local TIFF bytes or prove an account association. Because the [DrivenData Terms of Use](https://www.drivendata.org/termsofuse/) prohibit automated and manual monitoring/copying without prior written consent, detailed rows are not retained or republished; this project does not poll or refresh the page. See [`registry/leaderboard_review.json`](registry/leaderboard_review.json).
+- The claimed H27-4 `0.2708` score/file attribution is unsupported. The [GEMSDOE28 owner page](https://buffedlizard55-lab.github.io/GEMSDOE28/) says **“NO GEMSDOE28 SCORE”** and describes its artifacts as unscored/research-only. No organizer receipt or verified account/file record ties the claim to the owner's TIFF. The D2.8 `0.2600` score/file pairing remains unconfirmed.
+- **No new candidate has demonstrated a valid, independent improvement over the current best. No candidate is approved for a weekly submission slot.** The available download is only the D2.8 reference.
+- Upstream C2 is preserved as research-only in [`archive/legacy_candidates/`](archive/legacy_candidates/). Its earlier P1 pass was withdrawn for leakage; the corrected conditional source-exclusion diagnostic is P1 mean ΔDTI `−0.000722` (0/4 positive), P2 SGMC proxy `+0.000283`, and still **not slot-cleared** because the fixed H19-5 surface was not re-derived per fold and the diagnostic was not a preregistered independent confirmation. See [`evidence/holdout33.json`](evidence/holdout33.json) and [`IR-33-C2-01`](registry/irregularities.json).
+- Initial holdout, reconstruction, pruning and domain-transfer promotion claims were withdrawn after audit. Their scripts/results are retained for provenance in [`archive/withdrawn_first_pass/`](archive/withdrawn_first_pass/); read [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json) and [`registry/irregularities.json`](registry/irregularities.json). Do not reuse the archived metrics as evidence.
 
-- P1 fold deltas: **−0.000724, −0.001143, −0.000637, −0.000384**; mean **−0.000722**, **0/4** positive.
-- Across the folds, C2 adds 2,643 candidate-only dots, gains **0 TPw**, and adds exactly 2,643 FPw.
-- P2 SGMC off-catalogue delta: **+0.000283**. P2 is a separate compilation proxy, not organizer truth.
-- Numeric P1/P2 gate: **FAIL**; slot status: **NO SLOT**.
-- The strict diagnostic still uses the legacy H19-5 ridge raster as a fixed input. Its upstream generation
-  code is absent, so it is not a fully independent confirmation even apart from the negative result.
-- The format-audited C2 research raster has **41,139 dots**, 940 above the full-data reference, and the
-  same SHA-256 listed above. A local format pass does not rescue the holdout failure.
+## Ranked geological research hypotheses
 
-The initial numeric report is preserved as
-[`evidence/holdout33_legacy_catalogue_only.json`](evidence/holdout33_legacy_catalogue_only.json), marked
-withdrawn. The corrected diagnostic is [`evidence/holdout33.json`](evidence/holdout33.json); the exact
-C2 build is [`evidence/build_c2_01f660dd8656.json`](evidence/build_c2_01f660dd8656.json). The ranked
-hypothesis register remains useful for research planning, but C2 must not be described as proxy-gated or
-slot-ready. H33-A analog-field transfer remains a **plan**: official archives were listed but not obtained
-in this workspace, and source data have not been geolocated, semantically aligned, or validated against the
-target. GDR #1288 geothermal-feature/classification layers are not the GeoDAWN 19-band training raster or
-fault labels. See the [executive summary](docs/executive-summary.html) and
-[limitations/access register](knowledge/04_limitations_and_access.md).
+The first-pass implementation preceded this shortlist, contrary to the owner's required ordering. The following hypotheses are therefore a **retrospective research shortlist, not preregistration**. They are not validated models; the availability checks below say what was actually verified.
 
-## Quick start
+| Rank | Hypothesis and candidate layers | Physical signature / why it may find faults absent from USGS/INGENIOUS | Prior-art distinction | Expected upside / cost | Official-data check and status |
+|---:|---|---|---|---|---|
+| 1 | **Field-verified BRIDGE fault-label transfer**. BRIDGE GIS picks plus GeoDAWN `tmi_hg`, `tmi_vg`, `det_elev`, `det_elev_slope`, `iso_grav_anom_hg`, `depth_to_base_surf`. | Multi-scale, orientation-preserving magnetic, gravity, basement and terrain lineaments supervised/tested against field-mapped traces; a separate field label set could test fault signatures outside the regional compilation. BRIDGE is not assumed to be target truth. | Prior emissions use regional catalogue labels and/or LiDAR predictors; no reviewed prior artifact used BRIDGE field-verified picks as independent source labels. | **Highest qualitative upside if transfer gates pass; magnitude unknown. Medium cost.** | [GDR 1682](https://gdr.openei.org/submissions/1682) is public and lists a 3.79 MB GIS archive; its README says picks are field-verified only in Dixie and Gabbs Valleys. Direct download failed TLS/HTTP 000 here; archive contents were not staged or inspected. **Blocked; not viable/validated yet.** |
+| 2 | **USGS ComCat focal-mechanism orientation prior**. Event nodal-plane location, strike/dip/rake plus magnetic, terrain and strain-invariant layers. | Test whether independent candidate lineaments align with reviewed active slip-plane orientations; do not treat earthquake density alone as a fault label. May expose active or blind structures absent from surface-trace inventories. | Prior seismic candidate used density/coherence, not per-event focal-plane geometry. | **Moderate, coverage-dependent upside; medium cost.** | [USGS ComCat docs](https://earthquake.usgs.gov/data/comcat/index.php) and [FDSN API](https://earthquake.usgs.gov/fdsnws/event/1/) were checked: count queries returned focal-mechanism products and an example exposed nodal-plane fields. A full extract was not staged; no validation. |
+| 3 | **Brady–Desert Peak mineral alteration + structural-edge coincidence**. Candidate GDR 1303 mineral layers (their existence/schema still need inspection) plus magnetic, gravity, terrain and LiDAR scarp features. | Test whether field-supported alteration/contact halos coincide with independent structural edges, a potential indicator of persistent permeability or blind faults rather than a raw radiometric anomaly. | Prior hot-spring/geothermometry and radiometric/Euler experiments did not use a verified mineral-classification/edge conjunction. | **Low-to-moderate upside; high cost and high uncertainty.** | [GDR 1303](https://gdr.openei.org/submissions/1303) lists a public CC BY 4.0, 2.58-GB Brady/Desert Peak/Salton Sea archive. It was not downloaded; hyperspectral/mineral layers, overlap and semantics are **unconfirmed**. Do not treat as available until inspected. |
 
-Install the project dependencies, restore the hash-checked public inputs, and reproduce the C2
-holdout/build. The downloader defaults to the candidate group; it does not use DrivenData.
+The full layer lists, prior-art notes, expected-rank rationale and individual blockers are in [`registry/hypotheses.json`](registry/hypotheses.json). The currently preferred research lead (BRIDGE) cannot proceed until its official archive is obtained and inspected. No hypothesis has been implemented as a promoted candidate.
+
+## Domain adaptation decision
+
+The requested analogy—learn from field-mapped faults in Dixie Valley, Desert Peak or Brady—has **not** been completed. The old experiment used GDR well/spring record-density quantiles instead of named field domains, random raster rows despite spatial autocorrelation and duplicate site rows, and an arbitrary discriminator whose class was not shown to match the model's `HΔH` class. It also omitted a defensible joint-label error `lambda` and the finite-sample/class-complexity term. Its AUC and transfer verdict are withdrawn.
+
+The replacement [`scripts/run_domain_adaptation.py`](scripts/run_domain_adaptation.py) is fail-closed: it writes `BLOCKED_NOT_ESTIMATED` and does not fit a classifier, report a divergence, or license transfer. A usable Ben-David et al. (2010) target-error bound requires source error, a justified empirical `HΔH` divergence, a finite-sample/class-complexity term and `lambda` (joint-label error). See the [paper](https://link.springer.com/article/10.1007/s10994-009-5152-4), [`src/gemsdoe33/domain.py`](src/gemsdoe33/domain.py), and [`evidence/preflight.json`](evidence/preflight.json). BRIDGE's official page and license listing were checked, but its GIS payload could not be downloaded in this sandbox. No transfer is licensed, rejected, or slot-approved.
+
+## Provenance and data caveats
+
+- The 17 rasters/sidecar inputs audited for this reference are pinned in [`registry/owner_mirror_input_pins.json`](registry/owner_mirror_input_pins.json); they are owner-published GitHub mirrors, **not organizer-authenticated data**. A matching hash proves byte identity with that mirror only; it does not prove source, license, official schema, or score attribution. The separate [`registry/data_manifest.json`](registry/data_manifest.json) is the upstream C0/C2 candidate-input manifest; its unpinned items remain explicitly unverified.
+- The owner-mirrored `sample_submission.tif` is not blank: its 60,988 in-footprint ones match `labels.tif` positives exactly. It is used only for grid/footprint, never as an absence label.
+- The owner-mirrored sample has 5,167,373 finite in-footprint cells. The 19-band training mirror has 3,061 template cells carrying the nodata sentinel in each of 18 bands; band 6 has 12 further sentinel cells. Reproduction is in [`evidence/input_grid_audit.json`](evidence/input_grid_audit.json) via `scripts/audit_inputs.py`. This corrects an earlier erroneous 1,521-cell count. None of these rasters was downloaded through an authenticated DrivenData session.
+- GDR 1391 (INGENIOUS) and GDR 1682 official source pages were reviewed; local downloads of external archives failed TLS/HTTP 000. The 2.58-GB GDR 1303 archive was not downloaded. USGS ComCat API availability was checked, but no complete extract was staged or used to build the TIFF.
+- The recommended NaN-outside file passed 10 local grid/value/format checks, but no portal upload occurred. The zero-outside alternative is offered only for troubleshooting and is less literal to the outside-mask wording.
+
+## Reproduce local artifacts
+
+The model inputs under `data/` and caches under `.cache/` are git-ignored. Restoration uses owner mirrors; see the warning in `data/README.md`.
 
 ```bash
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-GEMS_DATA_DIR="$PWD/.cache/gemsdata" PYTHON=".venv/bin/python" bash scripts/download_competition_data.sh
-
-# Fold-specific conditional diagnostic and C2 research-artifact rebuild
-PYTHONPATH=src .venv/bin/python scripts/run_holdout33_source_audit.py --out evidence/holdout33.json
-PYTHONPATH=src .venv/bin/python scripts/build_submission33.py --candidate C2
-
-# Fast tests, static-ledger consistency, local links, and both deliverable format audits.
-bash scripts/run_checks.sh
+python scripts/restore_data.py --group all
+python scripts/audit_inputs.py
+python scripts/prepare_data.py --force-bands --skip-detector
+python scripts/build_submission.py
+python scripts/build_site.py
+python -m pytest -q
 ```
 
-The build command generates a new uniquely named file from the current timestamp/content ID. Update all
-published pointers and evidence from its build report before replacing the one-click asset. The checked-in
-C2 filename above is the deterministic build used by the current ledger and site. A score-gated artifact
-still requires manual owner review and upload; never consume a competition slot on a proxy-only claim.
+`build_submission.py` only repackages the historical D2.8 owner-mirror emission; it does not train a new candidate. The current 121-channel feature cache is research-only. Do not interpret a public-catalogue-trained detector as private hidden-fault validation.
 
-## Results, methods, and evidence
+## Site and key records
 
-- Executive summary and one-click download: [`docs/index.html`](docs/index.html)
-- Executive research summary: [`docs/executive-summary.html`](docs/executive-summary.html)
-- Manual upload steps plus a unique-name/short-note template for a future cleared candidate: [`docs/how-to-submit.html`](docs/how-to-submit.html)
-- Static results feed, official snapshot, and live leaderboard link: [`docs/results.html`](docs/results.html),
-  [`docs/score-feed.json`](docs/score-feed.json)
-- Five ranked H33 hypotheses: [`registry/hypotheses.json`](registry/hypotheses.json),
-  [`docs/hypotheses.html`](docs/hypotheses.html)
-- Why the prior best scored 0.2708: [`knowledge/01_why_0.2708_won.md`](knowledge/01_why_0.2708_won.md)
-- Corrected conditional P1/P2 diagnostic: [`evidence/holdout33.json`](evidence/holdout33.json); withdrawn legacy run: [`evidence/holdout33_legacy_catalogue_only.json`](evidence/holdout33_legacy_catalogue_only.json)
-- Proxy results and leakage audit: [`knowledge/03_proxy_results.md`](knowledge/03_proxy_results.md)
-- Sample/label irregularity: [`evidence/sample_template_label_overlap.json`](evidence/sample_template_label_overlap.json)
-- Limitations, access needs, and decision gates: [`knowledge/04_limitations_and_access.md`](knowledge/04_limitations_and_access.md)
-- Verified data sources: [`knowledge/05_data_sources_verified.md`](knowledge/05_data_sources_verified.md),
-  [`docs/data-sources.html`](docs/data-sources.html)
-- Three-pass acceptance review: [`knowledge/06_three_pass_review.md`](knowledge/06_three_pass_review.md)
-- Cross-campaign score source: [`registry/score_ledger.json`](registry/score_ledger.json)
+- [Project overview](docs/index.html)
+- [Executive summary / upload steps](docs/executive-summary.html)
+- [Research and hypotheses](docs/research.html)
+- [Sources](docs/sources.html)
+- [Irregularities](docs/irregularities.html)
+- [Complete standing brief (HTML)](docs/standing-prompt.html)
+- [`AI_DISCLOSURE.md`](AI_DISCLOSURE.md)
+- [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json)
+- [`evidence/holdout33.json`](evidence/holdout33.json) — upstream C2 conditional source-exclusion diagnostic; not slot-cleared
+- [`registry/score_ledger.json`](registry/score_ledger.json) — historical owner-reported campaign entries only; H27 claim marked unsupported, no official leaderboard rows
+- [`AGENTS.md`](AGENTS.md) — repository operating safeguards
 
-Rows with no score remain explicitly unscored. Public GitHub API lookups for the repositories named
-`31GEMSDOE` and `32GEMSDOE` returned 404 to the configured public account; that does **not** establish
-whether either repository is private, uncreated, or hosted elsewhere. The original request supplied no
-submission name, URL, or score for those headings, so the feed records only that missing information.
+---
 
-## Restored data and provenance
+## 1. Complete standing brief — read in full every session
 
-`registry/data_manifest.json` pins the core training raster, labels, and sample-grid template, plus the
-candidate inputs (including H27-4 and the Quaternary-fault shapefile components). H27-4 comes from an
-owner-maintained public mirror; its hash pins the bytes but does not make the score organizer-authenticated.
-The Quaternary-fault files are from a pinned community mirror of GDR #1391; those hashes likewise pin the
-fetched bytes, not an organizer certification. GDR #1391 lists Quaternary Faults v1 and a newer v2 that
-supersedes v1; this mirror's exact version correspondence has not been verified. A local HEAD request for
-the official v2 ZIP failed TLS, so C2's passing proxy result applies only to the currently pinned mirror.
-`scripts/restore_data.py` supports `core` and `candidate` groups; the optional unpinned research archive
-is excluded from the default candidate restore.
+The full operative brief is preserved in [`standing_prompt.md`](standing_prompt.md) and repeated below.
 
-The cached inputs live under `.cache/gemsdata/` and may need to be restored after a clean checkout. The
-candidate downloader verifies SHA-256 and the core grid before a build. The GDR data listing is evidence
-that the source exposes specific downloadable layers, not evidence that those layers are equivalent to
-GeoDAWN labels or its 19 training bands.
+---
 
-## Standing brief (original user prompt, retained verbatim)
+# GEMSDOE33 standing brief and operating contract
 
-> Review the repo.
->
-> There should be an easy to download submission tif file as described by the prompt. Read the entire prompt.
->
-> **Borrow ground truth from a better-mapped analog field, with the transfer itself bounded.** GeoDAWN isn't
-> the only Great Basin geothermal terrain — nearby fields with decades of industry exploration drilling
-> (Dixie Valley, Desert Peak, Brady's) have far denser, field-verified fault mapping, because economic stakes
-> justified fieldwork a regional USGS/INGENIOUS compilation never got. Ben-David, Blitzer, Crammer, Kulesza,
-> Pereira, and Vaughan's domain adaptation theory (Machine Learning, 2010) gives the formal machinery for
-> using this responsibly: it bounds a model's target-domain error by its source-domain error plus a measurable
-> divergence between the two domains' feature distributions — the same kind of divergence the
-> classifier-two-sample-test confound audit elsewhere in this program already computes. Pretrain or co-train
-> on the analog field's denser catalogue, measure that source-target divergence on shared feature layers
-> before trusting any transfer, and where it's small, treat the analog field's known fault geometries as a
-> genuinely independent validation set — one whose locations were never touched by GeoDAWN's own incomplete
-> catalogue to begin with.
->
-> WE NEED TO STUDY, ANALYZE, AND UNDERSTAND THE HIGHEST SCORE FROM THE GEMDOE SITE WHERE THE SUBMISSION TIF
-> IS DOWNLOADED FROM WHICH IS THE FOLLOWING: https://buffedlizard55-lab.github.io/GEMSDOE28/
-> **h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan: 0.2708.** Why and how did this get the highest score and
-> are we able to generate a submission that scores higher than 0.2708? Answer the question using PhD level
-> experience, knowledge, and judgement. Current public leaderboard best: **0.3195** — design a new strategy,
-> research, testing, analyzing, and generating submission system that can score higher.
->
-> Before implementing, generate 3–5 candidate geological hypotheses we haven't tried yet, each naming: the
-> specific layer(s) involved, the physical signature being targeted (e.g., an edge-detection or curvature
-> transform), why it should catch a fault missing from the USGS/INGENIOUS catalogue rather than one already
-> in it, and how it differs from anything already implemented in this repo. Rank them by expected DTI
-> improvement and implementation cost. Validate the top candidate on our spatially-blocked holdout set before
-> touching a weekly submission slot — do not spend a submission slot on an idea that hasn't beaten the
-> current holdout best. If a candidate can't be validated without new external data, name the specific free,
-> official source needed and check it's obtainable before proposing the idea as viable.
->
-> Work line by line verifying from official verified trusted sources, provide links for manual review. There
-> should be no manual input, work on your own to complete tasks. Flag any irregularities for review.
-> No hallucinations.
->
-> The site should be able to generate a TIF file that is required for submission. It should be as easy as
-> download to click a File to submit into the competition. This needs to be in the executive summary or the
-> very beginning of the site. It should be obvious when you visit the site. Give submissions a unique name and
-> a short comment to tell them apart later. Create an executive summary subpage that explains exactly how to
-> make a submission into the contest.
->
-> Our Core Values — **Maximize P(Win)**: in every decision, weigh tradeoffs, assess risk, and choose the path
-> that maximizes the probability of winning. **Own the Outcome**: own results end to end — not just an
-> individual slice of the work; treat failure and success as signals and use them to improve.
->
-> The goal of this project is to place top of the leaderboard in this competition. Get familiar with the
-> problem through the overview and problem description, download the data, create and train your own model,
-> use your model to generate predictions that match the submission format. Find free publicly available
-> sources and data from official and verified sources for any 3rd party or external data.
+**Read this entire file at the start of every session, then read `README.md`.** This is the complete
+working specification consolidated from the owner's task and explicit standing corrections recorded
+for this repository. It is not presented as a verbatim chat transcript. Update it only when the owner
+changes the requirements; record any change and its consequence in the repository.
 
-> **Status note:** the original prompt's 0.3195 leaderboard value is preserved above as part of the brief;
-> it is now rank 3 in the 2026-10-03 official snapshot. The current leader is 0.3262; see the dated
-> [results page](docs/results.html). H33-A analog transfer has not been executed and is explicitly subject to
-> feature compatibility, geographic alignment, provenance checks, and holdout validation.
+---
 
-### Session-status pointer
+## Mission and values
 
-* Answer to “why did 0.2708 win” → [`knowledge/01_why_0.2708_won.md`](knowledge/01_why_0.2708_won.md)
-* Five ranked new hypotheses → [`registry/hypotheses.json`](registry/hypotheses.json) and [`knowledge/02_hypotheses_H33.md`](knowledge/02_hypotheses_H33.md)
-* Current proxy validation → [`evidence/holdout33.json`](evidence/holdout33.json), [`knowledge/03_proxy_results.md`](knowledge/03_proxy_results.md)
-* Limitations and access needs → [`knowledge/04_limitations_and_access.md`](knowledge/04_limitations_and_access.md)
-* Verified sources → [`knowledge/05_data_sources_verified.md`](knowledge/05_data_sources_verified.md)
-* Score ledger → [`registry/score_ledger.json`](registry/score_ledger.json)
+Build an auditable project for the DOE Geothermal Energy from Management of Subsurface Exploration
+(GEMS) fault-discovery competition, DrivenData problem 306. The scientific objective is to maximize
+the probability of winning by discovering faults that are genuinely missing from USGS / INGENIOUS,
+not merely by reproducing the visible catalogue. The operating values are **Maximize P(Win)** and
+**Own the Outcome**: pursue the best-supported course, check assumptions, correct errors, and report
+negative results honestly.
 
-### No-automation / submission policy
+Work autonomously. Do not ask the owner for manual input. Do not claim access, downloads, scores,
+validation, or submission receipts that are not present. A public leaderboard row identifies a
+participant and score; it does not identify a TIFF in this repository. Owner-mirror hashes are not
+organizer authentication.
 
-Code and CI may fetch only public repository data sources listed in the manifest. No code may log into,
-upload to, scrape, or poll DrivenData. The official [Terms of Use](https://www.drivendata.org/termsofuse/)
-reviewed 2026-10-04 prohibit automated monitoring and manual monitoring/copying without prior written
-consent; the leaderboard remains a static, dated snapshot unless an authorized API or permission becomes
-available. The human owner is responsible for authorized portal actions. The rules allow up to three
-submissions per week but require one final selection across both prize phases. No candidate is currently
-cleared for a slot. Generative-AI use must be disclosed in the final submission narrative; a draft is in the
-upload guide and requires owner review.
+## Competition frame and evidence boundary
 
-### Known irregularities (flagged for review)
+The owner's brief describes a GeoDAWN / northwestern Great Basin fault-mapping problem in which the
+public USGS / INGENIOUS compilation is incomplete and private expert labels concern additional
+faults. It also describes weekly submission slots and Initial / Final prize rounds, with experts
+potentially reviewing submissions to expand the mapped set. Treat competition mechanics, deadlines,
+slot limits, award terms, target-label construction and outside-data rules as claims to verify against
+the **current official competition and rules pages** before relying on them; keep the provided rules
+PDF labelled as user-provided unless re-downloaded from an official current source. External data may
+only be proposed for use when its source, licence and any share-to-sponsor conditions permit it.
 
-| ID | Finding |
-|---|---|
-| IR-PORTAL-01 | Owner observed “Predicted values must be in range [0, 1]” while using an earlier NaN-outside file. NaNs are a plausible cause, not an organizer-confirmed diagnosis. The project's current policy is finite `[0,1]` across the array and zero outside the footprint. |
-| IR-HOLDOUT-LEAKAGE-01 | The initial P1 proxy run generated/scored candidates with the full catalogue and used Qfaults source geometries for hidden systems. Its apparent C2 PASS is withdrawn. Fold-specific source exclusion changes P1 mean ΔDTI to −0.000722 (0/4 positive); P2 remains +0.000283. No slot is cleared. |
-| IR-SAMPLE-LABEL-01 | The restored sample template exactly equals `labels.tif` on all 5,167,373 finite-footprint cells (60,988 ones; 5,106,385 zeros). Code uses only its finite footprint/grid metadata, never its values as truth. See `evidence/sample_template_label_overlap.json`. |
-| IR-QFAULTS-01 | GEMSDOE24 mirror `qfaults_v2_in_footprint.json` geometry is in a non-invertible shifted coordinate frame; candidate construction uses the separately pinned INGENIOUS shapefile mirror instead. |
-| IR-QFAULTS-02 | GDR #1391 lists Quaternary Faults v2 as superseding v1; the pinned community mirror's exact version is not confirmed. A direct local request for the official v2 ZIP failed TLS. C2's evidence applies only to the mirror as pinned; re-audit before swapping inputs. |
-| IR-EVIDENCE-01 | GEMSDOE29's radiometric experiment record (seeds 280–289) could not be retrieved through the available public GitHub API lookup; H33-D is marked partially pre-empted until reconciled. |
-| IR-NET-01 | Official GDR/NBMG/USGS file downloads were not restored for analog transfer; direct workspace requests for GDR #207 `GIS_Faults.zip` and the GDR #1391 Quaternary Faults v2 ZIP failed connection/TLS setup. Source-listing availability is not local data readiness. Do not run H33-A until location, labels, common features, and license/provenance are audited. |
-| IR-REPO-31-32 | Public GitHub API lookups of repositories named `31GEMSDOE` and `32GEMSDOE` returned 404. They may be private, uncreated, or elsewhere; no URL/name/score was supplied. |
+## Required deliverables
+
+1. **Inspect the repository and the entire brief before extending the project.** Keep this file and
+   the README as the session starting point.
+2. Put a valid, readily discoverable submission GeoTIFF at the very top of the project site, and
+   provide an executive-summary page with exact upload steps. The recommended file must be a single-
+   band `float32` GeoTIFF on the official training/sample grid, EPSG:32611, 100 m, matching bounds
+   and transform, with probability values in `[0,1]` and null/NaN outside the footprint as specified
+   by the official instructions. Re-open and validate the saved bytes. Give it a unique submission
+   filename/name and a concise paste-ready note/comment within the portal limit. State whether the
+   file is a reference, owner-reported historical artifact, or a new model. Do not imply local format
+   checks guarantee portal acceptance.
+3. Review why the reported H27-4 value of `0.2708` was claimed and distinguish official observations,
+   local measurements, model-derived values and owner-reported scores. The official leaderboard was
+   reviewed once on 2026-10-04 at the owner's request; that observation did not support the brief's
+   claim that 0.3195 was then the highest score. DrivenData Terms of Use restrict automatic and
+   manual monitoring/copying without prior written consent. Do not scrape, poll, refresh, or reproduce
+   leaderboard rows absent written consent or an authorized API; the repository keeps only a dated
+   status note, not a leaderboard table. The page cannot establish a score/file pairing.
+4. **Before implementing a candidate**, write and rank 3–5 genuinely new geological hypotheses.
+   For each include: exact layers; physical signature; why it may detect faults absent from
+   USGS/INGENIOUS; distinction from prior repository work; expected-improvement rank (do not invent
+   numeric DTI gains) and implementation cost; a specific free official source if new data are
+   needed; and an actual availability/licence/schema/coverage check before calling that source
+   viable. Record any historical-order violation honestly; a retrospective list is not a
+   preregistration.
+5. Validate the best candidate on a valid **spatially blocked** holdout before using a weekly
+   submission slot. Generate each held-out prediction without access to held-out truth geometry.
+   Compare against the current best under a matched evaluation design and budget, and include a
+   matched-random control for any operator that changes dot count or spatial selection. No
+   unvalidated or unproven candidate may be slot-approved. If the hidden/private target cannot be
+   represented by a valid holdout, say so; do not turn a proxy into proof.
+6. Apply Ben-David, Blitzer, Crammer, Kulesza, Pereira & Vaughan (2010), *A theory of learning from
+   different domains*, responsibly when considering field-to-field label transfer (e.g. Dixie
+   Valley, Desert Peak, Brady). Establish named source/target domains, source-label quality, common
+   feature layers and sampling, spatial structure, and a suitable shared hypothesis class before
+   interpreting a domain discriminator. A formal target-error bound needs source error, empirical
+   `HΔH` divergence, a justified finite-sample/class-complexity term, and the joint-label error
+   `lambda`; an arbitrary two-sample AUC is not the bound. Treat analog faults as independent
+   validation only with spatial/geographic separation and a documented label policy. If source
+   data cannot be obtained or assumptions cannot be defended, block transfer rather than fabricate a
+   result.
+7. Conduct deep, contrarian-but-grounded research into geothermal vent / fault discovery and preserve
+   reusable knowledge for future projects. Look for overlooked data sources, but verify their
+   official availability, semantics, spatial coverage, licence and permitted sharing before treating
+   them as actionable.
+8. Preserve research provenance, source links, methods, limitations and irregularities in machine-
+   readable evidence/registries and readable project pages. Keep withdrawn/invalid first-pass work
+   clearly marked and archived; never reuse its scores as promotion evidence.
+9. Run multiple passes: implementation and verification; adversarial review for bugs, leakage,
+   assumptions and edge cases; final review against this entire brief. Run relevant tests, regenerate
+   derived outputs after schema changes, rebuild the site and inspect generated pages for stale claims.
+10. Create a pull request from the session branch, check its status, and merge it to `main` when the
+    checks and repository protections allow. Report the PR/merge result and remaining limitations.
+
+## Evidence and provenance rules
+
+- Verify factual claims against official or otherwise trusted primary sources where available; put
+  reviewable links beside the claims. Clearly separate `[OFFICIAL]`, `[MEASURED]`, `[MODEL]`, and
+  `[OWNER-REPORT]` evidence.
+- A SHA-256 match establishes byte identity with the recorded mirror only. It does not establish
+  organizer origin, licence, official schema, hidden-label completeness, or score attribution.
+- Do not silently fix discrepancies. Record what was observed, what remains unknown and how it affects
+  the result in `registry/irregularities.json`.
+- Keep prose, generated pages, manifests and evidence records consistent. A JSON value is not
+  automatically valid evidence: if its method is invalid, mark it withdrawn and do not promote it.
+- Do not rank across artifact families with an evaluation instrument structurally biased between
+  them. An operator that drops or repositions pixels needs a matched-random control and a fresh
+  validation design.
+- A website, local validator, or score estimate must never describe a candidate as winning or
+  outperforming unless a valid, independent evaluation supports that statement.
+- Follow the DrivenData [Terms of Use](https://www.drivendata.org/termsofuse/): no automated or
+  manual monitoring/copying of leaderboard material without prior written consent. Do not introduce
+  polling, scraping, scheduled refresh, or a copied leaderboard table. A one-time check does not
+  authorize recurring access or public reproduction; use only an authorized API or written consent.
+- Include a concise AI/data provenance disclosure and make clear whether any competition upload was
+  actually performed. No DrivenData account/session is available in this workspace unless a verified
+  receipt is explicitly added.
+
+## Current project decision (2026-10-04)
+
+The only publicly downloadable recommendation is a locally format-checked **D2.8 reference emission**
+from an owner-mirror. Its `0.2600` association is owner-reported and is not authenticated to the exact
+file by an organizer receipt. A one-time official leaderboard review on 2026-10-04 did not support
+the brief's claim that `0.3195` was then the highest score; detailed rows are intentionally not
+retained or republished because of the DrivenData Terms of Use. The claimed H27-4 `0.2708` pairing is
+unsupported. The first-pass spatial holdout and domain-transfer promotion claims were withdrawn after
+review. No new candidate has been demonstrated to beat the current best; **no candidate is approved
+for a weekly slot**. No leaderboard refresh or reproduction is permitted by this project absent prior
+written consent or an authorized API. See the README and `evidence/first_pass_disposition.json` before
+any future work.

@@ -1,0 +1,21 @@
+source cells 155,022 (intensity >= 0.03383)
+target cells 2,842,055 (intensity <= 0.001371)
+fault prevalence  source=0.01104 target=0.01120 ratio=0.986
+discriminator balanced error 0.0000  AUC 1.0000  d_hdh_hat 2.0000
+
+transfer licensed: False
+top separating channels:
+  geod_shearrate               0.17399
+  ieq_n100a15                  0.10173
+  geod_2ndinv                  0.09469
+  deq_n100a15                  0.06411
+  det_elev                     0.06235
+  cond_surf                    0.03450
+  lid_valid                    0.02265
+  geod_dilaterate              0.02253
+  depth_to_base_surf           0.00023
+  iso_grav_anom_hg             0.00010
+  lid_ex_max                   0.00005
+  iso_grav_anom                0.00002
+
+wrote /home/user/GEMSDOE33/evidence/domain_adaptation.json (754s)

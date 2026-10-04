@@ -1,98 +1,72 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GEMSDOE33 · Submission download</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header class="site"><div class="row">
-  <h1>GEMS<span>DOE33</span> · Great Basin fault discovery</h1>
-  <nav aria-label="Main navigation">
-    <a class="on" href="index.html">Download</a>
-    <a href="executive-summary.html">Executive summary</a>
-    <a href="how-to-submit.html">How to submit</a>
-    <a href="hypotheses.html">Hypotheses</a>
-    <a href="results.html">Results</a>
-    <a href="data-sources.html">Data sources</a>
-  </nav>
-</div></header>
-<main>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Auditable DOE GEMS fault-discovery research; the recommended download is a format-checked D2.8 reference, not a new model.">
+<title>GEMSDOE33 · overview and reference TIFF</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
+<p>DrivenData #306 · evidence-led research · as of 2026-10-04</p><nav class="nav" aria-label="Primary"><a href="index.html" aria-current=page>Overview</a><a href="executive-summary.html">How to submit</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
+<main class="wrap"><div class="hero-download" id="download"><h2>⬇ Download the format-checked reference TIFF</h2>
+<p><b>D2.8 reference only.</b> This is not a new model and is not demonstrated to beat the official
+leaderboard. Its reported 0.2600 association is owner-reported; exact score-to-file identity is not
+confirmed. The top card is the recommended, NaN-outside file.</p><section class="panel good">
+<h3><span class="badge good">RECOMMENDED · NaN outside</span> <code>gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</code></h3>
 
-<div class="card hero">
-  <h2 style="margin-top:0;border:none">⚠ No new candidate is cleared for a submission slot</h2>
-  <p>The earlier C2 P1 proxy PASS was <b>withdrawn</b> after a source/label leakage audit. The corrected
-  conditional P1 diagnostic is −0.000722 (0/4 folds positive); P2 is +0.000283. Do not upload C2 as a new
-  submission. The links below are a reproducible research artifact and a baseline reference only.</p>
-  <p>Both files pass the local format audit: single-band float32 · EPSG:32611 · 100 m · exact
-  3,730 × 3,292 sample grid · finite values in <b>[0, 1] over the whole array</b> · zero outside the
-  survey footprint. A local format pass is not organizer acceptance.</p>
-  <p><a class="btn" href="downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif" download>
-    ⬇ Download C2 research artifact · NOT slot-cleared</a></p>
-  <p><a class="btn alt" href="downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif" download>
-    ⬇ Download baseline reference · owner-reported 0.2708</a></p>
-  <p class="mut"><b>C2 stepover-relay research artifact.</b> 41,139 dots total, including 940 added bridge
-  dots. SHA-256: <code>7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7</code>.</p>
-  <p class="mut"><b>Corrected conditional P1 result, not a score:</b> mean ΔDTI −0.0007220038 (0/4 folds
-  positive); the candidate-only dots earn zero incremental TPw across folds. P2 ΔDTI +0.0002831018.
-  Numeric gate FAIL. The earlier +0.000405 P1 result is withdrawn for source leakage. No live DrivenData
-  result exists for this file.</p>
-  <p><b>Artifact ID (research tracking only; do not paste as a submission claim):</b><br>
-  <code>GEMSDOE33-C2-source-audit-01f660dd8656 · unscored · slot not cleared</code></p>
-  <p><a href="how-to-submit.html"><b>Manual upload steps →</b></a> ·
-  <a href="results.html">Dated results &amp; leaderboard →</a></p>
-</div>
-
-<div class="stat-grid">
-  <div class="stat"><b>0.2708</b> owner-reported prior campaign best (h27-4-r1-solo)</div>
-  <div class="stat"><b>0.3262</b> official public leader snapshot · nchuzhoy · 2026-10-03</div>
-  <div class="stat"><b>−0.000722</b> corrected C2 P1 diagnostic · 0/4 · not a competition score</div>
-  <div class="stat"><b>36</b> unit tests passing in the local/CI suite (2026-10-04)</div>
-</div>
-
-<h2>Why the owner-reported 0.2708 file did well</h2>
-<div class="card">
-  <p>The <b>0.2708</b> value is specifically the owner-reported GEMSDOE28
-  <code>h27-4-r1-solo-d2-8</code> result. H36-1 and H38-1 are separate GEMSDOE28 experiments and remain
-  unscored. The competition describes the hidden target as expert-labelled faults missing from existing
-  public catalogues, scored with a distance-weighted Tversky index (α=0.2, β=0.8, 300 m triangular
-  kernel). Owner-reported campaign history points to three compounding effects:</p>
-  <ol>
-    <li><b>Dotting beats solid lines:</b> sparse dots spaced at most 3 pixels apart keep useful kernel
-    credit on fault midpoints while limiting false-positive mass (reported progression 0.1922 →
-    0.2477 → 0.2600).</li>
-    <li><b>Off-catalogue placement:</b> predictions on or near known catalogue traces add denominator
-    mass but do not identify hidden faults.</li>
-    <li><b>Blind flank removal:</b> removing a one-pixel catalogue flank reportedly raised the score
-    by +0.0108. This is owner-reported; it is not a guarantee that all such pixels are false positives.</li>
-  </ol>
-  <p>The gap to the current public leader is a ranking/detection problem that needs independent
-  information. C2 tests a bounded stepover-bridge hypothesis with two local proxies. The separate
-  <a href="hypotheses.html">H33-A analog-field transfer</a> is still unvalidated: it needs geolocation,
-  label/feature compatibility, common-layer construction, and blocked holdouts. GDR geothermal-feature
-  layers are not the competition's 19-band training raster.</p>
-  <p><a href="executive-summary.html">Read the full executive summary →</a></p>
-</div>
-
-<h2>Project status · evidence dated 2026-10-04 UTC</h2>
-<div class="card">
-  <table>
-    <tr><th>Deliverable</th><th>Status</th></tr>
-    <tr><td>One-click C2 research file and baseline reference</td><td>✅ both pass local format validation; C2 is <b>not slot-cleared</b></td></tr>
-    <tr><td>Core and candidate inputs</td><td>✅ restored locally from hash-pinned mirrors; official Qfaults version correspondence remains unverified</td></tr>
-    <tr><td>Five ranked H33 hypotheses</td><td>✅ <a href="hypotheses.html">hypothesis register</a>; no new submission candidate cleared</td></tr>
-    <tr><td>Spatially blocked holdout</td><td>⚠ earlier PASS withdrawn for source leakage; corrected conditional C2 P1 is −0.000722 (0/4)</td></tr>
-    <tr><td>Executive summary and upload/compliance guide</td><td>✅ linked above; includes required AI-disclosure draft</td></tr>
-    <tr><td>Static results feed</td><td>✅ date-stamped ledger; no automated monitoring under current Terms of Use</td></tr>
-    <tr><td>Analog transfer</td><td>⚠ design only; no aligned source data or validated transfer</td></tr>
-  </table>
-  <p class="note">IR-HOLDOUT-LEAKAGE-01: the old P1 PASS is withdrawn; corrected C2 P1 is negative. IR-SAMPLE-LABEL-01:
-  the sample TIFF copies the labels on its finite footprint; only its grid/finite mask is used. IR-PORTAL-01:
-  NaNs are a plausible explanation for the owner-observed range error, not an organizer-confirmed diagnosis.
-  IR-QFAULTS-02: GDR lists a newer archive whose relationship to the mirror is unverified. IR-NET-01: official
-  analog bytes were not obtained here. Full details are in the README and limitations register.</p>
-</div>
-
-</main>
-<footer>GEMSDOE33 · research workflow, not a submission bot · never logs into, uploads to, scrapes, or polls DrivenData · proxies are not scores</footer>
+<table><tbody>
+<tr><th>File</th><td><a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif">gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</a> ·
+<a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.zip">single-member ZIP</a></td></tr>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-d28-reference-20261004</code></td></tr>
+<tr><th>Outside footprint</th><td>NaN</td></tr>
+<tr><th>Size / emitted pixels</th><td>499,842 bytes ·
+44,090 non-zero in-footprint cells</td></tr>
+<tr><th>SHA-256</th><td><code>c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc</code></td></tr>
+<tr><th>Local validation</th><td>10/10 local file checks passed; portal acceptance not tested</td></tr>
+</tbody></table>
+<p><b>Paste-ready note (158/200 characters):</b></p><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre>
+</section><section class="panel ">
+<h3><span class="badge warn">ALTERNATE · 0.0 outside</span> <code>gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif</code></h3>
+<p class="small">0.0 outside footprint; provided only as a troubleshooting alternative</p>
+<table><tbody>
+<tr><th>File</th><td><a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif">gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif</a> ·
+<a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.zip">single-member ZIP</a></td></tr>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-d28-reference-20261004</code></td></tr>
+<tr><th>Outside footprint</th><td>0.0</td></tr>
+<tr><th>Size / emitted pixels</th><td>423,456 bytes ·
+44,090 non-zero in-footprint cells</td></tr>
+<tr><th>SHA-256</th><td><code>29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73</code></td></tr>
+<tr><th>Local validation</th><td>10/10 local file checks passed; portal acceptance not tested</td></tr>
+</tbody></table>
+<p><b>Paste-ready note (158/200 characters):</b></p><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre>
+</section></div>
+<p class="small">Grid: single-band float32 · EPSG:32611 · 3730 × 3292 · 100 m · exact registered
+owner-mirror template transform · in-footprint values in [0,1]. Recommended outside value is NaN. Hash and byte-level
+checks are in <a href="downloads/manifest.json">the package manifest</a>.</p>
+<p class="panel warn">Local checks are not organizer acceptance. No upload, portal response or
+submission receipt exists in this workspace.</p>
+<h2 id="leaderboard-review">Official leaderboard review — one-time, not a feed</h2>
+<div class="panel warn"><p>The official public <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/">leaderboard page</a> was reviewed once on
+2026-10-04 at the owner's request. At that observation, the brief's claim that <code>0.3195</code> was
+the current highest score was not supported. No participant/rank/score rows are retained or republished
+here after review of the site's <a href="https://www.drivendata.org/termsofuse/">Terms of Use</a>,
+which prohibit automatic monitoring/copying and manual monitoring/copying without prior written consent.
+This project does not poll or refresh the page; no permission for further review or reproduction is
+recorded. A public row cannot establish which local TIFF or account produced a score.</p></div>
+<div class="panel bad"><h3>H27-4 score attribution is not supported</h3>
+<p>The owner's GEMSDOE28 page says <b>“NO GEMSDOE28 SCORE”</b> and labels artifacts unscored/research-only.
+No organizer receipt or verified account/file record ties the brief's <code>0.2708</code> claim to
+<code>h27-4-r1-solo-d2-8</code>. See <a href="irregularities.html">the provenance and score
+irregularities</a>; detailed leaderboard rows are intentionally not reproduced.</p></div>
+<h2>Decision status</h2>
+<ul><li>No new candidate has passed a valid independent spatially blocked holdout against the current
+best comparable emission.</li><li>Upstream C2 is archived as research-only: the earlier P1 pass was withdrawn; the corrected
+conditional source-exclusion diagnostic is P1 mean ΔDTI −0.000722 (0/4 positive), P2 SGMC proxy
++0.000283, and not slot-cleared because H19-5 was not re-derived per fold and the diagnostic was not
+an independent preregistered confirmation. See <a href="irregularities.html">IR-33-C2-01</a> and
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout33.json">the evidence</a>.</li>
+<li>First-pass holdout, reconstruction, pruning and domain-transfer promotion claims were withdrawn after
+review; archived results are preserved for audit but are not promotion evidence.</li><li>No weekly submission
+slot is approved or spent. Only the D2.8 reference is packaged.</li></ul>
+<p>For the exact upload procedure, open the <a href="executive-summary.html">executive summary</a>.
+For the geological shortlist and blocked source checks, see <a href="research.html">research</a>.</p></main>
+<footer><div class="wrap">Generated 2026-10-04 16:12 UTC by <code>scripts/build_site.py</code>. The featured TIFF is a
+D2.8 reference emission, not a new model. No DrivenData upload was made from this workspace. Owner
+mirror, measured, model-derived and official evidence are identified separately in the records.</div></footer>
 </body></html>

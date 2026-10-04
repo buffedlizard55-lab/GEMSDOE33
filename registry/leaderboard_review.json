@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-10-04",
+  "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+  "evidence_class": "OFFICIAL PAGE REVIEWED ONCE; leaderboard rows intentionally not retained or republished",
+  "review_scope": "The owner's brief described 0.3195 as the current highest score and attributed 0.2708 to H27-4. A one-time review at the date above did not support treating 0.3195 as the current leader. No score row proves which local TIFF, account, or submission produced a participant score.",
+  "terms_notice": "DrivenData Terms of Use, last modified 2014-08-07, prohibit using automatic processes to monitor/copy site material and manual processes to monitor/copy without prior written consent. Permission for repeated review or public reproduction is not established. This repository does not poll; do not refresh or publish copied leaderboard contents without written consent or an authorized API.",
+  "retained_content": "No participant roster, ranks, score table, or copied leaderboard HTML is stored in this record.",
+  "decision": "Use the official link for direct review under applicable terms. The static project records only that the dated user claim was not supported; it does not maintain a leaderboard feed or refresh schedule."
+}

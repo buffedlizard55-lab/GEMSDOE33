@@ -1,0 +1,1 @@
+33GEMSDOE H33-A prune | d=2.8 dots, drop lowest 10% by detector-prob x incompleteness | frozen gate +0.00601, 15/16 cells, 2/2 radii, beats matched random | id 0f9d5977f695

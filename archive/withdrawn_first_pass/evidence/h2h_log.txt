@@ -1,0 +1,45 @@
+arms:
+  base_d280_44090               44,090 px
+  base_d280_44090_pruned        39,681 px
+  base_d280_44090_pruned_random  39,681 px
+  h36_1_rung30                  37,660 px
+  h36_1_rung30_pruned           33,894 px
+  h36_1_rung30_pruned_random    33,894 px
+  h38_1_hf_euler                37,860 px
+  h38_1_hf_euler_pruned         34,074 px
+  h38_1_hf_euler_pruned_random  34,074 px
+
+=== radius 3 (n=16) ===
+  base_d280_44090              dti=0.22417
+  base_d280_44090_pruned       dti=0.22927  delta=+0.00511 +/-0.00111 ahead=15/16
+  base_d280_44090_pruned_random dti=0.21772  delta=-0.00644 +/-0.00072 ahead=1/16
+  h36_1_rung30                 dti=0.21054  delta=-0.01363 +/-0.00150 ahead=0/16
+  h36_1_rung30_pruned          dti=0.21505  delta=-0.00912 +/-0.00132 ahead=1/16
+  h36_1_rung30_pruned_random   dti=0.20354  delta=-0.02063 +/-0.00206 ahead=0/16
+  h38_1_hf_euler               dti=0.21123  delta=-0.01294 +/-0.00152 ahead=0/16
+  h38_1_hf_euler_pruned        dti=0.21566  delta=-0.00850 +/-0.00131 ahead=1/16
+  h38_1_hf_euler_pruned_random dti=0.20619  delta=-0.01798 +/-0.00135 ahead=0/16
+
+=== radius 4 (n=16) ===
+  base_d280_44090              dti=0.29033
+  base_d280_44090_pruned       dti=0.29723  delta=+0.00690 +/-0.00156 ahead=15/16
+  base_d280_44090_pruned_random dti=0.28750  delta=-0.00282 +/-0.00052 ahead=1/16
+  h36_1_rung30                 dti=0.28293  delta=-0.00739 +/-0.00090 ahead=0/16
+  h36_1_rung30_pruned          dti=0.28888  delta=-0.00145 +/-0.00134 ahead=5/16
+  h36_1_rung30_pruned_random   dti=0.27880  delta=-0.01152 +/-0.00118 ahead=0/16
+  h38_1_hf_euler               dti=0.28448  delta=-0.00585 +/-0.00087 ahead=0/16
+  h38_1_hf_euler_pruned        dti=0.29023  delta=-0.00010 +/-0.00127 ahead=7/16
+  h38_1_hf_euler_pruned_random dti=0.28358  delta=-0.00674 +/-0.00084 ahead=1/16
+
+=== shipping summary ===
+  base_d280_44090              mean_delta=+0.00000 both_radii=False
+  base_d280_44090_pruned       mean_delta=+0.00601 both_radii=True
+  base_d280_44090_pruned_random mean_delta=-0.00463 both_radii=False
+  h36_1_rung30                 mean_delta=-0.01051 both_radii=False
+  h36_1_rung30_pruned          mean_delta=-0.00528 both_radii=False
+  h36_1_rung30_pruned_random   mean_delta=-0.01607 both_radii=False
+  h38_1_hf_euler               mean_delta=-0.00939 both_radii=False
+  h38_1_hf_euler_pruned        mean_delta=-0.00430 both_radii=False
+  h38_1_hf_euler_pruned_random mean_delta=-0.01236 both_radii=False
+
+wrote /home/user/GEMSDOE33/evidence/head_to_head.json (501s)

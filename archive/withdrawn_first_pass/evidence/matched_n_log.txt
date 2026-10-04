@@ -1,0 +1,76 @@
+arms (matched N):
+  base_d280_44090         44,090 px
+  raster_44090            44,090 px
+  prio_44090              44,090 px
+  prio_inc_44090          44,090 px
+  prio_inc_only_44090     44,090 px
+  raster_40000            40,000 px
+  prio_40000              40,000 px
+  prio_inc_40000          40,000 px
+  prio_inc_only_40000     40,000 px
+  raster_35000            35,000 px
+  prio_35000              35,000 px
+  prio_inc_35000          35,000 px
+  prio_inc_only_35000     35,000 px
+  raster_30000            30,000 px
+  prio_30000              30,000 px
+  prio_inc_30000          30,000 px
+  prio_inc_only_30000     30,000 px
+
+=== radius 3 ===
+  base_d280_44090        dti=0.22449
+  raster_44090           dti=0.17719  delta=-0.04729 ahead=0/8
+  prio_44090             dti=0.22066  delta=-0.00382 ahead=2/8
+  prio_inc_44090         dti=0.22164  delta=-0.00285 ahead=2/8
+  prio_inc_only_44090    dti=0.20159  delta=-0.02290 ahead=0/8
+  raster_40000           dti=0.16369  delta=-0.06080 ahead=0/8
+  prio_40000             dti=0.21868  delta=-0.00581 ahead=1/8
+  prio_inc_40000         dti=0.22071  delta=-0.00378 ahead=2/8
+  prio_inc_only_40000    dti=0.19313  delta=-0.03136 ahead=0/8
+  raster_35000           dti=0.14589  delta=-0.07860 ahead=0/8
+  prio_35000             dti=0.21418  delta=-0.01030 ahead=0/8
+  prio_inc_35000         dti=0.21693  delta=-0.00755 ahead=1/8
+  prio_inc_only_35000    dti=0.17872  delta=-0.04577 ahead=0/8
+  raster_30000           dti=0.12617  delta=-0.09832 ahead=0/8
+  prio_30000             dti=0.20445  delta=-0.02004 ahead=0/8
+  prio_inc_30000         dti=0.21011  delta=-0.01438 ahead=0/8
+  prio_inc_only_30000    dti=0.16419  delta=-0.06030 ahead=0/8
+
+=== radius 4 ===
+  base_d280_44090        dti=0.29106
+  raster_44090           dti=0.21960  delta=-0.07146 ahead=0/8
+  prio_44090             dti=0.27879  delta=-0.01227 ahead=0/8
+  prio_inc_44090         dti=0.28023  delta=-0.01083 ahead=1/8
+  prio_inc_only_44090    dti=0.25168  delta=-0.03937 ahead=0/8
+  raster_40000           dti=0.20287  delta=-0.08819 ahead=0/8
+  prio_40000             dti=0.27752  delta=-0.01353 ahead=0/8
+  prio_inc_40000         dti=0.27957  delta=-0.01148 ahead=0/8
+  prio_inc_only_40000    dti=0.24101  delta=-0.05005 ahead=0/8
+  raster_35000           dti=0.17967  delta=-0.11138 ahead=0/8
+  prio_35000             dti=0.27145  delta=-0.01961 ahead=0/8
+  prio_inc_35000         dti=0.27503  delta=-0.01603 ahead=0/8
+  prio_inc_only_35000    dti=0.22288  delta=-0.06817 ahead=0/8
+  raster_30000           dti=0.15291  delta=-0.13815 ahead=0/8
+  prio_30000             dti=0.26029  delta=-0.03076 ahead=0/8
+  prio_inc_30000         dti=0.26657  delta=-0.02448 ahead=0/8
+  prio_inc_only_30000    dti=0.20482  delta=-0.08624 ahead=0/8
+
+=== verdict ===
+  raster_44090           delta=-0.05937 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_44090             delta=-0.00805 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_inc_44090         delta=-0.00684 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_inc_only_44090    delta=-0.03114 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  raster_40000           delta=-0.07449 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_40000             delta=-0.00967 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_inc_40000         delta=-0.00763 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_inc_only_40000    delta=-0.04070 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  raster_35000           delta=-0.09499 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_35000             delta=-0.01495 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_inc_35000         delta=-0.01179 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_inc_only_35000    delta=-0.05697 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  raster_30000           delta=-0.11823 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_30000             delta=-0.02540 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_inc_30000         delta=-0.01943 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+  prio_inc_only_30000    delta=-0.07327 G1=0 G2=0 G3=0 G4=0 PROMOTE=False
+
+wrote /home/user/GEMSDOE33/evidence/matched_n_content.json (499s)

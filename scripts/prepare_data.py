@@ -1,80 +1,109 @@
-#!/usr/bin/env python3
-"""Verify data placement and publish the grid receipt.
+"""Build git-ignored inputs/features and an out-of-fold research score field.
 
-Checks that the core competition mirrors are present with the expected grid
-(EPSG:32611, 100 m, 3292 x 3730, aligned bounds) and writes
-evidence/data_placement.json. No organiser service is contacted.
+This script does NOT create or promote a competition submission. The learned score is supervised
+on the incomplete public catalogue, so it is a research surface only until an independent
+field-specific validation is available.
+
+Stages::
+
+    1. restore_data.py verifies the owner-mirror input hashes (run separately)
+    2. sanitise all 19 bands and set the authoritative template footprint
+    3. build shared feature channels (derived grids stay under .cache/)
+    4. optionally train quadrant-out-of-fold catalogue detector (research only)
+
+Usage::
+
+    python scripts/restore_data.py --group all
+    python scripts/prepare_data.py
+    python scripts/prepare_data.py --skip-detector
 """
-
 from __future__ import annotations
 
-import datetime as dt
-import hashlib
+import argparse
 import json
 import sys
+import time
 from pathlib import Path
-
-import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-
-from gems33.grid import data_dir  # noqa: E402
-
-EXPECTED = {
-    "crs": "EPSG:32611",
-    "width": 3292,
-    "height": 3730,
-    "res": (100.0, 100.0),
-    "bounds": (243350.0, 4135550.0, 572550.0, 4508550.0),
-}
-
-CORE = {
-    "training_features": ("core/training_features.tif", 19, "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5"),
-    "labels": ("core/labels.tif", 1, "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093"),
-    "sample_submission": ("core/sample_submission.tif", 1, "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc"),
-}
+import numpy as np  # noqa: E402
+from gemsdoe33 import detector, domain, features, grid, holdout, paths  # noqa: E402
 
 
-def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as fh:
-        for chunk in iter(lambda: fh.read(1 << 20), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+def stage_bands(force=False):
+    print("[1/4] sanitise bands + exact submission-template footprint", flush=True)
+    report = grid.build_band_cache(force=force)
+    print(f"      template footprint={report['n_footprint']:,}; "
+          f"template cells with missing core band="
+          f"{report['n_template_cells_missing_any_core_band']:,}", flush=True)
 
 
-def main() -> int:
-    report = {"checked_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-              "data_dir": str(data_dir()), "files": {}, "pass": True}
-    for name, (rel, bands, sha) in CORE.items():
-        path = data_dir() / rel
-        entry: dict = {"path": rel, "present": path.is_file()}
-        if path.is_file():
-            with rasterio.open(path) as ds:
-                entry.update({
-                    "crs": ds.crs.to_string() if ds.crs else None,
-                    "width": ds.width, "height": ds.height,
-                    "res": list(ds.res), "bounds": list(ds.bounds),
-                    "bands": ds.count, "dtype": ds.dtypes[0],
-                })
-            entry["sha256_match"] = sha256_file(path) == sha
-            entry["grid_match"] = (
-                entry["crs"] == EXPECTED["crs"] and entry["width"] == EXPECTED["width"]
-                and entry["height"] == EXPECTED["height"]
-                and tuple(entry["res"]) == EXPECTED["res"]
-                and tuple(entry["bounds"]) == EXPECTED["bounds"]
-                and entry["bands"] == bands)
-            entry["ok"] = entry["sha256_match"] and entry["grid_match"]
-        else:
-            entry["ok"] = False
-        report["files"][name] = entry
-        report["pass"] = report["pass"] and entry["ok"]
-    out = ROOT / "evidence" / "data_placement.json"
-    out.parent.mkdir(exist_ok=True)
-    out.write_text(json.dumps(report, indent=1))
-    print(json.dumps(report, indent=1))
-    return 0 if report["pass"] else 1
+def stage_channels():
+    print(f"[2/4] build {features.EXPECTED_CHANNEL_COUNT} research channels", flush=True)
+    names, summary = features.build_channels(report=True)
+    malformed = [n for n in names if np.load(paths.CACHE_FEATURES / f"{n}.npy", mmap_mode="r").shape != (3730, 3292)]
+    if len(names) != features.EXPECTED_CHANNEL_COUNT or malformed:
+        raise SystemExit(f"channel schema mismatch: {len(names)} names; malformed={malformed}")
+    # Old model scores were fit on a different channel set and are not reusable.
+    for stale in (grid.CACHE / "oof_probability.npy", grid.CACHE / "oof_probability_signature.json"):
+        stale.unlink(missing_ok=True)
+    print(f"      {summary}", flush=True)
+
+
+def stage_site_density():
+    print("[3/4] unique GDR well/spring-cell density (descriptive only)", flush=True)
+    density = domain.documented_site_density()
+    np.save(grid.CACHE / "documented_site_density.npy", density.astype(np.float32))
+    print("      saved unique-cell density; NOT treated as fault-catalogue completeness", flush=True)
+
+
+def stage_oof():
+    print("[4/4] train quadrant-out-of-fold research detector", flush=True)
+    footprint = grid.template_footprint()
+    labels = grid.load_labels()
+    fold_ids = holdout.quadrant_ids(footprint)
+    names = features.channel_names()
+    pred = detector.fit_predict_oof(names, fold_ids, labels, footprint, seed=0)
+    np.save(grid.CACHE / "oof_probability.npy", pred)
+    (grid.CACHE / "oof_probability_signature.json").write_text(
+        json.dumps({"channels": names, "seed": 0, "folds": "quadrants",
+                    "status": "research-only supervised on incomplete catalogue; not a submission probability"}, indent=2)
+    )
+    if not np.isfinite(pred[footprint]).all() or np.any((pred[footprint] < 0) | (pred[footprint] > 1)):
+        raise SystemExit("OOF output failed finite [0,1] checks")
+    print("      OOF field cached, range/finite checks pass; not an independent hidden-fault validation", flush=True)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--skip-detector", action="store_true")
+    ap.add_argument("--force-bands", action="store_true")
+    args = ap.parse_args()
+    t0 = time.time()
+    if args.force_bands or not (grid.CACHE / "footprint.npy").exists():
+        stage_bands(force=args.force_bands)
+    else:
+        print("[1/4] bands + footprint — cached", flush=True)
+    names_file = grid.CACHE / "channel_names.json"
+    cached_names = features.channel_names() if names_file.exists() else []
+    channel_files_exist = all((paths.CACHE_FEATURES / f"{n}.npy").exists() for n in cached_names)
+    if len(cached_names) != features.EXPECTED_CHANNEL_COUNT or not channel_files_exist:
+        stage_channels()
+    else:
+        print(f"[2/4] {len(cached_names)} channels — cached", flush=True)
+    if not (grid.CACHE / "documented_site_density.npy").exists():
+        stage_site_density()
+    else:
+        print("[3/4] documented site density — cached", flush=True)
+    if args.skip_detector:
+        print("[4/4] OOF detector — skipped", flush=True)
+    elif not (grid.CACHE / "oof_probability.npy").exists():
+        stage_oof()
+    else:
+        print("[4/4] OOF detector — cached (check signature before using)", flush=True)
+    print(f"prepare_data complete in {time.time()-t0:.1f}s", flush=True)
+    return 0
 
 
 if __name__ == "__main__":

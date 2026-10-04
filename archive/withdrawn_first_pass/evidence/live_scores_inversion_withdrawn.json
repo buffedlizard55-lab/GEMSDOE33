@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "convention": "Every value here is OWNER-REPORT unless the class field says otherwise. No organiser receipt exists for any row. The score-to-file pairing is an inference from the owner's own pages, not an organiser confirmation. Selected official leaderboard rows and target-score examples were removed from the retained record after review of the DrivenData Terms of Use; this archival file is not a leaderboard snapshot.",
+  "inversion": {
+    "model": "DTI = T / (0.2*T*(1-rho) + 0.2*N + 0.8*K),  rho = (matched kernel mass)/T",
+    "fitted_unknowns": {
+      "K_hidden_px": 12226,
+      "basis": "self-consistent inversion of the three returns below"
+    },
+    "refuted_alternative": {
+      "K_including_catalogue_px": 73214,
+      "why_refuted": "it would require thinning 121,131 -> 44,090 dots to INCREASE T (17,360 vs 15,786), which is impossible"
+    },
+    "operating_point_at_0.2600": {
+      "T_TPw": 4791,
+      "F_FPw": 38440,
+      "rho": 1.179,
+      "F_over_T": 8.02,
+      "weighted_recall_T_over_K": 0.392
+    },
+    "marginal_bar": {
+      "formula": "alpha * DTI",
+      "value_at_0.26": 0.052,
+      "equivalent_distance_m": 284
+    },
+    "ceiling_with_perfect_knowledge": "0.75-0.78"
+  },
+  "returns": [
+    {
+      "file": "h19_5_nan.tif",
+      "emission": "H19-5 solid ridge parent",
+      "off_catalogue_px": 121131,
+      "score": 0.1922,
+      "rho": 2.46,
+      "implied_credit_TPw": 6188.8,
+      "credit_over_K": 0.5062,
+      "repo": "GEMSDOE19/24",
+      "class": "OWNER-REPORT"
+    },
+    {
+      "file": "dotted_h19_5_d1_5_nan.tif",
+      "emission": "Poisson-disk thinning, min_dist 1.5 px",
+      "off_catalogue_px": 60069,
+      "score": 0.2477,
+      "rho": 1.429,
+      "implied_credit_TPw": 5286.1,
+      "credit_over_K": 0.4324,
+      "repo": "GEMSDOE24",
+      "class": "OWNER-REPORT"
+    },
+    {
+      "file": "dotted_h19_5_d2_8_nan.tif",
+      "emission": "Poisson-disk thinning, min_dist 2.8 px",
+      "off_catalogue_px": 44090,
+      "score": 0.26,
+      "rho": 1.179,
+      "implied_credit_TPw": 4791.0,
+      "credit_over_K": 0.3919,
+      "repo": "GEMSDOE25",
+      "class": "OWNER-REPORT",
+      "note": "the group’s anchor; the owner-reported score-to-file association remains unconfirmed."
+    },
+    {
+      "file": "gems28-h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan.tif",
+      "emission": "H27-4 blind 1-px catalogue-flank prune on d=2.8",
+      "off_catalogue_px": 40199,
+      "score": null,
+      "repo": "GEMSDOE28",
+      "class": "OWNER-REPORT / UNSCORED",
+      "note": "the brief attributes 0.2708 to this file; GEMSDOE28's own page prints 'NO GEMSDOE28 SCORE' and projects 0.2701. See IR-33-SCORE-01."
+    },
+    {
+      "file": "gems28-h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan.tif",
+      "emission": "H36-1 rung-3.0 re-pack + flank prune",
+      "off_catalogue_px": 37660,
+      "score": null,
+      "repo": "GEMSDOE28",
+      "class": "OWNER-REPORT / UNSCORED",
+      "note": "projection 0.2717-0.2727; +0.001713 LOSFO far-field, F1-F4 all pass"
+    },
+    {
+      "file": "gems28-h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan.tif",
+      "emission": "H38-1 = H36-1 + 200 heat-flow x shallow-Euler corroborated dots",
+      "off_catalogue_px": 37860,
+      "score": null,
+      "repo": "GEMSDOE28",
+      "class": "OWNER-REPORT / UNSCORED",
+      "note": "projection 0.2722-0.2735; 0.0699-0.0772 credit per added dot vs a 0.052 bar, C1-C4 all pass"
+    }
+  ]
+}

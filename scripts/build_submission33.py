@@ -10,8 +10,9 @@ outside the survey footprint after the owner observed a range-validation error
 for an earlier NaN-outside file (IR-PORTAL-01). The cause was not confirmed by
 the organizer.
 
-The file is written to docs/downloads/ with a content-id derived from the
-SHA-256 of the emitted array, then format-audited with validate_submission.py.
+The file is written to archive/legacy_candidates/ with a content-id derived
+from the SHA-256 of the emitted array, then format-audited with validate_submission.py.
+It is never written to the recommended docs/downloads/ directory.
 
 Usage:
   PYTHONPATH=src python scripts/build_submission33.py [--candidate C2]
@@ -75,14 +76,14 @@ def main() -> int:
 
     profile.update(dtype="float32", count=1, compress="lzw", predictor=3, nodata=None)
     name = f"gems33-{FILE_SLUGS[candidate]}-{stamp}-{content_id}.tif"
-    downloads = ROOT / "docs" / "downloads"
+    downloads = ROOT / "archive" / "legacy_candidates"
     downloads.mkdir(parents=True, exist_ok=True)
     out_path = downloads / name
     with rasterio.open(out_path, "w", **profile) as ds:
         ds.write(out_arr, 1)
 
     receipt = {
-        "file": f"docs/downloads/{name}",
+        "file": f"archive/legacy_candidates/{name}",
         "candidate": candidate,
         "artifact_status": "RESEARCH_BUILD_NOT_SLOT_CLEARED",
         "slot_cleared": False,

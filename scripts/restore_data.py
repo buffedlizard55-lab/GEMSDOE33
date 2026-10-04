@@ -1,219 +1,142 @@
 #!/usr/bin/env python3
-"""Restore sources registered in the data manifest into a local data directory.
+"""Restore hash-pinned owner mirrors into a git-ignored data directory.
 
-This script NEVER contacts DrivenData. It fetches only the public GitHub or
-URL mirrors listed in ``registry/data_manifest.json`` and verifies registered
-SHA-256 and Git blob SHA-1 values where available. A hash match proves equality
-with the registered mirror; it does not authenticate that mirror against the
-competition organizer. Sources without a cryptographic pin are explicitly
-reported as unpinned and must not be treated as production-verified.
+The mirrors are public GitHub files, not organizer-authenticated downloads. A SHA-256 match proves only
+that fetched bytes match the registered mirror. Pins are in ``registry/owner_mirror_input_pins.json``;
+``registry/data_manifest.json`` is a separate legacy C0/C2 manifest retained from upstream. This script
+does not contact DrivenData.
 
-Default data dir: $GEMS_DATA_DIR or <repo>/.cache/gemsdata (snapshot-excluded).
+Examples:
+  python scripts/restore_data.py --group core   # training raster, labels, grid template
+  python scripts/restore_data.py --group model  # H19-5, derived terrain descriptors, comparison rasters
+  python scripts/restore_data.py --group all
 """
-
 from __future__ import annotations
 
 import argparse
-import base64
 import hashlib
 import json
+import os
 import shutil
 import subprocess
-import sys
-import urllib.parse
 import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "registry" / "data_manifest.json"
-UNPINNED_SHA256 = {None, "", "unverified-this-session", "refetch-verify"}
+MANIFEST = ROOT / "registry" / "owner_mirror_input_pins.json"
 
 
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
-    with path.open("rb") as fh:
-        for chunk in iter(lambda: fh.read(1 << 20), b""):
+    with path.open("rb") as source:
+        for chunk in iter(lambda: source.read(1 << 20), b""):
             digest.update(chunk)
     return digest.hexdigest()
 
 
-def git_blob_sha1(data: bytes) -> str:
-    """Return Git's object SHA-1 for a blob payload (header included)."""
-    header = f"blob {len(data)}\0".encode("ascii")
-    return hashlib.sha1(header + data).hexdigest()
-
-
-def git_blob_sha1_file(path: Path) -> str:
-    """Hash a file as a Git blob without loading the full file into memory."""
-    size = path.stat().st_size
-    digest = hashlib.sha1()
-    digest.update(f"blob {size}\0".encode("ascii"))
-    with path.open("rb") as fh:
-        for chunk in iter(lambda: fh.read(1 << 20), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
-def _known_git_sha(value: str | None) -> str | None:
-    if value and len(value) == 40 and all(c in "0123456789abcdefABCDEF" for c in value):
-        return value.lower()
-    return None
-
-
-def gh_blob(repo: str, ref: str, remote_path: str, out: Path,
-            expected_git_sha: str | None = None) -> None:
-    """Fetch one public GitHub file and verify its registered Git object hash."""
-    expected = _known_git_sha(expected_git_sha)
-    encoded_path = urllib.parse.quote(remote_path, safe="/")
-    data: bytes | None = None
-
-    if shutil.which("gh"):
-        endpoint = f"repos/{repo}/contents/{encoded_path}"
-        if ref:
-            endpoint += "?ref=" + urllib.parse.quote(ref, safe="")
-        try:
-            object_sha = subprocess.run(
-                ["gh", "api", endpoint, "--jq", ".sha"],
-                check=True, capture_output=True, text=True,
-            ).stdout.strip()
-            if expected and object_sha.lower() != expected:
-                raise RuntimeError(
-                    f"Git blob SHA mismatch for {repo}:{remote_path}: "
-                    f"manifest {expected}, API {object_sha}"
-                )
-            encoded = subprocess.run(
-                ["gh", "api", f"repos/{repo}/git/blobs/{object_sha}", "--jq", ".content"],
-                check=True, capture_output=True, text=True,
-            ).stdout
-            data = base64.b64decode(encoded, validate=False)
-        except subprocess.CalledProcessError:
-            # Public raw.githubusercontent fallback is useful when the API is
-            # rate-limited; integrity is still checked below when pinned.
-            data = None
-
-    if data is None:
-        url = f"https://raw.githubusercontent.com/{repo}/{ref or 'main'}/{encoded_path}"
-        req = urllib.request.Request(url, headers={"User-Agent": "GEMSDOE33-research/1.0"})
-        with urllib.request.urlopen(req, timeout=600) as response:
-            data = response.read()
-
-    actual_git_sha = git_blob_sha1(data)
-    if expected and actual_git_sha != expected:
-        raise RuntimeError(
-            f"Git blob SHA mismatch for {repo}:{remote_path}: "
-            f"manifest {expected}, downloaded {actual_git_sha}"
-        )
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_bytes(data)
-
-
-def _check_size(path: Path, entry: dict) -> None:
-    expected_bytes = int(entry.get("bytes", 0))
-    if expected_bytes and path.stat().st_size != expected_bytes:
-        raise RuntimeError(
-            f"size mismatch for {entry['id']}: {path.stat().st_size} != {expected_bytes}"
-        )
-
-
-def restore(entry: dict, data_dir: Path) -> dict:
-    dest = data_dir / entry["dest"]
-    expected_bytes = int(entry.get("bytes", 0))
-    expected_sha = entry.get("sha256")
-    sha_is_pinned = expected_sha not in UNPINNED_SHA256
-
-    if dest.is_file():
-        if not expected_bytes or dest.stat().st_size == expected_bytes:
-            actual = sha256_file(dest)
-            if sha_is_pinned and actual == expected_sha:
-                return {"id": entry["id"], "status": "already-verified", "sha256": actual,
-                        "sha256_pinned": True}
-            if not sha_is_pinned:
-                return {"id": entry["id"], "status": "present-unpinned", "sha256": actual,
-                        "sha256_pinned": False}
-        dest.unlink()
-
-    dest.parent.mkdir(parents=True, exist_ok=True)
-    if "parts" in entry:
-        tmp = dest.with_name(dest.name + ".assembling")
-        try:
-            with tmp.open("wb") as out_fh:
-                for part in entry["parts"]:
-                    part_file = dest.with_name(Path(part["path"]).name + ".partial")
-                    try:
-                        gh_blob(part["repo"], part["ref"], part["path"], part_file,
-                                expected_git_sha=part.get("sha"))
-                        if part_file.stat().st_size != int(part["bytes"]):
-                            raise RuntimeError(f"part size mismatch: {part['path']}")
-                        if _known_git_sha(part.get("sha")) and git_blob_sha1_file(part_file) != part["sha"].lower():
-                            raise RuntimeError(f"part Git blob SHA mismatch: {part['path']}")
-                        with part_file.open("rb") as part_fh:
-                            shutil.copyfileobj(part_fh, out_fh, length=1 << 20)
-                    finally:
-                        part_file.unlink(missing_ok=True)
-            tmp.replace(dest)
-        except Exception:
-            tmp.unlink(missing_ok=True)
-            raise
-    elif "blob" in entry:
-        blob = entry["blob"]
-        gh_blob(blob["repo"], blob["ref"], blob["path"], dest,
-                expected_git_sha=blob.get("sha"))
-    elif "url" in entry:
-        req = urllib.request.Request(entry["url"], headers={"User-Agent": "GEMSDOE33-research/1.0"})
-        with urllib.request.urlopen(req, timeout=1800) as response, dest.open("wb") as fh:
-            shutil.copyfileobj(response, fh, length=1 << 20)
-    else:
-        raise RuntimeError(f"no source for {entry['id']}")
-
+def fetch_to(repo: str, ref: str, remote_path: str, destination: Path) -> None:
+    """Fetch one public GitHub content object to disk without holding it in RAM."""
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    temporary = destination.with_name(destination.name + ".partial")
+    temporary.unlink(missing_ok=True)
     try:
-        _check_size(dest, entry)
-        actual_sha = sha256_file(dest)
-        if sha_is_pinned and actual_sha != expected_sha:
-            raise RuntimeError(f"sha256 mismatch for {entry['id']}: {actual_sha} != {expected_sha}")
-    except Exception:
-        dest.unlink(missing_ok=True)
-        raise
+        if shutil.which("gh"):
+            with temporary.open("wb") as output:
+                subprocess.run(
+                    [
+                        "gh", "api", f"repos/{repo}/contents/{remote_path}?ref={ref}",
+                        "-H", "Accept: application/vnd.github.raw",
+                    ],
+                    stdout=output,
+                    check=True,
+                )
+        else:
+            request = urllib.request.Request(
+                f"https://raw.githubusercontent.com/{repo}/{ref}/{remote_path}",
+                headers={"User-Agent": "GEMSDOE28-research/1.0"},
+            )
+            with urllib.request.urlopen(request, timeout=180) as response, temporary.open("wb") as output:
+                shutil.copyfileobj(response, output, length=1 << 20)
+        if temporary.stat().st_size == 0:
+            raise RuntimeError(f"GitHub returned an empty object for {repo}/{remote_path}")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        temporary.replace(destination)
+    finally:
+        temporary.unlink(missing_ok=True)
 
-    return {
-        "id": entry["id"],
-        "status": "fetched-verified" if sha_is_pinned else "fetched-unpinned",
-        "bytes": dest.stat().st_size,
-        "sha256": actual_sha,
-        "sha256_pinned": sha_is_pinned,
-    }
+
+def restore(entry: dict, root: Path) -> dict:
+    destination = root / entry["dest"]
+    expected_hash = entry["sha256"]
+    expected_bytes = int(entry["bytes"])
+    if destination.is_file():
+        actual_hash = sha256_file(destination)
+        if actual_hash == expected_hash and destination.stat().st_size == expected_bytes:
+            return {"id": entry["id"], "status": "already-verified", "bytes": expected_bytes,
+                    "sha256": actual_hash}
+        destination.unlink()
+
+    partial = destination.with_name(destination.name + ".assembling")
+    partial.unlink(missing_ok=True)
+    try:
+        if "parts" in entry:
+            with partial.open("wb") as assembled:
+                for index, remote_path in enumerate(entry["parts"]):
+                    part = root / "raw" / f"{entry['id']}-{index:03d}.part"
+                    fetch_to(entry["repo"], entry["ref"], remote_path, part)
+                    with part.open("rb") as source:
+                        shutil.copyfileobj(source, assembled, length=1 << 20)
+                    part.unlink(missing_ok=True)
+                    print(f"  assembled part {index + 1}/{len(entry['parts'])}: {remote_path}", flush=True)
+        else:
+            fetch_to(entry["repo"], entry["ref"], entry["path"], partial)
+        actual_bytes = partial.stat().st_size
+        actual_hash = sha256_file(partial)
+        if actual_bytes != expected_bytes or actual_hash != expected_hash:
+            raise ValueError(
+                f"pin mismatch for {entry['id']}: bytes {actual_bytes}/{expected_bytes}; "
+                f"sha256 {actual_hash}/{expected_hash}"
+            )
+        partial.replace(destination)
+        return {"id": entry["id"], "status": "restored-and-verified", "bytes": actual_bytes,
+                "sha256": actual_hash}
+    except Exception:
+        partial.unlink(missing_ok=True)
+        destination.unlink(missing_ok=True)
+        raise
+    finally:
+        shutil.rmtree(root / "raw", ignore_errors=True)
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--data-dir", default=None)
-    ap.add_argument("--only", default=None, help="comma-separated ids")
-    ap.add_argument("--group", default=None, choices=("core", "candidate"),
-                    help="'core' for the competition rasters; 'candidate' for core plus C1/C2 proxy-gate inputs")
-    args = ap.parse_args()
-
-    data_dir = Path(args.data_dir) if args.data_dir else ROOT / ".cache" / "gemsdata"
-    data_dir.mkdir(parents=True, exist_ok=True)
-    manifest = json.loads(MANIFEST.read_text())
-    ids = set(args.only.split(",")) if args.only else None
-    if args.group == "core":
-        ids = {"training_features", "labels", "sample_submission"}
-    elif args.group == "candidate":
-        ids = {
-            "training_features", "labels", "sample_submission",
-            "h19_5", "h27_4_r1_solo", "derived_sgmc_faults",
-            "qfault_shp", "qfault_shx", "qfault_dbf", "qfault_prj",
-        }
-    report = []
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--group", choices=("core", "model", "all"), default="all")
+    parser.add_argument("--manifest", type=Path, default=MANIFEST)
+    parser.add_argument("--data-dir", type=Path, default=None,
+                        help="defaults to GEMS_DATA_DIR or repository/data")
+    args = parser.parse_args()
+    root = (args.data_dir or Path(os.environ.get("GEMS_DATA_DIR", ROOT / "data"))).resolve()
+    manifest = json.loads(args.manifest.read_text())
+    root.mkdir(parents=True, exist_ok=True)
+    results = []
     for entry in manifest["files"]:
-        if ids and entry["id"] not in ids:
+        if args.group != "all" and entry["group"] != args.group:
             continue
-        try:
-            report.append(restore(entry, data_dir))
-        except Exception as exc:  # noqa: BLE001 - report each source independently
-            report.append({"id": entry["id"], "status": "FAILED", "error": str(exc)})
-    print(json.dumps(report, indent=1))
-    return 0 if all(result["status"] != "FAILED" for result in report) else 1
+        print(f"Fetching {entry['id']} → {root / entry['dest']}", flush=True)
+        result = restore(entry, root)
+        results.append(result)
+        print(f"  {result['status']}: {result['bytes']:,} bytes; sha256={result['sha256']}", flush=True)
+    receipt = {
+        "schema_version": 1,
+        "group": args.group,
+        "data_root": str(root),
+        "provenance_warning": manifest["provenance_warning"],
+        "files": results,
+    }
+    (root / "restore_receipt.json").write_text(json.dumps(receipt, indent=2) + "\n")
+    print(f"Verified {len(results)} inputs in {root}", flush=True)
+    return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit(main())

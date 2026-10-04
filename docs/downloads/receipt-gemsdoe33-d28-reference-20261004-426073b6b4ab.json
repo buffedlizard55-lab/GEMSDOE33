@@ -1,0 +1,67 @@
+{
+  "name": "gemsdoe33-d28-reference-20261004",
+  "content_id": "426073b6b4ab",
+  "note": "GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab",
+  "note_chars": 158,
+  "emitted_pixels": 44090,
+  "emitted_fraction_of_footprint": 0.00853238192791579,
+  "value_range_inside": [
+    0.0,
+    1.0
+  ],
+  "zeros": {
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+    "bytes": 423456,
+    "sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
+    "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+    "checks": {
+      "count_is_1": true,
+      "dtype_is_float32": true,
+      "crs_is_epsg_32611": true,
+      "shape_is_3730x3292": true,
+      "georef_matches_template": true,
+      "no_nan_inside_footprint": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "outside_is_null_or_zero": true,
+      "single_band_description": true
+    },
+    "errors": [],
+    "n_checks": 10,
+    "pass": true
+  },
+  "nan": {
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+    "bytes": 499842,
+    "sha256": "c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc",
+    "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+    "checks": {
+      "count_is_1": true,
+      "dtype_is_float32": true,
+      "crs_is_epsg_32611": true,
+      "shape_is_3730x3292": true,
+      "georef_matches_template": true,
+      "no_nan_inside_footprint": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "outside_is_null_or_zero": true,
+      "single_band_description": true
+    },
+    "errors": [],
+    "n_checks": 10,
+    "pass": true
+  },
+  "zip_zeros": {
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.zip",
+    "bytes": 309684,
+    "sha256": "3fa4118d45a1cd5a2d2f2c409360d4507d8d270cce197e4582a80542be3e98cb",
+    "members": 1
+  },
+  "zip_nan": {
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.zip",
+    "bytes": 387820,
+    "sha256": "bd4426328500e4d8ba6d6a47336b9966b6c9dc090d249d591bc3ce98a068a230",
+    "members": 1
+  },
+  "all_checks_pass": true
+}

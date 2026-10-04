@@ -1,159 +1,79 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GEMSDOE33 · Executive summary</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header class="site"><div class="row">
-  <h1>GEMS<span>DOE33</span> · Executive summary</h1>
-  <nav aria-label="Main navigation">
-    <a href="index.html">Download</a>
-    <a class="on" href="executive-summary.html">Executive summary</a>
-    <a href="how-to-submit.html">How to submit</a>
-    <a href="hypotheses.html">Hypotheses</a>
-    <a href="results.html">Results</a>
-    <a href="data-sources.html">Data sources</a>
-  </nav>
-</div></header>
-<main>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Auditable DOE GEMS fault-discovery research; the recommended download is a format-checked D2.8 reference, not a new model.">
+<title>How to submit · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
+<body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
+<p>DrivenData #306 · evidence-led research · as of 2026-10-04</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current=page>How to submit</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
+<main class="wrap"><h2>Executive summary — exact upload steps</h2>
+<p>The competition problem page describes the GeoTIFF grid and submission format. Review the
+<a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem
+page</a>, the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">current rules page</a>,
+and the <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">user-provided rules PDF</a> before submitting.
+The TIFF below is an owner-mirror D2.8 reference,
+not a newly validated model. Its reported 0.2600 score has no organizer receipt linking it to these
+exact file bytes.</p>
+<div class="hero-download" id="download"><h2>⬇ Download the format-checked reference TIFF</h2>
+<p><b>D2.8 reference only.</b> This is not a new model and is not demonstrated to beat the official
+leaderboard. Its reported 0.2600 association is owner-reported; exact score-to-file identity is not
+confirmed. The top card is the recommended, NaN-outside file.</p><section class="panel good">
+<h3><span class="badge good">RECOMMENDED · NaN outside</span> <code>gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</code></h3>
 
-<h2>Mission and current standing</h2>
-<div class="card">
-<p>The <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">DOE GEMS Prize
-Challenge</a> asks for fault predictions in the GeoDAWN region of the northwestern Great Basin. The
-prior best, <b>0.2708</b> for h27-4-r1-solo-d2-8, is an owner-reported manual result, not an organizer
-receipt archived here. This score belongs specifically to h27-4-r1-solo-d2-8; the separate GEMSDOE28
-H36-1 and H38-1 experiments remain unscored and are not the source of 0.2708. The official public
-leaderboard snapshot stored here (checked 2026-10-03 local) lists <b>nchuzhoy at 0.3262</b>; it is dated
-and may change. No GEMSDOE33 file has a competition score.</p>
-<p><b>No new candidate is cleared for a submission slot.</b> The earlier C2 P1 PASS was withdrawn after
-review found that the hidden catalogue systems remained in C2's Qfaults source features and the C0/C2
-construction used the full catalogue.</p>
-<p><b>Download C2 research artifact (not an upload recommendation):</b>
-<a class="btn" href="downloads/gems33-c2-stepover-relay-20261004-01f660dd8656.tif" download>
-⬇ gems33-c2-stepover-relay-20261004-01f660dd8656.tif</a>
-<span class="pill ok">local format audit PASS</span>
-<span class="pill warn">P1 FAIL · not slot-cleared</span></p>
-<p>SHA-256 <code>7272633447365d7ec8a9c07972b48df92b071a1ecc5765cf14199c14dea4f0f7</code>.
-The <a href="downloads/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif">C0 reference TIFF</a> is
-also available but is not a recommendation to resubmit the old baseline. See the
-<a href="how-to-submit.html">manual upload and compliance guide</a>; this project does not automate
-competition access.</p>
-</div>
-
-<h2>Why the owner-reported 0.2708 did well</h2>
-<div class="card">
-<ul>
-  <li><b>Metric:</b> distance-weighted Tversky index (α=0.2, β=0.8) with a 300 m triangular credit
-  kernel. The owner-reported score sequence indicates that precision/recall balance and location quality
-  mattered more than drawing continuous fault traces.</li>
-  <li><b>Construction:</b> the h27-4 raster is reported as 40,199 sparse dots based on the H19-5
-  scarp/geophysics ridge ensemble, Poisson-thinned to 2.8 px, with a blind one-pixel catalogue-flank
-  prune. Pixels near known catalogue faults do not explain the off-catalogue target by themselves.</li>
-  <li><b>What the next score requires:</b> new, independent off-catalogue information plus conservative
-  error control. A previous numerical budget calculation was tied to the old 0.3195 leaderboard value;
-  it is stale against the 0.3262 snapshot. Recompute it from the exact baseline counts before quoting any
-  required recall, dot count, or probability of winning. No live-score gain is projected from a proxy.</li>
-</ul>
-<p>The reported 0.2708 explains why a sparse, catalogue-aware baseline is valuable; it does not prove each
-removal is a false positive or guarantee that further thinning will help. See the
-<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/01_why_0.2708_won.md" rel="noopener">full metric and error-budget analysis</a>.</p>
-</div>
-
-<h2>Candidate science: what is tested and what is not</h2>
-<div class="card">
-<p><b>C2 is implemented as a research hypothesis, not a promoted candidate.</b> It proposes short,
-sparse bridges between tips of distinct mapped fault features where band 18,
-<code>iso_grav_anom_hg</code>, is high. The rule uses a 300–2,500 m tip gap, ≤30° strike difference, and
-band-18 threshold; the full-data raster adds 940 dots. The original P1 test was invalid because hidden
-Qfaults systems and full-catalogue masks remained in construction. This is a structural hypothesis, not
-proof that any candidate bridge is a hidden fault. The literature citation
-(<a href="https://www.osti.gov/biblio/1724082">Faulds &amp; Hinz, 2015, regional Great Basin structural-settings study</a>)
-provides regional structural context. It is <b>not</b> the NBMG OF 03-27 map report; the official NBMG
-product is linked separately in <a href="data-sources.html">data sources</a>.</p>
-<p><b>H33-A analog transfer is a design only, not a validated result.</b> Dixie Valley / Desert Peak /
-Brady source maps must first be geolocated and their fault/thermal labels audited. The GDR #207 page lists
-Dixie Valley files, but the workspace request for <code>GIS_Faults.zip</code> failed at TLS/connection setup;
-no archive bytes were obtained. The set of usable
-features must be established from the actual spatial overlap and equivalent processing; do not assume
-that analog products contain or match the GeoDAWN 19-band raster. GDR #1288 supplies geothermal-feature
-and classification material, not GeoDAWN truth labels or an equivalent 19-band raster. Transfer cannot
-be claimed without label-definition compatibility, CRS/resolution/coverage checks, shared-feature
-construction, source holdouts, and target-side proxy validation.</p>
-<p>A formal adaptation bound is a useful warning, not a shortcut:
-<code>εT(h) ≤ εS(h) + ½ dHΔH(DS, DT) + λ</code>, where λ is the joint error of the best shared
-hypothesis. A classifier-two-sample test can estimate a divergence term only for a pre-defined common
-representation; it does not establish a small λ, compatible labels, or reliable target predictions.
-The register ranks H33-A and four alternatives by expected value/cost while clearly marking unknowns.</p>
-<p><b>H33-B is also unrun.</b> The 2 m temperature-probe archive is listed on GDR #1391 but is not in the
-current restored candidate cache. Its residual surface would need its own background model and sampling
-bias checks. USGS conductive heat-flow and well-residual products are distinct evidence, not the same
-thing as 2 m probe temperature. Band 5 is <code>iso_grav_anom_slope</code>, a gravity derivative; it is
-not a thermal feature.</p>
-</div>
-
-<h2>Validation discipline and corrected conditional diagnostic</h2>
-<div class="card">
-<p><b>Leakage review:</b> the initial P1 runner hid labels at scoring time but left full-catalogue geometry
-in candidate construction and Qfaults source vectors. Its apparent C2 PASS is withdrawn; the earlier C1–C5
-P1 values are not valid promotion evidence. The old report is preserved with a withdrawal annotation.</p>
-<ul>
-  <li><b>Corrected P1:</b> four spatial folds; rebuild the H27-4 base from each fold-visible catalogue,
-  exclude Qfaults source IDs within the 600 m holdout buffer plus 100 m raster guard, and use the masked
-  catalogue for C2 construction.</li>
-  <li><b>P2:</b> SGMC off-catalogue faults at least 300 m from the supplied catalogue; a separate compilation
-  proxy, not organizer truth.</li>
-  <li><b>Numeric gate:</b> P1 mean ΔDTI &gt; 0, a strict majority of folds positive, and P2 ΔDTI ≥ −0.001.
-  C2 fails because corrected P1 is negative in every fold.</li>
-  <li><b>Remaining caveat:</b> the legacy H19-5 ridge raster is held fixed rather than re-derived per fold;
-  its upstream source/training code is not available here. This is a conditional diagnostic, not an
-  independent confirmation.</li>
-  <li><b>No score interpolation:</b> proxy deltas are not leaderboard deltas. No candidate has earned a live
-  score until the owner submits it and receives an organizer result.</li>
-</ul>
-<table>
-<tr><th>Fold</th><th>Hidden truth px</th><th>C0 dots</th><th>C2 dots</th><th>Qfault IDs excluded</th><th>P1 ΔDTI</th></tr>
-<tr><td>0</td><td>13,293</td><td>40,983</td><td>41,699</td><td>40</td><td>−0.0007242642</td></tr>
-<tr><td>1</td><td>12,755</td><td>41,269</td><td>42,063</td><td>40</td><td>−0.0011430116</td></tr>
-<tr><td>2</td><td>14,117</td><td>40,821</td><td>41,600</td><td>40</td><td>−0.0006367379</td></tr>
-<tr><td>3</td><td>20,823</td><td>41,614</td><td>41,968</td><td>51</td><td>−0.0003840016</td></tr>
-<tr><td><b>Mean</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td><b>−0.0007220038 (0/4 positive)</b></td></tr>
-</table>
-<p>Across the four folds, C2's 2,643 candidate-only dots add zero TPw and exactly 2,643 FPw. This
-explains the negative diagnostic: the proposed bridges did not earn any rewarded overlap with held-out
-systems in this test.</p>
-<p><b>P2 for the full C2 research artifact:</b> +0.0002831018. Numeric gate: FAIL. <b>No candidate is
-cleared for a submission slot.</b> Full evidence: <code>evidence/holdout33.json</code> and
-<code>knowledge/03_proxy_results.md</code>. All values are proxy metrics, not competition scores.</p>
-</div>
-
-<h2>Limitations and next decision gates</h2>
-<div class="card">
-<ul>
-  <li><b>H33-A:</b> fetch/inspect the official source data, geolocate and normalize candidate fault layers,
-  establish label semantics, construct genuinely common features, and run spatial/source validation.
-  Do not treat GDR geothermal-feature files as the GeoDAWN 19-band training raster.</li>
-  <li><b>H33-B:</b> restore and audit the 2 m probe archive listed on GDR #1391; distinguish shallow probe
-  anomalies from the USGS heat-flow residual products.</li>
-  <li><b>H33-D:</b> reconcile GEMSDOE29's radiometric record before calling the idea novel or running it.</li>
-  <li><b>Submission:</b> no candidate currently passes the source-excluded P1 gate. Do not use a slot until
-  fold-safe P1/P2 evidence and exact format checks pass. The official rules allow three submissions per week
-  but require a single final selection across both prize phases, and require a narrative disclosure of
-  generative-AI use. The draft disclosure in the upload guide must be reviewed by the owner.</li>
-  <li><b>Access:</b> the official Terms of Use restrict automated monitoring and manual copying without
-  written consent; the leaderboard feed remains static and date-stamped. No code logs in, uploads, scrapes,
-  or polls DrivenData.</li>
-  <li><b>Reproducibility:</b> the local cache may need restoration with
-  <code>bash scripts/download_competition_data.sh</code>; restore code pins/checks public mirrors and
-  never fetches competition submissions from DrivenData.</li>
-</ul>
-<p>Read the <a href="hypotheses.html">ranked hypotheses</a>,
-<a href="data-sources.html">verified source table</a>, and
-<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/04_limitations_and_access.md" rel="noopener">limitations register</a>.</p>
-</div>
-
-</main>
-<footer>GEMSDOE33 · research workflow · no DrivenData automation · proxies are not scores</footer>
+<table><tbody>
+<tr><th>File</th><td><a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif">gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</a> ·
+<a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.zip">single-member ZIP</a></td></tr>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-d28-reference-20261004</code></td></tr>
+<tr><th>Outside footprint</th><td>NaN</td></tr>
+<tr><th>Size / emitted pixels</th><td>499,842 bytes ·
+44,090 non-zero in-footprint cells</td></tr>
+<tr><th>SHA-256</th><td><code>c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc</code></td></tr>
+<tr><th>Local validation</th><td>10/10 local file checks passed; portal acceptance not tested</td></tr>
+</tbody></table>
+<p><b>Paste-ready note (158/200 characters):</b></p><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre>
+</section><section class="panel ">
+<h3><span class="badge warn">ALTERNATE · 0.0 outside</span> <code>gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif</code></h3>
+<p class="small">0.0 outside footprint; provided only as a troubleshooting alternative</p>
+<table><tbody>
+<tr><th>File</th><td><a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif">gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif</a> ·
+<a href="downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.zip">single-member ZIP</a></td></tr>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-d28-reference-20261004</code></td></tr>
+<tr><th>Outside footprint</th><td>0.0</td></tr>
+<tr><th>Size / emitted pixels</th><td>423,456 bytes ·
+44,090 non-zero in-footprint cells</td></tr>
+<tr><th>SHA-256</th><td><code>29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73</code></td></tr>
+<tr><th>Local validation</th><td>10/10 local file checks passed; portal acceptance not tested</td></tr>
+</tbody></table>
+<p><b>Paste-ready note (158/200 characters):</b></p><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre>
+</section></div>
+<ol><li><b>Download the recommended NaN-outside TIFF</b> from the top card:
+<code>gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif</code>. Optionally verify its SHA-256 against the card. It is a single-band
+float32 GeoTIFF, EPSG:32611, 3730 × 3292, 100 m, on the exact owner-mirror template grid. Values on the finite
+footprint are within [0,1]; cells outside are NaN.</li>
+<li><b>Open the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/submissions/">DrivenData DOE GEMS #306 submission page</a></b> in your own authenticated browser session.
+This workspace has no DrivenData login and cannot submit on your behalf.</li>
+<li><b>Select the file</b> (or its single-member ZIP if the portal's TIFF parser reports an error).
+Do not edit or resave the raster unless required; a GIS export could change its grid or dtype.</li>
+<li><b>Enter the unique submission name</b> <code>gemsdoe33-d28-reference-20261004</code> wherever the form
+provides a submission name/title field. The TIFF filename itself also carries this unique identifier.</li>
+<li><b>Paste the note</b> below into the optional note/comment field. It is 158
+characters, under the 200-character limit.</li>
+<li><b>Review the selected file and attribution, then submit.</b> Save the portal's receipt and score
+if it provides one. No upload or score is asserted by this repository.</li></ol>
+<div class="panel warn"><b>Note to paste (158/200 characters):</b><pre>GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab</pre></div>
+<h3>Why NaN outside is recommended</h3>
+<p>The official problem wording says data outside the bounds should be null or NaN. The recommended
+file follows that wording and passed all 10 recorded
+local byte/grid/value checks. The <code>-zeros.tif</code> alternative has 0.0 outside the footprint;
+it is offered only as a troubleshooting option and is not as close to the literal null/NaN wording.
+Neither local validation nor the ZIP container guarantees portal acceptance.</p>
+<h3>Rebuild the local reference package</h3>
+<pre>python scripts/restore_data.py --group all
+python scripts/build_submission.py
+python scripts/build_site.py
+python -m pytest -q</pre>
+<p class="small">Inputs are SHA-pinned owner mirrors, not organizer-authenticated downloads. See
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/data/README.md">data provenance notes</a> in the repository and the
+<a href="downloads/manifest.json">package manifest</a>.</p></main>
+<footer><div class="wrap">Generated 2026-10-04 16:12 UTC by <code>scripts/build_site.py</code>. The featured TIFF is a
+D2.8 reference emission, not a new model. No DrivenData upload was made from this workspace. Owner
+mirror, measured, model-derived and official evidence are identified separately in the records.</div></footer>
 </body></html>

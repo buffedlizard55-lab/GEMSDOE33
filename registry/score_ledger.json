@@ -1,14 +1,6 @@
 {
-  "description": "Cross-campaign score ledger. Historical GEMSDOE-site scores were supplied by the owner in the project brief and remain owner-reported unless an organizer receipt is recorded. The official public leaderboard snapshot is sourced separately below.",
+  "description": "Historical cross-campaign owner-reported submissions supplied in prior project materials. These are not organizer receipts, not verified exact file/score pairings, and are not a live feed. The official leaderboard is not copied here; see registry/leaderboard_review.json for the dated status note.",
   "updated_utc": "2026-10-04T14:50:00Z",
-  "public_leader": {
-    "label": "nchuzhoy",
-    "score": 0.3262,
-    "rank": 1,
-    "observed": "official public leaderboard snapshot fetched 2026-10-03 (America/Los_Angeles local date)",
-    "source": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-    "status": "official-public-leaderboard snapshot; point-in-time, open source link for live value"
-  },
   "submissions": [
     {
       "site": "GEMSDOE",
@@ -203,8 +195,10 @@
     {
       "site": "GEMSDOE28",
       "name": "h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan",
-      "score": 0.2708,
-      "note": "CAMPAIGN BEST; h27-4 blind 1-px catalogue-flank prune on d=2.8 base"
+      "score": null,
+      "note": "Claimed 0.2708 attribution is unsupported; do not treat this as a scored GEMSDOE28 submission.",
+      "claimed_score": 0.2708,
+      "status": "unsupported owner claim; GEMSDOE28 owner page says NO GEMSDOE28 SCORE; no organizer receipt"
     },
     {
       "site": "GEMSDOE28",
@@ -286,35 +280,9 @@
     "Dotted emission beats solid ridges in owner-reported lineage: H25-ctx solid 0.1280 -> dotted 0.1839; H19-5 0.1922 -> d1.5 0.2477 (owner-reported)",
     "Packing distance d=2.8 > d=1.5 (+0.0123 owner-reported): 1-D crest coverage retained under the 300 m kernel while FP mass drops 26.6%",
     "Removal beat addition at this operating point in owner-reported history: h27-4 flank prune +0.0108; T-v2 gap-closure additions -0.0028",
-    "At DTI 0.2708 the algebraic marginal threshold is approximately 0.0573 credit per FP-mass unit; prior H38-1 values are owner-reported proxy evidence",
+    "For a hypothetical DTI of 0.2708, the algebraic marginal threshold is approximately 0.0573 credit per FP-mass unit; this does not verify the H27-4 score claim.",
     "Owner observed a range-validation error while using an earlier NaN-outside file; NaN as the cause is inferred, not organizer-confirmed. Current local policy is finite [0,1] over the whole array and zero outside the footprint."
   ],
-  "leaderboard_snapshot": {
-    "checked_on_local": "2026-10-03",
-    "timezone": "America/Los_Angeles",
-    "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
-    "verification": "[P] Official public leaderboard page fetched and read during this session; snapshot can change after check.",
-    "rows": [
-      {
-        "rank": 1,
-        "participant": "nchuzhoy",
-        "score": 0.3262,
-        "submissions": 3
-      },
-      {
-        "rank": 2,
-        "participant": "kinghorton42",
-        "score": 0.3222,
-        "submissions": 6
-      },
-      {
-        "rank": 3,
-        "participant": "DARD",
-        "score": 0.3195,
-        "submissions": 12
-      }
-    ]
-  },
   "campaign_sites": {
     "GEMSDOE": "https://buffedlizard55-lab.github.io/GEMSDOE/docs/index.html",
     "6GEMSDOE": "https://buffedlizard55-lab.github.io/6GEMSDOE/",
@@ -347,5 +315,11 @@
     "GEMSDOE29": "https://buffedlizard55-lab.github.io/GEMSDOE29/docs/index.html",
     "GEMSDOE30": "https://buffedlizard55-lab.github.io/GEMSDOE30/",
     "GEMSDOE33": "https://buffedlizard55-lab.github.io/GEMSDOE33/"
+  },
+  "leaderboard_policy": {
+    "status": "not copied or refreshed",
+    "source_url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+    "review_record": "registry/leaderboard_review.json",
+    "restriction": "DrivenData Terms of Use prohibits automated monitoring/copying and manual monitoring/copying without prior written consent; this ledger retains no participant/rank/score rows."
   }
 }

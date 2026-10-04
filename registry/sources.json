@@ -1,0 +1,160 @@
+{
+  "schema": 1,
+  "read_utc": "2026-10-04",
+  "sources": [
+    {
+      "id": "competition-problem",
+      "title": "DrivenData DOE GEMS Prize Challenge — problem description, scoring metric, submission format",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+      "used_for": "Task definition; held-out faults are newly expert-mapped faults absent from public USGS; metric equations; 300 m kernel; EPSG:32611 / 100 m / float32 / probability range [0,1] / null or NaN outside bounds.",
+      "evidence_class": "OFFICIAL; fetched 2026-10-04"
+    },
+    {
+      "id": "competition-leaderboard",
+      "title": "DrivenData public leaderboard",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/",
+      "used_for": "One-time review at the owner's request: the brief's claim that 0.3195 was then the current highest score was not supported. No participant/rank/score rows are retained or republished here after reviewing the site's Terms of Use. A public row cannot identify repository file bytes. No polling or recurring access; do not refresh or copy without prior written consent or an authorized API.",
+      "evidence_class": "OFFICIAL PAGE REVIEWED 2026-10-04; no row content retained; see registry/leaderboard_review.json and Terms of Use"
+    },
+    {
+      "id": "competition-rules",
+      "title": "GEMS Prize Rules landing page",
+      "url": "https://www.drivendata.org/competitions/306/competition-doe-gems/rules/",
+      "used_for": "Official page points to the contest rules at HeroX; see the competition submission page for current weekly rules.",
+      "evidence_class": "OFFICIAL; fetched 2026-10-04"
+    },
+    {
+      "id": "competition-terms-of-use",
+      "title": "DrivenData Terms of Use",
+      "url": "https://www.drivendata.org/termsofuse/",
+      "used_for": "The page prohibits use of robots/spiders/automatic processes to monitor or copy site material and also prohibits manual processes to monitor/copy material without prior written consent. No recurring or automated leaderboard access is used. Permission for continued manual review or public reproduction is not established; do not refresh/copy without written consent or an authorized API.",
+      "evidence_class": "OFFICIAL TERMS OF USE; fetched 2026-10-04; last-modified date shown by page: 2014-08-07"
+    },
+    {
+      "id": "rules-pdf",
+      "title": "NREL/TP-5700-96647 — GEMS Prize rules PDF supplied by user",
+      "url": "https://docs.nlr.gov/docs/fy26osti/96647.pdf",
+      "used_for": "User-provided rules reference. Specific slot caps and award terms should be rechecked against the current official contest rules before submission.",
+      "evidence_class": "USER-PROVIDED LINK; document not re-downloaded in this session"
+    },
+    {
+      "id": "reference-solution",
+      "title": "DrivenData GEMS Prize reference solution",
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
+      "used_for": "Organiser's baseline code, available for manual review.",
+      "evidence_class": "OFFICIAL REPOSITORY"
+    },
+    {
+      "id": "geodawn",
+      "title": "GeoDAWN airborne magnetic and radiometric surveys, northwestern Great Basin, Nevada",
+      "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "used_for": "Provenance/context for GeoDAWN layers; feature bytes in data/ are owner-mirrored, not downloaded directly from this source in this session.",
+      "evidence_class": "OFFICIAL USGS"
+    },
+    {
+      "id": "geodawn-sciencebase",
+      "title": "GeoDAWN study-area map, USGS ScienceBase item 657e1d85d34e23d3533209f7",
+      "url": "https://www.sciencebase.gov/catalog/item/657e1d85d34e23d3533209f7",
+      "used_for": "GeoDAWN area map and source metadata.",
+      "evidence_class": "OFFICIAL USGS"
+    },
+    {
+      "id": "ingenious",
+      "title": "INGENIOUS project, Great Basin Center for Geothermal Energy",
+      "url": "https://gbcge.org/current-projects/ingenious/",
+      "used_for": "Project context for the fault and geothermal dataset compilation.",
+      "evidence_class": "OFFICIAL PROJECT PAGE"
+    },
+    {
+      "id": "gdr-1391",
+      "title": "INGENIOUS — Great Basin Regional Dataset Compilation, DOE Geothermal Data Repository submission 1391",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "used_for": "Official description/license and data inventory for Quaternary faults, 2 m temperature probes, wells/springs, geochemistry, heat flow, geodetics and other regional layers. The page says the compilation is publicly accessible under CC BY 4.0, describes shallow probe temperatures as possible subtle geothermal-anomaly indicators, and lists a 1.03 MB probe ZIP; the local archive was not downloaded or inspected, so its schema, seasonal/sampling metadata and target-footprint coverage remain unknown. The working CSV/TIFFs here are still owner-mirror copies.",
+      "evidence_class": "OFFICIAL DOE GDR; page fetched 2026-10-04; payload not staged"
+    },
+    {
+      "id": "gdr-207",
+      "title": "Dixie Valley Fault Map, DOE Geothermal Data Repository submission 207",
+      "url": "https://gdr.openei.org/submissions/207",
+      "used_for": "Secondary public CC BY 4.0 Dixie Valley fault-map source checked during availability review. Page lists a 15.1 MB / 650-file GIS archive; its payload was not obtainable from this sandbox (TLS/HTTP 000). BRIDGE GDR 1682 is the preferred analog source because its README identifies field verification in Dixie and Gabbs Valleys.",
+      "evidence_class": "OFFICIAL DOE GDR; page fetched 2026-10-04; payload not staged"
+    },
+    {
+      "id": "gdr-1682",
+      "title": "BRIDGE Exploration Data, DOE Geothermal Data Repository submission 1682",
+      "url": "https://gdr.openei.org/submissions/1682",
+      "used_for": "Promising analog-field source. Page states public access and CC BY 4.0; lists GIS Files.zip (3.79 MB). Its official README says LiDAR fault picks include Dixie Valley and Gabbs Valley and were field verified only in Dixie Valley and Gabbs Valley. Direct file URL: https://gdr.openei.org/files/1682/BRIDGE_GIS.zip. Local curl failed TLS/HTTP 000, so the archive was not staged or inspected.",
+      "evidence_class": "OFFICIAL DOE GDR; page and README fetched 2026-10-04; payload retrieval blocked in sandbox"
+    },
+    {
+      "id": "gdr-1682-readme",
+      "title": "BRIDGE README (GDR 1682) — data structure and field verification note",
+      "url": "https://gdr.openei.org/files/1682/BRIDGE_README.pdf",
+      "used_for": "Describes map package/shapefiles for LiDAR fault picks across Dixie Valley and nearby prospects, and states the picks were field verified in Dixie Valley and Gabbs Valley.",
+      "evidence_class": "OFFICIAL DOE GDR; fetched 2026-10-04"
+    },
+    {
+      "id": "dixie-valley-gbcge",
+      "title": "Dixie Valley research overview, Great Basin Center for Geothermal Energy",
+      "url": "https://gbcge.org/locations/dixie-valley/",
+      "used_for": "UNR/GBCGE page says LiDAR and low-sun aerial imagery were used to identify traces and fieldwork mapped surficial geology and verified traces.",
+      "evidence_class": "OFFICIAL RESEARCH CENTER PAGE; fetched 2026-10-04"
+    },
+    {
+      "id": "gdr-1303",
+      "title": "Appendices for Geothermal Exploration Artificial Intelligence Report, GDR submission 1303",
+      "url": "https://gdr.openei.org/submissions/1303",
+      "used_for": "Potential Brady/Desert Peak spectral alteration source. Page states public access and CC BY 4.0 and lists DOE_GDB.zip (2.58 GB) covering Brady, Desert Peak and Salton Sea; no archive was downloaded or inspected.",
+      "evidence_class": "OFFICIAL DOE GDR; fetched 2026-10-04; payload not staged"
+    },
+    {
+      "id": "comcat-docs",
+      "title": "ANSS Comprehensive Earthquake Catalog (ComCat) documentation",
+      "url": "https://earthquake.usgs.gov/data/comcat/index.php",
+      "used_for": "Official data-product descriptions, including focal mechanisms and moment tensors.",
+      "evidence_class": "OFFICIAL USGS"
+    },
+    {
+      "id": "comcat-api",
+      "title": "USGS FDSN Event Web Service — query API",
+      "url": "https://earthquake.usgs.gov/fdsnws/event/1/",
+      "used_for": "Candidate orientation data source. Official count query returned 6,168 events with focal-mechanism products for the GeoDAWN bounding box, M≥2.5, 1900–2026-10-04; 233 at M≥4. A sample event product exposes strike/dip/rake. Direct curl from this sandbox failed TLS/HTTP 000; source checked through the official web endpoint, not locally harvested.",
+      "evidence_class": "OFFICIAL USGS; checked 2026-10-04"
+    },
+    {
+      "id": "ben-david-2010",
+      "title": "Ben-David, Blitzer, Crammer, Kulesza, Pereira & Vaughan — A theory of learning from different domains",
+      "url": "https://link.springer.com/article/10.1007/s10994-009-5152-4",
+      "used_for": "Theorem 2 uses source error + one half the empirical HΔH divergence + finite-sample complexity + the ideal joint-hypothesis error λ. Lemma 2 links an optimal symmetric domain discriminator to empirical H-divergence. The paper does not license replacing field-specific source/target definition, λ, VC dimension, or spatial sampling assumptions with an arbitrary random pixel split.",
+      "evidence_class": "PEER-REVIEWED OPEN-ACCESS ARTICLE; Springer PDF fetched 2026-10-04"
+    },
+    {
+      "id": "epsg-32611",
+      "title": "EPSG:32611 — WGS 84 / UTM zone 11N",
+      "url": "https://epsg.io/32611",
+      "used_for": "CRS reference for the output grid.",
+      "evidence_class": "EPSG DATABASE"
+    },
+    {
+      "id": "mirror-GEMSDOE",
+      "title": "buffedlizard55-lab/GEMSDOE training raster mirror (commit c0c06ac82178f26b94fce3397036ef8f12a2f3a0)",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE",
+      "used_for": "Owner-mirror bytes for the 19-band competition training raster and DEM-link manifest.",
+      "evidence_class": "OWNER MIRROR; not organiser-authenticated"
+    },
+    {
+      "id": "mirror-GEMSDOE24",
+      "title": "buffedlizard55-lab/GEMSDOE24 (commit 07345ea0604953d7efb858d9cfbc21e20c7aca0b)",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+      "used_for": "Owner-mirror labels, sample, external layers and historical emissions, restored with SHA-256 checks.",
+      "evidence_class": "OWNER MIRROR; not organiser-authenticated"
+    },
+    {
+      "id": "mirror-GEMSDOE28",
+      "title": "GEMSDOE28 public site (status and local-holdout claims)",
+      "url": "https://buffedlizard55-lab.github.io/GEMSDOE28/",
+      "used_for": "Confirms the H27-4 0.2708 claim is not supported by the site's own status: it displays NO GEMSDOE28 SCORE and describes local/projection results as UNSCORED.",
+      "evidence_class": "OWNER SITE; fetched 2026-10-04"
+    }
+  ]
+}

@@ -1,4 +1,7 @@
-numpy>=1.26
-scipy>=1.11
-rasterio>=1.3
+# Reproducible stack for the current D2.8 audit and project tests.
+numpy==2.4.6
+scipy==1.17.1
+scikit-learn==1.9.1
+rasterio==1.4.4
 pyshp>=2.3
+pytest>=8
