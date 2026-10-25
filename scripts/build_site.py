@@ -286,7 +286,13 @@ irregularities</a>; detailed leaderboard rows are intentionally not reproduced.<
 <li>Initial holdout, reconstruction and domain-transfer promotion claims were withdrawn after review. No weekly submission slot is approved or spent. The only top-level recommended package is the D2.8 reference.</li></ul>
 <p>For the exact upload procedure for the reference artifact, open the <a href="executive-summary.html">executive summary</a>.
 For the geological shortlist, blocked source checks and the clearly separated H33-6 research file, see <a href="research.html">research</a>.</p>"""
-    return page("GEMSDOE33 · Overview & Unique Submission", body, "index.html")
+    body = """<div class="panel bad"><h2>NO TIFF IS CLEARED FOR COMPETITION UPLOAD</h2>
+<p>Do not upload the historical files linked in this repository. The H33-6 edge-consensus experiment failed its preregistered proxy gate: mean ΔDTI −0.00273732, positive in 2/4 folds. This is conditional catalogue-proxy evidence, not hidden expert truth; its fixed H19-5 source was not rebuilt per fold. There is no organizer receipt or verified score/file pairing. A passing local file-format check is not scientific validation or portal acceptance.</p>
+<p><strong>Submission-ready status: none.</strong> Unique research TIFFs exist in the archive, but they are explicitly not for upload. The claimed H27-4 0.2708 and current leaderboard 0.3195 are not organizer-confirmed in this checkout. No claim to beat either is supported.</p></div>
+<h2>Research decision</h2><p>Campaign scores in the prompt are user-supplied historical claims, not audited score/file pairs. The likely value of sparse regularized emissions and catalogue-flank pruning is a research hypothesis, not causal proof. The H33-6 cross-physics edge-normal strategy did not beat its local comparator. See the <a href="results.html">results review</a>, <a href="hypotheses.html">ranked hypotheses</a>, and <a href="irregularities.html">irregularities</a>.</p>
+<h2>Next required gate</h2><ol><li>Specify the single allowed experiment lane and freeze it.</li><li>Rebuild all catalogue-derived features inside spatially blocked folds; run per-feature leakage canaries.</li><li>Use the shared evaluator/writer, report pooled holdout DTI with 95% CI, and check registry correlation/3-pixel overlap both before and after placement.</li><li>Only make a uniquely named TIFF downloadable as a candidate after it beats the comparable holdout baseline and passes exact grid/range/nodata validation.</li></ol>
+<h2>Research links</h2><ul><li><a href="executive-summary.html">Executive summary and submission procedure</a></li><li><a href="standing-prompt.html">Full recurring project brief</a></li><li><a href="research.html">Experiment results and candidate slate</a></li><li><a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">Official competition rules</a></li><li><a href="https://github.com/drivendataorg/gems-prize-reference-solution">Official reference solution</a></li><li><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN data record</a></li></ul>"""
+    return page("GEMSDOE33 · Research status", body, "index.html")
 
 
 def build_exec() -> str:
@@ -381,6 +387,11 @@ python -m pytest -q</pre>
 <p class="small">Inputs are SHA-pinned owner mirrors, not organizer-authenticated downloads. See
 <a href="{GITHUB}/data/README.md">data provenance notes</a> in the repository and the
 <a href="downloads/manifest.json">package manifest</a>.</p>"""
+    body = """<h2>Executive summary — submission status</h2>
+<div class="panel bad"><strong>Do not submit the current downloads.</strong> No TIFF is scientifically cleared. Existing D2.8/H33 files are reference or failed research artifacts. H33-6 failed its preregistered proxy holdout gate (mean ΔDTI −0.00273732; 2/4 folds positive), and no organizer receipt confirms score/file attribution. Format validation alone is not a promotion gate.</div>
+<h3>When a future candidate passes</h3><ol><li>Review the official <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">problem page</a>, <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/">competition rules</a>, and format requirements.</li><li>Download the uniquely named single-band GeoTIFF only from a candidate explicitly marked <b>PASS / APPROVED</b> on this site. Check its SHA-256, CRS, shape, transform, one-band type, and value/nodata policy.</li><li>On the official submission form choose the TIFF (or single-member ZIP), enter the exact unique submission name and concise run note shown beside it, then submit.</li><li>Save the organizer receipt and score with the exact file hash. Do not infer acceptance or a score from local checks.</li></ol>
+<p>No candidate currently meets step 2. The user's reported `Predicted values must be in range [0, 1]` error is documented, but its root cause is not established; NaN behavior must follow the current official instructions and should not be replaced by zero outside the footprint without authorization.</p>
+<p>Data downloads require official account access not available in this workspace. No upload was performed. See <a href="irregularities.html">known blockers</a> and the <a href="standing-prompt.html">full project brief</a>.</p>"""
     return page("How to submit · GEMSDOE33", body, "executive-summary.html")
 
 
@@ -430,7 +441,11 @@ def build_results() -> str:
 <h3>5. How GEMSDOE33 Reaches 0.2725 – 0.2760</h3>
 <p>Instead of blind pruning, GEMSDOE33's <b>Hypothesis H33-D</b> protects 1,377 fault-tip continuations and stepover relays where unmapped geothermal permeability concentrates, while pruning mid-segment flank noise. It also adds 133 shallow Euler SI=0 contact clusters. This achieves <b>+61.4 True Positive pixels</b> on SGMC off-catalogue truth and <b>+82.5% True Positive recovery</b> in analog fields.</p>
 """
-    return page("Results & PhD Score Inversion · GEMSDOE33", body, "results.html")
+    body = """<h2>Historical scores: attribution and mechanism are unverified</h2>
+<div class="panel bad"><b>Evidence boundary:</b> scores in the supplied site list are user-provided/owner-reported here, not organizer-confirmed receipts tied to exact TIFF bytes. The claimed H27-4 0.2708 and leaderboard 0.3195 are not confirmed as current or as local file scores. Do not infer why H33-2 B2 reportedly scored 0.2778 without its artifact, method, and receipt. No local experiment demonstrated a score above these values.</div>
+<p>The campaign pattern suggests a useful research question: whether sparse regularized emissions and cautious pruning around known-catalogue flanks improve precision. That is a qualitative hypothesis, not a causal attribution or verified explanation for any score. The H33-6 cross-physics edge-normal test did not beat the local baseline on average (mean catalogue-proxy ΔDTI −0.00273732; 2/4 folds positive). It is conditional, uses a fixed H19-5 source not re-derived per fold, and has no reported 95% CI. It is not a competition score.</p>
+<p><a href="hypotheses.html">Review the ranked hypothesis slate</a>, <a href="research.html">experiment evidence</a>, and <a href="irregularities.html">known provenance issues</a>. No TIFF is cleared for upload.</p>"""
+    return page("Results evidence review · GEMSDOE33", body, "results.html")
 
 
 def build_hypotheses() -> str:
