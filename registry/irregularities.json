@@ -8,7 +8,7 @@
       "id": "IR-33-F-01",
       "severity": "high",
       "status": "measured; not slot-cleared",
-      "finding": "H33-F named analog-field transfer (Dixie/Brady/Desert Peak well-cell masks + GeoDAWN/LiDAR) produced a unique 44,090-dot GeoTIFF. Exploratory 20 km-block domain-discriminator AUC was 0.917. Fold-safe P1 mean \u0394DTI vs rebuilt C0 was \u22120.093072 (0/4 folds). P2 SGMC \u0394DTI vs C0 was \u22120.016163; vs matched-N random +0.001234. Ben-David bound not licensed (lambda unknown; analog labels are the same public catalogue). GDR 1682/207 GIS archives were not staged (TLS fail).",
+      "finding": "H33-F named analog-field transfer (Dixie/Brady/Desert Peak well-cell masks + GeoDAWN/LiDAR) produced a separately identified 44,090-dot GeoTIFF; cross-site uniqueness was not established. Exploratory 20 km-block domain-discriminator AUC was 0.917. Fold-safe P1 mean \u0394DTI vs rebuilt C0 was \u22120.093072 (0/4 folds). P2 SGMC \u0394DTI vs C0 was \u22120.016163; vs matched-N random +0.001234. Ben-David bound not licensed (lambda unknown; analog labels are the same public catalogue). GDR 1682/207 GIS archives were not staged (TLS fail).",
       "evidence": "evidence/holdout_analog.json; evidence/domain_adaptation_preflight.json; docs/downloads/research/h33-f-analog-transfer-manifest.json; knowledge/07_analog_transfer.md.",
       "consequence": "H33-F is a separate research-only artifact and not slot-cleared. Do not spend a weekly slot or describe the exploratory discriminator as a Ben-David H\u0394H bound or transfer success."
     },
@@ -144,7 +144,7 @@
       "id": "IR-33-SLOT-01",
       "severity": "standing",
       "status": "no slot spent",
-      "finding": "No submission was uploaded from this session, and no candidate is represented as slot-approved. A unique H33-6 research TIFF may be linked separately with an explicit failed-gate warning; the recommended download remains the historical D2.8 reference only.",
+      "finding": "No submission was uploaded from this session, and no candidate is represented as slot-approved. A prior site revision linked the historical D2.8 reference and H33-6 research TIFF with warnings. The later duplicate screen triggered for H33-6 against 7/9 local TIFFs; no file is cleared for competition download or submission, and cross-site uniqueness is not established.",
       "evidence": "No DrivenData authentication or submission receipt is present in this environment.",
       "consequence": "No weekly slot was spent. Local files/format checks do not assert organizer acceptance, a competition score, or a score/file association."
     },
@@ -195,6 +195,30 @@
       "finding": "The legacy H33-D submission builder and landing-page copy claimed an unsupported projected DTI range, portal range-error immunity, analog-transfer corroboration, and a positive validation result. Later retained reviews do not license those claims, and the cited run was not a valid slot-cleared candidate.",
       "evidence": "scripts/build_unique_submission.py (now disabled); scripts/run_domain_adaptation.py (now disabled); docs/downloads/receipt-GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.json; knowledge/06_three_pass_review.md.",
       "consequence": "Do not execute the retired H33-D builder or domain-adaptation runner and do not upload the H33-D artifact. Existing files remain only as historical/educational artifacts; no organizer-confirmed score pairing exists."
+    },
+    {
+      "id": "IR-33-SCORE-04-20261025",
+      "severity": "high",
+      "status": "conflicting user-reported values; current leader unverified",
+      "finding": "The latest user brief gives 0.4413 and 0.3195 in separate places as the current competition high score. The same brief reports H33-2 B2 at 0.2778 as the highest cited GEMSDOE owner-site result. These are user-provided claims in this session; no organizer receipt or byte-identifiable TIFF is present, and no leaderboard refresh was performed.",
+      "evidence": "User-provided prompt dated 2026-10-25; knowledge/09_20261025_review.md; registry/leaderboard_review.json; official terms https://www.drivendata.org/termsofuse/.",
+      "consequence": "Do not select a target score, claim a cause, calibrate DTI, or refresh/copy leaderboard rows from these inconsistent reports. The H33-2 0.2778 claim remains USER/OWNER-REPORT, not ORGANIZER-CONFIRMED."
+    },
+    {
+      "id": "IR-33-PREFLIGHT-20261025",
+      "severity": "critical",
+      "status": "blocked before experiment; negative run card",
+      "finding": "The parallel-run prompt refers to a single lane/method paragraph that is not identified. This checkout has no core training, label, or sample rasters; no cached feature stack; and no cross-site registry TIFF bytes. The local dti_binary and writer exist, but the available evaluate_proxy routine scores prebuilt arrays and explicitly does not rebuild candidate/source features per fold; no protocol-compliant shared whole-system holdout orchestrator is available. No experiment, placement, new TIFF, or slot action was performed.",
+      "evidence": "evidence/hypothesis_slate_20261025.json; evidence/preflight_run_card_20261025.json; data/README.md; src/gemsdoe33/holdout.py; src/gems33/holdout.py.",
+      "consequence": "Do not describe any new candidate as validated, unique, high-scoring, or submission-ready. Resolve access and shared-evaluator blockers, specify one lane, then run pre-placement duplicate and leakage gates before placement."
+    },
+    {
+      "id": "IR-33-WRITER-20261025",
+      "severity": "high",
+      "status": "fixed fail-closed in current branch; regression tests added",
+      "finding": "The shared build_package path previously converted NaN weights to zero and clipped emitted probabilities into [0,1], obscuring invalid model output before writing. The shared GeoTIFF validator also treated any non-finite outside-footprint value, including infinity, as null. The writer now rejects non-finite/out-of-range emitted weights, enforces safe filenames and a 140-character note limit, refuses to overwrite existing package outputs, and the validator rejects outside infinities while reporting whole-array finiteness separately.",
+      "evidence": "src/gemsdoe33/submission.py; tests/test_submission.py; scripts/validate_submission.py.",
+      "consequence": "This hardens future local output checks; it does not identify the cause of the historical portal range error, regenerate or repair old TIFFs, prove organizer acceptance, or clear a scientific submission gate."
     }
   ]
 }

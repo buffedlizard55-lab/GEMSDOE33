@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-25",
+  "status": "BLOCKED_BEFORE_EXPERIMENT; NEGATIVE_DELIVERABLE",
+  "hypothesis": "H33-11 — paired signed vertical-gradient zero-crossing traces; hypothesis only, not implemented.",
+  "mechanism": "Co-located, persistent zero-crossing centerlines and opposed-sign lobes in the owner-mirror-mapped magnetic and gravity vertical-gradient bands could indicate a buried fault that juxtaposes or offsets basement contrasts under basin fill.",
+  "named_non_fault_process_that_could_mimic_it": "A lithologic contact, intrusive dike, or basin-fill boundary can create aligned magnetic and gravity gradient lobes without fault displacement.",
+  "HOLDOUT-DTI": {
+    "evaluator_version": "NOT APPLIED; local dti_binary content identity is src/gemsdoe33/metric.py@sha256:5976aa84cbb2b4613543becfd776cfcad0989a5201612228a4b9d158bbae4bfb",
+    "withheld_positives": null,
+    "pooled_candidate_dti": null,
+    "pooled_control_dti": null,
+    "delta_dti": null,
+    "95_percent_CI": null,
+    "status": "NOT RUN: required lane is unspecified and feature/cache/label/template rasters are absent."
+  },
+  "correlation_overlap_vs_registry": {
+    "preplacement_surface": "NOT RUN; no candidate surface or registry TIFFs are available.",
+    "final_dots": "NOT RUN; no candidate raster was generated.",
+    "threshold_policy": "Stop if rank correlation >0.90 or if >70% of candidate dots lie within 3 px of any registry raster.",
+    "cross_site_uniqueness": "UNVERIFIED; GEMSDOE24/25/27/28/30/31/32/33/36 raster bytes were not staged."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": "NOT RUN; no candidate raster.",
+    "values_in_0_1": "NOT RUN; no candidate raster.",
+    "CRS_shape_transform_match": "NOT RUN; no template raster in checkout."
+  },
+  "submission_name": null,
+  "note_at_most_140_characters": null,
+  "verdict": "negative",
+  "reason": "No experiment or placement was attempted. A fresh TIFF cannot responsibly be claimed unique, scientifically improved, or valid without a specified lane, available data, feature-alone leakage canaries, fold-safe holdout, registry duplicate screens, and saved-byte validator results. Do not submit existing H33-6 or D2.8 artifacts."
+}

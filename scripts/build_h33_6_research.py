@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Rebuild a unique H33-6 research TIFF from the frozen, failed-screen recipe.
+"""Rebuild the separately identified H33-6 research TIFF from the frozen, failed-screen recipe.
 
 This artifact is deliberately kept under docs/downloads/research/ with a
 prominent non-submission label. It is not a slot recommendation. The script

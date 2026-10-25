@@ -1,9 +1,9 @@
 # GEMSDOE33 standing brief and operating contract
 
-**Read this entire file at the start of every session, then read `README.md`.** This is the complete
-working specification consolidated from the owner's task and explicit standing corrections recorded
-for this repository. It is not presented as a verbatim chat transcript. Update it only when the owner
-changes the requirements; record any change and its consequence in the repository.
+**Read `README.md` first, then read this entire file at the start of every session.** This is the
+complete working specification consolidated from the owner's task and explicit standing corrections
+recorded for this repository. It is not presented as a verbatim chat transcript. Update it only when
+the owner changes the requirements; record any change and its consequence in the repository.
 
 ---
 
@@ -36,14 +36,18 @@ only be proposed for use when its source, licence and any share-to-sponsor condi
 
 1. **Inspect the repository and the entire brief before extending the project.** Keep this file and
    the README as the session starting point.
-2. Put a valid, readily discoverable submission GeoTIFF at the very top of the project site, and
-   provide an executive-summary page with exact upload steps. The recommended file must be a single-
-   band `float32` GeoTIFF on the official training/sample grid, EPSG:32611, 100 m, matching bounds
-   and transform, with probability values in `[0,1]` and null/NaN outside the footprint as specified
-   by the official instructions. Re-open and validate the saved bytes. Give it a unique submission
-   filename/name and a concise paste-ready note/comment within the portal limit. State whether the
-   file is a reference, owner-reported historical artifact, or a new model. Do not imply local format
-   checks guarantee portal acceptance.
+2. Keep the current file status unmistakable at the top of the project site and provide an
+   executive-summary page with exact steps for a **future approved** upload. Only link a TIFF as a
+   competition recommendation after it passes all scientific, leakage, duplicate, and exact-grid
+   gates. The current H33-6 research TIFF triggered a duplicate stop and failed its conditional
+   holdout; it is **NOT OK to submit**. A future candidate must be a single-band `float32` GeoTIFF
+   on the official training/sample grid, EPSG:32611, 100 m, matching CRS/shape/transform, with
+   finite probability values in `[0,1]` inside the footprint and the outside semantics specified by
+   current official instructions. Re-open and validate saved bytes; report whole-array finiteness
+   separately when NaN outside is used. Give any future promoted file a unique, evidence-backed
+   filename/name and paste-ready note of at most 140 characters. State whether a file is a reference,
+   owner-reported historical artifact, or a new model. Do not imply local format checks guarantee
+   portal acceptance.
 3. Review why the reported H27-4 value of `0.2708` was claimed and distinguish official observations,
    local measurements, model-derived values and owner-reported scores. The official leaderboard was
    reviewed once on 2026-10-04 at the owner's request; that observation did not support the brief's
@@ -111,13 +115,11 @@ only be proposed for use when its source, licence and any share-to-sponsor condi
   actually performed. No DrivenData account/session is available in this workspace unless a verified
   receipt is explicitly added.
 
-## Current project decision (2026-10-04)
+## Historical project decision (2026-10-04; superseded by the 2026-10-25 review)
 
-The top-level recommended download remains a locally format-checked **D2.8 reference emission** from
-an owner-mirror. Its `0.2600` association is owner-reported and is not authenticated to the exact file
-by an organizer receipt. A separate H33-6 TIFF is provided in the research area only: its preregistered
+At the time of the 2026-10-04 snapshot, the top-level card linked a locally format-checked **D2.8 reference emission** from an owner-mirror. That historical recommendation is superseded: the current project status is **no TIFF cleared for competition download or upload**. Its `0.2600` association is owner-reported and is not authenticated to the exact file by an organizer receipt. A separate H33-6 TIFF is provided in the research area only: its preregistered
 P1 mean ΔDTI was `−0.002737` (2/4 folds positive), P2 SGMC proxy was `+0.000159`, and the numeric gate
-failed. The unique research artifact is explicitly **not slot-approved and not for upload**. A separate earlier
+failed. The research artifact is explicitly **not slot-approved and not for upload**; its cross-site uniqueness is not established. A separate earlier
 H33-F analog-field experiment also failed its local proxies (P1 mean ΔDTI `−0.093072`, 0/4 positive;
 P2 `−0.016163` vs C0); its exploratory discriminator AUC `0.917` is not `HΔH`, and no transfer bound
 is licensed. Its TIFF is a distinct research artifact, not a recommendation. The H27-4 `0.2708`
@@ -141,3 +143,15 @@ its diagnostics remain conditional. **No candidate is approved for a weekly slot
 ## Review addendum (2026-10-25)
 
 This session compared the existing H33-6 final raster against all same-grid TIFFs available in the checkout. Seven of nine comparisons exceeded the run protocol's correlation/3-pixel proximity threshold; no new placement or TIFF build was made. The pre-placement score surface and remote GEMSDOE registry rasters were unavailable, so the uniqueness screen is incomplete and remains a stop. H33-6 is **NOT OK TO SUBMIT**: its P1 mean delta was negative, its retained baseline was not re-derived per fold, its feature-alone canary is absent, and its final dots trigger the duplicate guard. See `evidence/duplicate_guard_run_card_20261025.json`, `knowledge/09_20261025_review.md`, and `registry/irregularities.json` entry `IR-33-DUP-20261025`. Treat all scores listed in the user brief as user/owner reports unless an organizer receipt is retained.
+
+## Parallel-run protocol addendum (2026-10-25; mandatory)
+
+1. **Lane:** the latest prompt says to use one “single method paragraph below,” but no unique method paragraph/lane is identified. Do not select a candidate surface or place dots until the lane is explicit.
+2. **Duplicate stop:** screen the surface before placement and final dots against all accessible registry rasters. Stop and log if any rank-correlation exceeds `0.90` or more than `70%` of dots fall within `3 px` of a registry raster. Missing external registry TIFFs mean uniqueness is unverified, not passed.
+3. **Reuse:** use the cached feature stack, a shared holdout evaluator that hides whole fault systems with buffer, fold-visible catalogue-derived feature construction, exact masking of visible faults, and the shared writer. `src/gemsdoe33/metric.py` and `submission.py` provide metric/writer primitives; `src/gemsdoe33/holdout.py` only provides quadrant IDs, and legacy `src/gems33/holdout.py:evaluate_proxy` scores prebuilt arrays without fold-specific candidate/source reconstruction. No current orchestration satisfies the full protocol.
+4. **Reporting:** every reported score must say HOLDOUT-DTI (evaluator content hash/version, withheld-positive count, and 95% CI) or ORGANIZER-CONFIRMED (copied from a receipt). User/owner scores are not organizer-confirmed. Feature-alone AUC `>0.90` is a leakage canary until resolved. No projection may be presented as a score.
+5. **TIF/notes:** do not emit a new TIFF until scientific and duplicate gates pass. A future note is capped at `140` characters. Validate finite `[0,1]` probabilities inside footprint, CRS/shape/affine match, and outside-mask policy from the current official instructions. A local validator is not portal acceptance.
+6. **Budget/selection:** stop after `3` experiments or `2` hours. Weekly-slot promotion is a separate selector step under the current competition cap. The 2026-10-25 preflight ran `0` geological experiments, wrote no candidate TIFF, and spent no slot.
+7. **Score provenance:** latest user prompt reports H33-2 B2 `0.2778` as a high owner-site result, but no receipt/file pairing is in this checkout. It also reports both `0.4413` and `0.3195` as current competition highs; the conflict is unresolved. Do not scrape, poll, or refresh DrivenData without prior written consent or an authorized API.
+8. **New slate and stop record:** three unimplemented hypotheses are preserved in `knowledge/10_hypothesis_slate_20261025.md` and `evidence/hypothesis_slate_20261025.json`. The negative run card is `evidence/preflight_run_card_20261025.json`. Current data/cache absence, ambiguous lane, and missing registry rasters prevent validation; there is no new submission-ready TIF.
+9. **Writer guard fix:** the shared `src/gemsdoe33/submission.py` writer now rejects invalid emitted probabilities rather than clipping/zero-filling them, refuses to overwrite package outputs, limits notes to `140` characters, and its validator rejects outside infinities while separately reporting whole-array finiteness. This does not diagnose the historical portal error or establish portal acceptance.

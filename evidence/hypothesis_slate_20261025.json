@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "date_utc": "2026-10-25",
+  "status": "FROZEN_BEFORE_CANDIDATE_IMPLEMENTATION; NOT_EVALUATED; BLOCKED",
+  "evidence_class": "HYPOTHESES_AND_LOCAL_PRIOR_ART_REVIEW; NO_HOLDOUT_OR_SCORE",
+  "prior_art_scope": "Tracked GEMSDOE33 code, knowledge, evidence, and user-supplied site/method list. Remote owner-site raster bytes and methods were not fetched; cross-site novelty is not established.",
+  "band_mapping_caveat": "Band numbers and descriptions follow src/gemsdoe33/grid.py owner-mirror mapping; raw training GeoTIFF metadata was not available for re-read in this session.",
+  "lane": {
+    "status": "UNSPECIFIED",
+    "reason": "The prompt refers to a single method paragraph below, but no unique method paragraph/lane was identified.",
+    "decision": "No candidate surface or placement selected; stop before experiment."
+  },
+  "candidate_data_status": {
+    "training_features_tif_present": false,
+    "labels_tif_present": false,
+    "sample_submission_tif_present": false,
+    "cached_feature_stack_present": false,
+    "external_registry_tiffs_present": false,
+    "provenance": "Official competition files were not present in this checkout. Historical owner-mirror pins are not organizer authentication."
+  },
+  "candidates": [
+    {
+      "id": "H33-11",
+      "rank": 1,
+      "title": "Paired signed vertical-gradient zero-crossing traces",
+      "layers": [
+        "GeoDAWN training-raster band 9 tmi_vg",
+        "GeoDAWN training-raster band 11 iso_grav_anom_vg",
+        "GeoDAWN training-raster band 14 tmi",
+        "GeoDAWN training-raster band 13 iso_grav_anom"
+      ],
+      "physical_signature": "Co-located, strike-continuous zero-crossing centerlines in magnetic and gravity vertical-gradient fields, with opposed-sign lobes on both sides; sign topology rather than high gradient magnitude is the target.",
+      "why_it_may_find_omitted_faults": "A concealed fault may offset or juxtapose magnetized and density-contrasting basement units beneath basin fill without leaving a clear surface scarp; paired potential-field responses could reveal the boundary.",
+      "difference_from_repo_prior_art": "H33-6 used raw TMI/gravity gradient magnitudes and edge-normal alignment with basement/conductivity corroboration. No active candidate builder implements the paired signed-zero-crossing operator; existing code has individual derivatives and coherence primitives.",
+      "named_non_fault_mimic": "Lithologic contact, dike, or basin-fill boundary can generate paired magnetic/gravity lobes without fault displacement.",
+      "expected_improvement": "Qualitative priority 1 of 3; moderate plausible upside; no numeric DTI prediction.",
+      "implementation_cost": "Medium; requires label-blind scale rules, per-feature leakage canaries, fold-safe comparison, and matched-count control.",
+      "new_external_data_required": false,
+      "data_availability": "Requires the official competition GeoDAWN feature raster; it is not staged in this checkout. Owner-mirror input pins do not authenticate organizer provenance."
+    },
+    {
+      "id": "H33-12",
+      "rank": 2,
+      "title": "Matched-window potential-field texture-offset test",
+      "layers": [
+        "GeoDAWN training-raster band 14 tmi",
+        "GeoDAWN training-raster band 13 iso_grav_anom",
+        "GeoDAWN training-raster band 15 depth_to_base_surf"
+      ],
+      "physical_signature": "A coherent translation or phase offset of local potential-field/basement texture across a candidate corridor in more than one physical field, estimated from matched windows rather than edge maxima.",
+      "why_it_may_find_omitted_faults": "Fault displacement may shift basement fabric or geophysical boundaries beneath cover even where the surface expression is weak.",
+      "difference_from_repo_prior_art": "No active GEMSDOE33 builder estimates cross-corridor window translation vectors. This differs from H33-6 edge-normal coincidence, but archived depth-step/Euler work and other owner-site methods are adjacent prior art; broad novelty is not claimed.",
+      "named_non_fault_mimic": "A sediment wedge, intrusive boundary, or lithologic facies change can create apparent phase displacement without faulting.",
+      "expected_improvement": "Qualitative priority 2 of 3; upside unknown; no numeric DTI prediction.",
+      "implementation_cost": "High; requires a frozen, label-blind window/scale rule, spatial controls, and matched-count testing.",
+      "new_external_data_required": false,
+      "data_availability": "Requires the same official competition GeoDAWN raster, which is absent from this checkout."
+    },
+    {
+      "id": "H33-13",
+      "rank": 3,
+      "title": "Mapped-lithology contact control for potential-field edges",
+      "layers": [
+        "Official USGS SGMC 2026 replacement map-unit polygons, DOI 10.5066/P1A3DQZK",
+        "GeoDAWN training-raster bands 13 iso_grav_anom, 14 tmi, and 15 depth_to_base_surf"
+      ],
+      "physical_signature": "Prioritize persistent magnetic/gravity/basement boundaries that are not explained by map-unit contacts, with an uncertainty buffer around mapped contacts; use unit contacts as confound information, not as fault labels.",
+      "why_it_may_find_omitted_faults": "A boundary unexplained by mapped lithologic contacts may be more consistent with a concealed structural discontinuity than a raw potential-field edge, while explicitly testing a major false-positive mechanism.",
+      "difference_from_repo_prior_art": "The local owner-mirror SGMC raster is a fault proxy; no active candidate builder uses current official map-unit polygons to explain away geophysical contact responses.",
+      "named_non_fault_mimic": "A true lithologic or intrusive contact omitted from the map can still masquerade as a fault; a real fault coincident with a mapped unit contact could also be suppressed.",
+      "expected_improvement": "Qualitative priority 3 of 3; unknown and possibly modest; no numeric DTI prediction.",
+      "implementation_cost": "High; external payload, licensing, CRS, map-unit semantics, coverage, resampling, and overlap must be audited first.",
+      "new_external_data_required": true,
+      "specific_free_official_source": "https://doi.org/10.5066/P1A3DQZK",
+      "availability_check": "Existing repository notes identify the official DOI but say payload contents, download availability, license, CRS, schema, and map-unit semantics are unaudited. No payload was obtained or checked in this session. Candidate is BLOCKED and is not proposed as viable.",
+      "viable": false
+    }
+  ],
+  "protocol_decision": {
+    "experiments_run": 0,
+    "reason": "No lane was identified; core rasters and cached feature stack are absent; remote registry TIFFs are absent; no protocol-compliant whole-fault-segment evaluator is available; prior H33-6 is a failed duplicate stop.",
+    "holdout_dti": "NOT RUN",
+    "leakage_canaries": "NOT RUN",
+    "preplacement_duplicate_screen": "NOT RUN",
+    "final_dot_duplicate_screen": "NOT RUN",
+    "new_tiff_generated": false,
+    "competition_slot_spent": false,
+    "promotion": false
+  },
+  "official_review_links": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/data/",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://doi.org/10.5066/P1A3DQZK"
+  ]
+}

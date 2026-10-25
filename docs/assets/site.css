@@ -17,6 +17,8 @@ border-radius:var(--radius);padding:18px 20px;margin:16px 0}.panel.good{border-l
 .hero-download{background:linear-gradient(115deg,#133e24,#12253a 65%);border:2px solid #3e985a;
 border-radius:18px;padding:26px;margin:22px 0;box-shadow:0 8px 30px rgba(0,0,0,0.4)}
 .hero-download h2{border:0;margin:0 0 10px;padding:0;color:#a3f4b5;font-size:1.6rem}
+.hero-download.research-only{background:linear-gradient(115deg,#351919,#182231 70%);border-color:#9a4a4a;box-shadow:0 8px 30px rgba(0,0,0,0.35)}
+.hero-download.research-only h2{color:#ff9a9a}
 .btn{display:inline-block;margin:8px 10px 4px 0;padding:12px 20px;border-radius:10px;background:var(--green);
 color:#072412;text-decoration:none;font-weight:750;font-size:1rem;transition:transform 0.1s}
 .btn:hover{transform:translateY(-1px);background:#a3f4b5}

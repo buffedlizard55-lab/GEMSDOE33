@@ -36,6 +36,45 @@
 >
 > Work line by line verifying from official verified trusted sources, provide links for manual review. There should be no manual input, work on your own to complete tasks. Flag any irregularities for review. No hallucinations. Verify no hallucinations.
 
+### 2026-10-25 parallel-run protocol addendum — mandatory for new work
+
+The latest task adds a stricter, fail-closed research contract. Read this section and the full
+[`standing_prompt.md`](standing_prompt.md) at the start of every project session (per `AGENTS.md`).
+The earlier “generate a unique TIFF” goal is not permission to bypass the scientific/duplicate gates:
+if the lane, data, evaluator, or registry comparisons are unavailable, record a negative result and
+stop rather than manufacture a purported submission.
+
+1. **Focus and evidence:** review the owner-reported items from GEMSDOE24/25/27/28/30/31/32/33/36,
+   especially the user-reported H33-2 B2 value `0.2778`. Treat all owner-site values as
+   USER/OWNER-REPORT unless a receipt ties the exact raster bytes to an organizer result. The latest
+   user brief gives both `0.4413` and `0.3195` as the current high score; this is an unresolved
+   conflict, not a target to calibrate against. Do not scrape, poll, or copy a live leaderboard
+   without prior written permission or an authorized API.
+2. **Lane and duplicate rule:** use one explicitly identified method paragraph/lane. Check the score
+   surface before placement and final dots against every accessible registry raster. Stop and log a
+   duplicate if any Spearman rank correlation exceeds `0.90` or more than `70%` of candidate dots
+   fall within `3 px` of a registry raster. Missing registry files mean uniqueness is unverified,
+   not passed.
+3. **Reuse and holdout:** use the cached feature stack, shared fold-safe evaluator, and shared writer;
+   do not create a private fork. Hide whole fault systems with a buffer; derive every catalogue-based
+   feature from fold-visible faults only; mask visible faults pixel-exactly. Report pooled
+   **HOLDOUT-DTI** with evaluator version/content hash, withheld-positive count, and 95% CI. Test each
+   feature alone; AUC `>0.90` is leakage until resolved. A HOLDOUT-DTI value is never a competition
+   score. A competition score is ORGANIZER-CONFIRMED only by an organizer receipt.
+4. **TIF output and validation:** any future artifact needs a unique, evidence-backed name and a
+   paste-ready note of at most `140` characters. Re-open saved bytes and check no NaN inside the
+   footprint, finite probabilities in `[0,1]`, CRS, shape, affine transform, and outside semantics.
+   A local format pass does not establish portal acceptance. Current status remains **NO FILE OK TO
+   SUBMIT**; the H33-6 research TIFF is a duplicate-guard stop and the D2.8 TIFF is historical only.
+5. **Budget and selection:** stop after `3` experiments or `2` hours. Do not spend a weekly slot until
+   a fresh, independent holdout beats a comparable baseline; promotion to a slot is a separate
+   selector step under the live cap. The 2026-10-25 session ran `0` geological experiments and
+   produced no TIF or score.
+6. **Research slate:** the fresh, unimplemented, ranked candidates and their mimics, layer mappings,
+   cost, and data gates are recorded in [`knowledge/10_hypothesis_slate_20261025.md`](knowledge/10_hypothesis_slate_20261025.md)
+   and [`evidence/hypothesis_slate_20261025.json`](evidence/hypothesis_slate_20261025.json). The
+   negative preflight run card is [`evidence/preflight_run_card_20261025.json`](evidence/preflight_run_card_20261025.json).
+
 ---
 
 ## §2. Our Core Operating Values
@@ -60,16 +99,16 @@ A candidate may be called submission-ready only after a fresh independent, fold-
 
 > **Not cleared for upload. Historical reference only.** This is an owner-mirror reference emission from GEMSDOE28, not a new model or a demonstrated leaderboard improvement. The source is an owner-published mirror. Its claimed `0.2600` score is owner-reported; no organizer receipt ties that score to these exact bytes.
 
-| | Recommended — follows the null/NaN-outside wording | Troubleshooting alternative |
+| | Historical NaN-outside reference (not upload-cleared) | Historical zero-outside troubleshooting variant |
 |---|---|---|
 | Historical artifact (do not submit) | [NaN-outside TIFF](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif) | [Zero-outside TIFF](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif) |
 | SHA-256 | `c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc` | `29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73` |
 | Bytes | 499,842 | 423,456 |
 | Outside footprint | NaN | `0.0` (troubleshooting alternative) |
-| Local file checks | 10/10 passed | 10/10 passed |
+| Prior local file audit (2026-10-04; not rerun) | 10/10 passed | 10/10 passed |
 
 **Historical identifier (not an approved submission name):** `gemsdoe33-d28-reference-20261004`
-**Paste-ready note (158/200 characters):**
+**Historical note (158 characters; exceeds the current 140-character protocol cap; do not paste into a new submission):**
 > `GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab`
 
 See the [executive summary](docs/executive-summary.html) for gates and general upload procedure. This historical artifact is not recommended for upload. No submission was uploaded from this session.
@@ -78,21 +117,21 @@ See the [executive summary](docs/executive-summary.html) for gates and general u
 
 ## §5. Historical metric analysis — not a verified explanation of score 0.2708
 
-The following historical discussion and calculations have not been independently revalidated against organizer truth or a score-linked submission file. In particular, the owner-published GEMSDOE28 page is reported in the repository to label H27-4 unscored/research-only; the user's reported `0.2708` and `0.3195` are not organizer-confirmed in this checkout. No claim that GEMSDOE33 beats either value is justified. The full DTI definitions and old reasoning below are retained as historical notes only; they are not validation, a projected score, or permission to upload.
+The following historical discussion and calculations have not been independently revalidated against organizer truth or a score-linked submission file. In particular, the owner-published GEMSDOE28 page is reported in the repository to label H27-4 unscored/research-only; the user's reported `0.2708`, `0.3195`, and `0.4413` are not organizer-confirmed in this checkout. The latter two current-leader claims conflict within the latest user prompt. No claim that GEMSDOE33 beats any of these values is justified. The full DTI definitions and old reasoning below are retained as historical notes only; they are not validation, a projected score, or permission to upload.
 
 ## §6. Research record and current candidate slate
 
-The five hypotheses and their layers, mechanisms, prior-art distinctions, costs, and source availability checks are recorded in [`knowledge/07_hypothesis_slate_20261004.md`](knowledge/07_hypothesis_slate_20261004.md) and the frozen machine-readable record [`evidence/hypothesis_slate_20261004_preregistered.json`](evidence/hypothesis_slate_20261004_preregistered.json). The selected runnable H33-6 experiment is complete and **failed its numeric gate**; do not rerun/retune it to seek a better result. After summing the retained TPw/FPw/FNw over all folds, pooled HOLDOUT-DTI is 0.112486 for H33-6 and 0.114669 for the control (pooled ΔDTI −0.002183). The unweighted mean of the fold deltas is −0.00273732, 2/4 folds positive. A later review calculated a descriptive 95% Student-t interval across the four fold deltas, [−0.015020, +0.009546], df=3; it is small-n and conditional, not an interval for the pooled statistic, nor a private-label or competition-score confidence interval. This is conditional catalogue-proxy evidence, not private expert truth or a competition score. The official BRIDGE/USGS analog-data candidates remain blocked on obtaining and auditing the actual payload bytes. See [`knowledge/08_h33_6_result_20261004.md`](knowledge/08_h33_6_result_20261004.md) and the current run card.
+The earlier five hypotheses and their layers, mechanisms, prior-art distinctions, costs, and source availability checks are recorded in [`knowledge/07_hypothesis_slate_20261004.md`](knowledge/07_hypothesis_slate_20261004.md) and [`evidence/hypothesis_slate_20261004_preregistered.json`](evidence/hypothesis_slate_20261004_preregistered.json). The fresh 2026-10-25 slate is [`knowledge/10_hypothesis_slate_20261025.md`](knowledge/10_hypothesis_slate_20261025.md) and [`evidence/hypothesis_slate_20261025.json`](evidence/hypothesis_slate_20261025.json): three unimplemented hypotheses, all blocked pending an explicit lane, data/cache, registry rasters, and a protocol-compliant evaluator. The selected runnable H33-6 experiment is complete and **failed its numeric gate**; do not rerun/retune it to seek a better result. HOLDOUT-DTI (`src/gemsdoe33/metric.py:dti_binary@sha256:5976aa84cbb2b4613543becfd776cfcad0989a5201612228a4b9d158bbae4bfb`; 60,988 withheld catalogue positives): after pooling retained TPw/FPw/FNw over the folds, H33-6 candidate DTI is 0.112486 and control DTI is 0.114669 (pooled ΔDTI −0.002183). Mean fold ΔDTI is −0.00273732, with 2/4 folds positive. Descriptive fold-level 95% Student-t interval: [−0.015020, +0.009546], df=3; it is small-n and conditional, not an interval for the pooled statistic, private-label truth, or a competition score. This is conditional catalogue-proxy evidence, not private expert truth or a competition score. The official BRIDGE/USGS analog-data candidates remain blocked on obtaining and auditing the actual payload bytes. See [`knowledge/08_h33_6_result_20261004.md`](knowledge/08_h33_6_result_20261004.md) and the current run card.
 
 ## §7. Review of reported campaign scores
 
-The score/method list in the prompt is **user-provided context, not independently verified evidence**. It indicates a rising owner-reported sequence among the examples: H25 dotted-ridge (0.2477), D2.8 (0.2600), H27-4 (0.2708), H36-1 (0.2710), H33-2 B2 (0.2778), and a separately supplied leaderboard high (0.3195). None of these values alone establishes why an artifact scored well, its exact bytes, whether the score is official, or whether the experiment is comparable; repository evidence says H27-4 lacks an organizer-verified score/file pairing. **Do not claim H33-2 zeros is the reason for 0.2778 or infer a reproducible mechanism without its TIFF, code, validation details, and organizer receipt.** The most plausible general explanation for the incremental H25→D2.8→H27-4 progression is sparse, spatially regular emission plus pruning near known-catalogue mid-segment flanks, but this is a hypothesis based on owner-mirror campaign descriptions—not causal proof. The distinct H33-6 edge-consensus intervention did not improve the local proxy control, so there is no validated basis to claim this repo can exceed 0.2778 or 0.3195.
+The score/method list in the prompt is **user-provided context, not independently verified evidence**. It reports a rising owner-reported sequence among the examples: H25 dotted-ridge (0.2477), D2.8 (0.2600), H27-4 (0.2708), H36-1 (0.2710), H33-2 B2 (0.2778), and a claimed current leaderboard high. None of these values alone establishes why an artifact scored well, its exact bytes, whether the score is official, or whether the experiment is comparable; repository evidence says H27-4 lacks an organizer-verified score/file pairing. The latest prompt separately names 0.3195 and 0.4413 as current highs; they conflict and neither is confirmed. **Do not claim H33-2 zeros is the reason for 0.2778 or infer a reproducible mechanism without its TIFF, code, validation details, and organizer receipt.** The most plausible general explanation for the incremental H25→D2.8→H27-4 progression is sparse, spatially regular emission plus pruning near known-catalogue mid-segment flanks, but this is a hypothesis based on owner-mirror campaign descriptions—not causal proof. The distinct H33-6 edge-consensus intervention did not improve the local proxy control, so there is no validated basis to claim this repo can exceed 0.2778, 0.3195, or 0.4413.
 
 The supplied list also names high-ranking contenders in GEMSDOE24/25/27/28/30/31/32/33/36, but sites use owner-published material. Scores and labels are treated only as the user's supplied historical claims unless an organizer receipt and byte-identifiable artifact are archived. Terms and leaderboard restrictions prohibit building a live scraper/refresh feed without authorization; current process follows [`AGENTS.md`](AGENTS.md). The official competition reference solution and rules are linked below for manual review.
 
 ## §8. Download and upload instructions
 
-There is **no current approved submission download**. Old files in `docs/downloads/` are historical/reference or failed research outputs. A `format_check` pass does not satisfy the scientific holdout gate or establish organizer acceptance. Do not upload any old artifact as a candidate from this README. When a future candidate passes the promotion gate, the website's executive-summary page will provide its exact file, unique name/comment, grid validation, hash, and appropriate upload steps; only then should the owner upload via the official competition page. This workspace cannot access a DrivenData account or create an organizer receipt.
+There is **no current approved submission download**. Old files in `docs/downloads/` are historical/reference or failed research outputs. A `format_check` pass does not satisfy the scientific holdout gate or establish organizer acceptance. Do not upload any old artifact as a candidate from this README. When a future candidate passes the promotion gate, the website's executive-summary page will provide its exact file, distinct name/comment, grid validation, hash, and appropriate upload steps; only then should the owner upload via the official competition page. This workspace cannot access a DrivenData account or create an organizer receipt.
 
 ## §9. Trusted-source review links
 
@@ -113,7 +152,7 @@ The official competition data download requires an authenticated account. This r
 
 1. Recover competition inputs through an authorized official source/account, verify provenance and exact grid/nodata semantics; do not treat the sample raster's positive cells as truth (it overlaps labels).
 2. Any fresh experiment must first declare its single lane, build leakage-safe whole-segment buffered folds with fold-specific feature derivation, report every feature's standalone leakage-canary AUC, and compute pooled DTI with a defined 95% interval. Explicitly check rank correlation and dot proximity against registry rasters before placement and on final output; stop and log duplicates at the stated thresholds.
-3. Use the shared holdout/evaluator and writer, not private methods. Do not proceed if those required shared utilities/data are absent or known to leak. New candidate must beat a comparable current holdout baseline on independent confirmation before it can be considered for a slot. No score projection substitutes for this gate.
+3. Use the shared DTI primitive and writer (`src/gemsdoe33/metric.py`, `src/gemsdoe33/submission.py`), not private methods. The available legacy `src/gems33/holdout.py:evaluate_proxy` scores prebuilt arrays and explicitly does not rebuild candidate/source features per fold; it is not a protocol-compliant holdout evaluator. Do not proceed if the required fold-safe orchestration, cached features, or data are absent or known to leak. A candidate must beat a comparable baseline on independent confirmation before a separate selector can consider a slot. No score projection substitutes for this gate.
 4. Verify candidate against official schema and exact template, including no NaN inside footprint, `[0,1]` values, CRS/shape/transform, and outside-footprint semantics. Separate artifact reproducibility from organizer acceptance.
 5. The requested exact lane paragraph, access to the cited competition account, organizer score receipts, and hidden expert truth are unavailable. The retrospective four-fold interval is descriptive only. These are explicit blockers; no higher-scoring TIF can responsibly be claimed here.
 
@@ -125,4 +164,14 @@ The current work branch revisited the existing H33-6 artifact, without rebuildin
 
 Saved-byte readback confirmed one band, float32, EPSG:32611, shape 3730×3292, recorded affine transform, 5,167,373 finite cells, 7,111,787 NaNs, finite range [0,1], and 40,199 positive cells. The present checkout does not include the sample template, so an exact fresh template comparison was not possible. Whole-array finiteness fails because outside-footprint values are NaN. The previously recorded local validator result is historical; no current official portal validation was performed. Evidence: [`evidence/saved_bytes_audit_20261025.json`](evidence/saved_bytes_audit_20261025.json) and [`evidence/duplicate_guard_run_card_20261025.json`](evidence/duplicate_guard_run_card_20261025.json).
 
-The H33-D builder and the old domain-transfer runner are disabled fail-closed because their earlier versions made unsupported promotion/range-immunity claims. No new unique TIFF was generated, no competition slot was spent, and no upload was made. A locally unique filename is not enough to satisfy the lane duplicate rule or the scientific holdout gate.
+The H33-D builder and the old domain-transfer runner are disabled fail-closed because their earlier versions made unsupported promotion/range-immunity claims. No new TIFF was generated, no competition slot was spent, and no upload was made. A locally unique filename is not enough to satisfy the lane duplicate rule or the scientific holdout gate.
+
+## §12. 2026-10-25 prompt follow-up: hypothesis slate, preflight stop, and writer fix
+
+The latest user prompt names the H33-2 B2 `0.2778` result and the owner sites GEMSDOE24/25/27/28/30/31/32/33/36. Repository review concludes that `0.2778` is **USER/OWNER-REPORT**, not organizer-confirmed, and no causal mechanism can be assigned without the exact raster, code, holdout evidence, and organizer receipt. The same prompt gives `0.4413` and `0.3195` as current leaderboard highs; this conflict remains unresolved. No leaderboard refresh was performed.
+
+Before any new candidate implementation, three unrun geological hypotheses were frozen in [`knowledge/10_hypothesis_slate_20261025.md`](knowledge/10_hypothesis_slate_20261025.md) and [`evidence/hypothesis_slate_20261025.json`](evidence/hypothesis_slate_20261025.json). The exact protocol lane is not specified; the raw training/labels/template rasters, cached feature stack, and external registry rasters are absent; and the shared legacy holdout scorer does not rebuild candidate/source features fold-by-fold. Therefore the preflight stopped before experiments or placement. [`evidence/preflight_run_card_20261025.json`](evidence/preflight_run_card_20261025.json) is the negative deliverable. No new TIFF is available or okay to submit.
+
+Code review found the shared package writer previously clipped emitted weights and converted NaNs to zero, which could conceal invalid model output. It now fails closed on nonfinite/out-of-range emitted probabilities, validates safe names, refuses to overwrite existing package outputs, and enforces the `140`-character note cap. The validator rejects infinity outside the footprint and reports whole-array finiteness separately because NaN-outside semantics may be allowed by the recorded spec. This hardens future output but does not identify the historical portal error's cause or guarantee portal acceptance. Regression tests cover these cases.
+
+Current work: [`src/gemsdoe33/submission.py`](src/gemsdoe33/submission.py), [`tests/test_submission.py`](tests/test_submission.py), [`scripts/build_site.py`](scripts/build_site.py), and the corresponding generated executive-summary/overview pages. The top page now explicitly marks the H33-6 artifact **NOT OK TO SUBMIT** and discloses the duplicate stop; it no longer calls that artifact unique. The site must not expose a failed TIFF as a competition download recommendation.

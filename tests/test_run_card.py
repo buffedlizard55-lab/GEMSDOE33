@@ -33,3 +33,18 @@ def test_saved_byte_audit_discloses_missing_template_and_nan_outside():
     assert audit["nan_cells"] == 7111787
     assert "Not repeated against sample_submission.tif" in audit["footprint_grid_comparison"]
     assert "all-array finite check fails" in audit["portal_acceptance"]
+
+
+def test_current_hypothesis_slate_and_negative_preflight_do_not_promote():
+    slate = json.loads((ROOT / "evidence/hypothesis_slate_20261025.json").read_text())
+    card = json.loads((ROOT / "evidence/preflight_run_card_20261025.json").read_text())
+    assert slate["status"].startswith("FROZEN_BEFORE_CANDIDATE_IMPLEMENTATION")
+    assert len(slate["candidates"]) == 3
+    assert slate["lane"]["status"] == "UNSPECIFIED"
+    assert slate["protocol_decision"]["experiments_run"] == 0
+    assert slate["protocol_decision"]["new_tiff_generated"] is False
+    assert card["HOLDOUT-DTI"]["status"].startswith("NOT RUN")
+    assert card["raster_sha256"] is None
+    assert card["validator_output"]["values_in_0_1"].startswith("NOT RUN")
+    assert card["submission_name"] is None
+    assert card["verdict"] == "negative"
