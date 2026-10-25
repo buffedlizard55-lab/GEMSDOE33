@@ -3,8 +3,8 @@
   "created_utc": "2026-10-25",
   "status": "DUPLICATE_GUARD_TRIGGERED_STOP_NO_SLOT",
   "experiment_count_in_this_audit": 0,
-  "lane": "H33-6 cross-physics edge-normal consensus (already executed in prior evidence; no fresh placement run)",
-  "surface_preplacement_screen": "NOT RUN in this audit: source feature cache is absent; stop before any new placement.",
+  "lane": "No standalone method paragraph was identified in the user prompt; H33-6 is reviewed as the already-executed top runnable candidate from the preregistered repo slate, not selected as a fresh session lane.",
+  "surface_preplacement_screen": "NOT RUN in this audit: no new placement was attempted, the explicit session lane was not specified in the prompt, and the source feature cache is absent; stop before any new placement.",
   "final_dot_duplicate_screen": {
     "scope": "Only same-grid TIFFs already committed in this checkout; not every registry raster from other GEMSDOE sites.",
     "candidate_sha256": "18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7",
