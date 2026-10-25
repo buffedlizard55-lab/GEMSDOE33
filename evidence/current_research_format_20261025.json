@@ -1,0 +1,74 @@
+{
+ "file": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
+ "sha256": "18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7",
+ "bytes": 482682,
+ "bands": 1,
+ "dtype": "float32",
+ "crs": "EPSG:32611",
+ "epsg": 32611,
+ "template_crs": "EPSG:32611",
+ "template_epsg": 32611,
+ "shape": [
+  3730,
+  3292
+ ],
+ "template_shape": [
+  3730,
+  3292
+ ],
+ "resolution": [
+  100.0,
+  100.0
+ ],
+ "template_resolution": [
+  100.0,
+  100.0
+ ],
+ "transform": [
+  100.0,
+  0.0,
+  243350.0,
+  0.0,
+  -100.0,
+  4508550.0
+ ],
+ "template_transform": [
+  100.0,
+  0.0,
+  243350.0,
+  0.0,
+  -100.0,
+  4508550.0
+ ],
+ "bounds": [
+  243350.0,
+  4135550.0,
+  572550.0,
+  4508550.0
+ ],
+ "template_bounds": [
+  243350.0,
+  4135550.0,
+  572550.0,
+  4508550.0
+ ],
+ "shape_match": true,
+ "resolution_match": true,
+ "transform_match": true,
+ "bounds_match": true,
+ "all_finite": false,
+ "nonfinite_count": 7111787,
+ "min": 0.0,
+ "max": 1.0,
+ "in_range_0_1_whole_array": false,
+ "footprint_cells": 5167373,
+ "in_range_0_1_footprint": true,
+ "outside_footprint_all_zero": false,
+ "outside_is_null_or_zero": true,
+ "outside_has_nan": true,
+ "strict_zero_outside_requested": false,
+ "outside_policy_pass": true,
+ "emitted_pixels": 40199,
+ "emitted_fraction_of_footprint": 0.007779388095266202,
+ "pass": true
+}

@@ -62,9 +62,9 @@ h3{font-size:1.15rem;line-height:1.35;margin-top:24px}.panel{background:var(--pa
 border-radius:var(--radius);padding:18px 20px;margin:16px 0}.panel.good{border-left:5px solid var(--green)}
 .panel.warn{border-left:5px solid var(--amber)}.panel.bad{border-left:5px solid var(--red)}
 .panel.accent{border-left:5px solid var(--blue);background:#132030}
-.hero-download{background:linear-gradient(115deg,#133e24,#12253a 65%);border:2px solid #3e985a;
+.hero-download{background:linear-gradient(115deg,#352025,#12253a 65%);border:2px solid #a45d63;
 border-radius:18px;padding:26px;margin:22px 0;box-shadow:0 8px 30px rgba(0,0,0,0.4)}
-.hero-download h2{border:0;margin:0 0 10px;padding:0;color:#a3f4b5;font-size:1.6rem}
+.hero-download h2{border:0;margin:0 0 10px;padding:0;color:#ffb4b4;font-size:1.6rem}
 .btn{display:inline-block;margin:8px 10px 4px 0;padding:12px 20px;border-radius:10px;background:var(--green);
 color:#072412;text-decoration:none;font-weight:750;font-size:1rem;transition:transform 0.1s}
 .btn:hover{transform:translateY(-1px);background:#a3f4b5}
@@ -93,6 +93,7 @@ NAV = [
     ("index.html", "Overview"),
     ("executive-summary.html", "How to submit"),
     ("results.html", "Results & Score Provenance"),
+    ("latest-review.html", "Latest audit & gates"),
     ("hypotheses.html", "Hypotheses"),
     ("data-sources.html", "Domain Adaptation"),
     ("research.html", "Research"),
@@ -123,9 +124,9 @@ def unique_submission_hero() -> str:
     filename = "GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif"
     note = "H33-6 edge-normal research artifact; holdout gate failed; not approved for competition upload. id 6c888d2ce0f7"
     return f"""<div class="hero-download" id="unique-submission">
-<h2>Unique GeoTIFF available — research only, NOT approved for competition upload</h2>
-<p>This is a distinct, reproducible research artifact from the preregistered H33-6 experiment. Its blocked catalogue-proxy gate failed and its upstream baseline is not fold-independent. Do not submit or spend a competition slot on it. No candidate is slot-cleared.</p>
-<p><a class="btn alt" href="downloads/research/{filename}">Download unique research GeoTIFF</a></p>
+<h2>Research GeoTIFF download — NOT approved for competition upload</h2>
+<p>This is the existing H33-6 research artifact, not a newly generated submission. Its retained final dots trigger the duplicate guard; uniqueness is NOT certified. Its blocked catalogue-proxy gate failed and its upstream baseline is not fold-independent. Do not submit or spend a competition slot on it. No candidate is slot-cleared.</p>
+<p><a class="btn alt" href="downloads/research/{filename}">Download research GeoTIFF — DO NOT SUBMIT</a></p>
 <table><tbody>
 <tr><th>Artifact name</th><td><code>GEMSDOE33-H33-6-edge-consensus-research-20261004</code></td></tr>
 <tr><th>Suggested note (under 140 characters)</th><td><pre>{note}</pre></td></tr>
@@ -133,6 +134,7 @@ def unique_submission_hero() -> str:
 <tr><th>Local format audit</th><td>Single-band float32, EPSG:32611, 3730 × 3292, 100 m; finite in-footprint values in [0,1]; NaN outside footprint. Local format check only; portal acceptance not tested.</td></tr>
 <tr><th>SHA-256</th><td><code>18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7</code></td></tr>
 </tbody></table>
+<p><b>Current audit:</b> all 17 owner-mirror inputs restored; 121 feature channels prepared; 12 focus-site references compared. No new experiment or TIFF. <a href="latest-review.html">Read the byte-level findings and automatic gate failures</a> · <a href="research/current-run-card.json" download>Download current run card (JSON)</a>.</p>
 <p>Historical score claims and leaderboard status are unverified here. See <a href="hypotheses.html">the ranked hypothesis slate</a>, <a href="research.html">holdout evidence</a>, and <a href="executive-summary.html">submission requirements and current gate status</a>.</p>
 </div>"""
 
@@ -163,7 +165,7 @@ def build_index() -> str:
 <h2>Our operating values</h2>
 <div class="grid-2"><div class="panel accent"><h3>Maximize P(Win)</h3><p>Prefer evidence that predicts useful hidden-fault detection, not a download or a hopeful score projection. No slot until a fresh, leakage-audited holdout improves over a matched baseline.</p></div><div class="panel accent"><h3>Own the Outcome</h3><p>Make failures visible, preserve provenance, correct misleading pages, and distinguish local format validation from scientific validity and organizer acceptance.</p></div></div>
 <h2>Use the artifact safely</h2>
-<p>The unique H33-6 TIFF is downloadable for inspection/reproducibility only. <b>It is not okay to upload.</b> The historical D2.8 mirror artifacts are educational references only and are not a new strategy or verified score-file pairing. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
+<p>The existing H33-6 TIFF is downloadable for inspection/reproducibility only. <b>It is not okay to upload.</b> The historical D2.8 mirror artifacts are educational references only and are not a new strategy or verified score-file pairing. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
 """
     return page("GEMSDOE33 · Evidence-led fault discovery", body, "index.html")
 
@@ -171,21 +173,22 @@ def build_exec() -> str:
     fname = "GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif"
     note = "H33-6 edge-normal research artifact; holdout gate failed; not approved for competition upload. id 6c888d2ce0f7"
     body = f"""<h2>Executive summary — how a valid submission is made</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot.</b> The unique H33-6 TIFF is a research artifact with a failed conditional holdout gate. It is deliberately linked for reproducibility, but it is <b>not okay to submit</b>. Do not spend a weekly slot on it.</div>
+<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot.</b> The existing H33-6 TIFF is a research artifact with a failed conditional holdout gate. It is deliberately linked for reproducibility, but it is <b>not okay to submit</b>. Do not spend a weekly slot on it.</div>
 <p>When a future candidate passes a predeclared, leakage-audited holdout gate, compare its package against the official competition instructions linked below and verify the complete saved GeoTIFF. No local audit guarantees portal acceptance or leaderboard performance.</p>
 <p>Official review links: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">competition problem and format</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">competition rules</a> · <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">data page (login may be required)</a>.</p>
 <h3>Research GeoTIFF (do not upload)</h3>
-<p><a class="btn alt" href="downloads/research/{fname}">Download unique research TIFF</a></p>
+<p><a class="btn alt" href="downloads/research/{fname}">Download research TIFF — DO NOT SUBMIT</a></p>
 <ul><li>Artifact: <code>GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7</code></li><li>SHA-256: <code>18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7</code></li><li>Note (≤140 characters): <code>{note}</code></li><li>Reason: P1 mean delta DTI −0.00273732, 2/4 folds positive; conditional due to fixed H19-5 surface and proxy labels. Full evidence in <a href="research.html">research report</a>.</li></ul>
 <h2>Steps for a future approved candidate</h2>
-<ol><li>Confirm the candidate status is explicitly <b>promote / slot-cleared</b> in current evidence; if not, do not upload.</li><li>Download the exact named single-band GeoTIFF (or a ZIP with exactly one GeoTIFF) and keep it unchanged.</li><li>Run <code>python scripts/validate_submission.py --submission PATH --template PATH</code> against the official/sample template available in the local cache. Review CRS, shape, transform, dtype, footprint values, and outside-footprint handling against current official instructions.</li><li>In the authenticated DrivenData submission form, select the TIFF, enter a distinct name and concise note, and submit only if a competition slot is available and the submission rules permit it.</li><li>Save the organizer receipt. Only that receipt can confirm a score/file association; report the organizer score separately from holdout diagnostics.</li></ol>
+<ol><li>Require a passing automatic evidence gate <b>and</b> a separate selector decision within the verified weekly cap. A <b>promote</b> research verdict alone is not slot clearance; if either is missing, do not upload.</li><li>Download the exact named single-band GeoTIFF (or a ZIP with exactly one GeoTIFF) and keep it unchanged.</li><li>Run <code>python scripts/validate_submission.py --submission PATH --template PATH</code> against the official/sample template available in the local cache. Review CRS, shape, transform, dtype, footprint values, and outside-footprint handling against current official instructions.</li><li>In the authenticated DrivenData submission form, select the TIFF, enter a distinct name and concise note, and submit only if a competition slot is available and the submission rules permit it.</li><li>Save the organizer receipt. Only that receipt can confirm a score/file association; report the organizer score separately from holdout diagnostics.</li></ol>
 <div class="panel warn"><b>Known validation limitation:</b> The archived H33-6 local report passed the then-current validator for finite [0,1] values on the footprint and NaNs outside. It is not all-finite over the whole raster and does not satisfy every possible portal-wide range check. The cause of the previously reported portal range error has not been confirmed. Follow the live official format instructions rather than assuming zero or NaN outside is accepted.</div>
-<h3>What is required before the next competition submission</h3><ul><li>New spatially blocked holdout where every catalogue-derived feature, including baseline/pseudo-label surfaces, is rebuilt using fold-visible data only.</li><li>Feature-by-feature leakage canary; investigate AUC &gt; 0.90 before trusting a signal.</li><li>Predeclared experiment, matched budget/control, uncertainty interval, and uniqueness screen against accessible registry rasters.</li><li>Exact format check from source inputs plus saved-byte re-open; current validator requires installed rasterio/numpy.</li><li>Human owner to use their authenticated competition account. This workspace has no DrivenData auth and cannot upload or retrieve a receipt.</li></ul>
+<h3>What is required before the next competition submission</h3><ul><li>New spatially blocked holdout where every catalogue-derived feature, including baseline/pseudo-label surfaces, is rebuilt using fold-visible data only.</li><li>Feature-by-feature leakage canary; investigate AUC &gt; 0.90 before trusting a signal.</li><li>Predeclared experiment, matched budget/control, uncertainty interval, and uniqueness screen against accessible registry rasters.</li><li>Exact format check from source inputs plus saved-byte re-open; current validator requires installed rasterio/numpy.</li><li>All scientific/format inspections must be run automatically in-project. Only the final authorized account upload is outside this project; no human scientific inspector is required by the project gate. This workspace has no DrivenData auth and cannot upload or retrieve a receipt.</li></ul>
 """
     return page("Executive summary & submission guidance · GEMSDOE33", body, "executive-summary.html")
 
 def build_results() -> str:
     body = """<h2>Results, score claims, and evidence boundaries</h2>
+<p><a href="latest-review.html">New: twelve-raster byte-level forensic review, GEMSDOE32 pruning recipe and automatic gate status.</a></p>
 <div class="panel bad"><b>No organizer-confirmed submission result is available in this checkout.</b> The leaderboard values in the user's research brief and owner-maintained GEMSDOE pages are historical reports, not organizer receipts linking scores to raster bytes. Do not infer or present projected scores.</div>
 <h3>H27-4 claim (0.2708)</h3><p>The repo records that the linked GEMSDOE28 owner page labels H27-4 unscored/research-only. No authenticated organizer receipt proves the quoted 0.2708 or associates it with the raster. Therefore the question “why did it score 0.2708?” has no verified premise here. At most, the owner report suggests a dotted H19-5 baseline with d=2.8; its mechanism is not confirmed as the cause of any official score.</p>
 <h3>H33-6 local holdout</h3><p>HOLDOUT-DTI (four spatial folds; 60,988 withheld catalogue pixels total): pooled candidate DTI 0.112486 versus pooled control DTI 0.114669, pooled ΔDTI −0.002183. The unweighted mean of four fold deltas is −0.002737 (2/4 positive). A descriptive Student-t 95% interval across those fold deltas is [−0.015020, +0.009546], df=3; it is imprecise with n=4, conditional, and does not estimate uncertainty against private expert truth. P2 SGMC proxy ΔDTI is +0.00015900. These are local proxy diagnostics, not competition scores. The upstream H19-5 baseline was not re-derived per fold, and no independent confirmation was run.</p>
@@ -196,6 +199,7 @@ def build_results() -> str:
 
 def build_hypotheses() -> str:
     body = """<h2>Ranked geological hypothesis slate</h2>
+<div class="panel warn"><b>Current planning slate:</b> four additional analog-transfer hypotheses are ranked in <a href="latest-review.html">the latest review</a>. All require independent official field labels and are blocked, not viable. The historical slate below is retained without rerunning failed arms.</div>
 <p>The frozen 2026-10-04 slate in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/07_hypothesis_slate_20261004.md">knowledge/07_hypothesis_slate_20261004.md</a> contains five candidates ranked qualitatively by expected improvement and cost. It explicitly avoids numeric score projections. These ranks are prior beliefs, not scores.</p>
 <table><thead><tr><th>Rank</th><th>Hypothesis / layers and signature</th><th>Why it might reveal omitted faults</th><th>Difference / cost / status</th></tr></thead><tbody>
 <tr><td>1</td><td><b>H33-6 cross-physics edge-normal consensus.</b> GeoDAWN bands 14 TMI and 13 isostatic gravity gradients, corroborated by band 15 basement depth or band 17 conductivity edge; aligned normals at 2-pixel Gaussian scale.</td><td>Buried basin-bounding/intrabasin structures may create aligned magnetic/gravity transitions without a surface scarp; contacts can mimic this signal.</td><td>Joint normal agreement plus corroboration and matched-budget reallocation; not just single-layer gradients. Low–medium cost. Tested once; conditional P1 gate failed. Do not upload.</td></tr>
@@ -314,6 +318,59 @@ def build_irregularities() -> str:
     return page("Irregularities & audit log · GEMSDOE33", body, "irregularities.html")
 
 
+def build_focus_review() -> str:
+    audit = read_json(ROOT / "evidence/focus_raster_audit_20261025.json")
+    manifest = reg("focus_rasters_20261025.json")
+    gate = read_json(ROOT / "evidence/promotion_gate_20261025.json")
+    slate = reg("analog_hypotheses_20261025.json")
+    rows = []
+    for item in manifest.get("rasters", []):
+        measured = next((r for r in audit.get("rasters", []) if r["id"] == item["id"]), {})
+        url = (f"https://github.com/{item['repo']}/blob/{item['ref']}/{item['path']}"
+               if "repo" in item else f"{GITHUB}/{item['local_path']}")
+        rows.append(f"<tr><td>{esc(item['site'])}</td><td><a href='{esc(url)}'>{esc(item['id'])}</a></td>"
+                    f"<td>{esc(measured.get('dots', 'not measured'))}</td>"
+                    f"<td><code>{esc(item['sha256'])}</code></td></tr>")
+    hypotheses = []
+    for h in slate.get("candidates", []):
+        sources = " · ".join(f'<a href="{esc(url)}">Official source</a>' for url in h["official_sources"])
+        hypotheses.append(f"<div class='panel warn'><h3>{h['rank']}. {esc(h['id'])} — {esc(h['hypothesis'])}</h3>"
+                          f"<p><b>Layers:</b> {esc(h['layers'])}</p><p><b>Signature:</b> {esc(h['signature'])}</p>"
+                          f"<p><b>Missing-fault rationale:</b> {esc(h['missing_fault_rationale'])}</p>"
+                          f"<p><b>Difference from local prior art:</b> {esc(h['difference_from_repo'])}</p>"
+                          f"<p><b>Non-fault mimic:</b> {esc(h['non_fault_mimic'])}</p>"
+                          f"<p><b>Qualitative priority / cost:</b> {esc(h['expected_improvement'])}; {esc(h['cost'])}</p>"
+                          f"<p><b>{esc(h['availability'])}</b></p><p>{sources}</p></div>")
+    gates = "".join(f"<tr><td>{esc(k)}</td><td>{'PASS' if v is True else 'BLOCKED'}</td></tr>"
+                    for k, v in gate.get("gates", {}).items())
+    body = f"""<h2>Latest audit: what the highest-scoring lineage actually contains</h2>
+<div class="panel bad"><b>NOT OK TO SUBMIT. No new TIFF generated; zero new experiments and zero slots used.</b>
+<p>The unique-submission goal remains incomplete. We will not rename a previous emission or fabricate validation to create a download.</p>
+<p><a href="research/current-run-card.json" download>Download run card JSON</a> · <a href="research/current-promotion-gate.json" download>Automatic gate decision</a> · <a href="research/focus-raster-audit.json" download>Measured forensic audit</a></p></div>
+<h3>GEMSDOE32 B2: reproducible construction, not a verified contest score</h3>
+<p>The user-reported 0.2778 has no organizer receipt here. The pinned owner build record describes deletion of baseline dots at catalogue distance ≤2 pixels (200 m). We downloaded the named B2 raster and reproduced it pixel-exactly from GEMSDOE28 H27-4: <b>40,199 → 37,654 dots; 2,545 deletions, zero additions, zero mismatched cells.</b> This is prior-art forensics, not HOLDOUT-DTI.</p>
+<p>B2 versus H27-4: Spearman <b>0.967587</b> and <b>100% candidate-dot overlap within 3 px</b>. It fails the lane thresholds if reused as a new candidate. GEMSDOE25/GEMSDOE30 share the same 44,090-dot prediction; GEMSDOE28 H27-4/GEMSDOE31 share the same 40,199-dot prediction. These pairs are not independent evidence of scientific improvement. GEMSDOE36 also has high overlap with B2; no PINN or geothermal-discovery claim is established by a filename.</p>
+<h3>Why pruning might help — inference, not score attribution</h3>
+<p>The local metric rewards a maximum nearby match, so redundant predictions can add false-positive cost without proportional new recovery. Deleting low-credit prediction mass can help; deleting near a real missing parallel fault can hurt. The exact net change requires held-out truth, which is unavailable for the reported organizer result. Neither the score list nor a source-code projection proves causation or predicts a higher competition score.</p>
+<p><b>Irregularity:</b> the owner B2 audit's recorded aggregate means disagree with the average of its listed quadrant values; its note also contains an unverified score projection. We do not use that instrument as validation. The request's conflicting leader values 0.4413/0.3195 are not authenticated; no leaderboard was accessed.</p>
+<h3>All nine requested sites covered</h3>
+<p>Twelve precisely named historical rasters, pinned by SHA-256; 132 ordered comparisons on the shared template footprint. This is a focus subset, NOT a complete global uniqueness registry. Hashes authenticate mirror bytes only.</p>
+<div class="scroll"><table><thead><tr><th>Site</th><th>Reference / pinned source</th><th>Positive cells</th><th>SHA-256</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+<h3>Data placement completed; scientific blockers remain</h3>
+<p>All 17 owner-mirror inputs were restored and hash-audited. The existing preparer rebuilt 121 cached feature channels; no detector or stopped arm was retrained. Each feature still requires a leakage canary before being trusted. The sample mirror's finite values equal the catalogue, so only its grid and finiteness mask may be used.</p>
+<p>Both archived H33-6 outside-mask variants were reopened and checked against the now-restored template. Local format passes do not repair its failed science or duplicate status. The writer now rejects invalid values rather than silently clipping them, rejects infinity outside, checks shape and enforces notes ≤140 characters. The organizer reference supports CPU training; a GPU is not mandatory.</p>
+<h3>Automatic promotion evidence gates</h3>
+<p>These are deterministic in-project checks, not a request for a human scientific inspector. <code>scripts/check_promotion.py</code> requires source-pinned shared tools, pooled paired improvement plus CI on screen and independent confirmation, complete feature canaries, both duplicate screens, exact saved-byte validation and budget compliance. It checks evidence completeness, not the truth of arbitrary supplied JSON. Even a pass is only eligibility for a separate weekly-cap-aware selector.</p>
+<table><thead><tr><th>Gate</th><th>Current result</th></tr></thead><tbody>{gates}</tbody></table>
+<h3>Four within-lane hypotheses, ranked BEFORE any new model implementation</h3>
+<p>No identifiable new single-method lane paragraph or canonical template identity is supplied. The historical analog-transfer lane is retained only as planning scope. None of these source-dependent ideas is viable now: GDR/USGS payload hosts are outside this session's outbound allowlist. Historical public listings do not prove current obtainability, independence or licence. No hypothesis was trained or selected, and no performance estimate is reported.</p>
+{''.join(hypotheses)}
+<h3>Primary evidence and reviewable limitations</h3>
+<p><a href="{GITHUB}/knowledge/10_focus_review_20261025.md">Full research/review note and next steps</a> · <a href="{GITHUB}/evidence/source_review_20261025.json">Pinned source inventory</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">Organizer CPU/GPU reference</a>. Official competition rules, weekly cap, current leaderboard and score-to-file receipts were not freshly verified; no automated DrivenData contact was made.</p>
+"""
+    return page("Latest forensic review & automatic gates · GEMSDOE33", body, "latest-review.html")
+
+
 def build_prompt() -> str:
     content = (ROOT / "standing_prompt.md").read_text(encoding="utf-8")
     body = f"""<h2>Standing Brief & Operational Prompt</h2>
@@ -346,6 +403,7 @@ def main() -> int:
         "index.html": build_index(),
         "executive-summary.html": build_exec(),
         "results.html": build_results(),
+        "latest-review.html": build_focus_review(),
         "hypotheses.html": build_hypotheses(),
         "data-sources.html": build_data_sources(),
         "research.html": build_research(),
@@ -356,6 +414,15 @@ def main() -> int:
     }
     for filename, content in pages.items():
         (DOCS / filename).write_text(content, encoding="utf-8")
+    research = DOCS / "research"
+    research.mkdir(exist_ok=True)
+    for source, name in (
+        ("run_card_focus_20261025.json", "current-run-card.json"),
+        ("promotion_gate_20261025.json", "current-promotion-gate.json"),
+        ("focus_raster_audit_20261025.json", "focus-raster-audit.json"),
+    ):
+        payload = read_json(ROOT / "evidence" / source)
+        (research / name).write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n")
     (DOCS / "score-feed.json").write_text(retired_score_feed(), encoding="utf-8")
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")
     (ROOT / "index.html").write_text(
