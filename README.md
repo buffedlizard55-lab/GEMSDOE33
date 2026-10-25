@@ -1,5 +1,7 @@
 # GEMSDOE33 — DOE GEMS Fault Discovery Project (DrivenData #306)
 
+> **Current decision (2026-10-25): no candidate is submission-cleared. Existing downloadable TIFFs are research/reference artifacts, not “OK to submit.”** Read §3 before using any file.
+
 ## §1. Standing Brief & Master Project Directive
 
 > **Operational Directive (Mandatory Starting Point for Every Session):**
@@ -46,181 +48,73 @@
 
 ---
 
-## §3. 🏆 Download Unique Competition Submission (Range-Error Hardened)
+## §3. Submission status — READ BEFORE DOWNLOADING
 
-| File / Parameter | Specification |
-|---|---|
-| **GeoTIFF (Single-Click Download)** | [**⬇ Download GEMSDOE33 Unique Submission TIF**](docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif) (917,544 bytes) |
-| **ZIP Container** | [**⬇ Download Single-Member ZIP**](docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.zip) (311,918 bytes) |
-| **SHA-256 (TIFF)** | `87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757` |
-| **Unique Submission Name** | `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e` |
-| **Paste-Ready Note (158/200 chars)** | `GEMSDOE33 H33-D tip-protected analog xfer | Ben-David bounded transfer + Euler corroboration + flank prune | range-hardened all-finite [0,1] | id cb490425926e` |
-| **Range Error Fix (`[0, 1]`)** | **100% all-finite float32** across all 12,279,160 raster cells. Values outside footprint are strictly `0.0`. **Zero NaNs. Zero sentinels. Cannot fail portal range check.** |
-| **Grid Alignment** | EPSG:32611 · 3730 × 3292 · 100 m resolution · GDAL geotransform `[243350.0, 100.0, 0.0, 4508550.0, 0.0, -100.0]` |
-| **Emitted Budget** | **41,865 dots** (0.81% of footprint) · 1,377 fault tips protected · 133 Euler contact clusters added |
-| **Validation Results** | **+0.000479 DTI (+61.4 TPw)** on SGMC off-catalogue truth; **+0.039211 DTI (+82.5% TPw)** in analog fields (Dixie Valley, Brady's, Desert Peak) |
-| **Projected Live DTI** | **0.2725 – 0.2760** (superseding the H27-4 0.2708 benchmark) |
+> **No current TIFF is cleared for competition upload.** Do not upload either the historical reference or the H33 experimental raster based on this repository's evidence. The H33-6 preregistered diagnostic did not beat its local baseline (mean catalogue-proxy ΔDTI −0.00273732; positive in 2/4 folds); it is conditional because its H19-5 source was not re-derived per fold. Its local artifact is research-only. No organizer receipt or score/file association is present. A valid-format TIFF is not proof of scientific improvement or portal acceptance.
 
-### Why the DrivenData Range Error Happened and How It Is Solved
-- **Error Observed:** `"Predicted values must be in range [0, 1]"` when submitting previous files.
-- **Root Cause:** Older submissions encoded outside-footprint cells as `NaN`. When the portal's evaluation validator runs an all-cells range check (`min >= 0 and max <= 1`), NumPy evaluates comparisons with `NaN` as False, triggering the range error.
-- **The Solution:** The generated submission is **all-finite float32** with strictly `0.0` outside the footprint. Every single pixel in the entire 12,279,160-pixel array is in `[0.0, 1.0]`. Local validation checks pass 10/10.
+The repository contains historical TIFFs in `docs/downloads/`, including H33-D and D2.8. Their old text below may overstate validation, score pairing, or upload suitability; treat these files as **archived research/reference artifacts only**, not recommended submissions. The H33-D claims of transfer-bound validation, projected score, “beats” status, and range-error root cause are not supported by the current evidence and are withdrawn. See [`knowledge/08_h33_6_result_20261004.md`](knowledge/08_h33_6_result_20261004.md), [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json), and [`docs/irregularities.html`](docs/irregularities.html).
 
----
+A candidate may be called submission-ready only after a fresh independent, fold-safe evaluation beats a comparable baseline, passes the written leakage/duplicate gates, is validated on the exact competition grid with official nodata semantics, and the evidence is reviewed. Organizer acceptance still requires an actual portal receipt. The project does not have DrivenData account access and must not upload or scrape.
 
 ## §4. Historical Reference Baseline (For Comparison & Education)
 
-> **D2.8 reference only.** This is an owner-mirror reference emission from GEMSDOE28, not a new model or a demonstrated leaderboard improvement. The source is an owner-published mirror. Its claimed `0.2600` score is owner-reported; no organizer receipt ties that score to these exact bytes.
+> **Not cleared for upload. Historical reference only.** This is an owner-mirror reference emission from GEMSDOE28, not a new model or a demonstrated leaderboard improvement. The source is an owner-published mirror. Its claimed `0.2600` score is owner-reported; no organizer receipt ties that score to these exact bytes.
 
 | | Recommended — follows the null/NaN-outside wording | Troubleshooting alternative |
 |---|---|---|
-| GeoTIFF | [Download the NaN-outside TIFF](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif) | [Download the zero-outside TIFF](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif) |
+| Historical artifact (do not submit) | [NaN-outside TIFF](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif) | [Zero-outside TIFF](docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif) |
 | SHA-256 | `c5e07fad5672879562ea43805cf71c7ba7512fd1a37ca460de83971bc6d8abdc` | `29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73` |
 | Bytes | 499,842 | 423,456 |
 | Outside footprint | NaN | `0.0` (troubleshooting alternative) |
 | Local file checks | 10/10 passed | 10/10 passed |
 
-**Unique submission name:** `gemsdoe33-d28-reference-20261004`
+**Historical identifier (not an approved submission name):** `gemsdoe33-d28-reference-20261004`
 **Paste-ready note (158/200 characters):**
 > `GEMSDOE33 D2.8 reference | owner-mirror emission; 0.2600 is owner-reported, score/file pairing unconfirmed | format-checked, not a new model | id 426073b6b4ab`
 
-See the [executive summary and exact upload steps](docs/executive-summary.html). No submission was uploaded from this session.
+See the [executive summary](docs/executive-summary.html) for gates and general upload procedure. This historical artifact is not recommended for upload. No submission was uploaded from this session.
 
 ---
 
-## §5. PhD Analysis: Why H27-4 Scored 0.2708 & How GEMSDOE33 Beats It
+## §5. Historical metric analysis — not a verified explanation of score 0.2708
 
-### 1. The Metric Structure
-The Distance-Tolerance Intersection (DTI) metric evaluates predictions on hidden ground-truth faults using a 300 m (3-pixel) linear tolerance kernel:
-$$\text{DTI} = \frac{\text{TP}_w}{\text{TP}_w + 0.2\text{FP}_w + 0.8\text{FN}_w} = \frac{\text{TP}_w}{0.2\text{TP}_w + 0.2\text{FP}_w + 0.8|G|}$$
-where $|G| \approx 12,226\text{ px}$ is the hidden truth mass. False positive mass carries a $0.2$ weight in the denominator. With ~40k to ~60k emitted dots, **false positives represent >50% of the entire denominator penalty**.
+The following historical discussion and calculations have not been independently revalidated against organizer truth or a score-linked submission file. In particular, the owner-published GEMSDOE28 page is reported in the repository to label H27-4 unscored/research-only; the user's reported `0.2708` and `0.3195` are not organizer-confirmed in this checkout. No claim that GEMSDOE33 beats either value is justified. The full DTI definitions and old reasoning below are retained as historical notes only; they are not validation, a projected score, or permission to upload.
 
-### 2. Marginal Credit Efficiency Threshold
-Adding or retaining a pixel improves the DTI score if and only if its marginal true positive credit per unit false positive mass clears:
-$$\tau = \frac{0.2 \cdot \text{DTI}}{1 - 0.2 \cdot \text{DTI}}$$
-- At $\text{DTI} = 0.1922$ (H19-5 solid): $\tau = 0.040$
-- At $\text{DTI} = 0.2477$ (d=1.5 px): $\tau = 0.052$
-- At $\text{DTI} = 0.2600$ (d=2.8 px): $\tau = 0.0549$
-- At $\text{DTI} = 0.2708$ (H27-4 r1 prune): $\tau = 0.0573$
-- At $\text{DTI} = 0.3195$ (Leaderboard Top): $\tau = 0.0683$
+## §6. Research record and current candidate slate
 
-### 3. Why H27-4 Achieved 0.2708 (The Highest Score in Campaign History)
-In `dotted-h19-5-d2-8` (44,090 dots, score 0.2600), exactly 3,891 dots sat at $d_{\text{cat}} = 100\text{ m}$ (1 pixel) immediately beside masked known faults due to USGS scarp digitization offsets (Hermant et al., 2025). Because known faults are masked from evaluation, these dots earned near-zero true credit ($e = 0.0040$, 13.7x below break-even) while incurring full false positive penalties.
-Removing those 3,891 lateral flank-shadow dots cut the false-positive penalty by 778.2 units, leaping the score from **0.2600 to 0.2708** (+0.0108 gain).
+The five hypotheses and their layers, mechanisms, prior-art distinctions, costs, and source availability checks are recorded in [`knowledge/07_hypothesis_slate_20261004.md`](knowledge/07_hypothesis_slate_20261004.md) and the frozen machine-readable record [`evidence/hypothesis_slate_20261004_preregistered.json`](evidence/hypothesis_slate_20261004_preregistered.json). The selected runnable H33-6 experiment is complete and **failed its numeric gate**; do not rerun/retune it to seek a better result. Its measured mean proxy delta is −0.00273732, 2/4 folds positive; no 95% CI was computed or reported, so none is claimed. This is conditional catalogue-proxy evidence, not private expert truth or a competition score. The official BRIDGE/USGS analog-data candidates remain blocked on obtaining and auditing the actual payload bytes. See [`knowledge/08_h33_6_result_20261004.md`](knowledge/08_h33_6_result_20261004.md).
 
-### 4. How GEMSDOE33 Goes Further (Beating 0.2708)
-H27-4 blindly pruned all dots within 100 m of known faults, inadvertently cutting fault-tip continuations and stepover relays where active geothermal fluid flow concentrates (Faulds & Hinz, 2015).
-GEMSDOE33 implements **Hypothesis H33-D**:
-1. It uses topological graph filtering to identify 6,747 catalogue tip pixels.
-2. It strictly **protects 1,377 fault-tip continuations** ($d_{\text{tip}} \le 300\text{ m}$) while pruning lateral mid-segment noise ($d_{\text{cat}} \le 1.0\text{ px}$ and $d_{\text{tip}} > 300\text{ m}$).
-3. It corroborates with **133 shallow Euler SI=0 contact clusters** aligned with potential field steps.
-4. Validation on independent SGMC off-catalogue truth gains **+61.4 True Positive pixels** over H27-4 (+0.000479 DTI); validation in analog geothermal fields increases True Positive recovery by **+82.5%** (+286.9 TPw).
-5. Projected live DTI: **0.2725 – 0.2760**.
+## §7. Review of reported campaign scores
 
----
+The score/method list in the prompt is **user-provided context, not independently verified evidence**. It indicates a rising owner-reported sequence among the examples: H25 dotted-ridge (0.2477), D2.8 (0.2600), H27-4 (0.2708), H36-1 (0.2710), H33-2 B2 (0.2778), and a separately supplied leaderboard high (0.3195). None of these values alone establishes why an artifact scored well, its exact bytes, whether the score is official, or whether the experiment is comparable; repository evidence says H27-4 lacks an organizer-verified score/file pairing. **Do not claim H33-2 zeros is the reason for 0.2778 or infer a reproducible mechanism without its TIFF, code, validation details, and organizer receipt.** The most plausible general explanation for the incremental H25→D2.8→H27-4 progression is sparse, spatially regular emission plus pruning near known-catalogue mid-segment flanks, but this is a hypothesis based on owner-mirror campaign descriptions—not causal proof. The distinct H33-6 edge-consensus intervention did not improve the local proxy control, so there is no validated basis to claim this repo can exceed 0.2778 or 0.3195.
 
-## §6. Bounded Domain Adaptation (Ben-David et al., 2010)
+The supplied list also names high-ranking contenders in GEMSDOE24/25/27/28/30/31/32/33/36, but sites use owner-published material. Scores and labels are treated only as the user's supplied historical claims unless an organizer receipt and byte-identifiable artifact are archived. Terms and leaderboard restrictions prohibit building a live scraper/refresh feed without authorization; current process follows [`AGENTS.md`](AGENTS.md). The official competition reference solution and rules are linked below for manual review.
 
-We borrow ground truth from densely drilled analog geothermal fields (**Dixie Valley, Desert Peak, Brady's**) under formal domain adaptation theory.
-Under Theorem 2 of Ben-David et al. (2010), target error is bounded by:
-$$\epsilon_T(h) \le \epsilon_S(h) + \frac{1}{2} d_{\mathcal{H}\Delta\mathcal{H}}(\mathcal{D}_S, \mathcal{D}_T) + \lambda^* + \text{Complexity}(m', d, \delta)$$
+## §8. Download and upload instructions
 
-- **Source Domain:** 527,997 cells in Dixie Valley, Desert Peak, and Brady's containing 7,848 verified catalogue fault cells.
-- **Target Domain:** 4,639,376 regional GeoDAWN footprint cells.
-- **Empirical Divergence:** Trained a domain discriminator on 9 invariant structural feature layers (`tmi_hg`, `tmi_vg`, `iso_grav_anom_hg`, `iso_grav_anom_slope`, `det_elev_slope`, `geod_dilaterate`, `geod_shearrate`, `geod_2ndinv`, `cond_surf`). Classification error is 4.69%, giving an empirical divergence proxy of $d_{\mathcal{H}\Delta\mathcal{H}} \approx 1.8124$, bounded by shared Basin-and-Range extensional tectonics.
-- **Independent Validation:** Treating the analog fields as an independent validation set shows GEMSDOE33 achieves **0.087851 DTI** vs H27-4's **0.048640 DTI**, a **+82.5% gain in True Positive recovery** (+286.9 TPw). Full details are recorded in [`evidence/domain_adaptation_results.json`](evidence/domain_adaptation_results.json).
+There is **no current approved submission download**. Old files in `docs/downloads/` are historical/reference or failed research outputs. A `format_check` pass does not satisfy the scientific holdout gate or establish organizer acceptance. Do not upload any old artifact as a candidate from this README. When a future candidate passes the promotion gate, the website's executive-summary page will provide its exact file, unique name/comment, grid validation, hash, and appropriate upload steps; only then should the owner upload via the official competition page. This workspace cannot access a DrivenData account or create an organizer receipt.
 
----
+## §9. Trusted-source review links
 
-## §7. Candidate Geological Hypotheses (Ranked 1–5)
+- [DrivenData competition overview/rules](https://www.drivendata.org/competitions/306/competition-doe-gems/)
+- [Official problem description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
+- [Official about page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/)
+- [DrivenData reference solution (GitHub)](https://github.com/drivendataorg/gems-prize-reference-solution)
+- [USGS GeoDAWN data record](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
+- [GBCGE INGENIOUS project](https://gbcge.org/current-projects/ingenious/)
+- [EPSG:32611](https://epsg.io/32611)
+- [US DOE GEMS technical report](https://docs.nrel.gov/docs/fy26osti/96647.pdf) (the provided DOE-host variant is retained as a user-supplied link; verify current availability and requirements on the competition page)
+- [Ben-David et al. 2010, domain adaptation](https://doi.org/10.1007/s10994-009-5152-4) — theoretical bounds require their assumptions and terms; an arbitrary domain-classifier AUC is not a transfer guarantee.
+- [Official competition submission instructions](https://www.drivendata.org/competitions/306/competition-doe-gems/)
 
-| Rank | Hypothesis | Specific Layers | Physical Signature | Missing-Catalogue Rationale | Expected Upside / Cost | Validation Status |
-|:---:|---|---|---|---|:---:|:---:|
-| **1** | **H33-D: Fault-Tip Kinematic Stepover Protection & Asymmetric Flank Pruning** | `labels.tif`, `h19_5_nan.tif`, `iso_grav_anom_hg`, Euler SI=0 clusters | Topological endpoint detection: prune mid-segment lateral flank noise ($d_{\text{cat}} \le 1.0\text{ px}$, $d_{\text{tip}} > 300\text{ m}$) while strictly protecting fault tips ($d_{\text{tip}} \le 300\text{ m}$) | Compilations terminate faults where scarps degrade in alluvium; protecting tips captures unmapped stepovers with high permeability | **Highest (+0.006 to +0.012 DTI); Low Cost** | **VALIDATED & SHIPPED** (+0.000479 SGMC DTI, +0.039211 Analog DTI, +82.5% TPw) |
-| **2** | **H33-B: Multi-Scale Aeromagnetic & Gravity Discontinuity (Euler Basement Step)** | `rtp` (band 2), `tmi_hg` (3), `tmi_vg` (9), `iso_grav_anom_hg` (18), `depth_to_base_surf` (15) | Zero-crossing of vertical potential field derivative coincident with horizontal gradient peak, reinforced by 3D Euler SI=0 contact solutions | Deep basement faults that do not rupture late Pleistocene alluvium lack surface scarps but exhibit density and susceptibility offsets | **High (+0.005 to +0.008 DTI); Medium Cost** | **CORROBORATED** (133 Euler clusters added to emission) |
-| **3** | **H33-A: Transtensional Dilation–Shear Strain Stepover Corridors** | `geod_dilaterate` (band 8), `geod_shearrate` (7), `geod_2ndinv` (4), `iso_grav_anom_hg` (18) | Conjunction of positive crustal dilatation ($\dot{\epsilon}_{\text{dil}} > 0$) and maximum shear strain rate (>80th percentile) on gravity steps | Active strain accumulates across pull-apart grabens where scarps are buried by playa sediments or alluvium | **Moderate-High (+0.003 to +0.006 DTI); Low-Med Cost** | **ANALYZED** (Evaluated in domain discriminator) |
-| **4** | **H33-C: Hydrothermal Clay Cap & Conductive Brine Corridor Boundary** | `cond_surf` (band 17), `tc` (band 6), `rad_K`, `rad_Th` | Lateral conductivity gradient boundary ($\nabla_\parallel \sigma_{\text{surf}}$) aligned with extensional strike ($020^\circ-040^\circ$), accompanied by K-enrichment | Hydrothermal clay caps form above blind permeable conduits regardless of geomorphic scarp presence | **Moderate (+0.003 to +0.005 DTI); Low Cost** | **IDENTIFIED** (Structural alteration boundary constraints) |
-| **5** | **H33-7: Field-Verified BRIDGE Analog Supervision** | GDR #1682 BRIDGE LiDAR fault picks in Dixie & Gabbs Valleys; Shared GeoDAWN bands | Transfer learning from field-verified 2D LiDAR fault picks under Ben-David domain divergence bounds | Field-verified ground truth independent of regional USGS compilation | **High Ceiling; High Cost** | **BLOCKED** (GDR archive retrieval blocked by TLS in sandbox) |
+The official competition data download requires an authenticated account. This runtime has no DrivenData authentication; the source-page redirect/login was previously recorded. Owner mirrors are not proof of official data provenance; consult [`registry/sources.json`](registry/sources.json), [`registry/owner_mirror_input_pins.json`](registry/owner_mirror_input_pins.json), and [`data/README.md`](data/README.md). Do not state data placement is complete: `data/core/` is not present here.
 
----
+## §10. Limitations and next work
 
-## §8. Cross-Campaign Historical Submissions Ledger
+1. Recover competition inputs through an authorized official source/account, verify provenance and exact grid/nodata semantics; do not treat the sample raster's positive cells as truth (it overlaps labels).
+2. Any fresh experiment must first declare its single lane, build leakage-safe whole-segment buffered folds with fold-specific feature derivation, report every feature's standalone leakage-canary AUC, and compute pooled DTI with a defined 95% interval. Explicitly check rank correlation and dot proximity against registry rasters before placement and on final output; stop and log duplicates at the stated thresholds.
+3. Use the shared holdout/evaluator and writer, not private methods. Do not proceed if those required shared utilities/data are absent or known to leak. New candidate must beat a comparable current holdout baseline on independent confirmation before it can be considered for a slot. No score projection substitutes for this gate.
+4. Verify candidate against official schema and exact template, including no NaN inside footprint, `[0,1]` values, CRS/shape/transform, and outside-footprint semantics. Separate artifact reproducibility from organizer acceptance.
+5. Current evidence does not include the requested 95% CI, the user-specified exact lane paragraph, access to the cited competition account, organizer score receipts, or the hidden expert truth. These are explicit blockers; no higher-scoring TIF can responsibly be claimed here.
 
-| Campaign / Site | Submission Identifier | Reported DTI Score | Key Methodological Characteristic |
-|---|---|:---:|---|
-| GEMSDOE | `gems-submission-20260925T001403Z-7f00890a` | 0.1563 | Initial baseline emission |
-| 6GEMSDOE | `gems6_hgb88-topk03_33cec71ff0` | 0.0286 | Dense HGB top-3% quantile (over-emission) |
-| GEMSDOE3 | `pindrop-v4-nodes-20260925T152420Z-f347b70daa` | 0.1193 | Structural node sampling |
-| GEMSDOE2 | `gemsdoe2-dual-family-union-20260925T160406Z-f68e590f` | 0.1560 | Dual-family union |
-| 5GEMSDOE | `gems-submission-20260926T175114Z-7f00890a` | 0.1563 | Baseline reproduction |
-| 7GEMSDOE | `lidarscarp-ridge-top2pct-36c3a3f341c8` | 0.1461 | LiDAR scarp ridge top-2% |
-| 8GEMSDOE | `Hedge-v2_submission` | 0.1563 | Hedge-v2 ensemble |
-| 12GEMSDOE | `r7-nms3-dem10-scarp_0c9199f14e62` | 0.1294 | DEM10 scarp NMS |
-| 12GEMSDOE | `r7-nms3-dem10-scarp_0c9199f14e62_allfinite` | 0.1294 | All-finite twin (identical score: proves zero-outside validity!) |
-| 19GEMSDOE | `h19-5-powerlaw-budget-multiline-corroborated` | 0.1922 | 6-expert ridge backbone (121,131 px) |
-| GEMSDOE10 | `h28-dotted-ridge` | 0.1839 | First dotted ridge experiment |
-| GEMSDOE24 | `h25-1-dotted-h19-5-d1-5` | 0.2477 | Poisson-disk thinning at d=1.5 px (60,069 px) |
-| GEMSDOE25 | `dotted-h19-5-d2-8` | 0.2600 | Poisson-disk thinning at d=2.8 px (44,090 px) |
-| GEMSDOE26 | `dilcond-oof-v1` | 0.1223 | Dilatational conductivity OOF |
-| GEMSDOE27 | `topo-gap-closure-t-v2-on-d1-5` | 0.2449 | Straight-line gap closure (T-v2: -0.0028 vs d1.5) |
-| **GEMSDOE28** | `h27-4-r1-solo-d2-8` | **0.2708** | **Solo 1-px blind flank prune on d=2.8 (40,199 px)** |
-| GEMSDOE29 | `efd28-repro` | 0.2600 | Repackaged d=2.8 reference |
-| GEMSDOE30 | `d28-poisson300m-offcat-44090` | 0.2600 | Range-hardened d=2.8 all-finite encoding |
-| **GEMSDOE33** | `GEMSDOE33-h33d-analog-tip-stepover-r30` | **0.2725 – 0.2760** *(Proj.)* | **Tip-protected asymmetric flank prune + Euler multi-physics (41,865 px)** |
-
----
-
-## §9. Verification & Data Placement Checklist
-
-- **All 17 Owner-Mirror Inputs Restored:** `python scripts/restore_data.py --group all` passes with exact SHA-256 integrity match.
-- **Data Placement Verified:** `python scripts/prepare_campaign_data.py` passes (`pass: true` in `evidence/data_placement.json`).
-- **Feature Channel Generation:** `python scripts/prepare_data.py --force-bands --skip-detector` generated all 121 feature channels.
-- **Unique Submission Generated:** `python scripts/build_unique_submission.py` emits `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif`.
-- **Validation Audit:** `python scripts/validate_submission.py` confirms 10/10 checks pass: all-finite float32, zero NaNs, exact EPSG:32611 grid, strictly [0, 1].
-- **Test Suite:** `pytest` passes 66/66 tests.
-- **Site Generation:** `python scripts/build_site.py` compiles full GitHub Pages site under `docs/`.
-
----
-
-## §10. Current Honest Limitations & Research Log
-
-- The `0.3195` target remains unverified as current. A prior one-time official-page status note for **2026-10-04** says the spot-check did not support that claim as then-current, while the GEMSDOE28 owner site contains a separate manual summary dated 2026-10-03 that reports it. That conflict is unresolved; neither observation is a score/file receipt. The [DrivenData Terms of Use](https://www.drivendata.org/termsofuse/) restrict manual/automatic monitoring or copying without prior written consent. This project keeps no row-level data and does not refresh the page. See [`registry/leaderboard_review.json`](registry/leaderboard_review.json) and [`IR-33-SCORE-03`](registry/irregularities.json).
-- The claimed H27-4 `0.2708` score/file attribution is unsupported. The [GEMSDOE28 owner page](https://buffedlizard55-lab.github.io/GEMSDOE28/) labels H27-4 unscored/research-only and reports no GEMSDOE28 score. No organizer receipt or authenticated file/account record ties the claim to that TIFF. The D2.8 `0.2600` pairing is also owner-reported and unconfirmed.
-- **H33-6 failed its preregistered P1 screen:** mean ΔDTI `−0.00273732`, positive in `2/4` folds; P2 SGMC proxy ΔDTI `+0.00015900`. It beat the matched-random mean but not the local H27-4 owner-mirror raster control; that control's score/file pairing is unverified. The arm is stopped; no candidate is approved for a weekly submission slot. See [`knowledge/08_h33_6_result_20261004.md`](knowledge/08_h33_6_result_20261004.md) and [`evidence/holdout_h33_6.json`](evidence/holdout_h33_6.json).
-- A unique H33-6 TIFF is available below **for research/reproduction only**. Its matched-count local format checks pass, but its candidate failed the holdout and the diagnostics are conditional proxies; **do not upload it**. The only top-level recommended package remains the D2.8 reference, not a new model.
-- Upstream C2 is preserved as research-only in [`archive/legacy_candidates/`](archive/legacy_candidates/). Its earlier P1 pass was withdrawn for leakage; the corrected conditional source-exclusion diagnostic is P1 mean ΔDTI `−0.000722` (0/4 positive), P2 SGMC proxy `+0.000283`, and still not slot-cleared because the fixed H19-5 surface was not re-derived per fold and the diagnostic was not an independent preregistered confirmation. See [`evidence/holdout33.json`](evidence/holdout33.json) and [`IR-33-C2-01`](registry/irregularities.json).
-- Initial holdout, reconstruction, pruning and domain-transfer promotion claims were withdrawn after audit. Their scripts/results remain in [`archive/withdrawn_first_pass/`](archive/withdrawn_first_pass/); see [`evidence/first_pass_disposition.json`](evidence/first_pass_disposition.json). Do not reuse the archived metrics as evidence.
-
-## Unique H33-6 TIFF — research only, do not upload
-
-A distinct, reproducible TIFF was generated from the frozen candidate recipe to satisfy the artifact/download requirement. It **failed** its P1 screen and is explicitly **not slot-approved**. Its 10/10 package checks and separate `scripts/validate_submission.py` audit pass under the stated local policy (finite [0,1] inside; NaN or zero outside); this verifies file format only, not science, private-label accuracy, portal acceptance, or a competition score. See [`evidence/format_check_h33_6_6c888d2ce0f7.json`](evidence/format_check_h33_6_6c888d2ce0f7.json).
-
-- **Direct download (NaN outside):** [`GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif`](docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif) · 482,682 bytes · SHA-256 `18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7`.
-- [Single-member ZIP](docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.zip) · optional [zero-outside alternate](docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.tif).
-- **Unique research identifier:** `GEMSDOE33-H33-6-edge-consensus-research-20261004` (not an upload recommendation).
-- **Paste-ready note (141/200 characters):**
-
-> GEMSDOE33 H33-6 edge consensus | P1 delta DTI -0.002737 (2/4), P2 +0.000159 | RESEARCH ONLY; gate failed, not slot-approved | id 6c888d2ce0f7
-
-See [`h33-6-research-manifest.json`](docs/downloads/research/h33-6-research-manifest.json) for hashes, bands and local format checks. The reproducible builder is `scripts/build_h33_6_research.py`.
-
-## Earlier H33-F analog-field screen — separate and not slot-cleared
-
-H33-F is an earlier, distinct exploratory run, not part of the frozen H33-6 slate and not a submission recommendation. It also failed its local proxies: P1 mean ΔDTI `−0.093072` (0/4 positive), P2 `−0.016163` vs the local C0 raster and `+0.001234` vs matched-N random. The exploratory domain-classifier AUC `0.917` is **not** an `HΔH` estimate; source-label compatibility and joint-label error `lambda` remain unresolved. Its unique file is preserved for research only:
-
-- [H33-F NaN-outside TIFF](docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif) · [separate H33-F artifact manifest](docs/downloads/research/h33-f-analog-transfer-manifest.json).
-- [H33-F result review](knowledge/07_analog_transfer.md) · [proxy evidence](evidence/holdout_analog.json).
-
-**Do not upload or spend a slot on H33-F.** Its H19-5 baseline provenance remains conditional, and the BRIDGE/GDR 207 GIS payloads were unavailable.
-
-## Site and Key Records
-
-- [Project Overview (GitHub Pages)](docs/index.html)
-- [Executive Summary / How to Submit](docs/executive-summary.html)
-- [Results & PhD Score Inversion](docs/results.html)
-- [Ranked Geological Hypotheses](docs/hypotheses.html)
-- [Domain Adaptation & Analog Fields](docs/data-sources.html)
-- [Research Candidates & Logs](docs/research.html)
-- [Verified Sources](docs/sources.html)
-- [Irregularities Log](docs/irregularities.html)
-- [Complete Standing Brief (HTML)](docs/standing-prompt.html)
+Full session brief and recurring operating rules: [`standing_prompt.md`](standing_prompt.md). Core values: **Maximize P(Win)** and **Own the Outcome**—including the obligation to stop promoting a failed or unsupported candidate. See [`registry/irregularities.json`](registry/irregularities.json) for recorded issues.
