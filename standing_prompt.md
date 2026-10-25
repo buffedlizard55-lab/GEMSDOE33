@@ -137,3 +137,7 @@ independent preregistered confirmation. H33-6 likewise uses fixed H19-5 and owne
 its diagnostics remain conditional. **No candidate is approved for a weekly slot.** See
 `knowledge/07_hypothesis_slate_20261004.md`, `knowledge/08_h33_6_result_20261004.md`,
 `evidence/first_pass_disposition.json`, `evidence/holdout33.json`, and `evidence/holdout_h33_6.json`.
+
+## Review addendum (2026-10-25)
+
+This session compared the existing H33-6 final raster against all same-grid TIFFs available in the checkout. Seven of nine comparisons exceeded the run protocol's correlation/3-pixel proximity threshold; no new placement or TIFF build was made. The pre-placement score surface and remote GEMSDOE registry rasters were unavailable, so the uniqueness screen is incomplete and remains a stop. H33-6 is **NOT OK TO SUBMIT**: its P1 mean delta was negative, its retained baseline was not re-derived per fold, its feature-alone canary is absent, and its final dots trigger the duplicate guard. See `evidence/duplicate_guard_run_card_20261025.json`, `knowledge/09_20261025_review.md`, and `registry/irregularities.json` entry `IR-33-DUP-20261025`. Treat all scores listed in the user brief as user/owner reports unless an organizer receipt is retained.

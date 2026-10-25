@@ -1,54 +1,51 @@
-"""Public-site copy must be honest and keep the reference download prominent."""
+"""Public-site content must distinguish research artifacts from approved submissions."""
 from scripts import build_site
 
 
-def test_overview_promotes_only_the_format_checked_reference():
+def test_overview_marks_unique_tif_research_only_and_not_uploadable():
     page = build_site.build_index()
-    assert "gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif" in page
-    assert "0.3195" in page
-    assert "was not supported" in page
-    assert "Terms of Use" in page
-    assert "prior written consent" in page
-    assert "nchuzhoy" not in page
-    assert "0.3262" not in page
-    assert "D2.8 reference only" in page
-    assert "No weekly submission slot is approved" in page
-    assert "+0.00601" not in page
-    assert "transfer licensed" not in page
-    assert "calibrated to the live" not in page
+    assert "GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif" in page
+    assert "NOT approved for competition upload" in page
+    assert "No candidate is slot-cleared" in page
+    assert "0.2778" not in page  # no unsupported score claim on landing page
+    assert "0.2708" in page
+    assert "cannot explain why H27-4" in page
+    assert "historical D2.8" in page
+    assert "Do not submit" in page
 
 
-def test_executive_summary_has_exact_name_note_and_upload_caveat():
+def test_executive_summary_explains_process_and_blocks_failed_candidate():
     page = build_site.build_exec()
-    assert "gemsdoe33-d28-reference-20261004" in page
-    assert "GEMSDOE33 D2.8 reference | owner-mirror emission" in page
-    assert "Paste the note" in page
-    assert "NaN" in page
-    assert "No upload or score is asserted" in page
-    assert "Do not upload H33-6 or H33-F" in page
-    assert "AI-use narrative disclosure" in page
-    assert "AI and data provenance disclosure" in page
-    assert "portal acceptance" in page
+    assert "GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7" in page
+    assert "not approved for competition upload" in page
+    assert "not okay to submit" in page
+    assert "predicted" not in page.lower() or "score" in page.lower()
+    assert "Note (≤140 characters)" in page
+    assert "official format instructions" in page
+    assert "organizer receipt" in page
+    assert "no DrivenData auth" in page
 
 
-def test_research_page_blocks_unvalidated_transfer_and_hypothesis_claims():
+def test_hypothesis_page_has_ranked_prior_art_and_blocked_statuses():
+    page = build_site.build_hypotheses()
+    assert "H33-6 cross-physics edge-normal consensus" in page
+    assert "DOE GDR #1682" in page
+    assert "USGS ScienceBase" in page
+    assert "ComCat focal-mechanism" in page
+    assert "H33-10" in page
+    assert "No untested candidate is promoted" in page
+
+
+def test_research_page_exposes_failed_gate_duplicate_guard_and_run_card():
     page = build_site.build_research()
-    assert "EXPLORATORY_NOT_LICENSED" in page
-    assert "BLOCKED_NOT_ESTIMATED" in page
-    assert "retrospective" in page
     assert "H33-6 failed P1" in page
     assert "no candidate is slot-approved" in page
-    assert "score/file pairing unverified" in page
     assert "−0.00273732" in page
-    assert "A generic two-sample AUC is not itself that bound" in page
     assert "Download H33-6 research TIFF" in page
-    assert "Independent local format audit" in page
-    assert "Audit JSON" in page
     assert "RESEARCH ONLY" in page
     assert "Earlier H33-F analog-field screen" in page
     assert "-0.093072" in page
-    assert "Ben-David" in page
-    assert "not</b> a Ben-David" in page
-    assert "Download H33-F research TIFF" in page
-    assert "+0.00601" not in page
-    assert "AUC 0.913" not in page
+    assert "duplicate threshold" in page
+    assert "60,988" in page
+    assert "pre-placement edge surface was not screened" in page
+    assert "H33-6 is not eligible for a slot" in page

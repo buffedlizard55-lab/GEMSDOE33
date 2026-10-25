@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "audit_date": "2026-10-25",
+  "artifact": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
+  "sha256": "18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7",
+  "bytes": 482682,
+  "reopened_saved_bytes": true,
+  "bands": 1,
+  "dtype": "float32",
+  "crs": "EPSG:32611",
+  "shape": [
+    3730,
+    3292
+  ],
+  "transform": [
+    100.0,
+    0.0,
+    243350.0,
+    0.0,
+    -100.0,
+    4508550.0
+  ],
+  "finite_cells": 5167373,
+  "nan_cells": 7111787,
+  "finite_min": 0.0,
+  "finite_max": 1.0,
+  "positive_cells": 40199,
+  "footprint_grid_comparison": "Not repeated against sample_submission.tif because official/owner-mirror sample raster is absent from this checkout. Dimensions/transform were compared with retained format-audit evidence, not a presently available template.",
+  "portal_acceptance": "Not tested; NaN cells occur outside the footprint and all-array finite check fails."
+}
