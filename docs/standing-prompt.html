@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery (DrivenData #306). Unique range-hardened competition submission, Ben-David domain adaptation, and PhD score analysis.">
+<meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>Standing Brief · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research & verified competition submission · as of 2026-10-04</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Leaderboard</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html" aria-current=page>Standing brief</a></nav></div></header>
+<p>DrivenData #306 · evidence-led research · review status 2026-10-25</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html" aria-current=page>Standing brief</a></nav></div></header>
 <main class="wrap"><h2>Standing Brief & Operational Prompt</h2>
 <pre style="white-space:pre-wrap;background:#0d1520;padding:20px;border-radius:12px;"># GEMSDOE33 standing brief and operating contract
 
@@ -144,6 +144,10 @@ independent preregistered confirmation. H33-6 likewise uses fixed H19-5 and owne
 its diagnostics remain conditional. **No candidate is approved for a weekly slot.** See
 `knowledge/07_hypothesis_slate_20261004.md`, `knowledge/08_h33_6_result_20261004.md`,
 `evidence/first_pass_disposition.json`, `evidence/holdout33.json`, and `evidence/holdout_h33_6.json`.
+
+## Review addendum (2026-10-25)
+
+This session compared the existing H33-6 final raster against all same-grid TIFFs available in the checkout. Seven of nine comparisons exceeded the run protocol&#x27;s correlation/3-pixel proximity threshold; no new placement or TIFF build was made. The pre-placement score surface and remote GEMSDOE registry rasters were unavailable, so the uniqueness screen is incomplete and remains a stop. H33-6 is **NOT OK TO SUBMIT**: its P1 mean delta was negative, its retained baseline was not re-derived per fold, its feature-alone canary is absent, and its final dots trigger the duplicate guard. See `evidence/duplicate_guard_run_card_20261025.json`, `knowledge/09_20261025_review.md`, and `registry/irregularities.json` entry `IR-33-DUP-20261025`. Treat all scores listed in the user brief as user/owner reports unless an organizer receipt is retained.
 </pre></main>
-<footer><div class="wrap">Generated deterministically from registered evidence by <code>scripts/build_site.py</code>. Unique submission and D2.8 reference emission are both available. The failed H33-6 research TIFF is a separate non-submission artifact. No DrivenData upload was made from this workspace. Owner mirror, measured, model-derived and official evidence are identified separately in the records.</div></footer>
+<footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>

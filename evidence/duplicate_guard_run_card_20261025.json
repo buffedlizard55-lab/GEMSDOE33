@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-25",
+  "status": "DUPLICATE_GUARD_TRIGGERED_STOP_NO_SLOT",
+  "experiment_count_in_this_audit": 0,
+  "lane": "H33-6 cross-physics edge-normal consensus (already executed in prior evidence; no fresh placement run)",
+  "surface_preplacement_screen": "NOT RUN in this audit: source feature cache is absent; stop before any new placement.",
+  "final_dot_duplicate_screen": {
+    "scope": "Only same-grid TIFFs already committed in this checkout; not every registry raster from other GEMSDOE sites.",
+    "candidate_sha256": "18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7",
+    "candidate_positive_cells": 40199,
+    "comparisons": [
+      {
+        "artifact": "archive/legacy_candidates/gems33-c0-scored-reference-20261004-89bf5b9a2fea.tif",
+        "spearman_rho_on_intersection_of_finite_cells": 0.9496317986426409,
+        "candidate_positive_cells_within_3px": 38319,
+        "candidate_positive_cells": 40199,
+        "fraction_candidate_within_3px": 0.9532326674792905,
+        "other_positive_cells": 40199,
+        "duplicate_trigger": true
+      },
+      {
+        "artifact": "archive/legacy_candidates/gems33-c2-stepover-relay-20261004-01f660dd8656.tif",
+        "spearman_rho_on_intersection_of_finite_cells": 0.9386246802780344,
+        "candidate_positive_cells_within_3px": 38324,
+        "candidate_positive_cells": 40199,
+        "fraction_candidate_within_3px": 0.953357048682803,
+        "other_positive_cells": 41139,
+        "duplicate_trigger": true
+      },
+      {
+        "artifact": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-nanoutside.tif",
+        "spearman_rho_on_intersection_of_finite_cells": 0.777248947197784,
+        "candidate_positive_cells_within_3px": 38304,
+        "candidate_positive_cells": 40199,
+        "fraction_candidate_within_3px": 0.952859523868753,
+        "other_positive_cells": 41865,
+        "duplicate_trigger": true
+      },
+      {
+        "artifact": "docs/downloads/GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif",
+        "spearman_rho_on_intersection_of_finite_cells": 0.777248947197784,
+        "candidate_positive_cells_within_3px": 38304,
+        "candidate_positive_cells": 40199,
+        "fraction_candidate_within_3px": 0.952859523868753,
+        "other_positive_cells": 41865,
+        "duplicate_trigger": true
+      },
+      {
+        "artifact": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-nan.tif",
+        "spearman_rho_on_intersection_of_finite_cells": 0.906380334590181,
+        "candidate_positive_cells_within_3px": 38347,
+        "candidate_positive_cells": 40199,
+        "fraction_candidate_within_3px": 0.9539292022189607,
+        "other_positive_cells": 44090,
+        "duplicate_trigger": true
+      },
+      {
+        "artifact": "docs/downloads/gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros.tif",
+        "spearman_rho_on_intersection_of_finite_cells": 0.906380334590181,
+        "candidate_positive_cells_within_3px": 38347,
+        "candidate_positive_cells": 40199,
+        "fraction_candidate_within_3px": 0.9539292022189607,
+        "other_positive_cells": 44090,
+        "duplicate_trigger": true
+      },
+      {
+        "artifact": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif",
+        "spearman_rho_on_intersection_of_finite_cells": 0.012956319323255014,
+        "candidate_positive_cells_within_3px": 10706,
+        "candidate_positive_cells": 40199,
+        "fraction_candidate_within_3px": 0.26632503296101895,
+        "other_positive_cells": 44090,
+        "duplicate_trigger": false
+      },
+      {
+        "artifact": "docs/downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros.tif",
+        "spearman_rho_on_intersection_of_finite_cells": 0.012956319323255014,
+        "candidate_positive_cells_within_3px": 10706,
+        "candidate_positive_cells": 40199,
+        "fraction_candidate_within_3px": 0.26632503296101895,
+        "other_positive_cells": 44090,
+        "duplicate_trigger": false
+      },
+      {
+        "artifact": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-zeros.tif",
+        "spearman_rho_on_intersection_of_finite_cells": 1.0,
+        "candidate_positive_cells_within_3px": 40199,
+        "candidate_positive_cells": 40199,
+        "fraction_candidate_within_3px": 1.0,
+        "other_positive_cells": 40199,
+        "duplicate_trigger": true
+      }
+    ],
+    "result": "Duplicate guard triggered against multiple local reference artifacts; cross-site registry uniqueness remains unverified."
+  },
+  "source_registry_access": {
+    "remote_rasters_fetched": false,
+    "reason": "No stored raster bytes for the cited external site registry in this checkout; protocol requires stop rather than claim uniqueness."
+  },
+  "holdout_recap": {
+    "label": "HOLDOUT-DTI",
+    "evaluator": "src/gemsdoe33/metric.py:dti_binary; source SHA256 5976aa84cbb2b4613543becfd776cfcad0989a5201612228a4b9d158bbae4bfb; evidence has no semantic evaluator version string",
+    "withheld_positives": 60988,
+    "folds": 4,
+    "mean_delta_dti": -0.0027373185904038984,
+    "fold_deltas": [
+      -0.004907409306639132,
+      -0.012736283824310524,
+      0.003240816987572573,
+      0.0034536017817614895
+    ],
+    "descriptive_95pct_t_interval_across_4_fold_deltas": [
+      -0.01502015276507913,
+      0.009545515584271334
+    ],
+    "interval_method": "two-sided Student-t interval, df=3, applied to 4 fold delta values; descriptive, small-n and conditional, not competition/private-label uncertainty",
+    "p2_sgmc_proxy_delta_dti": 0.0001590034879845742,
+    "qualification": "Conditional catalogue/SGMC proxy diagnostics; H19-5 fixed surface was not rederived fold-wise; not organizer score."
+  },
+  "leakage_canary": {
+    "feature_alone_tests": "NOT PRESENT in the retained H33-6 evidence",
+    "status": "UNRESOLVED; do not trust individual features or promote"
+  },
+  "validator": {
+    "artifact": "docs/downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif",
+    "single_band_float32": true,
+    "footprint_no_nan": true,
+    "footprint_values_0_1": true,
+    "outside_is_nan": true,
+    "whole_array_no_nan": false,
+    "whole_array_values_0_1": false,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "matches_recorded_sample_grid": true,
+    "local_validator_pass": "Historical recorded format audit only; not rerun using validate_submission.py in this audit.",
+    "portal_acceptance": "NOT TESTED; whole-array finite-range check would fail due to NaN outside",
+    "independent_saved_bytes_readback_2026_10_25": "evidence/saved_bytes_audit_20261025.json",
+    "template_raster_present_now": false,
+    "grid_match_basis": "Retained format_check_h33_6_6c888d2ce0f7.json; current template comparison not repeated because the template raster is absent."
+  },
+  "submission": {
+    "name": "GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7",
+    "note": "H33-6 edge-normal research artifact; holdout gate failed; not approved for competition upload. id 6c888d2ce0f7",
+    "note_characters": 110,
+    "tif_sha256": "18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7",
+    "status": "RESEARCH ONLY, DO NOT SUBMIT; no new TIF generated in this audit"
+  },
+  "verdict": "negative",
+  "hypothesis": "H33-6: spatial coincidence and normal alignment of TMI and isostatic-gravity edges, corroborated by basement-depth or conductivity edges, may identify concealed faults outside the public catalogue.",
+  "mechanism": "A buried fault may juxtapose magnetic susceptibility and density and disrupt basement/conductivity structure without a preserved surface scarp; edge-normal agreement and independent-layer corroboration were scored, then a matched 5% of baseline dots were reallocated.",
+  "named_non_fault_mimic": "Lithologic contact or basin-fill boundary can create aligned magnetic, gravity, basement-depth and conductivity transitions without being a fault.",
+  "verdict_reason": "Negative: conditional holdout mean delta is below zero; individual-feature leakage canaries are missing; final-dot duplicate threshold triggered against local artifacts; full external registry and pre-placement surface screens are unavailable."
+}
