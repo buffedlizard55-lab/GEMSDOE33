@@ -37,3 +37,5 @@
    forecast.
 8. **Own the outcome**: if a run fails or an artifact is missing, fix it or flag it as an
    irregularity (IR-*) in the README table the same session.
+
+9. **Latest continuation:** read `knowledge/10_focus_review_20261025.md` and the active addendum in `standing_prompt.md`. All 17 owner inputs and 121 cached channels were restored/prepared; this does not authenticate official origin or pass feature canaries. The 12-raster focus audit proves B2 is a deletion-only duplicate-family emission. Do not rerun H33-F/H33-6 or copy B2. Four new analog planning ideas are blocked by missing independent official labels and no explicit new lane/canonical template. `scripts/check_promotion.py` is an automatic completeness gate, not a new evaluator, selector or upload tool. Its expected current exit is 2; no new TIFF is claimed.

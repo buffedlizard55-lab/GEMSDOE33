@@ -1,0 +1,214 @@
+{
+  "access_date": "2026-10-25",
+  "method": "GitHub API at pinned commit; no DrivenData access",
+  "sources": [
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1",
+      "path": "README.md",
+      "local": ".cache/review/24-README.md",
+      "sha256": "058ab4da751b11a7acd767341c6420b58831e2f792e50bc4eb0fa8df2b27dfb4",
+      "bytes": 103526,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/README.md",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1",
+      "path": "scripts/evaluate_holdout.py",
+      "local": ".cache/review/24-evaluate_holdout.py",
+      "sha256": "11976463a68ff0e23181f4e13832f62b1f644c462abc7ed130054ce242c8fd4a",
+      "bytes": 15202,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/scripts/evaluate_holdout.py",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE24",
+      "ref": "fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1",
+      "path": "scripts/submission_writer.py",
+      "local": ".cache/review/24-submission_writer.py",
+      "sha256": "552621e4f1a8836922cbd0557c56e409b22e98d90d8b091baaa77a2fa0ef0717",
+      "bytes": 1515,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE24/blob/fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1/scripts/submission_writer.py",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "ref": "e40b9b5e3871cb34d138f586bde97f5099658d01",
+      "path": "knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md",
+      "local": ".cache/review/25-13_gemsdoe32_h33_score_review_2026-10-25.md",
+      "sha256": "712f46038109520b3cc0522e77b365aee7ff34a375e20cf4599d33089302573a",
+      "bytes": 14627,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/e40b9b5e3871cb34d138f586bde97f5099658d01/knowledge/13_gemsdoe32_h33_score_review_2026-10-25.md",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE25",
+      "ref": "e40b9b5e3871cb34d138f586bde97f5099658d01",
+      "path": "evidence/top_scorer_forensics.json",
+      "local": ".cache/review/25-top_scorer_forensics.json",
+      "sha256": "5546ae09ee7e05bead250e14bf6cb06435dbb212762f48aa83a0b732b102fa8d",
+      "bytes": 49957,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE25/blob/e40b9b5e3871cb34d138f586bde97f5099658d01/evidence/top_scorer_forensics.json",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE27",
+      "ref": "cd6bdab32e82c4fd3bcf4ba15294cb11903e84eb",
+      "path": "README.md",
+      "local": ".cache/review/27-README.md",
+      "sha256": "4ef08210646a52c02f5d94dd0129cc025563a5c702238946ef780fa5bf4e7dff",
+      "bytes": 58577,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE27/blob/cd6bdab32e82c4fd3bcf4ba15294cb11903e84eb/README.md",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE28",
+      "ref": "e6321461066f89080e3b1bb670d3951ab20d3638",
+      "path": "knowledge/47_session15_high-score-review_and_blocked-experiment.md",
+      "local": ".cache/review/28-47_session15_high-score-review_and_blocked-experiment.md",
+      "sha256": "890e8e17a3c62413c00a636ab9b8fc43a8f70ba719e53afb7d7e9539f7a60871",
+      "bytes": 19636,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE28/blob/e6321461066f89080e3b1bb670d3951ab20d3638/knowledge/47_session15_high-score-review_and_blocked-experiment.md",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE30",
+      "ref": "3edad3641bcc3d72bd3cd05b77b719297617841c",
+      "path": "docs/research/why-d28-scored-026.md",
+      "local": ".cache/review/30-why-d28-scored-026.md",
+      "sha256": "91ef6d3fc9934dcdfa0429f747c08ee9c80508bf01ff6d2016e5ac1f410eddd2",
+      "bytes": 7944,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE30/blob/3edad3641bcc3d72bd3cd05b77b719297617841c/docs/research/why-d28-scored-026.md",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "ref": "1ffc7ad5467a9860f7eb1554c5888d0bfd15db1e",
+      "path": "registry/score_claims.json",
+      "local": ".cache/review/31-score_claims.json",
+      "sha256": "36f573ef3ba37c44aa2608690e6861b2392eec154b58e5a60ed9b98f38a3aacf",
+      "bytes": 26652,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/1ffc7ad5467a9860f7eb1554c5888d0bfd15db1e/registry/score_claims.json",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "ref": "1ffc7ad5467a9860f7eb1554c5888d0bfd15db1e",
+      "path": "scripts/evaluate_holdout.py",
+      "local": ".cache/review/31-evaluate_holdout.py",
+      "sha256": "8114d61a29b7d6b84bcc76855541f051ab6a8fa0253998488ba058c756ef8aaf",
+      "bytes": 50721,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/1ffc7ad5467a9860f7eb1554c5888d0bfd15db1e/scripts/evaluate_holdout.py",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE31",
+      "ref": "1ffc7ad5467a9860f7eb1554c5888d0bfd15db1e",
+      "path": "scripts/submission_writer.py",
+      "local": ".cache/review/31-submission_writer.py",
+      "sha256": "407ffbdff1b7c61a5c146a98bf54faac2fa6aed5be61466ae13cedaf232cee4c",
+      "bytes": 7714,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE31/blob/1ffc7ad5467a9860f7eb1554c5888d0bfd15db1e/scripts/submission_writer.py",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "ref": "5786b21a1674b26ee525e8e9bf048e2e0f50fc0e",
+      "path": "scripts/build_h33_candidates.py",
+      "local": ".cache/review/32-build_h33_candidates.py",
+      "sha256": "624986e243da63576ace5ec8af63f08c4551c4093cda2acdbbc02c8fe6ab5f40",
+      "bytes": 9806,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/5786b21a1674b26ee525e8e9bf048e2e0f50fc0e/scripts/build_h33_candidates.py",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "ref": "5786b21a1674b26ee525e8e9bf048e2e0f50fc0e",
+      "path": "scripts/run_h33_validation.py",
+      "local": ".cache/review/32-run_h33_validation.py",
+      "sha256": "bb695285cf8da0f0eae68ce7e1cae3d98232aacf072d4af1fd8e82d08a526628",
+      "bytes": 18464,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/5786b21a1674b26ee525e8e9bf048e2e0f50fc0e/scripts/run_h33_validation.py",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "ref": "5786b21a1674b26ee525e8e9bf048e2e0f50fc0e",
+      "path": "evidence/h33_holdout.json",
+      "local": ".cache/review/32-h33_holdout.json",
+      "sha256": "45d3e86ecbc3caa98b5a29a4ae0dd1702d55950df117802bd6e4d3066bddca7b",
+      "bytes": 8885,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/5786b21a1674b26ee525e8e9bf048e2e0f50fc0e/evidence/h33_holdout.json",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "ref": "5786b21a1674b26ee525e8e9bf048e2e0f50fc0e",
+      "path": "docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-audit.json",
+      "local": ".cache/review/32-gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-audit.json",
+      "sha256": "e4db14f2e369b1db37870d8d1a31035f730512309a88810d99ff705782e28212",
+      "bytes": 3903,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/5786b21a1674b26ee525e8e9bf048e2e0f50fc0e/docs/downloads/gemsdoe32-h33-h33-2-b2-20261004T220000Z-e5eb6e7e-audit.json",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE32",
+      "ref": "5786b21a1674b26ee525e8e9bf048e2e0f50fc0e",
+      "path": "docs/downloads/submissions_manifest.json",
+      "local": ".cache/review/32-submissions_manifest.json",
+      "sha256": "6964e87546742d4a58609888d8a3b74d4c9fcbbc08d9a508ab170e446bed1c3d",
+      "bytes": 22645,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32/blob/5786b21a1674b26ee525e8e9bf048e2e0f50fc0e/docs/downloads/submissions_manifest.json",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "ref": "c9ad59ec6f969ed931d089a03044c1567a633e84",
+      "path": "scripts/run_pipeline.py",
+      "local": ".cache/review/36-run_pipeline.py",
+      "sha256": "ccb0656c81d8b27388164aafb31b9a66cc024db2b0b46832c398c9b94d0c48a4",
+      "bytes": 11683,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c9ad59ec6f969ed931d089a03044c1567a633e84/scripts/run_pipeline.py",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "ref": "c9ad59ec6f969ed931d089a03044c1567a633e84",
+      "path": "scripts/run_holdout.py",
+      "local": ".cache/review/36-run_holdout.py",
+      "sha256": "6a99ca3185c3751dd37fd500c9a846704bd7f39fa9421e96ad30b7e390762fde",
+      "bytes": 13262,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c9ad59ec6f969ed931d089a03044c1567a633e84/scripts/run_holdout.py",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "buffedlizard55-lab/GEMSDOE36",
+      "ref": "c9ad59ec6f969ed931d089a03044c1567a633e84",
+      "path": "docs/downloads/submissions_manifest.json",
+      "local": ".cache/review/36-submissions_manifest.json",
+      "sha256": "d66bad3b82ade1eabb86a650f7b5ebd72a496e02f33ee8c1703c0c0e60876162",
+      "bytes": 4130,
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE36/blob/c9ad59ec6f969ed931d089a03044c1567a633e84/docs/downloads/submissions_manifest.json",
+      "authority": "owner repository, not organizer"
+    },
+    {
+      "repo": "drivendataorg/gems-prize-reference-solution",
+      "ref": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+      "path": "README.md",
+      "sha256": "cfa4d55559c9128313beb9417eae7e0a94c31677132afb1120f9e86222804239",
+      "bytes": 2367,
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md",
+      "authority": "organizer-maintained reference; not submission receipt"
+    },
+    {
+      "repo": "drivendataorg/gems-prize-reference-solution",
+      "ref": "aebe92f7c8a990f0e3443451b7a825d9afd6336b",
+      "path": "unet-mc-cv-reference-solution.ipynb",
+      "sha256": "1a7622732ba00f67237058bc0efe79b45ba4e87c449fc9c1e5d6ea659de92ca0",
+      "bytes": 1578736,
+      "url": "https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/unet-mc-cv-reference-solution.ipynb",
+      "authority": "organizer-maintained reference; not submission receipt"
+    }
+  ]
+}

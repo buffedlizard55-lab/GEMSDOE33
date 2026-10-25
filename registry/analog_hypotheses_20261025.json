@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-25",
+  "scope": "Planning within the README's historical analog-transfer lane only. No new explicit single-method lane paragraph is identifiable in this request. Do not select a lane or build a surface from these ranks.",
+  "ranking_basis": "Qualitative expected usefulness for hidden-fault DTI, discounted for confounding and implementation cost. No numerical score forecasts; none is presently viable or promoted.",
+  "novelty_scope": "Relative to local src/gemsdoe33/analog.py, features.py, detector.py and historical H33-F/H33-6 records. Not a claim of global novelty across all GEMSDOE projects.",
+  "candidates": [
+    {
+      "rank": 1,
+      "id": "AT1",
+      "hypothesis": "Cover-stratified, field-held-out transfer of magnetic/gravity edge-normal agreement",
+      "layers": "Cached TMI, isostatic gravity, basement-depth and LiDAR step/coherence channels; independent field fault geometries from DOE GDR 1682 BRIDGE and/or GDR 207.",
+      "signature": "Learn source-field fault versus lithologic-contact discrimination from normal agreement and cross-edge signed contrasts. Condition covariate-shift weighting on common basement-depth/relief support, not field identity.",
+      "missing_fault_rationale": "Concealed discontinuities can affect density and susceptibility without a mapped scarp. Independent dense analog traces could teach that class; mere agreement does not establish a fault.",
+      "difference_from_repo": "H33-F used the same regional catalogue inside named field masks, not independently mapped extra faults or field-held-out contact discrimination. H33-6 used fixed edge consensus and a baseline swap, not independent-label transfer. Do not rerun either failed arm.",
+      "non_fault_mimic": "Basin-fill/lithologic contact",
+      "expected_improvement": "Highest conditional upside in this lane; unknown sign until independent-label confirmation",
+      "cost": "Medium-high: GIS audit and independent source-label deduplication dominate; CPU model sufficient",
+      "official_sources": ["https://gdr.openei.org/submissions/1682", "https://gdr.openei.org/submissions/207"],
+      "availability": "BLOCKED: official payload hosts are outside this session's outbound allowlist; no independent geometry bytes staged. Historical listing is not proof of current obtainability or licence.",
+      "viable_now": false
+    },
+    {
+      "rank": 2,
+      "id": "AT2",
+      "hypothesis": "Analog-transfer of structure-conditioned radiometric alteration residuals",
+      "layers": "Owner-mirrored GeoDAWN K/Th/total-count channels, TMI and gravity ridges, basement depth; independent BRIDGE/GDR 207 field fault geometries.",
+      "signature": "Within matched relief/depth/lithology strata, measure along-strike persistence of radiometric residuals across independently mapped source faults; transfer only inside common feature support.",
+      "missing_fault_rationale": "Fluid alteration along permeable buried structures may preserve a weak geochemical halo even when no clear scarp is catalogued. Test against regional lithology, not hot-spring proximity alone.",
+      "difference_from_repo": "Current radiometric cache contains scalar/transform channels; H33-F did not fit independent fault-conditioned residual distributions or a field-held-out radiometric negative control.",
+      "non_fault_mimic": "Alluvial provenance or hydrothermal alteration unrelated to an active permeable fault",
+      "expected_improvement": "Medium conditional upside, lower confidence than AT1 because surface transport can dominate",
+      "cost": "Medium-high; source GIS plus stratum definition and negative controls",
+      "official_sources": ["https://gdr.openei.org/submissions/1682", "https://gdr.openei.org/submissions/207", "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"],
+      "availability": "BLOCKED: radiometric owner-mirror bytes available and pinned, official survey provenance not reauthenticated; independent field labels absent and official payload hosts unavailable here.",
+      "viable_now": false
+    },
+    {
+      "rank": 3,
+      "id": "AT3",
+      "hypothesis": "Field-held-out contrastive transfer of buried-fault cross-section motifs",
+      "layers": "Cached det_elev curvature, basement depth, conductivity and gravity cross-edge profiles; independent BRIDGE/GDR 207 field picks.",
+      "signature": "Compare oriented multi-layer profiles across source faults with matched unfaulted basin margins; align by local edge normal and transfer the shape, not absolute geographic coordinates.",
+      "missing_fault_rationale": "Subtle flexural/structural contrasts can recur beneath cover without reproducing a regional mapped trace.",
+      "difference_from_repo": "H33-F's per-pixel HGB and H33-6's local edge-normal product do not learn profile-shape contrastive motifs using independent field labels. This is not a new generic curvature transform claim.",
+      "non_fault_mimic": "Shoreline terrace or erosional basin-margin flexure",
+      "expected_improvement": "Medium-to-low conditional upside; profile alignment and source/target resolution mismatch increase risk",
+      "cost": "High; profile extraction, support matching and independent field confirmation",
+      "official_sources": ["https://gdr.openei.org/submissions/1682", "https://gdr.openei.org/submissions/207"],
+      "availability": "BLOCKED: local geophysical predictors available; official independent fault geometry payloads absent/unobtainable under host restriction.",
+      "viable_now": false
+    },
+    {
+      "rank": 4,
+      "id": "AT4",
+      "hypothesis": "Resolution-degraded analog motifs that survive removal of topographic evidence",
+      "layers": "Cached magnetic/gravity/conductivity/basement fields and LiDAR step/coherence; independent source-field faults from BRIDGE/GDR 207.",
+      "signature": "Train on independently mapped source faults at native support, then withhold LiDAR and degrade source features to target support. Retain only structures whose recovery remains stable under that prespecified ablation.",
+      "missing_fault_rationale": "Tests whether a source motif depends on obvious exposed scarps or persists in subsurface measurements likely to detect covered faults.",
+      "difference_from_repo": "No independent-label, field-held-out resolution-degradation experiment exists locally. It does not use the same catalogue twice or interpret discriminator AUC as a Ben-David bound.",
+      "non_fault_mimic": "Regional processing seam that persists under smoothing",
+      "expected_improvement": "Low direct upside; valuable falsification/robustness test rather than score-seeking ensemble",
+      "cost": "High; requires AT1-quality source labels and instrument-resolution audit first",
+      "official_sources": ["https://gdr.openei.org/submissions/1682", "https://gdr.openei.org/submissions/207"],
+      "availability": "BLOCKED: independent geometry unavailable; no viable method or submission proposed without it.",
+      "viable_now": false
+    }
+  ]
+}
