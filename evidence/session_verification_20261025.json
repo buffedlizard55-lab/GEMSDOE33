@@ -42,7 +42,9 @@
   "organizer_upload": false,
   "promotion_gate_expected_exit": 2,
   "pr": {
-    "status": "pending creation; updated after GitHub operation"
+    "number": 12,
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/pull/12",
+    "snapshot": "Created after local three-pass verification; this snapshot precedes merge. The GitHub PR record is authoritative for checks and final merge outcome."
   },
   "incomplete_requirements": [
     "No genuinely new submission TIFF.",
