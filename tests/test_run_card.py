@@ -15,6 +15,8 @@ def test_duplicate_guard_card_is_negative_and_byte_pinned():
     assert card["surface_preplacement_screen"].startswith("NOT RUN")
     assert card["holdout_recap"]["withheld_positives"] == 60988
     assert card["holdout_recap"]["mean_delta_dti"] < 0
+    assert card["holdout_recap"]["pooled_p1_delta_dti"] < 0
+    assert card["holdout_recap"]["pooled_p1_candidate_dti"] < card["holdout_recap"]["pooled_p1_control_dti"]
     assert card["leakage_canary"]["status"].startswith("UNRESOLVED")
     assert card["submission"]["status"].startswith("RESEARCH ONLY")
     assert card["submission"]["note_characters"] <= 140

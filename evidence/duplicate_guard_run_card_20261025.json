@@ -116,7 +116,26 @@
     ],
     "interval_method": "two-sided Student-t interval, df=3, applied to 4 fold delta values; descriptive, small-n and conditional, not competition/private-label uncertainty",
     "p2_sgmc_proxy_delta_dti": 0.0001590034879845742,
-    "qualification": "Conditional catalogue/SGMC proxy diagnostics; H19-5 fixed surface was not rederived fold-wise; not organizer score."
+    "qualification": "Conditional catalogue/SGMC proxy diagnostics; H19-5 fixed surface was not rederived fold-wise; not organizer score.",
+    "pooled_p1_candidate_dti": 0.11248622668807581,
+    "pooled_p1_control_dti": 0.1146690924917678,
+    "pooled_p1_delta_dti": -0.00218286580369198,
+    "pooled_metric_definition": "Recomputed by summing the retained per-fold TPw/FPw/FNw over all four held-out folds, then applying alpha=0.2, beta=0.8 and the local epsilon; each held-out positive is counted once.",
+    "pooled_components": {
+      "candidate": {
+        "tpw": 9315.705961297106,
+        "fpw": 160814.36593174894,
+        "fnw": 51672.294038702894,
+        "dti": 0.11248622668807581
+      },
+      "control": {
+        "tpw": 9498.79813730125,
+        "fpw": 160732.21887627244,
+        "fnw": 51489.201862698756,
+        "dti": 0.1146690924917678
+      }
+    },
+    "ci_note": "The interval describes fold-level delta distribution (mean fold \u0394DTI), not the pooled delta estimator."
   },
   "leakage_canary": {
     "feature_alone_tests": "NOT PRESENT in the retained H33-6 evidence",
