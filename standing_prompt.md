@@ -212,3 +212,25 @@ value remains **OWNER/USER-REPORTED, NOT ORGANIZER-CONFIRMED** absent a retained
 Current evidence: `evidence/a33_l1_experiment.json`, `evidence/a33_l1_run_card.json`,
 `evidence/focus_registry_analysis_20261025.json`, and
 `knowledge/11_focus_forensics_and_a33_l1_result_20261025.md`.
+
+---
+
+## Round 2 Standing Brief & Outcome Addendum (2026-10-26, `A33-R2-CSHT`)
+
+### Newly user-reported 2026-10-25 focus-site submissions audited in Round 2
+All scores below are **USER/OWNER-REPORTED — NOT ORGANIZER-CONFIRMED** (pinned and SHA-256-verified in `registry/focus_rasters_20261026.json`):
+- `GEMSDOE24`: `gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros` (`0.0859`*)
+- `GEMSDOE25`: `gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros` (`0.0742`*)
+- `GEMSDOE27`: `gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite` (`0.2190`*)
+- `GEMSDOE28`: `gems28-s18-mxtp-20261025-3e95505c011a-allfinite` (`0.0217`*)
+- `GEMSDOE30`: `gems30-MSDB1-edge44090-20261025-e7856ec3f14a` (`0.1462`*)
+- Classic focus submissions retained in the 21-raster registry: `GEMSDOE31` `h27-4-r1-solo-d2-8` (`0.2708`*), `GEMSDOE32` `h33-h33-2-b2` (`0.2778`*), `GEMSDOE33` `h33d` (`0.2632`*), `GEMSDOE36` `anderson-dipslip-h33b2-k1200` (`0.2750`*), plus `GEMSDOE24` `h25-1` (`0.2477`*), `GEMSDOE25`/`30` `d2.8` (`0.2600`*), `GEMSDOE27` `topo-gap` (`0.2449`*), `GEMSDOE28` `h36-1`/`h35-1`/`c1`, and all 4 local `GEMSDOE33` rasters (`A33-L1`, `H33-F`, `H33-6`, `D2.8`).
+
+### Round 2 (`A33-R2-CSHT`) outcome (2026-10-26)
+1. **Shared template feature-stack bug fixed (`IR-33-LIDAR-VOID-01`):** `src/gemsdoe33/features.py` now preserves exact `0.0` in `lid_valid` and explicit `NaN` in `lid_*` across all `1,272,913` in-footprint 3DEP LiDAR void cells (`24.63%`), eliminating `260,733` phantom Voronoi scarp extrapolations in `NE_LidarGapHeavy` while keeping all 109 non-LiDAR channels unchanged.
+2. **Preregistered 5-hypothesis slate (`knowledge/12_preregistered_a33_r2_hypotheses_20261026.md`, `evidence/a33_r2_preregistration_20261026.json`):** Frozen before implementation (`SHA-256: f6144c2b6e0cd5bddb0966d9321697be3bb5a070808559a94f38eddcd2a70268`), selecting `A33-R2-CSHT` (3-head cover-stratified regional + topography-free concealed-basin + INGENIOUS `1,116`-seed hydrothermal-conduit local-contrast transfer with 300 m triangular-kernel `CELF` submodular crest allocation).
+3. **Unique GeoTIFF generated & validated:**
+   - Primary `[0, 1]` file: `docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif` (`.zip` & `-nan.tif` twin included; `SHA-256: 14ab452c22aaf07444cd02e589fce4627d682e99f44c63e78dc1383955e0c602`; `37,654` dots; `0` catalogue overlap).
+   - **OK TO DOWNLOAD:** **`YES`** (100% format-valid `[0, 1]` `float32` `EPSG:32611` `3730×3292` GeoTIFF; placed `final_dots` pass `21 / 21` registry uniqueness checks with `max |Spearman| = 0.0416 <= 0.90`, `max 3-px overlap = 0.6934 <= 0.70` vs `G30-MSDB1`, and `0.3586` vs `G32-B2`).
+   - **OK TO SUBMIT (WEEKLY SLOT):** **`NO — DO NOT SPEND A WEEKLY SLOT`** (`Run Card verdict = "duplicate"`, `11 / 12` `promotion.py` gates passed, stopped fail-closed on `surface_not_duplicate`). Even though `A33-R2-CSHT` beat `B1_regional` across **`8 / 8` holdout folds** (`screen HOLDOUT-DTI = 0.136716` vs `0.112418` [`0.113244` recorded], paired $\Delta = +0.024298$ `[+0.012427, +0.035833]`, `4/4` folds; orthogonal `confirmation HOLDOUT-DTI = 0.131169` vs `0.115122`, paired $\Delta = +0.016047$ `[+0.003817, +0.028030]`, `4/4` folds) and passed `50 / 50` leakage canaries (`max fold AUC = 0.7685 <= 0.90`), its pre-placement continuous surface peaks converged (`> 70%` 3-px overlap) with 2026-10-25 sibling regional-HGB rasters `G30-MSDB1` (`0.1462`*), `G24-gvc1` (`0.0859`*), and `G25-h66` (`0.0742`*). Campaign stopped cleanly at `3 / 3` experiments with `0` weekly slots spent.
+   - Authoritative Round 2 evidence: `evidence/a33_r2_experiment_20261026.json`, `evidence/a33_r2_run_card_20261026.json`, `evidence/a33_r2_uniqueness_20261026.json`, `evidence/a33_r2_promotion_assessment_20261026.json`, and `knowledge/13_focus_forensics_g32_proof_and_a33_r2_results_20261026.md`.

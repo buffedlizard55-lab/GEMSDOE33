@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "frozen_utc": "2026-10-26T00:35:00Z",
+  "lane": "GEMSDOE33 analog-field and hydrothermal-conduit structural transfer",
+  "hypothesis_id": "A33-R2-CSHT",
+  "hypothesis_title": "Cover-Stratified Multi-Physics & Hydrothermal-Conduit Analog Transfer with 300 m Submodular Crest Allocation",
+  "prior_experiments_used": 1,
+  "planned_experiments": {
+    "experiment_2": {
+      "role": "primary_screen",
+      "split_id": "quadrant-buffered-15px-v1",
+      "evaluator": "vendor/gems24_template/holdout.py::SegmentHoldout",
+      "evaluator_version": "gems-segment-pooled-v1",
+      "buffer_px": 15
+    },
+    "experiment_3": {
+      "role": "independent_confirmation",
+      "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+      "evaluator": "vendor/gems24_template/holdout.py::spatial_components+pooled_components+pooled_bootstrap",
+      "evaluator_version": "gems-segment-pooled-v1",
+      "buffer_px": 20,
+      "frozen_before_screen_results": true
+    }
+  },
+  "maximum_campaign_experiments": 3,
+  "maximum_elapsed_seconds": 7200,
+  "cached_feature_names": [
+    "lid_valid",
+    "lid_ex_max",
+    "lid_step_max",
+    "lid_lapneg_max",
+    "lid_coh100",
+    "lid_relief",
+    "det_elev_slope",
+    "det_elev_curv2",
+    "det_elev_curv4",
+    "det_elev_coh",
+    "tmi_hg",
+    "tmi_vg",
+    "tc",
+    "rtp_gms2",
+    "rtp_coh",
+    "ext_TMI_up150_gm2",
+    "iso_grav_anom_hg",
+    "iso_grav_anom_vg",
+    "iso_grav_anom_slope",
+    "iso_grav_anom_gms4",
+    "depth_to_base_surf",
+    "depth_to_base_surf_gms2",
+    "cond_surf",
+    "cond_surf_gms2",
+    "cond_surf_laps2",
+    "ext_ThK",
+    "ext_UK",
+    "geod_2ndinv",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "ieq_n100a15",
+    "deq_n100a15"
+  ],
+  "derived_label_free_hydro_features": [
+    "hydro_demag_contrast",
+    "hydro_upflow_potential"
+  ],
+  "concealed_head_features": [
+    "tmi_hg",
+    "tmi_vg",
+    "tc",
+    "rtp_gms2",
+    "rtp_coh",
+    "ext_TMI_up150_gm2",
+    "iso_grav_anom_hg",
+    "iso_grav_anom_vg",
+    "iso_grav_anom_slope",
+    "iso_grav_anom_gms4",
+    "depth_to_base_surf",
+    "depth_to_base_surf_gms2",
+    "cond_surf",
+    "cond_surf_gms2",
+    "cond_surf_laps2",
+    "ext_ThK",
+    "ext_UK",
+    "geod_2ndinv",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "ieq_n100a15",
+    "deq_n100a15",
+    "hydro_demag_contrast",
+    "hydro_upflow_potential"
+  ],
+  "hydro_analog_contrast_features": [
+    "tmi_hg",
+    "tc",
+    "rtp_gms2",
+    "ext_TMI_up150_gm2",
+    "iso_grav_anom_hg",
+    "iso_grav_anom_slope",
+    "depth_to_base_surf_gms2",
+    "cond_surf_gms2",
+    "cond_surf_laps2",
+    "ext_ThK",
+    "ext_UK",
+    "geod_2ndinv",
+    "geod_shearrate",
+    "geod_dilaterate",
+    "hydro_demag_contrast",
+    "det_elev_curv4"
+  ],
+  "forbidden_csv_columns": [
+    "dist_known_fault_px"
+  ],
+  "model_hyperparameters": {
+    "hgb_full": {
+      "max_iter": 180,
+      "learning_rate": 0.06,
+      "max_leaf_nodes": 63,
+      "min_samples_leaf": 50,
+      "l2_regularization": 2.0,
+      "pos_cap": 45000,
+      "neg_ratio": 2,
+      "neg_clearance_px": 5.0
+    },
+    "hgb_concealed": {
+      "max_iter": 160,
+      "learning_rate": 0.06,
+      "max_leaf_nodes": 47,
+      "min_samples_leaf": 60,
+      "l2_regularization": 3.0,
+      "pos_cap": 45000,
+      "neg_ratio": 2,
+      "neg_clearance_px": 5.0,
+      "basin_cover_upweight": 2.0
+    },
+    "hgb_hydro_analog": {
+      "max_iter": 120,
+      "learning_rate": 0.05,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 80,
+      "l2_regularization": 4.0,
+      "hydro_domain_radius_px": 50.0,
+      "local_contrast_sigma_px": 30.0,
+      "pos_cap": 20000,
+      "neg_ratio": 2,
+      "neg_clearance_px": 8.0
+    },
+    "fusion": {
+      "lidar_valid_weights": [0.50, 0.30, 0.20],
+      "lidar_void_weights": [0.30, 0.50, 0.20],
+      "crest_sharpening_alpha": 0.35,
+      "probability_gamma": 2.0
+    },
+    "emission": {
+      "operator": "celf_submodular_300m_triangular",
+      "full_dot_budget": 37654,
+      "catalogue_exclusion_px": 2.0,
+      "min_self_spacing_px": 2.5,
+      "candidate_pool_cap": 320000
+    }
+  },
+  "gates": {
+    "leakage_canary_max_two_sided_auc": 0.90,
+    "uniqueness_manifest": "registry/focus_rasters_20261026.json",
+    "uniqueness_manifest_sha256": "6e71453c77dd4b2bbb5f1d7e36db74f6641f9a47f6ecfb87b099db21ea8f1500",
+    "uniqueness_max_abs_spearman": 0.90,
+    "uniqueness_max_3px_overlap": 0.70,
+    "incumbent_comparator": "B1_regional",
+    "require_screen_paired_ci95_strictly_positive": true,
+    "require_screen_fold_wins_ge": 3,
+    "require_confirm_paired_ci95_strictly_positive": true,
+    "require_confirm_fold_wins_ge": 3
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "schema": 2,
+  "campaign": "A33-R2",
+  "hypothesis": "A33-R2-CSHT: Cover-stratified multi-physics + INGENIOUS hydrothermal-conduit analog transfer with 300 m submodular CELF crest allocation recovers concealed and LiDAR-void fault segments better than the B1_regional incumbent.",
+  "mechanism": "Fix shared-stack LiDAR void NaN fabrication (IR-33-LIDAR-VOID-01); fuse a 34-channel regional HGB, a 24-channel topography-free basin-upweighted subsurface HGB, and a 16-channel 3 km local-contrast hydrothermal-conduit HGB trained across 1,116 INGENIOUS thermal/vent cells (d_neg > 800 m) with LiDAR-void adaptive weights; allocate 37,654 dots via lazy-greedy 300 m triangular-kernel submodular coverage.",
+  "named_non_fault_process_that_could_mimic_it": "Buried plutonic/caldera intrusive margins, Lake Lahontan paleo-shoreline benches, or stratiform volcanic-sedimentary contacts producing coincident density, magnetic, and argillic conductivity gradients without Quaternary fault slip.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "primary_screen": {
+      "evaluator_version": "gems-segment-pooled-v1",
+      "split_id": "quadrant-buffered-15px-v1",
+      "withheld_positives": 60988,
+      "candidate": 0.13671594852245653,
+      "candidate_95pct_ci": [
+        0.1253898049464303,
+        0.14869296559581777
+      ],
+      "incumbent_b1_regional": 0.11241811498507871,
+      "incumbent_95pct_ci": [
+        0.10177776979087433,
+        0.1235088856898948
+      ],
+      "recorded_a33_l1_b1_regional": 0.11324405875705776,
+      "paired_delta_vs_b1": 0.024297833537377814,
+      "paired_delta_95pct_ci": [
+        0.012426644181070836,
+        0.03583271086932774
+      ],
+      "fold_wins_vs_b1": "4/4"
+    },
+    "independent_confirmation": {
+      "evaluator_version": "gems-segment-pooled-v1",
+      "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+      "frozen_before_screen_results": true,
+      "withheld_positives": 60988,
+      "candidate": 0.13116926199526852,
+      "candidate_95pct_ci": [
+        0.11920517996285095,
+        0.1429123047367239
+      ],
+      "incumbent_b1_regional": 0.11512212269469169,
+      "incumbent_95pct_ci": [
+        0.10460044471345126,
+        0.12598260713492557
+      ],
+      "paired_delta_vs_b1": 0.01604713930057683,
+      "paired_delta_95pct_ci": [
+        0.003816786323775922,
+        0.028030492237000007
+      ],
+      "fold_wins_vs_b1": "4/4"
+    },
+    "qualification": "Mapped-catalogue whole-segment hide-and-recover proxy (HOLDOUT-DTI), NOT private organizer expert truth and NOT an ORGANIZER-CONFIRMED competition score."
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "21 SHA-256-pinned focus-site and local GEMSDOE33 rasters (registry/focus_rasters_20261026.json)",
+    "registry_sha256": "6e71453c77dd4b2bbb5f1d7e36db74f6641f9a47f6ecfb87b099db21ea8f1500",
+    "surface_max_abs_spearman": 0.11458478552588082,
+    "surface_max_3px_overlap": 0.9111117012800765,
+    "surface_passed": false,
+    "final_dots_max_abs_spearman": 0.04161679589768374,
+    "final_dots_max_3px_overlap": 0.6934455834705476,
+    "final_dots_passed": true
+  },
+  "raster_sha256": "14ab452c22aaf07444cd02e589fce4627d682e99f44c63e78dc1383955e0c602",
+  "validator_output": {
+    "format_valid": true,
+    "hard_failures": [],
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "whole_array_all_finite_0_1": true,
+    "crs_matches_epsg_32611": true,
+    "shape_matches_3730x3292": true,
+    "geotransform_matches_template": true,
+    "predicted_positive_dots": 37654,
+    "catalogue_overlap_dots": 0
+  },
+  "submission": {
+    "name": "gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros",
+    "file": "gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif",
+    "zip": "gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.zip",
+    "nan_twin": "gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-nan.tif",
+    "nan_twin_zip": "gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-nan.zip",
+    "note": "GEMS33 A33-R2-CSHT: cover+hydrothermal transfer + 300m CELF 37654d | gate DUPLICATE | 0b78c04d5fad",
+    "note_characters": 98,
+    "ok_to_download": true,
+    "eligible_for_weekly_selector": false,
+    "ok_to_submit": false,
+    "selector_notice": "DO NOT SUBMIT: failed automated promotion gates ['surface_not_duplicate']."
+  },
+  "promotion_assessment": {
+    "schema_version": 1,
+    "gates": {
+      "identity": true,
+      "explicit_lane": true,
+      "shared_template": true,
+      "baseline_identity": true,
+      "screen_beats_current_best": true,
+      "independent_confirmation": true,
+      "all_feature_canaries": true,
+      "surface_not_duplicate": false,
+      "final_dots_not_duplicate": true,
+      "saved_bytes_format": true,
+      "short_note": true,
+      "budget": true
+    },
+    "failed_gates": [
+      "surface_not_duplicate"
+    ],
+    "verdict": "negative",
+    "eligible_for_selector": false,
+    "ok_to_submit": false,
+    "slot_policy": "Separate selector and verified weekly-cap check required; this tool never uploads.",
+    "qualification": "Evidence completeness/arithmetic only; cannot authenticate arbitrary supplied receipts."
+  },
+  "verdict": "duplicate",
+  "experiments_run": 3,
+  "elapsed_seconds": 731.96,
+  "submission_slots_used": 0
+}
