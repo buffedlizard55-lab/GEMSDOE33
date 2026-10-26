@@ -59,11 +59,50 @@ def _confirm_dti(card: dict):
     return pa.get("confirm_dti")
 
 
+def _locate_tif_by_sha256(digest: str | None) -> Path | None:
+    """Find exactly one saved TIFF matching a flat run-card SHA; ambiguity fails closed."""
+    if not isinstance(digest, str) or len(digest) != 64:
+        return None
+    matches = [p for p in DOWNLOADS.glob("*.tif") if _sha(p) == digest]
+    return matches[0] if len(matches) == 1 else None
+
+
+def _locate_zip_for_tif(tif: Path, digest: str) -> Path | None:
+    """Find exactly one ZIP containing exactly the same single TIFF bytes."""
+    matches = []
+    for archive in DOWNLOADS.glob("*.zip"):
+        try:
+            with zipfile.ZipFile(archive) as zf:
+                names = zf.namelist()
+                tifs = [n for n in names if n.lower().endswith((".tif", ".tiff"))]
+                if len(names) == len(tifs) == 1 and hashlib.sha256(zf.read(tifs[0])).hexdigest() == digest:
+                    matches.append(archive)
+        except (OSError, zipfile.BadZipFile, KeyError):
+            continue
+    if len(matches) == 1:
+        return matches[0]
+    # Prefer the same-stem archive only if the global lookup is ambiguous; check_card
+    # still validates its sole member against the raster digest.
+    candidate = tif.with_suffix(".zip")
+    return candidate if len(matches) > 1 and candidate in matches else None
+
+
 def check_card(path: Path) -> dict:
     card = json.loads(path.read_text())
     sub = card.get("submission") or {}
     if not sub.get("file"):  # flat run-card schema (e.g. DPPS): file/zip/note at top level
         sub = {**{k: card.get(k) for k in ("file", "zip", "note")}, "name": card.get("submission_name"), **sub}
+    if not sub.get("note"):
+        sub["note"] = card.get("submission_note")
+    # Some campaign cards retain the raster digest/name but omit a nested submission-file field.
+    # Locate bytes only by a unique exact SHA-256 match; never guess from a friendly name.
+    located_tif = _locate_tif_by_sha256(card.get("raster_sha256")) if not sub.get("file") else None
+    if located_tif is not None:
+        sub["file"] = located_tif.name
+    if not sub.get("zip") and located_tif is not None:
+        located_zip = _locate_zip_for_tif(located_tif, card["raster_sha256"])
+        if located_zip is not None:
+            sub["zip"] = located_zip.name
     row = {"run_card": str(path.relative_to(ROOT)), "campaign": card.get("campaign"),
            "verdict": card.get("verdict"), "submission_name": sub.get("name"),
            "file": sub.get("file"), "checks": {}}
