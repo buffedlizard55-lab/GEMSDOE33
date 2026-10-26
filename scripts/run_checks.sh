@@ -6,6 +6,7 @@ PY="${PYTHON:-python3}"
 
 "$PY" scripts/build_site.py
 "$PY" -m pytest -q
+if [ -f data/sample_submission.tif ]; then "$PY" scripts/select_submission.py; fi
 "$PY" -m compileall -q src scripts tests
 
 git diff --check

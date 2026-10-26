@@ -53,3 +53,14 @@ def test_research_page_exposes_failed_gate_duplicate_guard_and_run_card():
     assert "60,988" in page
     assert "pre-placement edge surface was not screened" in page
     assert "H33-6 is not eligible for a slot" in page
+
+
+def test_a33_r3_hero_is_first_and_blocks_submission():
+    page = build_site.build_index()
+    assert page.index("a33-r3-llc") < page.index("a33-r2-csht")
+    assert "OK TO DOWNLOAD: YES" in page and "OK TO SUBMIT: NO" in page
+    assert "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif" in page
+    exec_page = build_site.build_exec()
+    assert "Exact submission steps" in exec_page and "select_submission.py" in exec_page
+    assert "-zeros.tif (all cells finite, 0.0 outside)" in exec_page
+    assert exec_page.count("</html>") == 1

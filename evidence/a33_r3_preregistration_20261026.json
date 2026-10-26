@@ -1,0 +1,109 @@
+{
+  "schema": "gemsdoe33-preregistration-v3",
+  "campaign": "A33-R3",
+  "frozen_utc": "2026-10-26T05:10:00Z",
+  "frozen_before": "any A33-R3 code, any A33-R3 holdout evaluation, any A33-R3 surface",
+  "lane": "GEMSDOE33 analog-field / cover-stratified hydrothermal transfer lane (continuation of A33-R2-CSHT next steps (i)-(iii) recorded in knowledge/13)",
+  "evidence_labels": "Every performance number is HOLDOUT-DTI (evaluator gems-segment-pooled-v1, n withheld positives, 10 km block-bootstrap 95% CI) or ORGANIZER-CONFIRMED (receipt). Historical leaderboard figures are USER/OWNER-REPORTED. No projections are written as scores.",
+  "hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "A33-R3-LLC",
+      "name": "Line-Localized CSHT: label-free oriented scarp line-integral evidence x cover/hydrothermal CSHT prior, regime-split at lid_valid",
+      "layers": ["lid_step_max", "lid_ex_max", "lid_cross_max", "lid_valid", "det_elev_slope", "all 50 A33-R2-CSHT channels (prior only)"],
+      "physical_signature": "Multi-scale Hessian bright-ridge strength (sigma 1 and 2 px, scale-normalised, Steger 1998 / Frangi 1998) of a rank-averaged scarp-evidence field, integrated along 12 azimuths with an anisotropic Gaussian line kernel (sigma_long 5 px = 500 m, sigma_short 0.75 px), then 1-px non-maximum suppression across the winning azimuth. LiDAR regime (lid_valid>0) uses 1 m-derived scarp descriptors; LiDAR-void regime (lid_valid==0, 24.63% of footprint) uses det_elev_slope from the 100 m training stack.",
+      "why_missing_faults": "Pixel classifiers trained on the incomplete catalogue rank broad zones; unmapped faults are typically short, low-relief scarps whose contrast is too weak per pixel. Integrating along strike accumulates weak but collinear evidence and puts dots on the trace (inside the 300 m kernel) instead of on zone centroids.",
+      "distinct_from_prior_art": "A33-R2-CSHT had no line localisation (pixel HGB + CELF); A33-L1/H33-F were analog-level transfers; H19-5/B2 is a fixed, externally produced ridge emission that this lane never reads. LLC fuses a label-free line likelihood with the fold-trained CSHT prior.",
+      "named_non_fault_mimic": "Pluvial Lake Lahontan wave-cut shorelines/beach ridges (highstand ~1338 m; Adams & Wesnousky 1998, GSA Bulletin 110(10):1318) and fluvial terrace risers / linear anthropogenic cuts, which are long, straight, scarp-like lines.",
+      "expected_improvement_rank": "highest (qualitative; no numeric DTI gain is claimed before measurement)",
+      "implementation_cost": "low-moderate; no new data",
+      "external_data": "none (pinned 17 inputs only)",
+      "status": "SELECTED"
+    },
+    {
+      "rank": 2,
+      "id": "A33-R3-SGC",
+      "name": "Structural-grain conformity prior",
+      "layers": ["fold-visible catalogue (doubled-angle orientation tensor, sigma 15 km)", "lid_strike"],
+      "physical_signature": "cos^2 of the angle between local scarp strike and the regional mapped-fault grain",
+      "why_missing_faults": "Basin-and-Range faults within a structural domain are sub-parallel; unmapped strands should share the domain grain.",
+      "distinct_from_prior_art": "no orientation-conformity weighting exists in GEMSDOE33",
+      "named_non_fault_mimic": "bedding-parallel lithologic ledges that share the regional grain",
+      "expected_improvement_rank": "medium",
+      "implementation_cost": "low",
+      "external_data": "none",
+      "status": "RESERVE (not run this session)"
+    },
+    {
+      "rank": 3,
+      "id": "A33-R3-MAGT",
+      "name": "Magnetic-basement tilt-derivative zero-crossing worms beneath basin fill",
+      "layers": ["rtp", "ext_TMI_up150", "depth_to_base_surf"],
+      "physical_signature": "tilt-angle zero contours at two continuation heights restricted to deep cover",
+      "why_missing_faults": "GeoDAWN magnetics image basement offsets concealed by alluvium where no scarp exists",
+      "distinct_from_prior_art": "not in GEMSDOE33, but GEMSDOE76 'tiltworm' (user-reported 0.2343) is close prior art, so raster-level duplicate risk is high",
+      "named_non_fault_mimic": "edges of magnetic volcanic flows / intrusive contacts",
+      "expected_improvement_rank": "medium, high duplicate risk",
+      "implementation_cost": "moderate",
+      "external_data": "none",
+      "status": "RESERVE"
+    },
+    {
+      "rank": 4,
+      "id": "A33-R3-LSRT",
+      "name": "Lahontan shoreline rejection test (iso-elevation chain rejection)",
+      "layers": ["absolute elevation DEM (NOT in pinned inputs; det_elev is detrended)"],
+      "physical_signature": "reject scarp chains whose along-chain absolute elevation variance is ~0 near the 1318-1341 m highstand band",
+      "why_missing_faults": "removes the main intrabasin mimic so the dot budget goes to real scarps",
+      "distinct_from_prior_art": "62GEMSDOE used Lahontan as a strain datum, not as a mimic filter",
+      "named_non_fault_mimic": "the shorelines themselves",
+      "external_data": "USGS 3DEP 1/3 arc-second DEM, public domain: https://www.usgs.gov/3d-elevation-program ; tiles on prd-tnm.s3.amazonaws.com",
+      "availability_check": "2026-10-26 sandbox curl to https://prd-tnm.s3.amazonaws.com/ and https://www.usgs.gov/3d-elevation-program returned HTTP 000 (egress blocked by host allowlist). Source is official and free but NOT obtainable here.",
+      "status": "BLOCKED IN SANDBOX (not viable this session)"
+    },
+    {
+      "rank": 5,
+      "id": "A33-R3-PALEOTEMP",
+      "name": "Paleogeothermal sinter/tufa and 2 m temperature conduits (carried from A33-R2)",
+      "external_data": "DOE GDR #1391 https://gdr.openei.org/submissions/1391 (CC BY 4.0)",
+      "availability_check": "2026-10-26 sandbox curl to https://gdr.openei.org/submissions/1391 returned HTTP 000 (blocked).",
+      "status": "BLOCKED IN SANDBOX"
+    }
+  ],
+  "frozen_protocol": {
+    "registry": "registry/focus_rasters_20261026_r3.json = pinned 21-raster focus registry + this repo's A33-R2-CSHT artifact (22 rasters)",
+    "variants": {
+      "V1_gamma1": "S = rank(P_csht)^1.0 * L_line",
+      "V2_gamma05": "S = rank(P_csht)^0.5 * L_line"
+    },
+    "line_evidence": "L_line = within-regime percentile rank of oriented line integral, multiplied by the 1-px NMS mask (0 off-line)",
+    "order_of_operations": [
+      "1. leakage canary (SegmentHoldout.canary, quadrant 15 px) on every new channel alone; any two-sided AUC > 0.90 = stop",
+      "2. full-footprint surfaces for V1 and V2; pre-placement surface uniqueness vs 22 registry rasters (|Spearman| <= 0.90 AND top-37,654 eligible level-set 3-px overlap <= 70%); failing variants are logged duplicate and dropped",
+      "3. Experiment 1/3 screen: quadrant-buffered-15px-v1; surviving variants + in-run A33-R2-CSHT recipe + B1_regional + matched_random; informational non-fold-safe H19-5 recipe reference (fixed external surface; NOT a gate)",
+      "4. select the surviving variant with the highest screen pooled HOLDOUT-DTI",
+      "5. Experiment 2/3 confirmation: diagonal-wedge-buffered-20px-confirm-v1, selected variant vs in-run CSHT and B1",
+      "6. Experiment 3/3 reserved, unused unless a shared-tool defect forces a rerun",
+      "7. full-footprint CELF-300m placement (37,654 dots, d_cat > 2 px, min self spacing 2.5 px), final-dot uniqueness, writer, saved-byte format audit, promotion assessment"
+    ],
+    "placement": "csht_transfer.celf_emit_300m(min_self_spacing_px=2.5), eligible = valid & distance_to_visible_catalogue > 2 px, per-fold budget = round(37654 * valid/footprint)",
+    "promotion_gate_all_required": [
+      "screen pooled HOLDOUT-DTI > max(in-run CSHT, recorded CSHT 0.136716, in-run B1)",
+      "screen paired delta vs in-run CSHT 95% CI strictly > 0 and >= 3/4 fold wins",
+      "confirmation pooled HOLDOUT-DTI > max(in-run CSHT, recorded CSHT confirm 0.131169)",
+      "confirmation paired delta vs in-run CSHT 95% CI strictly > 0 and >= 3/4 fold wins",
+      "all new-channel canaries <= 0.90",
+      "surface and final-dot uniqueness pass vs all 22 registry rasters",
+      "saved-byte format audit pass (1 band float32, EPSG:32611, 3730x3292, template transform, finite [0,1], 0 NaN in zero-outside file)"
+    ],
+    "verdict_rule": "promote only if every gate passes; duplicate if any uniqueness check fails; leakage if any canary fails; otherwise negative. Negative results are deliverables. No retuning after seeing holdout results.",
+    "slot_policy": "No DrivenData upload from code. A promote verdict means OK-TO-SUBMIT for the owner's separate selector step within the weekly cap shown on the submission page."
+  },
+  "sources": {
+    "steger_1998": "https://doi.org/10.1109/34.659930",
+    "frangi_1998": "https://doi.org/10.1007/BFb0056195",
+    "adams_wesnousky_1998": "https://pubs.geoscienceworld.org/gsa/gsabulletin/article/110/10/1318/183306/",
+    "faulds_hinz_2015": "https://pangea.stanford.edu/ERE/db/WGC/papers/WGC/2015/11100.pdf",
+    "competition_metric_and_format": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/"
+  }
+}
