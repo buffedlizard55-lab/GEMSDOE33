@@ -298,3 +298,11 @@ This addendum supersedes older "next session" suggestions where they conflict. R
 ## Continuation checkpoint — restoration/claims audit, 2026-10-26
 
 The repeated standing request remains in force: unique TIFFs, explicit download versus submit status, nine-site executive comparison, ranked hypotheses before implementation, shared fold-safe tooling, no invented score estimates, three review passes, and PR/merge. See `knowledge/21_post_merge_review_20261026.md` for this continuation and `knowledge/20_restoration_and_claims_audit_20261026.md` for the prior restoration audit. All 17 mirror inputs and 121 cached channels have been restored locally; these ignored files will not survive a fresh checkout. S33-SEISDIL was evaluated in the separate parallel PR #30 and is preserved as a unique but negative research artifact; this post-merge review did not rerun or create a candidate. No slot was used. The current decision remains **NOT OK TO SUBMIT** (0 eligible of 12 selector cards).
+
+
+## 2026-10-26 selector-safety continuation
+
+Read `knowledge/22_selector_safety_review_20261026.md` before new experiments. This session
+received no identifiable single assigned method lane; it did not infer one or rerun negative
+experiments. The selector now rejects internally contradictory gate flags and invalid ranking
+DTI. No new TIFF or score is claimed. The scientific objective remains blocked, not fulfilled.

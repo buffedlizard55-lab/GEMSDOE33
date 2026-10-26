@@ -1,6 +1,7 @@
 # GEMSDOE33 — DOE GEMS Fault Discovery Project (DrivenData #306)
 
 > **Read first, every session:** [`standing_prompt.md`](standing_prompt.md) (the full standing brief with dated addenda) and [`AGENTS.md`](AGENTS.md).
+> **Current selector-safety continuation:** [`knowledge/22_selector_safety_review_20261026.md`](knowledge/22_selector_safety_review_20261026.md): 174 tests pass; zero eligible rasters. No explicit lane supplied, no new experiment/TIFF. The nine-site executive table now explicitly shows filenames, unestimable leaderboard forecasts, and historical/new status.
 > **Latest repository-wide review:** [`knowledge/21_post_merge_review_20261026.md`](knowledge/21_post_merge_review_20261026.md) (restoration, selector compatibility, S33-SEISDIL negative holdout, and three-pass verification). The S33 TIFF is the newest unique download, **NOT OK TO SUBMIT**. Owner-mirror data/cache remain local and git-ignored; SHA pins do not authenticate organizer provenance.
 > **Core values:** Maximize P(Win) · Own the Outcome.
 > **Labels:** every number is HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED. Leaderboard figures marked \* are USER/OWNER-REPORTED.
@@ -16,7 +17,7 @@
 **Latest unique artifact — S33-SEISDIL (research only, NOT OK TO SUBMIT):**
 - **[Download the [0,1] GeoTIFF](docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif)** · [single-TIFF ZIP](docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.zip) · [run card](evidence/s33_seisdil_run_card_20261026.json)
 - Name: `gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros`
-- Note (80/140): `GEMS33 S33-SEISDIL strain-seismicity gate 37654d | gate NEGATIVE | 3463540a7e02`
+- Note (79/140): `GEMS33 S33-SEISDIL strain-seismicity gate 37654d | gate NEGATIVE | 3463540a7e02`
 - SHA-256: `5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96`
 - Verdict: **unique and format-valid, but negative holdout; download for research only, do not submit**. No organizer score is estimated or claimed.
 
@@ -40,7 +41,7 @@ Earlier artifacts from today stay **OK TO DOWNLOAD / NOT OK TO SUBMIT**:
 - G33-DPPS (parallel session; verdict `negative`).
 - A33-R2-HMDT (parallel session; holdout **not measured**, so it is not eligible; see `IR-33-HMDT-UNGATED-01`).
 - A33-R2-CSHT (verdict `duplicate`).
-- A33-R3-LCHC (parallel session; verdict `negative`; see banner below — this is the only one that also passes BOTH uniqueness gates cleanly).
+- A33-R3-LCHC (parallel session; verdict `negative`; see banner below — its recorded surface and final-dot uniqueness gates passed).
 
 A33-R3-LLC is unique against both parallel-session rasters: 17.98% of its dots lie within 3 px of DPPS and 0.33% within 3 px of HMDT, with ρ ≤ 0.0093 ([lane check](evidence/a33_r3_parallel_lane_check_20261026.json)).
 
@@ -270,3 +271,14 @@ Source: user request (parallel-run protocol, GEMSDOE24/25/27/28/30/31/32/33/36 f
 - HOLDOUT-DTI and public leaderboard values are on different scales (≈0.13–0.16 vs ≈0.27\*) and must not be converted into each other.
 - No organizer receipts exist in this repository, so every leaderboard figure is user/owner-reported. The two leader values in the brief (0.4413 vs 0.3195) conflict and are unverified.
 - The weekly slot count cannot be observed from this sandbox, because the rules forbid DrivenData access. The selector's YES/NO covers science and format only.
+
+## Standing request reaffirmed — 2026-10-26 selector-safety continuation
+
+Read the full standing prompt linked at the beginning of this README every session. Prioritize
+a genuinely unique single-band [0,1] TIFF, explicit download/submission status, the nine focus-site
+comparison, official-source provenance and automated scientific gates. Never relabel a projection
+as a score, reuse an old submission as a new model, spend a slot on an unvalidated idea, or tune a
+failed lane from its holdout. Maximize P(Win) and Own the Outcome include preserving negative
+results. This continuation's exact scope, three proposed mechanisms, blockers and three-pass
+checks are in the linked selector-safety review. The full standing brief remains in
+[`standing_prompt.md`](standing_prompt.md); this paragraph is a dated summary, not a verbatim copy.
