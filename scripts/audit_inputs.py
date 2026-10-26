@@ -14,9 +14,12 @@ from pathlib import Path
 import numpy as np
 import rasterio
 
+import os
+
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "registry" / "owner_mirror_input_pins.json"
-DATA = ROOT / "data"
+_default_data = ROOT / ".cache" / "data" if (ROOT / ".cache" / "data" / "training_features.tif").exists() and not (ROOT / "data" / "training_features.tif").exists() else ROOT / "data"
+DATA = Path(os.environ.get("GEMS_DATA_DIR", _default_data))
 SENTINEL = np.float32(-3.4028234663852886e38)
 
 
