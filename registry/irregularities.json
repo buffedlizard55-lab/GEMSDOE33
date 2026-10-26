@@ -197,6 +197,46 @@
       "consequence": "Do not execute the retired H33-D builder or domain-adaptation runner and do not upload the H33-D artifact. Existing files remain only as historical/educational artifacts; no organizer-confirmed score pairing exists."
     },
     {
+      "id": "IR-33-FOCUS-B2-20261025",
+      "severity": "high",
+      "status": "measured recipe; no organizer score receipt",
+      "finding": "Downloaded exact focus references from all nine sites. B2 equals H27-4 & (Euclidean catalogue distance >2 px) pixel-exactly: 2545 deletions, zero additions. B2/H27-4 rank correlation 0.967587 and candidate-dot overlap 100%; a copied/pruned-family candidate would trigger the duplicate stop.",
+      "evidence": "evidence/focus_raster_audit_20261025.json; registry/focus_rasters_20261025.json",
+      "consequence": "Do not relabel B2 or use a projection/owner report as HOLDOUT-DTI or an organizer-confirmed result."
+    },
+    {
+      "id": "IR-33-OWNER-B2-METRICS-20261025",
+      "severity": "high",
+      "status": "unresolved upstream owner-record inconsistency",
+      "finding": "Pinned GEMSDOE32 B2 owner audit lists identical quadrant values for two instruments, while their aggregate means differ from each other and the quadrant arithmetic mean. Notes include UNSCORED/projection while another field says SLOT_ELIGIBLE.",
+      "evidence": "evidence/source_review_20261025.json; knowledge/10_focus_review_20261025.md",
+      "consequence": "Do not adopt these numbers as a coherent promotion/score receipt. No upstream shared evaluator was modified; canonical template identity is unknown."
+    },
+    {
+      "id": "IR-33-RESTORE-20261025",
+      "severity": "medium",
+      "status": "data placement resolved for owner mirrors only",
+      "finding": "All 17 owner pins restored and hash-audited; 121 feature channels built with existing preparer. Template values match catalogue labels, so only metadata/finiteness may be used. Feature-alone canaries not run; official source authentication and independent analog geometry still absent.",
+      "evidence": "evidence/input_grid_audit.json; evidence/current_cache_receipt_20261025.json; evidence/prepare_current_cache_20261025.log",
+      "consequence": "Stop calling core data placement the only training blocker. Do not trust features or retrain a failed arm merely because arrays are available."
+    },
+    {
+      "id": "IR-33-WRITER-20261025",
+      "severity": "high",
+      "status": "fixed with regression tests",
+      "finding": "Existing writer silently clipped/filled invalid weights, accepted infinity as null outside, expected only footprint vectors, used 200-character notes, and shape mismatch could crash validation. CLI default template layout differed from restored inputs. Fixed in existing implementation; soft weighted IDs now include actual probabilities.",
+      "evidence": "src/gemsdoe33/submission.py; scripts/validate_submission.py; tests/test_submission_strict.py",
+      "consequence": "Bad predictions fail before writing. Both existing H33-6 variants reopened successfully against current template; failed scientific/duplicate status unchanged."
+    },
+    {
+      "id": "IR-33-AT1-PREFLIGHT-20261025",
+      "severity": "blocking",
+      "status": "negative; no new TIFF or experiment",
+      "finding": "No new explicit lane/canonical shared-template identity; independent official analog labels unavailable under outbound-host restrictions. Four analog-transfer hypotheses ranked but blocked, not viable. Full registry surface/final checks and new-feature holdout tests absent.",
+      "evidence": "registry/analog_hypotheses_20261025.json; evidence/run_card_focus_20261025.json; evidence/promotion_gate_20261025.json",
+      "consequence": "Unique submission goal incomplete. No slot selected or uploaded. Automatic gate fails closed; it is evidence-completeness checking, not an evaluator or proof of arbitrary JSON."
+    },
+    {
       "id": "IR-33-A33-L1-20261025",
       "severity": "critical",
       "status": "completed negative; not slot-cleared",
@@ -217,8 +257,9 @@
       "severity": "high",
       "status": "bytes verified; score claims unauthenticated",
       "finding": "Nine highest-reported focus rasters were commit/blob/SHA-pinned and measured. Their historical DTI associations come from user/owner repository claims; no authenticated organizer receipt tying a score to these exact bytes is retained. Several rasters are dependent: GEMSDOE25=30 exactly; GEMSDOE31 contains GEMSDOE32; GEMSDOE36 contains GEMSDOE32 plus 1,200 dots.",
-      "evidence": "registry/focus_rasters_20261025.json; evidence/focus_registry_analysis_20261025.json; knowledge/11_focus_forensics_and_a33_l1_result_20261025.md.",
+      "evidence": "registry/a33_l1_focus_rasters_20261025.json; evidence/focus_registry_analysis_20261025.json; knowledge/11_focus_forensics_and_a33_l1_result_20261025.md.",
       "consequence": "Label all historical values OWNER/USER-REPORTED, NOT ORGANIZER-CONFIRMED. Use rasters for prior art and duplicate guards only, never as score-labelled training truth or independent replications."
     }
-  ]
+  ],
+  "last_review": "2026-10-25 A33-L1"
 }

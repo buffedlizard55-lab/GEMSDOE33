@@ -23,7 +23,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from gemsdoe33 import analog, analog_invariant, emission, grid, novelty  # noqa: E402
+from gemsdoe33 import analog, analog_invariant, analog_novelty, emission, grid  # noqa: E402
 from submission_writer import write_pair  # noqa: E402
 from vendor.gems24_template.holdout import SegmentHoldout  # noqa: E402
 from vendor.gems24_template.validator import sha256_file  # noqa: E402
@@ -210,7 +210,7 @@ def main() -> int:
     full_surface = full_scores["A33_L1"]
     np.save(ROOT / ".cache" / "a33_l1_full_surface.npy", full_surface)
     report["full_fit"] = full_fit
-    report["surface_duplicate_guard"] = novelty.compare_surface(full_surface, footprint)
+    report["surface_duplicate_guard"] = analog_novelty.compare_surface(full_surface, footprint)
     _json_write(EVIDENCE, report)
     if not report["surface_duplicate_guard"]["passed"]:
         report.update(
@@ -302,7 +302,7 @@ def main() -> int:
     final_eligible = footprint & (d_catalogue > CATALOGUE_EXCLUSION_PX)
     final_dots = _emit(full_surface, final_eligible, FULL_DOT_BUDGET)
     np.save(ROOT / ".cache" / "a33_l1_final_dots.npy", final_dots)
-    report["final_duplicate_guard"] = novelty.compare_final_dots(final_dots, footprint)
+    report["final_duplicate_guard"] = analog_novelty.compare_final_dots(final_dots, footprint)
     _json_write(EVIDENCE, report)
     if not report["final_duplicate_guard"]["passed"]:
         report.update(

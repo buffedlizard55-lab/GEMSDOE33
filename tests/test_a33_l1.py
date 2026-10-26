@@ -82,6 +82,17 @@ def test_uniqueness_guards_pass_wide_of_both_stop_thresholds():
     )
     assert b2["spearman_rho"] < 0.03
     assert b2["candidate_fraction_within_3px"] < 0.38
+    canonical = screens["canonical_12_reference_release_guard"]
+    assert canonical["registry_count"] == 12
+    assert canonical["passed"] is True
+    assert canonical["max_preplacement_surface_spearman_rho"] < 0.90
+    assert canonical["max_final_binary_spearman_rho"] < 0.90
+    assert canonical["max_candidate_fraction_within_3px"] < 0.70
+    release = json.loads((ROOT / canonical["evidence"]).read_text())
+    assert release["passed"] is True
+    assert release["registry_count"] == 12
+    assert len(release["rows"]) == 12
+    assert release["canonical_registry_manifest_sha256"] == canonical["canonical_manifest_sha256"]
 
 
 def test_focus_forensics_proves_dependent_subtraction_family():

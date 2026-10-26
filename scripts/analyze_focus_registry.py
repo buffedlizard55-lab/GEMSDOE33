@@ -16,7 +16,7 @@ import rasterio
 from scipy.ndimage import distance_transform_edt
 
 ROOT = Path(__file__).resolve().parents[1]
-REGISTRY = ROOT / "registry" / "focus_rasters_20261025.json"
+REGISTRY = ROOT / "registry" / "a33_l1_focus_rasters_20261025.json"
 OUT = ROOT / "evidence" / "focus_registry_analysis_20261025.json"
 
 

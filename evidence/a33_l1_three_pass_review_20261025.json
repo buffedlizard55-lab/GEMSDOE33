@@ -30,12 +30,12 @@
       "checks": [
         "4/4 vendor SHA-256 values match source manifest",
         "17/17 inputs audited",
-        "9/9 focus rasters hash/grid verified",
+        "9/9 frozen focus rasters and 12/12 canonical release references hash/grid verified",
         "recorded run verification passes",
         "saved-byte independent validator passes",
         "single-file ZIP integrity passes",
         "evidence/docs run cards equal",
-        "81 automated tests pass"
+        "119 automated tests pass"
       ],
       "primary_raster_sha256": "2bbbf7e381720f2242959e3efd6f2437f273afe6e7c48540d769524d2b4e8759"
     },
@@ -49,9 +49,10 @@
         "do-not-submit warning precedes downloads",
         "HOLDOUT-DTI labels include evaluator, n and CI",
         "historical values labelled owner/user-reported not organizer-confirmed",
+        "concurrent canonical audit/promotion/writer repairs integrated without replacing frozen A33 numerical contracts",
         "no upload, receipt, leaderboard polling or score projection claimed",
         "README/site/evidence/irregularities agree",
-        "git diff check, compile and 81 tests pass"
+        "git diff check, compile and 119 tests pass"
       ]
     }
   ],

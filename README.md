@@ -53,7 +53,7 @@ Nine highest-reported focus artifacts were restored from pinned repository commi
 
 The most supportable explanation is **metric-aware subtraction from a useful inherited lineament field**. DTI penalizes false-positive mass (`α=0.2`), known-catalogue faults are masked, and repeated nearby dots can be redundant under the 300 m kernel. If the reported sequence 0.2600 → 0.2708 → 0.2778 is accurate, removing low-yield mass beside already mapped traces improved denominator efficiency while preserving off-catalogue lineaments. The reported decrease to 0.2750 after Anderson adds 1,200 dots is directionally consistent with that mechanism. This is a plausible observational explanation—not authenticated score evidence or causal proof. Lithologic contacts, basin edges and acquisition boundaries remain non-fault mimics.
 
-Full nine-site table, metric derivation, limitations and review link: [`knowledge/11_focus_forensics_and_a33_l1_result_20261025.md`](knowledge/11_focus_forensics_and_a33_l1_result_20261025.md). Machine measurements: [`evidence/focus_registry_analysis_20261025.json`](evidence/focus_registry_analysis_20261025.json).
+Full nine-site table, metric derivation, limitations and review link: [`knowledge/11_focus_forensics_and_a33_l1_result_20261025.md`](knowledge/11_focus_forensics_and_a33_l1_result_20261025.md). Machine measurements: [`evidence/focus_registry_analysis_20261025.json`](evidence/focus_registry_analysis_20261025.json). The concurrent broader prior-art audit adds three GEMSDOE28 variants and 132 ordered comparisons in [`knowledge/10_focus_review_20261025.md`](knowledge/10_focus_review_20261025.md).
 
 ## 3. Can this repository support a higher result now?
 
@@ -74,7 +74,7 @@ These are mapped-catalogue **HOLDOUT-DTI** diagnostics, not private expert truth
 
 ## 4. Novelty and leakage results
 
-All 12 feature-alone canaries passed; the worst fold-level two-sided AUC was 0.6211, far below the `>0.90` stop. The generated artifact also passed both duplicate stages against all nine pinned focus rasters:
+All 12 feature-alone canaries passed; the worst fold-level two-sided AUC was 0.6211, far below the `>0.90` stop. The generated artifact passed both duplicate stages against the frozen nine-raster experiment registry. After the concurrent canonical 12-reference registry became available, a release guard repeated both stages against all 12 and passed with the same maxima:
 
 | Guard | Measured maximum | Stop threshold | Result |
 |---|---:|---:|---|
@@ -83,7 +83,7 @@ All 12 feature-alone canaries passed; the worst fold-level two-sided AUC was 0.6
 | Candidate dots within 3 px of one registry raster | 42.25% | `>70%` | pass |
 | Versus GEMSDOE32 B2 specifically | rho 0.02203; 37.07% nearby | same | pass |
 
-The raster is therefore genuinely different under the preregistered lane rules. Uniqueness does not imply predictive improvement.
+The raster is therefore genuinely different under the preregistered lane rules and the broader canonical focus subset. Evidence: [`evidence/a33_l1_full_registry_guard_20261025.json`](evidence/a33_l1_full_registry_guard_20261025.json). This remains a focus subset rather than a global uniqueness certificate; uniqueness does not imply predictive improvement.
 
 ## 5. Frozen hypothesis slate
 
@@ -118,7 +118,8 @@ Primary evidence:
 
 - [`evidence/a33_l1_experiment.json`](evidence/a33_l1_experiment.json) — complete fold, canary, model, bootstrap and guard record;
 - [`evidence/a33_l1_run_card.json`](evidence/a33_l1_run_card.json) — required final JSON run card;
-- [`registry/focus_rasters_20261025.json`](registry/focus_rasters_20261025.json) — pinned nine-raster prior-art registry;
+- [`registry/a33_l1_focus_rasters_20261025.json`](registry/a33_l1_focus_rasters_20261025.json) — exact nine-raster frozen experiment registry;
+- [`registry/focus_rasters_20261025.json`](registry/focus_rasters_20261025.json) and [`evidence/focus_raster_audit_20261025.json`](evidence/focus_raster_audit_20261025.json) — canonical 12-reference release audit across all nine sites;
 - [`knowledge/11_focus_forensics_and_a33_l1_result_20261025.md`](knowledge/11_focus_forensics_and_a33_l1_result_20261025.md) — scientific interpretation;
 - [`evidence/a33_l1_three_pass_review_20261025.md`](evidence/a33_l1_three_pass_review_20261025.md) — protocol, implementation and release review.
 

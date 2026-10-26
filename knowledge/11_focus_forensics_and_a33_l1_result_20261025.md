@@ -13,7 +13,7 @@ The score claims are not training labels and are not presented as official score
 
 ## Focus registry: what was actually reviewed
 
-Each row is pinned by repository commit, path, Git blob and SHA-256 in `registry/focus_rasters_20261025.json`. Reproduction: restore with `scripts/cache_focus_registry.py`, then run `scripts/analyze_focus_registry.py`; complete pairwise results are in `evidence/focus_registry_analysis_20261025.json`.
+Each row is pinned by repository commit, path, Git blob and SHA-256 in `registry/a33_l1_focus_rasters_20261025.json`. Reproduction: restore with `scripts/cache_focus_registry.py`, then run `scripts/analyze_focus_registry.py`; complete pairwise results are in `evidence/focus_registry_analysis_20261025.json`.
 
 | Repository artifact | Dots (MEASURED-BYTES) | DTI claim (OWNER/USER-REPORTED, not organizer-confirmed) | Byte-level finding |
 |---|---:|---:|---|
@@ -103,5 +103,7 @@ The final 37,654-dot raster is genuinely different from all nine comparators:
 - versus GEMSDOE32 B2 specifically: Spearman **0.02203**, within-3-px fraction **37.07%**.
 
 Its zero-outside TIFF is a one-band float32 raster on the exact template grid, EPSG:32611, values in `[0,1]`, with no NaN inside the footprint. Saved-byte SHA-256: `2bbbf7e381720f2242959e3efd6f2437f273afe6e7c48540d769524d2b4e8759`. Format validity does not override the negative scientific gate.
+
+The frozen experiment used one highest-reported raster per requested site (nine total). A concurrent canonical release registry later exposed 12 references across the same nine sites, including extra GEMSDOE28 variants. The release guard was repeated against all 12 and passed with the same maxima; see `evidence/a33_l1_full_registry_guard_20261025.json`. This is still a focus subset, not a global uniqueness certificate.
 
 Full machine evidence: `evidence/a33_l1_experiment.json`, `evidence/a33_l1_run_card.json`, and `docs/downloads/receipt-gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34.json`.

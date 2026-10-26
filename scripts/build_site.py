@@ -95,6 +95,7 @@ NAV = [
     ("index.html", "Overview"),
     ("executive-summary.html", "How to submit"),
     ("results.html", "Results & Score Provenance"),
+    ("latest-review.html", "Latest audit & gates"),
     ("hypotheses.html", "Hypotheses"),
     ("data-sources.html", "Domain Adaptation"),
     ("research.html", "Research"),
@@ -159,7 +160,7 @@ def build_index() -> str:
 <h2>Can a higher result be supported?</h2>
 <p><b>Not by the present evidence.</b> A33-L1 improved over raw analog transfer but lost to the stronger regional visible-fault expert. It therefore cannot justify a slot or a score projection. At fixed mass, reaching 0.30 from the reported 0.2778 would require roughly 8% more useful hidden-fault credit; that is algebraic scale context, not a predicted score. See <a href="results.html">the complete nine-site table and HOLDOUT-DTI result</a>.</p>
 <h2>What was completed</h2>
-<ul><li>Five analog-transfer hypotheses ranked and hash-frozen before implementation.</li><li>One four-fold whole-component experiment with a 15-pixel buffer, fold-visible catalogue handling and matched emission budgets.</li><li>All 12 feature-alone leakage canaries passed.</li><li>Pre-placement and final uniqueness guards passed against nine SHA-pinned focus rasters.</li><li>One unique GeoTIFF plus ZIP/twin, strict saved-byte receipt, and one final JSON run card.</li><li>One experiment, zero competition slots, zero uploads.</li></ul>
+<ul><li>Five analog-transfer hypotheses ranked and hash-frozen before implementation.</li><li>One four-fold whole-component experiment with a 15-pixel buffer, fold-visible catalogue handling and matched emission budgets.</li><li>All 12 feature-alone leakage canaries passed.</li><li>Pre-placement and final uniqueness guards passed against nine frozen references and the later canonical 12-reference release subset.</li><li>One unique GeoTIFF plus ZIP/twin, strict saved-byte receipt, and one final JSON run card.</li><li>One experiment, zero competition slots, zero uploads.</li></ul>
 <h2>Our operating values</h2>
 <div class="grid-2"><div class="panel accent"><h3>Maximize P(Win)</h3><p>Prefer evidence that predicts useful hidden-fault detection over a hopeful upload. A unique file is necessary but not sufficient; no slot follows a negative holdout.</p></div><div class="panel accent"><h3>Own the Outcome</h3><p>Publish the negative result, preserve exact hashes and provenance, and distinguish owner reports, HOLDOUT-DTI, format validity and organizer acceptance.</p></div></div>
 """
@@ -180,7 +181,7 @@ def build_exec() -> str:
 <tr><th>SHA-256</th><td><code>{esc(card['raster_sha256'])}</code></td></tr>
 <tr><th>Status</th><td><span class="badge bad">RESEARCH ONLY · DO NOT UPLOAD</span></td></tr></tbody></table>
 <h2>Automated checks completed</h2>
-<ul><li>One band and float32 dtype.</li><li>EPSG:32611, 3730 × 3292, and affine transform exactly match the restored sample template.</li><li>Every footprint value is finite and in [0,1]; zero-outside primary is finite over the whole array.</li><li>Exactly 37,654 in-footprint positive pixels; saved bytes were reopened and hashed.</li><li>Final uniqueness: max Spearman 0.02221 and max within-3-pixel overlap 42.25% against nine pinned rasters.</li></ul>
+<ul><li>One band and float32 dtype.</li><li>EPSG:32611, 3730 × 3292, and affine transform exactly match the restored sample template.</li><li>Every footprint value is finite and in [0,1]; zero-outside primary is finite over the whole array.</li><li>Exactly 37,654 in-footprint positive pixels; saved bytes were reopened and hashed.</li><li>Final uniqueness: max Spearman 0.02221 and max within-3-pixel overlap 42.25% against the canonical 12-reference focus subset.</li></ul>
 <p>These checks establish local format and novelty only. They do not override a failed scientific gate or guarantee portal acceptance.</p>
 <h2>Steps for a future promoted candidate</h2>
 <ol><li>Open the current run card. Require both an explicit <b>promote</b> scientific verdict and a separate <b>slot-cleared</b> selector decision. A format pass alone is insufficient.</li><li>Review the live <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem/format instructions</a> and <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">rules</a>; verify a weekly slot remains.</li><li>Download the exact named TIFF or single-file ZIP and verify its SHA-256. Do not rename/rewrite the raster after validation.</li><li>Rerun <code>python scripts/validate_submission.py --submission PATH --template data/sample_submission.tif</code> or the pinned shared writer validator; check dtype, grid, footprint finiteness and range.</li><li>Using the authorized DrivenData account, select the file, paste its unique name and ≤140-character note, and submit manually.</li><li>Save the organizer receipt. Only a receipt can establish portal acceptance and a score/file association; label HOLDOUT-DTI separately.</li></ol>
@@ -190,7 +191,7 @@ def build_exec() -> str:
     return page("Executive summary & submission guidance · GEMSDOE33", body, "executive-summary.html")
 
 def build_results() -> str:
-    registry = reg("focus_rasters_20261025.json")
+    registry = reg("a33_l1_focus_rasters_20261025.json")
     analysis = read_json(ROOT / "evidence" / "focus_registry_analysis_20261025.json")
     by_id = {row["id"]: row for row in analysis.get("artifacts", [])}
     rows = "".join(
@@ -262,7 +263,7 @@ def build_research() -> str:
 <h3>Fold integrity</h3><p>Four quadrant folds withheld entire connected catalogue components with a 15-pixel buffer. Withheld positive pixels were NW 10,165; NE 12,511; SW 20,534; SE 17,778—60,988 pooled. Catalogue sampling and exclusion used visible faults only; hidden truth had zero overlap with visible faults; training and validation masks were disjoint.</p>
 <h3>Leakage canary</h3><p>All 12 frozen features passed standalone tests. Worst fold-level two-sided AUC was <b>{worst:.4f}</b>; stop threshold was strictly above 0.90. This rejects obvious direct leakage but does not establish independent labels.</p>
 <h3>HOLDOUT-DTI result</h3><p>A33-L1 = <b>{h['candidate']:.6f}</b> (95% CI [{h['candidate_95pct_ci']['interval'][0]:.6f}, {h['candidate_95pct_ci']['interval'][1]:.6f}]); best regional comparator = <b>{h['best_comparable_baseline']:.6f}</b> (95% CI [{h['best_baseline_95pct_ci']['interval'][0]:.6f}, {h['best_baseline_95pct_ci']['interval'][1]:.6f}]). Paired delta = <b>{h['paired_delta']:+.6f}</b>, 95% CI [{h['paired_delta_95pct_ci'][0]:+.6f}, {h['paired_delta_95pct_ci'][1]:+.6f}], 0/4 fold wins. Label: HOLDOUT-DTI (<code>{esc(h['evaluator_version'])}</code>; 60,988 withheld positives; spatial-block bootstrap 95% CI). Not a competition score.</p>
-<h3>Uniqueness</h3><p>Before placement, max Spearman was {card['correlation_overlap_vs_registry']['surface']['max_spearman_rho']:.4f}. Final max Spearman was {card['correlation_overlap_vs_registry']['final_dots']['max_spearman_rho']:.5f}; max candidate-dot fraction within 3 px was {100*card['correlation_overlap_vs_registry']['final_dots']['max_candidate_fraction_within_3px']:.2f}%. All are below frozen stop thresholds.</p>
+<h3>Uniqueness</h3><p>Before placement, max Spearman was {card['correlation_overlap_vs_registry']['surface']['max_spearman_rho']:.4f}. Final max Spearman was {card['correlation_overlap_vs_registry']['final_dots']['max_spearman_rho']:.5f}; max candidate-dot fraction within 3 px was {100*card['correlation_overlap_vs_registry']['final_dots']['max_candidate_fraction_within_3px']:.2f}%. All are below frozen stop thresholds. The post-merge release guard repeated both stages against the canonical 12-reference focus subset and passed with the same maxima.</p>
 <h3>Artifacts and evidence</h3><ul><li><a href="downloads/{esc(card['submission']['file'])}">A33-L1 unique zero-outside TIFF</a> — research only</li><li><a href="downloads/receipt-gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34.json">shared-writer receipt</a></li><li><a href="data/a33_l1_run_card.json">final run card</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_l1_experiment.json">complete experiment evidence</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/analog_lane_preregistration_20261025.json">hash-frozen preregistration</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_l1_three_pass_review_20261025.md">three-pass release review</a></li></ul>
 <h2>Historical negative controls</h2>
 <p>H33-6 remains failed/duplicate and H33-F remains negative; neither is slot-approved. Their historical files remain for audit but do not supersede the current A33-L1 run card. No post-result experiment was used to tune A33-L1.</p>
@@ -334,6 +335,59 @@ def build_irregularities() -> str:
     return page("Irregularities & audit log · GEMSDOE33", body, "irregularities.html")
 
 
+def build_focus_review() -> str:
+    audit = read_json(ROOT / "evidence/focus_raster_audit_20261025.json")
+    manifest = reg("focus_rasters_20261025.json")
+    gate = read_json(ROOT / "evidence/promotion_gate_20261025.json")
+    slate = reg("analog_hypotheses_20261025.json")
+    rows = []
+    for item in manifest.get("rasters", []):
+        measured = next((r for r in audit.get("rasters", []) if r["id"] == item["id"]), {})
+        url = (f"https://github.com/{item['repo']}/blob/{item['ref']}/{item['path']}"
+               if "repo" in item else f"{GITHUB}/{item['local_path']}")
+        rows.append(f"<tr><td>{esc(item['site'])}</td><td><a href='{esc(url)}'>{esc(item['id'])}</a></td>"
+                    f"<td>{esc(measured.get('dots', 'not measured'))}</td>"
+                    f"<td><code>{esc(item['sha256'])}</code></td></tr>")
+    hypotheses = []
+    for h in slate.get("candidates", []):
+        sources = " · ".join(f'<a href="{esc(url)}">Official source</a>' for url in h["official_sources"])
+        hypotheses.append(f"<div class='panel warn'><h3>{h['rank']}. {esc(h['id'])} — {esc(h['hypothesis'])}</h3>"
+                          f"<p><b>Layers:</b> {esc(h['layers'])}</p><p><b>Signature:</b> {esc(h['signature'])}</p>"
+                          f"<p><b>Missing-fault rationale:</b> {esc(h['missing_fault_rationale'])}</p>"
+                          f"<p><b>Difference from local prior art:</b> {esc(h['difference_from_repo'])}</p>"
+                          f"<p><b>Non-fault mimic:</b> {esc(h['non_fault_mimic'])}</p>"
+                          f"<p><b>Qualitative priority / cost:</b> {esc(h['expected_improvement'])}; {esc(h['cost'])}</p>"
+                          f"<p><b>{esc(h['availability'])}</b></p><p>{sources}</p></div>")
+    gates = "".join(f"<tr><td>{esc(k)}</td><td>{'PASS' if v is True else 'BLOCKED'}</td></tr>"
+                    for k, v in gate.get("gates", {}).items())
+    body = f"""<h2>Focus audit, lineage and automatic gates</h2>
+<div class="panel bad"><b>Current A33-L1 decision: NOT OK TO SUBMIT.</b>
+<p>A genuinely new TIFF was generated after this page's earlier preflight snapshot, but its frozen scientific gate failed: HOLDOUT-DTI 0.108374 versus regional B1 0.113244; paired delta −0.004870, 95% CI [−0.010900, +0.001226], 0/4 fold wins. One experiment, zero slots and no upload.</p>
+<p><a href="data/a33_l1_run_card.json" download>Download current A33-L1 run card</a> · <a href="research/current-promotion-gate.json" download>Earlier fail-closed preflight gate</a> · <a href="research/focus-raster-audit.json" download>Canonical 12-raster forensic audit</a></p></div>
+<h3>GEMSDOE32 B2: reproducible construction, not a verified contest score</h3>
+<p>The user-reported 0.2778 has no organizer receipt here. The pinned owner build record describes deletion of baseline dots at catalogue distance ≤2 pixels (200 m). We downloaded the named B2 raster and reproduced it pixel-exactly from GEMSDOE28 H27-4: <b>40,199 → 37,654 dots; 2,545 deletions, zero additions, zero mismatched cells.</b> This is prior-art forensics, not HOLDOUT-DTI.</p>
+<p>B2 versus H27-4: Spearman <b>0.967587</b> and <b>100% candidate-dot overlap within 3 px</b>. It fails the lane thresholds if reused as a new candidate. GEMSDOE25/GEMSDOE30 share the same 44,090-dot prediction; GEMSDOE28 H27-4/GEMSDOE31 share the same 40,199-dot prediction. These pairs are not independent evidence of scientific improvement. GEMSDOE36 also has high overlap with B2; no PINN or geothermal-discovery claim is established by a filename.</p>
+<h3>Why pruning might help — inference, not score attribution</h3>
+<p>The local metric rewards a maximum nearby match, so redundant predictions can add false-positive cost without proportional new recovery. Deleting low-credit prediction mass can help; deleting near a real missing parallel fault can hurt. The exact net change requires held-out truth, which is unavailable for the reported organizer result. Neither the score list nor a source-code projection proves causation or predicts a higher competition score.</p>
+<p><b>Irregularity:</b> the owner B2 audit's recorded aggregate means disagree with the average of its listed quadrant values; its note also contains an unverified score projection. We do not use that instrument as validation. The request's conflicting leader values 0.4413/0.3195 are not authenticated; no leaderboard was accessed.</p>
+<h3>All nine requested sites covered</h3>
+<p>Twelve precisely named historical rasters, pinned by SHA-256; 132 ordered comparisons on the shared template footprint. This is a focus subset, NOT a complete global uniqueness registry. Hashes authenticate mirror bytes only.</p>
+<div class="scroll"><table><thead><tr><th>Site</th><th>Reference / pinned source</th><th>Positive cells</th><th>SHA-256</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+<h3>Data placement and canary status</h3>
+<p>All 17 owner-mirror inputs were restored and hash-audited, and the existing preparer rebuilt 121 cached channels. A33-L1 used exactly 12 frozen structural channels; every one passed its feature-alone leakage canary (worst fold-level two-sided AUC 0.6211). Untested cache channels remain untrusted. The sample mirror's finite values equal the catalogue, so only its grid and finiteness mask are used.</p>
+<p>Both archived H33-6 outside-mask variants were reopened and checked against the now-restored template. Local format passes do not repair its failed science or duplicate status. The writer now rejects invalid values rather than silently clipping them, rejects infinity outside, checks shape and enforces notes ≤140 characters. The organizer reference supports CPU training; a GPU is not mandatory.</p>
+<h3>Automatic promotion evidence gates</h3>
+<p>These are deterministic in-project checks, not a request for a human scientific inspector. <code>scripts/check_promotion.py</code> requires source-pinned shared tools, pooled paired improvement plus CI, independent confirmation, complete feature canaries, both duplicate screens, exact saved-byte validation and budget compliance. The table below is the <b>earlier pre-A33 preflight snapshot</b>; the authoritative current A33-L1 card is linked above and is also negative. Even a pass would only create eligibility for a separate selector.</p>
+<table><thead><tr><th>Earlier preflight gate</th><th>Recorded result</th></tr></thead><tbody>{gates}</tbody></table>
+<h3>Earlier four-item planning slate</h3>
+<p>These source-dependent concepts were frozen by the concurrent preflight before A33-L1. They remain useful prior art, not current results. The authoritative five-item A33 slate and tested rank-1 result are on <a href="hypotheses.html">the hypotheses page</a>. Official independent analog labels remain blocked; A33-L1 explicitly reused mapped catalogue proxy labels and does not claim field-verified transfer.</p>
+{''.join(hypotheses)}
+<h3>Primary evidence and reviewable limitations</h3>
+<p><a href="{GITHUB}/knowledge/11_focus_forensics_and_a33_l1_result_20261025.md">Current A33-L1 scientific report</a> · <a href="{GITHUB}/knowledge/10_focus_review_20261025.md">Concurrent forensic preflight</a> · <a href="{GITHUB}/evidence/source_review_20261025.json">Pinned source inventory</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">Organizer CPU/GPU reference</a>. Official weekly cap, current leaderboard and historical score-to-file receipts were not freshly verified; no automated DrivenData contact was made.</p>
+"""
+    return page("Latest forensic review & automatic gates · GEMSDOE33", body, "latest-review.html")
+
+
 def build_prompt() -> str:
     content = (ROOT / "standing_prompt.md").read_text(encoding="utf-8")
     body = f"""<h2>Standing Brief & Operational Prompt</h2>
@@ -366,6 +420,7 @@ def main() -> int:
         "index.html": build_index(),
         "executive-summary.html": build_exec(),
         "results.html": build_results(),
+        "latest-review.html": build_focus_review(),
         "hypotheses.html": build_hypotheses(),
         "data-sources.html": build_data_sources(),
         "research.html": build_research(),
@@ -376,6 +431,15 @@ def main() -> int:
     }
     for filename, content in pages.items():
         (DOCS / filename).write_text(content, encoding="utf-8")
+    research = DOCS / "research"
+    research.mkdir(exist_ok=True)
+    for source, name in (
+        ("run_card_focus_20261025.json", "current-run-card.json"),
+        ("promotion_gate_20261025.json", "current-promotion-gate.json"),
+        ("focus_raster_audit_20261025.json", "focus-raster-audit.json"),
+    ):
+        payload = read_json(ROOT / "evidence" / source)
+        (research / name).write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n")
     (DOCS / "score-feed.json").write_text(retired_score_feed(), encoding="utf-8")
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")
     (ROOT / "index.html").write_text(

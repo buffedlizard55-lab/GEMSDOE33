@@ -30,13 +30,13 @@ Verdict: fold mechanics satisfy the stated catalogue hide-and-recover proxy. Rem
 Checks:
 
 - vendored `holdout.py`, `metric.py`, `submission.py`, and `validator.py` exactly match all SHA-256 values in `vendor/gems24_template/SOURCE.json` at pinned GEMSDOE24 commit `fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1`;
-- 17/17 restored inputs and the canonical grid audit pass; focus registry restoration verifies 9/9 SHA-256 values and template grids;
+- 17/17 restored inputs and the canonical grid audit pass; frozen experiment registry restoration verifies 9/9 SHA-256 values/template grids, and the later canonical 12-reference release guard also passes;
 - the runner is one-shot and refuses implicit retuning after evidence exists; `--verify-recorded` passes;
 - zero-outside TIFF independently passes `scripts/validate_submission.py`: one float32 band, EPSG:32611, exact shape/transform/bounds, whole-array finite `[0,1]`, 37,654 positive cells;
 - primary TIFF SHA-256 is `2bbbf7e381720f2242959e3efd6f2437f273afe6e7c48540d769524d2b4e8759`;
 - ZIP integrity passes and contains exactly that one TIFF; docs run card is byte-semantically equal to the evidence run card;
 - final note is 95 characters, under the required 140-character limit;
-- 81 automated tests pass, including frozen preregistration, source-transform unit tests, saved-byte grid/range/hash, ZIP, run-card verdict, uniqueness thresholds, focus lineage and vendor hashes.
+- 119 automated tests pass, including frozen preregistration, source-transform unit tests, saved-byte grid/range/hash, ZIP, run-card verdict, uniqueness thresholds, focus lineage and vendor hashes.
 
 Verdict: reproducible and suitable as a research artifact. Format validity is explicitly not portal acceptance or scientific promotion.
 
@@ -50,8 +50,9 @@ Checks:
 - current results are consistently labelled HOLDOUT-DTI with evaluator version, 60,988 withheld positives and 95% CI;
 - every historical focus value is labelled OWNER/USER-REPORTED, NOT ORGANIZER-CONFIRMED;
 - no portal upload, organizer receipt, leaderboard polling or competition-score projection is claimed;
+- merged concurrent mainline focus-audit/promotion/writer repairs without replacing either numerical contract: the canonical 12-reference registry remains at its original path, while the exact frozen nine-raster experiment registry and novelty module have explicit A33-L1 names;
 - README, standing brief addendum, scientific report, site, run card and irregularity registry agree on the negative verdict;
-- `git diff --check`, site generation, compile checks and all 81 tests pass.
+- `git diff --check`, site generation, compile checks and all 119 tests pass.
 
 Release decision:
 

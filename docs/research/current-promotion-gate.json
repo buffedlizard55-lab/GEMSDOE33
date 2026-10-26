@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "gates": {
+    "identity": false,
+    "explicit_lane": false,
+    "shared_template": false,
+    "baseline_identity": false,
+    "screen_beats_current_best": false,
+    "independent_confirmation": false,
+    "all_feature_canaries": false,
+    "surface_not_duplicate": false,
+    "final_dots_not_duplicate": false,
+    "saved_bytes_format": false,
+    "short_note": true,
+    "budget": true
+  },
+  "failed_gates": [
+    "identity",
+    "explicit_lane",
+    "shared_template",
+    "baseline_identity",
+    "screen_beats_current_best",
+    "independent_confirmation",
+    "all_feature_canaries",
+    "surface_not_duplicate",
+    "final_dots_not_duplicate",
+    "saved_bytes_format"
+  ],
+  "verdict": "negative",
+  "eligible_for_selector": false,
+  "ok_to_submit": false,
+  "slot_policy": "Separate selector and verified weekly-cap check required; this tool never uploads.",
+  "qualification": "Evidence completeness/arithmetic only; cannot authenticate arbitrary supplied receipts.",
+  "validator": {
+    "pass": false,
+    "reason": "No new candidate raster"
+  },
+  "raster_sha256": null,
+  "gate_version": "g33-evidence-completeness-v1",
+  "gate_source_sha256": "c39869fa92e578e605e3abdfe9a960da022ea0a23dcd2f832b6f33bcd03e7331",
+  "evidence_sha256": "2d43bb526b1c35ba6603e31e808fc184b339ef8b22b5cc57d544d7782f1cce36",
+  "validator_source_sha256": "e7b822377038b0449c40568a5af8d9d78e804893f23f2b834a5e793ed426f80a"
+}

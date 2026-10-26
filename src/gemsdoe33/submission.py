@@ -23,7 +23,7 @@ import rasterio
 
 from . import grid
 
-MAX_NOTE = 200
+MAX_NOTE = 140
 
 
 def _sha256(path: Path) -> str:
@@ -47,10 +47,19 @@ def write_tif(values: np.ndarray, dest: Path, outside: float | None = np.nan) ->
     """
     profile = grid.template_profile()
     footprint = grid.template_footprint()
-    out = np.full(footprint.shape, outside, dtype=np.float32)
-    v = np.asarray(values, dtype=np.float32)
-    out[footprint] = v
-    if outside is None or (isinstance(outside, float) and np.isnan(outside)):
+    # Reject bad predictions before conversion/writing; never silently clip a scientific result.
+    v = np.asarray(values)
+    if v.shape == footprint.shape:
+        v = v[footprint]
+    elif v.shape != (int(footprint.sum()),):
+        raise ValueError("values must match template shape or the in-footprint cell count")
+    if not np.isfinite(v).all() or np.any((v < 0) | (v > 1)):
+        raise ValueError("in-footprint predictions must be finite and in [0,1]")
+    if outside is not None and not (np.isscalar(outside) and (np.isnan(outside) or outside == 0)):
+        raise ValueError("outside must be NaN/None or zero; infinity is not null")
+    out = np.full(footprint.shape, np.nan if outside is None else outside, dtype=np.float32)
+    out[footprint] = v.astype(np.float32)
+    if outside is None or np.isnan(outside):
         profile["nodata"] = np.nan
     else:
         profile["nodata"] = None
@@ -70,10 +79,9 @@ def write_zip(tif_path: Path, dest: Path) -> dict:
 
 
 def validate(path: Path) -> dict:
-    """Re-read a written GeoTIFF from disk and check every portal requirement."""
+    """Re-read saved bytes for the local format contract; not portal acceptance."""
     errors, checks = [], []
     with rasterio.open(path) as src:
-        prof = src.profile
         arr = src.read(1)
         checks.append(("count_is_1", src.count == 1))
         checks.append(("dtype_is_float32", src.dtypes[0] == "float32"))
@@ -85,12 +93,17 @@ def validate(path: Path) -> dict:
                        and (src.width, src.height) == (tpl_w, tpl_h)
                        and src.crs == tpl_crs))
         tmpl = grid.template_footprint()
+        if arr.shape != tmpl.shape:
+            checks.append(("footprint_shape_matches", False))
+            return {"file": str(path), "checks": dict(checks),
+                    "errors": [name for name, ok in checks if not ok],
+                    "n_checks": len(checks), "pass": False}
         finite = np.isfinite(arr)
         checks.append(("no_nan_inside_footprint", bool(finite[tmpl].all())))
         inside = arr[tmpl]
         checks.append(("min_ge_0", bool((inside >= 0).all())))
         checks.append(("max_le_1", bool((inside <= 1).all())))
-        checks.append(("outside_is_null_or_zero", bool((~finite | (arr == 0))[~tmpl].all())))
+        checks.append(("outside_is_null_or_zero", bool((np.isnan(arr) | (arr == 0))[~tmpl].all())))
         checks.append(("single_band_description", src.descriptions[0] == "fault probability"))
     for name, ok in checks:
         if not ok:
@@ -103,14 +116,25 @@ def build_package(mask: np.ndarray, weights: np.ndarray | None, name: str,
                   outdir: Path, note: str) -> dict:
     """Emit the -zeros primary, the -nan twin, one .zip each and a receipt."""
     footprint = grid.template_footprint()
-    mask = np.asarray(mask, bool) & footprint
+    mask = np.asarray(mask)
+    if mask.shape != footprint.shape or not np.isin(mask, (0, 1)).all():
+        raise ValueError("mask must be binary and match the template shape")
+    mask = mask.astype(bool) & footprint
     vals = np.zeros(mask.shape, dtype=np.float32)
     if weights is not None:
-        w = np.asarray(weights, dtype=np.float32)
-        vals[mask] = np.clip(np.nan_to_num(w[mask], nan=0.0), 0.0, 1.0)
+        w = np.asarray(weights)
+        if w.shape != mask.shape:
+            raise ValueError("weights must match the template shape")
+        if not np.isfinite(w[mask]).all() or np.any((w[mask] < 0) | (w[mask] > 1)):
+            raise ValueError("selected weights must be finite and in [0,1]; no silent clipping")
+        vals[mask] = w[mask].astype(np.float32)
     else:
         vals[mask] = 1.0
-    cid = content_id(mask)
+    emitted_mask = vals > 0
+    binary_values = np.all((vals == 0) | (vals == 1))
+    cid = content_id(emitted_mask) if binary_values else hashlib.sha256(
+        np.asarray(vals.shape, dtype="<i8").tobytes() + vals.astype("<f4").tobytes()
+    ).hexdigest()[:12]
     note = note.replace("{cid}", cid).replace("PENDING", cid)
     if len(note) > MAX_NOTE:
         raise ValueError(f"note is {len(note)} chars, limit {MAX_NOTE}")
@@ -125,8 +149,8 @@ def build_package(mask: np.ndarray, weights: np.ndarray | None, name: str,
     v_nan = validate(nant)
     receipt = {
         "name": name, "content_id": cid, "note": note, "note_chars": len(note),
-        "emitted_pixels": int(mask.sum()),
-        "emitted_fraction_of_footprint": float(mask.sum() / footprint.sum()),
+        "emitted_pixels": int(emitted_mask.sum()),
+        "emitted_fraction_of_footprint": float(emitted_mask.sum() / footprint.sum()),
         "value_range_inside": [float(vals[footprint].min()), float(vals[footprint].max())],
         "zeros": {**r_zero, **v_zero}, "nan": {**r_nan, **v_nan},
         "zip_zeros": r_zip0, "zip_nan": r_zipn,

@@ -16,7 +16,7 @@ from pathlib import Path
 import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / "registry" / "focus_rasters_20261025.json"
+MANIFEST = ROOT / "registry" / "a33_l1_focus_rasters_20261025.json"
 
 
 def sha256_file(path: Path) -> str:

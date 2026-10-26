@@ -1555,5 +1555,19 @@
     "receipt_file": "receipt-gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34.json"
   },
   "elapsed_seconds": 194.28,
-  "completed_utc": "2026-10-25T23:56:43+00:00"
+  "completed_utc": "2026-10-25T23:56:43+00:00",
+  "canonical_12_reference_release_guard": {
+    "stage": "post_merge_release_guard_preplacement_and_final",
+    "evidence": "evidence/a33_l1_full_registry_guard_20261025.json",
+    "canonical_manifest": "registry/focus_rasters_20261025.json",
+    "canonical_manifest_sha256": "8f65c4f69108d3d395b62e656ca700d6073b6cd09c2e1c9c6df1d6b772acc40c",
+    "registry_count": 12,
+    "spearman_stop_gt": 0.9,
+    "candidate_fraction_within_3px_stop_gt": 0.7,
+    "max_preplacement_surface_spearman_rho": 0.10840182692859639,
+    "max_final_binary_spearman_rho": 0.022209884066244974,
+    "max_candidate_fraction_within_3px": 0.42250491315663674,
+    "passed": true,
+    "qualification": "Canonical focus subset, not a complete global registry or scientific performance test."
+  }
 }
