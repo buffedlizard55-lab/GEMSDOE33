@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "campaign": "FSML2-CC",
+  "date": "2026-10-26",
+  "predecessor": {
+    "campaign": "FSML-PU (evidence/fsml_preregistration_20261026.json)",
+    "outcome": "DUPLICATE at pre-placement surface guard, 0 holdout experiments run. Top-37654 preview within-3px fractions: 0.8751 vs G33-a33-r2-csht, 0.8530 vs G30-MSDB1, 0.8013 vs G24-gvc1, 0.5284 vs G32-B2. Finding: catalogue-supervised pixel rankings on this channel stack converge to the same ridge network regardless of PU correction or gate.",
+    "why_iteration_is_not_retuning": "No FSML holdout DTI was ever observed. This iteration changes the fusion law and line composition in response to a uniqueness (not performance) failure, is frozen before any FSML2 code runs, and keeps identical splits, comparators, budgets and gates. Experiments spent so far: 0 of 3."
+  },
+  "lane": "Corroboration-count multi-line fusion: 4 fold-safe spy-PU experts (identical channel groups and PU protocol to FSML-PU preregistration) + 2 label-free lines (multiscale geopotential worm edges; strike-integrated scarp line evidence from src/gemsdoe33/r3_line_localized.py). GEO tip-lobe line dropped: its preregistered canary AUC was 0.501-0.505 (no signal).",
+  "hypothesis": "Ranking by the NUMBER of independent physics lines simultaneously in their top decile (rather than a supervised blend dominated by single-head extremes) selects multi-physics-coincident lineaments, is surface-distinct from prior supervised blends, and recovers more withheld fault pixels than in-run A33-R2-CSHT at matched dotted emission.",
+  "named_non_fault_mimic": "Lithologic contacts and buried pediment edges where gravity, magnetic, radiometric and topographic edges coincide without a throughgoing Quaternary fault; Lake Lahontan shoreline complexes.",
+  "new_label_free_line": {
+    "worm": "For fields {rtp, ext_TMI_up150, iso_grav_anom} and Gaussian scales sigma {1,2,4} px: grad_mag(field, sigma) * nms_ridge(grad_mag); worm_raw = mean over 9 combinations of within-footprint percentile ranks. Deterministic, catalogue-free, computed once.",
+    "l_line": "Reused unchanged from A33-R3 (llc.build_line_evidence): within-regime rank of 12-azimuth strike-integrated Hessian ridge strength of LiDAR scarp evidence (100 m slope in voids). Label-free."
+  },
+  "fusion": {
+    "lines_cc6": ["rank(PU-S)", "rank(PU-G)", "rank(PU-C)", "rank(PU-T)", "rank(worm)", "rank(l_line)"],
+    "V1_cc6": "C90 + 0.1 * mean(rank) over 6 lines, C90 = count of lines with rank >= 0.90",
+    "V2_cc4": "C90 + 0.1 * mean(rank) over the 4 PU lines only (ablation isolating label-free lines)"
+  },
+  "emission_and_gates": "Identical to FSML-PU preregistration: CELF-300m spacing 2.5, d_visible>2px, budgets {37654, 25000} with same selection rule, same screen/confirmation splits, same comparators (matched_random, B1_regional, A33_R2_CSHT both budgets, H19_5 reference not fold-safe), same promotion gates vs recorded CSHT bests 0.13671594852245653 / 0.13116926199526852, same 22-raster duplicate guard at surface and final dots.",
+  "canaries": ["fsml_thermal_density (as before)", "fsml2_worm via SegmentHoldout.canary", "r3_l_line via SegmentHoldout.canary (re-measured this run)"],
+  "seeds": {"base": 20261026},
+  "budget_cap": {"experiments_total_incl_predecessor": 3, "experiments_spent": 0, "submission_slots": 0}
+}

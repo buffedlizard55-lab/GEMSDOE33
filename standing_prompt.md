@@ -299,10 +299,25 @@ This addendum supersedes older "next session" suggestions where they conflict. R
 
 The repeated standing request remains in force: unique TIFFs, explicit download versus submit status, nine-site executive comparison, ranked hypotheses before implementation, shared fold-safe tooling, no invented score estimates, three review passes, and PR/merge. See `knowledge/21_post_merge_review_20261026.md` for this continuation and `knowledge/20_restoration_and_claims_audit_20261026.md` for the prior restoration audit. All 17 mirror inputs and 121 cached channels have been restored locally; these ignored files will not survive a fresh checkout. S33-SEISDIL was evaluated in the separate parallel PR #30 and is preserved as a unique but negative research artifact; this post-merge review did not rerun or create a candidate. No slot was used. The current decision remains **NOT OK TO SUBMIT** (0 eligible of 12 selector cards).
 
+## FSML addendum — 2026-10-26 (latest)
 
-## 2026-10-26 selector-safety continuation
+- B2 forensics completed byte-exactly (`scripts/forensic_b2_20261026.py`, `knowledge/22…`): the nine
+  focus sites' best files are thinnings/prunings of ONE 121,131-px H19-5 binary mask; the public
+  ladder 0.1922*→0.2477*→0.2600*→0.2708*→0.2778* is pure emission pruning (spacing + catalogue-flank
+  deletion). GEMSDOE36 (0.2750*) contains B2 exactly +1,200 dots. The catalogue proxy anti-ranks
+  this ladder (B2 catalogue-DTI 0.0067) — numeric leaderboard estimation from holdout is prohibited.
+- FSML-PU lane (prereg `5faad118…`): duplicate vs CSHT at surface guard, 0 experiments.
+- FSML2-CC lane (prereg `645e1f6e…`): unique TIF written
+  (`gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.tif`, sha `be5013aa…`), verdict negative
+  vs CSHT on both splits; 25k budget descent rejected. Selector 0/13 eligible. 0 slots used.
+- Open lead status: `IR-33-H19-HOLDOUT-GAP-01` — fold-safe re-derivation with cached channels did
+  not reproduce H19-5's 0.162 reference; deciding leakage-vs-1m-data requires raw USGS 3DEP tiles
+  (host outside sandbox allowlist). Next lane must target lineaments outside the supervised ridge
+  network with genuinely new evidence, or obtain the 1 m data first. Do not retune FSML/FSML2/CSHT.
+
+## 2026-10-26 selector-safety continuation (parallel session, PR #32)
 
 Read `knowledge/22_selector_safety_review_20261026.md` before new experiments. This session
 received no identifiable single assigned method lane; it did not infer one or rerun negative
 experiments. The selector now rejects internally contradictory gate flags and invalid ranking
-DTI. No new TIFF or score is claimed. The scientific objective remains blocked, not fulfilled.
+DTI. No new TIFF or score is claimed in that session. The FSML session above is the latest experimental state: unique FSML2-CC TIF exists, verdict negative, selector 0 eligible.

@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "campaign": "FSML-PU",
+  "date": "2026-10-26",
+  "lane": "Fold-safe multi-line corroboration with spy-PU experts (single method paragraph in knowledge/22_b2_forensics_and_fsml_slate_20261026.md section 5).",
+  "hypothesis": "A fold-safe re-derivation of the H19-5 multi-line corroboration idea, with Positive-Unlabeled (spy reliable-negative) expert training to remove catalogue-negative suppression bias, recovers more withheld fault pixels than the in-run A33-R2-CSHT recipe at matched dotted emission.",
+  "named_non_fault_mimic": "Pluvial Lake Lahontan shorelines, playa/evaporite margins and lithologic contacts corroborating across gravity, radiometric and topographic lines without a throughgoing fault.",
+  "experts": {
+    "S_scarp": ["lid_ex_max", "lid_step_max", "lid_lapneg_max", "lid_cross_max", "lid_relief", "lid_coh100", "lid_downface_max", "lid_upface_max", "det_elev_slope", "det_elev_curv2", "det_elev_curv4", "det_elev_ridge", "det_elev_coh", "det_elev_laps2"],
+    "G_geopot": ["tmi_hg", "tmi_vg", "tc", "rtp_gms2", "rtp_ridge", "rtp_coh", "mag_anom_gms2", "mag_anom_ridge", "ext_TMI_up150_gm2", "ext_TMI_up150_ridge", "iso_grav_anom_hg", "iso_grav_anom_vg", "iso_grav_anom_slope", "iso_grav_anom_ridge", "iso_grav_anom_coh"],
+    "C_cover": ["depth_to_base_surf", "depth_to_base_surf_gms2", "depth_to_base_surf_ridge", "depth_to_base_surf_coh", "cond_surf", "cond_surf_gms2", "cond_surf_laps2", "cond_surf_ridge", "rad_K", "rad_Th", "rad_U", "ext_ThK", "ext_UK", "ext_UTh"],
+    "T_therm": ["geod_2ndinv", "geod_shearrate", "geod_dilaterate", "ieq_n100a15", "ieq_n100a15_ridge", "deq_n100a15", "hydro_upflow_potential", "hydro_demag_contrast", "thermal_density", "thermal_orphan"]
+  },
+  "new_channels": {
+    "thermal_density": "Label-free: Gaussian (sigma=5px) density of data/gdr_wellspring_in_footprint.csv points (row,col in footprint), weight = 1 + clip(temp_c,0,100)/50 where temp present else 1; dist_known_fault_px column NEVER read.",
+    "thermal_orphan": "Fold-dependent: thermal_density * clip((d_visible-3)/17, 0, 1) using ONLY fold-visible catalogue distance.",
+    "GEO_tip_lobe": "Fold-dependent untrained line: 8-connected components of fold-visible catalogue with >=15 px; PCA principal axis; extension rays at 3,6,9,12,15 px beyond both projection endpoints weighted 1,0.8,0.6,0.4,0.25; Gaussian sigma=2px; plus 0.3*exp(-d_visible/8) restricted to 2<d_visible<=30."
+  },
+  "pu_training_per_expert_per_fold": {
+    "positives": "train & visible, cap 40000; 20% held out as spies (seeded)",
+    "step1": "HGB(max_iter=150, lr=0.06, max_leaf_nodes=47, min_samples_leaf=60, l2=3.0) on 80% positives vs U = train & ~visible & (d_visible>5), cap 80000, balanced class weights",
+    "reliable_negatives": "U pixels scoring below 15th percentile of spy-positive step-1 scores (floor: lowest 20000 of U)",
+    "step2": "same HGB config on ALL positives vs reliable negatives (cap 80000), balanced class weights",
+    "prediction": "step-2 probability on fold valid domain; percentile-ranked for fusion"
+  },
+  "fusion": {
+    "lines": ["rank(S)", "rank(G)", "rank(C)", "rank(T)", "rank(GEO)"],
+    "V1_gate": "mean(rank) * clip(second_largest_rank / 0.75, 0.30, 1.0)",
+    "V2_nogate": "mean(rank) (ablation)"
+  },
+  "emission": {
+    "placer": "csht_transfer.celf_emit_300m, min_self_spacing_px=2.5",
+    "eligible": "valid & (distance_to_visible_catalogue > 2 px)",
+    "budgets_screen": [37654, 25000],
+    "budget_rule": "chosen_budget = 25000 iff screen HOLDOUT-DTI(selected variant @25000) > screen HOLDOUT-DTI(selected variant @37654), else 37654; fold budgets scaled by valid/footprint area"
+  },
+  "protocol_order": [
+    "1 leakage canaries: thermal_density via SegmentHoldout.canary; GEO and thermal_orphan via per-fold visible-only AUC (two-sided > 0.90 stops)",
+    "2 full-footprint surfaces (V1,V2) + pre-placement uniqueness vs registry/focus_rasters_20261026_r3.json (22 rasters); duplicate variants dropped; if none survive stop as duplicate",
+    "3 Exp 1/3 screen quadrant-buffered-15px-v1: matched_random, B1_regional, A33_R2_CSHT (@37654 and @25000), H19_5_reference_not_fold_safe, surviving FSML variants (@37654 and @25000)",
+    "4 select variant by screen DTI @37654; select budget by budget_rule",
+    "5 Exp 2/3 confirmation diagonal-wedge-buffered-20px-confirm-v1: B1, CSHT @chosen budget, FSML @chosen budget",
+    "6 full placement @chosen budget, final-dot uniqueness, shared writer (zeros primary + nan twin), strict saved-byte audit, promotion.assess, run card. Exp 3/3 reserved for tool defect only."
+  ],
+  "promotion_gates": {
+    "screen": "FSML@chosen > max(in-run CSHT@chosen, 0.13671594852245653, in-run B1) AND paired 95% CI vs CSHT@chosen strictly positive AND >=3/4 fold wins",
+    "confirmation": "FSML@chosen > max(in-run CSHT@chosen, 0.13116926199526852) AND paired CI vs CSHT@chosen strictly positive AND >=3/4 fold wins",
+    "uniqueness": "surface and final dots pass vs all 22 registry rasters",
+    "note": "No leaderboard score is projected under any outcome (knowledge/22 section 3)."
+  },
+  "seeds": {"base": 20261026},
+  "budget_cap": {"experiments": 3, "hours": 2, "submission_slots": 0}
+}
