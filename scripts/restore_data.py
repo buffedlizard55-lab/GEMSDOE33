@@ -74,15 +74,18 @@ def restore(entry: dict, root: Path) -> dict:
         if actual_hash == expected_hash and destination.stat().st_size == expected_bytes:
             return {"id": entry["id"], "status": "already-verified", "bytes": expected_bytes,
                     "sha256": actual_hash}
-        destination.unlink()
+        # Keep existing bytes until a fully verified replacement is ready.
 
+    destination.parent.mkdir(parents=True, exist_ok=True)
     partial = destination.with_name(destination.name + ".assembling")
     partial.unlink(missing_ok=True)
+    owned_parts = []
     try:
         if "parts" in entry:
             with partial.open("wb") as assembled:
                 for index, remote_path in enumerate(entry["parts"]):
                     part = root / "raw" / f"{entry['id']}-{index:03d}.part"
+                    owned_parts.append(part)
                     fetch_to(entry["repo"], entry["ref"], remote_path, part)
                     with part.open("rb") as source:
                         shutil.copyfileobj(source, assembled, length=1 << 20)
@@ -102,10 +105,11 @@ def restore(entry: dict, root: Path) -> dict:
                 "sha256": actual_hash}
     except Exception:
         partial.unlink(missing_ok=True)
-        destination.unlink(missing_ok=True)
         raise
     finally:
-        shutil.rmtree(root / "raw", ignore_errors=True)
+        # Never remove unrelated downloads from a shared data/raw directory.
+        for part in owned_parts:
+            part.unlink(missing_ok=True)
 
 
 def main() -> int:
