@@ -37,7 +37,7 @@
     "owner_mirror_inputs_verified": 17,
     "cache_channels_prepared": 121,
     "detector_fit": false,
-    "pytest": "148 passed",
+    "pytest": "149 passed",
     "selector": "NO RASTER IS OK TO SUBMIT; 0 eligible of 11 run cards",
     "local_provenance_limit": "SHA-256 verifies equality with registered owner mirrors, not official organizer provenance or licensing."
   },

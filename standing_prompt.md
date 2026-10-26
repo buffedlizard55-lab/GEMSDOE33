@@ -287,7 +287,7 @@ The full user-reported score list from the brief is in `registry/user_reported_s
 This addendum supersedes older "next session" suggestions where they conflict. Read [`knowledge/18_round4_feasibility_audit_20261026.md`](knowledge/18_round4_feasibility_audit_20261026.md) and [`evidence/round4_run_card_20261026.json`](evidence/round4_run_card_20261026.json) before any new modeling.
 
 - The 17 registered owner-mirror inputs were restored and SHA-256 verified in the working tree; `scripts/prepare_data.py --skip-detector` rebuilt the shared 121-channel feature cache. The owner mirrors are **not organizer-authenticated**; the data and cache remain git-ignored.
-- Regression suite: 148 passed. Automated selector: 0 eligible files. No DrivenData slot used; no upload made.
+- Regression suite: 149 passed. Automated selector: 0 eligible files. No DrivenData slot used; no upload made.
 - Latest pre-existing artifact A33-R3-LLC remains **OK TO DOWNLOAD for research / NOT OK TO SUBMIT**. Its saved bytes pass local strict-zero-outside format checks, but it did not beat the current comparable holdout best. No new TIF was generated in this continuation.
 - `IR-33-PORTAL-RANGE-CLAIM-01`: never claim zero-outside or NaN encoding fixes the reported portal range error. The rejected bytes and organizer diagnostic are absent. A local `[0,1]` pass does not prove portal acceptance; the official-format wording recorded here says null/NaN outside, so semantics remain unresolved.
 - The current user request did not identify one single assigned method paragraph. Per the parallel-run lane constraint, do not infer permission to jump lanes. No holdout candidate was run.
