@@ -13,6 +13,9 @@ def test_overview_marks_latest_unique_tif_research_only_and_not_uploadable():
     assert "0.3195 and 0.4413 conflict" in page
     assert "no score is projected" in page.lower()
     assert "A33-R3-LLC" in page
+    assert "Current checkout limitation" in page
+    assert "cached feature stack are absent" in page
+    assert "knowledge/19_repository_review_20261026.md" in page
 
 
 def test_executive_summary_explains_process_and_blocks_failed_candidate():
@@ -79,6 +82,14 @@ def test_source_page_does_not_claim_restored_owner_mirrors_are_absent():
     assert "17 owner-mirror inputs restored and hash-verified" in page
     assert "git-ignored" in page
     assert "do not authenticate organizer provenance" in page
+
+
+def test_latest_review_discloses_current_checkout_missing_inputs():
+    page = build_site.build_focus_review()
+    assert "Current-checkout verification" in page
+    assert "cached feature stack are git-ignored and are absent" in page
+    assert "No new candidate was evaluated, and no new TIFF or submission slot was created" in page
+    assert "knowledge/19_repository_review_20261026.md" in page
 
 
 def test_portal_range_error_is_not_claimed_fixed_by_zero_outside():
