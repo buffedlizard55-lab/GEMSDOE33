@@ -8,9 +8,9 @@
       "id": "IR-33-F-01",
       "severity": "high",
       "status": "measured; not slot-cleared",
-      "finding": "H33-F named analog-field transfer (Dixie/Brady/Desert Peak well-cell masks + GeoDAWN/LiDAR) produced a unique 44,090-dot GeoTIFF. Exploratory 20 km-block domain-discriminator AUC was 0.917. Fold-safe P1 mean ΔDTI vs rebuilt C0 was −0.093072 (0/4 folds). P2 SGMC ΔDTI vs C0 was −0.016163; vs matched-N random +0.001234. Ben-David bound not licensed (lambda unknown; analog labels are the same public catalogue). GDR 1682/207 GIS archives were not staged (TLS fail).",
+      "finding": "H33-F named analog-field transfer (Dixie/Brady/Desert Peak well-cell masks + GeoDAWN/LiDAR) produced a unique 44,090-dot GeoTIFF. Exploratory 20 km-block domain-discriminator AUC was 0.917. Fold-safe P1 mean \u0394DTI vs rebuilt C0 was \u22120.093072 (0/4 folds). P2 SGMC \u0394DTI vs C0 was \u22120.016163; vs matched-N random +0.001234. Ben-David bound not licensed (lambda unknown; analog labels are the same public catalogue). GDR 1682/207 GIS archives were not staged (TLS fail).",
       "evidence": "evidence/holdout_analog.json; evidence/domain_adaptation_preflight.json; docs/downloads/research/h33-f-analog-transfer-manifest.json; knowledge/07_analog_transfer.md.",
-      "consequence": "H33-F is a separate research-only artifact and not slot-cleared. Do not spend a weekly slot or describe the exploratory discriminator as a Ben-David HΔH bound or transfer success."
+      "consequence": "H33-F is a separate research-only artifact and not slot-cleared. Do not spend a weekly slot or describe the exploratory discriminator as a Ben-David H\u0394H bound or transfer success."
     },
     {
       "id": "IR-33-SCORE-01",
@@ -40,7 +40,7 @@
       "id": "IR-33-C2-01",
       "severity": "critical",
       "status": "conditional diagnostic negative; not slot-cleared",
-      "finding": "Upstream C2 stepover-relay P1 +0.000405 (3/4 folds positive) is withdrawn because the earlier candidate/base construction and Qfaults vectors saw full-catalogue/held-out source geometry. The corrected source-exclusion diagnostic has mean P1 ΔDTI −0.000722 (0/4 positive); across folds 2,643 added dots yielded zero incremental TPw and 2,643 incremental FPw. P2 SGMC proxy ΔDTI is +0.000283, but this cannot override P1. The corrected run remains conditional: fixed H19-5 was not re-derived per fold, this was not an independent preregistered confirmation, and the community Qfaults mirror is not authenticated to the current official archive.",
+      "finding": "Upstream C2 stepover-relay P1 +0.000405 (3/4 folds positive) is withdrawn because the earlier candidate/base construction and Qfaults vectors saw full-catalogue/held-out source geometry. The corrected source-exclusion diagnostic has mean P1 \u0394DTI \u22120.000722 (0/4 positive); across folds 2,643 added dots yielded zero incremental TPw and 2,643 incremental FPw. P2 SGMC proxy \u0394DTI is +0.000283, but this cannot override P1. The corrected run remains conditional: fixed H19-5 was not re-derived per fold, this was not an independent preregistered confirmation, and the community Qfaults mirror is not authenticated to the current official archive.",
       "evidence": "evidence/holdout33.json; evidence/holdout33_legacy_catalogue_only.json; evidence/build_c2_01f660dd8656.json; archive/legacy_candidates/gems33-c2-stepover-relay-20261004-01f660dd8656.tif.",
       "consequence": "C2 remains a research artifact only and is not linked as a download recommendation. No P1/P2 result is a DrivenData score or private-label validation; the corrected diagnostic does not clear a submission slot."
     },
@@ -96,7 +96,7 @@
       "id": "IR-33-DA-01",
       "severity": "high",
       "status": "first-pass domain result withdrawn; analog source pending",
-      "finding": "The first-pass 'source/target' regions were upper/lower quantiles of GDR well/spring record density, not Dixie Valley, Desert Peak or Brady field-specific domains. The 27,092 CSV rows contain only 12,570 unique 100-m cells, so row counts include repeated tables for one site. The discriminator used a random row split on spatially correlated raster features; its HGB class was not shown to equal HΔH for the fault model; no finite-sample VC term or lambda (joint-label error) was supplied.",
+      "finding": "The first-pass 'source/target' regions were upper/lower quantiles of GDR well/spring record density, not Dixie Valley, Desert Peak or Brady field-specific domains. The 27,092 CSV rows contain only 12,570 unique 100-m cells, so row counts include repeated tables for one site. The discriminator used a random row split on spatially correlated raster features; its HGB class was not shown to equal H\u0394H for the fault model; no finite-sample VC term or lambda (joint-label error) was supplied.",
       "evidence": "archive/withdrawn_first_pass/evidence/domain_adaptation.json; archive/withdrawn_first_pass/evidence/domain_log.txt; current fail-closed replacement scripts/run_domain_adaptation.py; Springer paper https://link.springer.com/article/10.1007/s10994-009-5152-4.",
       "consequence": "The archived AUC=1.0 is not a valid Ben-David divergence estimate and neither licenses nor refutes the requested analog transfer. A field-specific source label set and spatially blocked domain test are still required."
     },
@@ -152,7 +152,7 @@
       "id": "IR-33-H33-6-01",
       "severity": "critical",
       "status": "frozen screen failed; stopped, not slot-cleared",
-      "finding": "The preregistered cross-physics edge-normal candidate reallocated 5% of H27-4 dots at matched count. Four fold deltas were −0.004907, −0.012736, +0.003241, +0.003454 (mean −0.002737; 2/4 positive). P2 SGMC delta was +0.000159. It beat the matched-random mean but failed the baseline P1 mean and strict-majority gates. The first full run wrote complete JSON evidence but then raised a non-scientific ValueError while printing a relative output path; the path-display bug was fixed without rerunning/altering results.",
+      "finding": "The preregistered cross-physics edge-normal candidate reallocated 5% of H27-4 dots at matched count. Four fold deltas were \u22120.004907, \u22120.012736, +0.003241, +0.003454 (mean \u22120.002737; 2/4 positive). P2 SGMC delta was +0.000159. It beat the matched-random mean but failed the baseline P1 mean and strict-majority gates. The first full run wrote complete JSON evidence but then raised a non-scientific ValueError while printing a relative output path; the path-display bug was fixed without rerunning/altering results.",
       "evidence": "evidence/holdout_h33_6.json; knowledge/08_h33_6_result_20261004.md; scripts/run_h33_6_holdout.py.",
       "consequence": "Stop H33-6 for this round. Do not tune or spend a submission slot. P1/P2 are catalogue/SGMC proxy diagnostics, not private-label or competition scores. Fixed H19-5 was not re-derived per fold, so even a numeric pass would have remained conditional."
     },
@@ -170,7 +170,7 @@
       "status": "publicly listed; official GIS payload blocked",
       "finding": "The official GDR 1682 page and README identify BRIDGE GIS as public CC BY 4.0 and list a 3.79 MB archive; local direct retrieval failed TLS (HTTP 000). No GIS bytes, CRS, schema, or target overlap are audited. The README indicates field verification is limited to Dixie and Gabbs Valleys.",
       "evidence": "https://gdr.openei.org/submissions/1682; https://gdr.openei.org/files/1682/BRIDGE_README.pdf; registry/sources.json.",
-      "consequence": "H33-7 remains the high-ceiling blocked analog-transfer hypothesis, not a viable candidate. No Ben-David HΔH estimate or transfer claim is made."
+      "consequence": "H33-7 remains the high-ceiling blocked analog-transfer hypothesis, not a viable candidate. No Ben-David H\u0394H estimate or transfer claim is made."
     },
     {
       "id": "IR-33-SCORE-03",
@@ -240,7 +240,7 @@
       "id": "IR-33-A33-L1-20261025",
       "severity": "critical",
       "status": "completed negative; not slot-cleared",
-      "finding": "A33-L1 target-CDF field-balanced transfer passed all 12 feature canaries, both nine-raster novelty guards and strict writer checks, but HOLDOUT-DTI was 0.108374 [0.097607,0.119402] versus fold-safe regional B1 0.113244 [0.102796,0.124169]. Paired delta was -0.004870 [−0.010900,+0.001226], with 0/4 fold wins.",
+      "finding": "A33-L1 target-CDF field-balanced transfer passed all 12 feature canaries, both nine-raster novelty guards and strict writer checks, but HOLDOUT-DTI was 0.108374 [0.097607,0.119402] versus fold-safe regional B1 0.113244 [0.102796,0.124169]. Paired delta was -0.004870 [\u22120.010900,+0.001226], with 0/4 fold wins.",
       "evidence": "evidence/analog_lane_preregistration_20261025.json; evidence/a33_l1_experiment.json; evidence/a33_l1_run_card.json.",
       "consequence": "Scientific verdict negative. Preserve the unique TIFF as research evidence, issue no score projection, do not run the slot selector, and do not upload."
     },
@@ -299,7 +299,55 @@
       "finding": "A33-R2-CSHT (cover-state + INGENIOUS 1,116-seed hydrothermal conduit transfer + 300 m submodular CELF, 37,654 dots) passed all 50 single-feature leakage canaries (max AUC 0.7685 <= 0.90), passed 100% strict [0, 1] GeoTIFF checks, beat regional B1 across all 8/8 holdout folds on both quadrant screen (HOLDOUT-DTI 0.136716 vs 0.112418, delta +0.024298 [+0.012427, +0.035833], 4/4 folds) and frozen orthogonal diagonal-wedge confirmation (HOLDOUT-DTI 0.131169 vs 0.115122, delta +0.016047 [+0.003817, +0.028030], 4/4 folds), and passed final_dots uniqueness against all 21 focus+local rasters (max |Spearman| 0.0416, max 3-px overlap 0.6934 <= 0.70 vs G30-MSDB1; 0.3586 vs G32-B2) plus all 3 Round-3 sibling rasters (max 3-px 0.4482). However, pre-placement continuous surface peaks exceeded 70% 3-px overlap vs 2026-10-25 sibling HGB rasters trained on shared cached features (G30-MSDB1: 91.11% unthinned / 77.82% matched-37k NMS).",
       "evidence": "evidence/a33_r2_preregistration_20261026.json; evidence/a33_r2_experiment_20261026.json; evidence/a33_r2_uniqueness_20261026.json; evidence/a33_r2_run_card_20261026.json.",
       "consequence": "Recorded as verdict='duplicate' (promotion.py verdict='negative', 11/12 gates passed, failed_gates=['surface_not_duplicate']). Artifact is OK TO DOWNLOAD for audit/reproducibility, NOT OK TO SUBMIT (0 weekly slots spent)."
+    },
+    {
+      "id": "IR-33-A33-R3-20261026",
+      "severity": "high",
+      "status": "completed negative; OK to download, NOT OK to submit",
+      "finding": "A33-R3-LLC (label-free strike-integrated Hessian scarp line evidence x fold-trained CSHT prior, CELF-300m, 37,654 dots). V1_gamma1 was surface-duplicate vs our own A33-R2-CSHT (79.15% > 70%) and dropped before evaluation. V2_gamma05: screen HOLDOUT-DTI 0.137868 [0.1286, 0.1479] vs in-run CSHT 0.137555, paired delta +0.000313 [-0.008009, +0.008288], 2/4 folds; confirmation 0.131506 [0.1208, 0.1414] vs CSHT 0.132066, delta -0.000560 [-0.009035, +0.007547], 2/4 folds (60,988 withheld positives each, gems-segment-pooled-v1). Still beats B1 on confirmation (CI [+0.00586, +0.02961]). Canaries max fold AUC 0.6743; surface max 3-px 67.79%; final dots max 3-px 43.25% (37.48% vs G32-B2).",
+      "evidence": "evidence/a33_r3_preregistration_20261026.json; evidence/a33_r3_experiment_20261026.json; evidence/a33_r3_run_card_20261026.json; evidence/a33_r3_uniqueness_20261026.json",
+      "consequence": "verdict='negative' (failed gates: screen_beats_current_best, independent_confirmation). Strike integration adds no measurable recovery over CSHT+CELF at the 300 m kernel scale. 0 slots spent; reserve experiment 3/3 unused."
+    },
+    {
+      "id": "IR-33-R3-PREREG-TIMESTAMP-01",
+      "severity": "medium",
+      "status": "flagged; cannot edit frozen JSON",
+      "finding": "evidence/a33_r3_preregistration_20261026.json carries a hand-entered frozen_utc '2026-10-26T05:10:00Z', which is later than the events it precedes. The authoritative freeze time is git commit 61e79c6 (2026-10-26T04:40:15Z); the R3 module and runner were created after that commit and the campaign started 04:44:51Z.",
+      "evidence": "git log -1 61e79c6; .cache/r3/run.log (not committed); evidence/a33_r3_run_card_20261026.json started_utc",
+      "consequence": "Use the git commit time as the preregistration time. Future preregistrations should take frozen_utc from the system clock, not type it by hand."
+    },
+    {
+      "id": "IR-33-R3-CSHT-REPRO-01",
+      "severity": "low",
+      "status": "flagged",
+      "finding": "In-run A33-R2-CSHT recipe reproduced at screen 0.137555 (recorded 0.136716, +0.000839) and confirmation 0.132066 (recorded 0.131169, +0.000897). The feature cache was rebuilt this session; the LiDAR-void count is 1,273,286 vs 1,272,913 recorded (373 cells), likely from lid_valid NaN handling.",
+      "evidence": "evidence/a33_r3_experiment_20261026.json; evidence/a33_r2_experiment_20261026.json",
+      "consequence": "Gates already used max(in-run, recorded), so the decision does not depend on this. Small drift: pin a feature-cache digest in future run cards."
+    },
+    {
+      "id": "IR-33-DUAL-WRITER-01",
+      "severity": "low",
+      "status": "flagged",
+      "finding": "There are two writer modules, root submission_writer.py and scripts/submission_writer.py. Runners import the scripts/ version through sys.path order.",
+      "evidence": "submission_writer.py; scripts/submission_writer.py",
+      "consequence": "Consolidate in a future session. The R3 receipt records writer_source=vendor/gems24_template/submission.py."
+    },
+    {
+      "id": "IR-33-LEDGER-STALE-01",
+      "severity": "low",
+      "status": "fixed (additive)",
+      "finding": "registry/score_ledger.json lists 53 submissions. The 2026-10-26 brief lists 126 rows (including blanks), including GEMSDOE63-92.",
+      "evidence": "registry/user_reported_scores_20261026.csv",
+      "consequence": "Added a full USER-REPORTED CSV transcribed from the brief, keeping blank scores (GEMSDOE86, GEMSDOE88, gems91-S18) blank. Not organizer-confirmed."
+    },
+    {
+      "id": "IR-33-H19-HOLDOUT-GAP-01",
+      "severity": "medium",
+      "status": "open research finding",
+      "finding": "In the R3 screen, the fixed external H19-5 surface (not fold-safe, informational) scored HOLDOUT-DTI 0.162036 [0.1516, 0.1725], against 0.137555 for the fold-safe CSHT. Because H19-5 was built with the full catalogue visible, some of the +0.024 gap may be leakage; the rest may be a real feature advantage. The public leaderboard ordering (B2 family 0.2778* vs CSHT-like MSDB1 0.1462*) points the same way.",
+      "evidence": "evidence/a33_r3_run_card_20261026.json holdout_dti.screen.H19_5_reference_not_fold_safe",
+      "consequence": "The next most informative experiment is a fold-safe re-derivation of the H19-5 multiline-corroboration recipe, which separates leakage from real signal."
     }
   ],
-  "last_review": "2026-10-26 A33-R2-CSHT + Round-3 H33-R3-1/R3-3"
+  "last_review": "2026-10-26 A33-R3 session"
 }

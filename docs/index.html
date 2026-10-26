@@ -4,7 +4,19 @@
 <title>GEMSDOE33 · Evidence-led fault discovery</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
 <p>DrivenData #306 · evidence-led research · review status 2026-10-25</p><nav class="nav" aria-label="Primary"><a href="index.html" aria-current=page>Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
-<main class="wrap"><div class="hero-download" id="a33-r2-csht">
+<main class="wrap"><div class="hero-download" id="a33-r3-llc">
+<h2>2026-10-26 A33-R3-LLC GeoTIFF: OK TO DOWNLOAD: YES · OK TO SUBMIT: NO (verdict: negative)</h2>
+<p><span class="badge good">OK TO DOWNLOAD: YES · STRICT [0, 1], 0.0 OUTSIDE</span> <span class="badge good">UNIQUE VS 22 REGISTRY RASTERS (max 3-px 43.25%)</span> <span class="badge bad">OK TO SUBMIT: NO · ties the holdout best, does not beat it</span></p>
+<p><b>Automated selector decision</b> (<code>scripts/select_submission.py</code>, <a href="data/submission_selection.json">selection JSON</a>): <b>no raster in this project is OK to submit.</b>
+A33-R3-LLC multiplies the fold-trained CSHT prior by a label-free score for strike-integrated LiDAR scarp lines. It produced HOLDOUT-DTI <code>0.137868</code> [0.1286, 0.1479] on the quadrant screen, against CSHT's <code>0.137555</code> (paired &Delta; <code>+0.0003</code> [&minus;0.0080, +0.0083], 2/4 folds). On the diagonal-wedge confirmation it scored <code>0.131506</code> against <code>0.132066</code> (&Delta; <code>&minus;0.0006</code> [&minus;0.0090, +0.0075], 2/4 folds). Each split withheld 60,988 positives (<code>gems-segment-pooled-v1</code>). The file is format-valid and unique, but it is a research artifact: <b>do not spend a weekly slot.</b></p>
+<p><a class="btn" href="downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif">Download A33-R3-LLC GeoTIFF (827 KB)</a> <a class="btn alt" href="downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.zip">Single-TIFF .zip (184 KB)</a> <a class="btn alt" href="downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-nan.tif">NaN-outside twin</a> <a class="btn alt" href="downloads/receipt-gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9.json">Validator receipt</a> <a class="btn alt" href="data/a33_r3_run_card_20261026.json">Run card JSON</a></p>
+<table><tbody>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros</code></td></tr>
+<tr><th>Note (104 / 140 chars)</th><td><code>GEMS33 A33-R3-LLC V2_gamma05: scarp line-integral x CSHT prior, CELF300 37654d | NEGATIVE | 7f91f9f3ced9</code></td></tr>
+<tr><th>GeoTIFF SHA-256</th><td><code>76f9e157d01bb9bec2d98c3c5941b6114e06e0f439272d5f140af6e3584c8825</code></td></tr>
+</tbody></table>
+</div>
+<div class="hero-download" id="a33-r2-csht">
 <h2>2026-10-26 A33-R2-CSHT GeoTIFF — OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — DO NOT SPEND A WEEKLY SLOT (verdict: duplicate)</h2>
 <p><span class="badge good">OK TO DOWNLOAD: YES · STRICT [0, 1] FORMAT PASS</span> <span class="badge good">HOLDOUT-DTI 8/8 FOLDS PASS (0.136716 / 0.131169)</span> <span class="badge good">FINAL DOTS UNIQUE VS 24 RASTERS</span> <span class="badge bad">OK TO SUBMIT: NO (surface duplicate guard)</span></p>
 <p><b>Unique 2026-10-26 A33-R2-CSHT submission-format GeoTIFF (strict <code>[0.0, 1.0]</code> range, <code>0.0</code> outside footprint, fixes <code>IR-33-LIDAR-VOID-01</code> <code>260,733</code> phantom void scarps):</b>

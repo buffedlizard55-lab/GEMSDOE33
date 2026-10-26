@@ -234,3 +234,27 @@ All scores below are **USER/OWNER-REPORTED — NOT ORGANIZER-CONFIRMED** (pinned
    - **OK TO DOWNLOAD:** **`YES`** (100% format-valid `[0, 1]` `float32` `EPSG:32611` `3730×3292` GeoTIFF; placed `final_dots` pass `21 / 21` registry uniqueness checks with `max |Spearman| = 0.0416 <= 0.90`, `max 3-px overlap = 0.6934 <= 0.70` vs `G30-MSDB1`, and `0.3586` vs `G32-B2`).
    - **OK TO SUBMIT (WEEKLY SLOT):** **`NO — DO NOT SPEND A WEEKLY SLOT`** (`Run Card verdict = "duplicate"`, `11 / 12` `promotion.py` gates passed, stopped fail-closed on `surface_not_duplicate`). Even though `A33-R2-CSHT` beat `B1_regional` across **`8 / 8` holdout folds** (`screen HOLDOUT-DTI = 0.136716` vs `0.112418` [`0.113244` recorded], paired $\Delta = +0.024298$ `[+0.012427, +0.035833]`, `4/4` folds; orthogonal `confirmation HOLDOUT-DTI = 0.131169` vs `0.115122`, paired $\Delta = +0.016047$ `[+0.003817, +0.028030]`, `4/4` folds) and passed `50 / 50` leakage canaries (`max fold AUC = 0.7685 <= 0.90`), its pre-placement continuous surface peaks converged (`> 70%` 3-px overlap) with 2026-10-25 sibling regional-HGB rasters `G30-MSDB1` (`0.1462`*), `G24-gvc1` (`0.0859`*), and `G25-h66` (`0.0742`*). Campaign stopped cleanly at `3 / 3` experiments with `0` weekly slots spent.
    - Authoritative Round 2 evidence: `evidence/a33_r2_experiment_20261026.json`, `evidence/a33_r2_run_card_20261026.json`, `evidence/a33_r2_uniqueness_20261026.json`, `evidence/a33_r2_promotion_assessment_20261026.json`, and `knowledge/13_focus_forensics_g32_proof_and_a33_r2_results_20261026.md`.
+
+---
+
+## Round 3 Addendum (2026-10-26, `A33-R3-LLC`): read before the next session
+
+**What the 2026-10-26 brief asked for:**
+1. Review the repo and continue the earlier next steps.
+2. Write an executive summary of the 9 focus sites (24, 25, 27, 28, 30, 31, 32, 33, 36) that names the best submission.
+3. Explain GEMSDOE32 B2 (0.2778\*) and whether it can be beaten.
+4. Propose 3–5 untried, ranked hypotheses with official free sources.
+5. Validate on a spatially blocked holdout before any slot is used.
+6. Produce a unique [0,1] zero-outside TIF with a unique name and a note of ≤140 characters, and make OK TO DOWNLOAD / OK TO SUBMIT explicit at the top of the README and site.
+7. Use automated validation only (no human inspector).
+8. Store research with links, flag irregularities, run 3 passes, then open a PR and merge it.
+
+The full user-reported score list from the brief is in `registry/user_reported_scores_20261026.csv`. The brief's leader values conflict (0.4413 vs 0.3195); both are unverified.
+
+**Outcome:**
+- **Slate:** frozen at git `61e79c6`; see `knowledge/14_a33_r3_llc_preregistration_and_result_20261026.md`.
+- **A33-R3-LLC was negative:** it tied CSHT (screen Δ +0.0003 [−0.0080, +0.0083]; confirmation Δ −0.0006 [−0.0090, +0.0075]).
+- **New TIF:** `docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif` is OK TO DOWNLOAD and **NOT OK TO SUBMIT**.
+- **Automated selector:** new `scripts/select_submission.py` makes the OK-TO-SUBMIT decision. It re-checks sha256, format, the zip contents, the note, and the promotion gates from bytes on disk. Today: 0 eligible.
+- **Open lead (`IR-33-H19-HOLDOUT-GAP-01`):** the H19-5 reference, which is not fold-safe, scores 0.162 on the screen. Next session, start with a fold-safe re-derivation of the H19-5 recipe.
+- **Irregularities flagged:** `IR-33-R3-PREREG-TIMESTAMP-01`, `IR-33-R3-CSHT-REPRO-01`, `IR-33-DUAL-WRITER-01`, `IR-33-LEDGER-STALE-01`.

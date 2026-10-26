@@ -208,8 +208,47 @@ On buffered whole-segment holdout (<code>60,988</code> withheld positives, <code
 </div>"""
 
 
+def a33_r3_llc_hero() -> str:
+    base = "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9"
+    tif, zip_, nan_tif = f"downloads/{base}-zeros.tif", f"downloads/{base}-zeros.zip", f"downloads/{base}-nan.tif"
+    rcpt, card, sel = f"downloads/receipt-{base}.json", "data/a33_r3_run_card_20261026.json", "data/submission_selection.json"
+    sha = "76f9e157d01bb9bec2d98c3c5941b6114e06e0f439272d5f140af6e3584c8825"
+    note = "GEMS33 A33-R3-LLC V2_gamma05: scarp line-integral x CSHT prior, CELF300 37654d | NEGATIVE | 7f91f9f3ced9"
+    return f"""<div class="hero-download" id="a33-r3-llc">
+<h2>2026-10-26 A33-R3-LLC GeoTIFF: OK TO DOWNLOAD: YES · OK TO SUBMIT: NO (verdict: negative)</h2>
+<p><span class="badge good">OK TO DOWNLOAD: YES · STRICT [0, 1], 0.0 OUTSIDE</span> <span class="badge good">UNIQUE VS 22 REGISTRY RASTERS (max 3-px 43.25%)</span> <span class="badge bad">OK TO SUBMIT: NO · ties the holdout best, does not beat it</span></p>
+<p><b>Automated selector decision</b> (<code>scripts/select_submission.py</code>, <a href="{sel}">selection JSON</a>): <b>no raster in this project is OK to submit.</b>
+A33-R3-LLC multiplies the fold-trained CSHT prior by a label-free score for strike-integrated LiDAR scarp lines. It produced HOLDOUT-DTI <code>0.137868</code> [0.1286, 0.1479] on the quadrant screen, against CSHT's <code>0.137555</code> (paired &Delta; <code>+0.0003</code> [&minus;0.0080, +0.0083], 2/4 folds). On the diagonal-wedge confirmation it scored <code>0.131506</code> against <code>0.132066</code> (&Delta; <code>&minus;0.0006</code> [&minus;0.0090, +0.0075], 2/4 folds). Each split withheld 60,988 positives (<code>gems-segment-pooled-v1</code>). The file is format-valid and unique, but it is a research artifact: <b>do not spend a weekly slot.</b></p>
+<p><a class="btn" href="{tif}">Download A33-R3-LLC GeoTIFF (827 KB)</a> <a class="btn alt" href="{zip_}">Single-TIFF .zip (184 KB)</a> <a class="btn alt" href="{nan_tif}">NaN-outside twin</a> <a class="btn alt" href="{rcpt}">Validator receipt</a> <a class="btn alt" href="{card}">Run card JSON</a></p>
+<table><tbody>
+<tr><th>Unique submission name</th><td><code>{base}-zeros</code></td></tr>
+<tr><th>Note (104 / 140 chars)</th><td><code>{note}</code></td></tr>
+<tr><th>GeoTIFF SHA-256</th><td><code>{sha}</code></td></tr>
+</tbody></table>
+</div>"""
+
+
+def submission_steps() -> str:
+    return """<h3>Exact submission steps (for any future raster the automated selector marks OK TO SUBMIT)</h3>
+<ol>
+<li>Run <code>python scripts/select_submission.py</code>. Upload only the file named in <code>docs/data/submission_selection.json</code>, and only if <code>"ok_to_submit": true</code>. Today it is <b>false</b>.</li>
+<li>Confirm the file is unchanged: <code>sha256sum FILE</code> must equal the run card's <code>raster_sha256</code>. The selector checks this automatically.</li>
+<li>Format (checked automatically by <code>scripts/validate_submission.py --strict-zero-outside</code>):
+<ul>
+<li>1 band, <code>float32</code>, <code>EPSG:32611</code>;</li>
+<li>shape <code>3730 &times; 3292</code>, 100 m pixels, origin <code>(243350, 4508550)</code>, identical to <code>sample_submission.tif</code>;</li>
+<li>every cell finite and in <code>[0, 1]</code>, with <code>0.0</code> outside the footprint. This avoids &ldquo;Predicted values must be in range [0,1]&rdquo;.</li>
+</ul></li>
+<li>On the DrivenData submission page for competition #306, while signed in as the owner, upload the <code>-zeros.tif</code>, or the <code>.zip</code> that contains exactly that one GeoTIFF.</li>
+<li>Paste the unique submission name and the note (&le;140 characters) from the run card.</li>
+<li>Check that a weekly slot is free before uploading. This project cannot observe the slot count.</li>
+<li>Save the organizer's score receipt into <code>evidence/</code>. Only that receipt makes a score ORGANIZER-CONFIRMED.</li>
+</ol>"""
+
+
 def build_index() -> str:
-    body = f"""{a33_r2_csht_hero()}
+    body = f"""{a33_r3_llc_hero()}
+{a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 {unique_submission_hero()}
 <h2>Project decision</h2>
@@ -253,8 +292,7 @@ def build_exec() -> str:
              "Owner-reported; filename references a PINN but no geothermal-discovery mechanism is established by local evidence"),
         )
     )
-    body = f"""{a33_r2_csht_hero()}
-{round3_da_hgcm_hero()}
+    body = f"""{a33_r3_llc_hero()}
 <h2>Executive summary — per-site best submissions and how to submit</h2>
 <div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b></div>
 
@@ -268,24 +306,29 @@ def build_exec() -> str:
 
 <h3>Why did GEMSDOE32 B2 score 0.2778 — and can we beat it?</h3>
 <p>We reproduced B2 pixel-exactly from the GEMSDOE28 H27-4 owner raster: it deletes 2,545 dots within 2 px of the catalogue and adds nothing (40,199 → 37,654 dots; Spearman ρ = 0.9676 vs H27-4; 100% of B2 dots within 3 px of H27-4 dots). Under the competition DTI (α=0.2 per false positive, β=0.8 per missed truth, 300 m kernel), every isolated prediction dot costs roughly 1 unit of weighted false-positive mass unless it lies within 300 m of a truth pixel, while dense clusters of dots share the same truth credit. Removing low-credit, catalogue-adjacent dots can therefore raise DTI even though no new fault is found: the most plausible mechanism is FP-mass reduction, not discovery. That is an inference from audited bytes, not proof, and no organizer receipt ties 0.2778 to B2's exact bytes.</p>
-<p>Can we beat it? Not demonstrated here. Our new unique candidate G33-HA (tilt ≈ 0 × gravity edge × LiDAR coherence, sparse off-catalogue dots) failed the catalogue-proxy holdout (confirmation ΔDTI −0.0907, 0/4 folds; CI [−0.1210, −0.0594]) and is explicitly negative. No score above 0.2778 — or above any leaderboard value — is projected or claimed. Conflicting leader values (0.3195 / 0.4413) are unverified in this checkout; per the DrivenData Terms of Use this workspace does not scrape or refresh the leaderboard.</p>
+<p>Can we beat it? Not demonstrated here. Every fold-safe surface in this repository reaches HOLDOUT-DTI 0.13&ndash;0.14. The newest, A33-R3-LLC, tied CSHT: &Delta; +0.0003 on the screen and &minus;0.0006 on confirmation, with both CIs spanning 0. The fixed H19-5 surface that B2 descends from is not fold-safe, and on the same withheld segments it reaches 0.162. That gap of +0.0242 [+0.0150, +0.0328] (4/4 folds) is either real signal or leakage. A fold-safe re-derivation of the H19-5 recipe is the experiment that would decide which. An older candidate, G33-HA (tilt &asymp; 0 &times; gravity edge &times; LiDAR coherence), failed the catalogue-proxy holdout (confirmation &Delta;DTI &minus;0.0907, 0/4 folds; CI [&minus;0.1210, &minus;0.0594]). No score above 0.2778, or above any leaderboard value, is projected or claimed. The two leader values in the brief (0.3195 and 0.4413) conflict and are unverified in this checkout. Under the DrivenData Terms of Use, this workspace does not scrape or refresh the leaderboard.</p>
 
 <h3>Research GeoTIFF (do not upload)</h3>
 <p><b>It must not be uploaded to the competition.</b> Its catalogue-proxy holdout gate failed (confirmation ΔDTI −0.0907, 0/4 folds) and no organizer receipt exists.</p>
 <p><a class="btn alt" href="downloads/{tif}">Download unique GeoTIFF — NOT CLEARED FOR SUBMISSION</a></p>
 <ul><li>Artifact: <code>gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7</code></li><li>SHA-256: <code>403e6925a5b32a1ad79084636336c60dd4a4ce56aacacb66910542ace6683d44</code></li><li>Note (≤140 characters): <code>{note}</code></li><li>Verdict: <b>negative</b> — proxy holdout failed; format-valid and unique vs all 12 pinned registry rasters, but not cleared for a competition slot. No organizer receipt exists.</li></ul>
 
-<h2>Steps for a future approved candidate</h2>
+{submission_steps()}
+<h2>Steps for a future approved candidate (policy summary)</h2>
 <ol><li>Require a passing automatic evidence gate <b>and</b> a separate selector decision within the verified weekly cap. A <b>promote</b> research verdict alone is not slot clearance; if either is missing, do not upload.</li><li>Download the exact named single-band GeoTIFF (or a ZIP with exactly one GeoTIFF) and keep it unchanged.</li><li>Run <code>python scripts/validate_submission.py --submission PATH --template PATH</code> against the official/sample template available in the local cache. Review CRS, shape, transform, dtype, footprint values, and outside-footprint handling against current official instructions.</li><li>In the authenticated DrivenData submission form, select the TIFF, enter a distinct name and concise note (portal limit: concise, e.g. ≤ 140 characters in this project), and submit only if a competition slot is available and the submission rules permit it.</li><li>Save the organizer receipt. Only that receipt can confirm a score/file association; report the organizer score separately from holdout diagnostics.</li></ol>
-<div class="panel warn"><b>Outside-footprint values:</b> the official wording requires null/NaN outside the bounds. Our -nan.tif follows that wording; a -zeros.tif twin is kept only as a troubleshooting alternative because the previously reported portal range error ("Predicted values must be in range [0, 1]") was never confirmed by the organizer and its cause is unknown. Follow the live official format instructions rather than assuming either convention is accepted.</div>
+<div class="panel warn"><b>Outside-footprint values:</b> the official text says null/NaN outside the footprint. However, the portal error &ldquo;Predicted values must be in range [0, 1]&rdquo; was reported for NaN-containing files. The project therefore uses the <b>-zeros.tif (all cells finite, 0.0 outside)</b> as the primary upload, and keeps the -nan.tif twin as an alternative. Follow the live official format instructions if they change.</div>
 <h3>What is required before the next competition submission</h3><ul><li>New spatially blocked holdout where every catalogue-derived feature, including baseline/pseudo-label surfaces, is rebuilt using fold-visible data only.</li><li>Feature-by-feature leakage canary; investigate AUC &gt; 0.90 before trusting a signal.</li><li>Predeclared experiment, matched budget/control, uncertainty interval, and uniqueness screen against accessible registry rasters.</li><li>Exact format check from source inputs plus saved-byte re-open; current validator requires installed rasterio/numpy.</li><li>All scientific/format inspections must be run automatically in-project. Only the final authorized account upload is outside this project; no human scientific inspector is required by the project gate. This workspace has no DrivenData auth and cannot upload or retrieve a receipt.</li></ul>
+<h2>Previous research artifacts (OK to download, DO NOT submit)</h2>
+{a33_r2_csht_hero()}
+{round3_da_hgcm_hero()}
 """
-    return page("Executive summary & submission guidance · GEMSDOE33", body, "executive-summary.html")
     return page("Executive summary & submission guidance · GEMSDOE33", body, "executive-summary.html")
 
 def build_results() -> str:
     body = f"""<h2>Results, score claims, and evidence boundaries</h2>
-<p><a href="latest-review.html">New: twelve-raster byte-level forensic review, GEMSDOE32 pruning recipe and automatic gate status</a> · <a href="{GITHUB}/knowledge/13_focus_forensics_g32_proof_and_a33_r2_results_20261026.md">2026-10-26 21-raster forensic proof &amp; A33-R2-CSHT report</a>.</p>
+<p><a href="latest-review.html">New: twelve-raster byte-level forensic review, GEMSDOE32 pruning recipe and automatic gate status</a> · <a href="{GITHUB}/knowledge/13_focus_forensics_g32_proof_and_a33_r2_results_20261026.md">2026-10-26 21-raster forensic proof &amp; A33-R2-CSHT report</a> · <a href="{GITHUB}/knowledge/14_a33_r3_llc_preregistration_and_result_20261026.md">A33-R3-LLC preregistration &amp; negative result</a> · <a href="{GITHUB}/registry/user_reported_scores_20261026.csv">full user-reported score list</a>.</p>
+<h3>2026-10-26 A33-R3-LLC (negative: ties CSHT)</h3>
+<p><b>HOLDOUT-DTI</b> (<code>gems-segment-pooled-v1</code>, 60,988 withheld): screen <code>0.137868</code> [0.1286, 0.1479] vs in-run CSHT <code>0.137555</code>, &Delta; +0.000313 [&minus;0.008009, +0.008288], 2/4 folds; confirmation <code>0.131506</code> [0.1208, 0.1414] vs <code>0.132066</code>, &Delta; &minus;0.000560 [&minus;0.009035, +0.007547], 2/4 folds. Informational H19-5 reference (not fold-safe): screen <code>0.162036</code>. Verdict <b>negative</b>; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO.</p>
 <div class="panel bad"><b>No organizer-confirmed submission result is available in this checkout.</b> The leaderboard values in the user's research brief and owner-maintained GEMSDOE pages are historical reports, not organizer receipts linking scores to raster bytes. Do not infer or present projected scores.</div>
 <h3>2026-10-26 A33-R2-CSHT local holdout (8/8 fold wins; surface duplicate-stopped)</h3>
 <p><b>HOLDOUT-DTI</b> (<code>gems-segment-pooled-v1</code>, <code>60,988</code> withheld catalogue pixels): primary quadrant screen <code>0.136716</code> (95% CI <code>[0.119069, 0.154424]</code>) vs <code>B1_regional = 0.112418</code> (<code>0.113244</code> recorded), paired <code>Δ = +0.024298 [+0.012427, +0.035833]</code>, <b>4/4 folds positive</b>; frozen orthogonal diagonal-wedge confirmation <code>0.131169</code> (<code>[0.115241, 0.146693]</code>) vs <code>B1_regional = 0.115122</code>, paired <code>Δ = +0.016047 [+0.003817, +0.028030]</code>, <b>4/4 folds positive</b>. Among 2026-10-25 sibling focus uploads (owner/user-reported, not organizer-confirmed), <code>G27-h29</code> reported <code>0.2190</code>, <code>G30-MSDB1</code> <code>0.1462</code>, <code>G24-gvc1</code> <code>0.0859</code>, <code>G25-h66</code> <code>0.0742</code>, and <code>G28-s18</code> <code>0.0217</code>, while <code>GEMSDOE32</code> <code>H33-2-B2</code> (<code>37,654</code> dots = <code>H27-4</code> minus <code>2,545</code> <code>1 &lt; d_cat ≤ 2 px</code> boundary-halo dots) remains the highest owner-reported focus-site value at <code>0.2778</code>. Because <code>A33-R2-CSHT</code> pre-placement surface peaks converged with <code>G30-MSDB1-e7856ec3f14a</code> (<code>91.11%</code> unthinned / <code>77.82%</code> matched-37k NMS 3-px overlap &gt; <code>70%</code>), its promotion verdict is <code>duplicate</code> (<b>OK TO DOWNLOAD: YES · OK TO SUBMIT: NO</b>).</p>
