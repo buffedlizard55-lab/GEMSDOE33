@@ -10,6 +10,7 @@ when their recorded SHA-256 matches.
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import subprocess
@@ -31,17 +32,30 @@ def sha256_file(path: Path) -> str:
 
 
 def main() -> int:
-    manifest = json.loads(REGISTRY.read_text())
-    DEST.mkdir(parents=True, exist_ok=True)
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument(
+        "--manifest",
+        type=Path,
+        default=REGISTRY,
+        help="Registry manifest to restore (default: the 12-raster 2026-10-25 manifest). "
+        "Each entry's own 'dest' path is honoured verbatim so newer manifests (e.g. the "
+        "21-raster registry/focus_rasters_20261026.json, which stores five entries under "
+        "'.cache/focus_registry_20261026/') resolve correctly without a private fork.",
+    )
+    args = ap.parse_args()
+    args.manifest = args.manifest.resolve()
+    manifest = json.loads(args.manifest.read_text())
     results = []
     for entry in manifest["rasters"]:
-        dest_name = Path(entry.get("dest") or entry.get("local_path")).name
-        dest = DEST / dest_name
+        dest_rel = entry.get("dest") or entry.get("local_path")
+        dest = ROOT / dest_rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
         expected = entry["sha256"]
         status = ""
         if dest.is_file():
             actual = sha256_file(dest)
-            if actual == expected and dest.stat().st_size == entry["bytes"]:
+            expected_bytes = entry.get("bytes", dest.stat().st_size)
+            if actual == expected and dest.stat().st_size == expected_bytes:
                 status = "already-verified"
             else:
                 dest.unlink()
@@ -71,21 +85,25 @@ def main() -> int:
                 finally:
                     tmp.unlink(missing_ok=True)
             else:
-                # Local entry (G33-h33d): verify the pinned local path.
-                src = ROOT / entry["local_path"]
+                # Local entry (e.g. G33-h33d, or any GEMSDOE33-local history raster already
+                # checked into docs/downloads/): verify the pinned local path in place.
+                src = ROOT / entry.get("local_path", dest_rel)
                 actual = sha256_file(src)
                 actual_bytes = src.stat().st_size
                 status = ("local-verified" if (actual == expected and actual_bytes == entry.get("bytes", actual_bytes))
                           else "local-mismatch")
-                if status == "local-verified":
+                if status == "local-verified" and src.resolve() != dest.resolve():
                     import shutil
                     shutil.copy2(src, dest)
                     status = "local-copied-and-verified"
         results.append({"id": entry["id"], "site": entry["site"], "file": dest.name,
                         "bytes": dest.stat().st_size, "sha256": sha256_file(dest), "status": status})
         print(f"{entry['id']} ({entry['site']}): {status} ({dest.stat().st_size:,} B)", flush=True)
-    (DEST / "fetch_receipt.json").write_text(
+    receipt_dir = args.manifest.parent.parent / ".cache"
+    receipt_dir.mkdir(parents=True, exist_ok=True)
+    (receipt_dir / f"fetch_receipt_{args.manifest.stem}.json").write_text(
         json.dumps({"fetched_utc": __import__("time").strftime("%Y-%m-%dT%H:%M:%SZ", __import__("time").gmtime()),
+                    "manifest": str(args.manifest.relative_to(ROOT)),
                     "files": results}, indent=2) + "\n")
     fails = [r for r in results if not r["status"].endswith("verified")]
     print(f"registry rasters: {len(results)} total, {len(fails)} failed")

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-26T05:08:17+00:00",
+  "generated_utc": "2026-10-26T05:13:38+00:00",
   "selector": "scripts/select_submission.py (automated, fail-closed)",
   "ok_to_submit": false,
   "decision": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
@@ -52,6 +52,30 @@
       ],
       "note": "GEMS33 A33-R2-CSHT: cover+hydrothermal transfer + 300m CELF 37654d | gate DUPLICATE | 0b78c04d5fad",
       "sha256": "14ab452c22aaf07444cd02e589fce4627d682e99f44c63e78dc1383955e0c602",
+      "confirm_holdout_dti": null,
+      "eligible": false
+    },
+    {
+      "run_card": "evidence/a33_r3_lchc_run_card_20261026.json",
+      "campaign": "A33-R3",
+      "verdict": "negative",
+      "submission_name": "gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros",
+      "file": "gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.tif",
+      "checks": {
+        "verdict_promote": false,
+        "promotion_gates_all_pass": false,
+        "file_exists": true,
+        "sha256_matches_run_card": true,
+        "format_audit_pass_on_saved_bytes": true,
+        "all_cells_finite_and_in_0_1": true,
+        "zip_single_geotiff_same_bytes": true,
+        "note_1_to_140_chars": true
+      },
+      "format_audit_failures": [
+        "outside_has_nan"
+      ],
+      "note": "GEMS33 A33-R3-LCHC: thermal/vent least-cost connectivity graph 37654d | gate NEGATIVE | 77337fc0c6c7",
+      "sha256": "a58219e1cc9f15f0ede99863b0e5a619dbfa6946c7fdd4fb61f7050ddd5070ac",
       "confirm_holdout_dti": null,
       "eligible": false
     },

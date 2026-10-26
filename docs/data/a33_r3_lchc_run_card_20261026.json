@@ -1,0 +1,121 @@
+{
+  "schema": 2,
+  "campaign": "A33-R3",
+  "hypothesis": "A33-R3-LCHC: Least-Cost Hydrothermal Connectivity -- a minimum-cost graph (Dijkstra + minimum spanning tree) threading independently documented DOE GDR #1391 hot-spring and volcanic-vent manifestation points through a label-free conductivity/gravity/geodetic-strain/basement-edge resistance surface recovers blind connecting fault segments better than the B1_regional incumbent.",
+  "mechanism": "Percentile-rank-average conductivity, gravity horizontal-gradient/slope, geodetic shear/dilatation rate, and basement-depth edge into a cost surface (fit stats restricted to the fold-visible TRAIN region only); downsample to 300 m; multi-source Dijkstra among up to 90 merged thermal/vent clusters; minimum-spanning-tree the pairwise cost-distance matrix, keep the shortest 85% of edges, trace each kept path weighted by a directness ratio (straight-line / cost-weighted length); upsample, blend with LiDAR/TMI corroboration, and place 37,654 dots via the shared 300 m triangular-kernel CELF submodular operator.",
+  "named_non_fault_process_that_could_mimic_it": "Buried plutonic/caldera intrusive margins, Lake Lahontan paleo-shoreline benches, and conductive sedimentary basin fill can all produce a low-cost corridor between two hydrologically connected but non-tectonic points.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "primary_screen": {
+      "evaluator_version": "gems-segment-pooled-v1",
+      "split_id": "quadrant-buffered-15px-v1",
+      "withheld_positives": 60988,
+      "candidate": 0.04371216278596481,
+      "candidate_95pct_ci": [
+        0.02825893682198829,
+        0.061348004026018844
+      ],
+      "incumbent_b1_regional": 0.12544054735088,
+      "incumbent_95pct_ci": [
+        0.11651870814363038,
+        0.13465045939022843
+      ],
+      "recorded_a33_l1_b1_regional": 0.11324405875705776,
+      "paired_delta_vs_b1": -0.08172838456491519,
+      "paired_delta_95pct_ci": [
+        -0.09774103423110317,
+        -0.06285878110253404
+      ],
+      "fold_wins_vs_b1": "0/4"
+    },
+    "independent_confirmation": {
+      "evaluator_version": "gems-segment-pooled-v1",
+      "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+      "frozen_before_screen_results": true,
+      "withheld_positives": 60988,
+      "candidate": 0.03519875411750728,
+      "candidate_95pct_ci": [
+        0.020848670101788584,
+        0.05256609689570162
+      ],
+      "incumbent_b1_regional": 0.1281838895400609,
+      "incumbent_95pct_ci": [
+        0.11911057299132603,
+        0.1373103727932323
+      ],
+      "paired_delta_vs_b1": -0.09298513542255363,
+      "paired_delta_95pct_ci": [
+        -0.10843079198886109,
+        -0.0752146096515952
+      ],
+      "fold_wins_vs_b1": "0/4"
+    },
+    "qualification": "Mapped-catalogue whole-segment hide-and-recover proxy (HOLDOUT-DTI), NOT private organizer expert truth and NOT an ORGANIZER-CONFIRMED competition score."
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "21 SHA-256-pinned focus-site and local GEMSDOE33 rasters (registry/focus_rasters_20261026.json)",
+    "registry_sha256": "6e71453c77dd4b2bbb5f1d7e36db74f6641f9a47f6ecfb87b099db21ea8f1500",
+    "surface_max_abs_spearman": 0.005417415628500159,
+    "surface_max_3px_overlap": 0.1861688001274765,
+    "surface_passed": true,
+    "final_dots_max_abs_spearman": 0.005333104010809369,
+    "final_dots_max_3px_overlap": 0.16664896159770543,
+    "final_dots_passed": true
+  },
+  "raster_sha256": "a58219e1cc9f15f0ede99863b0e5a619dbfa6946c7fdd4fb61f7050ddd5070ac",
+  "validator_output": {
+    "format_valid": true,
+    "hard_failures": [],
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "whole_array_all_finite_0_1": true,
+    "crs_matches_epsg_32611": true,
+    "shape_matches_3730x3292": true,
+    "geotransform_matches_template": true,
+    "predicted_positive_dots": 37654,
+    "catalogue_overlap_dots": 0
+  },
+  "submission": {
+    "name": "gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros",
+    "file": "gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.tif",
+    "zip": "gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.zip",
+    "nan_twin": "gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-nan.tif",
+    "nan_twin_zip": "gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-nan.zip",
+    "note": "GEMS33 A33-R3-LCHC: thermal/vent least-cost connectivity graph 37654d | gate NEGATIVE | 77337fc0c6c7",
+    "note_characters": 100,
+    "ok_to_download": true,
+    "eligible_for_weekly_selector": false,
+    "ok_to_submit": false,
+    "selector_notice": "DO NOT SUBMIT: failed automated promotion gates ['screen_beats_current_best', 'independent_confirmation']."
+  },
+  "promotion_assessment": {
+    "schema_version": 1,
+    "gates": {
+      "identity": true,
+      "explicit_lane": true,
+      "shared_template": true,
+      "baseline_identity": true,
+      "screen_beats_current_best": false,
+      "independent_confirmation": false,
+      "all_feature_canaries": true,
+      "surface_not_duplicate": true,
+      "final_dots_not_duplicate": true,
+      "saved_bytes_format": true,
+      "short_note": true,
+      "budget": true
+    },
+    "failed_gates": [
+      "screen_beats_current_best",
+      "independent_confirmation"
+    ],
+    "verdict": "negative",
+    "eligible_for_selector": false,
+    "ok_to_submit": false,
+    "slot_policy": "Separate selector and verified weekly-cap check required; this tool never uploads.",
+    "qualification": "Evidence completeness/arithmetic only; cannot authenticate arbitrary supplied receipts."
+  },
+  "verdict": "negative",
+  "experiments_run": 3,
+  "elapsed_seconds": 586.76,
+  "submission_slots_used": 0
+}

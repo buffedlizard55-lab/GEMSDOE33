@@ -55,6 +55,15 @@ R2_PROMO_ASSESS = ROOT / "evidence" / "a33_r2_promotion_assessment_20261026.json
 R2_RUN_CARD = ROOT / "evidence" / "a33_r2_run_card_20261026.json"
 R2_DOCS_CARD = ROOT / "docs" / "data" / "a33_r2_run_card_20261026.json"
 R2_DATE = "20261026"
+
+R3_PREREG = ROOT / "evidence" / "a33_r3_lchc_preregistration_20261026.json"
+R3_PREREG_SHA = "bc4ecef34e3b81e19f41c9422fba60d99ed4c8a6c06eadb4617198753dd63a6e"
+R3_MANIFEST = ROOT / "registry" / "focus_rasters_20261026.json"
+R3_MANIFEST_SHA = "6e71453c77dd4b2bbb5f1d7e36db74f6641f9a47f6ecfb87b099db21ea8f1500"
+R3_EVIDENCE = ROOT / "evidence" / "a33_r3_lchc_experiment_20261026.json"
+R3_PROMO_INPUT = ROOT / "evidence" / "a33_r3_lchc_promotion_evidence_20261026.json"
+R3_RUN_CARD = ROOT / "evidence" / "a33_r3_lchc_run_card_20261026.json"
+
 FULL_DOT_BUDGET = 37_654
 MIN_SPACING_PX = 2.8
 CATALOGUE_EXCLUSION_PX = 2.0
@@ -184,6 +193,50 @@ def _verify_a33_r2() -> int:
             evidence["verdict"] == card["verdict"] == expected_card_verdict
         ),
         "format_valid": bool(card["validator_output"]["format_valid"] and fmt.get("pass")),
+    }
+    print(
+        json.dumps(
+            {"checks": checks, "assessment": assessment, "pass": all(checks.values())},
+            indent=2,
+        )
+    )
+    return 0 if all(checks.values()) else 2
+
+
+def _verify_a33_r3_lchc() -> int:
+    if not R3_EVIDENCE.is_file() or not R3_RUN_CARD.is_file() or not R3_PROMO_INPUT.is_file():
+        raise SystemExit("No recorded A33-R3-LCHC experiment to verify")
+    evidence = json.loads(R3_EVIDENCE.read_text())
+    card = json.loads(R3_RUN_CARD.read_text())
+    promo_in = json.loads(R3_PROMO_INPUT.read_text())
+    artifact = ROOT / "docs" / "downloads" / card["submission"]["file"]
+    zip_artifact = ROOT / "docs" / "downloads" / card["submission"]["zip"]
+    fmt = audit_submission(artifact, ROOT / "data" / "sample_submission.tif")
+    assessment = promotion.assess(promo_in, fmt, card["raster_sha256"])
+    expected_card_verdict = (
+        "leakage"
+        if "all_feature_canaries" in assessment["failed_gates"]
+        else "duplicate"
+        if (
+            "surface_not_duplicate" in assessment["failed_gates"]
+            or "final_dots_not_duplicate" in assessment["failed_gates"]
+        )
+        else assessment["verdict"]
+    )
+    checks = {
+        "evidence_exists": True,
+        "run_card_exists": True,
+        "artifact_exists": artifact.is_file(),
+        "zip_exists": zip_artifact.is_file(),
+        "artifact_sha256_matches": artifact.is_file()
+        and sha256_file(artifact) == card["raster_sha256"],
+        "preregistration_sha256_matches": sha256_file(R3_PREREG) == R3_PREREG_SHA,
+        "manifest_sha256_matches": sha256_file(R3_MANIFEST) == R3_MANIFEST_SHA,
+        "recorded_verdict_matches_promotion_assessor": (
+            evidence["verdict"] == card["verdict"] == expected_card_verdict == "negative"
+        ),
+        "format_valid": bool(card["validator_output"]["format_valid"] and fmt.get("pass")),
+        "ok_to_submit_is_false": card["submission"]["ok_to_submit"] is False,
     }
     print(
         json.dumps(
@@ -773,11 +826,14 @@ def main() -> int:
     parser.add_argument("--verify-recorded", action="store_true")
     parser.add_argument("--run-a33-r2", action="store_true")
     parser.add_argument("--verify-a33-r2", action="store_true")
+    parser.add_argument("--verify-a33-r3-lchc", action="store_true")
     args = parser.parse_args()
     if args.verify_recorded:
         return _verify_recorded()
     if args.verify_a33_r2:
         return _verify_a33_r2()
+    if args.verify_a33_r3_lchc:
+        return _verify_a33_r3_lchc()
     if args.run_a33_r2:
         return _run_a33_r2()
     if EVIDENCE.exists() or RUN_CARD.exists():
