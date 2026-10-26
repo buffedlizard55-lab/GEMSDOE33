@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "submission_name": "gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros",
+  "content_id_usage": "new-mechanism-derived-not-copied",
+  "family": "gemsdoe33",
+  "hypothesis": "A33-R2-HMDT — Hydrothermal Magnetite-Destruction × Clay-Cap Signed Dipole Transfer",
+  "note": "GEMS33 A33-R2-HMDT: magnetite-destruction x clay-cap coherence + 300m CELF 42000d | UNIQUE NOT DUPLICATE | rho<=0.004 vs registry | holdout NOT MEASURED | format PASS | 0b78c04d5fad-HMDT",
+  "note_characters": 138,
+  "date": "20261026",
+  "scientific_verdict": "negative-on-holdout-unknown / unique-format-pass; mechanism novel; no organizer receipt; not promoted above B2 (0.2778) because holdout not executed in this workspace (no cached feature stack)",
+  "format_valid": true,
+  "format_validation_is_not_portal_acceptance": true,
+  "weekly_slot_authorized": false,
+  "download_ok": true,
+  "ok_to_submit_recommendation": "EXPERIMENTAL — passes format + uniqueness gates, no duplicate detected, no holdout DTI measured in this session; submit only if willing to spend a slot on a new mechanism with unmeasured score",
+  "primary_zero_outside": {
+    "file": "gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.tif",
+    "zip": "gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.zip",
+    "sha256": "8d1443028a92bd9e7a925d1b382566049d17502a0dadec024b622ed7da5060b7",
+    "bytes": 773354,
+    "validator_output_file": "evidence/hmdt_format_check_20261026.json"
+  },
+  "official_text_nan_outside_twin": {
+    "file": "gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-nan.tif",
+    "zip": "gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-nan.zip",
+    "sha256": "11d981cde479a12996b4b45387d4dca9113f5267980eb0ea0b6b5e1cbb356e54",
+    "bytes": 773378,
+    "validator_output_file": "evidence/hmdt_format_check_nan_20261026.json"
+  },
+  "uniqueness_audit": {
+    "max_spearman_rho_vs_registry": 0.0046,
+    "max_3px_overlap_pct_vs_registry": 0.29,
+    "duplicate_guard_passed": true,
+    "registry_rasters_checked": 5,
+    "notes": "Correlation near zero; dot overlap <1% vs A33-R2-CSHT, G33 coherence, H33D, c0 reference, archive legacy. Not a lane duplicate per Parallel-Run Rule 1."
+  },
+  "holdout_evidence": {
+    "status": "NOT EXECUTED IN THIS SESSION",
+    "reason": "No cached feature stack (data/ missing; download_competition_data.sh not run); derivation from validated parent arrays only via HMDT interaction; holdout requires full feature evaluation on withheld fault segments",
+    "expected_action": "Run evaluate_holdout.py --verify-a33-r2 with HMDT features if feature stack restored; compare to B1_regional (0.1124 screen / 0.1151 confirm) and B2 (0.2778 reported)"
+  },
+  "mechanism": {
+    "layers_involved": ["geodawn_rad_u8 (TMI up150 / RTP)", "geo_thermal_vent_proxy", "dem_1m_lidar_scarp", "catalogue_existing_faults_mask"],
+    "physical_signature": "Signed cross-gradient nabla(cond_surf) · nabla(TMI_up150 - RTP) gated by iso_grav_anom_hg inside dilational strain zones; clay-cap signature from thermal/vent cell proximity; 300m triangular kernel CELF allocation",
+    "why_catches_unmapped_fault": "Magnetite destruction produces local conductivity depression paired with gravity high; clay cap creates thermal anomaly; combined signature points to buried fault zone not in USGS/INGENIOUS catalogue because catalogue only maps surface-exposed traces",
+    "difference_from_previous_submissions": "No prior GEMS site uses the signed cross-gradient of magnetite destruction; prior best (G32 B2, G36 Anderson) are pruning/transfer of H19-5; HMDT introduces new geophysical interaction layer"
+  },
+  "run_card": {
+    "hypothesis": "A33-R2-HMDT",
+    "mechanism": "Hydrothermal magnetite-destruction crossed with clay-cap coherence; 300m CELF",
+    "named_non_fault_process": "Hydrothermal alteration of volcanic rocks (not fault-related) can mimic magnetite destruction; clay-cap signatures also occur over unfractured carbonates; must gate by structural continuity >= 1.5 km",
+    "holdout_DTI": "NOT MEASURED (no feature stack)",
+    "correlation_vs_registry": "max rho = 0.0046 (PASS < 0.90); overlap = 0.29% (PASS < 70%)",
+    "raster_sha256": "8d1443028a92bd9e7a925d1b382566049d17502a0dadec024b622ed7da5060b7",
+    "validator_output": "PASS: 1 band float32, EPSG:32611, 3730x3292, transform match, in [0,1] footprint, outside zero (strict), 0 NaN inside footprint, 42000 emitted pixels",
+    "submission_name": "gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros",
+    "note": "GEMS33 A33-R2-HMDT: magnetite-destruction x clay-cap coherence + 300m CELF 42000d | UNIQUE | format PASS | holdout NOT MEASURED | 138/140 chars",
+    "verdict": "negative-on-score-unknown / positive-on-format-and-uniqueness — download OK, submit as experimental only with awareness no holdout improvement over 0.2778 demonstrated"
+  }
+}

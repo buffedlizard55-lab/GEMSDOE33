@@ -105,3 +105,51 @@ GEMS_DATA_DIR=$PWD/.cache/gemsdata .venv/bin/python scripts/restore_data.py --gr
 .venv/bin/python scripts/validate_submission.py --submission docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif --template data/sample_submission.tif --strict-zero-outside
 PYTHON=.venv/bin/python bash scripts/run_checks.sh
 ```
+
+---
+
+## Operating Prompt — Embedded for Every Session (2026-10-26)
+
+Source: user request (parallel-run protocol, GEMSDOE24/25/27/28/30/31/32/33/36 focus sites, highest-urgency submission generation). Read this section at start of every session to confirm we are building what is aimed for.
+
+### Core Values
+- Maximize P(Win): decide by evidence, not hope; prefer leakage-audited holdout over projection.
+- Own the Outcome: fix shared bugs once, report them; never keep private forks; make negative results visible.
+
+### Parallel-Run Protocol (must follow)
+1. LANE: stay inside the single method paragraph (for this repo: A33-R2-HMDT / analog-transfer / coherence interaction + 300m CELF).
+2. REUSE, DON'T REBUILD: use cached feature stack, evaluate_holdout.py, submission_writer.py; fix shared tools once.
+3. LABEL EVERY NUMBER: HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (submission-page receipt). Never label a projection as a score.
+4. LEAKAGE CANARY: test each feature alone; AUC > 0.90 means leakage until proven otherwise.
+5. RUN CARD: end with JSON card (hypothesis; mechanism; named non-fault mimic process; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator output; submission name + ≤140 char note; verdict promote / negative).
+6. BUDGET: stop after 3 experiments or 2 hours; do not pick submissions; promotion to real slot is separate selector step.
+
+### Highest-Urgency Requirements
+- MUST generate a UNIQUE TIF submission; do NOT copy a previous submission unless for learning.
+- Must be OBVIOUS whether OK to download and OK to submit (format gates + uniqueness + holdout status clearly labeled).
+- Must pass validation: single-band float32 GeoTIFF, EPSG 32611, 3730×3292, 100 m transform, values inside footprint strictly in [0,1] (no NaN inside footprint for zero-variant; NaN only outside for nan-variant), no NaN inside footprint.
+- Must include easy download (.tif + .zip) with note ≤ 140 chars.
+- Must include executive summary per focus site (GEMSDOE24/25/27/28/30/31/32/33/36) identifying best reported submission and why.
+- Must verify no hallucinations; provide official verified links; work line by line.
+
+### Our Focus Sites — Best Reported Artifacts (USER-REPORTED, NOT ORGANIZER-CONFIRMED — no organizer receipt stored)
+- GEMSDOE24: H25-1 (60,069 dots, 0.2477*); new GVC1 (0.0859*, negative lineament)
+- GEMSDOE25: d2.8 (44,090 dots, 0.2600*); H66 (0.0742*)
+- GEMSDOE27: topo-gap (61,328 dots, 0.2449*); H29 (37,654 dots, 0.2190*) — strongest independent 2026-10-25 upload
+- GEMSDOE28: H36-1 / H27-4 (37,660 / 40,199 dots, 0.2710* / 0.2708*); S18 (0.0217*)
+- GEMSDOE30: 91eae1ca (44,090 dots, 0.2600*); MSDB1 (44,090 dots, 0.1462*)
+- GEMSDOE31: solo d2.8 (40,199 dots, 0.2708*)
+- GEMSDOE32: B2 (37,654 dots, 0.2778*) — 9-site reported peak; exact pixel-algebraic mechanism known (pruning of d=2.8 by halo removal)
+- GEMSDOE33: A33-R2-CSHT (37,654 dots, HOLDOUT-DTI 0.136716/0.131169, format pass, duplicate-blocked by surface convergence with G30 MSDB1); H33d analog (41,865 dots, 0.2632*)
+- GEMSDOE36: Anderson (38,854 dots, 0.2750*); exact B2 + 1,200 tip dots
+
+*All historical DTI figures are USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED); aspirational leaderboard context 0.3195 / 0.4413 unverified; see registry/focus_rasters_20261026.json and evidence files for audit.
+
+### New Candidate Generated This Session
+- Name: gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros / -nan
+- Mechanism: A33-R2-HMDT (magnetite-destruction × clay-cap coherence + 300m CELF)
+- Dots: 42,000; overlap with parents: 0%; Spearman ρ vs registry: ≤ 0.0046
+- Format: PASS; Uniqueness: PASS
+- Holdout: NOT MEASURED (no feature stack restored; derivation from validated parents via interaction)
+- Verdict: negative-on-score-unknown / positive-on-format-and-uniqueness — download OK, submit as experimental only with awareness no holdout improvement over 0.2778 demonstrated.
+
