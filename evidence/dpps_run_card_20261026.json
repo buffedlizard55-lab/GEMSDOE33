@@ -1,0 +1,123 @@
+{
+  "hypothesis": "DPPS: >=1.5 km along-strike scarp persistence + dip-projected gravity support (z*cot60 along +grad depth-to-basement) recovers withheld fault segments better than B1_regional HGB and a pixel-scarp CELF ablation, with a non-duplicate pre-placement surface.",
+  "mechanism": "Label-free rank scarp strength (LiDAR, DEM-flexure fallback in void) -> 8-orientation 15px line-mean persistence -> dip-projection warp of iso_grav_anom_hg -> fixed fusion -> 300 m CELF, 37,654 dots, >2px off catalogue. Zero learned weights; zero registry pixels read.",
+  "named_non_fault_mimic": "Prograding alluvial-fan toes / Lake Lahontan shoreline benches over buried pediments.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "screen": {
+      "split_id": "quadrant-buffered-15px-v1",
+      "withheld_positives": 60988,
+      "candidate": 0.09540684978691973,
+      "candidate_95pct_ci": [
+        0.08497124787198461,
+        0.10637022573028689
+      ],
+      "b1_regional": 0.11128475241436168,
+      "ctrl_pixel": 0.07281644534295952,
+      "matched_random": 0.06810657897853159,
+      "paired_delta_vs_b1": -0.01587790262744196,
+      "paired_delta_vs_b1_95pct_ci": [
+        -0.02893239785608321,
+        -0.002120890028434737
+      ],
+      "fold_wins_vs_b1": "1/4",
+      "paired_delta_vs_ctrl": 0.02259040444396021,
+      "paired_delta_vs_ctrl_95pct_ci": [
+        0.016578055029151995,
+        0.028826180289932318
+      ]
+    },
+    "confirmation": {
+      "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+      "withheld_positives": 60988,
+      "candidate": 0.0960149519765181,
+      "candidate_95pct_ci": [
+        0.08529497020273163,
+        0.10677579033689441
+      ],
+      "b1_regional": 0.11461931447849738,
+      "ctrl_pixel": 0.0729361492396981,
+      "paired_delta_vs_b1": -0.018604362501979277,
+      "paired_delta_vs_b1_95pct_ci": [
+        -0.03136932339391593,
+        -0.005925489086200142
+      ],
+      "fold_wins_vs_b1": "0/4"
+    },
+    "recorded_context_not_paired": {
+      "A33_R2_CSHT_screen": 0.136716,
+      "A33_R2_CSHT_confirm": 0.131169,
+      "note": "CSHT was duplicate-blocked on its pre-placement surface vs G30-MSDB1 (owner-reported live 0.1462). No paired comparison is claimed.",
+      "GEMSDOE32_B2": "0.2778 OWNER-REPORTED (NOT ORGANIZER-CONFIRMED); deletion-only H27-4 pruning, pixel-exact in repo evidence."
+    },
+    "qualification": "Catalogue whole-segment hide-and-recover proxy. NOT the private organizer truth, NOT a competition score, NOT a projection."
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "25 rasters: 21 pinned in registry/focus_rasters_20261026.json + 4 local newer zeros twins",
+    "surface_max_abs_spearman": 0.06740330914615633,
+    "surface_max_3px_overlap": 0.67796250066394,
+    "surface_passed": true,
+    "final_dots_max_abs_spearman": 0.02125360544679777,
+    "final_dots_max_3px_overlap": 0.4461942954267807,
+    "final_dots_passed": true,
+    "vs_G32_B2_final_3px": 0.24000106230413767
+  },
+  "leakage_canary": {
+    "tested": 9,
+    "passed": true,
+    "max_two_sided_auc": 0.6874978845282818
+  },
+  "raster_sha256": "449ad2a4a3c746ef960f8e788b01e0b0cedef794a5dab5f22b0ae993b322f62d",
+  "nan_twin_sha256": "6b7f39d2b6689f67e33e858c2fb98f0a8cd562d5a400e60ceff9bfef195ba7a5",
+  "surface_sha256": "8ce02ee00cd301a6168b25905c70e62c13da5240d0aa19d81289e0d494234743",
+  "validator_output": {
+    "strict_zero_primary_pass": true,
+    "whole_array_finite_in_0_1": true,
+    "no_nan_anywhere_zero_variant": true,
+    "crs_epsg": 32611,
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform_matches_template": true,
+    "dots": 37654,
+    "catalogue_overlap_dots": 0,
+    "nan_twin_pass": true
+  },
+  "submission_name": "gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros",
+  "file": "gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.tif",
+  "zip": "gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.zip",
+  "note": "GEMS33 DPPS dip-projected persistence scarp CELF 37654d | 111ae96bb235 | gate FAIL",
+  "note_characters": 82,
+  "gates": {
+    "all_feature_canaries": true,
+    "screen_beats_b1_pooled": false,
+    "screen_beats_ctrl_pooled": true,
+    "screen_paired_ci_vs_b1_positive": false,
+    "screen_fold_wins_vs_b1_ge_3": false,
+    "confirm_beats_b1_pooled": false,
+    "confirm_paired_ci_vs_b1_positive": false,
+    "confirm_fold_wins_vs_b1_ge_3": false,
+    "surface_not_duplicate": true,
+    "final_dots_not_duplicate": true,
+    "saved_bytes_format_strict_zero": true,
+    "short_note": true,
+    "budget_3_experiments": true
+  },
+  "failed_gates": [
+    "screen_beats_b1_pooled",
+    "screen_paired_ci_vs_b1_positive",
+    "screen_fold_wins_vs_b1_ge_3",
+    "confirm_beats_b1_pooled",
+    "confirm_paired_ci_vs_b1_positive",
+    "confirm_fold_wins_vs_b1_ge_3"
+  ],
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "verdict": "negative",
+  "experiments": 3,
+  "elapsed_seconds": 290.42,
+  "organizer_receipt": null,
+  "slots_spent_by_this_workspace": 0
+}

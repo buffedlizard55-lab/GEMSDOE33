@@ -40,3 +40,9 @@
 
 9. **Pre-A33 continuation record:** `knowledge/10_focus_review_20261025.md` records the concurrent 12-reference B2 audit, writer repairs, and fail-closed promotion checker. Keep it as prior art: B2 is a deletion-only duplicate-family emission, and `scripts/check_promotion.py` is an evidence-completeness gate—not an evaluator, selector, or upload tool.
 10. **Current A33-L1 outcome:** read the final addendum in `standing_prompt.md`, `knowledge/11_focus_forensics_and_a33_l1_result_20261025.md`, and `evidence/a33_l1_run_card.json`. One frozen analog-transfer experiment ran through the pinned shared evaluator. Its 12 feature canaries and 9-reference/12-reference release novelty guards passed, and a genuinely distinct 37,654-dot TIFF was written, but the scientific gate failed: HOLDOUT-DTI 0.108374 vs regional B1 0.113244; paired delta −0.004870, 95% CI [−0.010900,+0.001226], 0/4 folds. It is research-only and **NOT OK TO SUBMIT**. Do not rerun or retune A33-L1; no selector/upload/score projection followed.
+11. **G33-DPPS outcome (2026-10-26):** read `knowledge/15_dpps_results_20261026.md` and
+    `evidence/dpps_run_card_20261026.json`. DPPS (deterministic dip-projected persistence scarp)
+    is unique vs 25 rasters and format-clean, and its mechanism beat its pixel ablation 8/8
+    folds, but it **failed vs B1_regional on both splits** (screen HOLDOUT-DTI 0.095407 vs
+    0.111285; confirmation 0.096015 vs 0.114619). It is **NOT OK TO SUBMIT**; do not retune it.
+    No file in this repo is currently slot-approved.
