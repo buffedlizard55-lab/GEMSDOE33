@@ -1,0 +1,21 @@
+canary [{'feature': 'geod_dilaterate_grad', 'max_fold_auc': 0.549784856533858, 'pooled_auc': 0.5323330038031235, 'leakage_suspect': False}, {'feature': 'geod_shearrate_grad', 'max_fold_auc': 0.514882731111111, 'pooled_auc': 0.5104725844470601, 'leakage_suspect': False}, {'feature': 'ieq_ridge', 'max_fold_auc': 0.5024, 'pooled_auc': 0.5012605873642646, 'leakage_suspect': False}, {'feature': 'seisdil_gate', 'max_fold_auc': 0.5348204426955239, 'pooled_auc': 0.5225302141076265, 'leakage_suspect': False}]
+screen NW 8414
+screen NE_LidarGapHeavy 10404
+screen SW 10410
+screen SE 8426
+SCREEN 0.11415371619795955 0.12461214544050417 {'evaluator_version': 'gems-segment-pooled-v1', 'candidate_dti': 0.11415371619795955, 'baseline_dti': 0.12461214544050417, 'paired_delta_dti': -0.010458429242544615, 'paired_delta_ci95': [-0.016294166215130843, -0.004864839664105639], 'ci95_strictly_positive': False, 'fold_wins': 0, 'n_folds': 4, 'min_fold_delta': -0.02824709728073646, 'folds': [{'fold': 'NW', 'candidate_dti': 0.12439822393601455, 'baseline_dti': 0.12857754963023293, 'delta_dti': -0.004179325694218389, 'candidate_wins': False}, {'fold': 'NE_LidarGapHeavy', 'candidate_dti': 0.11501799016855233, 'baseline_dti': 0.14326508744928879, 'delta_dti': -0.02824709728073646, 'candidate_wins': False}, {'fold': 'SW', 'candidate_dti': 0.09922647180560824, 'baseline_dti': 0.10816334703915234, 'delta_dti': -0.008936875233544098, 'candidate_wins': False}, {'fold': 'SE', 'candidate_dti': 0.12448880091383449, 'baseline_dti': 0.12705485183265192, 'delta_dti': -0.002566050918817425, 'candidate_wins': False}]}
+confirm N_wedge 6378
+confirm E_wedge 7318
+confirm S_wedge 14178
+confirm W_wedge 9780
+CONFIRM 0.11761865259662631 0.12948780002598545 {'evaluator_version': 'gems-segment-pooled-v1', 'split_id': 'diagonal-wedge-buffered-20px-confirm-v1', 'candidate_dti': 0.11761865259662631, 'baseline_dti': 0.12948780002598545, 'paired_delta_dti': -0.011869147429359142, 'paired_delta_ci95': [-0.01765515580455952, -0.00616426931741835], 'ci95_strictly_positive': False, 'fold_wins': 0, 'n_folds': 4, 'min_fold_delta': -0.03623955641747398, 'folds': [{'fold': 'N_wedge', 'candidate_dti': 0.12797440340224153, 'baseline_dti': 0.1642139598197155, 'delta_dti': -0.03623955641747398, 'candidate_wins': False}, {'fold': 'E_wedge', 'candidate_dti': 0.11417179665833303, 'baseline_dti': 0.1330485419855257, 'delta_dti': -0.018876745327192676, 'candidate_wins': False}, {'fold': 'S_wedge', 'candidate_dti': 0.1202275183535262, 'baseline_dti': 0.12678043882029771, 'delta_dti': -0.006552920466771514, 'candidate_wins': False}, {'fold': 'W_wedge', 'candidate_dti': 0.11160740155234815, 'baseline_dti': 0.11863341381541369, 'delta_dti': -0.00702601226306554, 'candidate_wins': False}]}
+UNIQ surface True None None
+UNIQ dots True None None
+FMT {'file': 'docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif', 'sha256': '5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96', 'bytes': 825868, 'bands': 1, 'dtype': 'float32', 'crs': 'EPSG:32611', 'epsg': 32611, 'template_crs': 'EPSG:32611', 'template_epsg': 32611, 'shape': [3730, 3292], 'template_shape': [3730, 3292], 'resolution': [100.0, 100.0], 'template_resolution': [100.0, 100.0], 'transform': [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0], 'template_transform': [100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0], 'bounds': [243350.0, 4135550.0, 572550.0, 4508550.0], 'template_bounds': [243350.0, 4135550.0, 572550.0, 4508550.0], 'shape_match': True, 'resolution_match': True, 'transform_match': True, 'bounds_match': True, 'all_finite': True, 'nonfinite_count': 0, 'min': 0.0, 'max': 1.0, 'in_range_0_1_whole_array': True, 'footprint_cells': 5167373, 'in_range_0_1_footprint': True, 'outside_footprint_all_zero': True, 'outside_is_null_or_zero': True, 'outside_has_nan': False, 'strict_zero_outside_requested': False, 'outside_policy_pass': True, 'emitted_pixels': 37654, 'emitted_fraction_of_footprint': 0.007286874781441169, 'pass': True}
+{
+ "verdict": "negative",
+ "ok_to_submit": false,
+ "submission_name": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros",
+ "submission_note": "GEMS33 S33-SEISDIL strain-seismicity gate 37654d | gate NEGATIVE | 3463540a7e02",
+ "raster_sha256": "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96"
+}
