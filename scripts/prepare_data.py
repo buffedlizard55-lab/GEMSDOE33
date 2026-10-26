@@ -9,13 +9,15 @@ Stages::
     1. restore_data.py verifies the owner-mirror input hashes (run separately)
     2. sanitise all 19 bands and set the authoritative template footprint
     3. build shared feature channels (derived grids stay under .cache/)
-    4. optionally train quadrant-out-of-fold catalogue detector (research only)
+    4. do not train an OOF detector by default: the legacy generic detector is absent and would not
+       satisfy the project's whole-segment, buffered validation contract; --train-detector fails closed
+       unless that implementation is deliberately restored and reviewed
 
 Usage::
 
     python scripts/restore_data.py --group all
-    python scripts/prepare_data.py
-    python scripts/prepare_data.py --skip-detector
+    python scripts/prepare_data.py  # build bands/features; skips legacy OOF detector
+    python scripts/prepare_data.py --train-detector  # fail-closed unless detector exists
 """
 from __future__ import annotations
 
@@ -60,11 +62,18 @@ def stage_site_density():
 
 def stage_oof():
     print("[4/4] train quadrant-out-of-fold research detector", flush=True)
+    fit_predict_oof = getattr(detector, "fit_predict_oof", None)
+    if not callable(fit_predict_oof):
+        raise SystemExit(
+            "No generic quadrant-OOF detector is implemented in src/gemsdoe33/detector.py. "
+            "This legacy path is intentionally not replaced with a new evaluator; use the "
+            "preregistered whole-segment runners for hypothesis tests."
+        )
     footprint = grid.template_footprint()
     labels = grid.load_labels()
     fold_ids = holdout.quadrant_ids(footprint)
     names = features.channel_names()
-    pred = detector.fit_predict_oof(names, fold_ids, labels, footprint, seed=0)
+    pred = fit_predict_oof(names, fold_ids, labels, footprint, seed=0)
     np.save(grid.CACHE / "oof_probability.npy", pred)
     (grid.CACHE / "oof_probability_signature.json").write_text(
         json.dumps({"channels": names, "seed": 0, "folds": "quadrants",
@@ -77,9 +86,13 @@ def stage_oof():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--skip-detector", action="store_true")
+    ap.add_argument("--train-detector", action="store_true",
+                    help="Run the legacy quadrant-OOF detector only if its implementation exists.")
+    ap.add_argument("--skip-detector", action="store_true", help=argparse.SUPPRESS)
     ap.add_argument("--force-bands", action="store_true")
     args = ap.parse_args()
+    if args.train_detector and args.skip_detector:
+        ap.error("--train-detector and --skip-detector cannot be used together")
     t0 = time.time()
     if args.force_bands or not (grid.CACHE / "footprint.npy").exists():
         stage_bands(force=args.force_bands)
@@ -96,12 +109,11 @@ def main():
         stage_site_density()
     else:
         print("[3/4] documented site density — cached", flush=True)
-    if args.skip_detector:
-        print("[4/4] OOF detector — skipped", flush=True)
-    elif not (grid.CACHE / "oof_probability.npy").exists():
+    if args.train_detector:
         stage_oof()
     else:
-        print("[4/4] OOF detector — cached (check signature before using)", flush=True)
+        print("[4/4] generic quadrant-OOF detector — not run; it is not part of the "
+              "segment-buffered validation pipeline and no implementation is present", flush=True)
     print(f"prepare_data complete in {time.time()-t0:.1f}s", flush=True)
     return 0
 

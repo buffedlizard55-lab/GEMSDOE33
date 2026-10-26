@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "date_utc": "2026-10-26",
+  "evidence_class": "MEASURED from this checkout and its SHA-256-pinned owner mirrors",
+  "data_restore": {
+    "command": "GEMS_DATA_DIR=$PWD/.cache/gemsdata python scripts/restore_data.py --group all --data-dir .cache/gemsdata",
+    "expected_inputs": 17,
+    "restored_and_hash_verified": 17,
+    "source_provenance": "Owner-published GitHub mirrors, not organizer-authenticated downloads",
+    "receipt": ".cache/gemsdata/restore_receipt.json",
+    "grid_audit": "evidence/input_grid_audit.json",
+    "grid_audit_pass": true,
+    "sample_labels_positive_set_disagreements": 0,
+    "sample_template_caution": "The owner-mirror sample_submission positive mask exactly matches labels.tif on the footprint; use it only for grid and footprint, never as target truth."
+  },
+  "feature_preparation": {
+    "command": "GEMS_DATA_DIR=$PWD/.cache/gemsdata python scripts/prepare_data.py",
+    "result_after_fix": "pass",
+    "cached_bands_and_footprint": true,
+    "research_feature_channels": 121,
+    "footprint_cells": 5167373,
+    "documented_site_density_created": true,
+    "feature_cache_path": ".cache/features/",
+    "git_tracked": false
+  },
+  "legacy_oof_path": {
+    "initial_default_invocation": "failed at stage 4 with AttributeError: module 'gemsdoe33.detector' has no attribute 'fit_predict_oof'",
+    "cause": "The detector module contains no implementation of the generic quadrant out-of-fold function. The quadrant-only legacy design would not meet the required whole-segment buffered hide-and-recover protocol.",
+    "correction": "Default preparation now skips generic OOF training. Explicit --train-detector checks for the implementation and fails closed with an explanatory message rather than an AttributeError. No private evaluator or alternate holdout was introduced.",
+    "model_training_completed": false,
+    "oof_probability_created_by_this_run": false
+  },
+  "submission_audits": [
+    {
+      "file": "docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif",
+      "sha256": "76f9e157d01bb9bec2d98c3c5941b6114e06e0f439272d5f140af6e3584c8825",
+      "strict_zero_validator_pass": true,
+      "ok_to_submit": false,
+      "reason": "Its frozen independent confirmation did not beat the comparable holdout incumbent."
+    },
+    {
+      "file": "docs/downloads/gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.tif",
+      "sha256": "449ad2a4a3c746ef960f8e788b01e0b0cedef794a5dab5f22b0ae993b322f62d",
+      "strict_zero_validator_pass": true,
+      "ok_to_submit": false,
+      "reason": "Its frozen screen and confirmation both lost to B1_regional."
+    },
+    {
+      "file": "docs/downloads/gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.tif",
+      "sha256": "a58219e1cc9f15f0ede99863b0e5a619dbfa6946c7fdd4fb61f7050ddd5070ac",
+      "strict_zero_validator_pass": true,
+      "ok_to_submit": false,
+      "reason": "Its frozen screen and confirmation both lost to B1_regional."
+    }
+  ],
+  "selector_audit": {
+    "bug_found": "scripts/select_submission.py hardcoded repository/data/sample_submission.tif and therefore failed to revalidate candidates when the user-configured GEMS_DATA_DIR lived elsewhere.",
+    "fix": "Selector now imports the same resolved DATA directory as the local validator; tests cover a cache-based template.",
+    "rerun_result": "NO RASTER IS OK TO SUBMIT: all current primary candidate files, hashes, ZIPs, note lengths and local format checks validate; promotion is blocked by the recorded negative/duplicate science gates.",
+    "selection_record": "docs/data/submission_selection.json"
+  },
+  "experiment_and_slot_status": {
+    "new_holdout_experiments_run": 0,
+    "reason": "The protocol's experiment budget is already consumed by the previously recorded campaigns; the current user message does not define an unambiguous new lane paragraph.",
+    "competition_slots_spent": 0,
+    "organizer_upload_or_receipt": null,
+    "score_projection": null
+  }
+}

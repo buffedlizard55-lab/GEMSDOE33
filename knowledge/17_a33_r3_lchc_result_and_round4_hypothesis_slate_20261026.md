@@ -73,17 +73,7 @@ pointwise scores.
 
 ## Part B — Round-4 ranked hypothesis slate (proposed, **not executed** this session)
 
-Per task requirement #5, five candidate mechanisms are ranked below by
-*expected DTI gain ÷ implementation+risk cost*, each distinct from every
-mechanism already tried in this repo (`H19-5` deletion pruning, `CSHT`
-percentile-rank multi-physics blend, `LCHC` least-cost graph connectivity,
-`H33-D`/Anderson geometric tip-stepover grafts, `H33-6` edge-consensus,
-tilt-gravity-LiDAR coherence, `DA-HGCM`, `MSTD1` Mohr-slip, `H29`
-hydrothermal-piedmont, `SBIR1`, `H31R` relay-damage, `RSHG1` supervised ridge,
-`GVC1` negative lineament). None of these has been run; none has spent a
-budget slot. **No candidate below may be promoted without first passing the
-full preregistered screen/confirm/uniqueness holdout protocol**, exactly as
-`A33-R2-CSHT` and `A33-R3-LCHC` were.
+The table ranks candidate mechanisms by *qualitative expected DTI upside relative to implementation/risk cost*; no numerical improvement is forecast. Four mechanisms are untried at the candidate/holdout level: `COULOMB`, `CURVTRACE`, `PFRT` and `PALEOTEMP`. `HMDT` is retained for completeness as a previously generated 42,000-dot artifact, but it has no holdout run card and is **not** counted as an untried hypothesis. All are distinct from the fully evaluated mechanisms already tried in this repo (`H19-5` deletion pruning, `CSHT` percentile-rank multi-physics blend, `LCHC` least-cost graph connectivity, `H33-D`/Anderson geometric tip-stepover grafts, `H33-6` edge-consensus, tilt-gravity-LiDAR coherence, `DA-HGCM`, `MSTD1` Mohr-slip, `H29` hydrothermal-piedmont, `SBIR1`, `H31R` relay-damage, `RSHG1` supervised ridge, `GVC1` negative lineament). No candidate in the table has a valid, complete screen-and-confirm result; no new hypothesis experiment was run in the current review. **No candidate may be promoted without first passing the full preregistered screen/confirm/uniqueness holdout protocol**, exactly as `A33-R2-CSHT` and `A33-R3-LCHC` were.
 
 | Rank | Hypothesis | Layers used | Physical signature | Why it catches off-catalogue faults | Differs from existing work by | External data needed? | Cost | Expected DTI gain | Key risk |
 |---|---|---|---|---|---|---|---|---|---|
