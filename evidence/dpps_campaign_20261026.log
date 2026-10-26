@@ -1,0 +1,110 @@
+[0/5] Building frozen DPPS + CTRL-PIXEL surfaces (label-free)
+  {'operator': 'G33-DPPS frozen 2026-10-26', 'input_channels': ['lid_step_max', 'lid_lapneg_max', 'lid_ex_max', 'lid_valid', 'det_elev_curv4', 'det_elev_laps4', 'det_elev_coh', 'iso_grav_anom_hg', 'depth_to_base_surf'], 'orientations': [[1, 0], [0, 1], [1, 1], [1, -1], [2, 1], [1, 2], [2, -1], [1, -2]], 'line_half_steps': 7, 'dip_degrees': 60.0, 'dip_clip_px': 15.0, 'lidar_valid_fraction_of_footprint': 0.7535912348498938, 'surface_min': 0.0, 'surface_max': 0.9596896767616272, 'surface_positive_cells': 5167373, 'catalogue_read_in_surface': False, 'learned_weights': False}
+[1/5] Leakage canaries (9 channels)
+  passed=True rows=[{'feature': 'lid_step_max', 'pooled_auc_two_sided': 0.5619779452059128, 'max_fold_auc_two_sided': 0.5837045941957698, 'raw_pooled_auc': 0.5619779452059128, 'leakage_suspect': False}, {'feature': 'lid_lapneg_max', 'pooled_auc_two_sided': 0.5658131782025969, 'max_fold_auc_two_sided': 0.5925777504508936, 'raw_pooled_auc': 0.5658131782025969, 'leakage_suspect': False}, {'feature': 'lid_ex_max', 'pooled_auc_two_sided': 0.5603828367441214, 'max_fold_auc_two_sided': 0.5812877733333333, 'raw_pooled_auc': 0.5603828367441214, 'leakage_suspect': False}, {'feature': 'lid_valid', 'pooled_auc_two_sided': 0.5135831003050092, 'max_fold_auc_two_sided': 0.525523803902279, 'raw_pooled_auc': 0.5135831003050092, 'leakage_suspect': False}, {'feature': 'det_elev_curv4', 'pooled_auc_two_sided': 0.6336688363770977, 'max_fold_auc_two_sided': 0.6874978845282818, 'raw_pooled_auc': 0.6336688363770977, 'leakage_suspect': False}, {'feature': 'det_elev_laps4', 'pooled_auc_two_sided': 0.6002556263763383, 'max_fold_auc_two_sided': 0.647581296459116, 'raw_pooled_auc': 0.6002556263763383, 'leakage_suspect': False}, {'feature': 'det_elev_coh', 'pooled_auc_two_sided': 0.5740926065317539, 'max_fold_auc_two_sided': 0.637408000959156, 'raw_pooled_auc': 0.5740926065317539, 'leakage_suspect': False}, {'feature': 'iso_grav_anom_hg', 'pooled_auc_two_sided': 0.502717640228314, 'max_fold_auc_two_sided': 0.5963046146058135, 'raw_pooled_auc': 0.502717640228314, 'leakage_suspect': False}, {'feature': 'depth_to_base_surf', 'pooled_auc_two_sided': 0.5040946681917129, 'max_fold_auc_two_sided': 0.5305215037433725, 'raw_pooled_auc': 0.5040946681917129, 'leakage_suspect': False}]
+[2/5] Experiment 1/3: quadrant screen
+  fold NW: budget=8414 done in 15.2s
+  fold NE_LidarGapHeavy: budget=10404 done in 16.2s
+  fold SW: budget=10410 done in 15.2s
+  fold SE: budget=8426 done in 13.5s
+  screen DPPS=0.095407 B1=0.111285 CTRL=0.072816 RAND=0.068107
+[3/5] Experiment 2/3: diagonal-wedge confirmation
+  fold N_wedge: budget=6378 done in 11.0s
+  fold E_wedge: budget=7318 done in 12.1s
+  fold S_wedge: budget=14178 done in 18.6s
+  fold W_wedge: budget=9780 done in 14.5s
+  confirm DPPS=0.096015 B1=0.114619 CTRL=0.072936
+[4/5] Experiment 3/3: production dots + uniqueness (25 rasters)
+  surface pass=True max3px=0.6780 | final pass=True max3px=0.4462
+[5/5] Writing GeoTIFF pair + audits + run card
+{
+  "hypothesis": "DPPS: >=1.5 km along-strike scarp persistence + dip-projected gravity support (z*cot60 along +grad depth-to-basement) recovers withheld fault segments better than B1_regional HGB and a pixel-scarp CELF ablation, with a non-duplicate pre-placement surface.",
+  "mechanism": "Label-free rank scarp strength (LiDAR, DEM-flexure fallback in void) -> 8-orientation 15px line-mean persistence -> dip-projection warp of iso_grav_anom_hg -> fixed fusion -> 300 m CELF, 37,654 dots, >2px off catalogue. Zero learned weights; zero registry pixels read.",
+  "named_non_fault_mimic": "Prograding alluvial-fan toes / Lake Lahontan shoreline benches over buried pediments.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "screen": {
+      "split_id": "quadrant-buffered-15px-v1",
+      "withheld_positives": 60988,
+      "candidate": 0.09540684978691973,
+      "candidate_95pct_ci": [
+        0.08497124787198461,
+        0.10637022573028689
+      ],
+      "b1_regional": 0.11128475241436168,
+      "ctrl_pixel": 0.07281644534295952,
+      "matched_random": 0.06810657897853159,
+      "paired_delta_vs_b1": -0.01587790262744196,
+      "paired_delta_vs_b1_95pct_ci": [
+        -0.02893239785608321,
+        -0.002120890028434737
+      ],
+      "fold_wins_vs_b1": "1/4",
+      "paired_delta_vs_ctrl": 0.02259040444396021,
+      "paired_delta_vs_ctrl_95pct_ci": [
+        0.016578055029151995,
+        0.028826180289932318
+      ]
+    },
+    "confirmation": {
+      "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+      "withheld_positives": 60988,
+      "candidate": 0.0960149519765181,
+      "candidate_95pct_ci": [
+        0.08529497020273163,
+        0.10677579033689441
+      ],
+      "b1_regional": 0.11461931447849738,
+      "ctrl_pixel": 0.0729361492396981,
+      "paired_delta_vs_b1": -0.018604362501979277,
+      "paired_delta_vs_b1_95pct_ci": [
+        -0.03136932339391593,
+        -0.005925489086200142
+      ],
+      "fold_wins_vs_b1": "0/4"
+    },
+    "recorded_context_not_paired": {
+      "A33_R2_CSHT_screen": 0.136716,
+      "A33_R2_CSHT_confirm": 0.131169,
+      "note": "CSHT was duplicate-blocked on its pre-placement surface vs G30-MSDB1 (owner-reported live 0.1462). No paired comparison is claimed.",
+      "GEMSDOE32_B2": "0.2778 OWNER-REPORTED (NOT ORGANIZER-CONFIRMED); deletion-only H27-4 pruning, pixel-exact in repo evidence."
+    },
+    "qualification": "Catalogue whole-segment hide-and-recover proxy. NOT the private organizer truth, NOT a competition score, NOT a projection."
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "25 rasters: 21 pinned in registry/focus_rasters_20261026.json + 4 local newer zeros twins",
+    "surface_max_abs_spearman": 0.06740330914615633,
+    "surface_max_3px_overlap": 0.67796250066394,
+    "surface_passed": true,
+    "final_dots_max_abs_spearman": 0.02125360544679777,
+    "final_dots_max_3px_overlap": 0.4461942954267807,
+    "final_dots_passed": true,
+    "vs_G32_B2_final_3px": 0.24000106230413767
+  },
+  "leakage_canary": {
+    "tested": 9,
+    "passed": true,
+    "max_two_sided_auc": 0.6874978845282818
+  },
+  "raster_sha256": "449ad2a4a3c746ef960f8e788b01e0b0cedef794a5dab5f22b0ae993b322f62d",
+  "nan_twin_sha256": "6b7f39d2b6689f67e33e858c2fb98f0a8cd562d5a400e60ceff9bfef195ba7a5",
+  "surface_sha256": "8ce02ee00cd301a6168b25905c70e62c13da5240d0aa19d81289e0d494234743",
+  "validator_output": {
+    "strict_zero_primary_pass": true,
+    "whole_array_finite_in_0_1": true,
+    "no_nan_anywhere_zero_variant": true,
+    "crs_epsg": 32611,
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform_matches_template": true,
+    "dots": 37654,
+    "catalogue_overlap_dots": 0,
+    "nan_twin_pass": true
+  },
+  "submission_name": "gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros",
+  "file": "gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.tif",
+  "zip": "gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae
+VERDICT: negative failed=['screen_beats_b1_pooled', 'screen_paired_ci_vs_b1_positive', 'screen_fold_wins_vs_b1_ge_3', 'confirm_beats_b1_pooled', 'confirm_paired_ci_vs_b1_positive', 'confirm_fold_wins_vs_b1_ge_3'] elapsed=290.42s

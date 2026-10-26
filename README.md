@@ -1,6 +1,19 @@
 # GEMSDOE33 — DOE GEMS Fault Discovery Project (DrivenData #306)
 
-## 🟡 Current Decision (2026-10-26, `A33-R2-CSHT`): **OK TO DOWNLOAD: YES** · **OK TO SUBMIT: NO (DO NOT SPEND A WEEKLY SLOT)**
+> **Operating values: Maximize P(Win) · Own the Outcome.** Read [`standing_prompt.md`](standing_prompt.md) then this README at the start of every session.
+
+## 🔴 NEWEST Decision (2026-10-26, `G33-DPPS` — unique TIF generated this session): **✅ OK TO DOWNLOAD: YES** · **🛑 OK TO SUBMIT: NO (DO NOT SPEND A WEEKLY SLOT — verdict: negative)**
+
+| Immediate Reader Question | Unmistakable Answer |
+|---|---|
+| **Is there a new, unique TIF?** | **✅ YES.** `gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.tif` — a deterministic **dip-projected persistence-scarp** emission (zero learned weights; zero catalogue/H19-5/B2 pixels in its surface), generated under a SHA-frozen preregistration ([`knowledge/14_preregistered_dpps_hypotheses_20261026.md`](knowledge/14_preregistered_dpps_hypotheses_20261026.md)). It is **not a copy of any previous submission**: surface + final dots pass the duplicate guard vs **25** registry rasters (final max 3-px overlap `44.62% ≤ 70%`, max \|ρ\| `0.0213`; only `24.0%` of its dots within 3 px of GEMSDOE32 B2). |
+| **OK TO DOWNLOAD?** | **✅ YES.** Single-band `float32`, `EPSG:32611`, `3730×3292`, template transform; whole array finite in `[0, 1]` (values `{0.0, 1.0}`, **0 NaN anywhere**, `0.0` outside footprint) — this primary `-zeros.tif` cannot trip the portal error *"Predicted values must be in range [0, 1]"* from NaN handling. `37,654` dots, `0` on-catalogue, strict saved-byte validator `pass = True`, `9/9` leakage canaries (max AUC `0.6875 ≤ 0.90`). Download: **[.tif (808 KB)](docs/downloads/gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.tif)** · **[.zip (164 KB)](docs/downloads/gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.zip)** · [NaN twin](docs/downloads/gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-nan.tif) · [receipt](docs/downloads/receipt-gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235.json) · [run card](evidence/dpps_run_card_20261026.json) · [how to submit](docs/how-to-submit.html) |
+| **OK TO SUBMIT TO DRIVENDATA?** | **🛑 NO — DO NOT SUBMIT.** Automated gates (no human inspector): HOLDOUT-DTI screen `0.095407` vs B1 `0.111285` (Δ `−0.015878 [−0.028932, −0.002121]`, 1/4 folds) and confirmation `0.096015` vs B1 `0.114619` (Δ `−0.018604`, 0/4) — **fails every beat-the-incumbent gate**. The mechanism itself is validated vs its pixel ablation (+`0.0226`/`+0.0231`, 8/8 folds), which is why it is kept as a measured negative result ([`knowledge/15_dpps_results_20261026.md`](knowledge/15_dpps_results_20261026.md)). Unique name `gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros`; note (82/140) `GEMS33 DPPS dip-projected persistence scarp CELF 37654d \| 111ae96bb235 \| gate FAIL`; SHA-256 `449ad2a4a3c746ef960f8e788b01e0b0cedef794a5dab5f22b0ae993b322f62d`. `0` slots spent; no upload made; **no score above 0.2778\* is claimed or projected** (\*owner-reported, not organizer-confirmed). |
+| **So which of the 9 sites' files *should* I submit?** | **None today.** The highest owner-reported historical file is GEMSDOE32 B2 (`0.2778`*) — already submitted and pixel-exactly a pruning of H27-4, so re-uploading it (or GEMSDOE36/GEMSDOE28/GEMSDOE31 family members at `>93%` overlap) is a duplicate that wastes a slot. A33-R2-CSHT below passed holdout but is surface-duplicate-blocked. DPPS is unique but failed holdout. Next: a fresh preregistered lane (1 m trace-stage rebuild or reserve HMDT), not a retune. |
+
+---
+
+## 🟡 Previous Decision (2026-10-26, `A33-R2-CSHT`): **OK TO DOWNLOAD: YES** · **OK TO SUBMIT: NO (DO NOT SPEND A WEEKLY SLOT)**
 
 | Immediate Reader Question | Unmistakable Answer |
 |---|---|

@@ -208,8 +208,62 @@ On buffered whole-segment holdout (<code>60,988</code> withheld positives, <code
 </div>"""
 
 
+def dpps_hero(*, include_b2_score: bool = False) -> str:
+    card = read_json(ROOT / "evidence" / "dpps_run_card_20261026.json")
+    if not card:
+        return ""
+    h = card["holdout_dti"]
+    s, c = h["screen"], h["confirmation"]
+    u = card["correlation_overlap_vs_registry"]
+    tif = f"downloads/{card['file']}"
+    zip_ = f"downloads/{card['zip']}"
+    rcpt = "downloads/receipt-gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235.json"
+    b2_line = (
+        "<p><b>Context:</b> the highest owner-reported historical value (GEMSDOE32 B2, "
+        "0.2778, not organizer-confirmed) is a deletion-only pruning of H27-4 reproduced "
+        "pixel-exactly in this repo; it is not re-submittable under the duplicate gate. "
+        "DPPS makes <b>no claim to beat it</b>.</p>"
+        if include_b2_score else ""
+    )
+    return f"""<div class="hero-download" id="dpps">
+<h2>★ NEWEST UNIQUE TIF (2026-10-26, G33-DPPS) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO — DO NOT SPEND A WEEKLY SLOT (verdict: negative)</h2>
+<p><span class="badge good">✅ OK TO DOWNLOAD: YES</span> <span class="badge bad">🛑 OK TO SUBMIT: NO</span> <span class="badge good">STRICT [0, 1] WHOLE-ARRAY PASS · 0 NaN</span> <span class="badge good">UNIQUE VS 25 REGISTRY RASTERS (surface + final dots)</span> <span class="badge bad">HOLDOUT GATE FAILED vs B1 (1/4 + 0/4 folds)</span></p>
+<p><b>What this file is:</b> a genuinely new, deterministic <b>dip-projected persistence-scarp</b> emission
+(zero learned weights, zero catalogue/H19-5/B2 pixels in its surface): ≥1.5 km along-strike LiDAR-scarp
+persistence fused with gravity support warped updip by <code>z·cot60°</code> along the depth-to-basement
+gradient, placed by 300 m CELF. <code>37,654</code> binary dots, single-band <code>float32</code>,
+<code>EPSG:32611</code>, <code>3730 × 3292</code>, values exactly <code>{{0.0, 1.0}}</code> with
+<code>0.0</code> outside the footprint — the whole array is finite in <code>[0, 1]</code>, so this primary
+<code>-zeros.tif</code> cannot trigger the portal error <i>“Predicted values must be in range [0, 1]”</i>
+from NaN handling. <code>0</code> dots on the catalogue; <code>9/9</code> leakage canaries pass
+(max two-sided AUC <code>{card['leakage_canary']['max_two_sided_auc']:.4f} ≤ 0.90</code>).</p>
+<p><b>Holdout evidence (HOLDOUT-DTI, <code>gems-segment-pooled-v1</code>, 60,988 withheld positives — not a competition score):</b>
+screen <b>{s['candidate']:.6f}</b> [{s['candidate_95pct_ci'][0]:.6f}, {s['candidate_95pct_ci'][1]:.6f}] vs
+B1_regional <code>{s['b1_regional']:.6f}</code> (paired Δ <code>{s['paired_delta_vs_b1']:+.6f} [{s['paired_delta_vs_b1_95pct_ci'][0]:+.6f}, {s['paired_delta_vs_b1_95pct_ci'][1]:+.6f}]</code>, {s['fold_wins_vs_b1']} folds);
+confirmation <b>{c['candidate']:.6f}</b> vs B1 <code>{c['b1_regional']:.6f}</code>
+(Δ <code>{c['paired_delta_vs_b1']:+.6f} [{c['paired_delta_vs_b1_95pct_ci'][0]:+.6f}, {c['paired_delta_vs_b1_95pct_ci'][1]:+.6f}]</code>, {c['fold_wins_vs_b1']}).
+The mechanism itself is validated against its pixel-scarp ablation (screen Δ vs CTRL-PIXEL
+<code>{s['paired_delta_vs_ctrl']:+.6f} [{s['paired_delta_vs_ctrl_95pct_ci'][0]:+.6f}, {s['paired_delta_vs_ctrl_95pct_ci'][1]:+.6f}]</code>, 4/4 folds),
+but the system does <b>not</b> beat the supervised incumbent, so per the preregistered gate it must not spend a slot.</p>
+<p><b>Uniqueness (Parallel-Run Protocol, both stages):</b> pre-placement surface max |ρ| =
+<code>{u['surface_max_abs_spearman']:.4f}</code>, max preview dots within 3 px =
+<code>{100*u['surface_max_3px_overlap']:.2f}%</code> (limit 70%; nearest is the local Round-3 raster — slim margin, flagged);
+final dots max |ρ| = <code>{u['final_dots_max_abs_spearman']:.4f}</code>, max within 3 px =
+<code>{100*u['final_dots_max_3px_overlap']:.2f}%</code>; only <code>{100*u['vs_G32_B2_final_3px']:.1f}%</code> of DPPS dots lie within 3 px of GEMSDOE32 B2 dots. Not a copy of any previous submission.</p>
+{b2_line}
+<p><a class="btn" href="{tif}">⬇ Download DPPS [0, 1] GeoTIFF ({card['file']})</a> <a class="btn alt" href="{zip_}">Single-TIFF .zip</a> <a class="btn alt" href="{rcpt}">Validator Receipt JSON</a> <a class="btn alt" href="data/dpps_run_card_20261026.json">DPPS Run Card JSON</a></p>
+<table><tbody>
+<tr><th>Unique submission name</th><td><code>{card['submission_name']}</code></td></tr>
+<tr><th>Suggested note ({card['note_characters']} / 140 chars) — for provenance only; do not upload</th><td><code>{esc(card['note'])}</code></td></tr>
+<tr><th>GeoTIFF SHA-256 (zeros primary)</th><td><code>{card['raster_sha256']}</code></td></tr>
+<tr><th>Decision</th><td><b>✅ OK TO DOWNLOAD: YES (research/reproducibility) · 🛑 OK TO SUBMIT: NO</b> — failed gates: <code>{", ".join(card['failed_gates'])}</code>. No DrivenData upload was made from this workspace; slots spent: 0.</td></tr>
+</tbody></table>
+</div>"""
+
+
 def build_index() -> str:
-    body = f"""{a33_r2_csht_hero()}
+    body = f"""{dpps_hero()}
+{a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 {unique_submission_hero()}
 <h2>Project decision</h2>
@@ -253,15 +307,28 @@ def build_exec() -> str:
              "Owner-reported; filename references a PINN but no geothermal-discovery mechanism is established by local evidence"),
         )
     )
-    body = f"""{a33_r2_csht_hero()}
+    body = f"""{dpps_hero(include_b2_score=True)}
+{a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 <h2>Executive summary — per-site best submissions and how to submit</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b></div>
+<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (G33-DPPS, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. Every historical file in the table below has already been spent as a submission (owner-reported) or is a duplicate of one — re-uploading any of them wastes a slot and cannot produce a new score. <b>There is currently no “submit this one” file; that is the honest, gate-driven answer.</b></div>
+
+<h3>Exactly how a submission is made (when a future candidate passes every gate)</h3>
+<ol>
+<li><b>Check the banner at the top of this page.</b> Submit only if it says <code>OK TO SUBMIT: YES</code> for that exact filename. Today it says <b>NO</b> for every file on this site.</li>
+<li><b>Download the primary <code>-zeros.tif</code></b> (or its single-TIFF <code>.zip</code>) and do not rename/edit/re-save it. The zeros variant is finite in [0, 1] over the <i>whole array</i> (0.0 outside the footprint, zero NaNs), which is the variant that cannot trip the portal message <i>“Predicted values must be in range [0, 1]”</i>. A <code>-nan.tif</code> twin (NaN outside, per the official-text wording) is kept only as an alternative if the live form rejects zeros.</li>
+<li><b>Verify the bytes you downloaded</b> (optional, 10 seconds): SHA-256 must equal the hash in the banner table, and <code>python scripts/validate_submission.py --submission FILE.tif --template sample_submission.tif --strict-zero-outside</code> must print <code>"pass": true</code> (1 band, float32, EPSG:32611, 3730 × 3292, template transform, min 0.0 / max 1.0).</li>
+<li><b>Open the DrivenData submission form</b> (competition 306 → <i>New submission</i>): choose the <code>.tif</code> file (single-band GeoTIFF, or a .zip containing exactly one GeoTIFF, matching the format CRS/shape/geotransform).</li>
+<li><b>Paste the note exactly as given</b> in the banner table (≤ 140 characters) into the <i>Note</i> box, e.g. the DPPS provenance note above — the note is how you tell submissions apart later.</li>
+<li><b>Confirm a weekly slot is available</b> on the submission page, then submit once. Do not submit the same dots twice under different names.</li>
+<li><b>Save the organizer receipt/score screenshot</b> and add it to the repo: only an organizer receipt converts an owner-reported number into an ORGANIZER-CONFIRMED score. Until then every historical score on this page stays labelled owner-reported.</li>
+</ol>
+<div class="panel warn"><b>No human inspector is in this loop:</b> leakage canaries, spatially blocked holdout vs matched controls, surface+final-dots duplicate guards, and the saved-byte format audit all run automatically in-project (<code>scripts/run_dpps_campaign.py</code>, <code>scripts/validate_submission.py</code>). The only human step is the account-holder clicking upload in step 4–6, because this workspace has no DrivenData auth.</div>
 
 <h3>Which focus-site submission is the best to submit?</h3>
 <p>Among the nine focus sites (GEMSDOE 24, 25, 27, 28, 30, 31, 32, 33, 36), the highest owner-reported value is <b>GEMSDOE32 h33-h33-2-b2-...-zeros at 0.2778</b>, followed by GEMSDOE36 at 0.2750 and GEMSDOE28 h36-1 at 0.2710. <b>Every one of these values is an owner/user report: none is backed by an organizer submission-page receipt in this repository, and none is organizer-confirmed.</b> They are leads, not proven scores.</p>
 <div class="scroll"><table><thead>
-<tr><th>Site</th><th>Best owner-reported submission</th><th>Reported score</th><th>Status / caveat</th></tr>
+<tr><th>Site</th><th>Best owner-reported submission</th><th>Reported score (owner-reported, not organizer-confirmed)</th><th>Submit this now?</th><th>Status / caveat</th></tr>
 </thead><tbody>
 {rows}
 </tbody></table></div>
@@ -287,6 +354,8 @@ def build_results() -> str:
     body = f"""<h2>Results, score claims, and evidence boundaries</h2>
 <p><a href="latest-review.html">New: twelve-raster byte-level forensic review, GEMSDOE32 pruning recipe and automatic gate status</a> · <a href="{GITHUB}/knowledge/13_focus_forensics_g32_proof_and_a33_r2_results_20261026.md">2026-10-26 21-raster forensic proof &amp; A33-R2-CSHT report</a>.</p>
 <div class="panel bad"><b>No organizer-confirmed submission result is available in this checkout.</b> The leaderboard values in the user's research brief and owner-maintained GEMSDOE pages are historical reports, not organizer receipts linking scores to raster bytes. Do not infer or present projected scores.</div>
+<h3>2026-10-26 G33-DPPS local holdout (unique both stages; beats ablation, fails vs B1 — negative)</h3>
+<p><b>HOLDOUT-DTI</b> (<code>gems-segment-pooled-v1</code>, <code>60,988</code> withheld catalogue pixels): quadrant screen DPPS <code>0.095407</code> (95% CI <code>[0.084971, 0.106370]</code>) vs <code>B1_regional = 0.111285</code>, paired <code>Δ = −0.015878 [−0.028932, −0.002121]</code>, <b>1/4 folds</b>; diagonal-wedge confirmation <code>0.096015</code> (<code>[0.085295, 0.106776]</code>) vs <code>B1_regional = 0.114619</code>, paired <code>Δ = −0.018604 [−0.031369, −0.005925]</code>, <b>0/4 folds</b>. Against its own pixel-scarp ablation at identical CELF emission, DPPS won <b>8/8 folds</b> (screen <code>Δ = +0.022590 [+0.016578, +0.028826]</code>; confirmation <code>Δ = +0.023079 [+0.016931, +0.029462]</code>), so persistence + dip-projection carry real signal, but the preregistered system gate (beat B1) failed on both splits. Surface and final dots are unique vs all 25 registry rasters (final max 3-px overlap <code>44.62%</code>; <code>24.0%</code> vs GEMSDOE32 B2). Verdict: <b>negative (✅ OK TO DOWNLOAD · 🛑 OK TO SUBMIT: NO)</b>. Evidence: <a href="{GITHUB}/evidence/dpps_experiment_20261026.json">experiment JSON</a> · <a href="data/dpps_run_card_20261026.json">run card</a> · <a href="{GITHUB}/knowledge/15_dpps_results_20261026.md">interpretation</a>.</p>
 <h3>2026-10-26 A33-R2-CSHT local holdout (8/8 fold wins; surface duplicate-stopped)</h3>
 <p><b>HOLDOUT-DTI</b> (<code>gems-segment-pooled-v1</code>, <code>60,988</code> withheld catalogue pixels): primary quadrant screen <code>0.136716</code> (95% CI <code>[0.119069, 0.154424]</code>) vs <code>B1_regional = 0.112418</code> (<code>0.113244</code> recorded), paired <code>Δ = +0.024298 [+0.012427, +0.035833]</code>, <b>4/4 folds positive</b>; frozen orthogonal diagonal-wedge confirmation <code>0.131169</code> (<code>[0.115241, 0.146693]</code>) vs <code>B1_regional = 0.115122</code>, paired <code>Δ = +0.016047 [+0.003817, +0.028030]</code>, <b>4/4 folds positive</b>. Among 2026-10-25 sibling focus uploads (owner/user-reported, not organizer-confirmed), <code>G27-h29</code> reported <code>0.2190</code>, <code>G30-MSDB1</code> <code>0.1462</code>, <code>G24-gvc1</code> <code>0.0859</code>, <code>G25-h66</code> <code>0.0742</code>, and <code>G28-s18</code> <code>0.0217</code>, while <code>GEMSDOE32</code> <code>H33-2-B2</code> (<code>37,654</code> dots = <code>H27-4</code> minus <code>2,545</code> <code>1 &lt; d_cat ≤ 2 px</code> boundary-halo dots) remains the highest owner-reported focus-site value at <code>0.2778</code>. Because <code>A33-R2-CSHT</code> pre-placement surface peaks converged with <code>G30-MSDB1-e7856ec3f14a</code> (<code>91.11%</code> unthinned / <code>77.82%</code> matched-37k NMS 3-px overlap &gt; <code>70%</code>), its promotion verdict is <code>duplicate</code> (<b>OK TO DOWNLOAD: YES · OK TO SUBMIT: NO</b>).</p>
 <h3>H27-4 claim (0.2708)</h3><p>The repo records that the linked GEMSDOE28 owner page labels H27-4 unscored/research-only. No authenticated organizer receipt proves the quoted 0.2708 or associates it with the raster. Therefore the question “why did it score 0.2708?” has no verified premise here. At most, the owner report suggests a dotted H19-5 baseline with d=2.8; its mechanism is not confirmed as the cause of any official score.</p>
@@ -525,6 +594,7 @@ def main() -> int:
     research = DOCS / "research"
     research.mkdir(exist_ok=True)
     for source, name in (
+        ("dpps_run_card_20261026.json", "dpps-run-card.json"),
         ("run_card_g33_20261026.json", "current-run-card.json"),
         ("round3_da_hgcm_run_card_20261025.json", "round3-da-hgcm-run-card.json"),
         ("promotion_gate_20261025.json", "current-promotion-gate.json"),
@@ -538,6 +608,11 @@ def main() -> int:
     if r2_card:
         (data_dir / "a33_r2_run_card_20261026.json").write_text(
             json.dumps(r2_card, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+        )
+    dpps_card = read_json(ROOT / "evidence" / "dpps_run_card_20261026.json")
+    if dpps_card:
+        (data_dir / "dpps_run_card_20261026.json").write_text(
+            json.dumps(dpps_card, indent=2, allow_nan=False) + "\n", encoding="utf-8"
         )
     (DOCS / "score-feed.json").write_text(retired_score_feed(), encoding="utf-8")
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")

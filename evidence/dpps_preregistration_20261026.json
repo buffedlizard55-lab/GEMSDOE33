@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "campaign": "G33-DPPS",
+  "date": "2026-10-26",
+  "repo": "GEMSDOE33",
+  "lane": "Deterministic dip-projected curvilinear scarp-persistence operator; zero learned weights; zero catalogue geometry in surface; catalogue only as fold-visible >2px emission exclusion.",
+  "hypothesis": "DPPS: >=1.5 km along-strike scarp persistence fused with dip-projected (z*cot60, along +grad depth-to-basement, clip 15px) gravity horizontal-gradient support recovers withheld fault segments better than B1_regional HGB and a pixel-scarp CELF ablation, while its pre-placement surface does not duplicate any registry raster.",
+  "mechanism": "rank-blend LiDAR scarp (DEM flexure fallback in LiDAR void) -> 8-orientation 15px line-mean persistence -> variable dip-projection warp of iso_grav_anom_hg rank along smoothed depth gradient -> fixed fusion rank(P)*(0.6+0.4*rank(Gproj))*(0.7+0.3*rank(det_elev_coh)) -> celf_emit_300m min_spacing 2.5px, 37654 dots.",
+  "named_non_fault_process_that_could_mimic_it": "Prograding alluvial-fan toes and Lake Lahontan shoreline benches over buried pediments: long linear scarps with gravity support but no Quaternary fault slip.",
+  "input_channels": [
+    "lid_step_max",
+    "lid_lapneg_max",
+    "lid_ex_max",
+    "lid_valid",
+    "det_elev_curv4",
+    "det_elev_laps4",
+    "det_elev_coh",
+    "iso_grav_anom_hg",
+    "depth_to_base_surf"
+  ],
+  "forbidden_inputs": [
+    "labels.tif values in surface",
+    "h19_5/B2/any registry raster pixels",
+    "dist_known_fault_px",
+    "sample_submission.tif values (grid/footprint only)"
+  ],
+  "orientations": [
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      -1
+    ],
+    [
+      1,
+      -2
+    ]
+  ],
+  "line_half_length_steps": 7,
+  "dip_degrees": 60,
+  "dip_clip_px": 15,
+  "depth_smooth_sigma_px": 3,
+  "fusion": "rank(P)*(0.6+0.4*rank(G_proj))*(0.7+0.3*rank(det_elev_coh))",
+  "emission": {
+    "fn": "csht_transfer.celf_emit_300m",
+    "min_self_spacing_px": 2.5,
+    "full_budget": 37654,
+    "catalogue_exclusion_px": 2.0
+  },
+  "controls": [
+    "B1_regional in-run fit_regional_expert + dot_thin 2.8",
+    "CTRL-PIXEL surface S + identical CELF",
+    "matched_random (screen only)"
+  ],
+  "splits": {
+    "screen": "quadrant-buffered-15px-v1 (SegmentHoldout buffer 15)",
+    "confirmation": "diagonal-wedge-buffered-20px-confirm-v1 (DiagonalSegmentHoldout buffer 20)",
+    "confirmation_frozen_before_screen_results": true
+  },
+  "evaluator_version": "gems-segment-pooled-v1",
+  "alpha": 0.2,
+  "beta": 0.8,
+  "kernel": "triangular",
+  "radius_m": 300,
+  "canary": {
+    "threshold_two_sided_auc_gt": 0.9,
+    "action": "abort before scoring"
+  },
+  "uniqueness": {
+    "registry": "registry/focus_rasters_20261026.json (21) + 4 local newer zeros twins (A33-R2-CSHT, G33, Round3 DA-HGCM, H33R3-invariant) = 25",
+    "spearman_stop_gt": 0.9,
+    "overlap_3px_stop_gt": 0.7,
+    "stages": [
+      "surface_before_placement (top-37654 raw eligible preview)",
+      "final_dots"
+    ]
+  },
+  "promote_requires_all": [
+    "canaries pass",
+    "screen pooled > B1 and > CTRL-PIXEL, paired CI vs B1 > 0, >=3/4 folds vs B1",
+    "confirmation pooled > B1, paired CI vs B1 > 0, >=3/4 folds",
+    "surface+final uniqueness pass vs 25",
+    "strict zeros-primary format audit pass on saved bytes (whole array finite [0,1])",
+    "note <=140 chars",
+    "experiments <=3"
+  ],
+  "recorded_context_not_paired": {
+    "A33_R2_CSHT_screen_holdout_dti": 0.136716,
+    "A33_R2_CSHT_confirm_holdout_dti": 0.131169,
+    "A33_R2_CSHT_status": "duplicate-blocked surface vs G30-MSDB1",
+    "GEMSDOE32_B2_reported": "0.2778 OWNER-REPORTED NOT ORGANIZER-CONFIRMED"
+  },
+  "experiments_budget": 3,
+  "no_retuning_after_results": true,
+  "knowledge_doc": "knowledge/14_preregistered_dpps_hypotheses_20261026.md"
+}
