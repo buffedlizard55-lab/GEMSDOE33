@@ -8,7 +8,9 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
 CARD = ROOT / "evidence" / "a33_r3_run_card_20261026.json"
-TEMPLATE = ROOT / "data" / "sample_submission.tif"
+TEMPLATE = (ROOT / ".cache" / "gemsdata" / "sample_submission.tif"
+            if (ROOT / ".cache" / "gemsdata" / "sample_submission.tif").is_file()
+            else ROOT / "data" / "sample_submission.tif")
 
 pytestmark = pytest.mark.skipif(not (CARD.is_file() and TEMPLATE.is_file()),
                                 reason="needs restored template and the A33-R3 artifact")
@@ -18,6 +20,8 @@ def _selector():
     spec = importlib.util.spec_from_file_location("select_submission", ROOT / "scripts" / "select_submission.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
+    # Exercise the same non-default cache location used by restore_data.py in CI/sandboxes.
+    mod.TEMPLATE = TEMPLATE
     return mod
 
 

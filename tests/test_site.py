@@ -27,7 +27,14 @@ def test_executive_summary_explains_process_and_blocks_failed_candidate():
     assert "organizer receipt" in page
     assert "no DrivenData auth" in page
     assert "GEMSDOE32" in page and "0.2778" in page  # per-site best table
-    assert "HIGHEST owner-reported focus-site value" in page
+    assert "OWNER-REPORTED, NOT ORGANIZER-CONFIRMED" in page
+    assert "Not defensibly estimable from this holdout" in page
+    assert "FAIL —" in page and "exceeds the 70% guard" in page
+    assert "focus_raster_audit_20261025.json" in page
+    assert r"\n3730" not in page and r"\n<tr>" not in page
+    assert page.count("Pinned owner-mirror TIFF (GitHub)") == 8
+    assert "Local audited TIFF" in page
+    assert "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif" in page
 
 
 def test_hypothesis_page_has_ranked_prior_art_and_blocked_statuses():
@@ -38,6 +45,10 @@ def test_hypothesis_page_has_ranked_prior_art_and_blocked_statuses():
     assert "ComCat focal-mechanism" in page
     assert "H33-10" in page
     assert "No untested candidate is promoted" in page
+    assert "COULOMB" in page and "CURVTRACE" in page and "PFRT" in page and "PALEOTEMP" in page
+    assert "no HOLDOUT-DTI result" in page
+    assert "Not implemented or holdout-validated" in page
+    assert "Blocked: do not implement until a named file is obtainable and audited" in page
 
 
 def test_research_page_exposes_failed_gate_duplicate_guard_and_run_card():

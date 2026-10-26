@@ -114,7 +114,7 @@ def page(title: str, body: str, active: str) -> str:
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>{esc(title)}</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-25</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
+<p>DrivenData #306 · evidence-led research · review status 2026-10-26</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
 <main class="wrap">{body}</main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>"""
@@ -129,19 +129,32 @@ def unique_submission_hero() -> str:
     return f"""<div class="hero-download" id="unique-submission">
 <h2>Unique submission-format GeoTIFF — OK to download · NOT cleared to submit</h2>
 <p><span class="badge good">OK TO DOWNLOAD</span> <span class="badge bad">NOT OK TO SUBMIT</span></p>
-<p>This is a freshly generated, <b>unique</b> competition-format GeoTIFF: single-band float32, EPSG:32611,\n3730 × 3292 cells, 100 m, exact template CRS/geotransform/bounds, finite probability values in [0,1]\ninside the footprint and NaN outside. It is <b>not a copy</b> of any focus-site submission: rank\ncorrelation vs all 12 pinned registry rasters is ρ ≤ 0.0046 and at most 29.9% of its dots fall within\n3 px of any one registry raster (duplicate limits: ρ ≤ 0.90, ≤ 70%). SHA-256 of the download:\n<code>{sha}</code>.</p>
-<p><b>It must not be uploaded to the competition.</b> Its catalogue-proxy holdout gate failed (confirmation\npooled ΔDTI −0.0907, 0/4 folds positive; descriptive 95% CI [−0.1210, −0.0594]); it therefore has no\ndemonstrated leaderboard benefit and no organizer receipt. Download is for inspection and reproducibility only.</p>
+<p>This is a freshly generated, <b>unique</b> competition-format GeoTIFF: single-band float32, EPSG:32611,
+3730 × 3292 cells, 100 m, exact template CRS/geotransform/bounds, finite probability values in [0,1]
+inside the footprint and NaN outside. It is <b>not a copy</b> of any focus-site submission: rank
+correlation vs all 12 pinned registry rasters is ρ ≤ 0.0046 and at most 29.9% of its dots fall within
+3 px of any one registry raster (duplicate limits: ρ ≤ 0.90, ≤ 70%). SHA-256 of the download:
+<code>{sha}</code>.</p>
+<p><b>It must not be uploaded to the competition.</b> Its catalogue-proxy holdout gate failed (confirmation
+pooled ΔDTI −0.0907, 0/4 folds positive; descriptive 95% CI [−0.1210, −0.0594]); it therefore has no
+demonstrated leaderboard benefit and no organizer receipt. Download is for inspection and reproducibility only.</p>
 <p><a class="btn" href="downloads/{tif}">Download GeoTIFF (NOT cleared for upload)</a> <a class="btn alt" href="downloads/{zip_}">Download ZIP package</a></p>
 <table><tbody>
 <tr><th>Artifact name</th><td><code>gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026</code></td></tr>
 <tr><th>Suggested portal note (≤ 140 characters)</th><td><pre>{note}</pre></td></tr>
-<tr><th>Scientific status</th><td><span class="badge bad">HOLDOUT FAILED · NOT CLEARED FOR SUBMISSION</span>\nCatalogue-proxy pooled candidate DTI 0.0225 vs control DTI 0.1132 (confirmation ΔDTI −0.0907, CI [−0.1210, −0.0594]). Negative result; no score is projected.</td></tr>
+<tr><th>Scientific status</th><td><span class="badge bad">HOLDOUT FAILED · NOT CLEARED FOR SUBMISSION</span>
+Catalogue-proxy pooled candidate DTI 0.0225 vs control DTI 0.1132 (confirmation ΔDTI −0.0907, CI [−0.1210, −0.0594]). Negative result; no score is projected.</td></tr>
 <tr><th>Local format audit</th><td>10/10 checks pass: one band, float32, EPSG:32611, 3730 × 3292, exact template geotransform, finite [0,1] inside footprint, NaN outside, band description \"fault probability\". Local format check only; portal acceptance is not tested and no organizer receipt exists.</td></tr>
 <tr><th>Uniqueness vs registry</th><td>Screened against all 12 pinned focus-site references (GEMSDOE 24/25/27/28/30/31/32/33/36): max Spearman ρ = 0.0046 (vs GEMSDOE32 B2); max dots within 3 px = 29.9% (vs GEMSDOE27). Both limits met with wide margin — not a lane duplicate.</td></tr>
 <tr><th>SHA-256</th><td><code>{sha}</code></td></tr>
 </tbody></table>
-<p><b>Current audit:</b> all 17 owner-mirror inputs restored and hash-verified; 121 feature channels prepared;\n3 experiments run (holdout screen + matched-random control, production build, uniqueness + format audit).\n<a href="latest-review.html">Read the byte-level forensic review and automatic gate failures</a> ·\n<a href="research/current-run-card.json" download>Download current run card (JSON)</a> ·\n<a href="executive-summary.html">Per-site best submissions and how to submit</a>.</p>
-<p>Historical score claims and leaderboard values are owner/user reports, not organizer receipts, and are\nunverified here. See <a href="results.html">score provenance</a> and <a href="irregularities.html">irregularities</a>.</p>
+<p><b>Current audit:</b> all 17 owner-mirror inputs restored and hash-verified; 121 feature channels prepared;
+3 experiments run (holdout screen + matched-random control, production build, uniqueness + format audit).
+<a href="latest-review.html">Read the byte-level forensic review and automatic gate failures</a> ·
+<a href="research/current-run-card.json" download>Download current run card (JSON)</a> ·
+<a href="executive-summary.html">Per-site best submissions and how to submit</a>.</p>
+<p>Historical score claims and leaderboard values are owner/user reports, not organizer receipts, and are
+unverified here. See <a href="results.html">score provenance</a> and <a href="irregularities.html">irregularities</a>.</p>
 </div>"""
 
 def package_box() -> str:
@@ -346,36 +359,58 @@ def build_exec() -> str:
     tif = "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif"
     note = ("GEMSDOE33 G33 tilt-gravity-lidar coherence TIFF; proxy holdout FAILED "
             "dDTI -0.0907 0/4 folds; NOT cleared to submit. id 171b8b87dbf7")
-    rows = "\n".join(
-        f"<tr><td>{site}</td><td><code>{name}</code></td><td>{score}</td><td>{status}</td></tr>"
-        for site, name, score, status in (
-            ("GEMSDOE24", "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan", "0.2477",
-             "Owner-reported; no organizer score/file receipt in this repo"),
-            ("GEMSDOE25", "dotted-h19-5-d2-8-20261002-e56ea318af89-nan", "0.2600",
-             "Owner-reported; same 44,090-dot dotted-h19-5 family as GEMSDOE24/GEMSDOE30"),
-            ("GEMSDOE27", "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan", "0.2449",
-             "Owner-reported; no organizer score/file receipt in this repo"),
-            ("GEMSDOE28", "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan", "0.2710",
-             "Owner-reported; GEMSDOE28 page labels H27-4 unscored/research-only; H27-4 at 0.2708 is also listed"),
-            ("GEMSDOE30", "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside", "0.2600",
-             "Owner-reported; shares the 44,090-dot dotted-h19-5 prediction with GEMSDOE24/GEMSDOE25"),
-            ("GEMSDOE31", "h27-4-solo-d28-20261004-8acb75e1-nan", "0.2708",
-             "Owner-reported; same 40,199-dot prediction family as GEMSDOE28 H27-4"),
-            ("GEMSDOE32", "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros", "0.2778",
-             "HIGHEST owner-reported focus-site value; reproduced pixel-exactly as deletion-only pruning of GEMSDOE28 H27-4 (40,199 → 37,654 dots; Spearman 0.9676 vs H27-4, 100% dot overlap within 3 px) — copying it would trip the lane duplicate gate"),
-            ("GEMSDOE33", "h33d-analog-tip-stepover-r30-20261004-cb490425926e", "0.2632",
-             "Owner-reported; local research artifact, no organizer receipt in this repo"),
-            ("GEMSDOE36", "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros", "0.2750",
-             "Owner-reported; filename references a PINN but no geothermal-discovery mechanism is established by local evidence"),
-        )
+    # Use the hash-pinned focus manifest and measured pairwise raster audit so each
+    # historical row remains traceable, and uniqueness claims cannot drift from evidence.
+    selected_ids = (
+        "G24-989f59505db1", "G25-e56ea318af89", "G27-5512495c6bd1",
+        "G28-b531dae0a36f", "G30-91eae1ca", "G31-8acb75e1",
+        "G32-e5eb6e7e", "G33-h33d", "G36-9b9ea4e6",
     )
+    focus_manifest = read_json(ROOT / "registry" / "focus_rasters_20261026.json")
+    audit = read_json(ROOT / "evidence" / "focus_raster_audit_20261025.json")
+    manifest_rows = {r["id"]: r for r in focus_manifest.get("rasters", [])}
+    audit_rasters = {r["id"]: r for r in audit.get("rasters", [])}
+    audit_ids = set(audit_rasters)
+    site_by_id = {r["id"]: r.get("site", "registry raster") for r in audit.get("rasters", [])}
+    pair_rows = audit.get("ordered_pairs", [])
+    rows = []
+    for raster_id in selected_ids:
+        item = manifest_rows.get(raster_id, audit_rasters.get(raster_id, {}))
+        compared = [p for p in pair_rows if p.get("candidate") == raster_id
+                    and p.get("registry") in audit_ids and p.get("registry") != raster_id]
+        closest = max(compared, key=lambda p: p.get("fraction_candidate_within_3px", -1), default=None)
+        overlap = closest.get("fraction_candidate_within_3px") if closest else None
+        peer = site_by_id.get(closest.get("registry"), "another audited raster") if closest else "not measured"
+        unique_text = (f"FAIL — {overlap:.1%} of dots fall within 3 px of {peer}; exceeds the 70% guard"
+                       if overlap is not None and overlap > 0.70 else
+                       "NOT ESTABLISHED — no complete comparable pairwise audit" if overlap is None else
+                       f"Raster-only check passes overlap ({overlap:.1%}); surface uniqueness not established")
+        if item.get("repo") and item.get("ref") and item.get("path"):
+            artifact_href = f"https://github.com/{item['repo']}/blob/{item['ref']}/{item['path']}"
+            artifact_label = "Pinned owner-mirror TIFF (GitHub)"
+        else:
+            local_path = item.get("local_path", "")
+            artifact_href = local_path.removeprefix("docs/") if local_path.startswith("docs/") else local_path
+            artifact_label = "Local audited TIFF"
+        filename = (item.get("path") or item.get("local_path") or "").rsplit("/", 1)[-1]
+        score = item.get("reported_dti")
+        score_text = f"{score:.4f}" if isinstance(score, (int, float)) else "not reported"
+        source_link = f'<a href="{esc(artifact_href)}">{esc(artifact_label)}</a>' if artifact_href else "source path unavailable"
+        rows.append(
+            f"<tr><td><a href=\"https://buffedlizard55-lab.github.io/{esc(item.get('site', ''))}/\">{esc(item.get('site', ''))}</a></td>"
+            f"<td>{source_link}<br><code>{esc(filename)}</code></td>"
+            f"<td>{score_text}<br><small>OWNER-REPORTED; not organizer-confirmed</small></td>"
+            f"<td>Not defensibly estimable from this holdout</td>"
+            f"<td>{esc(unique_text)}</td></tr>"
+        )
+    rows = "\n".join(rows)
     body = f"""{a33_r3_llc_hero()}
 {dpps_hero(include_b2_score=True)}
 {a33_r3_lchc_hero()}
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 <h2>Executive summary — per-site best submissions and how to submit</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (G33-DPPS, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. Every historical file in the table below has already been spent as a submission (owner-reported) or is a duplicate of one — re-uploading any of them wastes a slot and cannot produce a new score. <b>There is currently no “submit this one” file; that is the honest, gate-driven answer.</b></div>
+<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The research-only TIFs linked above are <b>OK TO DOWNLOAD for audit/reproducibility / NOT OK TO SUBMIT</b>. The historical score reports do not prove that a specific local TIFF was uploaded or accepted. The audited nine-site reference rasters fail the specified raster-level uniqueness guard; <b>there is currently no “submit this one” file.</b></div>
 
 <h3>Exactly how a submission is made (when a future candidate passes every gate)</h3>
 <ol>
@@ -389,13 +424,14 @@ def build_exec() -> str:
 </ol>
 <div class="panel warn"><b>No human inspector is in this loop:</b> leakage canaries, spatially blocked holdout vs matched controls, surface+final-dots duplicate guards, and the saved-byte format audit all run automatically in-project (<code>scripts/run_dpps_campaign.py</code>, <code>scripts/validate_submission.py</code>). The only human step is the account-holder clicking upload in step 4–6, because this workspace has no DrivenData auth.</div>
 
-<h3>Which focus-site submission is the best to submit?</h3>
-<p>Among the nine focus sites (GEMSDOE 24, 25, 27, 28, 30, 31, 32, 33, 36), the highest owner-reported value is <b>GEMSDOE32 h33-h33-2-b2-...-zeros at 0.2778</b>, followed by GEMSDOE36 at 0.2750 and GEMSDOE28 h36-1 at 0.2710. <b>Every one of these values is an owner/user report: none is backed by an organizer submission-page receipt in this repository, and none is organizer-confirmed.</b> They are leads, not proven scores.</p>
+<h3>Best historical claim vs. file eligible to submit</h3>
+<p>By the values reported in the supplied brief, <b>GEMSDOE32 B2 is the historical leader at 0.2778*</b>, followed by GEMSDOE36 at 0.2750* and GEMSDOE28 H36-1 at 0.2710*. These are <b>OWNER-REPORTED</b> values, not organizer-confirmed; no submission-page receipt in this repository ties any value to the exact bytes shown. They are not score estimates. This project has no validated calibration from its catalogue hide-and-recover proxy to private competition scores, so it will not invent a projected/estimated score. The table links each audited source TIFF (pinned owner mirrors where applicable) for forensic review, not as a recommendation to resubmit.</p>
 <div class="scroll"><table><thead>
-<tr><th>Site</th><th>Best owner-reported submission</th><th>Reported score (owner-reported, not organizer-confirmed)</th><th>Submit this now?</th><th>Status / caveat</th></tr>
+<tr><th>Site</th><th>Best artifact by reported value (exact file)</th><th>Reported competition value*</th><th>Estimated score from local validation</th><th>Unique vs. other audited site rasters?</th></tr>
 </thead><tbody>
 {rows}
 </tbody></table></div>
+<p><small>* OWNER-REPORTED, NOT ORGANIZER-CONFIRMED. Uniqueness is a final-dot proximity check against the 12-raster historical focus audit; it does not assess pre-placement surfaces. A fail means the candidate exceeds the protocol's 70% within-3-px duplicate threshold. See <a href="{GITHUB}/evidence/focus_raster_audit_20261025.json">measurement evidence</a> and <a href="{GITHUB}/registry/focus_rasters_20261026.json">pinned raster manifest</a>.</small></p>
 
 <h3>Why did GEMSDOE32 B2 score 0.2778 — and can we beat it?</h3>
 <p>We reproduced B2 pixel-exactly from the GEMSDOE28 H27-4 owner raster: it deletes 2,545 dots within 2 px of the catalogue and adds nothing (40,199 → 37,654 dots; Spearman ρ = 0.9676 vs H27-4; 100% of B2 dots within 3 px of H27-4 dots). Under the competition DTI (α=0.2 per false positive, β=0.8 per missed truth, 300 m kernel), every isolated prediction dot costs roughly 1 unit of weighted false-positive mass unless it lies within 300 m of a truth pixel, while dense clusters of dots share the same truth credit. Removing low-credit, catalogue-adjacent dots can therefore raise DTI even though no new fault is found: the most plausible mechanism is FP-mass reduction, not discovery. That is an inference from audited bytes, not proof, and no organizer receipt ties 0.2778 to B2's exact bytes.</p>
@@ -436,7 +472,14 @@ def build_results() -> str:
 
 def build_hypotheses() -> str:
     body = f"""<h2>Ranked geological hypothesis slate</h2>
-<div class="panel warn"><b>Current planning slate:</b> four additional analog-transfer hypotheses are ranked in <a href="latest-review.html">the latest review</a>. All require independent official field labels and are blocked, not viable. The historical slate below is retained without rerunning failed arms.</div>
+<div class="panel warn"><b>Current Round-4 proposal slate (not executed):</b> four genuinely untried mechanisms are listed below. COULOMB, CURVTRACE and PFRT can be formed from the existing pinned layers; these are owner-mirror bytes, not an authenticated official download. PALEOTEMP is blocked pending the named DOE GDR product payload. The separately generated HMDT raster has no holdout card and is excluded from the untried count. No Round-4 holdout has run, no lane was unambiguously assigned in the current request, and no submission slot is approved. Full methods and access checks: <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md">Round-4 evidence report</a>.</div>
+<table><thead><tr><th>Rank / hypothesis (qualitative upside vs cost; no DTI projection)</th><th>Layers and physical signature</th><th>Why it may find uncatalogued faults / what is distinct</th><th>Source/access and status</th></tr></thead><tbody>
+<tr><td><b>1 · COULOMB</b><br>Moderate–high potential; moderate effort</td><td>DOE GDR #1391 Quaternary fault traces with slip rate, dip, slip sense and length; calculate elastic half-space static Coulomb stress-change lobes (ΔCFS).</td><td>Positive stress lobes near tips/stepovers could favor blind synthetic or antithetic splays beyond mapped traces. Tests stress transfer, not the previously tested geometric tip-distance heuristic. Main mimic: stress lobes from inactive/incorrectly parameterized sources.</td><td><a href="https://gdr.openei.org/submissions/1391">Official GDR #1391 page</a>. Required traces are present in the 17-file owner-mirror pin set; mirror provenance only. <b>Not implemented or holdout-validated.</b></td></tr>
+<tr><td><b>2 · CURVTRACE</b><br>Highest potential; high effort</td><td>Existing 1 m LiDAR scarp descriptors (multi-azimuth hillshade/profile-curvature and ridge features; valid-coverage mask); 0°/45°/90°/135° line-continuity score.</td><td>Persistent, curving scarps can reveal long fault traces missed in regional 100 m classifiers. Distinct from pointwise gradient ranks; likely mimics include Lahontan shorelines, terrace risers, roads and canals. LiDAR voids require a declared policy.</td><td><a href="https://www.usgs.gov/3d-elevation-program">Official USGS 3DEP program</a>; local derivatives are owner-mirror inputs with partial coverage. <b>Not implemented or holdout-validated.</b></td></tr>
+<tr><td><b>3 · PFRT</b><br>Moderate, speculative; low–moderate effort</td><td><code>depth_to_base_surf</code> plus <code>iso_grav_anom_hg</code>; project buried basement-edge crests updip by an assumed listric dip vector.</td><td>Targets lateral offset between buried basement breaks and subtle piedmont flexures beneath basin fill. Distinct from co-located gradients; high risk of re-converging on existing gravity-emission rasters. Main mimic: fan toes or pediments.</td><td><a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">Official USGS GeoDAWN record</a>; layers exist in the pinned feature stack. <b>Not implemented or holdout-validated.</b></td></tr>
+<tr><td><b>4 · PALEOTEMP</b><br>Not rankable until data are available</td><td>Holocene/Pleistocene sinter/tufa inventory and 2 m shallow-temperature probes joined to conductivity, gravity and magnetic layers.</td><td>Relict or shallow thermal signals may point to dormant/covered upflow conduits not represented by active-spring seeds. Main mimic: paleochannel groundwater or non-tectonic thermal gradients.</td><td><a href="https://gdr.openei.org/submissions/1391">Official DOE GDR #1391</a> lists the dataset; the exact archive is not pinned here and GDR host access is blocked by this sandbox. <b>Blocked: do not implement until a named file is obtainable and audited.</b></td></tr>
+</tbody></table>
+<p><b>Validation decision:</b> COULOMB is the top viable proposal, but it has <b>no HOLDOUT-DTI result</b>; therefore it is not eligible for selection or a competition slot. The existing A33-R3 campaigns already provide negative outcomes; this review ran no new holdout experiments. Official links are from the dated source registry and were not re-fetched in this review; local working rasters remain owner-mirror bytes. See the dated, source-audited <a href="latest-review.html">latest review</a>. The historical slate below is retained without rerunning failed arms.</p>
 <p>The frozen 2026-10-04 slate in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/07_hypothesis_slate_20261004.md">knowledge/07_hypothesis_slate_20261004.md</a> contains five candidates ranked qualitatively by expected improvement and cost. It explicitly avoids numeric score projections. These ranks are prior beliefs, not scores.</p>
 <table><thead><tr><th>Rank</th><th>Hypothesis / layers and signature</th><th>Why it might reveal omitted faults</th><th>Difference / cost / status</th></tr></thead><tbody>
 <tr><td>1</td><td><b>H33-6 cross-physics edge-normal consensus.</b> GeoDAWN bands 14 TMI and 13 isostatic gravity gradients, corroborated by band 15 basement depth or band 17 conductivity edge; aligned normals at 2-pixel Gaussian scale.</td><td>Buried basin-bounding/intrabasin structures may create aligned magnetic/gravity transitions without a surface scarp; contacts can mimic this signal.</td><td>Joint normal agreement plus corroboration and matched-budget reallocation; not just single-layer gradients. Low–medium cost. Tested once; conditional P1 gate failed. Do not upload.</td></tr>

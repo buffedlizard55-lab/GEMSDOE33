@@ -33,9 +33,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from validate_submission import audit  # noqa: E402
+from validate_submission import audit, DATA  # noqa: E402
 
-TEMPLATE = ROOT / "data" / "sample_submission.tif"
+# Follow the same GEMS_DATA_DIR/cache resolution as the validator, rather than
+# silently assuming that restored owner-mirror inputs live under repository/data.
+TEMPLATE = DATA / "sample_submission.tif"
 DOWNLOADS = ROOT / "docs" / "downloads"
 
 

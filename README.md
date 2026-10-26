@@ -57,7 +57,7 @@ A33-R3-LLC is unique against both parallel-session rasters: 17.98% of its dots l
 | **Is there a new, unique TIF?** | **✅ YES.** `gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.tif` — a deterministic **least-cost hydrothermal connectivity** graph (multi-source Dijkstra + minimum spanning tree threading `1,116` catalogue-free DOE GDR #1391 thermal/vent seeds through a label-free conductivity/gravity/geodetic-strain/basement-edge resistance surface), generated under a SHA-frozen preregistration ([`evidence/a33_r3_lchc_preregistration_20261026.json`](evidence/a33_r3_lchc_preregistration_20261026.json), `SHA-256: bc4ecef34e3b81e19f41c9422fba60d99ed4c8a6c06eadb4617198753dd63a6e`). It is the **most orthogonal artifact in this repository to date**: both surface and final dots pass uniqueness against all 21 pinned registry rasters (max `|Spearman ρ| = 0.0054`; max 3-px overlap `18.6%` surface / `16.7%` final dots). |
 | **OK TO DOWNLOAD?** | **✅ YES.** Single-band `float32`, `EPSG:32611`, `3730×3292`, template transform; whole array finite in `[0, 1]`, `0.0` outside footprint, `37,654` dots, `0` on-catalogue, strict saved-byte validator `pass = True`, `11/11` leakage canaries (max pooled AUC `0.5663 ≤ 0.90`; notably the **finished full surface itself** canaries at AUC `0.5001`, indistinguishable from random). Download: **[.tif (787 KB)](docs/downloads/gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.tif)** · **[.zip](docs/downloads/gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.zip)** · [NaN twin](docs/downloads/gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-nan.tif) · [receipt](docs/downloads/receipt-gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7.json) · [run card](evidence/a33_r3_lchc_run_card_20261026.json) · [full report & Round-4 slate](knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md) |
 | **OK TO SUBMIT TO DRIVENDATA?** | **🛑 NO — DO NOT SUBMIT.** Automated gates: HOLDOUT-DTI screen `0.043712` vs `B1_regional 0.125441` (Δ `-0.081728 [-0.097741, -0.062859]`, `0/4` folds) and frozen confirmation `0.035199` vs `0.128184` (Δ `-0.092985 [-0.108431, -0.075215]`, `0/4` folds) — **fails every beat-the-incumbent gate**. Unlike `A33-R2-CSHT` (surface-duplicate blocked despite winning holdout) or `A33-R3-LLC` (tied CSHT), this candidate loses outright: a sparse connectivity-tree surface structurally cannot avoid the metric's `4×` false-negative penalty (`α=0.2`, `β=0.8`), regardless of its clean precision/uniqueness. Unique name `gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros`; note (100/140) `GEMS33 A33-R3-LCHC: thermal/vent least-cost connectivity graph 37654d \| gate NEGATIVE \| 77337fc0c6c7`; SHA-256 `a58219e1cc9f15f0ede99863b0e5a619dbfa6946c7fdd4fb61f7050ddd5070ac`. `0` slots spent; no upload made; no score above `0.2778`\* is claimed or projected. |
-| **Round-4 hypothesis slate** | Five ranked, untried hypotheses for the next round (`A33-R4-COULOMB` — Okada elastic Coulomb-stress-transfer from mapped USGS Quaternary faults, already pinned locally; `A33-R4-CURVTRACE` — multi-azimuth curvilinear LiDAR trace continuity; plus `HMDT`/`PFRT`/`PALEOTEMP` carried over from the `A33-R2` reserve list), each with named layers, physical mechanism, differentiation from every mechanism already tried across this repo, external-data viability, and expected-DTI-gain-vs-cost ranking: [`knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md`](knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md). None executed or budgeted this session. |
+| **Round-4 hypothesis slate** | Four untried candidate mechanisms (`COULOMB`, `CURVTRACE`, `PFRT`, `PALEOTEMP`) plus a previously generated but holdout-ungated `HMDT` artifact; the slate names layers, mechanism, likely mimic, prior-art distinction, external-data status and qualitative cost/upside. `COULOMB` and `CURVTRACE` are the leading viable research proposals; neither has a valid holdout result. No new candidate experiment ran in this review. See [`knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md`](knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md). |
 
 Verify (no rerun — frozen decided result): `.venv/bin/python scripts/evaluate_holdout.py --verify-a33-r3-lchc`.
 
@@ -187,15 +187,19 @@ All performance figures below are **`HOLDOUT-DTI`** (`evaluator_version = "gems-
 
 ```bash
 python -m venv .venv && .venv/bin/pip install -e '.[dev]'
-GEMS_DATA_DIR=$PWD/.cache/gemsdata .venv/bin/python scripts/restore_data.py --group all --data-dir .cache/gemsdata
+export GEMS_DATA_DIR="$PWD/.cache/gemsdata"
+.venv/bin/python scripts/restore_data.py --group all --data-dir "$GEMS_DATA_DIR"
+.venv/bin/python scripts/prepare_data.py  # 121 research channels; generic legacy OOF detector is deliberately skipped
 .venv/bin/python scripts/evaluate_holdout.py --verify-recorded
 .venv/bin/python scripts/evaluate_holdout.py --verify-a33-r2
 .venv/bin/python scripts/evaluate_holdout.py --verify-a33-r3-lchc
-.venv/bin/python scripts/validate_submission.py --submission docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif --template data/sample_submission.tif --strict-zero-outside
-.venv/bin/python scripts/validate_submission.py --submission docs/downloads/gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.tif --template data/sample_submission.tif --strict-zero-outside
-.venv/bin/python scripts/select_submission.py   # automated OK-TO-SUBMIT decision
+.venv/bin/python scripts/validate_submission.py --submission docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif --template "$GEMS_DATA_DIR/sample_submission.tif" --strict-zero-outside
+.venv/bin/python scripts/validate_submission.py --submission docs/downloads/gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.tif --template "$GEMS_DATA_DIR/sample_submission.tif" --strict-zero-outside
+.venv/bin/python scripts/select_submission.py   # automated OK-TO-SUBMIT decision; expected NO for current negative run cards
 PYTHON=.venv/bin/python bash scripts/run_checks.sh
 ```
+
+This preparation command builds/reuses the shared stack; it does not train the missing generic detector or run an experiment. Current downloadable candidates are research-only and selector-blocked.
 
 ---
 
@@ -208,7 +212,7 @@ Source: user request (parallel-run protocol, GEMSDOE24/25/27/28/30/31/32/33/36 f
 - Own the Outcome: fix shared bugs once, report them; never keep private forks; make negative results visible.
 
 ### Parallel-Run Protocol (must follow)
-1. LANE: stay inside the single method paragraph (for this repo: A33-R2-HMDT / analog-transfer / coherence interaction + 300m CELF).
+1. LANE: stay inside the single explicitly assigned method paragraph. **No unambiguous lane paragraph is present in the current request.** A33-R2-HMDT and other Round-4 concepts are historical proposals, not authority to start a fresh lane; do not run a candidate experiment until a future request explicitly assigns the lane.
 2. REUSE, DON'T REBUILD: use cached feature stack, evaluate_holdout.py, submission_writer.py; fix shared tools once.
 3. LABEL EVERY NUMBER: HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (submission-page receipt). Never label a projection as a score.
 4. LEAKAGE CANARY: test each feature alone; AUC > 0.90 means leakage until proven otherwise.
