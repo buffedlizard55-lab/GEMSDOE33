@@ -3,7 +3,7 @@
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>Standing Brief · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-25</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html" aria-current=page>Standing brief</a></nav></div></header>
+<p>DrivenData #306 · evidence-led research · review status 2026-10-26</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html" aria-current=page>Standing brief</a></nav></div></header>
 <main class="wrap"><h2>Standing Brief & Operational Prompt</h2>
 <pre style="white-space:pre-wrap;background:#0d1520;padding:20px;border-radius:12px;"># GEMSDOE33 standing brief and operating contract
 
@@ -281,13 +281,26 @@ All historical scores remain OWNER-REPORTED (NOT ORGANIZER-CONFIRMED); 0 slots s
 
 The full user-reported score list from the brief is in `registry/user_reported_scores_20261026.csv`. The brief&#x27;s leader values conflict (0.4413 vs 0.3195); both are unverified.
 
-**Outcome:**
+**Outcome (Round-3 snapshot; historical and superseded by the Round-4 addendum below):**
 - **Slate:** frozen at git `61e79c6`; see `knowledge/16_a33_r3_llc_preregistration_and_result_20261026.md`.
 - **A33-R3-LLC was negative:** it tied CSHT (screen Δ +0.0003 [−0.0080, +0.0083]; confirmation Δ −0.0006 [−0.0090, +0.0075]).
 - **New TIF:** `docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif` is OK TO DOWNLOAD and **NOT OK TO SUBMIT**.
-- **Automated selector:** new `scripts/select_submission.py` makes the OK-TO-SUBMIT decision. It re-checks sha256, format, the zip contents, the note, and the promotion gates from bytes on disk. Today: 0 of 9 eligible.
+- **Automated selector (at this historical snapshot):** new `scripts/select_submission.py` makes the OK-TO-SUBMIT decision. It re-checks sha256, format, the zip contents, the note, and the promotion gates from bytes on disk. Then: 0 of 9 eligible. The current Round-4 selector result below is 0 eligible of 11 recorded run cards.
 - **Open lead (`IR-33-H19-HOLDOUT-GAP-01`):** the H19-5 reference, which is not fold-safe, scores 0.162 on the screen. Next session, start with a fold-safe re-derivation of the H19-5 recipe.
 - **Irregularities flagged:** `IR-33-HMDT-UNGATED-01` (HMDT has no holdout, so it is NOT OK to submit), `IR-33-R3-PREREG-TIMESTAMP-01`, `IR-33-R3-CSHT-REPRO-01`, `IR-33-DUAL-WRITER-01`, `IR-33-LEDGER-STALE-01`.
+
+## Round-4 feasibility addendum (2026-10-26; latest continuation state)
+
+This addendum supersedes older &quot;next session&quot; suggestions where they conflict. Read [`knowledge/18_round4_feasibility_audit_20261026.md`](knowledge/18_round4_feasibility_audit_20261026.md) and [`evidence/round4_run_card_20261026.json`](evidence/round4_run_card_20261026.json) before any new modeling.
+
+- The 17 registered owner-mirror inputs were restored and SHA-256 verified in the working tree; `scripts/prepare_data.py --skip-detector` rebuilt the shared 121-channel feature cache. The owner mirrors are **not organizer-authenticated**; the data and cache remain git-ignored.
+- Regression suite: 148 passed. Automated selector: 0 eligible files. No DrivenData slot used; no upload made.
+- Latest pre-existing artifact A33-R3-LLC remains **OK TO DOWNLOAD for research / NOT OK TO SUBMIT**. Its saved bytes pass local strict-zero-outside format checks, but it did not beat the current comparable holdout best. No new TIF was generated in this continuation.
+- `IR-33-PORTAL-RANGE-CLAIM-01`: never claim zero-outside or NaN encoding fixes the reported portal range error. The rejected bytes and organizer diagnostic are absent. A local `[0,1]` pass does not prove portal acceptance; the official-format wording recorded here says null/NaN outside, so semantics remain unresolved.
+- The current user request did not identify one single assigned method paragraph. Per the parallel-run lane constraint, do not infer permission to jump lanes. No holdout candidate was run.
+- Round-4 candidate feasibility: COULOMB is blocked because staged CSVs have no trace vertices/strike and the companion vector JSON has no declared CRS and coordinate values outside the EPSG:32611 target bounds; CURVTRACE needs raw 1 m USGS 3DEP data not staged; PFRT can use local channels but was not run without an explicit lane; HMDT already has a TIFF but lacks a reproducible fold-safe runner/card; PALEOTEMP needs an unstaged GDR payload. See `evidence/round4_input_feasibility_20261026.json`.
+- The next executable step is to define/freeze one explicit method lane and its no-post-hoc holdout protocol, then use the shared cache, evaluator and writer. No numerical contest-score estimate is allowed; HOLDOUT-DTI remains a mapped-catalogue proxy, not organizer truth. No slot may be spent without passing fresh screen, independent confirmation, canary, both uniqueness, format, and selector gates.
+- Keep the nine-site table and first-screen decision clear: GEMSDOE32 B2&#x27;s 0.2778 is USER/OWNER-REPORTED, not ORGANIZER-CONFIRMED; the prompt&#x27;s 0.3195 and 0.4413 leaders conflict. Neither is a verified current score.
 </pre></main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>

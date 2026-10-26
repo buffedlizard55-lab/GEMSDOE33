@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "date_utc": "2026-10-26",
+  "purpose": "Feasibility audit for prior Round-4 shortlist; no holdout run and no candidate selected.",
+  "owner_mirror_restore": {
+    "manifest": "registry/owner_mirror_input_pins.json",
+    "registered": 17,
+    "verified": 17,
+    "receipt": "evidence/input_grid_audit.json",
+    "provenance": "Owner-maintained public GitHub mirrors. SHA-256 verifies equality to registered mirror bytes only; does not authenticate organizer provenance or source licensing."
+  },
+  "shared_cache": {
+    "prepared_by": "scripts/prepare_data.py --skip-detector",
+    "channels": 121,
+    "detector_fit": false,
+    "cache_path": ".cache/ (git-ignored)",
+    "local_product": "data/lidar_scarp_features_u8.tif",
+    "lidar_shape": [
+      3730,
+      3292
+    ],
+    "lidar_bands": 12,
+    "lidar_dtype": "uint8",
+    "lidar_crs": "EPSG:32611",
+    "lidar_resolution_m": 100,
+    "lidar_work_resolution_m_from_metadata": 2,
+    "raw_1m_dem_tiles_staged": false
+  },
+  "quaternary_fault_geometry": {
+    "csv": {
+      "path": "data/gdr_qfaults_traces.csv",
+      "sha256": "9702f2e5c382a4f472ae834d22b94990983b059677a37adfafd51c50f75e643c",
+      "rows": 1126,
+      "columns": [
+        "trace_id",
+        "name",
+        "slip_rate",
+        "recency",
+        "dip_direct",
+        "slip_sense",
+        "map_scale",
+        "full_length_m",
+        "clipped_length_m",
+        "centroid_utm_x",
+        "centroid_utm_y",
+        "centroid_row",
+        "centroid_col",
+        "centroid_in_footprint"
+      ],
+      "centroid_utm_x_range": [
+        243431.9,
+        572485.1
+      ],
+      "centroid_utm_y_range": [
+        4136008.2,
+        4508467.4
+      ],
+      "trace_vertices_or_strike_columns": false
+    },
+    "vector_json": {
+      "path": "data/qfaults_v2_in_footprint.json",
+      "sha256": "4d6efc7bb3659ea2545353fcec574ef085b0acdb189c7590e4420a7c6c57b41c",
+      "features": 1179,
+      "vertices": 32589,
+      "geometry_x_range": [
+        -298965,
+        86070
+      ],
+      "geometry_y_range": [
+        1550976,
+        2040013
+      ],
+      "metadata_bbox": [
+        -120.0024,
+        37.3641,
+        -116.1415,
+        40.7247
+      ],
+      "metadata_source": "https://web2.nbmg.unr.edu/arcgis/rest/services/Qfaults/Qfaults_INGENIOUS/MapServer/0/query",
+      "spatial_reference_declared_in_saved_json": false
+    },
+    "template_grid": {
+      "crs": "EPSG:32611",
+      "bounds_x": [
+        243350,
+        572550
+      ],
+      "bounds_y": [
+        4135550,
+        4508550
+      ],
+      "shape": [
+        3730,
+        3292
+      ],
+      "resolution_m": 100
+    },
+    "disposition": "Do not transform or use these vector coordinates for Coulomb calculations until the original spatial reference and the exact official source/version relationship are established. The present coordinates do not overlap the template in their stored coordinate values."
+  },
+  "candidate_availability": {
+    "COULOMB": "blocked: no vertices/strike in CSV; JSON geometry has no spatial reference and is not grid-aligned",
+    "CURVTRACE": "blocked: the pinned descriptor raster is 100 m aggregated and raw 1 m DEM tiles are absent; source host not obtainable under session allowlist",
+    "PFRT": "local cached layers are present; not run because the requested single-method lane was not specified; high duplicate risk remains untested",
+    "HMDT": "prior TIFF exists but no reproducible fold-safe runner/run card is retained; not an untried validated candidate",
+    "PALEOTEMP": "blocked: specific DOE probe/sinter payload absent from pinned input set and not obtained"
+  },
+  "scope_boundary": "No source page was newly fetched from GDR, USGS, NBMG, or DrivenData. Official URLs are carried from repository source records for review, not reauthenticated in this session."
+}

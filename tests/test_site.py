@@ -2,36 +2,43 @@
 from scripts import build_site
 
 
-def test_overview_marks_unique_tif_research_only_and_not_uploadable():
+def test_overview_marks_latest_unique_tif_research_only_and_not_uploadable():
     page = build_site.build_index()
-    assert "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif" in page
-    assert "OK TO DOWNLOAD" in page
-    assert "NOT OK TO SUBMIT" in page
-    assert "must not be uploaded to the competition" in page
-    assert "no real competition submission is approved" in page.lower()
-    assert "0.2778" not in page  # no unsupported score claim on landing page
-    assert "0.2708" in page
-    assert "cannot explain why H27-4" in page
-    assert "historical D2.8" in page
+    assert "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif" in page
+    assert "OK TO DOWNLOAD: YES" in page
+    assert "OK TO SUBMIT: NO" in page
+    assert "no raster in this project is ok to submit" in page.lower()
+    assert "0.2778" in page
+    assert "USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)" in page
+    assert "0.3195 and 0.4413 conflict" in page
+    assert "no score is projected" in page.lower()
+    assert "A33-R3-LLC" in page
 
 
 def test_executive_summary_explains_process_and_blocks_failed_candidate():
     page = build_site.build_exec()
-    assert "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7" in page
-    assert "NOT CLEARED FOR SUBMISSION" in page
-    assert "NOT cleared to submit" in page
-    assert "must not be uploaded to the competition" in page
+    assert "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9" in page
+    assert "OK TO SUBMIT: NO" in page
+    assert "do not upload any file until its banner says" in page
     assert "predicted" not in page.lower() or "score" in page.lower()
     assert "Note (≤140 characters)" in page
-    assert "official format instructions" in page
+    assert "current official contract" in page
     assert "organizer receipt" in page
     assert "no DrivenData auth" in page
-    assert "GEMSDOE32" in page and "0.2778" in page  # per-site best table
+    assert "GEMSDOE32" in page and "0.2778" in page
     assert "HIGHEST owner-reported focus-site value" in page
+    assert "A33-R3-LLC, above" in page
 
 
-def test_hypothesis_page_has_ranked_prior_art_and_blocked_statuses():
+def test_hypothesis_page_has_ranked_round4_triage_and_historical_prior_art():
     page = build_site.build_hypotheses()
+    assert "A33-R4-COULOMB" in page
+    assert "A33-R4-CURVTRACE" in page
+    assert "A33-R4-PFRT" in page
+    assert "A33-R4-HMDT" in page
+    assert "A33-R4-PALEOTEMP" in page
+    assert "no standalone lane" in page
+    assert "not run" in page
     assert "H33-6 cross-physics edge-normal consensus" in page
     assert "DOE GDR #1682" in page
     assert "USGS ScienceBase" in page
@@ -62,5 +69,24 @@ def test_a33_r3_hero_is_first_and_blocks_submission():
     assert "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif" in page
     exec_page = build_site.build_exec()
     assert "Exact submission steps" in exec_page and "select_submission.py" in exec_page
-    assert "-zeros.tif (all cells finite, 0.0 outside)" in exec_page
+    assert "-zeros.tif" in exec_page and "local range check" in exec_page
+    assert "No claim is made that zeros or NaN encoding is accepted" in exec_page
     assert exec_page.count("</html>") == 1
+
+
+def test_source_page_does_not_claim_restored_owner_mirrors_are_absent():
+    page = build_site.build_sources()
+    assert "17 owner-mirror inputs restored and hash-verified" in page
+    assert "git-ignored" in page
+    assert "do not authenticate organizer provenance" in page
+
+
+def test_portal_range_error_is_not_claimed_fixed_by_zero_outside():
+    page = build_site.build_exec()
+    assert "portal error's cause" in page
+    assert "organizer acceptance of zero-outside encoding are unverified" in page
+    assert "No claim is made that zeros or NaN encoding is accepted" in page
+    assert "cannot trip the portal message" not in page
+    irregularities = build_site.build_irregularities()
+    assert "IR-33-PORTAL-RANGE-CLAIM-01" in irregularities
+    assert "root cause unconfirmed" in irregularities

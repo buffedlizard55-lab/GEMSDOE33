@@ -28,17 +28,19 @@ def test_four_new_hypotheses_are_blocked_not_viable():
 
 
 def test_site_exposes_current_gates_and_no_false_unique_download_claim():
-    hero = build_site.unique_submission_hero()
-    assert "OK TO DOWNLOAD" in hero
-    assert "NOT OK TO SUBMIT" in hero
-    assert "not a copy" in hero
-    assert "current-run-card.json" in hero
-    assert "must not be uploaded to the competition" in hero
+    hero = build_site.a33_r3_llc_hero()
+    assert "OK TO DOWNLOAD: YES" in hero
+    assert "OK TO SUBMIT: NO" in hero
+    assert "ties the holdout best" in hero
+    assert "submission_selection.json" in hero
+    assert "do not spend a weekly slot" in hero
     latest = build_site.build_focus_review()
     assert "132 ordered comparisons" in latest
     assert "0.967587" in latest
     assert "NOT a complete global uniqueness registry" in latest
     assert "not a request for a human scientific inspector" in latest
+    assert "Round-4 feasibility decision" in latest
+    assert "round4-run-card.json" in latest
     for i in (24, 25, 27, 28, 30, 31, 32, 33, 36):
         assert f"GEMSDOE{i}" in latest
 
