@@ -1,0 +1,33 @@
+{
+  "source_repository": "https://github.com/buffedlizard55-lab/GEMSDOE24",
+  "source_commit": "fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1",
+  "retrieved_utc": "2026-10-25",
+  "purpose": "Exact shared holdout evaluator, DTI metric, strict writer, and validator snapshot required by the parallel-run protocol. No local numerical edits.",
+  "files": [
+    {
+      "source": "src/gems/holdout.py",
+      "local": "vendor/gems24_template/holdout.py",
+      "git_blob_sha1": "fce2bfa88828eb5bcb89c39cc8424090c484d834",
+      "sha256": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc"
+    },
+    {
+      "source": "src/gems/metric.py",
+      "local": "vendor/gems24_template/metric.py",
+      "git_blob_sha1": "b590ce19f367df59174a07768248ba72f6aafd44",
+      "sha256": "c024510de39746c9390e5bbf5c1d1b639a9ee895017a38fab4b609f0f2c33e48"
+    },
+    {
+      "source": "src/gems/submission.py",
+      "local": "vendor/gems24_template/submission.py",
+      "git_blob_sha1": "83355843e0f137b09f85fbbb11d7e86325b8c08e",
+      "sha256": "380ef4c785680d0c9063f53f9fa6227e8a564314d40df02fa46f02fe37d29711"
+    },
+    {
+      "source": "src/gems/validator.py",
+      "local": "vendor/gems24_template/validator.py",
+      "git_blob_sha1": "e98fab4bde46ca2c926d0b4790777badd5369218",
+      "sha256": "a5176d6e13924382f52bfd170a1f91c8beb1f31d413765295e881b65dc79a5e0"
+    }
+  ],
+  "known_limitation": "SegmentHoldout uses 8-connected raster components as a conservative proxy for geological trace IDs; it does not have expert segment identifiers."
+}

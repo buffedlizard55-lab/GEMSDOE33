@@ -1,7 +1,7 @@
 {
- "checked_utc": "2026-10-04T15:02:24+00:00",
- "template": ".cache/gemsdata/core/sample_submission.tif",
- "labels": ".cache/gemsdata/core/labels.tif",
+ "checked_utc": "2026-10-25T23:42:21+00:00",
+ "template": "data/sample_submission.tif",
+ "labels": "data/labels.tif",
  "template_sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
  "labels_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
  "same_grid": true,

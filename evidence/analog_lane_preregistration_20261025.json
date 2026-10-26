@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "frozen_utc": "2026-10-25T23:50:00Z",
+  "status": "FROZEN_BEFORE_A33_L1_IMPLEMENTATION",
+  "lane": "Named analog-field transfer from Dixie Valley, Brady Hot Springs, and Desert Peak with measured source/target shift.",
+  "prior_experiment": {
+    "id": "H33-F",
+    "method": "raw-value pooled analog HistGradientBoosting transfer",
+    "verdict": "negative",
+    "historical_conditional_mean_delta_dti": -0.093072,
+    "positive_folds": "0/4",
+    "qualification": "Historical local catalogue proxy under an older evaluator; not directly comparable to the new shared evaluator and not an organizer score."
+  },
+  "hypotheses_ranked": [
+    {
+      "rank": 1,
+      "id": "A33-L1",
+      "title": "Target-aligned, field-balanced structural transfer",
+      "layers": [
+        "tmi_hg",
+        "tmi_vg",
+        "iso_grav_anom_hg",
+        "iso_grav_anom_slope",
+        "det_elev_slope",
+        "rtp_gms2",
+        "iso_grav_anom_gms2",
+        "depth_to_base_surf_gms2",
+        "cond_surf_gms2",
+        "rtp_coh",
+        "iso_grav_anom_coh",
+        "ext_TMI_up150_gm2"
+      ],
+      "signature": "Source-field marginal-CDF alignment to fold-training target, equal field contribution, and 0.80 regional plus 0.20 adapted-analog rank fusion over structural discontinuity channels.",
+      "missing_fault_rationale": "Portable cross-physics discontinuities may expose concealed faults without preserved scarps.",
+      "non_fault_mimic": "Lithologic contact or basin-fill boundary.",
+      "difference": "H33-F pooled raw field values and had no target alignment, field balancing, regional co-training, or comparable regional baseline.",
+      "expected_improvement": "rank 1 qualitative moderate upside; no numeric projection",
+      "cost": "medium CPU; no new external payload",
+      "viable": true
+    },
+    {
+      "rank": 2,
+      "id": "A33-L2",
+      "title": "Leave-one-field-out consensus ensemble",
+      "difference": "per-field two-of-three agreement instead of pooled fitting",
+      "expected_improvement": "qualitative moderate upside",
+      "cost": "medium-high",
+      "viable": true,
+      "tested_this_round": false
+    },
+    {
+      "rank": 3,
+      "id": "A33-L3",
+      "title": "Matched local-contrast transfer",
+      "difference": "annular local contrast and same-relief matched negatives",
+      "expected_improvement": "qualitative moderate upside",
+      "cost": "medium",
+      "viable": true,
+      "tested_this_round": false
+    },
+    {
+      "rank": 4,
+      "id": "A33-L4",
+      "title": "CORAL covariance alignment with field holdout",
+      "difference": "joint covariance alignment rather than raw or marginal-only transfer",
+      "expected_improvement": "qualitative uncertain upside",
+      "cost": "medium",
+      "viable": true,
+      "tested_this_round": false
+    },
+    {
+      "rank": 5,
+      "id": "A33-L5",
+      "title": "Field-verified BRIDGE/Gabbs supervision",
+      "specific_free_official_sources": [
+        "https://gdr.openei.org/submissions/1682",
+        "https://www.sciencebase.gov/catalog/item/62b21845d34e74f0d80f17aa?format=json"
+      ],
+      "expected_improvement": "highest scientific ceiling, unquantified",
+      "cost": "medium-high",
+      "viable": false,
+      "blocker": "Official archive hosts are outside this runtime outbound allow-list; bytes/schema/CRS/geometry overlap were not obtained or audited.",
+      "tested_this_round": false
+    }
+  ],
+  "selected": "A33-L1",
+  "experiment_budget": {
+    "maximum_experiments": 3,
+    "planned_now": 1,
+    "maximum_hours": 2
+  },
+  "frozen_parameters": {
+    "evaluator_source_repo": "buffedlizard55-lab/GEMSDOE24",
+    "evaluator_source_commit": "fc2bc6f350bf5c6ce8da5d7a2ab03578ea1259d1",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "buffer_px": 15,
+    "cell_m": 100,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel_radius_px": 3.0,
+    "feature_count": 12,
+    "quantile_knots": 257,
+    "fusion_target_weight": 0.8,
+    "fusion_analog_weight": 0.2,
+    "full_dot_budget": 37654,
+    "min_spacing_px": 2.8,
+    "visible_catalogue_exclusion_px": 2.0,
+    "hgb": {
+      "max_iter": 140,
+      "learning_rate": 0.08,
+      "max_leaf_nodes": 31,
+      "l2_regularization": 1.0,
+      "random_state_base": 3300,
+      "early_stopping": false
+    },
+    "ci": "paired percentile spatial-block bootstrap, 10 km blocks, 1999 draws, seed 20261025",
+    "canary_stop": "two-sided per-fold or pooled AUC > 0.90",
+    "surface_duplicate_stop": "Spearman rho > 0.90 against any focus registry raster",
+    "dot_duplicate_stop": "Spearman rho > 0.90 or candidate dot fraction within 3 px > 0.70",
+    "promotion": "candidate beats both fold-safe baselines; paired delta CI lower bound > 0; >=3/4 fold wins; all canary/uniqueness/validator gates pass"
+  },
+  "score_policy": "All local metric values must be labelled HOLDOUT-DTI with evaluator version, withheld-positive count, and 95% CI. No numeric projection is a score.",
+  "slot_policy": "No upload is performed. Promotion to a weekly slot is a separate selector action."
+}

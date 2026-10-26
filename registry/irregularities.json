@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "session": "GEMSDOE33 / arena/01a107c3-gemsdoe33",
-  "date": "2026-10-04",
+  "session": "GEMSDOE33 / arena/84b2e851-gemsdoe33",
+  "date": "2026-10-25",
   "convention": "Flagged, not silently corrected. Every status says what was measured, what was not, and what the consequence is.",
   "irregularities": [
     {
@@ -143,10 +143,10 @@
     {
       "id": "IR-33-SLOT-01",
       "severity": "standing",
-      "status": "no slot spent",
-      "finding": "No submission was uploaded from this session, and no candidate is represented as slot-approved. A unique H33-6 research TIFF may be linked separately with an explicit failed-gate warning; the recommended download remains the historical D2.8 reference only.",
-      "evidence": "No DrivenData authentication or submission receipt is present in this environment.",
-      "consequence": "No weekly slot was spent. Local files/format checks do not assert organizer acceptance, a competition score, or a score/file association."
+      "status": "no slot spent; A33-L1 selector not run",
+      "finding": "No submission was uploaded. A33-L1 produced a unique, strict-format 37,654-dot research TIFF but failed its frozen scientific gate (paired HOLDOUT-DTI delta vs B1 -0.004870, 95% CI [-0.010900,+0.001226], 0/4 folds). The separate weekly-slot selector was not run.",
+      "evidence": "evidence/a33_l1_run_card.json; evidence/a33_l1_experiment.json; no DrivenData authentication or receipt is present.",
+      "consequence": "Zero slots were spent. A33-L1 is easy to download for audit but NOT OK TO SUBMIT. Local format validity and uniqueness do not override the negative holdout."
     },
     {
       "id": "IR-33-H33-6-01",
@@ -235,7 +235,31 @@
       "finding": "No new explicit lane/canonical shared-template identity; independent official analog labels unavailable under outbound-host restrictions. Four analog-transfer hypotheses ranked but blocked, not viable. Full registry surface/final checks and new-feature holdout tests absent.",
       "evidence": "registry/analog_hypotheses_20261025.json; evidence/run_card_focus_20261025.json; evidence/promotion_gate_20261025.json",
       "consequence": "Unique submission goal incomplete. No slot selected or uploaded. Automatic gate fails closed; it is evidence-completeness checking, not an evaluator or proof of arbitrary JSON."
+    },
+    {
+      "id": "IR-33-A33-L1-20261025",
+      "severity": "critical",
+      "status": "completed negative; not slot-cleared",
+      "finding": "A33-L1 target-CDF field-balanced transfer passed all 12 feature canaries, both nine-raster novelty guards and strict writer checks, but HOLDOUT-DTI was 0.108374 [0.097607,0.119402] versus fold-safe regional B1 0.113244 [0.102796,0.124169]. Paired delta was -0.004870 [−0.010900,+0.001226], with 0/4 fold wins.",
+      "evidence": "evidence/analog_lane_preregistration_20261025.json; evidence/a33_l1_experiment.json; evidence/a33_l1_run_card.json.",
+      "consequence": "Scientific verdict negative. Preserve the unique TIFF as research evidence, issue no score projection, do not run the slot selector, and do not upload."
+    },
+    {
+      "id": "IR-33-ANALOG-TRUTH-20261025",
+      "severity": "high",
+      "status": "open limitation; claims bounded",
+      "finding": "No independent dense Dixie Valley, Brady or Desert Peak fault-label archive was found in the reviewed repositories. In GEMSDOE24 at pinned commit fc2bc6f, labels.tif and existing_faults.tif have the same Git blob; named-field masks therefore reuse the public catalogue rather than independent field-verified truth.",
+      "evidence": "knowledge/10_analog_lane_hypotheses_20261025.md; evidence/a33_l1_experiment.json; pinned repository-tree/blob review recorded in knowledge/11_focus_forensics_and_a33_l1_result_20261025.md.",
+      "consequence": "A33-L1 is a mapped-catalogue hide-and-recover proxy, not a Ben-David target-error bound or independent leave-one-field-out validation. Block claims of field-verified transfer."
+    },
+    {
+      "id": "IR-33-FOCUS-SCORES-20261025",
+      "severity": "high",
+      "status": "bytes verified; score claims unauthenticated",
+      "finding": "Nine highest-reported focus rasters were commit/blob/SHA-pinned and measured. Their historical DTI associations come from user/owner repository claims; no authenticated organizer receipt tying a score to these exact bytes is retained. Several rasters are dependent: GEMSDOE25=30 exactly; GEMSDOE31 contains GEMSDOE32; GEMSDOE36 contains GEMSDOE32 plus 1,200 dots.",
+      "evidence": "registry/a33_l1_focus_rasters_20261025.json; evidence/focus_registry_analysis_20261025.json; knowledge/11_focus_forensics_and_a33_l1_result_20261025.md.",
+      "consequence": "Label all historical values OWNER/USER-REPORTED, NOT ORGANIZER-CONFIRMED. Use rasters for prior art and duplicate guards only, never as score-labelled training truth or independent replications."
     }
   ],
-  "last_review": "2026-10-25"
+  "last_review": "2026-10-25 A33-L1"
 }
