@@ -1,0 +1,18 @@
+{
+  "review": "restoration-and-claims-audit-20261026",
+  "passes": 3,
+  "inputs_pin_verified": 17,
+  "shared_cache_channels_built": 121,
+  "new_geological_experiments": 0,
+  "new_rasters_generated": 0,
+  "pytest_passed": 154,
+  "pytest_failed": 0,
+  "site_build": "pass",
+  "compileall": "pass",
+  "git_diff_check": "pass",
+  "selector_eligible": 0,
+  "selector_cards_reviewed": 11,
+  "drivendata_contact": false,
+  "weekly_slots_spent": 0,
+  "limitation": "Software checks and saved-byte format audit are not scientific promotion or organizer acceptance."
+}

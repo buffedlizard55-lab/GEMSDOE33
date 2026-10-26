@@ -1,0 +1,25 @@
+{
+  "hypothesis": "No new hypothesis run: single assigned method paragraph is missing; stopped experiments were not retuned.",
+  "mechanism": "Restored 17 mirror inputs, rebuilt shared 121-channel cache, fixed restoration data-loss risks, and revalidated existing LLC bytes.",
+  "named_non_fault_process_that_could_mimic_it": "No new surface generated; the unrun PFRT proposal lists prograding fan toes and buried pediments as non-fault mimics.",
+  "holdout_dti": null,
+  "evaluator_version": null,
+  "withheld_positives": null,
+  "holdout_ci95": null,
+  "correlation_overlap_vs_registry": null,
+  "reason_unmeasured": "No new experiment or surface; previous uniqueness and holdout records were not recomputed.",
+  "raster_sha256": null,
+  "validator_output": {
+    "new_raster": false,
+    "existing_llc_sha256": "76f9e157d01bb9bec2d98c3c5941b6114e06e0f439272d5f140af6e3584c8825",
+    "existing_llc_format_pass": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1": true,
+    "crs_shape_transform_match": true,
+    "receipt": "evidence/restored_template_llc_validation_20261026.json"
+  },
+  "submission_name": null,
+  "submission_note": "Restoration and claims audit only; no new candidate, no upload, no score projection.",
+  "verdict": "negative",
+  "ok_to_submit": false
+}
