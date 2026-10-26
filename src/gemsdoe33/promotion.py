@@ -9,6 +9,14 @@ from __future__ import annotations
 import math
 import re
 
+# Public schema contract shared with the slot selector; empty/partial gate maps are not proof.
+REQUIRED_GATE_NAMES = (
+    "identity", "explicit_lane", "shared_template", "baseline_identity",
+    "screen_beats_current_best", "independent_confirmation", "all_feature_canaries",
+    "surface_not_duplicate", "final_dots_not_duplicate", "saved_bytes_format",
+    "short_note", "budget",
+)
+
 _SHA = re.compile(r"[0-9a-f]{64}\Z")
 
 

@@ -26,6 +26,7 @@ import argparse
 import hashlib
 import io
 import json
+import math
 import sys
 import zipfile
 from datetime import datetime, timezone
@@ -34,6 +35,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from validate_submission import audit, DATA  # noqa: E402
+from gemsdoe33.promotion import REQUIRED_GATE_NAMES  # noqa: E402
 
 # Follow the same GEMS_DATA_DIR/cache resolution as the validator, rather than
 # silently assuming that restored owner-mirror inputs live under repository/data.
@@ -49,13 +51,25 @@ def _sha(path: Path) -> str:
     return h.hexdigest()
 
 
+def _promotion_gates_pass(pa: dict) -> bool:
+    gates = pa.get("gates")
+    return (pa.get("eligible_for_selector") is True
+            and isinstance(gates, dict)
+            and set(gates) == set(REQUIRED_GATE_NAMES)
+            and all(value is True for value in gates.values())
+            and pa.get("failed_gates") == [])
+
+
 def _confirm_dti(card: dict):
     pa = card.get("promotion_assessment") or {}
     try:
         sel = card.get("selected_variant")
-        return float(card["holdout_dti"]["confirmation"][sel]["dti"])
+        return card["holdout_dti"]["confirmation"][sel]["dti"]
     except (KeyError, TypeError, ValueError):
         pass
+    holdout = card.get("holdout_dti") or {}
+    if "confirm_candidate" in holdout:  # flat S33 schema
+        return holdout["confirm_candidate"]
     return pa.get("confirm_dti")
 
 
@@ -109,7 +123,7 @@ def check_card(path: Path) -> dict:
     c = row["checks"]
     pa = card.get("promotion_assessment") or {}
     c["verdict_promote"] = card.get("verdict") == "promote"
-    c["promotion_gates_all_pass"] = pa.get("eligible_for_selector") is True
+    c["promotion_gates_all_pass"] = _promotion_gates_pass(pa)
     tif = DOWNLOADS / sub["file"] if sub.get("file") else None
     c["file_exists"] = bool(tif and tif.is_file())
     sha = _sha(tif) if c["file_exists"] else None
@@ -120,7 +134,11 @@ def check_card(path: Path) -> dict:
         # "Predicted values must be in range [0,1]": demand every cell finite and in [0,1].
         c["all_cells_finite_and_in_0_1"] = (fmt.get("all_finite") is True
                                             and fmt.get("in_range_0_1_whole_array") is True)
-        row["format_audit_failures"] = [k for k, v in fmt.items() if v is False]
+        # False diagnostic fields (e.g. outside_has_nan for a zero raster) are
+        # not failed requirements. Report only actual validator predicates.
+        required = ("shape_match", "resolution_match", "transform_match", "bounds_match",
+                    "in_range_0_1_footprint", "outside_policy_pass", "pass")
+        row["format_audit_failures"] = [k for k in required if fmt.get(k) is not True]
     else:
         c["format_audit_pass_on_saved_bytes"] = False
         c["all_cells_finite_and_in_0_1"] = False
@@ -136,7 +154,10 @@ def check_card(path: Path) -> dict:
     c["note_1_to_140_chars"] = isinstance(note, str) and 0 < len(note) <= 140
     row["note"] = note
     row["sha256"] = sha
-    row["confirm_holdout_dti"] = _confirm_dti(card)
+    confirm_dti = _confirm_dti(card)
+    valid_dti = type(confirm_dti) in (int, float) and math.isfinite(confirm_dti) and 0 <= confirm_dti <= 1
+    c["confirmation_dti_finite_in_0_1"] = valid_dti
+    row["confirm_holdout_dti"] = confirm_dti if valid_dti else None
     row["eligible"] = all(c.values())
     return row
 
@@ -169,7 +190,7 @@ def main() -> int:
     for dst in (ROOT / "evidence" / f"submission_selection_{args.date}.json",
                 ROOT / "docs" / "data" / "submission_selection.json"):
         dst.parent.mkdir(parents=True, exist_ok=True)
-        dst.write_text(json.dumps(out, indent=2) + "\n")
+        dst.write_text(json.dumps(out, indent=2, allow_nan=False) + "\n")
     print(out["decision"])
     for r in rows:
         print(f"  {'ELIGIBLE' if r.get('eligible') else 'blocked '}  {r['run_card']}"

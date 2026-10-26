@@ -46,6 +46,8 @@ def test_positive_control_promote_card_on_valid_bytes_is_eligible():
     card = copy.deepcopy(json.loads(CARD.read_text()))
     card["verdict"] = "promote"
     card["promotion_assessment"]["eligible_for_selector"] = True
+    card["promotion_assessment"]["gates"] = dict.fromkeys(_selector().REQUIRED_GATE_NAMES, True)
+    card["promotion_assessment"]["failed_gates"] = []
     assert _check(card)["eligible"] is True
 
 
@@ -66,9 +68,38 @@ def test_sha_tamper_and_long_note_fail_closed():
     card = copy.deepcopy(json.loads(CARD.read_text()))
     card["verdict"] = "promote"
     card["promotion_assessment"]["eligible_for_selector"] = True
+    card["promotion_assessment"]["gates"] = dict.fromkeys(_selector().REQUIRED_GATE_NAMES, True)
+    card["promotion_assessment"]["failed_gates"] = []
     card["raster_sha256"] = "0" * 64
     card["submission"]["note"] = "x" * 141
     row = _check(card)
     assert row["eligible"] is False
     assert row["checks"]["sha256_matches_run_card"] is False
     assert row["checks"]["note_1_to_140_chars"] is False
+
+
+def test_eligible_flag_cannot_override_negative_science_gates():
+    card = copy.deepcopy(json.loads(CARD.read_text()))
+    card["verdict"] = "promote"
+    card["promotion_assessment"]["eligible_for_selector"] = True
+    assert _check(card)["eligible"] is False
+
+
+@pytest.mark.parametrize("value", [None, float("nan"), float("inf"), -0.1, 1.1, True])
+def test_confirmation_must_be_finite_probability(value):
+    card = copy.deepcopy(json.loads(CARD.read_text()))
+    card["verdict"] = "promote"
+    card["promotion_assessment"]["eligible_for_selector"] = True
+    card["promotion_assessment"]["gates"] = dict.fromkeys(_selector().REQUIRED_GATE_NAMES, True)
+    card["promotion_assessment"]["failed_gates"] = []
+    card["holdout_dti"]["confirmation"][card["selected_variant"]]["dti"] = value
+    # Avoid fallback from an invalid primary confirmation value.
+    card["promotion_assessment"].pop("confirm_dti", None)
+    row = _check(card)
+    assert row["eligible"] is False
+    assert row["confirm_holdout_dti"] is None
+
+
+def test_false_diagnostic_is_not_reported_as_format_failure():
+    row = _check(json.loads(CARD.read_text()))
+    assert row["format_audit_failures"] == []
