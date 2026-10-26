@@ -1,7 +1,7 @@
 {
   "schema": 2,
-  "session": "GEMSDOE33 / arena/b9872db2-gemsdoe33",
-  "date": "2026-10-26",
+  "session": "GEMSDOE33 / arena/84b2e851-gemsdoe33",
+  "date": "2026-10-25",
   "convention": "Flagged, not silently corrected. Every status says what was measured, what was not, and what the consequence is.",
   "irregularities": [
     {
@@ -261,37 +261,45 @@
       "consequence": "Label all historical values OWNER/USER-REPORTED, NOT ORGANIZER-CONFIRMED. Use rasters for prior art and duplicate guards only, never as score-labelled training truth or independent replications."
     },
     {
+      "id": "IR-33-R3-20261025",
+      "severity": "high",
+      "status": "measured; unique GeoTIFF validated; negative holdout verdict (not slot-cleared)",
+      "finding": "Companion Round-3 domain-invariant analog co-training (H33-R3-1, gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381) passed all 32 single-feature leakage canaries (max AUC 0.6035 <= 0.90), passed all 22 registry duplicate checks on both pre-placement surface (max |rho| = 0.1000 <= 0.90) and final dots (max 3-px overlap = 50.58% <= 70%, 42.73% vs GEMSDOE32), reduced 20 km spatial-block domain AUC from 0.9172 (H33-F) to 0.7778, and beat the fold-safe physical baseline on the 4-fold hide-and-recover holdout (pooled HOLDOUT-DTI 0.075943, 95% CI [0.067108, 0.085451] vs 0.049488, delta +0.026455, 3/4 folds positive). However, it remained below the historical fixed-H19-5 B=2 reference (0.116963, delta -0.041019) and external DOE GDR #1682 BRIDGE GIS files remain unreachable in this sandbox.",
+      "evidence": "evidence/round3_run_card_20261025.json; evidence/round3_hypotheses_20261025.json; docs/downloads/receipt-gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381.json.",
+      "consequence": "Recorded as verdict='negative' (research deliverable only). Both -zeros.tif and -nan.tif are 10/10 format-validated on disk for audit/education, but must not be uploaded to a weekly competition slot."
+    },
+    {
       "id": "IR-33-LIDAR-VOID-01",
       "severity": "critical",
-      "status": "fixed in shared features.py with regression test",
-      "finding": "data/lidar_scarp_features.json specifies 0 = no lidar across 1,272,913 in-footprint cells (24.63%, concentrated in NE_LidarGapHeavy). Previously, src/gemsdoe33/features.py treated 0 as NaN and ran nearest-neighbor distance_transform_edt fill across the void, overwriting lid_valid with >=1 everywhere and fabricating 260,733 phantom high-scarp cells (lid_step_max > 100) inside the void.",
-      "evidence": "src/gemsdoe33/features.py; data/lidar_scarp_features.json; evidence/a33_r2_experiment_20261026.json; tests/test_a33_r2_csht.py.",
-      "consequence": "Fixed once in shared features.py: lid_valid preserves exact 0.0 and lid_* preserve np.nan where 0 = no lidar; all 109 non-LiDAR channels retain identical definitions. NE_LidarGapHeavy HOLDOUT-DTI rose from 0.134070 (B1_regional) to 0.165257 (A33-R2-CSHT)."
+      "status": "fixed with rebuilt cache + regression test",
+      "finding": "3DEP 1 m LiDAR covers only 3,894,460 of 5,167,373 footprint cells (75.37%), leaving 1,272,913 void cells (24.63%, heavily concentrated in NE_LidarGapHeavy). Prior src/gemsdoe33/features.py ran distance_transform_edt nearest-neighbor Voronoi extrapolation across all void cells BEFORE computing Sobel gradients and structure tensors, fabricating 260,733 artificial step-discontinuity scarp pixels inside the void.",
+      "evidence": "src/gemsdoe33/features.py; evidence/a33_r2_experiment_20261026.json; tests/test_a33_r2_csht.py.",
+      "consequence": "Fixed src/gemsdoe33/features.py so lid_valid == 0 preserves exact 0.0 and lid_* channels preserve np.nan for native missing-value routing in HistGradientBoostingClassifier, eliminating 100% of phantom void scarps."
     },
     {
       "id": "IR-33-CSV-DIST-FAULT-01",
-      "severity": "high",
-      "status": "blocked in code + regression test",
-      "finding": "gdr_wellspring_in_footprint.csv and gdr_volcanic_vents_in_footprint.csv contain a precomputed dist_known_fault_px column measured against the full public catalogue labels.tif. Consuming that column inside spatial holdout folds would leak withheld fault proximity.",
-      "evidence": "src/gemsdoe33/csht_transfer.py (FORBIDDEN_CSV_COLUMNS); tests/test_a33_r2_csht.py.",
-      "consequence": "Hydrothermal/vent seed loader reads strictly catalogue-free columns (row, col, temp_c, geothermquartz_c, thermalclass) and never accesses dist_known_fault_px."
+      "severity": "critical",
+      "status": "blocked by hard column exclusion + regression test",
+      "finding": "Both gdr_wellspring_in_footprint.csv and gdr_volcanic_vents_in_footprint.csv contain a precomputed dist_known_fault_px column measured against the FULL unmasked fault catalogue (including withheld holdout fault segments).",
+      "evidence": "src/gemsdoe33/csht_transfer.py; tests/test_a33_r2_csht.py.",
+      "consequence": "Hard-blocked dist_known_fault_px in build_hydrothermal_conduit_features() and locked with unit test test_csv_loader_ignores_forbidden_dist_known_fault_px_column."
     },
     {
       "id": "IR-33-SPEARMAN-SPARSE-CEILING-01",
-      "severity": "medium",
-      "status": "documented; mitigated by dual spatial-overlap guard",
-      "finding": "Between a continuous [0,1] score surface S on N=5,167,373 footprint cells and a sparse binary dot raster B at prevalence p=0.0073..0.0085 (37,654..44,090 dots), the Cauchy-Schwarz upper bound on tied Spearman rank correlation is sqrt(3*p*(1-p)) ~= 0.148..0.159. A raw Spearman > 0.90 stop between continuous S and binary B can never trigger mathematically.",
-      "evidence": "src/gemsdoe33/csht_transfer.py; evidence/a33_r2_uniqueness_20261026.json (measured 0.1146 vs 0.1593 ceiling on G30-MSDB1).",
-      "consequence": "Enforce spatial 3-px overlap alongside Spearman rank correlation in promotion.py so cross-lane surface convergence cannot slip past the continuous-vs-binary Spearman ceiling."
+      "severity": "high",
+      "status": "documented; paired with 3-px spatial-overlap guard",
+      "finding": "Between any continuous rank-uniform surface S on N=5,167,373 cells and any binary emission B of K=37,654..44,090 dots (prevalence p = 0.00729..0.00853), Cauchy-Schwarz bounds |Spearman(S, B)| <= sqrt(3*p*(1-p)) ~ 0.148..0.159, making a Spearman > 0.90 guard mathematically unreachable on continuous-vs-binary pairs.",
+      "evidence": "knowledge/13_focus_forensics_g32_proof_and_a33_r2_results_20261026.md; evidence/a33_r2_uniqueness_20261026.json.",
+      "consequence": "Pre-placement surface duplicate screening MUST evaluate the 3-px spatial overlap of top-scoring surface peaks (and matched-budget NMS crests), which properly caught A33-R2-CSHT's convergence with 2026-10-25 sibling HGB G30-MSDB1."
     },
     {
       "id": "IR-33-A33-R2-20261026",
       "severity": "high",
-      "status": "11/12 gates passed; final dots unique (21/21); blocked from live slot by pre-placement surface convergence",
-      "finding": "A33-R2-CSHT (gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif, sha256 14ab452c...) beat B1_regional across 8/8 holdout folds (screen HOLDOUT-DTI 0.136716 vs 0.112418 [0.113244 recorded], paired delta +0.024298 [+0.012427,+0.035833], 4/4 folds; orthogonal confirmation HOLDOUT-DTI 0.131169 vs 0.115122, paired delta +0.016047 [+0.003817,+0.028030], 4/4 folds), passed 50/50 feature leakage canaries (max fold two-sided AUC 0.7685 <= 0.90), passed saved-byte GeoTIFF validation, and passed 21/21 final_dots uniqueness checks (max |Spearman| 0.0416 <= 0.90; max 3-px overlap 0.6934 <= 0.70 vs G30-MSDB1, 0.3586 vs G32-B2, 0.3519 vs A33-L1). However, against the expanded 21-raster 2026-10-26 registry, pre-placement surface peaks exceeded 0.70 3-px overlap against 2026-10-25 sibling catalogue-supervised HGB rasters G30-MSDB1 (user-reported 0.1462), G24-gvc1 (0.0859), and G25-h66 (0.0742).",
-      "evidence": "evidence/a33_r2_preregistration_20261026.json; evidence/a33_r2_experiment_20261026.json; evidence/a33_r2_uniqueness_20261026.json; evidence/a33_r2_promotion_assessment_20261026.json; evidence/a33_r2_run_card_20261026.json.",
-      "consequence": "Stopped at 3/3 campaign experiments with Run Card verdict 'duplicate' (ok_to_download=True, ok_to_submit=False). Do NOT spend a weekly DrivenData submission slot: cross-lane convergence with G30-MSDB1 (0.1462) confirms catalogue-supervised HGB models without 19GEMSDOE trace-detector supervision will not beat G32-B2 (0.2778)."
+      "status": "completed duplicate-stop; OK to download, NOT OK to submit",
+      "finding": "A33-R2-CSHT (cover-state + INGENIOUS 1,116-seed hydrothermal conduit transfer + 300 m submodular CELF, 37,654 dots) passed all 50 single-feature leakage canaries (max AUC 0.7685 <= 0.90), passed 100% strict [0, 1] GeoTIFF checks, beat regional B1 across all 8/8 holdout folds on both quadrant screen (HOLDOUT-DTI 0.136716 vs 0.112418, delta +0.024298 [+0.012427, +0.035833], 4/4 folds) and frozen orthogonal diagonal-wedge confirmation (HOLDOUT-DTI 0.131169 vs 0.115122, delta +0.016047 [+0.003817, +0.028030], 4/4 folds), and passed final_dots uniqueness against all 21 focus+local rasters (max |Spearman| 0.0416, max 3-px overlap 0.6934 <= 0.70 vs G30-MSDB1; 0.3586 vs G32-B2) plus all 3 Round-3 sibling rasters (max 3-px 0.4482). However, pre-placement continuous surface peaks exceeded 70% 3-px overlap vs 2026-10-25 sibling HGB rasters trained on shared cached features (G30-MSDB1: 91.11% unthinned / 77.82% matched-37k NMS).",
+      "evidence": "evidence/a33_r2_preregistration_20261026.json; evidence/a33_r2_experiment_20261026.json; evidence/a33_r2_uniqueness_20261026.json; evidence/a33_r2_run_card_20261026.json.",
+      "consequence": "Recorded as verdict='duplicate' (promotion.py verdict='negative', 11/12 gates passed, failed_gates=['surface_not_duplicate']). Artifact is OK TO DOWNLOAD for audit/reproducibility, NOT OK TO SUBMIT (0 weekly slots spent)."
     }
   ],
-  "last_review": "2026-10-26 A33-R2"
+  "last_review": "2026-10-26 A33-R2-CSHT + Round-3 H33-R3-1/R3-3"
 }

@@ -10,7 +10,8 @@ import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-DATA = Path(os.environ.get("GEMS_DATA_DIR", ROOT / "data"))
+_default_data = ROOT / ".cache" / "data" if (ROOT / ".cache" / "data" / "training_features.tif").exists() and not (ROOT / "data" / "training_features.tif").exists() else ROOT / "data"
+DATA = Path(os.environ.get("GEMS_DATA_DIR", _default_data))
 CACHE = Path(os.environ.get("GEMS_CACHE_DIR", ROOT / ".cache"))
 CACHE_BANDS = CACHE / "bands"
 CACHE_FEATURES = CACHE / "features"

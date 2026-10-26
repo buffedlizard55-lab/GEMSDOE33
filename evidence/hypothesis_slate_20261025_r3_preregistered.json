@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "frozen_utc": "2026-10-25T23:55:00Z",
+  "branch": "arena/ceffa63e-gemsdoe33",
+  "lane": "Bounded Analog-Field Domain Adaptation & Geothermal Vent/Conduit Discovery (Ben-David et al., 2010; README.md \u00a71)",
+  "max_experiments": 3,
+  "budget_dots": 37654,
+  "min_spacing_px": 2.6,
+  "catalogue_collar_px": 2.0,
+  "evaluator": "vendor/gems57/evaluate_holdout.py:gems57-pooled-hide-v2",
+  "split": "vendor/gems57/holdout.py:buffered_component_draw (hide_frac=0.20, buffer_px=3, boundary_px=12)",
+  "selection_seeds": [
+    20,
+    21
+  ],
+  "confirmation_seeds": [
+    33,
+    34
+  ],
+  "leakage_canary_max_auc": 0.9,
+  "domain_divergence_max_abs_auc_shift": 0.2,
+  "uniqueness_rho_limit": 0.9,
+  "uniqueness_overlap_3px_limit": 0.7,
+  "forbidden_csv_columns": [
+    "dist_known_fault_px"
+  ],
+  "forbidden_training_rasters": [
+    "derived_sgmc_faults_100m_u8.tif",
+    "sample_submission.tif_values",
+    "h19_5_nan.tif"
+  ],
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H33-R3-1",
+      "short_name": "DA-HGCM-Submod",
+      "runnable": true,
+      "experiment_slot": 1,
+      "title": "Divergence-Gated Domain-Adapted Multi-Physics + Hydrothermal Geothermometer Conduit Model with Submodular 300 m Allocation",
+      "named_non_fault_mimic": "Hydrothermally altered ash-flow tuff contacts, diagenetic playa-margin clay boundaries, or un-faulted mafic dike margins juxtaposed against conductive basin fill.",
+      "uses_visible_network_features": true
+    },
+    {
+      "rank": 2,
+      "id": "H33-R3-2",
+      "short_name": "DA-PurePhys-Submod",
+      "runnable": true,
+      "experiment_slot": 2,
+      "title": "Pure Label-Free Domain-Adapted Geophysical-Hydrothermal Conduit Model (Zero Network Context)",
+      "named_non_fault_mimic": "Pleistocene Lake Lahontan shoreline beach ridges, buried fluvial paleochannels, and un-faulted pluton margins.",
+      "uses_visible_network_features": false
+    },
+    {
+      "rank": 3,
+      "id": "H33-R3-3",
+      "short_name": "DA-LinearVC-Submod",
+      "runnable": true,
+      "experiment_slot": 3,
+      "title": "Finite-VC Linear Halfspace Domain-Adapted Classifier with Measured Empirical d_H_Delta_H",
+      "named_non_fault_mimic": "Regional linear lithologic unconformities (e.g., Mesozoic metasedimentary basement against Tertiary volcanics).",
+      "uses_visible_network_features": false
+    },
+    {
+      "rank": 4,
+      "id": "H33-R3-4",
+      "short_name": "MT-PhaseTensor-Skew",
+      "runnable": false,
+      "experiment_slot": null,
+      "title": "3D Magnetotelluric Phase-Tensor Skew Sub-Vertical Crustal Conduit Detector",
+      "named_non_fault_mimic": "Pre-Tertiary graphitic or sulfidic metasedimentary fold hinges in deep basement.",
+      "official_source": "https://ds.iris.edu/spud/emtf",
+      "status_reason": "Blocked by sandbox outbound host allowlist; documented for unrestricted staging."
+    }
+  ]
+}

@@ -3,33 +3,39 @@
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>Research &amp; Diagnostics · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · Round 2 review status 2026-10-26</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html" aria-current=page>Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
-<main class="wrap"><h2>Round 2 (`A33-R2-CSHT`, 2026-10-26) Complete Research Record</h2>
-<div class="panel bad"><b>Final Round 2 verdict: OK TO DOWNLOAD: YES · DO NOT SUBMIT TO WEEKLY SLOT (<code>verdict: duplicate</code> on pre-placement surface convergence).</b> Completed in 731.96 seconds across Experiments 2 &amp; 3 of 3 total campaign experiments; zero weekly competition slots spent.</div>
-<h3>Shared-Stack Fix &amp; Frozen Mechanism</h3>
-<p>Resolved <code>IR-33-LIDAR-VOID-01</code> in <code>src/gemsdoe33/features.py</code> (preserving exact <code>lid_valid = 0</code> and <code>lid_* = NaN</code> across <code>1,272,913</code> 3DEP LiDAR void cells, eliminating <code>260,733</code> phantom Voronoi scarps in <code>NE_LidarGapHeavy</code>). Fused three fold-safe experts—(A) 34-channel regional HGB, (B) 24-channel topography-free basin-upweighted subsurface HGB, and (C) 16-channel 3 km local-contrast hydrothermal-conduit HGB across <code>1,116</code> INGENIOUS hot-spring/geothermometer &amp; volcanic-vent seeds (<code>d_neg &gt; 800 m</code>, <code>dist_known_fault_px</code> blocked)—with LiDAR-void adaptive weights and 300 m triangular-kernel <code>CELF</code> submodular allocation (<code>37,654</code> dots, <code>d_vis &gt; 2 px</code>, <code>d_self &ge; 2.5 px</code>).</p>
-<h3>Screen &amp; Orthogonal Confirmation (`8 / 8` Fold Wins)</h3>
-<ul>
-<li><b>Experiment 2/3 Primary Screen (<code>quadrant-buffered-15px-v1</code>):</b> <code>HOLDOUT-DTI = 0.136716</code> [0.125390, 0.148693] vs <code>B1_regional = 0.112418</code>; paired &Delta; = <b>+0.024298</b> [+0.012427, 0.035833], <b>4/4 fold wins</b> (<code>NE_LidarGapHeavy +0.0312</code>, <code>SE +0.0465</code>).</li>
-<li><b>Experiment 3/3 Frozen Confirmation (<code>diagonal-wedge-buffered-20px-confirm-v1</code>):</b> <code>HOLDOUT-DTI = 0.131169</code> [0.119205, 0.142912] vs <code>B1_regional = 0.115122</code>; paired &Delta; = <b>+0.016047</b> [+0.003817, 0.028030], <b>4/4 fold wins</b>.</li>
-<li><b>50-Channel Leakage Canary:</b> 50 / 50 channels passed standalone tests (worst fold two-sided AUC <b>0.6875</b> &le; 0.90).</li>
-<li><b>21-Raster Uniqueness Guard:</b> Placed <code>final_dots</code> passed 21 / 21 rasters (max |Spearman| <code>0.0416</code>, max 3-px overlap <code>69.34%</code> vs <code>G30-MSDB1</code>; <code>35.86%</code> vs <code>G32-B2</code>); pre-placement surface peaks exceeded <code>70%</code> against <code>G30-MSDB1</code> (<code>91.11%</code>), stopping slot promotion cleanly.</li>
-</ul>
-<h3>Round 2 Artifacts &amp; Evidence</h3>
-<ul><li><a href="downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif">A33-R2-CSHT primary zero-outside TIFF</a> · <a href="downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.zip">ZIP</a> · <a href="downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-nan.tif">NaN-outside twin</a></li>
-<li><a href="downloads/receipt-gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad.json">Round 2 shared-writer &amp; validator receipt</a></li>
-<li><a href="data/a33_r2_run_card_20261026.json">Round 2 authoritative JSON run card</a></li></ul>
+<p>DrivenData #306 · evidence-led research · review status 2026-10-25</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html" aria-current=page>Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
+<main class="wrap"><h2>Research candidates and proxy holdout records</h2>
+<div class="panel warn"><h3>2026-10-26 A33-R2-CSHT Cover-State + Hydrothermal Conduit Transfer (8/8 Fold Wins · Duplicate-Stopped)</h3>
+<p><span class="badge good">OK TO DOWNLOAD: YES</span> <span class="badge bad">OK TO SUBMIT: NO (verdict: duplicate)</span></p>
+<p>Screen <b>HOLDOUT-DTI = 0.136716</b> vs <code>B1_regional = 0.112418</code> (<code>Δ = +0.024298 [+0.012427, +0.035833]</code>, <code>4/4</code> folds); orthogonal confirmation <b>HOLDOUT-DTI = 0.131169</b> vs <code>B1_regional = 0.115122</code> (<code>Δ = +0.016047 [+0.003817, +0.028030]</code>, <code>4/4</code> folds); <code>50/50</code> feature leakage canaries passed (<code>max AUC = 0.7685 ≤ 0.90</code>); <code>final_dots</code> unique vs all 24 rasters (<code>max 3-px = 0.6934 ≤ 0.70</code>), stopped on pre-placement surface overlap vs <code>G30-MSDB1</code>.
+<a href="downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif">Download A33-R2-CSHT GeoTIFF</a> · <a href="downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.zip">Download .zip</a> · <a href="data/a33_r2_run_card_20261026.json">Run Card JSON</a>.</p>
+</div>
+<div class="panel bad"><b>EXPLORATORY_NOT_LICENSED · BLOCKED_NOT_ESTIMATED</b>
+<p>The first-round shortlist was retrospective and remains archived; H33-6 failed P1 and no candidate is slot-approved.
+The score/file pairing unverified for historical baselines. H33-6 P1 mean ΔDTI was <b>−0.00273732</b> (2/4 folds positive);
+A generic two-sample AUC is not itself that bound. The artifacts below are for research only.</p></div>
 
-<h2>A33-L1 complete research record</h2>
-<div class="panel bad"><b>Final verdict: NEGATIVE — NOT OK TO SUBMIT.</b> The experiment completed in 194.28 seconds, used one of the three allowed experiments and consumed zero submission slots. The output is retained because unique negative results are part of the scientific record.</div>
-<h3>Frozen mechanism</h3><p>Use 12 structural channels; map each named source field's marginal feature distributions onto fold-training target distributions with 257-knot CDF maps; weight source fields equally; train raw analog, adapted analog and regional experts; fuse regional/adapted score ranks at a frozen 0.80/0.20. Named non-fault mimic: lithologic contact or basin-fill edge.</p>
-<h3>Fold integrity</h3><p>Four quadrant folds withheld entire connected catalogue components with a 15-pixel buffer. Withheld positive pixels were NW 10,165; NE 12,511; SW 20,534; SE 17,778—60,988 pooled. Catalogue sampling and exclusion used visible faults only; hidden truth had zero overlap with visible faults; training and validation masks were disjoint.</p>
-<h3>Leakage canary</h3><p>All 12 frozen features passed standalone tests. Worst fold-level two-sided AUC was <b>0.6211</b>; stop threshold was strictly above 0.90. This rejects obvious direct leakage but does not establish independent labels.</p>
-<h3>HOLDOUT-DTI result</h3><p>A33-L1 = <b>0.108374</b> (95% CI [0.097607, 0.119402]); best regional comparator = <b>0.113244</b> (95% CI [0.102796, 0.124169]). Paired delta = <b>-0.004870</b>, 95% CI [-0.010900, +0.001226], 0/4 fold wins. Label: HOLDOUT-DTI (<code>gems-segment-pooled-v1</code>; 60,988 withheld positives; spatial-block bootstrap 95% CI). Not a competition score.</p>
-<h3>Uniqueness</h3><p>Before placement, max Spearman was 0.1084. Final max Spearman was 0.02221; max candidate-dot fraction within 3 px was 42.25%. All are below frozen stop thresholds. The post-merge release guard repeated both stages against the canonical 12-reference focus subset and passed with the same maxima.</p>
-<h3>Artifacts and evidence</h3><ul><li><a href="downloads/gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-zeros.tif">A33-L1 unique zero-outside TIFF</a> — research only</li><li><a href="downloads/receipt-gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34.json">shared-writer receipt</a></li><li><a href="data/a33_l1_run_card.json">final run card</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_l1_experiment.json">complete experiment evidence</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/analog_lane_preregistration_20261025.json">hash-frozen preregistration</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_l1_three_pass_review_20261025.md">three-pass release review</a></li></ul>
-<h2>Historical negative controls</h2>
-<p>H33-6 remains failed/duplicate and H33-F remains negative; neither is slot-approved. Their historical files remain for audit but do not supersede the current Run Cards. No post-result experiment was used to tune A33-L1 or A33-R2-CSHT.</p>
+<div class="panel">
+<h3>H33-6 Edge-Normal Consensus Research TIFF (Failed P1, Research Only)</h3>
+<p><a class="btn alt" href="downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif">Download H33-6 research TIFF</a> ·
+<a href="downloads/research/receipt-GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7.json">Audit JSON</a> ·
+<span class="badge bad">RESEARCH ONLY</span></p>
+<p>Independent local format audit: True · SHA-256: <code>18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7</code></p>
+</div>
+
+<div class="panel">
+<h3>Earlier H33-F analog-field screen</h3>
+<p>Earlier H33-F analog-field screen failed local proxies (P1 mean <b>-0.093072</b>, 0/4 positive).
+This was evaluated under Ben-David principles, but was <b>not</b> a Ben-David bound because independent BRIDGE labels were blocked.</p>
+<p><a class="btn alt" href="downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif">Download H33-F research TIFF</a> ·
+<span class="badge bad">NOT SLOT-APPROVED</span></p>
+<p>Format pass: None · SHA-256: <code>None</code></p>
+</div>
+
+<div class="panel bad"><h3>2026-10-25 duplicate guard and run card</h3>
+<p>H33-6 is not eligible for a slot. Its final raster crossed the duplicate threshold against 7 of 9 same-grid TIFFs available in this checkout. The external site rasters were not staged; the pre-placement edge surface was not screened in this audit; no new placement was run. The feature-alone leakage canary is also missing from retained evidence.</p>
+<p>HOLDOUT-DTI (local <code>dti_binary</code>, four-fold conditional diagnostic; 60,988 withheld catalogue pixels): pooled DTI candidate <b>0.112486</b> vs control <b>0.114669</b>, pooled ΔDTI <b>−0.002183</b>; mean of fold deltas −0.002737 (2/4 positive). Descriptive fold-t 95% interval [−0.015020, +0.009546], df=3; not a private-label CI. The evaluator source has no semantic version field. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/duplicate_guard_run_card_20261025.json">machine-readable run card</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout_h33_6.json">original holdout evidence</a>.</p>
+</div>
 </main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>
