@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "date": "2026-10-25",
+  "scope": "A33-L1 implementation, evaluation, nine-raster forensics, package and generated site",
+  "overall_disposition": "PASS_FOR_RESEARCH_RELEASE_NEGATIVE_FOR_COMPETITION_SUBMISSION",
+  "passes": [
+    {
+      "pass": 1,
+      "name": "scientific_protocol_and_adversarial_leakage_review",
+      "status": "PASS_WITH_DOCUMENTED_PROXY_LIMITATIONS",
+      "checks": [
+        "preregistration hash unchanged",
+        "12 features and frozen parameters match",
+        "whole components hidden with 15 px buffer",
+        "CDF/fitting/sampling use train and visible only",
+        "matched budgets and emission operators",
+        "shared pooled evaluator and paired bootstrap",
+        "feature and novelty stops enforced"
+      ],
+      "findings_fixed": [
+        "README/site A33-L2-L5 descriptions drifted from frozen slate; corrected and tested",
+        "gate all() included a truthy baseline-name string; changed to explicit boolean-key enumeration"
+      ],
+      "experiment_rerun": false
+    },
+    {
+      "pass": 2,
+      "name": "implementation_reproducibility_and_artifact_review",
+      "status": "PASS",
+      "checks": [
+        "4/4 vendor SHA-256 values match source manifest",
+        "17/17 inputs audited",
+        "9/9 focus rasters hash/grid verified",
+        "recorded run verification passes",
+        "saved-byte independent validator passes",
+        "single-file ZIP integrity passes",
+        "evidence/docs run cards equal",
+        "81 automated tests pass"
+      ],
+      "primary_raster_sha256": "2bbbf7e381720f2242959e3efd6f2437f273afe6e7c48540d769524d2b4e8759"
+    },
+    {
+      "pass": 3,
+      "name": "release_claims_and_site_review",
+      "status": "PASS_NEGATIVE_RELEASE",
+      "checks": [
+        "site rebuilt",
+        "all local links resolve",
+        "do-not-submit warning precedes downloads",
+        "HOLDOUT-DTI labels include evaluator, n and CI",
+        "historical values labelled owner/user-reported not organizer-confirmed",
+        "no upload, receipt, leaderboard polling or score projection claimed",
+        "README/site/evidence/irregularities agree",
+        "git diff check, compile and 81 tests pass"
+      ]
+    }
+  ],
+  "ok_to_download": true,
+  "ok_to_submit": false,
+  "slot_selector_run": false,
+  "submission_slots_used": 0,
+  "known_limitations": [
+    "owner-mirror inputs are not independently organizer-authenticated",
+    "no independent dense analog labels",
+    "8-connected components are a segment-ID proxy",
+    "mapped-catalogue holdout is not private hidden truth",
+    "historical score/file pairings are unauthenticated",
+    "portal acceptance was not tested"
+  ]
+}

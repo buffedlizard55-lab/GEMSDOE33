@@ -141,3 +141,34 @@ its diagnostics remain conditional. **No candidate is approved for a weekly slot
 ## Review addendum (2026-10-25)
 
 This session compared the existing H33-6 final raster against all same-grid TIFFs available in the checkout. Seven of nine comparisons exceeded the run protocol's correlation/3-pixel proximity threshold; no new placement or TIFF build was made. The pre-placement score surface and remote GEMSDOE registry rasters were unavailable, so the uniqueness screen is incomplete and remains a stop. H33-6 is **NOT OK TO SUBMIT**: its P1 mean delta was negative, its retained baseline was not re-derived per fold, its feature-alone canary is absent, and its final dots trigger the duplicate guard. See `evidence/duplicate_guard_run_card_20261025.json`, `knowledge/09_20261025_review.md`, and `registry/irregularities.json` entry `IR-33-DUP-20261025`. Treat all scores listed in the user brief as user/owner reports unless an organizer receipt is retained.
+
+
+## Current outcome addendum (2026-10-25, A33-L1)
+
+The earlier dated project-decision and review sections above remain historical audit records; this
+addendum is the current outcome. The analog-transfer lane has now restored and grid-audited all 17
+hash-pinned inputs, rebuilt the shared feature cache, restored all nine pinned focus rasters, frozen
+five new analog hypotheses, and executed one A33-L1 experiment through the pinned shared evaluator
+and writer.
+
+A genuinely new 37,654-dot GeoTIFF is available at
+`docs/downloads/gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-zeros.tif`,
+with an official-template-profile NaN-outside twin. It passes exact grid, dtype, in-footprint range,
+saved-byte and uniqueness checks. Its maximum final registry Spearman is `0.02221` and maximum
+candidate-dot fraction within three pixels is `42.25%`. **It is NOT OK TO SUBMIT.** A33-L1
+HOLDOUT-DTI (`gems-segment-pooled-v1`, 60,988 withheld positives, spatial-block bootstrap 95% CI)
+is `0.108374 [0.097607, 0.119402]`; the fold-safe regional comparator is
+`0.113244 [0.102796, 0.124169]`. Paired delta is `−0.004870`, 95% CI
+`[−0.010900, +0.001226]`, with 0/4 fold wins. The scientific gate failed, the separate slot selector
+was not run, zero competition slots were spent, no upload occurred, and no score is projected.
+
+The nine-site forensic review established byte-level dependence in the reported high-score family:
+GEMSDOE25 and 30 are identical; GEMSDOE31 solo is an exact subset after removing 3,891 one-pixel
+catalogue-flank dots; GEMSDOE32 B2 is an exact subset after removing another 2,545 dots at one-to-two
+pixels; GEMSDOE36 contains all B2 dots plus 1,200. Metric-aware pruning is therefore a plausible
+explanation for the owner-reported `0.2778`, not authenticated causal proof. Every historical DTI
+value remains **OWNER/USER-REPORTED, NOT ORGANIZER-CONFIRMED** absent a retained receipt.
+
+Current evidence: `evidence/a33_l1_experiment.json`, `evidence/a33_l1_run_card.json`,
+`evidence/focus_registry_analysis_20261025.json`, and
+`knowledge/11_focus_forensics_and_a33_l1_result_20261025.md`.
