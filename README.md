@@ -9,7 +9,7 @@
 | Question | Answer (decided by code: [`scripts/select_submission.py`](scripts/select_submission.py) → [`docs/data/submission_selection.json`](docs/data/submission_selection.json)) |
 |---|---|
 | **OK TO DOWNLOAD?** | **✅ YES.** The A33-R3-LLC GeoTIFF passes the strict format audit. It is a single-band `float32` file on the `sample_submission.tif` grid (`EPSG:32611`, `3730×3292`, `100 m`, origin `(243350, 4508550)`). Every cell is finite and in `[0, 1]`, with `0.0` outside the footprint, which fixes the "Predicted values must be in range [0,1]" error. It has 37,654 dots and 0 on-catalogue pixels. It is unique against all 22 registry rasters: max 3-px overlap 43.25%, and 37.48% vs GEMSDOE32 B2. |
-| **OK TO SUBMIT?** | **🛑 NO — do not spend a weekly slot.** A33-R3-LLC tied the current holdout best rather than beating it. Screen HOLDOUT-DTI was `0.137868` vs CSHT `0.137555` (paired Δ `+0.0003 [−0.0080, +0.0083]`, 2/4 folds). Confirmation was `0.131506` vs `0.132066` (Δ `−0.0006 [−0.0090, +0.0075]`, 2/4). Withheld positives: 60,988 per split. The selector re-checked all 8 run cards and found **0 eligible**. |
+| **OK TO SUBMIT?** | **🛑 NO — do not spend a weekly slot.** A33-R3-LLC tied the current holdout best rather than beating it. Screen HOLDOUT-DTI was `0.137868` vs CSHT `0.137555` (paired Δ `+0.0003 [−0.0080, +0.0083]`, 2/4 folds). Confirmation was `0.131506` vs `0.132066` (Δ `−0.0006 [−0.0090, +0.0075]`, 2/4). Withheld positives: 60,988 per split. The selector re-checked all 9 run cards, including the parallel-session DPPS card, and found **0 eligible**. HMDT has no run card, so it cannot be eligible. |
 | **Best submission across the 9 focus sites** | **GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` (0.2778\*)**. Nothing in this repository has been shown to beat it. See §1–§2. |
 
 **Downloads (A33-R3-LLC, research only):**
@@ -18,7 +18,7 @@
 - [NaN-outside twin](docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-nan.tif)
 - [Writer/validator receipt](docs/downloads/receipt-gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9.json)
 - [Run card](evidence/a33_r3_run_card_20261026.json)
-- [Report](knowledge/14_a33_r3_llc_preregistration_and_result_20261026.md)
+- [Report](knowledge/16_a33_r3_llc_preregistration_and_result_20261026.md)
 - [How to submit](docs/how-to-submit.html)
 
 | Field | Value |
@@ -28,7 +28,46 @@
 | SHA-256 (.tif) | `76f9e157d01bb9bec2d98c3c5941b6114e06e0f439272d5f140af6e3584c8825` |
 | Verdict | `negative`. Failed gates: `screen_beats_current_best`, `independent_confirmation`. 0 slots used. |
 
-The previous artifact, A33-R2-CSHT (`…0b78c04d5fad-zeros.tif`, verdict `duplicate`), also stays **OK TO DOWNLOAD / NOT OK TO SUBMIT**. See §4.
+Earlier artifacts from today stay **OK TO DOWNLOAD / NOT OK TO SUBMIT**:
+- G33-DPPS (parallel session; verdict `negative`).
+- A33-R2-HMDT (parallel session; holdout **not measured**, so it is not eligible; see `IR-33-HMDT-UNGATED-01`).
+- A33-R2-CSHT (verdict `duplicate`).
+
+A33-R3-LLC is unique against both parallel-session rasters: 17.98% of its dots lie within 3 px of DPPS and 0.33% within 3 px of HMDT, with ρ ≤ 0.0093 ([lane check](evidence/a33_r3_parallel_lane_check_20261026.json)).
+
+---
+
+## 🟠 Parallel-session decision (2026-10-26, `G33-DPPS`, merged via PR #20): **✅ OK TO DOWNLOAD: YES** · **🛑 OK TO SUBMIT: NO (DO NOT SPEND A WEEKLY SLOT — verdict: negative)**
+
+| Immediate Reader Question | Unmistakable Answer |
+|---|---|
+| **Is there a new, unique TIF?** | **✅ YES.** `gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.tif` — a deterministic **dip-projected persistence-scarp** emission (zero learned weights; zero catalogue/H19-5/B2 pixels in its surface), generated under a SHA-frozen preregistration ([`knowledge/14_preregistered_dpps_hypotheses_20261026.md`](knowledge/14_preregistered_dpps_hypotheses_20261026.md)). It is **not a copy of any previous submission**: surface + final dots pass the duplicate guard vs **25** registry rasters (final max 3-px overlap `44.62% ≤ 70%`, max \|ρ\| `0.0213`; only `24.0%` of its dots within 3 px of GEMSDOE32 B2). |
+| **OK TO DOWNLOAD?** | **✅ YES.** Single-band `float32`, `EPSG:32611`, `3730×3292`, template transform; whole array finite in `[0, 1]` (values `{0.0, 1.0}`, **0 NaN anywhere**, `0.0` outside footprint) — this primary `-zeros.tif` cannot trip the portal error *"Predicted values must be in range [0, 1]"* from NaN handling. `37,654` dots, `0` on-catalogue, strict saved-byte validator `pass = True`, `9/9` leakage canaries (max AUC `0.6875 ≤ 0.90`). Download: **[.tif (808 KB)](docs/downloads/gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.tif)** · **[.zip (164 KB)](docs/downloads/gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.zip)** · [NaN twin](docs/downloads/gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-nan.tif) · [receipt](docs/downloads/receipt-gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235.json) · [run card](evidence/dpps_run_card_20261026.json) · [how to submit](docs/how-to-submit.html) |
+| **OK TO SUBMIT TO DRIVENDATA?** | **🛑 NO — DO NOT SUBMIT.** Automated gates (no human inspector): HOLDOUT-DTI screen `0.095407` vs B1 `0.111285` (Δ `−0.015878 [−0.028932, −0.002121]`, 1/4 folds) and confirmation `0.096015` vs B1 `0.114619` (Δ `−0.018604`, 0/4) — **fails every beat-the-incumbent gate**. The mechanism itself is validated vs its pixel ablation (+`0.0226`/`+0.0231`, 8/8 folds), which is why it is kept as a measured negative result ([`knowledge/15_dpps_results_20261026.md`](knowledge/15_dpps_results_20261026.md)). Unique name `gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros`; note (82/140) `GEMS33 DPPS dip-projected persistence scarp CELF 37654d \| 111ae96bb235 \| gate FAIL`; SHA-256 `449ad2a4a3c746ef960f8e788b01e0b0cedef794a5dab5f22b0ae993b322f62d`. `0` slots spent; no upload made; **no score above 0.2778\* is claimed or projected** (\*owner-reported, not organizer-confirmed). |
+| **So which of the 9 sites' files *should* I submit?** | **None today.** The highest owner-reported historical file is GEMSDOE32 B2 (`0.2778`*) — already submitted and pixel-exactly a pruning of H27-4, so re-uploading it (or GEMSDOE36/GEMSDOE28/GEMSDOE31 family members at `>93%` overlap) is a duplicate that wastes a slot. A33-R2-CSHT below passed holdout but is surface-duplicate-blocked. DPPS is unique but failed holdout. Next: a fresh preregistered lane (1 m trace-stage rebuild or reserve HMDT), not a retune. |
+
+---
+
+## 🟡 Previous Decision (2026-10-26, `A33-R2-CSHT`): **OK TO DOWNLOAD: YES** · **OK TO SUBMIT: NO (DO NOT SPEND A WEEKLY SLOT)**
+
+| Immediate Reader Question | Unmistakable Answer |
+|---|---|
+| **OK TO DOWNLOAD?** | **✅ YES — READY TO DOWNLOAD.** Validated single-band `float32` GeoTIFF & `.zip` matching `sample_submission.tif` (`EPSG:32611`, `3730×3292`, exact `100 m` geotransform), strictly in `[0, 1]` (`{0.0, 1.0}`, `0` NaN across all `12,279,160` cells in `-zeros.tif`; `5,167,373` finite `[0, 1]` footprint cells in `-nan.tif` twin). Placed `final_dots` (`37,654` dots via 300 m submodular `CELF`) pass **21 / 21** registry uniqueness checks (`max |Spearman ρ| = 0.0416 <= 0.90`, `max 3-px dot overlap = 69.34% <= 70%`, and only **`35.86%`** within 3 px of `GEMSDOE32` `B2`). |
+| **OK TO SUBMIT TO DRIVENDATA?** | **🛑 NO — DO NOT SPEND ONE OF THE 3 WEEKLY SLOTS (`verdict: duplicate` / `ok_to_submit: false`).** Even though `A33-R2-CSHT` won **`8 / 8` spatial holdout folds** against incumbent `B1_regional` (`screen HOLDOUT-DTI = 0.136716` vs `0.112418` [`0.113244` recorded], `4/4` folds; orthogonal `confirmation HOLDOUT-DTI = 0.131169` vs `0.115122`, `4/4` folds) and passed **`11 / 12`** automated `promotion.py` gates (`50/50` leakage canaries `<= 0.90`, `21/21` `final_dots` uniqueness, `100%` format audit), its **pre-placement continuous surface peaks** exceeded `70%` 3-px overlap against 2026-10-25 sibling regional-HGB rasters `GEMSDOE30` `MSDB1` (user-reported `0.1462`), `GEMSDOE24` `GVC1` (`0.0859`), and `GEMSDOE25` `H66` (`0.0742`). Cross-lane convergence with `MSDB1` (`0.1462`) confirms this surface family will **not** beat `GEMSDOE32` `B2` (`0.2778`). |
+
+### Direct Download Links (`A33-R2-CSHT`, 2026-10-26)
+- **[Download Primary `[0, 1]` Zero-Outside GeoTIFF (`.tif`, 827 KB)](docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif)** · **[Download Primary `.zip` (169 KB)](docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.zip)**
+- [Download Official-Text `NaN`-Outside Twin (`.tif`, 1.59 MB)](docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-nan.tif) · [Download `NaN`-Twin `.zip` (281 KB)](docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-nan.zip)
+- [Writer & Validator Receipt](docs/downloads/receipt-gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad.json) · [Authoritative Round 2 JSON Run Card](evidence/a33_r2_run_card_20261026.json) · [Submission Instructions Subpage](docs/how-to-submit.html) · [Prior Round 1 (`A33-L1`) Run Card](evidence/a33_l1_run_card.json)
+
+| Artifact Field | Verified Value |
+|---|---|
+| **Unique Submission Name** | `gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros` |
+| **Short Note (`98 / 140` chars)** | `GEMS33 A33-R2-CSHT: cover+hydrothermal transfer + 300m CELF 37654d \| gate DUPLICATE \| 0b78c04d5fad` |
+| **Primary `.tif` SHA-256** | `14ab452c22aaf07444cd02e589fce4627d682e99f44c63e78dc1383955e0c602` |
+| **`NaN`-Twin `.tif` SHA-256** | `c1173e63bec4f2f673074e6951218ac3d269f25994b322e9eff39905b9e64af5` |
+| **Grid & Range Audit** | `1` band `float32`, `EPSG:32611`, `3730 × 3292`, `100 m` spacing, origin `(243350.0, 4508550.0)`, `37,654` positive `{0,1}` dots, `0` catalogue overlap, `pass = True` |
+| **Automated Gate Status** | **`11 / 12` `promotion.py` gates PASS** (`screen` `4/4`, `confirm` `4/4`, `50/50` canaries, `21/21` `final_dots` uniqueness, saved-byte format); **1 gate (`surface_not_duplicate`) BLOCKED** (`ok_to_submit = false`, `0` slots spent) |
 
 ---
 
@@ -45,7 +84,7 @@ All **21** SHA-256-pinned rasters (`12` classic focus-site artifacts + `5` newly
 | **GEMSDOE30** | `gems30-d28-baseline-20261004-91eae1ca-zeros.tif` (`44,090`; `0.2600`*) | `gems30-MSDB1-edge44090-20261025-e7856ec3f14a.tif` (`44,090`; `39.18%`; `0.1462`*) | Classic `91eae1ca` equals `G25` `d2.8` byte-for-byte. `MSDB1` (`0.1462`*) trained a 31-feature OOF `HistGradientBoostingClassifier` on `labels.tif`; its `0.1462`* outcome benchmarks pure catalogue-supervised HGB surfaces and caught our pre-placement surface convergence in `A33-R2-CSHT`. **Not suitable to submit.** |
 | **GEMSDOE31** | `h27-4-r1-solo-d2-8-20261004T195206Z-8acb75e1-zeros.tif` (`40,199`; `0.2708`*) | `H31R-1-relay-damage-research` (unscored; failed holdout gate) | Classic `solo` deleted `3,891` `d_cat == 1` halo pixels from `d2.8` (`0.2600 -> 0.2708`*), leaving `2,545` `1 < d_cat <= 2` halo pixels behind. **Superseded by `G32` `B2`; duplicate-blocked.** |
 | **GEMSDOE32** | **`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif`** (`37,654`; **`0.2778`**\*) | `gems32-sbir1-20261025` (unscored; failed holdout gate) | **9-site reported peak (`0.2778`*).** Equals `G31` `solo` minus `2,545` `1 < d_cat <= 2 px` boundary-halo pixels (`pixel_exact_match = True`). Historical benchmark; cannot be copied or lightly perturbed under non-duplication rules. |
-| **GEMSDOE33** *(This Repo)* | `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-zeros.tif` (`41,865`; `0.2632`*, retired) | `A33-L1` (negative); `A33-R2-CSHT` (HOLDOUT-DTI `0.136716`/`0.131169`, duplicate); **new `A33-R3-LLC`** (HOLDOUT-DTI `0.137868`/`0.131506`, a tie with CSHT, negative) | Best fold-safe surfaces here reach HOLDOUT-DTI ≈ 0.13–0.14. The informational H19-5 reference (not fold-safe) reaches 0.162 on the same split. **No GEMSDOE33 artifact is OK to submit.** The newest unique TIF is OK to download. |
+| **GEMSDOE33** *(This Repo)* | `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-zeros.tif` (`41,865`; `0.2632`*, retired) | `A33-L1` (negative); `A33-R2-CSHT` (HOLDOUT-DTI `0.136716`/`0.131169`, duplicate); `G33-DPPS` (HOLDOUT-DTI `0.095407`/`0.096015`, negative); `A33-R2-HMDT` (holdout not measured); **`A33-R3-LLC`** (HOLDOUT-DTI `0.137868`/`0.131506`, a tie with CSHT, negative) | The best fold-safe surfaces here reach HOLDOUT-DTI ≈ 0.13–0.14. The informational H19-5 reference (not fold-safe) reaches 0.162 on the same split. **No GEMSDOE33 artifact is OK to submit.** The newest unique TIF is OK to download. |
 | **GEMSDOE36** | `gemsdoe36-anderson-dipslip-h33b2-k1200-20261004-9b9ea4e6-zeros.tif` (`38,854`; `0.2750`*) | `gems36-mstd1-mohr-slip-dilation-20261025` (unscored; failed holdout gate) | Classic `Anderson` = exact `G32` `B2` + `1,200` tip dots (`Spearman = 0.9843` vs `B2`), lowering reported score `0.2778 -> 0.2750`*. **Not suitable to submit.** |
 
 *\*All historical DrivenData DTI figures are **USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)**; user-supplied leaderboard figures `0.4413` and `0.3195` are likewise unauthenticated aspirational context (`IR-33-SCORE-01`).*
@@ -61,7 +100,7 @@ All **21** SHA-256-pinned rasters (`12` classic focus-site artifacts + `5` newly
 3. **Can `GEMSDOE33` Beat `0.2778` Right Now?**
    - **Within `GEMSDOE33`'s strict analog-transfer lane (`zero H19-5/B2 pixels`, supervised only on incomplete `labels.tif`):** **No.** Across all 9 focus sites, pixel/window classifiers supervised solely on positive-unlabeled `labels.tif` empirically achieve `0.0742`–`0.2190`* (`G30-MSDB1 = 0.1462`*, `G27-h29 = 0.2190`*) because unlabeled real faults in `labels.tif` act as false negatives during training while broad lithologic/intrusive contacts mimic mapped range fronts.
    - **Tested this session and refuted as sufficient:** combining (i) strike-integrated 1 m scarp line evidence, (ii) the void-safe CSHT transfer and (iii) 300 m CELF allocation (A33-R3-LLC) gave **no** holdout gain over CSHT alone (Δ `+0.0003` screen / `−0.0006` confirm, CIs span 0). The likely reason is that the 300 m kernel already forgives sub-kernel mislocation.
-   - **What remains open:** on the same withheld segments, the fixed H19-5 surface (the B2 family; not fold-safe) beats CSHT by `+0.0242 [+0.0150, +0.0328]` (4/4 folds). The next decisive experiment is a **fold-safe re-derivation of the H19-5 multiline-corroboration recipe**. It would show whether that gap is real signal, and so worth porting into a new lane, or leakage. Details: [`knowledge/14_a33_r3_llc_preregistration_and_result_20261026.md`](knowledge/14_a33_r3_llc_preregistration_and_result_20261026.md).
+   - **What remains open:** on the same withheld segments, the fixed H19-5 surface (the B2 family; not fold-safe) beats CSHT by `+0.0242 [+0.0150, +0.0328]` (4/4 folds). The next decisive experiment is a **fold-safe re-derivation of the H19-5 multiline-corroboration recipe**. It would show whether that gap is real signal, and so worth porting into a new lane, or leakage. Details: [`knowledge/16_a33_r3_llc_preregistration_and_result_20261026.md`](knowledge/16_a33_r3_llc_preregistration_and_result_20261026.md).
 ---
 
 ## 2b. Round 3 (`A33-R3`): preregistered slate and result (2026-10-26)
@@ -140,6 +179,54 @@ GEMS_DATA_DIR=$PWD/.cache/gemsdata .venv/bin/python scripts/restore_data.py --gr
 .venv/bin/python scripts/select_submission.py   # automated OK-TO-SUBMIT decision
 PYTHON=.venv/bin/python bash scripts/run_checks.sh
 ```
+
+---
+
+## Operating Prompt — Embedded for Every Session (2026-10-26)
+
+Source: user request (parallel-run protocol, GEMSDOE24/25/27/28/30/31/32/33/36 focus sites, highest-urgency submission generation). Read this section at start of every session to confirm we are building what is aimed for.
+
+### Core Values
+- Maximize P(Win): decide by evidence, not hope; prefer leakage-audited holdout over projection.
+- Own the Outcome: fix shared bugs once, report them; never keep private forks; make negative results visible.
+
+### Parallel-Run Protocol (must follow)
+1. LANE: stay inside the single method paragraph (for this repo: A33-R2-HMDT / analog-transfer / coherence interaction + 300m CELF).
+2. REUSE, DON'T REBUILD: use cached feature stack, evaluate_holdout.py, submission_writer.py; fix shared tools once.
+3. LABEL EVERY NUMBER: HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (submission-page receipt). Never label a projection as a score.
+4. LEAKAGE CANARY: test each feature alone; AUC > 0.90 means leakage until proven otherwise.
+5. RUN CARD: end with JSON card (hypothesis; mechanism; named non-fault mimic process; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator output; submission name + ≤140 char note; verdict promote / negative).
+6. BUDGET: stop after 3 experiments or 2 hours; do not pick submissions; promotion to real slot is separate selector step.
+
+### Highest-Urgency Requirements
+- MUST generate a UNIQUE TIF submission; do NOT copy a previous submission unless for learning.
+- Must be OBVIOUS whether OK to download and OK to submit (format gates + uniqueness + holdout status clearly labeled).
+- Must pass validation: single-band float32 GeoTIFF, EPSG 32611, 3730×3292, 100 m transform, values inside footprint strictly in [0,1] (no NaN inside footprint for zero-variant; NaN only outside for nan-variant), no NaN inside footprint.
+- Must include easy download (.tif + .zip) with note ≤ 140 chars.
+- Must include executive summary per focus site (GEMSDOE24/25/27/28/30/31/32/33/36) identifying best reported submission and why.
+- Must verify no hallucinations; provide official verified links; work line by line.
+
+### Our Focus Sites — Best Reported Artifacts (USER-REPORTED, NOT ORGANIZER-CONFIRMED — no organizer receipt stored)
+- GEMSDOE24: H25-1 (60,069 dots, 0.2477*); new GVC1 (0.0859*, negative lineament)
+- GEMSDOE25: d2.8 (44,090 dots, 0.2600*); H66 (0.0742*)
+- GEMSDOE27: topo-gap (61,328 dots, 0.2449*); H29 (37,654 dots, 0.2190*) — strongest independent 2026-10-25 upload
+- GEMSDOE28: H36-1 / H27-4 (37,660 / 40,199 dots, 0.2710* / 0.2708*); S18 (0.0217*)
+- GEMSDOE30: 91eae1ca (44,090 dots, 0.2600*); MSDB1 (44,090 dots, 0.1462*)
+- GEMSDOE31: solo d2.8 (40,199 dots, 0.2708*)
+- GEMSDOE32: B2 (37,654 dots, 0.2778*) — 9-site reported peak; exact pixel-algebraic mechanism known (pruning of d=2.8 by halo removal)
+- GEMSDOE33: A33-R2-CSHT (37,654 dots, HOLDOUT-DTI 0.136716/0.131169, format pass, duplicate-blocked by surface convergence with G30 MSDB1); H33d analog (41,865 dots, 0.2632*)
+- GEMSDOE36: Anderson (38,854 dots, 0.2750*); exact B2 + 1,200 tip dots
+
+*All historical DTI figures are USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED); aspirational leaderboard context 0.3195 / 0.4413 unverified; see registry/focus_rasters_20261026.json and evidence files for audit.
+
+### New Candidate Generated This Session
+- Name: gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros / -nan
+- Mechanism: A33-R2-HMDT (magnetite-destruction × clay-cap coherence + 300m CELF)
+- Dots: 42,000; overlap with parents: 0%; Spearman ρ vs registry: ≤ 0.0046
+- Format: PASS; Uniqueness: PASS
+- Holdout: NOT MEASURED (no feature stack restored; derivation from validated parents via interaction)
+- Verdict: negative-on-score-unknown / positive-on-format-and-uniqueness — download OK, submit as experimental only with awareness no holdout improvement over 0.2778 demonstrated.
+- **2026-10-26 A33-R3 correction (`IR-33-HMDT-UNGATED-01`): OK TO SUBMIT = NO.** Holdout was never measured, so this candidate cannot satisfy the standing rule "don't spend a slot on an idea that hasn't beaten the current holdout best". The automated selector also finds no run card for it.
 
 ---
 

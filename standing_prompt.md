@@ -237,6 +237,29 @@ All scores below are **USER/OWNER-REPORTED — NOT ORGANIZER-CONFIRMED** (pinned
 
 ---
 
+## G33-DPPS outcome addendum (2026-10-26, second campaign of the day)
+
+A new preregistered lane **G33-DPPS** (dip-projected persistence scarp; deterministic, zero
+learned weights, zero catalogue geometry in its surface) was frozen in
+`knowledge/14_preregistered_dpps_hypotheses_20261026.md` +
+`evidence/dpps_preregistration_20261026.json` (SHA-256
+`4a177248719adea205ea1d5a46f2c33e07d3179ebbdc387dc4a60b475c4ab2bc`) and run for exactly
+3 experiments (`scripts/run_dpps_campaign.py`). Results (`HOLDOUT-DTI`,
+`gems-segment-pooled-v1`, 60,988 withheld positives): screen 0.095407 vs B1_regional 0.111285
+(Δ −0.015878 [−0.028932, −0.002121], 1/4); confirmation 0.096015 vs 0.114619 (Δ −0.018604, 0/4);
+vs its pixel-scarp CELF ablation +0.022590/+0.023079 (8/8 folds). Canaries 9/9 pass;
+uniqueness vs 25 rasters pass on surface (67.80% max preview 3-px — slim margin, IR-DPPS-01)
+and final dots (44.62% max; 24.0% vs G32 B2); strict whole-array [0,1] format pass (0 NaN).
+**Verdict: negative. OK TO DOWNLOAD: YES (research only). OK TO SUBMIT: NO. Do not retune DPPS
+from these holdouts and do not spend a slot on it, A33-R2-CSHT, or any historical
+already-submitted file.** Full record: `knowledge/15_dpps_results_20261026.md`,
+`evidence/dpps_experiment_20261026.json`, `evidence/dpps_run_card_20261026.json`.
+Artifact: `gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.tif`
+SHA-256 `449ad2a4a3c746ef960f8e788b01e0b0cedef794a5dab5f22b0ae993b322f62d`.
+All historical scores remain OWNER-REPORTED (NOT ORGANIZER-CONFIRMED); 0 slots spent.
+
+---
+
 ## Round 3 Addendum (2026-10-26, `A33-R3-LLC`): read before the next session
 
 **What the 2026-10-26 brief asked for:**
@@ -252,9 +275,9 @@ All scores below are **USER/OWNER-REPORTED — NOT ORGANIZER-CONFIRMED** (pinned
 The full user-reported score list from the brief is in `registry/user_reported_scores_20261026.csv`. The brief's leader values conflict (0.4413 vs 0.3195); both are unverified.
 
 **Outcome:**
-- **Slate:** frozen at git `61e79c6`; see `knowledge/14_a33_r3_llc_preregistration_and_result_20261026.md`.
+- **Slate:** frozen at git `61e79c6`; see `knowledge/16_a33_r3_llc_preregistration_and_result_20261026.md`.
 - **A33-R3-LLC was negative:** it tied CSHT (screen Δ +0.0003 [−0.0080, +0.0083]; confirmation Δ −0.0006 [−0.0090, +0.0075]).
 - **New TIF:** `docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif` is OK TO DOWNLOAD and **NOT OK TO SUBMIT**.
-- **Automated selector:** new `scripts/select_submission.py` makes the OK-TO-SUBMIT decision. It re-checks sha256, format, the zip contents, the note, and the promotion gates from bytes on disk. Today: 0 eligible.
+- **Automated selector:** new `scripts/select_submission.py` makes the OK-TO-SUBMIT decision. It re-checks sha256, format, the zip contents, the note, and the promotion gates from bytes on disk. Today: 0 of 9 eligible.
 - **Open lead (`IR-33-H19-HOLDOUT-GAP-01`):** the H19-5 reference, which is not fold-safe, scores 0.162 on the screen. Next session, start with a fold-safe re-derivation of the H19-5 recipe.
-- **Irregularities flagged:** `IR-33-R3-PREREG-TIMESTAMP-01`, `IR-33-R3-CSHT-REPRO-01`, `IR-33-DUAL-WRITER-01`, `IR-33-LEDGER-STALE-01`.
+- **Irregularities flagged:** `IR-33-HMDT-UNGATED-01` (HMDT has no holdout, so it is NOT OK to submit), `IR-33-R3-PREREG-TIMESTAMP-01`, `IR-33-R3-CSHT-REPRO-01`, `IR-33-DUAL-WRITER-01`, `IR-33-LEDGER-STALE-01`.

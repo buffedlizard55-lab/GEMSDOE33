@@ -60,6 +60,8 @@ def _confirm_dti(card: dict):
 def check_card(path: Path) -> dict:
     card = json.loads(path.read_text())
     sub = card.get("submission") or {}
+    if not sub.get("file"):  # flat run-card schema (e.g. DPPS): file/zip/note at top level
+        sub = {**{k: card.get(k) for k in ("file", "zip", "note")}, "name": card.get("submission_name"), **sub}
     row = {"run_card": str(path.relative_to(ROOT)), "campaign": card.get("campaign"),
            "verdict": card.get("verdict"), "submission_name": sub.get("name"),
            "file": sub.get("file"), "checks": {}}

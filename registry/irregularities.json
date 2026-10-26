@@ -347,6 +347,14 @@
       "finding": "In the R3 screen, the fixed external H19-5 surface (not fold-safe, informational) scored HOLDOUT-DTI 0.162036 [0.1516, 0.1725], against 0.137555 for the fold-safe CSHT. Because H19-5 was built with the full catalogue visible, some of the +0.024 gap may be leakage; the rest may be a real feature advantage. The public leaderboard ordering (B2 family 0.2778* vs CSHT-like MSDB1 0.1462*) points the same way.",
       "evidence": "evidence/a33_r3_run_card_20261026.json holdout_dti.screen.H19_5_reference_not_fold_safe",
       "consequence": "The next most informative experiment is a fold-safe re-derivation of the H19-5 multiline-corroboration recipe, which separates leakage from real signal."
+    },
+    {
+      "id": "IR-33-HMDT-UNGATED-01",
+      "severity": "high",
+      "status": "flagged; corrected in README",
+      "finding": "PR #19 (parallel session) added gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.tif (42,000 dots). The embedded README section says 'Holdout: NOT MEASURED' but also 'submit as experimental only'. This conflicts with the standing rule not to spend a slot on an idea that has not beaten the current holdout best. The candidate has no run card or promotion assessment.",
+      "evidence": "README.md 'New Candidate Generated This Session'; evidence/hmdt_format_check_20261026.json; docs/data/submission_selection.json (no HMDT run card, so it is not eligible)",
+      "consequence": "Set to OK TO SUBMIT = NO. A33-R3-LLC lane check vs HMDT: 0.33% of dots within 3 px, rho 0.0029 (evidence/a33_r3_parallel_lane_check_20261026.json)."
     }
   ],
   "last_review": "2026-10-26 A33-R3 session"
