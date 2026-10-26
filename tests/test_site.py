@@ -49,3 +49,15 @@ def test_research_page_exposes_failed_gate_duplicate_guard_and_run_card():
     assert "60,988" in page
     assert "pre-placement edge surface was not screened" in page
     assert "H33-6 is not eligible for a slot" in page
+    assert "gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-zeros.tif" in page
+    assert "0 / 22 duplicate triggers" in page
+
+
+def test_results_page_exposes_focus_sites_forensic_proof_and_round3_holdout():
+    page = build_site.build_results()
+    assert "GEMSDOE32" in page
+    assert "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif" in page
+    assert "0.2778" in page
+    assert "37,654" in page
+    assert "GEMSDOE33-HIDE-AND-RECOVER-v1.0" in page
+    assert "0.075943" in page
