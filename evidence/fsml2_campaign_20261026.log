@@ -1,0 +1,31 @@
+[22:18:43] [1] leakage canaries
+[22:18:46]     thermal_density pooled 0.5234 maxfold 0.5439
+[22:18:48]     fsml2_worm pooled 0.5003 maxfold 0.5022
+[22:18:48]     r3_l_line pooled 0.5074 maxfold 0.5106
+[22:18:48] [2] full-footprint FSML2 surfaces + surface uniqueness
+[22:21:54]     V1_cc6: passed=True worst3px=0.6544 (G30-MSDB1-e7856ec3f14a) max|rho|=0.0987
+[22:22:12]     V2_cc4: passed=False worst3px=0.8185 (G33-a33-r2-csht-0b78c04d5fad) max|rho|=0.1084
+[22:22:12] [3] Exp 1/3 screen; survivors=['V1_cc6']
+[22:24:42]     fold NW done
+[22:27:39]     fold NE_LidarGapHeavy done
+[22:30:24]     fold SW done
+[22:32:59]     fold SE done
+[22:33:41]     SCREEN matched_random: HOLDOUT-DTI 0.073931 CI [0.07100516669118823, 0.0768572935961884]
+[22:33:41]     SCREEN B1_regional: HOLDOUT-DTI 0.111415 CI [0.10064761787044092, 0.12238915206396687]
+[22:33:41]     SCREEN H19_5_reference_not_fold_safe: HOLDOUT-DTI 0.162036 CI [0.15162279648820517, 0.17252691174111592]
+[22:33:41]     SCREEN A33_R2_CSHT@37654: HOLDOUT-DTI 0.135672 CI [0.12407241086384553, 0.1476974084444398]
+[22:33:41]     SCREEN A33_R2_CSHT@25000: HOLDOUT-DTI 0.108873 CI [0.09830657506036372, 0.12015451200647538]
+[22:33:41]     SCREEN V1_cc6@37654: HOLDOUT-DTI 0.110427 CI [0.10085317675223376, 0.12029034805134194]
+[22:33:41]     SCREEN V1_cc6@25000: HOLDOUT-DTI 0.080224 CI [0.06948071835799695, 0.09128899200928296]
+[22:34:16]     selected V1_cc6 budget 37654: ΔvsCSHT -0.025246 CI [-0.03550728085359678, -0.015058898078036509] wins 0/4
+[22:34:16] [4] Exp 2/3 confirmation
+[22:36:38]     fold N_wedge done
+[22:39:02]     fold E_wedge done
+[22:41:58]     fold S_wedge done
+[22:44:33]     fold W_wedge done
+[22:44:50]     CONFIRM B1_regional: HOLDOUT-DTI 0.113576 CI [0.10290226380256826, 0.1244010113480553]
+[22:44:50]     CONFIRM A33_R2_CSHT@37654: HOLDOUT-DTI 0.132066 CI [0.12006446417844895, 0.1440251168125529]
+[22:44:50]     CONFIRM V1_cc6@37654: HOLDOUT-DTI 0.103077 CI [0.09414410051422992, 0.11294135549935058]
+[22:45:13] [5] placement, uniqueness, writer, audit
+[22:45:39] DONE verdict=negative sha=be5013aad085c23a9317959f85c7d494e28eac5875f61addce8ec81b5bb51de3 elapsed=1643.86s
+EXIT=0

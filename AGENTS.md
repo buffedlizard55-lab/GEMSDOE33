@@ -46,3 +46,12 @@
     folds, but it **failed vs B1_regional on both splits** (screen HOLDOUT-DTI 0.095407 vs
     0.111285; confirmation 0.096015 vs 0.114619). It is **NOT OK TO SUBMIT**; do not retune it.
     No file in this repo is currently slot-approved.
+
+12. **FSML / FSML2-CC outcome (2026-10-26):** read `knowledge/22_b2_forensics_and_fsml_slate_20261026.md`
+    and `knowledge/23_fsml_results_20261026.md`. FSML-PU (fold-safe H19-5-style PU re-derivation)
+    was a surface **duplicate** of A33-R2-CSHT (87.51% within 3 px) — supervised rankings on this
+    stack converge; do not rebuild another catalogue-supervised blend expecting uniqueness.
+    FSML2-CC is unique (final max 3-px 40.68%) and format-valid but **negative** vs CSHT on both
+    splits (Δ −0.0252/−0.0290, 0/4+0/4); uniform 25k budget descent was also rejected for both
+    surfaces. Do not retune either. All nine focus sites' best files are one H19-5 emission family;
+    GEMSDOE36's file contains B2's dots exactly. No file is slot-approved (selector 0/13).

@@ -1,0 +1,8 @@
+[22:09:43] [1] leakage canaries
+[22:09:45]     thermal_density pooled 0.5234 maxfold 0.5439
+[22:09:51]     fsml_geo_tip_lobe fold AUCs [0.5029, 0.505, 0.5012, 0.501]
+[22:09:51]     fsml_thermal_orphan fold AUCs [0.5299, 0.5398, 0.4897, 0.5169]
+[22:09:51] [2] full-footprint FSML surfaces + surface uniqueness
+[22:12:51]     V1_gate: passed=False worst3px=0.8751 (G33-a33-r2-csht-0b78c04d5fad) max|rho|=0.1043
+[22:13:09]     V2_nogate: passed=False worst3px=0.8751 (G33-a33-r2-csht-0b78c04d5fad) max|rho|=0.1042
+All variants duplicate at surface guard; stopping.

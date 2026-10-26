@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-26T21:46:24+00:00",
+  "generated_utc": "2026-10-26T22:53:04+00:00",
   "selector": "scripts/select_submission.py (automated, fail-closed)",
   "ok_to_submit": false,
   "decision": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
@@ -145,6 +145,30 @@
       },
       "note": "H33-6 edge-normal research artifact; holdout gate failed; not approved for competition upload. id 6c888d2ce0f7",
       "sha256": null,
+      "confirm_holdout_dti": null,
+      "eligible": false
+    },
+    {
+      "run_card": "evidence/fsml2_run_card_20261026.json",
+      "campaign": "FSML2-CC",
+      "verdict": "negative",
+      "submission_name": "gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros",
+      "file": "gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.tif",
+      "checks": {
+        "verdict_promote": false,
+        "promotion_gates_all_pass": false,
+        "file_exists": true,
+        "sha256_matches_run_card": true,
+        "format_audit_pass_on_saved_bytes": true,
+        "all_cells_finite_and_in_0_1": true,
+        "zip_single_geotiff_same_bytes": true,
+        "note_1_to_140_chars": true
+      },
+      "format_audit_failures": [
+        "outside_has_nan"
+      ],
+      "note": "GEMS33 FSML2-CC V1_cc6 spyPU+worm+line CELF 37654d | NEGATIVE | 6fd4410bbaee",
+      "sha256": "be5013aad085c23a9317959f85c7d494e28eac5875f61addce8ec81b5bb51de3",
       "confirm_holdout_dti": null,
       "eligible": false
     },

@@ -1,24 +1,32 @@
 # GEMSDOE33 — DOE GEMS Fault Discovery Project (DrivenData #306)
 
 > **Read first, every session:** [`standing_prompt.md`](standing_prompt.md) (the full standing brief with dated addenda) and [`AGENTS.md`](AGENTS.md).
-> **Latest repository-wide review:** [`knowledge/21_post_merge_review_20261026.md`](knowledge/21_post_merge_review_20261026.md) (restoration, selector compatibility, S33-SEISDIL negative holdout, and three-pass verification). The S33 TIFF is the newest unique download, **NOT OK TO SUBMIT**. Owner-mirror data/cache remain local and git-ignored; SHA pins do not authenticate organizer provenance.
+> **Latest work:** [`knowledge/22_b2_forensics_and_fsml_slate_20261026.md`](knowledge/22_b2_forensics_and_fsml_slate_20261026.md) (why B2 0.2778\* won — one emission family, byte-verified) + [`knowledge/23_fsml_results_20261026.md`](knowledge/23_fsml_results_20261026.md) (FSML duplicate; FSML2-CC unique-but-negative). FSML2-CC TIFF is the newest unique download, **NOT OK TO SUBMIT**. Owner-mirror data/cache remain local and git-ignored; SHA pins do not authenticate organizer provenance.
 > **Core values:** Maximize P(Win) · Own the Outcome.
 > **Labels:** every number is HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED. Leaderboard figures marked \* are USER/OWNER-REPORTED.
 
-## 🔴 Current decision (2026-10-26, after S33-SEISDIL): **NO raster is OK TO SUBMIT** · latest unique TIF is **OK TO DOWNLOAD for research only**
+## 🔴 Current decision (2026-10-26, after FSML2-CC): **NO raster is OK TO SUBMIT** · newest unique TIF is **OK TO DOWNLOAD for research only**
 
 | Question | Answer (decided by code: [`scripts/select_submission.py`](scripts/select_submission.py) → [`docs/data/submission_selection.json`](docs/data/submission_selection.json)) |
 |---|---|
-| **OK TO DOWNLOAD?** | **✅ YES, research only.** Latest unique file: [`gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif`](docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif). It is unique against 22 registry rasters (surface max `|ρ|=0.0934`, 3-px overlap `58.11%`; final dots max `|ρ|=0.0307`, overlap `42.92%`) and passes the saved-byte local format validator: single-band `float32`, `EPSG:32611`, `3730×3292`, all cells finite/in `[0,1]`, exact template transform. Its zero-outside encoding is a local range check only; this does not resolve the reported portal error or establish portal acceptance. |
-| **OK TO SUBMIT?** | **🛑 NO — do not spend a slot.** S33-SEISDIL failed both independent holdout comparisons. HOLDOUT-DTI (`gems-segment-pooled-v1`, `60,988` withheld positives): screen `0.114154` vs B1 `0.124612`, paired Δ `−0.010458` (95% CI `[−0.016294, −0.004865]`, `0/4` folds); confirmation `0.117619` vs `0.129488`, paired Δ `−0.011869` (95% CI `[−0.017655, −0.006164]`, `0/4`). Standalone candidate-DTI CIs are absent from this card; these are paired-delta CIs, not leaderboard estimates. The selector rechecked 12 run cards and found **0 eligible**. |
-| **Highest reported historical focus-site score (not a new submission recommendation)** | **GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` (0.2778\*, user/owner-reported)**. Nothing in this repository has been shown to beat it, and it is prior art—not eligible for re-submission. See §1–§2. |
+| **OK TO DOWNLOAD?** | **✅ YES, research only.** Newest unique file: [`gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.tif`](docs/downloads/gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.tif) — generated this session, **not a copy of any previous submission**: unique vs 22 registry rasters (surface worst 3-px overlap `65.44% ≤ 70%`; final dots max `|ρ|=0.0191`, overlap `40.68%`). Saved-byte audit: single-band `float32`, `EPSG:32611`, `3730×3292`, template transform, whole array finite with values exactly `{0,1}` — its values cannot themselves violate a `[0,1]` range check (portal acceptance still unverified; NaN twin included). |
+| **OK TO SUBMIT?** | **🛑 NO — do not spend a slot.** FSML2-CC failed both holdout comparisons vs in-run CSHT. HOLDOUT-DTI (`gems-segment-pooled-v1`, `60,988` withheld positives): screen `0.110427 [0.1009, 0.1203]` vs CSHT `0.135672`, paired Δ `−0.025246 [−0.0355, −0.0151]`, `0/4` folds; confirmation `0.103077 [0.0941, 0.1129]` vs `0.132066`, Δ `−0.028989 [−0.0410, −0.0174]`, `0/4`. These are catalogue-proxy numbers, **not leaderboard estimates** — no numeric public score is estimable (the proxy anti-ranks the public B2 ladder; [`knowledge/22`](knowledge/22_b2_forensics_and_fsml_slate_20261026.md) §3). Selector: **0 eligible of 13** run cards. |
+| **Why did GEMSDOE32 B2 get 0.2778\* — and can we beat it?** | Byte-verified this session ([`knowledge/22`](knowledge/22_b2_forensics_and_fsml_slate_20261026.md)): **all nine focus sites' best files are one emission family** — thinnings/prunings of the 121,131-px H19-5 binary mask (0.1922\* → 60,069 dots 0.2477\* → 44,090 0.2600\* → −flank≤1px 40,199 0.2708\* → −flank≤2px **37,654 = B2 0.2778\***; GEMSDOE36's 0.2750\* file contains B2's dots exactly +1,200). Mechanism: kernel-saturation + catalogue-flank FP-mass deletion under α=0.2/β=0.8 DTI. The fold-safe re-derivation of the H19-5 recipe (FSML/FSML2) ran this session and did **not** reproduce its advantage — **nothing measured here beats 0.2778\***, and B2-family dots are prior art that must not be copied or re-submitted. |
 
-**Latest unique artifact — S33-SEISDIL (research only, NOT OK TO SUBMIT):**
+**Newest unique artifact — FSML2-CC (research only, NOT OK TO SUBMIT):**
+- **[Download the [0,1] GeoTIFF](docs/downloads/gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.tif)** · [single-TIFF ZIP](docs/downloads/gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.zip) · [NaN twin](docs/downloads/gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-nan.tif) · [run card](evidence/fsml2_run_card_20261026.json) · [forensics + slate](knowledge/22_b2_forensics_and_fsml_slate_20261026.md) · [results](knowledge/23_fsml_results_20261026.md)
+- Name: `gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros`
+- Note (77/140): `GEMS33 FSML2-CC V1_cc6 spyPU+worm+line CELF 37654d | NEGATIVE | 6fd4410bbaee`
+- SHA-256: `be5013aad085c23a9317959f85c7d494e28eac5875f61addce8ec81b5bb51de3`
+- Predecessor FSML-PU (same session): verdict `duplicate` at the surface guard (87.51% vs CSHT), 0 experiments, no TIF — see [`knowledge/23`](knowledge/23_fsml_results_20261026.md) §1.
+- Verdict: **unique and format-valid, but negative holdout; download for research only, do not submit**. No organizer score is estimated or claimed.
+
+**Previous unique artifact — S33-SEISDIL (research only, NOT OK TO SUBMIT):**
 - **[Download the [0,1] GeoTIFF](docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif)** · [single-TIFF ZIP](docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.zip) · [run card](evidence/s33_seisdil_run_card_20261026.json)
 - Name: `gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros`
 - Note (80/140): `GEMS33 S33-SEISDIL strain-seismicity gate 37654d | gate NEGATIVE | 3463540a7e02`
 - SHA-256: `5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96`
-- Verdict: **unique and format-valid, but negative holdout; download for research only, do not submit**. No organizer score is estimated or claimed.
+- HOLDOUT-DTI screen `0.114154` vs B1 `0.124612` (Δ `−0.010458`, `0/4`); confirmation `0.117619` vs `0.129488` (Δ `−0.011869`, `0/4`). Verdict: **unique and format-valid, but negative holdout; do not submit**.
 
 **Previous download (A33-R3-LLC, research only):**
 - **[Primary GeoTIFF, zeros outside (827 KB)](docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif)**

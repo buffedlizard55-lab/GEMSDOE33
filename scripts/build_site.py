@@ -226,6 +226,43 @@ A33-R3-LLC multiplies the fold-trained CSHT prior by a label-free score for stri
 </div>"""
 
 
+def fsml2_hero() -> str:
+    """Newest unique research artifact banner (FSML2-CC), built from its run card."""
+    card = read_json(ROOT / "evidence" / "fsml2_run_card_20261026.json")
+    if not card:
+        return ""
+    sub = card["submission"]
+    sel = card["selected_variant"]
+    bud = card["selected_budget"]
+    sk = f"{sel}@{bud}"
+    ck = f"A33_R2_CSHT@{bud}"
+    hs, hc = card["holdout_dti"]["screen"], card["holdout_dti"]["confirmation"]
+    ps, pc = hs["paired_vs_csht_matched_budget"], hc["paired_vs_csht_matched_budget"]
+    u = card["correlation_overlap_vs_registry"]
+    surf = u["surface_checks_all_variants"][sel]
+    return f"""<div class="hero-download" id="fsml2-cc">
+<h2>NEW UNIQUE TIF (2026-10-26, FSML2-CC) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
+<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap {100*surf['max_preview_fraction_within_3px']:.1f}% ≤ 70%; final dots {100*u['final_dots_max_3px_overlap']:.1f}%, max |ρ| {u['final_dots_max_abs_spearman']:.3f} — NOT a copy of any previous submission</span>
+<span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1] (values exactly {{0,1}})</span>
+<span class="badge bad">HOLDOUT GATE FAILED vs CSHT (0/4 + 0/4 folds) — DO NOT SPEND A SLOT</span></p>
+<p><b>What it is:</b> corroboration-count fusion — 4 fold-safe spy-PU physics experts + 2 label-free lines
+(multiscale geopotential worms; strike-integrated LiDAR scarp lines); a pixel ranks by how many independent
+lines place it in their top decile. CELF-300 m dotted emission, {bud:,} dots, 0 on catalogue. It is the fold-safe
+re-derivation of the H19-5 multi-line idea that produced the 0.2778* B2 family (<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/22_b2_forensics_and_fsml_slate_20261026.md">forensics + slate</a>).</p>
+<div class="scroll"><table><thead><tr><th>File to download</th><th>HOLDOUT-DTI (gems-segment-pooled-v1, 60,988 withheld positives) — NOT a leaderboard estimate</th><th>Unique vs all 9 focus sites' registry?</th><th>OK to submit?</th></tr></thead><tbody>
+<tr><td><code>{sub['file']}</code></td><td>screen {hs[sk]['dti']:.4f} [{hs[sk]['ci95'][0]:.4f}, {hs[sk]['ci95'][1]:.4f}] vs CSHT {hs[ck]['dti']:.4f} (paired Δ {ps['paired_delta_dti']:+.4f} [{ps['paired_delta_ci95'][0]:+.4f}, {ps['paired_delta_ci95'][1]:+.4f}], {ps['fold_wins']}/4); confirmation {hc[sk]['dti']:.4f} vs {hc[ck]['dti']:.4f} (Δ {pc['paired_delta_dti']:+.4f} [{pc['paired_delta_ci95'][0]:+.4f}, {pc['paired_delta_ci95'][1]:+.4f}], {pc['fold_wins']}/4). <b>Public score: not estimable</b> — the catalogue proxy anti-ranks the public B2 ladder on the emission axis (measured), so no numeric projection is defensible.</td><td><b>YES</b> — passes surface + final-dot guards vs all 22 registry rasters (B2-family included)</td><td><b>NO</b> — holdout gate failed; research only</td></tr>
+</tbody></table></div>
+<p><a class="btn" href="downloads/{sub['file']}">⬇ Download unique FSML2-CC GeoTIFF (research only)</a> <a class="btn alt" href="downloads/{sub['zip']}">Single-TIFF .zip</a> <a class="btn alt" href="downloads/{sub['nan_twin']}">NaN-outside twin</a> <a class="btn alt" href="data/fsml2_run_card_20261026.json">Run card JSON</a></p>
+<table><tbody>
+<tr><th>Unique submission name</th><td><code>{sub['name']}</code></td></tr>
+<tr><th>Note (≤140 characters)</th><td><code>{esc(sub['note'])}</code> ({sub['note_characters']}/140)</td></tr>
+<tr><th>SHA-256 (.tif)</th><td><code>{card['raster_sha256']}</code></td></tr>
+<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Failed gates: screen/confirmation beat-CSHT, CI, fold wins. Automated selector: 0 eligible of 13 run cards. Slots spent: 0.</td></tr>
+</tbody></table>
+<p class="small"><b>Range-error note:</b> every cell of this <code>-zeros.tif</code> is finite and in [0,1] (re-opened and checked byte-wise), so its values cannot themselves violate a [0,1] range check. Portal acceptance and the cause of the previously reported range error remain unverified; the <code>-nan.tif</code> twin follows the recorded null/NaN-outside wording. Do not upload this negative artifact either way.</p>
+</div>"""
+
+
 def s33_seisdil_hero() -> str:
     """Build the latest negative research-artifact banner from its retained run card."""
     card = read_json(ROOT / "evidence" / "s33_seisdil_run_card_20261026.json")
@@ -332,14 +369,15 @@ def submission_steps() -> str:
 
 
 def build_index() -> str:
-    body = f"""{s33_seisdil_hero()}
+    body = f"""{fsml2_hero()}
+{s33_seisdil_hero()}
 {a33_r3_llc_hero()}
 {dpps_hero()}
 {a33_r3_lchc_hero()}
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 <h2>Current decision (2026-10-26)</h2>
-<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The newest unique research TIFF, S33-SEISDIL, is downloadable for research only and is NOT OK TO SUBMIT because both buffered hide-and-recover comparisons lost to the matched B1 baseline. The automated selector rechecked 12 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
+<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The newest unique research TIFF, FSML2-CC (top banner), is downloadable for research only and is NOT OK TO SUBMIT because both buffered hide-and-recover comparisons lost to the matched CSHT baseline (Δ −0.0252 / −0.0290, 0/4 folds each). The automated selector rechecked 13 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
 <p><b>Best reported focus-site artifact:</b> GEMSDOE32 B2, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with <b>0.2778 USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)</b>. Raster forensics reproduced it as deletion-only pruning of GEMSDOE28 H27-4; it is prior art and must not be copied or lightly altered. S33-SEISDIL and prior novel lanes have not demonstrated a basis to predict a competition score above it; do not project holdout DTI to the leaderboard. See the <a href="executive-summary.html">nine-site executive summary</a> and <a href="results.html">score provenance</a>.</p>
 <h2>What can be concluded about the cited scores?</h2>
 <p>Historical values in owner pages and the prompt are not organizer-confirmed without a submission receipt linked to the exact file. The prompt's current-leader values 0.3195 and 0.4413 conflict and are unverified here. The GEMSDOE28 owner page was recorded as labeling H27-4 unscored/research-only, so the premise that this raster earned 0.2708 is unresolved. These reports motivate forensic research; they are not independent validation or a score forecast.</p>
@@ -350,7 +388,7 @@ def build_index() -> str:
 <h2>Our operating values</h2>
 <div class="grid-2"><div class="panel accent"><h3>Maximize P(Win)</h3><p>Prefer evidence that predicts useful hidden-fault detection, not a download or a hopeful score projection. No slot until a fresh, leakage-audited holdout improves over a matched baseline.</p></div><div class="panel accent"><h3>Own the Outcome</h3><p>Make failures visible, preserve provenance, correct misleading pages, and distinguish local format validation from scientific validity and organizer acceptance.</p></div></div>
 <h2>Use artifacts safely</h2>
-<p>The newest S33-SEISDIL TIFF is downloadable for research only and <b>must not be uploaded</b> because its holdout gate was negative. A33-R3-LLC and the other historical TIFFs are also research records or prior-site submissions, not approved new submissions. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
+<p>The newest FSML2-CC TIFF is downloadable for research only and <b>must not be uploaded</b> because its holdout gate was negative. A33-R3-LLC and the other historical TIFFs are also research records or prior-site submissions, not approved new submissions. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
 """
     return page("GEMSDOE33 · Evidence-led fault discovery", body, "index.html")
 
@@ -378,17 +416,18 @@ def build_exec() -> str:
             ("GEMSDOE33", "h33d-analog-tip-stepover-r30-20261004-cb490425926e", "0.2632",
              "Owner-reported; local research artifact, no organizer receipt in this repo"),
             ("GEMSDOE36", "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros", "0.2750",
-             "Owner-reported; filename references a PINN but no geothermal-discovery mechanism is established by local evidence"),
+             "Owner-reported; MEASURED 2026-10-26: contains all 37,654 GEMSDOE32 B2 dots exactly + 1,200 extra dots (knowledge/22) — same emission family, not an independent surface"),
         )
     )
-    body = f"""{s33_seisdil_hero()}
+    body = f"""{fsml2_hero()}
+{s33_seisdil_hero()}
 {a33_r3_llc_hero()}
 {dpps_hero(include_b2_score=True)}
 {a33_r3_lchc_hero()}
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 <h2>Executive summary — per-site best submissions and how to submit</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (S33-SEISDIL, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. It failed the preregistered holdout gate. Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
+<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (FSML2-CC, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. It failed the preregistered holdout gate. Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
 
 <h3>Exactly how a submission is made (when a future candidate passes every gate)</h3>
 <ol>
@@ -412,7 +451,7 @@ def build_exec() -> str:
 
 <h3>Why did GEMSDOE32 B2 score 0.2778 — and can we beat it?</h3>
 <p>We reproduced B2 pixel-exactly from the GEMSDOE28 H27-4 owner raster: it deletes 2,545 dots within 2 px of the catalogue and adds nothing (40,199 → 37,654 dots; Spearman ρ = 0.9676 vs H27-4; 100% of B2 dots within 3 px of H27-4 dots). Under the competition DTI (α=0.2 per false positive, β=0.8 per missed truth, 300 m kernel), every isolated prediction dot costs roughly 1 unit of weighted false-positive mass unless it lies within 300 m of a truth pixel, while dense clusters of dots share the same truth credit. Removing low-credit, catalogue-adjacent dots can therefore raise DTI even though no new fault is found: the most plausible mechanism is FP-mass reduction, not discovery. That is an inference from audited bytes, not proof, and no organizer receipt ties 0.2778 to B2's exact bytes.</p>
-<p>Can we beat it? Not demonstrated here. Every fold-safe surface in this repository reaches HOLDOUT-DTI 0.13&ndash;0.14. The newest, A33-R3-LLC, tied CSHT: &Delta; +0.0003 on the screen and &minus;0.0006 on confirmation, with both CIs spanning 0. The fixed H19-5 surface that B2 descends from is not fold-safe, and on the same withheld segments it reaches 0.162. That gap of +0.0242 [+0.0150, +0.0328] (4/4 folds) is either real signal or leakage. A fold-safe re-derivation of the H19-5 recipe is the experiment that would decide which. An older candidate, G33-HA (tilt &asymp; 0 &times; gravity edge &times; LiDAR coherence), failed the catalogue-proxy holdout (confirmation &Delta;DTI &minus;0.0907, 0/4 folds; CI [&minus;0.1210, &minus;0.0594]). No score above 0.2778, or above any leaderboard value, is projected or claimed. The two leader values in the brief (0.3195 and 0.4413) conflict and are unverified in this checkout. Under the DrivenData Terms of Use, this workspace does not scrape or refresh the leaderboard.</p>
+<p>Can we beat it? Not demonstrated here. Every fold-safe surface in this repository reaches HOLDOUT-DTI 0.13&ndash;0.14. The newest, A33-R3-LLC, tied CSHT: &Delta; +0.0003 on the screen and &minus;0.0006 on confirmation, with both CIs spanning 0. The fixed H19-5 surface that B2 descends from is not fold-safe, and on the same withheld segments it reaches 0.162. That gap of +0.0242 [+0.0150, +0.0328] (4/4 folds) is either real signal or leakage. That experiment has now run (FSML/FSML2-CC, 2026-10-26): the fold-safe re-derivation with the cached channel stack did <b>not</b> reproduce the gap — the plain PU blend duplicated CSHT at the surface guard (87.5% 3-px overlap), and the unique corroboration-count variant scored HOLDOUT-DTI 0.1104/0.1031 vs CSHT 0.1357/0.1321. So H19-5’s advantage either uses information outside the cached stack (1 m DEM tiles, full-catalogue geometry) or is not fold-safe; it is not reproducible as a unique fold-safe lane here. The full public ladder (121,131-px mask 0.1922* → thinned 0.2477* → 0.2600* → flank-pruned 0.2708* → B2 0.2778*) is byte-verified in knowledge/22: every step is emission pruning of one mask, and uniform budget cuts were separately rejected on holdout (25,000 dots scored worse for both FSML2 and CSHT). An older candidate, G33-HA (tilt &asymp; 0 &times; gravity edge &times; LiDAR coherence), failed the catalogue-proxy holdout (confirmation &Delta;DTI &minus;0.0907, 0/4 folds; CI [&minus;0.1210, &minus;0.0594]). No score above 0.2778, or above any leaderboard value, is projected or claimed. The two leader values in the brief (0.3195 and 0.4413) conflict and are unverified in this checkout. Under the DrivenData Terms of Use, this workspace does not scrape or refresh the leaderboard.</p>
 
 <h3>Older H-N1 research GeoTIFF (archived; do not upload)</h3>
 <p><b>This is not the newest artifact and is not cleared for the competition.</b> Its catalogue-proxy holdout failed (confirmation ΔDTI −0.0907, 0/4 folds). The historical uniqueness audit covered only the then-pinned 12-raster registry; it is not a current uniqueness certificate.</p>
