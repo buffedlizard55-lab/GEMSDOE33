@@ -13,9 +13,10 @@ def test_overview_marks_latest_unique_tif_research_only_and_not_uploadable():
     assert "0.3195 and 0.4413 conflict" in page
     assert "no score is projected" in page.lower()
     assert "A33-R3-LLC" in page
-    assert "Current checkout limitation" in page
-    assert "cached feature stack are absent" in page
-    assert "knowledge/19_repository_review_20261026.md" in page
+    assert "Data/provenance status" in page
+    assert "17 SHA-256-pinned owner-mirror inputs" in page
+    assert "121 cached feature channels" in page
+    assert "no single new method lane was designated" in page
 
 
 def test_executive_summary_explains_process_and_blocks_failed_candidate():
@@ -84,12 +85,15 @@ def test_source_page_does_not_claim_restored_owner_mirrors_are_absent():
     assert "do not authenticate organizer provenance" in page
 
 
-def test_latest_review_discloses_current_checkout_missing_inputs():
+def test_latest_review_discloses_restored_git_ignored_inputs_and_lane_block():
     page = build_site.build_focus_review()
     assert "Current-checkout verification" in page
-    assert "cached feature stack are git-ignored and are absent" in page
-    assert "No new candidate was evaluated, and no new TIFF or submission slot was created" in page
-    assert "knowledge/19_repository_review_20261026.md" in page
+    assert "17 owner-mirror inputs were restored and pin-audited" in page
+    assert "shared 121-channel cache was rebuilt" in page
+    assert "not included in the published site" in page
+    assert "does not designate a single method lane" in page
+    assert "knowledge/20_repository_review_20261026.md" in page
+    assert "No new candidate was evaluated and no new TIFF or submission slot was created" in page
 
 
 def test_portal_range_error_is_not_claimed_fixed_by_zero_outside():

@@ -1,7 +1,7 @@
 # GEMSDOE33 — DOE GEMS Fault Discovery Project (DrivenData #306)
 
 > **Read first, every session:** [`standing_prompt.md`](standing_prompt.md) (the full standing brief with dated addenda) and [`AGENTS.md`](AGENTS.md).
-> **Latest repository-wide review:** [`knowledge/19_repository_review_20261026.md`](knowledge/19_repository_review_20261026.md) (current-checkout audit, evidence limits, verification passes, and next steps). The restored input rasters and cached stack are not present in this checkout; restore them before attempting another holdout run.
+> **Latest repository-wide review:** [`knowledge/20_repository_review_20261026.md`](knowledge/20_repository_review_20261026.md) (three-pass audit, verified owner-mirror restore, rebuilt 121-channel cache, automated tests, selector result, limits, and next steps). Inputs/cache are present locally but git-ignored; hashes verify mirror equality, not organizer provenance. The current lane is still unassigned, so no new candidate or TIFF was generated.
 > **Core values:** Maximize P(Win) · Own the Outcome.
 > **Labels:** every number is HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED. Leaderboard figures marked \* are USER/OWNER-REPORTED.
 
