@@ -188,6 +188,50 @@
       "artifact_manifest": "docs/downloads/research/h33-f-analog-transfer-manifest.json",
       "result_review": "knowledge/07_analog_transfer.md",
       "evidence": "evidence/holdout_analog.json"
+    },
+    {
+      "id": "H33-R3-1",
+      "title": "Domain-Invariant Multi-Physics Crest Co-Training with Analog Importance Weighting and B=2 Visible-Collar Poisson Emission",
+      "status": "ROUND3_EVALUATED_NEGATIVE_VERDICT; unique GeoTIFF validated (0/22 registry duplicates); beats fold-safe physical baseline (+0.026455) and H33-F (+0.052053), below fixed-H19-5 B=2 reference (-0.041019); not slot-cleared",
+      "pooled_holdout_dti": 0.075943,
+      "ci95_spatial_tile_bootstrap": [0.067108, 0.085451],
+      "delta_vs_fold_safe_physical_baseline": 0.026455,
+      "positive_folds_vs_physical_baseline": 3,
+      "delta_vs_historical_fixed_h19_5_b2": -0.041019,
+      "p2_sgmc_off_catalogue_dti": 0.075098,
+      "domain_classifier_auc": 0.777806,
+      "max_feature_canary_auc": 0.603493,
+      "duplicate_triggers": 0,
+      "evidence": "evidence/round3_run_card_20261025.json"
+    },
+    {
+      "id": "H33-R3-2",
+      "title": "Multi-Scale Vertical-Persistence Potential-Field & Conductive-Basement Worm Network with Geothermometer Upflow Prior",
+      "status": "ROUND3_EVALUATED_NEGATIVE_VERDICT; label-free physical worm detector; pooled HOLDOUT-DTI 0.054281 (+0.004793 vs physical baseline); not slot-cleared",
+      "pooled_holdout_dti": 0.054281,
+      "ci95_spatial_tile_bootstrap": [0.047859, 0.060735],
+      "delta_vs_fold_safe_physical_baseline": 0.004793,
+      "positive_folds_vs_physical_baseline": 2,
+      "p2_sgmc_off_catalogue_dti": 0.052433,
+      "evidence": "evidence/round3_run_card_20261025.json"
+    },
+    {
+      "id": "H33-R3-3",
+      "title": "Transtensional Step-Over & Dilatational Strain-Gradient Relay Bridge Detector",
+      "status": "ROUND3_EVALUATED_NEGATIVE_VERDICT; fold-visible tip lobe + strain relay; pooled HOLDOUT-DTI 0.042027 (-0.007461 vs physical baseline); not slot-cleared",
+      "pooled_holdout_dti": 0.042027,
+      "ci95_spatial_tile_bootstrap": [0.036356, 0.047604],
+      "delta_vs_fold_safe_physical_baseline": -0.007461,
+      "positive_folds_vs_physical_baseline": 1,
+      "p2_sgmc_off_catalogue_dti": 0.055830,
+      "evidence": "evidence/round3_run_card_20261025.json"
     }
-  ]
+  ],
+  "round3_hypotheses_20261025": {
+    "preregistered_evidence": "evidence/round3_hypotheses_20261025.json",
+    "run_card_evidence": "evidence/round3_run_card_20261025.json",
+    "experiment_budget_limit": 3,
+    "experiment_budget_used": 3,
+    "ids": ["H33-R3-1", "H33-R3-2", "H33-R3-3", "H33-R3-4", "H33-R3-5"]
+  }
 }

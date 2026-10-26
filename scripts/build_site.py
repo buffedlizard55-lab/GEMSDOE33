@@ -147,7 +147,7 @@ def unique_submission_hero() -> str:
 <tr><th>Automated format checks</th><td>One float32 band, EPSG:32611, exact 3730 × 3292 template grid/transform, values [0,1], no NaN inside footprint. Format validity is not portal acceptance.</td></tr>
 <tr><th>SHA-256</th><td><code>{esc(card['raster_sha256'])}</code></td></tr>
 </tbody></table>
-<p>No DrivenData upload was made and no competition score is projected. Read the <a href="executive-summary.html">submission decision and procedure</a>, <a href="results.html">nine-site forensics</a>, and <a href="research.html">complete experiment record</a>.</p>
+<p>No DrivenData upload was made and no competition score is projected. Companion Round-3 domain-invariant analog co-training artifact (<a href="downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-zeros.tif"><code>gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-zeros.tif</code></a> · <a href="downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-nan.tif"><code>-nan.tif</code></a> · <a href="downloads/receipt-gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381.json">validator receipt</a> · <a href="research/round3-run-card.json">Round-3 run card</a>) also passed 10/10 format checks, 32/32 feature leakage canaries (max AUC <code>0.6035 &le; 0.90</code>), and 0/22 registry duplicate checks, and is likewise marked <b>DO NOT SUBMIT (verdict: negative)</b>. Read the <a href="executive-summary.html">submission decision and procedure</a>, <a href="results.html">nine-site forensics</a>, and <a href="research.html">complete experiment record</a>.</p>
 </div>"""
 
 
@@ -180,6 +180,17 @@ def build_exec() -> str:
 <tr><th>Note (≤140 characters)</th><td><code>{esc(sub['note'])}</code> ({sub['note_characters']} characters)</td></tr>
 <tr><th>SHA-256</th><td><code>{esc(card['raster_sha256'])}</code></td></tr>
 <tr><th>Status</th><td><span class="badge bad">RESEARCH ONLY · DO NOT UPLOAD</span></td></tr></tbody></table>
+<h3>Companion Round-3 Domain-Invariant Analog Co-Training Package (<code>H33-R3-1</code>)</h3>
+<p><a class="btn alt" href="downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-zeros.tif">Download H33-R3-1 zero-outside TIFF</a>
+<a class="btn alt" href="downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-nan.tif">Download H33-R3-1 NaN-outside TIFF</a>
+<a class="btn alt" href="downloads/receipt-gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381.json">Validator Receipt JSON</a></p>
+<table><tbody>
+<tr><th>Name</th><td><code>gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381</code></td></tr>
+<tr><th>Note (≤140 characters)</th><td><code>GEMSDOE33 H33-R3-1 invariant analog co-train B2; 37654 dots; research only, do not submit (40f15a687381)</code> (104 characters)</td></tr>
+<tr><th>SHA-256 (<code>-zeros.tif</code>)</th><td><code>a6b9dc58c9ab74e9886937e7f700bcdc9e464f4c0d4961aa2d13fc8496ebf8da</code></td></tr>
+<tr><th>SHA-256 (<code>-nan.tif</code>)</th><td><code>5f818e716b0df0ffa6921db2012b9c723ec19189b660fe5f034335019c6bb353</code></td></tr>
+<tr><th>Automated Gates</th><td><span class="badge good">10/10 FORMAT PASS</span> · <span class="badge good">32/32 CANARIES PASS (max AUC 0.6035)</span> · <span class="badge good">0/22 DUPLICATES (max |&rho;| 0.1000, max 3-px 50.58%)</span> · <span class="badge bad">VERDICT: NEGATIVE · NOT OK TO SUBMIT</span></td></tr>
+</tbody></table>
 <h2>Automated checks completed</h2>
 <ul><li>One band and float32 dtype.</li><li>EPSG:32611, 3730 × 3292, and affine transform exactly match the restored sample template.</li><li>Every footprint value is finite and in [0,1]; zero-outside primary is finite over the whole array.</li><li>Exactly 37,654 in-footprint positive pixels; saved bytes were reopened and hashed.</li><li>Final uniqueness: max Spearman 0.02221 and max within-3-pixel overlap 42.25% against the canonical 12-reference focus subset.</li></ul>
 <p>These checks establish local format and novelty only. They do not override a failed scientific gate or guarantee portal acceptance.</p>
@@ -265,7 +276,8 @@ def build_research() -> str:
 <h3>HOLDOUT-DTI result</h3><p>A33-L1 = <b>{h['candidate']:.6f}</b> (95% CI [{h['candidate_95pct_ci']['interval'][0]:.6f}, {h['candidate_95pct_ci']['interval'][1]:.6f}]); best regional comparator = <b>{h['best_comparable_baseline']:.6f}</b> (95% CI [{h['best_baseline_95pct_ci']['interval'][0]:.6f}, {h['best_baseline_95pct_ci']['interval'][1]:.6f}]). Paired delta = <b>{h['paired_delta']:+.6f}</b>, 95% CI [{h['paired_delta_95pct_ci'][0]:+.6f}, {h['paired_delta_95pct_ci'][1]:+.6f}], 0/4 fold wins. Label: HOLDOUT-DTI (<code>{esc(h['evaluator_version'])}</code>; 60,988 withheld positives; spatial-block bootstrap 95% CI). Not a competition score.</p>
 <h3>Uniqueness</h3><p>Before placement, max Spearman was {card['correlation_overlap_vs_registry']['surface']['max_spearman_rho']:.4f}. Final max Spearman was {card['correlation_overlap_vs_registry']['final_dots']['max_spearman_rho']:.5f}; max candidate-dot fraction within 3 px was {100*card['correlation_overlap_vs_registry']['final_dots']['max_candidate_fraction_within_3px']:.2f}%. All are below frozen stop thresholds. The post-merge release guard repeated both stages against the canonical 12-reference focus subset and passed with the same maxima.</p>
 <h3>Artifacts and evidence</h3><ul><li><a href="downloads/{esc(card['submission']['file'])}">A33-L1 unique zero-outside TIFF</a> — research only</li><li><a href="downloads/receipt-gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34.json">shared-writer receipt</a></li><li><a href="data/a33_l1_run_card.json">final run card</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_l1_experiment.json">complete experiment evidence</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/analog_lane_preregistration_20261025.json">hash-frozen preregistration</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_l1_three_pass_review_20261025.md">three-pass release review</a></li></ul>
-<h2>Historical negative controls</h2>
+<h2>Historical negative controls &amp; companion Round-3 experiments (<code>H33-R3-1..3</code>)</h2>
+<p>Companion Round-3 domain-invariant analog co-training (<code>H33-R3-1</code>, 25 km rolling basin standardization across 32 channels + GDR 1391 geothermometer upflow + B=2 visible collar) achieved pooled <b>HOLDOUT-DTI 0.075943</b> (95% CI <code>[0.067108, 0.085451]</code>, <code>GEMSDOE33-HIDE-AND-RECOVER-v1.0</code>, 60,988 withheld positives), beating the fold-safe physical baseline (<code>0.049488</code>, &Delta;DTI <code>+0.026455</code>, 3/4 folds) and matched-random control (<code>0.053858</code>), passing all 32 feature leakage canaries (max AUC <code>0.6035 &le; 0.90</code>) and all 22 registry duplicate checks (<code>0/22</code> triggers: max |surface &rho;| <code>0.1000</code>, max 3-px overlap <code>50.58%</code>), while reducing 20 km spatial-block domain AUC from <code>0.9172</code> (<code>H33-F</code>) to <code>0.7778</code>. Because it remained below the historical fixed-H19-5 B=2 reference (<code>0.116963</code>), its verdict is likewise <code>negative</code> (<a href="research/round3-run-card.json">Round-3 Run Card JSON</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/10_focus_sites_and_round3_20261025.md">Round-3 Forensic Report</a>).</p>
 <p>H33-6 remains failed/duplicate and H33-F remains negative; neither is slot-approved. Their historical files remain for audit but do not supersede the current A33-L1 run card. No post-result experiment was used to tune A33-L1.</p>
 """
     return page("Research & Diagnostics · GEMSDOE33", body, "research.html")
@@ -437,6 +449,7 @@ def main() -> int:
         ("run_card_focus_20261025.json", "current-run-card.json"),
         ("promotion_gate_20261025.json", "current-promotion-gate.json"),
         ("focus_raster_audit_20261025.json", "focus-raster-audit.json"),
+        ("round3_run_card_20261025.json", "round3-run-card.json"),
     ):
         payload = read_json(ROOT / "evidence" / source)
         (research / name).write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n")

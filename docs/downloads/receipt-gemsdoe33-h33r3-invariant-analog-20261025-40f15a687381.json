@@ -1,0 +1,183 @@
+{
+  "submission_name": "gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381",
+  "content_id": "40f15a687381",
+  "note": "GEMSDOE33 H33-R3-1 invariant analog co-train B2; 37654 dots; research only, do not submit (40f15a687381)",
+  "note_chars": 104,
+  "emitted_positive_pixels": 37654,
+  "footprint_cells": 5167373,
+  "emitted_fraction_of_footprint": 0.007287,
+  "zeros_tif": {
+    "file": "docs/downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-zeros.tif",
+    "bytes": 373304,
+    "sha256": "a6b9dc58c9ab74e9886937e7f700bcdc9e464f4c0d4961aa2d13fc8496ebf8da",
+    "zip": "docs/downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-zeros.zip",
+    "zip_bytes": 261828,
+    "zip_sha256": "6db3816c0bd254d670f51f6c664dc336553007e1187dc0b07ab8a11c50277f85",
+    "validator": {
+      "file": "docs/downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-zeros.tif",
+      "sha256": "a6b9dc58c9ab74e9886937e7f700bcdc9e464f4c0d4961aa2d13fc8496ebf8da",
+      "bytes": 373304,
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "epsg": 32611,
+      "template_crs": "EPSG:32611",
+      "template_epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "template_shape": [
+        3730,
+        3292
+      ],
+      "resolution": [
+        100.0,
+        100.0
+      ],
+      "template_resolution": [
+        100.0,
+        100.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "template_transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "template_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "shape_match": true,
+      "resolution_match": true,
+      "transform_match": true,
+      "bounds_match": true,
+      "all_finite": true,
+      "nonfinite_count": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "in_range_0_1_whole_array": true,
+      "footprint_cells": 5167373,
+      "in_range_0_1_footprint": true,
+      "outside_footprint_all_zero": true,
+      "outside_is_null_or_zero": true,
+      "outside_has_nan": false,
+      "strict_zero_outside_requested": true,
+      "outside_policy_pass": true,
+      "emitted_pixels": 37654,
+      "emitted_fraction_of_footprint": 0.007286874781441169,
+      "pass": true
+    }
+  },
+  "nan_tif": {
+    "file": "docs/downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-nan.tif",
+    "bytes": 448718,
+    "sha256": "5f818e716b0df0ffa6921db2012b9c723ec19189b660fe5f034335019c6bb353",
+    "zip": "docs/downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-nan.zip",
+    "zip_bytes": 338665,
+    "zip_sha256": "ef5f2a18d29bd22a10bf2655f79338e9df75b98cf26b5b4e68c3ff5945b9ccaf",
+    "validator": {
+      "file": "docs/downloads/gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-nan.tif",
+      "sha256": "5f818e716b0df0ffa6921db2012b9c723ec19189b660fe5f034335019c6bb353",
+      "bytes": 448718,
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "epsg": 32611,
+      "template_crs": "EPSG:32611",
+      "template_epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "template_shape": [
+        3730,
+        3292
+      ],
+      "resolution": [
+        100.0,
+        100.0
+      ],
+      "template_resolution": [
+        100.0,
+        100.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "template_transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "template_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "shape_match": true,
+      "resolution_match": true,
+      "transform_match": true,
+      "bounds_match": true,
+      "all_finite": false,
+      "nonfinite_count": 7111787,
+      "min": 0.0,
+      "max": 1.0,
+      "in_range_0_1_whole_array": false,
+      "footprint_cells": 5167373,
+      "in_range_0_1_footprint": true,
+      "outside_footprint_all_zero": false,
+      "outside_is_null_or_zero": true,
+      "outside_has_nan": true,
+      "strict_zero_outside_requested": false,
+      "outside_policy_pass": true,
+      "emitted_pixels": 37654,
+      "emitted_fraction_of_footprint": 0.007286874781441169,
+      "pass": true
+    }
+  },
+  "validator_summary": {
+    "no_nan_inside_footprint": true,
+    "values_in_0_1_footprint": true,
+    "values_in_0_1_whole_array_zeros_variant": true,
+    "crs_match": true,
+    "shape_match": true,
+    "transform_match": true,
+    "bounds_match": true,
+    "all_checks_pass": true
+  }
+}
