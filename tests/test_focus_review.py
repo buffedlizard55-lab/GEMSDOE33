@@ -29,10 +29,11 @@ def test_four_new_hypotheses_are_blocked_not_viable():
 
 def test_site_exposes_current_gates_and_no_false_unique_download_claim():
     hero = build_site.unique_submission_hero()
-    assert "uniqueness is NOT certified" in hero
-    assert "DO NOT SUBMIT" in hero
-    assert "newly generated submission" in hero
+    assert "OK TO DOWNLOAD" in hero
+    assert "NOT OK TO SUBMIT" in hero
+    assert "not a copy" in hero
     assert "current-run-card.json" in hero
+    assert "must not be uploaded to the competition" in hero
     latest = build_site.build_focus_review()
     assert "132 ordered comparisons" in latest
     assert "0.967587" in latest

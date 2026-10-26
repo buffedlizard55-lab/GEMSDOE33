@@ -4,26 +4,30 @@ from scripts import build_site
 
 def test_overview_marks_unique_tif_research_only_and_not_uploadable():
     page = build_site.build_index()
-    assert "GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif" in page
-    assert "NOT approved for competition upload" in page
-    assert "No candidate is slot-cleared" in page
+    assert "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif" in page
+    assert "OK TO DOWNLOAD" in page
+    assert "NOT OK TO SUBMIT" in page
+    assert "must not be uploaded to the competition" in page
+    assert "no real competition submission is approved" in page.lower()
     assert "0.2778" not in page  # no unsupported score claim on landing page
     assert "0.2708" in page
     assert "cannot explain why H27-4" in page
     assert "historical D2.8" in page
-    assert "Do not submit" in page
 
 
 def test_executive_summary_explains_process_and_blocks_failed_candidate():
     page = build_site.build_exec()
-    assert "GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7" in page
-    assert "not approved for competition upload" in page
-    assert "not okay to submit" in page
+    assert "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7" in page
+    assert "NOT CLEARED FOR SUBMISSION" in page
+    assert "NOT cleared to submit" in page
+    assert "must not be uploaded to the competition" in page
     assert "predicted" not in page.lower() or "score" in page.lower()
     assert "Note (≤140 characters)" in page
     assert "official format instructions" in page
     assert "organizer receipt" in page
     assert "no DrivenData auth" in page
+    assert "GEMSDOE32" in page and "0.2778" in page  # per-site best table
+    assert "HIGHEST owner-reported focus-site value" in page
 
 
 def test_hypothesis_page_has_ranked_prior_art_and_blocked_statuses():

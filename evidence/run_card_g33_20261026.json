@@ -1,0 +1,316 @@
+{
+  "schema": 1,
+  "card_utc": "2026-10-26T00:32:47Z",
+  "hypothesis": "G33-HA: blind or subtle faults missing from the USGS/INGENIOUS catalogue express as a conjunction of (a) near-vertical potential-field contacts (tilt angle band 6 tc ~ 0), (b) strong gravity horizontal-gradient edges (band 18 iso_grav_anom_hg) and (c) preserved linear surface breaks (LiDAR scarp coherence lid_coh100 and step response lid_step_max).",
+  "mechanism": "Each cached GeoDAWN/LiDAR channel is robustly median/MAD z-standardised over the footprint, mapped to [0,1] (tilt as proximity to zero; gravity edge, coherence and step as strength), and combined by product so only cells satisfying all three signatures emit. Emission is restricted >= 2 px outside the fold-visible catalogue, thinned at 2.8 px, at the pre-declared sparse quantile 0.995 of the score surface (frozen at the holdout screen). This is structurally distinct from the dotted-catalogue lineage (H19/H27/D2.8/B2) and from the failed H33-6 edge-normal consensus (gradient-vector alignment plus matched-budget reallocation).",
+  "named_non_fault_mimic": "Lithologic contacts, basin-margin boundaries, alteration fronts and Quaternary surficial lineaments can produce coincident magnetic/gravity edges and linear scarps without a seismogenic fault.",
+  "holdout": {
+    "label": "HOLDOUT-DTI",
+    "evaluator": "src/gems33/metric.py:dti_binary",
+    "evaluator_sha256": "575524d5c9357cdd22a43301a4dfe847fdd6506f48761b8713ce51057b4cdcfe",
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel": "triangular",
+    "radius_m": 300,
+    "withheld_positives": 26048,
+    "folds": 4,
+    "fold_truth_pixels": [
+      13293,
+      12755,
+      14117,
+      20823
+    ],
+    "fold_deltas": [
+      -0.08502102024592291,
+      -0.09955524667349946,
+      -0.0657452949531732,
+      -0.1104940914209783
+    ],
+    "pooled_candidate_dti": 0.02405131041148436,
+    "pooled_control_dti": 0.11640378140556933,
+    "pooled_screen_delta_dti": -0.09235247099408497,
+    "screen_positive_folds": 0,
+    "pooled_confirmation_delta_dti": -0.09070143271863604,
+    "confirmation_positive_folds": 0,
+    "mean_fold_delta_dti": -0.090204,
+    "descriptive_t95_ci_df3": [
+      -0.121003,
+      -0.059405
+    ],
+    "ci_estimand": "descriptive two-sided Student-t interval across 4 fold deltas, df=3; small-n, conditional on catalogue proxy, not a competition-score CI"
+  },
+  "leakage_canary": "No channel stand-alone holdout AUC exceeded 0.90 in any screen fold (no signal detected; not leakage).",
+  "registry_check": {
+    "registry_rasters": 12,
+    "scope": "pinned focus-site references (GEMSDOE24/25/27/28/30/31/32/33/36); not a complete global registry",
+    "duplicate_trigger": false,
+    "worst_spearman_rho": 0.004591015639115914,
+    "worst_rho_raster": "G32-e5eb6e7e",
+    "worst_fraction_within_3px": 0.2994087306579444,
+    "worst_frac_raster": "G27-5512495c6bd1",
+    "thresholds": "rho <= 0.90 and <= 70% of candidate dots within 3 px of any one registry raster",
+    "comparisons": [
+      {
+        "raster_id": "G24-989f59505db1",
+        "site": "GEMSDOE24",
+        "raster_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "spearman_rho": 0.003897078882780699,
+        "candidate_dots": 7949,
+        "registry_dots": 60069,
+        "candidate_dots_within_3px": 2358,
+        "fraction_candidate_within_3px": 0.29664108692917346,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G25-e56ea318af89",
+        "site": "GEMSDOE25",
+        "raster_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "spearman_rho": 0.0037138536006009475,
+        "candidate_dots": 7949,
+        "registry_dots": 44090,
+        "candidate_dots_within_3px": 2272,
+        "fraction_candidate_within_3px": 0.28582211598943263,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G27-5512495c6bd1",
+        "site": "GEMSDOE27",
+        "raster_sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+        "spearman_rho": 0.003860230520588371,
+        "candidate_dots": 7949,
+        "registry_dots": 61328,
+        "candidate_dots_within_3px": 2380,
+        "fraction_candidate_within_3px": 0.2994087306579444,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G28-8acb75e1f2cc",
+        "site": "GEMSDOE28",
+        "raster_sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+        "spearman_rho": 0.004224376047008003,
+        "candidate_dots": 7949,
+        "registry_dots": 40199,
+        "candidate_dots_within_3px": 2226,
+        "fraction_candidate_within_3px": 0.280035224556548,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G28-31e35eee884e",
+        "site": "GEMSDOE28",
+        "raster_sha256": "04d31922f5c1ea4016984fc470ab2b0ff8e266c615792f0e86020da3b940d3ff",
+        "spearman_rho": 0.0036686123088814867,
+        "candidate_dots": 7949,
+        "registry_dots": 42294,
+        "candidate_dots_within_3px": 2252,
+        "fraction_candidate_within_3px": 0.2833060762360045,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G28-b531dae0a36f",
+        "site": "GEMSDOE28",
+        "raster_sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+        "spearman_rho": 0.004415957127619709,
+        "candidate_dots": 7949,
+        "registry_dots": 37660,
+        "candidate_dots_within_3px": 2168,
+        "fraction_candidate_within_3px": 0.2727387092716065,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G28-56a9f473edc7",
+        "site": "GEMSDOE28",
+        "raster_sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+        "spearman_rho": 0.004444450605301499,
+        "candidate_dots": 7949,
+        "registry_dots": 37860,
+        "candidate_dots_within_3px": 2191,
+        "fraction_candidate_within_3px": 0.2756321549880488,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G30-91eae1ca",
+        "site": "GEMSDOE30",
+        "raster_sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+        "spearman_rho": 0.0037138536006009475,
+        "candidate_dots": 7949,
+        "registry_dots": 44090,
+        "candidate_dots_within_3px": 2272,
+        "fraction_candidate_within_3px": 0.28582211598943263,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G31-8acb75e1",
+        "site": "GEMSDOE31",
+        "raster_sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+        "spearman_rho": 0.004224376047008003,
+        "candidate_dots": 7949,
+        "registry_dots": 40199,
+        "candidate_dots_within_3px": 2226,
+        "fraction_candidate_within_3px": 0.280035224556548,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G32-e5eb6e7e",
+        "site": "GEMSDOE32",
+        "raster_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+        "spearman_rho": 0.004591015639115914,
+        "candidate_dots": 7949,
+        "registry_dots": 37654,
+        "candidate_dots_within_3px": 2162,
+        "fraction_candidate_within_3px": 0.27198389734557804,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G36-9b9ea4e6",
+        "site": "GEMSDOE36",
+        "raster_sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+        "spearman_rho": 0.00458605749321512,
+        "candidate_dots": 7949,
+        "registry_dots": 38854,
+        "candidate_dots_within_3px": 2188,
+        "fraction_candidate_within_3px": 0.2752547490250346,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      },
+      {
+        "raster_id": "G33-h33d",
+        "site": "GEMSDOE33",
+        "raster_sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+        "spearman_rho": 0.004329472743399061,
+        "candidate_dots": 7949,
+        "registry_dots": 41865,
+        "candidate_dots_within_3px": 2250,
+        "fraction_candidate_within_3px": 0.2830544722606617,
+        "duplicate_trigger": false,
+        "guard_pass": true,
+        "undefined": false
+      }
+    ]
+  },
+  "raster": {
+    "file": "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif",
+    "zip": "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.zip",
+    "troubleshooting_tif": "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-zeros.tif",
+    "sha256": "403e6925a5b32a1ad79084636336c60dd4a4ce56aacacb66910542ace6683d44",
+    "bytes": 312838,
+    "emitted_pixels": 7949,
+    "emitted_fraction_of_footprint": 0.0015383058277387755
+  },
+  "validator": {
+    "pass": true,
+    "no_nan_inside_footprint": true,
+    "values_in_0_1_footprint": true,
+    "crs_shape_transform_match": true,
+    "outside_footprint_null_or_zero": true,
+    "details": {
+      "file": "docs/downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif",
+      "sha256": "403e6925a5b32a1ad79084636336c60dd4a4ce56aacacb66910542ace6683d44",
+      "bytes": 312838,
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "epsg": 32611,
+      "template_crs": "EPSG:32611",
+      "template_epsg": 32611,
+      "shape": [
+        3730,
+        3292
+      ],
+      "template_shape": [
+        3730,
+        3292
+      ],
+      "resolution": [
+        100.0,
+        100.0
+      ],
+      "template_resolution": [
+        100.0,
+        100.0
+      ],
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "template_transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "template_bounds": [
+        243350.0,
+        4135550.0,
+        572550.0,
+        4508550.0
+      ],
+      "shape_match": true,
+      "resolution_match": true,
+      "transform_match": true,
+      "bounds_match": true,
+      "all_finite": false,
+      "nonfinite_count": 7111787,
+      "min": 0.0,
+      "max": 1.0,
+      "in_range_0_1_whole_array": false,
+      "footprint_cells": 5167373,
+      "in_range_0_1_footprint": true,
+      "outside_footprint_all_zero": false,
+      "outside_is_null_or_zero": true,
+      "outside_has_nan": true,
+      "strict_zero_outside_requested": false,
+      "outside_policy_pass": true,
+      "emitted_pixels": 7949,
+      "emitted_fraction_of_footprint": 0.0015383058277387755,
+      "pass": true
+    }
+  },
+  "submission": {
+    "name": "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026",
+    "content_id": "171b8b87dbf7",
+    "note": "GEMSDOE33 G33 tilt-gravity-lidar coherence TIFF; proxy holdout FAILED dDTI -0.0907 0/4 folds; NOT cleared to submit. id 171b8b87dbf7",
+    "note_chars": 132,
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "reason_not_cleared": "Catalogue-proxy holdout gate failed: pooled confirmation DeltaDTI -0.0907 (0/4 folds positive) vs the fold-rebuilt C0 control; no organizer receipt exists; no weekly slot was spent or authorized. Download for inspection only."
+  },
+  "verdict": "negative",
+  "inputs": {
+    "training_features_tif_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+    "labels_tif_sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+    "provenance": "Hash-pinned owner-mirror bytes (registry/owner_mirror_input_pins.json); not organizer-authenticated."
+  }
+}

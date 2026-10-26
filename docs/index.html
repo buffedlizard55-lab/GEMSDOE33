@@ -5,18 +5,34 @@
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
 <p>DrivenData #306 · evidence-led research · review status 2026-10-25</p><nav class="nav" aria-label="Primary"><a href="index.html" aria-current=page>Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
 <main class="wrap"><div class="hero-download" id="unique-submission">
-<h2>Research GeoTIFF download — NOT approved for competition upload</h2>
-<p>This is the existing H33-6 research artifact, not a newly generated submission. Its retained final dots trigger the duplicate guard; uniqueness is NOT certified. Its blocked catalogue-proxy gate failed and its upstream baseline is not fold-independent. Do not submit or spend a competition slot on it. No candidate is slot-cleared.</p>
-<p><a class="btn alt" href="downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif">Download research GeoTIFF — DO NOT SUBMIT</a></p>
+<h2>Unique submission-format GeoTIFF — OK to download · NOT cleared to submit</h2>
+<p><span class="badge good">OK TO DOWNLOAD</span> <span class="badge bad">NOT OK TO SUBMIT</span></p>
+<p>This is a freshly generated, <b>unique</b> competition-format GeoTIFF: single-band float32, EPSG:32611,
+3730 × 3292 cells, 100 m, exact template CRS/geotransform/bounds, finite probability values in [0,1]
+inside the footprint and NaN outside. It is <b>not a copy</b> of any focus-site submission: rank
+correlation vs all 12 pinned registry rasters is ρ ≤ 0.0046 and at most 29.9% of its dots fall within
+3 px of any one registry raster (duplicate limits: ρ ≤ 0.90, ≤ 70%). SHA-256 of the download:
+<code>403e6925a5b32a1ad79084636336c60dd4a4ce56aacacb66910542ace6683d44</code>.</p>
+<p><b>It must not be uploaded to the competition.</b> Its catalogue-proxy holdout gate failed (confirmation
+pooled ΔDTI −0.0907, 0/4 folds positive; descriptive 95% CI [−0.1210, −0.0594]); it therefore has no
+demonstrated leaderboard benefit and no organizer receipt. Download is for inspection and reproducibility only.</p>
+<p><a class="btn" href="downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif">Download GeoTIFF (NOT cleared for upload)</a> <a class="btn alt" href="downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.zip">Download ZIP package</a></p>
 <table><tbody>
-<tr><th>Artifact name</th><td><code>GEMSDOE33-H33-6-edge-consensus-research-20261004</code></td></tr>
-<tr><th>Suggested note (under 140 characters)</th><td><pre>H33-6 edge-normal research artifact; holdout gate failed; not approved for competition upload. id 6c888d2ce0f7</pre></td></tr>
-<tr><th>Scientific status</th><td><span class="badge bad">FAILED HOLDOUT · NOT FOR UPLOAD</span> P1 mean delta −0.002737 DTI; 2/4 spatial folds positive. Conditional proxy result only.</td></tr>
-<tr><th>Local format audit</th><td>Single-band float32, EPSG:32611, 3730 × 3292, 100 m; finite in-footprint values in [0,1]; NaN outside footprint. Local format check only; portal acceptance not tested.</td></tr>
-<tr><th>SHA-256</th><td><code>18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7</code></td></tr>
+<tr><th>Artifact name</th><td><code>gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026</code></td></tr>
+<tr><th>Suggested portal note (≤ 140 characters)</th><td><pre>GEMSDOE33 G33 tilt-gravity-lidar coherence TIFF; proxy holdout FAILED dDTI -0.0907 0/4 folds; NOT cleared to submit. id 171b8b87dbf7</pre></td></tr>
+<tr><th>Scientific status</th><td><span class="badge bad">HOLDOUT FAILED · NOT CLEARED FOR SUBMISSION</span>
+Catalogue-proxy pooled candidate DTI 0.0225 vs control DTI 0.1132 (confirmation ΔDTI −0.0907, CI [−0.1210, −0.0594]). Negative result; no score is projected.</td></tr>
+<tr><th>Local format audit</th><td>10/10 checks pass: one band, float32, EPSG:32611, 3730 × 3292, exact template geotransform, finite [0,1] inside footprint, NaN outside, band description "fault probability". Local format check only; portal acceptance is not tested and no organizer receipt exists.</td></tr>
+<tr><th>Uniqueness vs registry</th><td>Screened against all 12 pinned focus-site references (GEMSDOE 24/25/27/28/30/31/32/33/36): max Spearman ρ = 0.0046 (vs GEMSDOE32 B2); max dots within 3 px = 29.9% (vs GEMSDOE27). Both limits met with wide margin — not a lane duplicate.</td></tr>
+<tr><th>SHA-256</th><td><code>403e6925a5b32a1ad79084636336c60dd4a4ce56aacacb66910542ace6683d44</code></td></tr>
 </tbody></table>
-<p><b>Current audit:</b> all 17 owner-mirror inputs restored; 121 feature channels prepared; 12 focus-site references compared. No new experiment or TIFF. <a href="latest-review.html">Read the byte-level findings and automatic gate failures</a> · <a href="research/current-run-card.json" download>Download current run card (JSON)</a>.</p>
-<p>Historical score claims and leaderboard status are unverified here. See <a href="hypotheses.html">the ranked hypothesis slate</a>, <a href="research.html">holdout evidence</a>, and <a href="executive-summary.html">submission requirements and current gate status</a>.</p>
+<p><b>Current audit:</b> all 17 owner-mirror inputs restored and hash-verified; 121 feature channels prepared;
+3 experiments run (holdout screen + matched-random control, production build, uniqueness + format audit).
+<a href="latest-review.html">Read the byte-level forensic review and automatic gate failures</a> ·
+<a href="research/current-run-card.json" download>Download current run card (JSON)</a> ·
+<a href="executive-summary.html">Per-site best submissions and how to submit</a>.</p>
+<p>Historical score claims and leaderboard values are owner/user reports, not organizer receipts, and are
+unverified here. See <a href="results.html">score provenance</a> and <a href="irregularities.html">irregularities</a>.</p>
 </div>
 <h2>Project decision</h2>
 <div class="panel bad"><b>No real competition submission is approved.</b> The top-ranked candidate H33-6 failed the recorded spatial proxy gate (P1 mean ΔDTI −0.00273732; 2/4 folds positive). The evidence is conditional because the fixed H19-5 baseline surface was not regenerated per fold; private expert labels were not available. No upload was made and no score is predicted.</div>
