@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "purpose": "Post-hoc Parallel-Run Protocol lane check of the A33-R3-LLC final dots against rasters merged to main by parallel sessions (PR #19 HMDT, PR #20 DPPS) after the A33-R3 registry was pinned.",
+  "candidate": "docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif",
+  "candidate_sha256": "76f9e157d01bb9bec2d98c3c5941b6114e06e0f439272d5f140af6e3584c8825",
+  "method": "fraction of candidate dots within 3 px (scipy distance_transform_edt) of the other raster's positive cells; Spearman rho over the 5,167,373 footprint cells",
+  "thresholds": {"max_abs_spearman": 0.90, "max_fraction_within_3px": 0.70},
+  "comparisons": [
+    {"raster": "docs/downloads/gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros.tif", "positive_cells": 37654,
+     "fraction_candidate_within_3px": 0.1798, "fraction_other_within_3px_of_candidate": 0.2303, "spearman_rho": 0.0093, "duplicate": false},
+    {"raster": "docs/downloads/gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros.tif", "positive_cells": 42000,
+     "fraction_candidate_within_3px": 0.0033, "fraction_other_within_3px_of_candidate": 0.0616, "spearman_rho": 0.0029, "duplicate": false}
+  ],
+  "passed": true
+}
