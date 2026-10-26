@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-26T21:32:21+00:00",
+  "generated_utc": "2026-10-26T21:46:24+00:00",
   "selector": "scripts/select_submission.py (automated, fail-closed)",
   "ok_to_submit": false,
   "decision": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
@@ -250,6 +250,30 @@
       },
       "note": "GEMSDOE33 G33 tilt-gravity-lidar coherence TIFF; proxy holdout FAILED dDTI -0.0907 0/4 folds; NOT cleared to submit. id 171b8b87dbf7",
       "sha256": null,
+      "confirm_holdout_dti": null,
+      "eligible": false
+    },
+    {
+      "run_card": "evidence/s33_seisdil_run_card_20261026.json",
+      "campaign": "S33-SEISDIL",
+      "verdict": "negative",
+      "submission_name": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros",
+      "file": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif",
+      "checks": {
+        "verdict_promote": false,
+        "promotion_gates_all_pass": false,
+        "file_exists": true,
+        "sha256_matches_run_card": true,
+        "format_audit_pass_on_saved_bytes": true,
+        "all_cells_finite_and_in_0_1": true,
+        "zip_single_geotiff_same_bytes": true,
+        "note_1_to_140_chars": true
+      },
+      "format_audit_failures": [
+        "outside_has_nan"
+      ],
+      "note": "GEMS33 S33-SEISDIL strain-seismicity gate 37654d | gate NEGATIVE | 3463540a7e02",
+      "sha256": "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96",
       "confirm_holdout_dti": null,
       "eligible": false
     }

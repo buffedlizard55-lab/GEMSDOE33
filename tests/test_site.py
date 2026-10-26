@@ -4,18 +4,35 @@ from scripts import build_site
 
 def test_overview_marks_latest_unique_tif_research_only_and_not_uploadable():
     page = build_site.build_index()
-    assert "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif" in page
+    assert "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif" in page
+    assert page.index("s33-seisdil") < page.index("a33-r3-llc")
+    assert "HOLDOUT-DTI" in page and "0.114154" in page and "0.117619" in page
+    assert "portal acceptance" in page.lower()
+    assert "fixes the reported" not in page.lower()
     assert "OK TO DOWNLOAD: YES" in page
     assert "OK TO SUBMIT: NO" in page
     assert "no raster in this project is ok to submit" in page.lower()
     assert "0.2778" in page
     assert "USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)" in page
     assert "0.3195 and 0.4413 conflict" in page
-    assert "no score is projected" in page.lower()
+    assert "have not demonstrated a basis to predict a competition score above it" in page.lower()
+    assert "do not project holdout dti to the leaderboard" in page.lower()
     assert "A33-R3-LLC" in page
-    assert "Current checkout limitation" in page
-    assert "121-channel shared cache was rebuilt without detector training" in page
-    assert "knowledge/20_restoration_and_claims_audit_20261026.md" in page
+    assert "Data/provenance status" in page
+    assert "17 SHA-256-pinned owner-mirror inputs" in page
+    assert "shared 121-channel cache" in page
+    assert "knowledge/21_post_merge_review_20261026.md" in page
+
+
+def test_s33_seisdil_banner_has_download_and_explicit_negative_verdict():
+    page = build_site.build_index()
+    assert "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif" in page
+    assert "OK TO DOWNLOAD: YES" in page and "OK TO SUBMIT: NO" in page
+    assert "-0.010458" in page and "-0.016294" in page
+    assert "-0.011869" in page and "-0.017655" in page
+    assert "standalone candidate-DTI CI" in page
+    assert "organizer acceptance" in page
+    assert "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96" in page
 
 
 def test_executive_summary_explains_process_and_blocks_failed_candidate():
@@ -30,7 +47,7 @@ def test_executive_summary_explains_process_and_blocks_failed_candidate():
     assert "no DrivenData auth" in page
     assert "GEMSDOE32" in page and "0.2778" in page
     assert "HIGHEST owner-reported focus-site value" in page
-    assert "A33-R3-LLC, above" in page
+    assert "S33-SEISDIL, above" in page
 
 
 def test_hypothesis_page_has_ranked_round4_triage_and_historical_prior_art():
@@ -84,13 +101,13 @@ def test_source_page_does_not_claim_restored_owner_mirrors_are_absent():
     assert "do not authenticate organizer provenance" in page
 
 
-def test_latest_review_discloses_restoration_and_no_new_candidate():
+def test_latest_review_discloses_restoration_and_parallel_negative_candidate():
     page = build_site.build_focus_review()
     assert "Current-checkout verification" in page
     assert "17 registered owner-mirror inputs were restored and hash-verified" in page
-    assert "Data/cache remain ignored" in page
-    assert "No new candidate was evaluated, and no new TIFF or submission slot was created" in page
-    assert "knowledge/20_restoration_and_claims_audit_20261026.md" in page
+    assert "S33-SEISDIL candidate was later evaluated and generated on parallel PR #30" in page
+    assert "NOT OK TO SUBMIT" in page
+    assert "knowledge/21_post_merge_review_20261026.md" in page
 
 
 def test_portal_range_error_is_not_claimed_fixed_by_zero_outside():

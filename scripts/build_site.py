@@ -226,6 +226,41 @@ A33-R3-LLC multiplies the fold-trained CSHT prior by a label-free score for stri
 </div>"""
 
 
+def s33_seisdil_hero() -> str:
+    """Build the latest negative research-artifact banner from its retained run card."""
+    card = read_json(ROOT / "evidence" / "s33_seisdil_run_card_20261026.json")
+    if not card:
+        return ""
+    h = card["holdout_dti"]
+    screen = h["screen_paired"]
+    confirm = h["confirm_paired"]
+    unique = card["correlation_overlap_vs_registry"]
+    screen_ci = screen["paired_delta_ci95"]
+    confirm_ci = confirm["paired_delta_ci95"]
+    filename = f"{card['submission_name']}.tif"
+    zipname = f"{card['submission_name']}.zip"
+    card_link = "data/s33_seisdil_run_card_20261026.json"
+    max_auc = max(x["max_fold_auc"] for x in card["feature_canaries"])
+    return f"""<div class="hero-download" id="s33-seisdil">
+<h2>S33-SEISDIL research GeoTIFF — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO</h2>
+<p><span class="badge good">UNIQUE vs {unique['surface']['registry_count']} registry rasters: surface max |ρ| {unique['surface']['max_abs_spearman_rho']:.3f}; max 3-px overlap {100*unique['surface']['max_preview_fraction_within_3px']:.1f}%</span>
+<span class="badge good">FINAL DOTS: max |ρ| {unique['final_dots']['max_abs_spearman_rho']:.3f}; max 3-px overlap {100*unique['final_dots']['max_candidate_fraction_within_3px']:.1f}%</span>
+<span class="badge good">LOCAL FORMAT PASS · single-band float32, EPSG:32611, 3730×3292, [0,1] whole array</span>
+<span class="badge bad">HOLDOUT GATE FAILED: 0/4 screen and 0/4 confirmation fold wins</span></p>
+<p><b>Hypothesis:</b> geodetic dilatation/shear-rate gradients plus earthquake-intensity ridges might mark permeable fault corridors missing from USGS/INGENIOUS. Mechanism: a fold-trained B1 regional surface gated by the percentile mean of those three signals, then 300 m CELF emission at 37,654 dots. Named non-fault mimic: caldera/aquifer deformation and volcanic seismic swarms without a throughgoing fault.</p>
+<p><b>HOLDOUT-DTI</b> (<code>{h['evaluator_version']}</code>, {h['withheld_positives']:,} withheld positives; not an organizer score): screen candidate <code>{h['screen_candidate']:.6f}</code> vs B1 <code>{h['screen_B1']:.6f}</code>; paired Δ <code>{screen['paired_delta_dti']:+.6f}</code>, 95% CI <code>[{screen_ci[0]:+.6f}, {screen_ci[1]:+.6f}]</code>, {screen['fold_wins']}/{screen['n_folds']} folds. Confirmation candidate <code>{h['confirm_candidate']:.6f}</code> vs B1 <code>{h['confirm_B1']:.6f}</code>; paired Δ <code>{confirm['paired_delta_dti']:+.6f}</code>, 95% CI <code>[{confirm_ci[0]:+.6f}, {confirm_ci[1]:+.6f}]</code>, {confirm['fold_wins']}/{confirm['n_folds']} folds. The run card has no standalone candidate-DTI CI; the paired-delta intervals are retained. Feature-alone canaries pass (maximum fold AUC <code>{max_auc:.3f} ≤ 0.90</code>). This negative proxy result is not a leaderboard-score projection.</p>
+<p><a class="btn" href="downloads/{filename}">⬇ Download unique S33-SEISDIL GeoTIFF (research only)</a> <a class="btn alt" href="downloads/{zipname}">Single-TIFF .zip</a> <a class="btn alt" href="{card_link}">Run card JSON</a></p>
+<table><tbody>
+<tr><th>File to download</th><td><code>{filename}</code></td></tr>
+<tr><th>Unique submission name</th><td><code>{card['submission_name']}</code></td></tr>
+<tr><th>Submission note (≤140 characters)</th><td><code>{esc(card['submission_note'])}</code> ({len(card['submission_note'])}/140)</td></tr>
+<tr><th>SHA-256</th><td><code>{card['raster_sha256']}</code></td></tr>
+<tr><th>OK to submit?</th><td><b>NO</b>. The independent holdout gate failed. Do not upload or spend a slot.</td></tr>
+</tbody></table>
+<p class="small"><b>Format caveat:</b> the zeros-outside raster passes this repository's whole-array finite [0,1] audit. The recorded official-format wording calls for null/NaN outside the footprint, and the reported portal error has no retained rejected-file bytes or organizer diagnosis. This local audit does not establish portal acceptance or that zero encoding fixes the error; do not upload this negative artifact.</p>
+</div>"""
+
+
 def dpps_hero(*, include_b2_score: bool = False) -> str:
     card = read_json(ROOT / "evidence" / "dpps_run_card_20261026.json")
     if not card:
@@ -297,24 +332,25 @@ def submission_steps() -> str:
 
 
 def build_index() -> str:
-    body = f"""{a33_r3_llc_hero()}
+    body = f"""{s33_seisdil_hero()}
+{a33_r3_llc_hero()}
 {dpps_hero()}
 {a33_r3_lchc_hero()}
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 <h2>Current decision (2026-10-26)</h2>
-<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The latest unique research TIFF, A33-R3-LLC, is OK TO DOWNLOAD for research and reproducibility, but NOT OK TO SUBMIT: it failed to beat the current comparable fold-safe holdout best on independent confirmation. The automated selector rechecked the recorded cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
-<p><b>Best reported focus-site artifact:</b> GEMSDOE32 B2, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with <b>0.2778 USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)</b>. Raster forensics reproduced it as deletion-only pruning of GEMSDOE28 H27-4; it is prior art and must not be copied or lightly altered. No new model here has demonstrated a score above it. See the <a href="executive-summary.html">nine-site executive summary</a> and <a href="results.html">score provenance</a>.</p>
+<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The newest unique research TIFF, S33-SEISDIL, is downloadable for research only and is NOT OK TO SUBMIT because both buffered hide-and-recover comparisons lost to the matched B1 baseline. The automated selector rechecked 12 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
+<p><b>Best reported focus-site artifact:</b> GEMSDOE32 B2, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with <b>0.2778 USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)</b>. Raster forensics reproduced it as deletion-only pruning of GEMSDOE28 H27-4; it is prior art and must not be copied or lightly altered. S33-SEISDIL and prior novel lanes have not demonstrated a basis to predict a competition score above it; do not project holdout DTI to the leaderboard. See the <a href="executive-summary.html">nine-site executive summary</a> and <a href="results.html">score provenance</a>.</p>
 <h2>What can be concluded about the cited scores?</h2>
 <p>Historical values in owner pages and the prompt are not organizer-confirmed without a submission receipt linked to the exact file. The prompt's current-leader values 0.3195 and 0.4413 conflict and are unverified here. The GEMSDOE28 owner page was recorded as labeling H27-4 unscored/research-only, so the premise that this raster earned 0.2708 is unresolved. These reports motivate forensic research; they are not independent validation or a score forecast.</p>
 <p>Do not refresh or copy the official leaderboard without the permission/API described in the project's terms review. See <a href="irregularities.html">irregularities</a> for known conflicts.</p>
 <h2>Hypothesis and experiment status</h2>
-<p>Round 4 feasibility triage and ranked geological hypotheses are documented in <a href="hypotheses.html">Ranked hypotheses</a> and <a href="latest-review.html">the latest review</a>. No new candidate was run in this review because the request supplied no unambiguous single-method lane, and the nominal top candidates have unresolved input geometry or unavailable raw data. The run card records unmeasured fields as null; no score is projected.</p>
-<div class="panel warn"><b>Current checkout limitation:</b> all 17 owner-mirror inputs were restored and pin-verified in the latest continuation, and the 121-channel shared cache was rebuilt without detector training. The existing LLC research download passed a fresh strict template/range audit. No new holdout, canary, uniqueness measurement, or candidate was run. Ignored data/cache will still require restoration in a fresh checkout. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/20_restoration_and_claims_audit_20261026.md">current-checkout review</a> and <code>data/README.md</code>.</div>
+<p>Round 4 feasibility triage and ranked geological hypotheses are documented in <a href="hypotheses.html">Ranked hypotheses</a> and <a href="latest-review.html">the latest review</a>. A separately preregistered S33-SEISDIL lane was tested in the parallel-session PR #30; its unique TIFF is the research-only banner above and its result is negative. Its paired HOLDOUT-DTI intervals are not contest-score projections.</p>
+<div class="panel warn"><b>Data/provenance status:</b> 17 SHA-256-pinned owner-mirror inputs and the shared 121-channel cache were restored/rebuilt locally; these are git-ignored and not distributed by this GitHub Pages site. The S33-SEISDIL run card/unique TIFF are committed research artifacts, not organizer-authenticated inputs or an organizer score. No raster is slot-approved. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/21_post_merge_review_20261026.md">latest repository review</a> and <code>data/README.md</code>.</div>
 <h2>Our operating values</h2>
 <div class="grid-2"><div class="panel accent"><h3>Maximize P(Win)</h3><p>Prefer evidence that predicts useful hidden-fault detection, not a download or a hopeful score projection. No slot until a fresh, leakage-audited holdout improves over a matched baseline.</p></div><div class="panel accent"><h3>Own the Outcome</h3><p>Make failures visible, preserve provenance, correct misleading pages, and distinguish local format validation from scientific validity and organizer acceptance.</p></div></div>
 <h2>Use artifacts safely</h2>
-<p>The A33-R3-LLC TIFF is downloadable for inspection/reproducibility only and <b>must not be uploaded</b>. The other historical TIFFs are research records or prior-site submissions, not approved new submissions. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
+<p>The newest S33-SEISDIL TIFF is downloadable for research only and <b>must not be uploaded</b> because its holdout gate was negative. A33-R3-LLC and the other historical TIFFs are also research records or prior-site submissions, not approved new submissions. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
 """
     return page("GEMSDOE33 · Evidence-led fault discovery", body, "index.html")
 
@@ -345,13 +381,14 @@ def build_exec() -> str:
              "Owner-reported; filename references a PINN but no geothermal-discovery mechanism is established by local evidence"),
         )
     )
-    body = f"""{a33_r3_llc_hero()}
+    body = f"""{s33_seisdil_hero()}
+{a33_r3_llc_hero()}
 {dpps_hero(include_b2_score=True)}
 {a33_r3_lchc_hero()}
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 <h2>Executive summary — per-site best submissions and how to submit</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (A33-R3-LLC, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. The historical files below are prior-site results, research artifacts, or duplicate-lineage references; their score-to-file associations are not organizer-confirmed. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
+<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (S33-SEISDIL, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. It failed the preregistered holdout gate. Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
 
 <h3>Exactly how a submission is made (when a future candidate passes every gate)</h3>
 <ol>
@@ -575,8 +612,8 @@ def build_focus_review() -> str:
     gates = "".join(f"<tr><td>{esc(k)}</td><td>{'PASS' if v is True else 'BLOCKED'}</td></tr>"
                     for k, v in gate.get("gates", {}).items())
     body = f"""<h2>Latest audit: what the highest-scoring lineage actually contains</h2>
-<div class="panel bad"><b>NOT OK TO SUBMIT. No new TIFF generated; zero new experiments and zero slots used.</b>
-<p>The unique-submission goal remains incomplete. We will not rename a previous emission or fabricate validation to create a download.</p>
+<div class="panel bad"><b>NOT OK TO SUBMIT. The restoration/claims audit itself ran zero experiments; the subsequent, separately preregistered S33-SEISDIL artifact from parallel PR #30 is unique and downloadable, but failed both holdout comparisons and is not slot-approved.</b>
+<p>Do not relabel a negative raster as a winner. The S33 result and run card are linked from the overview and executive summary; this repository review did not rerun or retune that candidate.</p>
 <p><a href="research/round4-run-card.json" download>Download this review's run card JSON</a> · <a href="research/current-promotion-gate.json" download>Automatic gate decision</a> · <a href="research/focus-raster-audit.json" download>Measured forensic audit</a></p></div>
 <h3>GEMSDOE32 B2: reproducible construction, not a verified contest score</h3>
 <p>The user-reported 0.2778 has no organizer receipt here. The pinned owner build record describes deletion of baseline dots at catalogue distance ≤2 pixels (200 m). We downloaded the named B2 raster and reproduced it pixel-exactly from GEMSDOE28 H27-4: <b>40,199 → 37,654 dots; 2,545 deletions, zero additions, zero mismatched cells.</b> This is prior-art forensics, not HOLDOUT-DTI.</p>
@@ -591,14 +628,14 @@ def build_focus_review() -> str:
 <p>All 17 owner-mirror inputs were restored and hash-audited. The existing preparer rebuilt 121 cached feature channels; no detector or stopped arm was retrained. Each feature still requires a leakage canary before being trusted. The sample mirror's finite values equal the catalogue, so only its grid and finiteness mask may be used.</p>
 <p>Both archived H33-6 outside-mask variants were reopened and checked against the now-restored template. Local format passes do not repair its failed science or duplicate status. The writer now rejects invalid values rather than silently clipping them, rejects infinity outside, checks shape and enforces notes ≤140 characters. The organizer reference supports CPU training; a GPU is not mandatory.</p>
 <h3>Prior 2025 promotion-gate snapshot (not a current candidate result)</h3>
-<p>These are deterministic in-project checks, not a request for a human scientific inspector. <code>scripts/check_promotion.py</code> requires source-pinned shared tools, pooled paired improvement plus CI on screen and independent confirmation, complete feature canaries, both duplicate screens, exact saved-byte validation and budget compliance. It checks evidence completeness, not the truth of arbitrary supplied JSON. Even a pass is only eligibility for a separate weekly-cap-aware selector. The table below is the archived 2025 focus-review gate record; this session's selector result is separately reported as 0 eligible of 11 run cards.</p>
+<p>These are deterministic in-project checks, not a request for a human scientific inspector. <code>scripts/check_promotion.py</code> requires source-pinned shared tools, pooled paired improvement plus CI on screen and independent confirmation, complete feature canaries, both duplicate screens, exact saved-byte validation and budget compliance. It checks evidence completeness, not the truth of arbitrary supplied JSON. Even a pass is only eligibility for a separate weekly-cap-aware selector. The table below is the archived 2025 focus-review gate record; the current selector separately reports 0 eligible of 12 run cards (including S33-SEISDIL).</p>
 <table><thead><tr><th>Archived gate</th><th>Prior snapshot</th></tr></thead><tbody>{gates}</tbody></table>
 <h3>Round-4 feasibility decision</h3>
-<p>The ranked five-candidate slate and input-by-input feasibility audit are <a href="hypotheses.html">on the hypotheses page</a> and in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/18_round4_feasibility_audit_20261026.md">the full audit note</a>. The conceptual top candidate (Coulomb stress transfer) lacks usable trace geometry in the staged files; 1 m CURVTRACE needs raw 3DEP tiles that are not staged. PFRT is cache-only but was not run because the request did not assign one unambiguous method lane. Thus no holdout DTI, uniqueness, or new raster exists for this review; unmeasured card fields are null, not estimated. The next step is a frozen, explicit lane selection before any candidate code or holdout budget is spent.</p>
-<div class="panel warn"><b>Current-checkout verification (2026-10-26):</b> all 17 registered owner-mirror inputs were restored and hash-verified; the shared 121-channel cache was rebuilt without training. Existing LLC bytes pass the restored-template strict-zero audit. No new candidate was evaluated, and no new TIFF or submission slot was created. Data/cache remain ignored and are not included in Git snapshots. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/20_restoration_and_claims_audit_20261026.md">the current-checkout review</a>.</div>
+<p>The ranked five-candidate Round-4 slate and input-by-input feasibility audit are <a href="hypotheses.html">on the hypotheses page</a> and in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/18_round4_feasibility_audit_20261026.md">the full audit note</a>. The conceptual top candidate (Coulomb stress transfer) lacked usable local trace geometry; 1 m CURVTRACE needed unstaged raw 3DEP tiles. PFRT was not run in that restoration review because no single lane was specified there. A subsequent, separate S33-SEISDIL lane was preregistered and evaluated in PR #30; see its run card and the top-level banner. It failed both holdout comparisons, so no submission is promoted. No additional candidate was run in this repository review.</p>
+<div class="panel warn"><b>Current-checkout verification (2026-10-26):</b> all 17 registered owner-mirror inputs were restored and hash-verified; the shared 121-channel cache was rebuilt without training in the restoration audit. A separate preregistered S33-SEISDIL candidate was later evaluated and generated on parallel PR #30; it is unique/format-valid but negative and NOT OK TO SUBMIT. No additional candidate or slot was created by this review. Data/cache remain ignored and are not included in Git snapshots. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/21_post_merge_review_20261026.md">the latest repository review</a>.</div>
 <p><a href="research/round4-run-card.json" download>Round-4 feasibility run card</a> · <a href="{GITHUB}/evidence/round4_input_feasibility_20261026.json">machine-readable input feasibility audit</a> · <a href="{GITHUB}/evidence/input_grid_audit.json">17-input hash/grid audit</a>.</p>
 <h3>Primary evidence and reviewable limitations</h3>
-<p><a href="{GITHUB}/knowledge/20_restoration_and_claims_audit_20261026.md">Current-checkout review note</a> · <a href="{GITHUB}/knowledge/18_round4_feasibility_audit_20261026.md">Previous Round-4 feasibility report</a> · <a href="{GITHUB}/evidence/source_review_20261025.json">Pinned source inventory</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">Organizer CPU/GPU reference</a>. Official competition rules, weekly cap, current leaderboard and score-to-file receipts were not freshly verified; no automated DrivenData contact was made.</p>
+<p><a href="{GITHUB}/knowledge/21_post_merge_review_20261026.md">Latest post-merge review</a> · <a href="{GITHUB}/knowledge/20_restoration_and_claims_audit_20261026.md">Restoration and claims audit</a> · <a href="{GITHUB}/knowledge/18_round4_feasibility_audit_20261026.md">Previous Round-4 feasibility report</a> · <a href="{GITHUB}/evidence/source_review_20261025.json">Pinned source inventory</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">Organizer CPU/GPU reference</a>. Official competition rules, weekly cap, current leaderboard and score-to-file receipts were not freshly verified; no automated DrivenData contact was made.</p>
 """
     return page("Latest forensic review & automatic gates · GEMSDOE33", body, "latest-review.html")
 

@@ -1,19 +1,26 @@
 # GEMSDOE33 — DOE GEMS Fault Discovery Project (DrivenData #306)
 
 > **Read first, every session:** [`standing_prompt.md`](standing_prompt.md) (the full standing brief with dated addenda) and [`AGENTS.md`](AGENTS.md).
-> **Latest repository-wide review:** [`knowledge/20_restoration_and_claims_audit_20261026.md`](knowledge/20_restoration_and_claims_audit_20261026.md). This continuation restored and pin-verified all 17 owner-mirror inputs, rebuilt the 121-channel shared cache, and revalidated the existing LLC download against the restored template. No new candidate was trained or promoted; ignored inputs/cache must be restored in a fresh checkout.
+> **Latest repository-wide review:** [`knowledge/21_post_merge_review_20261026.md`](knowledge/21_post_merge_review_20261026.md) (restoration, selector compatibility, S33-SEISDIL negative holdout, and three-pass verification). The S33 TIFF is the newest unique download, **NOT OK TO SUBMIT**. Owner-mirror data/cache remain local and git-ignored; SHA pins do not authenticate organizer provenance.
 > **Core values:** Maximize P(Win) · Own the Outcome.
 > **Labels:** every number is HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED. Leaderboard figures marked \* are USER/OWNER-REPORTED.
 
-## 🔴 Current decision (2026-10-26, after Round-4 feasibility triage): **NO raster is OK TO SUBMIT** · newest prior unique TIF is **OK TO DOWNLOAD for research only**
+## 🔴 Current decision (2026-10-26, after S33-SEISDIL): **NO raster is OK TO SUBMIT** · latest unique TIF is **OK TO DOWNLOAD for research only**
 
 | Question | Answer (decided by code: [`scripts/select_submission.py`](scripts/select_submission.py) → [`docs/data/submission_selection.json`](docs/data/submission_selection.json)) |
 |---|---|
-| **OK TO DOWNLOAD?** | **✅ YES.** The A33-R3-LLC GeoTIFF passes the strict format audit. It is a single-band `float32` file on the `sample_submission.tif` grid (`EPSG:32611`, `3730×3292`, `100 m`, origin `(243350, 4508550)`). Every cell is finite and in `[0, 1]`, with `0.0` outside the footprint. This passes the local whole-array range check; it does not prove portal acceptance or establish the cause of the previously reported error. It has 37,654 dots and 0 on-catalogue pixels. It is unique against all 22 registry rasters: max 3-px overlap 43.25%, and 37.48% vs GEMSDOE32 B2. |
-| **OK TO SUBMIT?** | **🛑 NO — do not spend a weekly slot.** A33-R3-LLC tied the current holdout best rather than beating it. Screen HOLDOUT-DTI was `0.137868` vs CSHT `0.137555` (paired Δ `+0.0003 [−0.0080, +0.0083]`, 2/4 folds). Confirmation was `0.131506` vs `0.132066` (Δ `−0.0006 [−0.0090, +0.0075]`, 2/4). Withheld positives: 60,988 per split. The selector re-checked all 11 recorded run cards, including the parallel-session DPPS card, and found **0 eligible**. HMDT has no run card, so it cannot be eligible. |
-| **Best submission across the 9 focus sites** | **GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` (0.2778\*)**. Nothing in this repository has been shown to beat it. See §1–§2. |
+| **OK TO DOWNLOAD?** | **✅ YES, research only.** Latest unique file: [`gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif`](docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif). It is unique against 22 registry rasters (surface max `|ρ|=0.0934`, 3-px overlap `58.11%`; final dots max `|ρ|=0.0307`, overlap `42.92%`) and passes the saved-byte local format validator: single-band `float32`, `EPSG:32611`, `3730×3292`, all cells finite/in `[0,1]`, exact template transform. Its zero-outside encoding is a local range check only; this does not resolve the reported portal error or establish portal acceptance. |
+| **OK TO SUBMIT?** | **🛑 NO — do not spend a slot.** S33-SEISDIL failed both independent holdout comparisons. HOLDOUT-DTI (`gems-segment-pooled-v1`, `60,988` withheld positives): screen `0.114154` vs B1 `0.124612`, paired Δ `−0.010458` (95% CI `[−0.016294, −0.004865]`, `0/4` folds); confirmation `0.117619` vs `0.129488`, paired Δ `−0.011869` (95% CI `[−0.017655, −0.006164]`, `0/4`). Standalone candidate-DTI CIs are absent from this card; these are paired-delta CIs, not leaderboard estimates. The selector rechecked 12 run cards and found **0 eligible**. |
+| **Highest reported historical focus-site score (not a new submission recommendation)** | **GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros` (0.2778\*, user/owner-reported)**. Nothing in this repository has been shown to beat it, and it is prior art—not eligible for re-submission. See §1–§2. |
 
-**Downloads (A33-R3-LLC, research only):**
+**Latest unique artifact — S33-SEISDIL (research only, NOT OK TO SUBMIT):**
+- **[Download the [0,1] GeoTIFF](docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif)** · [single-TIFF ZIP](docs/downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.zip) · [run card](evidence/s33_seisdil_run_card_20261026.json)
+- Name: `gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros`
+- Note (80/140): `GEMS33 S33-SEISDIL strain-seismicity gate 37654d | gate NEGATIVE | 3463540a7e02`
+- SHA-256: `5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96`
+- Verdict: **unique and format-valid, but negative holdout; download for research only, do not submit**. No organizer score is estimated or claimed.
+
+**Previous download (A33-R3-LLC, research only):**
 - **[Primary GeoTIFF, zeros outside (827 KB)](docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif)**
 - **[Single-TIFF .zip (184 KB)](docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.zip)**
 - [NaN-outside twin](docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-nan.tif)

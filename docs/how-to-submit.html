@@ -4,7 +4,25 @@
 <title>Executive summary &amp; submission guidance · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
 <p>DrivenData #306 · evidence-led research · review status 2026-10-26</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current=page>How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
-<main class="wrap"><div class="hero-download" id="a33-r3-llc">
+<main class="wrap"><div class="hero-download" id="s33-seisdil">
+<h2>S33-SEISDIL research GeoTIFF — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO</h2>
+<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max |ρ| 0.093; max 3-px overlap 58.1%</span>
+<span class="badge good">FINAL DOTS: max |ρ| 0.031; max 3-px overlap 42.9%</span>
+<span class="badge good">LOCAL FORMAT PASS · single-band float32, EPSG:32611, 3730×3292, [0,1] whole array</span>
+<span class="badge bad">HOLDOUT GATE FAILED: 0/4 screen and 0/4 confirmation fold wins</span></p>
+<p><b>Hypothesis:</b> geodetic dilatation/shear-rate gradients plus earthquake-intensity ridges might mark permeable fault corridors missing from USGS/INGENIOUS. Mechanism: a fold-trained B1 regional surface gated by the percentile mean of those three signals, then 300 m CELF emission at 37,654 dots. Named non-fault mimic: caldera/aquifer deformation and volcanic seismic swarms without a throughgoing fault.</p>
+<p><b>HOLDOUT-DTI</b> (<code>gems-segment-pooled-v1</code>, 60,988 withheld positives; not an organizer score): screen candidate <code>0.114154</code> vs B1 <code>0.124612</code>; paired Δ <code>-0.010458</code>, 95% CI <code>[-0.016294, -0.004865]</code>, 0/4 folds. Confirmation candidate <code>0.117619</code> vs B1 <code>0.129488</code>; paired Δ <code>-0.011869</code>, 95% CI <code>[-0.017655, -0.006164]</code>, 0/4 folds. The run card has no standalone candidate-DTI CI; the paired-delta intervals are retained. Feature-alone canaries pass (maximum fold AUC <code>0.550 ≤ 0.90</code>). This negative proxy result is not a leaderboard-score projection.</p>
+<p><a class="btn" href="downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif">⬇ Download unique S33-SEISDIL GeoTIFF (research only)</a> <a class="btn alt" href="downloads/gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.zip">Single-TIFF .zip</a> <a class="btn alt" href="data/s33_seisdil_run_card_20261026.json">Run card JSON</a></p>
+<table><tbody>
+<tr><th>File to download</th><td><code>gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif</code></td></tr>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros</code></td></tr>
+<tr><th>Submission note (≤140 characters)</th><td><code>GEMS33 S33-SEISDIL strain-seismicity gate 37654d | gate NEGATIVE | 3463540a7e02</code> (79/140)</td></tr>
+<tr><th>SHA-256</th><td><code>5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96</code></td></tr>
+<tr><th>OK to submit?</th><td><b>NO</b>. The independent holdout gate failed. Do not upload or spend a slot.</td></tr>
+</tbody></table>
+<p class="small"><b>Format caveat:</b> the zeros-outside raster passes this repository's whole-array finite [0,1] audit. The recorded official-format wording calls for null/NaN outside the footprint, and the reported portal error has no retained rejected-file bytes or organizer diagnosis. This local audit does not establish portal acceptance or that zero encoding fixes the error; do not upload this negative artifact.</p>
+</div>
+<div class="hero-download" id="a33-r3-llc">
 <h2>2026-10-26 A33-R3-LLC GeoTIFF: OK TO DOWNLOAD: YES · OK TO SUBMIT: NO (verdict: negative)</h2>
 <p><span class="badge good">OK TO DOWNLOAD: YES · STRICT [0, 1], 0.0 OUTSIDE</span> <span class="badge good">UNIQUE VS 22 REGISTRY RASTERS (max 3-px 43.25%)</span> <span class="badge bad">OK TO SUBMIT: NO · ties the holdout best, does not beat it</span></p>
 <p><b>Automated selector decision</b> (<code>scripts/select_submission.py</code>, <a href="data/submission_selection.json">selection JSON</a>): <b>no raster in this project is OK to submit.</b>
@@ -89,7 +107,7 @@ On fresh independent confirmation seeds (<code>33, 34</code>, <code>22,733</code
 </tbody></table>
 </div>
 <h2>Executive summary — per-site best submissions and how to submit</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (A33-R3-LLC, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. The historical files below are prior-site results, research artifacts, or duplicate-lineage references; their score-to-file associations are not organizer-confirmed. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
+<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (S33-SEISDIL, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. It failed the preregistered holdout gate. Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
 
 <h3>Exactly how a submission is made (when a future candidate passes every gate)</h3>
 <ol>

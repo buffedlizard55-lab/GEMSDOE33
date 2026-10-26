@@ -6,8 +6,15 @@ PY="${PYTHON:-python3}"
 
 "$PY" scripts/build_site.py
 "$PY" -m pytest -q
-if [ -f data/sample_submission.tif ]; then "$PY" scripts/select_submission.py; fi
+DATA_DIR="${GEMS_DATA_DIR:-$PWD/data}"
+if [ -f "$DATA_DIR/sample_submission.tif" ]; then
+  GEMS_DATA_DIR="$DATA_DIR" "$PY" scripts/audit_inputs.py
+  GEMS_DATA_DIR="$DATA_DIR" "$PY" scripts/audit_sample_template_values.py
+  GEMS_DATA_DIR="$DATA_DIR" "$PY" scripts/select_submission.py
+else
+  printf 'Input pins/template audit skipped: restore the git-ignored owner-mirror inputs first.\n'
+fi
 "$PY" -m compileall -q src scripts tests
 
 git diff --check
-printf 'Checks passed. Input pin audit requires the optional local data/ files; run scripts/audit_inputs.py when available.\n'
+printf 'Checks passed. All applicable local checks completed.\n'

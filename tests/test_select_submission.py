@@ -49,6 +49,19 @@ def test_positive_control_promote_card_on_valid_bytes_is_eligible():
     assert _check(card)["eligible"] is True
 
 
+def test_flat_s33_run_card_locates_saved_bytes_by_sha_and_stays_negative():
+    card = json.loads((ROOT / "evidence" / "s33_seisdil_run_card_20261026.json").read_text())
+    row = _check(card)
+    assert row["eligible"] is False
+    assert row["checks"]["verdict_promote"] is False
+    assert row["checks"]["file_exists"] is True
+    assert row["checks"]["sha256_matches_run_card"] is True
+    assert row["checks"]["format_audit_pass_on_saved_bytes"] is True
+    assert row["checks"]["zip_single_geotiff_same_bytes"] is True
+    assert row["checks"]["note_1_to_140_chars"] is True
+    assert {k for k, v in row["checks"].items() if not v} == {"verdict_promote", "promotion_gates_all_pass"}
+
+
 def test_sha_tamper_and_long_note_fail_closed():
     card = copy.deepcopy(json.loads(CARD.read_text()))
     card["verdict"] = "promote"

@@ -19,7 +19,7 @@ import rasterio
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from gems33.grid import data_dir  # noqa: E402
+from gemsdoe33.paths import DATA  # noqa: E402
 
 
 def sha256_file(path: Path) -> str:
@@ -70,8 +70,8 @@ def audit(template_path: Path, labels_path: Path) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--template", type=Path, default=data_dir() / "core" / "sample_submission.tif")
-    parser.add_argument("--labels", type=Path, default=data_dir() / "core" / "labels.tif")
+    parser.add_argument("--template", type=Path, default=DATA / "sample_submission.tif")
+    parser.add_argument("--labels", type=Path, default=DATA / "labels.tif")
     parser.add_argument("--out", type=Path, default=ROOT / "evidence" / "sample_template_label_overlap.json")
     args = parser.parse_args()
     report = audit(args.template, args.labels)

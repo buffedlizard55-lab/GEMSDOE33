@@ -379,7 +379,23 @@
       "finding": "scripts/select_submission.py hardcoded the template as repository/data/sample_submission.tif. When the documented restore flow places inputs in a configured cache directory, the selector skipped saved-byte format revalidation despite a valid template being available there. This caused valid negative candidates to be recorded as format failures.",
       "evidence": "scripts/select_submission.py; tests/test_select_submission.py; docs/data/submission_selection.json generated 2026-10-26 with GEMS_DATA_DIR=$PWD/.cache/gemsdata; evidence/prepare_data_audit_20261026.json.",
       "consequence": "The selector now uses the same DATA path resolved by validate_submission.py and the tests explicitly exercise a non-default restored-template location. Current selector still correctly returns NO RASTER IS OK TO SUBMIT; after the fix, the three extant R3/DPPS primary TIFFs pass format, hash and ZIP checks and remain blocked only by their negative science/promotion gates."
+    },
+    {
+      "id": "IR-33-FLAT-INPUT-LAYOUT-01",
+      "severity": "medium",
+      "status": "partially corrected; historical nested-layout entry points still require review",
+      "finding": "The current owner-mirror restore flow writes the 17 pinned inputs as flat files in data/. The legacy src/gems33.grid.data_dir() API and scripts/audit_sample_template_values.py default expected a nested data/core/ layout (or .cache/gemsdata/core/). On this checkout the no-argument template audit failed with FileNotFoundError even though the current flat inputs were present. The audit default is corrected to use gemsdoe33.paths.DATA, and run_checks.sh now runs it and scripts/audit_inputs.py when data/sample_submission.tif exists. Several legacy scripts still construct core/, models/ and external/ paths and were not migrated or run as active pipeline entry points.",
+      "evidence": "scripts/restore_data.py; registry/owner_mirror_input_pins.json; src/gems33/grid.py; src/gemsdoe33/paths.py; scripts/audit_sample_template_values.py; scripts/run_checks.sh; knowledge/21_post_merge_review_20261026.md.",
+      "consequence": "Use the current gemsdoe33.paths.DATA flat layout for active pipeline code. Do not run nested-layout legacy campaign/build scripts without a separate compatibility audit; if they are reactivated, add a tested resolver or migrate their paths once in the shared code. Current shared holdout array helpers were not modified."
+    },
+    {
+      "id": "IR-33-SEISDIL-CI-01",
+      "severity": "medium",
+      "status": "flagged; paired-difference intervals retained",
+      "finding": "The S33-SEISDIL run card stores null for standalone candidate HOLDOUT-DTI 95% confidence intervals on both screen and confirmation, while storing paired candidate-minus-B1 spatial confidence intervals. The paired intervals are sufficient to show the negative comparison, but they are not candidate-score intervals. This review reports the point HOLDOUT-DTI values with the paired-difference 95% CIs and explicitly does not invent standalone intervals or project a leaderboard score.",
+      "evidence": "evidence/s33_seisdil_run_card_20261026.json; knowledge/21_post_merge_review_20261026.md",
+      "consequence": "Keep candidate DTI CI fields null unless reproducible bootstrap evidence is produced from the saved evaluator contributions. Use the paired-delta intervals for the comparative gate; do not present a point DTI as organizer-confirmed or as a contest-score estimate."
     }
   ],
-  "last_review": "2026-10-26 Round-4 feasibility, portal-format review, and data preparation audit"
+  "last_review": "2026-10-26 post-merge three-pass review; S33-SEISDIL CI reporting limitation flagged"
 }
