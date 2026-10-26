@@ -116,7 +116,7 @@ def page(title: str, body: str, active: str) -> str:
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>{esc(title)}</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-25</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
+<p>DrivenData #306 · evidence-led research · Round 2 review status 2026-10-26</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
 <main class="wrap">{body}</main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>"""
@@ -126,112 +126,149 @@ def current_run_card() -> dict:
     return read_json(ROOT / "evidence" / "a33_l1_run_card.json")
 
 
+def current_r2_run_card() -> dict:
+    return read_json(ROOT / "evidence" / "a33_r2_run_card_20261026.json")
+
+
 def unique_submission_hero() -> str:
+    r2 = current_r2_run_card()
+    r2_sub = r2["submission"]
+    r2_hd = r2["holdout_dti"]
+    r2_scr = r2_hd["primary_screen"]
+    r2_cnf = r2_hd["independent_confirmation"]
+    r2_uniq = r2["correlation_overlap_vs_registry"]
+
     card = current_run_card()
-    sub = card["submission"]
-    holdout = card["holdout_dti"]
-    filename = sub["file"]
-    zipname = filename.removesuffix(".tif") + ".zip"
-    nan_twin = sub["nan_twin"]
-    ci = holdout["candidate_95pct_ci"]["interval"]
+    l1_file = card["submission"]["file"]
+
     return f"""<div class="hero-download bad" id="unique-submission">
-<h2>Unique GeoTIFF ready to download — DO NOT SUBMIT</h2>
-<p>A33-L1 is genuinely different and saved-byte valid, but its preregistered holdout gate failed. It lost to the fold-safe regional comparator in all four folds. <b>It is not OK to submit and no weekly slot should be spent.</b></p>
-<p><a class="btn" href="downloads/{esc(filename)}">Download unique research GeoTIFF</a>
-<a class="btn alt" href="downloads/{esc(zipname)}">Download ZIP</a>
-<a class="btn alt" href="downloads/{esc(nan_twin)}">NaN-outside twin</a></p>
+<h2>Round 2 Unique GeoTIFF (`A33-R2-CSHT`): OK TO DOWNLOAD: YES — DO NOT SUBMIT TO WEEKLY SLOT</h2>
+<p><b>Immediate verdict (2026-10-26):</b> <code>{esc(r2_sub['file'])}</code> is genuinely different, 100% saved-byte format-valid (strict <code>[0, 1]</code> range, zero NaNs), and won <b>8 / 8 spatial holdout folds</b> across both primary screen and orthogonal confirmation while passing <b>21 / 21</b> final-dot uniqueness checks (<code>max 3-px overlap = 69.34% &le; 70%</code>; <code>35.86%</code> vs <code>GEMSDOE32 B2</code>). <b>However, it is not OK to submit to a live DrivenData slot</b> because its pre-placement continuous surface peaks exceeded <code>70%</code> 3-px overlap against 2026-10-25 sibling regional-HGB <code>G30-MSDB1</code> (user-reported <code>0.1462</code>), tripping the fail-closed <code>surface_not_duplicate</code> gate (11 / 12 promotion gates passed; 0 / 3 weekly slots spent).</p>
+<p><a class="btn" href="downloads/{esc(r2_sub['file'])}">Download Primary [0,1] GeoTIFF (.tif)</a>
+<a class="btn alt" href="downloads/{esc(r2_sub['zip'])}">Download Primary ZIP (.zip)</a>
+<a class="btn alt" href="downloads/{esc(r2_sub['nan_twin'])}">Official-Text NaN-Outside Twin (.tif)</a>
+<a class="btn alt" href="data/a33_r2_run_card_20261026.json">Round 2 JSON Run Card</a></p>
 <table><tbody>
-<tr><th>Unique name</th><td><code>{esc(sub['name'])}</code></td></tr>
-<tr><th>Note (≤140 characters)</th><td><pre>{esc(sub['note'])}</pre></td></tr>
-<tr><th>Scientific status</th><td><span class="badge bad">NEGATIVE · NOT OK TO SUBMIT</span> HOLDOUT-DTI <b>{holdout['candidate']:.6f}</b>, 95% CI [{ci[0]:.6f}, {ci[1]:.6f}], {holdout['withheld_positives']:,} withheld positives; paired Δ vs best comparator {holdout['paired_delta']:+.6f}, 0/4 fold wins.</td></tr>
-<tr><th>Automated format checks</th><td>One float32 band, EPSG:32611, exact 3730 × 3292 template grid/transform, values [0,1], no NaN inside footprint. Format validity is not portal acceptance.</td></tr>
-<tr><th>SHA-256</th><td><code>{esc(card['raster_sha256'])}</code></td></tr>
+<tr><th>OK to Download?</th><td><span class="badge good">YES · VALIDATED [0, 1] GEOTIFF &amp; ZIP</span> Passed automated <code>validate_submission.py --strict-zero-outside</code> &amp; <code>submission_writer.py</code> checks.</td></tr>
+<tr><th>OK to Submit (Weekly Slot)?</th><td><span class="badge bad">NO · DO NOT SUBMIT (VERDICT: DUPLICATE ON PRE-PLACEMENT SURFACE)</span> Blocked at 11/12 <code>promotion.py</code> gates (<code>surface_not_duplicate = false</code> vs <code>G30-MSDB1</code>; <code>ok_to_submit = false</code>).</td></tr>
+<tr><th>Unique Submission Name</th><td><code>{esc(r2_sub['name'])}</code></td></tr>
+<tr><th>Note (&le;140 characters)</th><td><pre>{esc(r2_sub['note'])}</pre> ({r2_sub['note_characters']} / 140 chars)</td></tr>
+<tr><th>Primary Screen (<code>HOLDOUT-DTI</code>)</th><td><b>{r2_scr['candidate']:.6f}</b> (95% CI [{r2_scr['candidate_95pct_ci'][0]:.6f}, {r2_scr['candidate_95pct_ci'][1]:.6f}]) vs <code>B1_regional</code> {r2_scr['incumbent_b1_regional']:.6f}; paired &Delta; <b>{r2_scr['paired_delta_vs_b1']:+.6f}</b> [{r2_scr['paired_delta_95pct_ci'][0]:+.6f}, {r2_scr['paired_delta_95pct_ci'][1]:+.6f}], <b>{esc(r2_scr['fold_wins_vs_b1'])} fold wins</b> ({r2_scr['withheld_positives']:,} withheld positives).</td></tr>
+<tr><th>Orthogonal Confirmation (<code>HOLDOUT-DTI</code>)</th><td><b>{r2_cnf['candidate']:.6f}</b> (95% CI [{r2_cnf['candidate_95pct_ci'][0]:.6f}, {r2_cnf['candidate_95pct_ci'][1]:.6f}]) vs <code>B1_regional</code> {r2_cnf['incumbent_b1_regional']:.6f}; paired &Delta; <b>{r2_cnf['paired_delta_vs_b1']:+.6f}</b> [{r2_cnf['paired_delta_95pct_ci'][0]:+.6f}, {r2_cnf['paired_delta_95pct_ci'][1]:+.6f}], <b>{esc(r2_cnf['fold_wins_vs_b1'])} fold wins</b> (<code>diagonal-wedge-buffered-20px-confirm-v1</code>).</td></tr>
+<tr><th>Uniqueness (21 Pinned Rasters)</th><td><b>Final dots PASS (21/21):</b> max |Spearman| <code>{r2_uniq['final_dots_max_abs_spearman']:.4f}</code> (&le;0.90), max 3-px overlap <code>{100*r2_uniq['final_dots_max_3px_overlap']:.2f}%</code> (&le;70%). <b>Pre-placement surface BLOCKED:</b> top surface peaks <code>{100*r2_uniq['surface_max_3px_overlap']:.2f}%</code> (&gt;70%) vs <code>G30-MSDB1</code>.</td></tr>
+<tr><th>Primary SHA-256</th><td><code>{esc(r2['raster_sha256'])}</code></td></tr>
 </tbody></table>
-<p>No DrivenData upload was made and no competition score is projected. Read the <a href="executive-summary.html">submission decision and procedure</a>, <a href="results.html">nine-site forensics</a>, and <a href="research.html">complete experiment record</a>.</p>
+<p class="small">Prior Round 1 research artifact preserved for audit: <a href="downloads/{esc(l1_file)}"><code>{esc(l1_file)}</code></a> (<a href="data/a33_l1_run_card.json">A33-L1 Run Card</a>, negative: HOLDOUT-DTI 0.108374 vs 0.113244). Zero competition slots spent across all 3/3 campaign experiments. Read <a href="executive-summary.html">how to submit</a>, <a href="results.html">9-site executive table &amp; G32 0.2778 proof</a>, and <a href="research.html">complete Round 2 &amp; Round 1 records</a>.</p>
 </div>"""
 
 
 def build_index() -> str:
     body = f"""{unique_submission_hero()}
-<h2>Direct answer: why GEMSDOE32 B2 may have done well</h2>
-<div class="panel accent"><p><b>The strongest supported explanation is metric-aware subtraction, not a new detector.</b> Byte-level forensics show one exact nested family: GEMSDOE25/30 d2.8 (44,090 dots) ⊃ GEMSDOE31 solo (40,199) ⊃ GEMSDOE32 B2 (37,654). Solo removes 3,891 dots exactly 100 m from the mapped catalogue; B2 removes 2,545 more at 100–200 m. GEMSDOE36 then contains every B2 dot plus 1,200.</p>
-<p>Because DTI penalizes low-credit predicted mass, masks mapped faults and rewards nonredundant placement within 300 m of hidden truth, pruning dots beside already mapped traces can improve denominator efficiency while preserving inherited off-catalogue lineaments. The reported progression 0.2600 → 0.2708 → 0.2778, followed by 0.2750 after adding dots, is directionally consistent—<b>if the owner reports are accurate and byte-linked</b>.</p></div>
+<h2>Direct answer: why GEMSDOE32 B2 achieved the reported 0.2778 — and can we beat it?</h2>
+<div class="panel accent"><p><b>The strongest supported explanation is metric-aware subtraction, not a new detector.</b> Byte-level forensics show one exact nested family: GEMSDOE25/30 d2.8 (44,090 dots) &supset; GEMSDOE31 solo (40,199) &supset; GEMSDOE32 B2 (37,654). Solo removes 3,891 dots exactly 100 m from the mapped catalogue; B2 removes 2,545 more at 100–200 m. GEMSDOE36 then contains every B2 dot plus 1,200.</p>
+<p>Under <code>DTI = TP_w / (TP_w + 0.2 FP_w + 0.8 FN_w)</code> with 0 m masking of mapped faults and a 300 m triangular MAX kernel, natural Quaternary scarps are 100–250 m wide while digitized polylines are 1 px (100 m) wide. Pruning the &le;200 m halo strips thousands of lateral scarp-width false positives (&Delta;TP_w &approx; 0, &Delta;FP_w = -1) while dots at 250 m still cover real along-strike continuations at kernel weight 0.50–0.83. The reported progression 0.2600 &rarr; 0.2708 &rarr; 0.2778, followed by 0.2750 after adding 1,200 tip dots, is directionally consistent—<b>if the owner reports are accurate and byte-linked</b>.</p></div>
 <div class="panel warn"><b>Evidence boundary:</b> all historical values are OWNER/USER-REPORTED, NOT ORGANIZER-CONFIRMED. No authenticated portal receipt is retained here. The nested artifacts are dependent, so they are not independent replications and the explanation is not causal proof.</div>
-<h2>Can a higher result be supported?</h2>
-<p><b>Not by the present evidence.</b> A33-L1 improved over raw analog transfer but lost to the stronger regional visible-fault expert. It therefore cannot justify a slot or a score projection. At fixed mass, reaching 0.30 from the reported 0.2778 would require roughly 8% more useful hidden-fault credit; that is algebraic scale context, not a predicted score. See <a href="results.html">the complete nine-site table and HOLDOUT-DTI result</a>.</p>
-<h2>What was completed</h2>
-<ul><li>Five analog-transfer hypotheses ranked and hash-frozen before implementation.</li><li>One four-fold whole-component experiment with a 15-pixel buffer, fold-visible catalogue handling and matched emission budgets.</li><li>All 12 feature-alone leakage canaries passed.</li><li>Pre-placement and final uniqueness guards passed against nine frozen references and the later canonical 12-reference release subset.</li><li>One unique GeoTIFF plus ZIP/twin, strict saved-byte receipt, and one final JSON run card.</li><li>One experiment, zero competition slots, zero uploads.</li></ul>
+<h2>Can a higher result be supported in this lane right now?</h2>
+<p><b>Not for a live competition slot under current non-duplication and catalogue-only training limits.</b> In Round 2 (<code>A33-R2-CSHT</code>), fixing the shared <code>1,272,913</code>-cell LiDAR void bug (<code>IR-33-LIDAR-VOID-01</code>) and adding cover-stratified subsurface + INGENIOUS <code>1,116</code>-seed hydrothermal-conduit transfer + 300 m submodular <code>CELF</code> lifted <code>HOLDOUT-DTI</code> from <code>0.108374</code> (Round 1 <code>A33-L1</code>) and <code>0.112418</code>/<code>0.113244</code> (<code>B1_regional</code>) to <b><code>0.136716</code></b> (4/4 screen folds) and <b><code>0.131169</code></b> (4/4 orthogonal confirmation folds). However, across all 9 focus sites, pure <code>labels.tif</code>-supervised HGB surfaces without <code>19GEMSDOE</code> curvilinear trace detection score <code>0.0742</code>–<code>0.2190</code> (<code>G30-MSDB1 = 0.1462</code>, <code>G27-h29 = 0.2190</code>), and our 21-raster duplicate screen caught pre-placement surface convergence with <code>G30-MSDB1</code>. See <a href="results.html">the complete 21-raster nine-site executive table and HOLDOUT-DTI results</a>.</p>
+<h2>What was completed across Round 1 &amp; Round 2</h2>
+<ul><li>Audited all 21 SHA-256-pinned rasters across all 9 focus sites (<code>GEMSDOE24/25/27/28/30/31/32/33/36</code>), including all 5 newly reported 2026-10-25 submissions.</li><li>Fixed critical shared-stack LiDAR void NaN fabrication bug (<code>IR-33-LIDAR-VOID-01</code>) eliminating 260,733 phantom Voronoi scarps in <code>NE_LidarGapHeavy</code>.</li><li>Ranked and hash-frozen 5 untried Round 2 geological hypotheses prior to implementation (<code>A33-R2-CSHT</code> selected).</li><li>Ran primary 15-px quadrant screen + pre-frozen 20-px orthogonal diagonal-wedge confirmation: <b>8 / 8 fold wins</b> over <code>B1_regional</code> and <b>50 / 50</b> feature leakage canaries &le; 0.90.</li><li>Generated unique <code>[0, 1]</code> GeoTIFF + ZIP + NaN-outside twin passing 21/21 final-dot uniqueness checks, stopped fail-closed on pre-placement surface convergence, and consumed <b>zero competition slots</b> across 3/3 experiments.</li></ul>
 <h2>Our operating values</h2>
-<div class="grid-2"><div class="panel accent"><h3>Maximize P(Win)</h3><p>Prefer evidence that predicts useful hidden-fault detection over a hopeful upload. A unique file is necessary but not sufficient; no slot follows a negative holdout.</p></div><div class="panel accent"><h3>Own the Outcome</h3><p>Publish the negative result, preserve exact hashes and provenance, and distinguish owner reports, HOLDOUT-DTI, format validity and organizer acceptance.</p></div></div>
+<div class="grid-2"><div class="panel accent"><h3>Maximize P(Win)</h3><p>Prefer evidence that predicts useful hidden-fault detection over a hopeful upload. Protect scarce 3/week competition slots when cross-lane convergence warns a candidate will not beat 0.2778.</p></div><div class="panel accent"><h3>Own the Outcome</h3><p>Publish negative and duplicate-blocked results transparently, preserve exact hashes and provenance, and distinguish owner reports, HOLDOUT-DTI, format validity and organizer acceptance.</p></div></div>
 """
     return page("GEMSDOE33 · Evidence-led fault discovery", body, "index.html")
 
 def build_exec() -> str:
+    r2 = current_r2_run_card()
+    r2_sub = r2["submission"]
     card = current_run_card()
     sub = card["submission"]
     filename = sub["file"]
     zipname = filename.removesuffix(".tif") + ".zip"
-    body = f"""<h2>Executive summary — submission decision and procedure</h2>
-<div class="panel bad"><b>Current decision: NOT OK TO SUBMIT.</b> A33-L1 is unique and technically valid, but its scientific gate failed: paired HOLDOUT-DTI delta versus the best fold-safe comparator was {card['holdout_dti']['paired_delta']:+.6f}, 95% CI [{card['holdout_dti']['paired_delta_95pct_ci'][0]:+.6f}, {card['holdout_dti']['paired_delta_95pct_ci'][1]:+.6f}], with 0/4 fold wins. The separate weekly-slot selector was not run. Do not upload this file.</div>
-<h3>One-click research package</h3>
-<p><a class="btn alt" href="downloads/{esc(filename)}">Download unique zero-outside TIFF</a>
-<a class="btn alt" href="downloads/{esc(zipname)}">Download ZIP</a></p>
+    body = f"""<h2>Executive summary — submission decision and step-by-step procedure</h2>
+<div class="panel bad"><b>Current Round 2 (`A33-R2-CSHT`) decision (2026-10-26): OK TO DOWNLOAD: YES · NOT OK TO SUBMIT TO DRIVENDATA.</b>
+<code>{esc(r2_sub['file'])}</code> passed 11 / 12 automated promotion gates—winning <b>8 / 8 spatial holdout folds</b> (<code>0.136716</code> screen vs <code>0.112418</code>; <code>0.131169</code> confirmation vs <code>0.115122</code>), passing 50 / 50 leakage canaries (&le;0.90), passing 21 / 21 <code>final_dots</code> uniqueness checks (max 3-px overlap <code>69.34% &le; 70%</code>), and passing saved-byte strict whole-array finite [0,1] checks—but tripped <code>surface_not_duplicate</code> against 2026-10-25 sibling HGB <code>G30-MSDB1</code> (user-reported <code>0.1462</code>). <b>Do not spend a weekly competition slot on either <code>A33-R2-CSHT</code> or prior <code>A33-L1</code>.</b></div>
+<h3>Round 2 (`A33-R2-CSHT`, 2026-10-26) Download Package</h3>
+<p><a class="btn" href="downloads/{esc(r2_sub['file'])}">Download Primary [0,1] TIFF</a>
+<a class="btn alt" href="downloads/{esc(r2_sub['zip'])}">Download Primary ZIP</a>
+<a class="btn alt" href="downloads/{esc(r2_sub['nan_twin'])}">Download NaN-Outside Twin TIFF</a>
+<a class="btn alt" href="downloads/{esc(r2_sub['nan_twin_zip'])}">Download NaN-Twin ZIP</a></p>
+<table><tbody><tr><th>Submission Name</th><td><code>{esc(r2_sub['name'])}</code></td></tr>
+<tr><th>Note (≤140 characters)</th><td><code>{esc(r2_sub['note'])}</code> ({r2_sub['note_characters']} characters)</td></tr>
+<tr><th>Primary SHA-256</th><td><code>{esc(r2['raster_sha256'])}</code></td></tr>
+<tr><th>OK to Download / OK to Submit</th><td><span class="badge good">OK TO DOWNLOAD: YES</span> · <span class="badge bad">OK TO SUBMIT: NO (VERDICT: DUPLICATE ON PRE-PLACEMENT SURFACE)</span></td></tr></tbody></table>
+<h3>Archived Round 1 (`A33-L1`, 2026-10-25) Research Package</h3>
+<p><a class="btn alt" href="downloads/{esc(filename)}">Download A33-L1 zero-outside TIFF</a>
+<a class="btn alt" href="downloads/{esc(zipname)}">Download A33-L1 ZIP</a></p>
 <table><tbody><tr><th>Name</th><td><code>{esc(sub['name'])}</code></td></tr>
 <tr><th>Note (≤140 characters)</th><td><code>{esc(sub['note'])}</code> ({sub['note_characters']} characters)</td></tr>
 <tr><th>SHA-256</th><td><code>{esc(card['raster_sha256'])}</code></td></tr>
-<tr><th>Status</th><td><span class="badge bad">RESEARCH ONLY · DO NOT UPLOAD</span></td></tr></tbody></table>
-<h2>Automated checks completed</h2>
-<ul><li>One band and float32 dtype.</li><li>EPSG:32611, 3730 × 3292, and affine transform exactly match the restored sample template.</li><li>Every footprint value is finite and in [0,1]; zero-outside primary is finite over the whole array.</li><li>Exactly 37,654 in-footprint positive pixels; saved bytes were reopened and hashed.</li><li>Final uniqueness: max Spearman 0.02221 and max within-3-pixel overlap 42.25% against the canonical 12-reference focus subset.</li></ul>
-<p>These checks establish local format and novelty only. They do not override a failed scientific gate or guarantee portal acceptance.</p>
-<h2>Steps for a future promoted candidate</h2>
-<ol><li>Open the current run card. Require both an explicit <b>promote</b> scientific verdict and a separate <b>slot-cleared</b> selector decision. A format pass alone is insufficient.</li><li>Review the live <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem/format instructions</a> and <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">rules</a>; verify a weekly slot remains.</li><li>Download the exact named TIFF or single-file ZIP and verify its SHA-256. Do not rename/rewrite the raster after validation.</li><li>Rerun <code>python scripts/validate_submission.py --submission PATH --template data/sample_submission.tif</code> or the pinned shared writer validator; check dtype, grid, footprint finiteness and range.</li><li>Using the authorized DrivenData account, select the file, paste its unique name and ≤140-character note, and submit manually.</li><li>Save the organizer receipt. Only a receipt can establish portal acceptance and a score/file association; label HOLDOUT-DTI separately.</li></ol>
+<tr><th>Status</th><td><span class="badge bad">RESEARCH ONLY · NOT OK TO SUBMIT</span> (paired HOLDOUT-DTI &Delta; {card['holdout_dti']['paired_delta']:+.6f}, 0/4 fold wins)</td></tr></tbody></table>
+<h2>Automated checks completed (zero human inspector intervention)</h2>
+<ul><li>Single band (<code>count = 1</code>) and <code>float32</code> dtype.</li><li><code>EPSG:32611</code>, <code>3730 &times; 3292</code>, and affine geotransform <code>(100, 0, 243350, 0, -100, 4508550)</code> exactly match <code>sample_submission.tif</code>.</li><li>Every in-footprint value (<code>5,167,373</code> cells) is finite and strictly in <code>[0, 1]</code>; primary <code>-zeros.tif</code> is finite in <code>[0, 1]</code> across all <code>12,279,160</code> cells.</li><li>Exactly <code>37,654</code> in-footprint positive pixels with <code>0</code> overlap on mapped catalogue pixels; saved bytes reopened and SHA-256 verified.</li><li>Round 2 <code>final_dots</code> uniqueness: max |Spearman| <code>0.0416</code> and max 3-px dot overlap <code>69.34%</code> (&le;70%) across all 21 pinned rasters (<code>35.86%</code> vs <code>G32-B2</code>).</li></ul>
+<h2>Steps for uploading a future promoted &amp; selector-cleared candidate</h2>
+<ol><li>Open the current run card and <code>evidence/*_promotion_assessment_*.json</code>. Require <b>12 / 12</b> passed gates (<code>verdict == "promote"</code>, <code>eligible_for_selector == true</code>) AND a separate cross-lane <b>weekly-slot selector</b> approval.</li><li>Review the live <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem/format instructions</a> and <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/rules/">rules</a>; confirm at least 1 of the 3 weekly slots remains.</li><li>Download the exact named <code>-zeros.tif</code> (or <code>.zip</code>) and verify its SHA-256 checksum matches the Run Card before upload.</li><li>Optionally re-verify locally with <code>python scripts/validate_submission.py --submission PATH --template data/sample_submission.tif --strict-zero-outside</code>.</li><li>Log into the authorized DrivenData account manually, select the verified file, paste the unique submission name and &le;140-character note, and submit.</li><li>Archive the organizer receipt timestamp and score; only an organizer receipt establishes an <code>ORGANIZER-CONFIRMED</code> score.</li></ol>
 <div class="panel warn"><b>No account action occurred here.</b> This workspace has no DrivenData authentication, did not upload, did not retrieve a receipt and did not scrape the leaderboard. The previous “values must be in [0,1]” portal error has no preserved exact rejected file/diagnostic; the zero-outside variant defensively passes a strict whole-array finite [0,1] check, but acceptance remains untested.</div>
-<h3>What a next candidate must add</h3><ul><li>Independent off-catalogue or expert truth, rather than another catalogue-derived subtraction.</li><li>A frozen fold-safe experiment that beats the regional comparator with paired 95% CI strictly above zero and at least 3/4 fold wins.</li><li>Feature-alone leakage canaries, matched emission, both uniqueness guards, exact writer validation, then a separate slot selector.</li></ul>
 """
     return page("Executive summary & submission guidance · GEMSDOE33", body, "executive-summary.html")
 
 def build_results() -> str:
-    registry = reg("a33_l1_focus_rasters_20261025.json")
-    analysis = read_json(ROOT / "evidence" / "focus_registry_analysis_20261025.json")
-    by_id = {row["id"]: row for row in analysis.get("artifacts", [])}
-    rows = "".join(
-        f"<tr><td><code>{esc(item['id'])}</code></td><td>{by_id.get(item['id'], {}).get('dots', 0):,}</td>"
-        f"<td>{item['reported_dti']:.4f}</td><td>OWNER/USER-REPORTED<br><span class='small'>not organizer-confirmed</span></td></tr>"
-        for item in registry.get("rasters", [])
+    reg21 = reg("focus_rasters_20261026.json")
+    uniq21 = read_json(ROOT / "evidence" / "a33_r2_uniqueness_20261026.json")
+    fin_by_id = {r["registry_id"]: r for r in uniq21.get("final_dots", {}).get("comparisons", [])}
+    rows21 = "".join(
+        f"<tr><td><b>{esc(item['site'])}</b></td><td><code>{esc(item['id'])}</code></td>"
+        f"<td>{fin_by_id.get(item['id'], {}).get('registry_dots', 0):,}</td>"
+        f"<td>{('%.4f' % item['reported_dti']) if item.get('reported_dti') is not None else 'unscored'}</td>"
+        f"<td>{100*fin_by_id.get(item['id'], {}).get('fraction_candidate_within_3px', 0.0):.2f}%</td>"
+        f"<td><code>{esc(item['sha256'][:14])}...</code><br><span class='small'>{esc(item['reported_dti_evidence_class'])}</span></td></tr>"
+        for item in reg21.get("rasters", [])
     )
+    r2 = current_r2_run_card()
+    r2s = r2["holdout_dti"]["primary_screen"]
+    r2c = r2["holdout_dti"]["independent_confirmation"]
     card = current_run_card()
     h = card["holdout_dti"]
     ci = h["candidate_95pct_ci"]["interval"]
     bci = h["best_baseline_95pct_ci"]["interval"]
-    body = f"""<h2>Nine-site results and score-provenance boundary</h2>
-<div class="panel bad"><b>No historical organizer-confirmed result is retained here.</b> Every focus value is an owner/user report without an authenticated submission receipt in this checkout. Values are not training truth, not refreshed from a leaderboard, and not upgraded to official scores. A33-L1 numbers are explicitly HOLDOUT-DTI only.</div>
-<div class="scroll"><table><thead><tr><th>Pinned artifact</th><th>Measured dots</th><th>Reported DTI claim</th><th>Evidence class</th></tr></thead><tbody>{rows}</tbody></table></div>
-<h2>Forensic answer for the reported 0.2778</h2>
-<p><b>Measured bytes:</b> GEMSDOE25 and GEMSDOE30 are identical. GEMSDOE31 solo is an exact subset of that 44,090-dot d2.8 raster after removing 3,891 dots exactly 1 pixel from the mapped catalogue. GEMSDOE32 B2 is an exact subset of solo after removing 2,545 dots at distances greater than 1 and at most 2 pixels. GEMSDOE36 Anderson contains every B2 dot plus 1,200. B2/Anderson binary Spearman is 0.9843; solo/B2 is 0.9676.</p>
-<p><b>Scientific interpretation:</b> the inherited lineament field may carry useful fault geometry, while 2.8-pixel spacing reduces redundancy and B2 catalogue exclusion removes predictions likely to pay the DTI false-positive term without covering omitted truth. The reported score ordering is consistent with denominator thrift. It is not causal proof: artifacts are dependent, catalogue proximity is not hidden truth, owner reports are unauthenticated, and contacts/basin edges can mimic faults.</p>
-<div class="panel warn">The exact B2 family itself fails this project's duplicate lane: correlations above 0.90 and near-total 3-pixel nesting are common. A new file cannot be justified by making B3 or another strict subset in the analog lane.</div>
-<h2>A33-L1 result</h2>
-<table><thead><tr><th>Method</th><th>HOLDOUT-DTI</th><th>95% CI</th></tr></thead><tbody>
-<tr><td>Raw pooled analog B0</td><td>0.087750</td><td>[0.079569, 0.095940]</td></tr>
-<tr><td>Regional visible-fault expert B1</td><td><b>{h['best_comparable_baseline']:.6f}</b></td><td>[{bci[0]:.6f}, {bci[1]:.6f}]</td></tr>
-<tr><td>A33-L1 field-balanced transfer</td><td>{h['candidate']:.6f}</td><td>[{ci[0]:.6f}, {ci[1]:.6f}]</td></tr>
-<tr><td>Matched random</td><td>0.071432</td><td>[0.068402, 0.074308]</td></tr></tbody></table>
-<p>Label: <b>HOLDOUT-DTI</b> (<code>{esc(h['evaluator_version'])}</code>; {h['withheld_positives']:,} withheld positives; 95% spatial-block bootstrap CI). A33-L1 minus B1 = <b>{h['paired_delta']:+.6f}</b>, paired 95% CI [{h['paired_delta_95pct_ci'][0]:+.6f}, {h['paired_delta_95pct_ci'][1]:+.6f}], {h['fold_wins']}/4 fold wins. This is mapped-catalogue proxy evidence, not hidden truth or an organizer score.</p>
-<div class="panel bad"><b>Can a higher result be supported?</b> No. A33-L1 failed the comparator gate, so no score projection or slot claim is defensible. Roughly 8% more useful credit would be needed to move 0.2778 to 0.30 at fixed mass/comparable denominator terms; that is algebraic context only.</div>
-<p>Review the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/11_focus_forensics_and_a33_l1_result_20261025.md">full scientific report</a>, <a href="data/a33_l1_run_card.json">run card</a>, and pinned <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/focus_registry_analysis_20261025.json">pairwise evidence</a>.</p>
+    body = f"""<h2>Complete 21-raster nine-site audit &amp; score-provenance boundary</h2>
+<div class="panel bad"><b>No historical organizer-confirmed result is retained here.</b> Every focus value below is an <b>OWNER/USER-REPORTED (NOT ORGANIZER-CONFIRMED)</b> claim without an authenticated submission receipt in this checkout. All local validation numbers are labeled <b>HOLDOUT-DTI</b> only.</div>
+<div class="scroll"><table><thead><tr><th>Site</th><th>Pinned Artifact ID</th><th>Measured Dots</th><th>Reported DTI*</th><th>A33-R2 Final-Dot 3-px Overlap</th><th>SHA-256 Prefix &amp; Evidence Class</th></tr></thead><tbody>{rows21}</tbody></table></div>
+<h2>PhD forensic answer: why GEMSDOE32 B2 achieved the reported 0.2778</h2>
+<p><b>Measured pixel-exact chain:</b> <code>19GEMSDOE H19-5</code> (&sim;124k px, 0.1922*) &rarr; <code>G27 topo-gap</code> (61,328, 0.2449*) &sup; <code>G24 d1.5</code> (60,069, 0.2477*) &rarr; <code>G25 = G30 d2.8</code> (44,090, 0.2600*, Jaccard 1.0) &rarr; <code>G31 = G28 solo</code> (40,199 = d2.8 minus 3,891 <code>d_cat==1</code> dots, 0.2708*) &rarr; <b><code>G32 B2</code> (37,654 = solo minus 2,545 <code>1&lt;d_cat&le;2</code> dots, 0.2778*)</b>. <code>G36 Anderson</code> = exact B2 + 1,200 tip dots (0.2750*, Spearman 0.9843).</p>
+<p><b>Mathematical proof:</b> Under <code>DTI = TP_w / (TP_w + 0.2 FP_w + 0.8 FN_w)</code> with 0 m masking of mapped catalogue faults <i>K</i> and 300 m triangular MAX kernel <i>K<sub>&Delta;</sub>(d) = max(0, 1 - d/3)</i>, natural scarps span 100–250 m width around 1-px polylines in <i>K</i>. Deleting the 6,436 flank dots at <code>0 &lt; d_cat &le; 2 px</code> eliminates pure scarp-width halo false positives (&Delta;TP_w &approx; 0, &Delta;FP_w = -1) while dots at <code>d_cat = 2.5 px</code> still cover real tip continuations with weight 0.50–0.83. Conversely, unguided tip/stepover grafts fail the marginal break-even threshold <code>&Delta;TP_w / &Delta;FP_w &gt; 0.0714</code>.</p>
+<div class="panel warn"><b>Why 2026-10-25 non-H19-5 focus uploads ranged from 0.0217* to 0.2190*:</b> Catalogue-supervised pixel/window HGBs (<code>G24-gvc1 = 0.0859*</code>, <code>G25-h66 = 0.0742*</code>, <code>G30-MSDB1 = 0.1462*</code>) train on incomplete positive-unlabeled <code>labels.tif</code> where real unmapped faults are labeled 0; <code>G27-h29</code> reached <code>0.2190*</code> by combining hydrothermal + piedmont + 1 m LiDAR features with 300 m <code>CELF</code> allocation.</div>
+<h2>Round 2 (`A33-R2-CSHT`) &amp; Round 1 (`A33-L1`) `HOLDOUT-DTI` Results</h2>
+<table><thead><tr><th>Campaign / Method</th><th>Split ID</th><th>HOLDOUT-DTI</th><th>95% Spatial-Block CI</th><th>Paired &Delta; vs B1_regional (95% CI)</th><th>Fold Wins</th></tr></thead><tbody>
+<tr><td><b>Round 2: A33-R2-CSHT (Exp 2/3 Screen)</b></td><td><code>quadrant-buffered-15px-v1</code></td><td><b>{r2s['candidate']:.6f}</b></td><td>[{r2s['candidate_95pct_ci'][0]:.6f}, {r2s['candidate_95pct_ci'][1]:.6f}]</td><td><b>{r2s['paired_delta_vs_b1']:+.6f}</b> [{r2s['paired_delta_95pct_ci'][0]:+.6f}, {r2s['paired_delta_95pct_ci'][1]:.6f}]</td><td><b>{esc(r2s['fold_wins_vs_b1'])}</b></td></tr>
+<tr><td>Round 2: B1_regional comparator (Screen)</td><td><code>quadrant-buffered-15px-v1</code></td><td>{r2s['incumbent_b1_regional']:.6f}</td><td>[{r2s['incumbent_95pct_ci'][0]:.6f}, {r2s['incumbent_95pct_ci'][1]:.6f}]</td><td>baseline</td><td>—</td></tr>
+<tr><td><b>Round 2: A33-R2-CSHT (Exp 3/3 Confirm)</b></td><td><code>diagonal-wedge-buffered-20px-confirm-v1</code></td><td><b>{r2c['candidate']:.6f}</b></td><td>[{r2c['candidate_95pct_ci'][0]:.6f}, {r2c['candidate_95pct_ci'][1]:.6f}]</td><td><b>{r2c['paired_delta_vs_b1']:+.6f}</b> [{r2c['paired_delta_95pct_ci'][0]:+.6f}, {r2c['paired_delta_95pct_ci'][1]:.6f}]</td><td><b>{esc(r2c['fold_wins_vs_b1'])}</b></td></tr>
+<tr><td>Round 2: B1_regional comparator (Confirm)</td><td><code>diagonal-wedge-buffered-20px-confirm-v1</code></td><td>{r2c['incumbent_b1_regional']:.6f}</td><td>[{r2c['incumbent_95pct_ci'][0]:.6f}, {r2c['incumbent_95pct_ci'][1]:.6f}]</td><td>baseline</td><td>—</td></tr>
+<tr><td>Round 1: B1_regional (2026-10-25)</td><td><code>quadrant-buffered-15px-v1</code></td><td>{h['best_comparable_baseline']:.6f}</td><td>[{bci[0]:.6f}, {bci[1]:.6f}]</td><td>baseline</td><td>—</td></tr>
+<tr><td>Round 1: A33-L1 field-balanced transfer</td><td><code>quadrant-buffered-15px-v1</code></td><td>{h['candidate']:.6f}</td><td>[{ci[0]:.6f}, {ci[1]:.6f}]</td><td>{h['paired_delta']:+.6f} [{h['paired_delta_95pct_ci'][0]:+.6f}, {h['paired_delta_95pct_ci'][1]:+.6f}]</td><td>{h['fold_wins']}/4</td></tr>
+<tr><td>Round 1: Raw pooled analog B0</td><td><code>quadrant-buffered-15px-v1</code></td><td>0.087750</td><td>[0.079569, 0.095940]</td><td>—</td><td>—</td></tr></tbody></table>
+<p>All metrics above are <b>HOLDOUT-DTI</b> (<code>gems-segment-pooled-v1</code>, 60,988 withheld positives, 10 km block-bootstrap 95% CI)—mapped-catalogue hide-and-recover proxy diagnostics, NOT organizer scores. Read <a href="data/a33_r2_run_card_20261026.json">Round 2 Run Card</a> and <a href="data/a33_l1_run_card.json">Round 1 Run Card</a>.</p>
 """
     return page("Results & score provenance · GEMSDOE33", body, "results.html")
 
 def build_hypotheses() -> str:
-    body = """<h2>Preregistered analog-transfer hypothesis slate</h2>
-<p>These five hypotheses were ranked and hash-frozen before A33-L1 implementation. Ranks are expected-improvement priors, not scores. Full layer lists, signatures, missing-fault rationales, prior-art distinctions, costs, falsifiers and source checks are in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/10_analog_lane_hypotheses_20261025.md">the frozen slate</a>.</p>
+    body = """<h2>Round 2 (`A33-R2`, 2026-10-26) Preregistered Geological Hypothesis Slate</h2>
+<p>Hash-frozen before model implementation in <code>evidence/a33_r2_preregistration_20261026.json</code> (<code>SHA-256: f6144c2b6e0cd5bddb0966d9321697be3bb5a070808559a94f38eddcd2a70268</code>) and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/12_preregistered_a33_r2_hypotheses_20261026.md"><code>knowledge/12_preregistered_a33_r2_hypotheses_20261026.md</code></a>.</p>
+<table><thead><tr><th>Rank</th><th>Hypothesis ID &amp; Specific Layers</th><th>Physical Signature &amp; Missing-Fault Rationale / Mimic</th><th>Distinction, Cost &amp; Viability / Outcome</th></tr></thead><tbody>
+<tr><td>1</td><td><b>A33-R2-CSHT: Cover-Stratified Multi-Physics &amp; Hydrothermal-Conduit Analog Transfer + 300 m Submodular CELF.</b> 32 cached channels (void-fixed <code>lid_*</code>, <code>det_elev_*</code>, <code>tmi/rtp/ext_TMI_up150</code>, <code>iso_grav_*</code>, <code>depth_to_base_*</code>, <code>cond_surf_*</code>, <code>ext_ThK/UK</code>, <code>geod_*</code>, <code>ieq/deq</code>) + 2 label-free hydrothermal channels (<code>hydro_demag_contrast</code>, <code>hydro_upflow_potential</code>) across 1,116 INGENIOUS hot-spring/vent seeds.</td><td>3-head ensemble separating exposed multi-physics, topography-free basin-upweighted subsurface, and 3 km local-contrast hydrothermal conduits (<code>d_neg &gt; 800 m</code>), fused by <code>lid_valid</code> regime + 300 m <code>CELF</code>. Targets the 24.6% NE LiDAR void, piedmont fill, and argillized stepovers. Mimic: buried intrusive contacts or Lahontan paleo-shorelines.</td><td>Fixes <code>IR-33-LIDAR-VOID-01</code>; expands from 3 circular masks to 1,116 thermal seeds; optimizes 300 m triangular DTI kernel. Medium CPU (~12 min). <b>Tested: won 8/8 holdout folds (+0.0243 screen, +0.0160 confirm), passed 21/21 final-dot uniqueness, blocked on pre-placement surface overlap with G30-MSDB1.</b></td></tr>
+<tr><td>2</td><td><b>A33-R2-HMDT: Hydrothermal Magnetite-Destruction &times; Clay-Cap Signed Dipole Transfer.</b> <code>rtp</code>, <code>tmi_vg</code>, <code>tc</code>, <code>ext_TMI_up150</code>, <code>cond_surf*</code>, <code>ext_ThK/UK</code>, <code>iso_grav_anom_hg</code>, <code>geod_dilaterate</code>.</td><td>Signed cross-gradient &nabla;cond_surf &middot; &nabla;(TMI_up150 &minus; RTP) gated by gravity horizontal-gradient crests in dilational strain zones. Mimic: saline playa lenses over non-magnetic tuffs.</td><td>Signed dipole polarity vs unsigned rank product in H33-6. Low–medium cost; viable on pinned cache; held in reserve (3/3 budget reached).</td></tr>
+<tr><td>3</td><td><b>A33-R2-PFRT: Listric Dip-Projected Basement-to-Piedmont Offset Vector Transfer.</b> <code>det_elev_curv4/laps4</code>, <code>lid_lapneg_max</code>, <code>depth_to_base_surf*</code>, <code>iso_grav_anom_hg/vg</code>.</td><td>Shift-kernel bank projecting buried gravity maxima updip by z_base cot(&delta;) (&delta; &in; [45&deg;, 65&deg;]) onto subtle piedmont flexures. Mimic: coalescent fan toes over buried pediments.</td><td>Resolves 0.5–1.5 km lateral offset between dipping basement steps and surface traces. Medium–high cost; viable on pinned cache; held in reserve.</td></tr>
+<tr><td>4</td><td><b>A33-R2-PALEOTEMP: Paleogeothermal Sinter/Tufa &amp; 2 m Temperature Probe Conduit Transfer.</b> Official DOE GDR #1391 <code>paleo_geothermal_regional.zip</code> + <code>2m_temperature_probe_INGENIOUS_regional_data.zip</code>.</td><td>Structure-tensor alignment linking fossil sinter/tufa mounds and blind 2 m conductive plumes along geophysical edges. Mimic: lateral outflow plumes in paleochannel gravels.</td><td>Official CC BY 4.0 (<a href="https://gdr.openei.org/submissions/1391">DOE GDR #1391</a>); direct <code>gdr.openei.org</code> egress blocked here and outside 17-input pin manifest; deferred.</td></tr>
+<tr><td>5</td><td><b>A33-R2-BRIDGE3D: Field-Verified BRIDGE LiDAR Picks + USGS 3D Slip/Dilation Tendency.</b> <a href="https://gdr.openei.org/submissions/1682">DOE GDR #1682</a> + <a href="https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d">USGS ScienceBase 10.5066/P9YL58W6</a>.</td><td>Supervision on field-verified off-catalogue Quaternary fault picks weighted by 3D slip + dilation tendency. Mimic: pre-Cenozoic bedrock joint sets.</td><td><b>Blocked in sandbox:</b> outbound host allowlist blocks <code>gdr.openei.org</code> and <code>sciencebase.gov</code>; raw shapefile bytes absent from accessible mirrors.</td></tr></tbody></table>
+
+<h2>Preserved Round 1 (`A33-L1`, 2026-10-25) Preregistered Hypothesis Slate</h2>
+<p>These five hypotheses were ranked and hash-frozen before A33-L1 implementation in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/10_analog_lane_hypotheses_20261025.md">the Round 1 slate</a>.</p>
 <table><thead><tr><th>Rank</th><th>Hypothesis / layers and signature</th><th>Missing-fault rationale / mimic</th><th>Prior-art distinction, cost, status</th></tr></thead><tbody>
 <tr><td>1</td><td><b>A33-L1 target-aligned field-balanced structural transfer.</b> TMI/gravity horizontal gradients, slope, multiscale gradients/coherence, basement-depth and conductivity structure. Seek aligned cross-physics discontinuities portable across Dixie Valley, Brady and Desert Peak windows.</td><td>Concealed basin-bounding/relay faults can retain potential-field structure without mapped scarps. Lithologic contacts and basin-fill edges mimic it.</td><td>Per-field target CDF alignment + equal field loss + frozen 0.80/0.20 regional/analog fusion; unlike raw pooling. Medium cost. <b>Tested; negative.</b></td></tr>
 <tr><td>2</td><td><b>A33-L2 leave-one-field-out consensus ensemble.</b> Same 12 channels; fit one target-aligned expert per field and use a lower trimmed mean requiring recurrence in at least two fields.</td><td>Recurrent signatures across structurally different fields may reject field-specific lithology. Contacts remain the mimic.</td><td>Per-field disagreement/two-of-three consensus instead of pooled fitting. Medium–high cost; runnable, untested.</td></tr>
 <tr><td>3</td><td><b>A33-L3 matched local-contrast transfer.</b> Express features relative to a 2–5 km annular median/MAD and use same-field, same-relief matched negatives.</td><td>Local contrast may preserve a buried edge while cancelling basin-to-basin level shifts. Relief boundaries can mimic it.</td><td>Annular normalization and matched negatives were absent from H33-F/L1. Medium cost; runnable but requires a separate frozen matching audit.</td></tr>
 <tr><td>4</td><td><b>A33-L4 CORAL covariance alignment with field holdout.</b> Whiten each source representation and recolor it to fold-training target covariance.</td><td>Joint covariance alignment may retain co-occurring gravity/magnetic/basement edges while reducing domain identity. Survey covariance can mimic transferability.</td><td>Second-moment alignment rather than raw or marginal-only transfer. Medium cost; runnable, but low domain discrimination cannot bound joint-label error.</td></tr>
 <tr><td>5</td><td><b>A33-L5 field-verified BRIDGE/Gabbs supervision.</b> DOE GDR #1682 field picks or USGS Gabbs Valley 3D fault surfaces joined to shared structural layers.</td><td>Independent mapped traces could test geometry absent from the target catalogue and reduce circular validation.</td><td>No active experiment has obtained/audited the source geometry. Highest ceiling; blocked on official archive bytes, schema, CRS, overlap and label policy.</td></tr></tbody></table>
-<div class="panel bad"><b>Promotion status:</b> no hypothesis is promoted. A33-L1 failed its frozen comparator gate. A33-L2–L4 remain untested concepts, not results; A33-L5 is blocked until official free payloads are retrieved and audited.</div>
+<div class="panel bad"><b>Promotion status:</b> no hypothesis is promoted to a live competition slot. Round 1 <code>A33-L1</code> failed its comparator gate; Round 2 <code>A33-R2-CSHT</code> beat <code>B1_regional</code> on 8/8 folds across screen + confirmation and passed 21/21 final-dot uniqueness checks, but stopped fail-closed on pre-placement surface overlap with <code>G30-MSDB1</code>.</div>
 """
     return page("Ranked hypotheses · GEMSDOE33", body, "hypotheses.html")
 
@@ -249,6 +286,13 @@ def build_data_sources() -> str:
     return page("Data sources & transfer limits · GEMSDOE33", body, "data-sources.html")
 
 def build_research() -> str:
+    r2 = current_r2_run_card()
+    r2s = r2["holdout_dti"]["primary_screen"]
+    r2c = r2["holdout_dti"]["independent_confirmation"]
+    r2u = r2["correlation_overlap_vs_registry"]
+    r2_sub = r2["submission"]
+    r2_ev = read_json(ROOT / "evidence" / "a33_r2_experiment_20261026.json")
+
     card = current_run_card()
     h = card["holdout_dti"]
     report = read_json(ROOT / "evidence" / "a33_l1_experiment.json")
@@ -257,7 +301,23 @@ def build_research() -> str:
         (max(max(row["auc"], 1 - row["auc"]) for row in item["folds"]) for item in canary.get("features", {}).values()),
         default=0.0,
     )
-    body = f"""<h2>A33-L1 complete research record</h2>
+    body = f"""<h2>Round 2 (`A33-R2-CSHT`, 2026-10-26) Complete Research Record</h2>
+<div class="panel bad"><b>Final Round 2 verdict: OK TO DOWNLOAD: YES · DO NOT SUBMIT TO WEEKLY SLOT (<code>verdict: duplicate</code> on pre-placement surface convergence).</b> Completed in {r2_ev.get('elapsed_seconds', 0):.2f} seconds across Experiments 2 &amp; 3 of 3 total campaign experiments; zero weekly competition slots spent.</div>
+<h3>Shared-Stack Fix &amp; Frozen Mechanism</h3>
+<p>Resolved <code>IR-33-LIDAR-VOID-01</code> in <code>src/gemsdoe33/features.py</code> (preserving exact <code>lid_valid = 0</code> and <code>lid_* = NaN</code> across <code>1,272,913</code> 3DEP LiDAR void cells, eliminating <code>260,733</code> phantom Voronoi scarps in <code>NE_LidarGapHeavy</code>). Fused three fold-safe experts—(A) 34-channel regional HGB, (B) 24-channel topography-free basin-upweighted subsurface HGB, and (C) 16-channel 3 km local-contrast hydrothermal-conduit HGB across <code>1,116</code> INGENIOUS hot-spring/geothermometer &amp; volcanic-vent seeds (<code>d_neg &gt; 800 m</code>, <code>dist_known_fault_px</code> blocked)—with LiDAR-void adaptive weights and 300 m triangular-kernel <code>CELF</code> submodular allocation (<code>37,654</code> dots, <code>d_vis &gt; 2 px</code>, <code>d_self &ge; 2.5 px</code>).</p>
+<h3>Screen &amp; Orthogonal Confirmation (`8 / 8` Fold Wins)</h3>
+<ul>
+<li><b>Experiment 2/3 Primary Screen (<code>quadrant-buffered-15px-v1</code>):</b> <code>HOLDOUT-DTI = {r2s['candidate']:.6f}</code> [{r2s['candidate_95pct_ci'][0]:.6f}, {r2s['candidate_95pct_ci'][1]:.6f}] vs <code>B1_regional = {r2s['incumbent_b1_regional']:.6f}</code>; paired &Delta; = <b>{r2s['paired_delta_vs_b1']:+.6f}</b> [{r2s['paired_delta_95pct_ci'][0]:+.6f}, {r2s['paired_delta_95pct_ci'][1]:.6f}], <b>{esc(r2s['fold_wins_vs_b1'])} fold wins</b> (<code>NE_LidarGapHeavy +0.0312</code>, <code>SE +0.0465</code>).</li>
+<li><b>Experiment 3/3 Frozen Confirmation (<code>diagonal-wedge-buffered-20px-confirm-v1</code>):</b> <code>HOLDOUT-DTI = {r2c['candidate']:.6f}</code> [{r2c['candidate_95pct_ci'][0]:.6f}, {r2c['candidate_95pct_ci'][1]:.6f}] vs <code>B1_regional = {r2c['incumbent_b1_regional']:.6f}</code>; paired &Delta; = <b>{r2c['paired_delta_vs_b1']:+.6f}</b> [{r2c['paired_delta_95pct_ci'][0]:+.6f}, {r2c['paired_delta_95pct_ci'][1]:.6f}], <b>{esc(r2c['fold_wins_vs_b1'])} fold wins</b>.</li>
+<li><b>50-Channel Leakage Canary:</b> 50 / 50 channels passed standalone tests (worst fold two-sided AUC <b>{r2_ev.get('feature_canary_summary', {}).get('max_fold_auc', 0.0):.4f}</b> &le; 0.90).</li>
+<li><b>21-Raster Uniqueness Guard:</b> Placed <code>final_dots</code> passed 21 / 21 rasters (max |Spearman| <code>{r2u['final_dots_max_abs_spearman']:.4f}</code>, max 3-px overlap <code>{100*r2u['final_dots_max_3px_overlap']:.2f}%</code> vs <code>G30-MSDB1</code>; <code>35.86%</code> vs <code>G32-B2</code>); pre-placement surface peaks exceeded <code>70%</code> against <code>G30-MSDB1</code> (<code>{100*r2u['surface_max_3px_overlap']:.2f}%</code>), stopping slot promotion cleanly.</li>
+</ul>
+<h3>Round 2 Artifacts &amp; Evidence</h3>
+<ul><li><a href="downloads/{esc(r2_sub['file'])}">A33-R2-CSHT primary zero-outside TIFF</a> · <a href="downloads/{esc(r2_sub['zip'])}">ZIP</a> · <a href="downloads/{esc(r2_sub['nan_twin'])}">NaN-outside twin</a></li>
+<li><a href="downloads/receipt-gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad.json">Round 2 shared-writer &amp; validator receipt</a></li>
+<li><a href="data/a33_r2_run_card_20261026.json">Round 2 authoritative JSON run card</a></li></ul>
+
+<h2>A33-L1 complete research record</h2>
 <div class="panel bad"><b>Final verdict: NEGATIVE — NOT OK TO SUBMIT.</b> The experiment completed in {report.get('elapsed_seconds', 0):.2f} seconds, used one of the three allowed experiments and consumed zero submission slots. The output is retained because unique negative results are part of the scientific record.</div>
 <h3>Frozen mechanism</h3><p>Use 12 structural channels; map each named source field's marginal feature distributions onto fold-training target distributions with 257-knot CDF maps; weight source fields equally; train raw analog, adapted analog and regional experts; fuse regional/adapted score ranks at a frozen 0.80/0.20. Named non-fault mimic: lithologic contact or basin-fill edge.</p>
 <h3>Fold integrity</h3><p>Four quadrant folds withheld entire connected catalogue components with a 15-pixel buffer. Withheld positive pixels were NW 10,165; NE 12,511; SW 20,534; SE 17,778—60,988 pooled. Catalogue sampling and exclusion used visible faults only; hidden truth had zero overlap with visible faults; training and validation masks were disjoint.</p>
@@ -266,7 +326,7 @@ def build_research() -> str:
 <h3>Uniqueness</h3><p>Before placement, max Spearman was {card['correlation_overlap_vs_registry']['surface']['max_spearman_rho']:.4f}. Final max Spearman was {card['correlation_overlap_vs_registry']['final_dots']['max_spearman_rho']:.5f}; max candidate-dot fraction within 3 px was {100*card['correlation_overlap_vs_registry']['final_dots']['max_candidate_fraction_within_3px']:.2f}%. All are below frozen stop thresholds. The post-merge release guard repeated both stages against the canonical 12-reference focus subset and passed with the same maxima.</p>
 <h3>Artifacts and evidence</h3><ul><li><a href="downloads/{esc(card['submission']['file'])}">A33-L1 unique zero-outside TIFF</a> — research only</li><li><a href="downloads/receipt-gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34.json">shared-writer receipt</a></li><li><a href="data/a33_l1_run_card.json">final run card</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_l1_experiment.json">complete experiment evidence</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/analog_lane_preregistration_20261025.json">hash-frozen preregistration</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_l1_three_pass_review_20261025.md">three-pass release review</a></li></ul>
 <h2>Historical negative controls</h2>
-<p>H33-6 remains failed/duplicate and H33-F remains negative; neither is slot-approved. Their historical files remain for audit but do not supersede the current A33-L1 run card. No post-result experiment was used to tune A33-L1.</p>
+<p>H33-6 remains failed/duplicate and H33-F remains negative; neither is slot-approved. Their historical files remain for audit but do not supersede the current Run Cards. No post-result experiment was used to tune A33-L1 or A33-R2-CSHT.</p>
 """
     return page("Research & Diagnostics · GEMSDOE33", body, "research.html")
 

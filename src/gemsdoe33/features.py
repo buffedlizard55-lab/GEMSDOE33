@@ -206,8 +206,16 @@ def build_channels(report: bool = True) -> tuple[list[str], dict]:
 
     # 2. external layers
     for key, arr in load_external().items():
-        a = np.where(arr > 0, arr, np.nan).astype(np.float32)
-        emit(key, _fill_nan(a, footprint), raw if key in RAW_FIELDS else None)
+        if key == "lid_valid":
+            # Preserve exact 1 m 3DEP LiDAR coverage (0 = no LiDAR, 1..255 = fractional coverage)
+            # rather than Voronoi-smearing boundary values across the 1.27M-cell NE void (IR-33-LIDAR-VOID-01).
+            emit(key, np.where(footprint, arr, np.nan).astype(np.float32))
+        elif key.startswith("lid_"):
+            # Preserve NaN where 0 = no LiDAR so missingness is explicit rather than phantom Voronoi scarps.
+            emit(key, np.where(footprint & (arr > 0), arr, np.nan).astype(np.float32))
+        else:
+            a = np.where(arr > 0, arr, np.nan).astype(np.float32)
+            emit(key, _fill_nan(a, footprint), raw if key in RAW_FIELDS else None)
 
     # 3. multi-scale derivatives on raw fields only
     for key in RAW_FIELDS:

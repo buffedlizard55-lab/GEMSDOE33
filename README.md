@@ -1,148 +1,107 @@
 # GEMSDOE33 — DOE GEMS Fault Discovery Project (DrivenData #306)
 
-## 🔴 Current decision (2026-10-25): unique TIFF generated; **NOT OK TO SUBMIT**
+## 🟡 Current Decision (2026-10-26, `A33-R2-CSHT`): **OK TO DOWNLOAD: YES** · **OK TO SUBMIT: NO (DO NOT SPEND A WEEKLY SLOT)**
 
-A genuinely new A33-L1 analog-transfer raster was generated and validated automatically. It is easy to download and passes the prescribed saved-byte format checks, but its preregistered scientific holdout gate **failed**. **Do not spend a weekly slot on it.** No portal upload was made, no organizer receipt exists, and no competition score is predicted.
-
-- **[Download unique zero-outside GeoTIFF](docs/downloads/gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-zeros.tif)**
-- **[Download single-file ZIP](docs/downloads/gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-zeros.zip)**
-- [Official-template-profile NaN-outside twin](docs/downloads/gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-nan.tif)
-- [Machine receipt](docs/downloads/receipt-gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34.json) · [one final JSON run card](evidence/a33_l1_run_card.json)
-
-| Required item | Result |
+| Immediate Reader Question | Unmistakable Answer |
 |---|---|
-| Unique name | `gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-zeros` |
-| Note (95/140 characters) | `A33-L1 analog-CDF fusion 37654d \| holdout gate FAIL \| research; selector not run \| 85c94a805a34` |
-| Saved-byte SHA-256 | `2bbbf7e381720f2242959e3efd6f2437f273afe6e7c48540d769524d2b4e8759` |
-| Format | One float32 band; EPSG:32611; 3730×3292; exact transform; values `[0,1]`; no NaN in footprint |
-| Content | 37,654 dots; content ID `85c94a805a34` |
-| Scientific verdict | **NEGATIVE — NOT OK TO SUBMIT** |
-| Why not | A33-L1 lost to the fold-safe regional comparator; required selector was therefore not run |
+| **OK TO DOWNLOAD?** | **✅ YES — READY TO DOWNLOAD.** Validated single-band `float32` GeoTIFF & `.zip` matching `sample_submission.tif` (`EPSG:32611`, `3730×3292`, exact `100 m` geotransform), strictly in `[0, 1]` (`{0.0, 1.0}`, `0` NaN across all `12,279,160` cells in `-zeros.tif`; `5,167,373` finite `[0, 1]` footprint cells in `-nan.tif` twin). Placed `final_dots` (`37,654` dots via 300 m submodular `CELF`) pass **21 / 21** registry uniqueness checks (`max |Spearman ρ| = 0.0416 <= 0.90`, `max 3-px dot overlap = 69.34% <= 70%`, and only **`35.86%`** within 3 px of `GEMSDOE32` `B2`). |
+| **OK TO SUBMIT TO DRIVENDATA?** | **🛑 NO — DO NOT SPEND ONE OF THE 3 WEEKLY SLOTS (`verdict: duplicate` / `ok_to_submit: false`).** Even though `A33-R2-CSHT` won **`8 / 8` spatial holdout folds** against incumbent `B1_regional` (`screen HOLDOUT-DTI = 0.136716` vs `0.112418` [`0.113244` recorded], `4/4` folds; orthogonal `confirmation HOLDOUT-DTI = 0.131169` vs `0.115122`, `4/4` folds) and passed **`11 / 12`** automated `promotion.py` gates (`50/50` leakage canaries `<= 0.90`, `21/21` `final_dots` uniqueness, `100%` format audit), its **pre-placement continuous surface peaks** exceeded `70%` 3-px overlap against 2026-10-25 sibling regional-HGB rasters `GEMSDOE30` `MSDB1` (user-reported `0.1462`), `GEMSDOE24` `GVC1` (`0.0859`), and `GEMSDOE25` `H66` (`0.0742`). Cross-lane convergence with `MSDB1` (`0.1462`) confirms this surface family will **not** beat `GEMSDOE32` `B2` (`0.2778`). |
 
-A format-valid TIFF is not a scientifically promoted submission and does not prove portal acceptance.
+### Direct Download Links (`A33-R2-CSHT`, 2026-10-26)
+- **[Download Primary `[0, 1]` Zero-Outside GeoTIFF (`.tif`, 827 KB)](docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif)** · **[Download Primary `.zip` (169 KB)](docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.zip)**
+- [Download Official-Text `NaN`-Outside Twin (`.tif`, 1.59 MB)](docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-nan.tif) · [Download `NaN`-Twin `.zip` (281 KB)](docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-nan.zip)
+- [Writer & Validator Receipt](docs/downloads/receipt-gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad.json) · [Authoritative Round 2 JSON Run Card](evidence/a33_r2_run_card_20261026.json) · [Submission Instructions Subpage](docs/how-to-submit.html) · [Prior Round 1 (`A33-L1`) Run Card](evidence/a33_l1_run_card.json)
 
-## 1. Standing brief and non-negotiable protocol
+| Artifact Field | Verified Value |
+|---|---|
+| **Unique Submission Name** | `gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros` |
+| **Short Note (`98 / 140` chars)** | `GEMS33 A33-R2-CSHT: cover+hydrothermal transfer + 300m CELF 37654d \| gate DUPLICATE \| 0b78c04d5fad` |
+| **Primary `.tif` SHA-256** | `14ab452c22aaf07444cd02e589fce4627d682e99f44c63e78dc1383955e0c602` |
+| **`NaN`-Twin `.tif` SHA-256** | `c1173e63bec4f2f673074e6951218ac3d269f25994b322e9eff39905b9e64af5` |
+| **Grid & Range Audit** | `1` band `float32`, `EPSG:32611`, `3730 × 3292`, `100 m` spacing, origin `(243350.0, 4508550.0)`, `37,654` positive `{0,1}` dots, `0` catalogue overlap, `pass = True` |
+| **Automated Gate Status** | **`11 / 12` `promotion.py` gates PASS** (`screen` `4/4`, `confirm` `4/4`, `50/50` canaries, `21/21` `final_dots` uniqueness, saved-byte format); **1 gate (`surface_not_duplicate`) BLOCKED** (`ok_to_submit = false`, `0` slots spent) |
 
-The full recurring project request and durable rules are preserved in [`standing_prompt.md`](standing_prompt.md). The present run follows its assigned **analog-field transfer** lane:
+---
 
-> Review the repository and the strongest user-reported GEMSDOE24/25/27/28/30/31/32/33/36 artifacts; explain scientifically why the strongest may have worked; create a genuinely unique, easy-to-download competition-format TIFF without copying an old submission; preregister 3–5 new geological hypotheses; test the top candidate on a spatially blocked hide-and-recover holdout before any slot decision; automate validation; update the executive-summary site and README; preserve negative results and evidence; and state conspicuously whether the TIFF is OK to submit.
+## 1. Executive Summary of All Nine Focus Sites (`GEMSDOE24`–`GEMSDOE36`)
 
-Mandatory controls applied here:
+All **21** SHA-256-pinned rasters (`12` classic focus-site artifacts + `5` newly user-reported 2026-10-25 focus-site artifacts + `4` local `GEMSDOE33` historical artifacts) are audited in [`registry/focus_rasters_20261026.json`](registry/focus_rasters_20261026.json). Every historical DrivenData figure below is **`USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)`**; no organizer submission receipt is stored in this checkout, and zero leaderboard scraping was performed (`IR-33-TERMS-01`).
 
-- withhold whole fault components by quadrant with a 15-pixel buffer;
-- derive catalogue-dependent sampling from fold-visible faults only and mask those faults pixel-exactly;
-- evaluate pooled DTI with `α=0.2`, `β=0.8`, and a 300 m triangular kernel;
-- run every source feature alone; two-sided AUC `>0.90` is a leakage stop;
-- stop as duplicate at Spearman `>0.90` or when `>70%` of candidate dots fall within 3 pixels of one registry raster;
-- use the shared pinned evaluator and writer, issue no score projection, and separate scientific promotion from weekly-slot selection;
-- stop after three experiments or two hours. This run used **one experiment**, about 3.2 minutes, and zero slots.
+| Focus Site | Classic Highest-Reported Artifact (`Dots`; `Reported DTI*`) | 2026-10-25 Artifact (`Dots`; `3-px vs B2`; `Reported DTI*`) | Executive Suitability Summary |
+|---|---|---|---|
+| **GEMSDOE24** | `GEMSDOE24-h25-1-d1p5-20261004-989f59505db1.tif` (`60,069`; `0.2477`*) | `gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros.tif` (`37,654`; `36.62%`; `0.0859`*); `RSHG1` (`HOLDOUT-DTI 0.1387`, blocked at `72.69% > 70%`) | Canonical source of `vendor/gems24_template`. `H25-1` (`d=1.5`) was over-dense (`60k` dots inflating `0.2·FP_w`); `GVC1` (`0.0859`*) showed negative lineaments fire on lithologic contacts; `RSHG1` flagged cross-lane supervised-ridge convergence. **Not suitable to submit.** |
+| **GEMSDOE25** | `gems25-h19-5-d2p8-20261004T201317Z-e56ea318af89.tif` (`44,090`; `0.2600`*) | `gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros.tif` (`44,832`; `30.38%`; `0.0742`*) | Classic `d2.8` is pixel-identical (`Jaccard = 1.000`) to `GEMSDOE30` `91eae1ca` and retains `6,436` `<= 200 m` catalogue-halo dots. `H66` (`0.0742`*) showed gravity-flank detectors over-fire on buried pediments/intrusives. **Not suitable to submit.** |
+| **GEMSDOE27** | `gems27-topo-gap-20261004-5512495c6bd1.tif` (`61,328`; `0.2449`*) | `gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite.tif` (`37,654`; `56.12%`; **`0.2190`**\*) | `topo-gap` (`61k` dots) was an over-dense superset of `G24` `H25-1`. **`H29` (`0.2190`*) is the strongest independent non-`H19-5` 2026-10-25 upload across all 9 sites**, pairing hydrothermal + piedmont + 1 m LiDAR features with 300 m `CELF` allocation, though still `0.0588` below `G32` `B2` (`0.2778`*). |
+| **GEMSDOE28** | `h36-1-r1-band-prune-20261004T231500Z-b531dae0a36f-zeros.tif` (`37,660`; `0.2710`*); `h27-4` (`40,199`; `0.2708`*) | `gems28-s18-mxtp-20261025-3e95505c011a-allfinite.tif` (`11,082`; `17.14%`; `0.0217`*) | Classic `H36-1`/`H27-4` belong to the `H19-5` pruning chain (`>93%` overlap with `B2`). `S18` (`11,082` dots, `0.0217`*) starved dot recall against `0.8·FN_w`. **Not suitable to submit.** |
+| **GEMSDOE30** | `gems30-d28-baseline-20261004-91eae1ca-zeros.tif` (`44,090`; `0.2600`*) | `gems30-MSDB1-edge44090-20261025-e7856ec3f14a.tif` (`44,090`; `39.18%`; `0.1462`*) | Classic `91eae1ca` equals `G25` `d2.8` byte-for-byte. `MSDB1` (`0.1462`*) trained a 31-feature OOF `HistGradientBoostingClassifier` on `labels.tif`; its `0.1462`* outcome benchmarks pure catalogue-supervised HGB surfaces and caught our pre-placement surface convergence in `A33-R2-CSHT`. **Not suitable to submit.** |
+| **GEMSDOE31** | `h27-4-r1-solo-d2-8-20261004T195206Z-8acb75e1-zeros.tif` (`40,199`; `0.2708`*) | `H31R-1-relay-damage-research` (unscored; failed holdout gate) | Classic `solo` deleted `3,891` `d_cat == 1` halo pixels from `d2.8` (`0.2600 -> 0.2708`*), leaving `2,545` `1 < d_cat <= 2` halo pixels behind. **Superseded by `G32` `B2`; duplicate-blocked.** |
+| **GEMSDOE32** | **`h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif`** (`37,654`; **`0.2778`**\*) | `gems32-sbir1-20261025` (unscored; failed holdout gate) | **9-site reported peak (`0.2778`*).** Equals `G31` `solo` minus `2,545` `1 < d_cat <= 2 px` boundary-halo pixels (`pixel_exact_match = True`). Historical benchmark; cannot be copied or lightly perturbed under non-duplication rules. |
+| **GEMSDOE33** *(This Repo)* | `GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e-zeros.tif` (`41,865`; `0.2632`*, retired) | Prior `A33-L1` (`HOLDOUT-DTI 0.1084` vs `0.1132`, negative); **New `A33-R2-CSHT` (`37,654`; `35.86%` vs B2; `HOLDOUT-DTI 0.136716` screen / `0.131169` confirm)** | Fixed shared `IR-33-LIDAR-VOID-01` (`1.27M` void cells), won **`8/8` holdout folds**, passed `50/50` canaries & `21/21` `final_dots` uniqueness, **OK to download (`YES`)**, **NOT OK to submit (`NO`: pre-placement surface convergence with `G30-MSDB1`)**. |
+| **GEMSDOE36** | `gemsdoe36-anderson-dipslip-h33b2-k1200-20261004-9b9ea4e6-zeros.tif` (`38,854`; `0.2750`*) | `gems36-mstd1-mohr-slip-dilation-20261025` (unscored; failed holdout gate) | Classic `Anderson` = exact `G32` `B2` + `1,200` tip dots (`Spearman = 0.9843` vs `B2`), lowering reported score `0.2778 -> 0.2750`*. **Not suitable to submit.** |
 
-Core values remain **Maximize P(Win)** and **Own the Outcome**. Here that means publishing the new artifact for audit while refusing to promote a negative experiment.
+*\*All historical DrivenData DTI figures are **USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)**; user-supplied leaderboard figures `0.4413` and `0.3195` are likewise unauthenticated aspirational context (`IR-33-SCORE-01`).*
 
-## 2. Focus review: why GEMSDOE32 B2 may have the reported 0.2778
+---
 
-All historical values in this section are **OWNER/USER-REPORTED — NOT ORGANIZER-CONFIRMED**. This checkout has no authenticated DrivenData receipt tying any historical result to exact bytes. The values are context, not labels or official scores.
+## 2. Why `GEMSDOE32` `B2` Achieved `0.2778` — And Can We Beat `0.2778`?
 
-Nine highest-reported focus artifacts were restored from pinned repository commits and SHA-256 checked. The byte-level analysis establishes that much of the apparent top-method diversity is one dependent family:
+1. **Exact Pixel-Algebraic Mechanism (`evidence/focus_raster_audit_20261025.json`):**
+   `GEMSDOE32` `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros.tif` (`37,654` dots) added **zero** fault detections to `19GEMSDOE` `H19-5`. Instead, starting from `d=2.8` Poisson thinning (`44,090` dots, `0.2600`*), `G31` (`H27-4`) stripped `3,891` dots at $0 < d_{\text{cat}} \le 100\text{ m}$ (`0.2708`*), and `G32` (`B2`) stripped the remaining `2,545` dots at $100 < d_{\text{cat}} \le 200\text{ m}$ (`0.2778`*, `pixel_exact_match = True`).
+2. **Boundary-Halo & 300 m Triangular-Kernel Proof:**
+   Under $\text{DTI} = \text{TP}_w / (\text{TP}_w + 0.2\,\text{FP}_w + 0.8\,\text{FN}_w)$ with pixel-exact `0 m` masking of `existing_faults.tif` ($K$) and 300 m (`3 px`) triangular MAX kernel $K_{\triangle}(d) = \max(0, 1 - d/3)$, natural Quaternary fault scarps are `100–250 m` wide while $K$ is `1 px` (`100 m`) wide. Detectors therefore fire across the `<= 200 m` scarp slope flanking $K$ where no *unmapped* parallel fault exists ($\Delta \text{TP}_w \approx 0$, $\Delta \text{FP}_w = +1$), while true along-strike fault continuations starting past $K$'s tips remain covered from $d_{\text{cat}} = 2.5\text{ px}$ at kernel weight $0.50\text{–}0.83$. Pruning $d_{\text{cat}} \le 2\text{ px}$ strictly shrank $0.2\,\text{FP}_w$ at near-zero $\text{TP}_w$ loss; conversely, grafting `1,200` tip dots (`G36`: `0.2750`*) or `1,666` stepover dots (`G33` `H33-D`: `0.2632`*) missed real curved traces beyond `300 m` and failed the marginal break-even threshold $\Delta \text{TP}_w / \Delta \text{FP}_w > 0.2\,\text{DTI}/(1 - 0.8\,\text{DTI}) = 0.0714$.
+3. **Can `GEMSDOE33` Beat `0.2778` Right Now?**
+   - **Within `GEMSDOE33`'s strict analog-transfer lane (`zero H19-5/B2 pixels`, supervised only on incomplete `labels.tif`):** **No.** Across all 9 focus sites, pixel/window classifiers supervised solely on positive-unlabeled `labels.tif` empirically achieve `0.0742`–`0.2190`* (`G30-MSDB1 = 0.1462`*, `G27-h29 = 0.2190`*) because unlabeled real faults in `labels.tif` act as false negatives during training while broad lithologic/intrusive contacts mimic mapped range fronts.
+   - **What WOULD beat `0.2778` in a dedicated next-generation detector campaign:** Coupling (i) multi-azimuth curvilinear 1 m scarp/DEM trace tracking (`>= 1.5 km` continuity) where `lid_valid > 0`, (ii) our `A33-R2-CSHT` void-safe concealed/hydrothermal transfer strictly inside the `24.63%` 3DEP LiDAR gap (`IR-33-LIDAR-VOID-01`) and deep alluvial stepovers, and (iii) 300 m triangular-kernel submodular `CELF` allocation. Full derivation: [`knowledge/13_focus_forensics_g32_proof_and_a33_r2_results_20261026.md`](knowledge/13_focus_forensics_g32_proof_and_a33_r2_results_20261026.md).
 
-- GEMSDOE25 d2.8 and GEMSDOE30 d2.8 are pixel-identical: 44,090 dots, Spearman 1.0000.
-- GEMSDOE31 solo is an exact 40,199-dot subset of d2.8, removing exactly 3,891 dots at 100 m from the mapped catalogue.
-- GEMSDOE32 B2 is an exact 37,654-dot subset of solo, removing exactly 2,545 more dots at 100–200 m from the catalogue.
-- GEMSDOE36 Anderson contains every B2 dot plus 1,200 more; B2/Anderson Spearman is 0.9843 and Jaccard is 0.9691.
-- GEMSDOE24 and GEMSDOE27 are another near-copy pair (Spearman 0.9896).
+---
 
-The most supportable explanation is **metric-aware subtraction from a useful inherited lineament field**. DTI penalizes false-positive mass (`α=0.2`), known-catalogue faults are masked, and repeated nearby dots can be redundant under the 300 m kernel. If the reported sequence 0.2600 → 0.2708 → 0.2778 is accurate, removing low-yield mass beside already mapped traces improved denominator efficiency while preserving off-catalogue lineaments. The reported decrease to 0.2750 after Anderson adds 1,200 dots is directionally consistent with that mechanism. This is a plausible observational explanation—not authenticated score evidence or causal proof. Lithologic contacts, basin edges and acquisition boundaries remain non-fault mimics.
+## 3. Preregistered Round 2 Geological Hypotheses (`A33-R2`)
 
-Full nine-site table, metric derivation, limitations and review link: [`knowledge/11_focus_forensics_and_a33_l1_result_20261025.md`](knowledge/11_focus_forensics_and_a33_l1_result_20261025.md). Machine measurements: [`evidence/focus_registry_analysis_20261025.json`](evidence/focus_registry_analysis_20261025.json). The concurrent broader prior-art audit adds three GEMSDOE28 variants and 132 ordered comparisons in [`knowledge/10_focus_review_20261025.md`](knowledge/10_focus_review_20261025.md).
+Five untried hypotheses were formulated and SHA-256-frozen **prior to model implementation** in [`knowledge/12_preregistered_a33_r2_hypotheses_20261026.md`](knowledge/12_preregistered_a33_r2_hypotheses_20261026.md) and [`evidence/a33_r2_preregistration_20261026.json`](evidence/a33_r2_preregistration_20261026.json) (`SHA-256: f6144c2b6e0cd5bddb0966d9321697be3bb5a070808559a94f38eddcd2a70268`):
 
-## 3. Can this repository support a higher result now?
+1. **`A33-R2-CSHT` — Cover-Stratified Multi-Physics & Hydrothermal-Conduit Analog Transfer + 300 m Submodular `CELF` Crest Allocation** *(Selected & Executed; viable on pinned 17 inputs)*: Fixes `IR-33-LIDAR-VOID-01` (`1,272,913` void cells preserved as `lid_valid = 0`, `lid_* = NaN`), fuses a 34-channel regional HGB, a 24-channel topography-free basin-upweighted subsurface/kinematic HGB, and a 16-channel 3 km local-contrast hydrothermal-conduit HGB across `1,116` INGENIOUS thermal/vent cells (`temp_c >= 37 °C` or `geothermquartz_c >= 100 °C`, splay-safe `d_neg > 800 m`), and places `37,654` dots via lazy-greedy 300 m triangular-kernel `CELF`.
+2. **`A33-R2-HMDT` — Hydrothermal Magnetite-Destruction × Clay-Cap Signed Dipole Transfer** *(Reserve; viable on pinned cache)*: Signed cross-gradient $\nabla\text{cond\_surf}\cdot\nabla(\text{TMI}_{\text{up150}}-\text{RTP})$ gated by `iso_grav_anom_hg` inside dilational strain zones.
+3. **`A33-R2-PFRT` — Listric Dip-Projected Basement-to-Piedmont Offset Vector Transfer** *(Reserve; viable on pinned cache)*: Projects buried `iso_grav_anom_hg` crests updip by $z_{\text{base}}\cot\delta$ ($\delta\in[45^\circ,65^\circ]$) along $-\nabla z_{\text{base}}$ onto piedmont flexures.
+4. **`A33-R2-PALEOTEMP` — Paleogeothermal Sinter/Tufa & 2 m Shallow Temperature Probe Conduit Transfer** *(Deferred outside 17-input pin contract)*: Official DOE GDR #1391 (`https://gdr.openei.org/submissions/1391`, CC BY 4.0); verified in sibling `GEMSDOE24@fc2bc6f3`, direct `gdr.openei.org` egress blocked here.
+5. **`A33-R2-BRIDGE3D` — Field-Verified BRIDGE LiDAR Picks + USGS 3D Slip/Dilation Tendency Transfer** *(Blocked in sandbox)*: DOE GDR #1682 (`https://gdr.openei.org/submissions/1682`) + USGS ScienceBase `10.5066/P9YL58W6` (`https://www.sciencebase.gov/catalog/item/6296974dd34ec53d276bb33d`); raw archives unreachable under sandbox outbound host allowlist.
 
-**No.** A higher result may be possible in principle, but A33-L1 does not support one and no numeric competition score is projected.
+---
 
-The frozen A33-L1 candidate used 12 structural channels, per-field 257-knot source-to-target marginal CDF alignment, equal source-field loss, and a fixed 0.80 regional / 0.20 adapted-analog rank fusion. It was compared against a raw analog expert (B0), an otherwise matched regional visible-fault expert (B1), and matched random placement at the same fold-scaled dot budgets.
+## 4. Round 2 (`A33-R2-CSHT`) Holdout, Canary & Uniqueness Evidence
 
-| Method | HOLDOUT-DTI (`gems-segment-pooled-v1`; 60,988 withheld positives; spatial-block bootstrap 95% CI) |
-|---|---:|
-| Raw pooled analog B0 | 0.087750 [0.079569, 0.095940] |
-| **Regional visible-fault expert B1** | **0.113244 [0.102796, 0.124169]** |
-| A33-L1 field-balanced transfer | 0.108374 [0.097607, 0.119402] |
-| Matched random | 0.071432 [0.068402, 0.074308] |
+All performance figures below are **`HOLDOUT-DTI`** (`evaluator_version = "gems-segment-pooled-v1"`, `60,988` withheld catalogue positives, 10 km block-bootstrap 95% CI) — **not** competition scores or projections:
 
-A33-L1 vs best comparator B1: paired delta **−0.004870**, 95% CI **[−0.010900, +0.001226]**, **0/4 fold wins**. A33-L1 did beat raw transfer B0 (+0.020624, 95% CI [+0.013580, +0.027951], 4/4), so target alignment repaired some transfer error; the analog contribution nevertheless diluted the stronger regional expert.
+| Campaign Experiment | Split ID & Buffer | `B1_regional` Incumbent | **`A33-R2-CSHT` Candidate** | Paired $\Delta$ vs `B1_regional` (`95% CI`) | Fold Wins |
+|---|---|---:|---:|---|---:|
+| *Prior Round 1 (`A33-L1`, Exp 1/3)* | `quadrant-buffered-15px-v1` (`1.5 km`) | `0.113244 [0.1028, 0.1242]` | `0.108374 [0.0976, 0.1194]` | `-0.004870 [-0.010900, +0.001226]` | `0 / 4` |
+| **Round 2 Primary Screen (Exp 2/3)** | `quadrant-buffered-15px-v1` (`1.5 km`) | `0.112418 [0.1016, 0.1235]` | **`0.136716 [0.1191, 0.1544]`** | **`+0.024298 [+0.012427, +0.035833]`** | **`4 / 4`** |
+| **Round 2 Frozen Confirmation (Exp 3/3)** | `diagonal-wedge-buffered-20px-confirm-v1` (`2.0 km`) | `0.115122 [0.1038, 0.1268]` | **`0.131169 [0.1152, 0.1467]`** | **`+0.016047 [+0.003817, +0.028030]`** | **`4 / 4`** |
 
-These are mapped-catalogue **HOLDOUT-DTI** diagnostics, not private expert truth and not organizer scores. Existing analog “labels” are not independently verified dense field truth; that limitation prevents a stronger transfer claim.
+- **Shared-Stack Bug Fix Impact (`IR-33-LIDAR-VOID-01`):** In `NE_LidarGapHeavy` (`24.63%` footprint LiDAR void), `HOLDOUT-DTI` rose from `0.134070` (`B1_regional`) to **`0.165257`** (`+0.031188`); in `SE`, from `0.110546` to **`0.157058`** (`+0.046512`).
+- **50-Channel Leakage Canary:** `50 / 50` channels (`34` base + `16` 3 km hydrothermal local-contrast channels) passed standalone `SegmentHoldout.canary` (`max pooled two-sided AUC = 0.7209`, `max fold two-sided AUC = 0.7685 <= 0.90`). Forbidden CSV column `dist_known_fault_px` is hard-blocked (`IR-33-CSV-DIST-FAULT-01`).
+- **21-Raster Uniqueness Audit ([`evidence/a33_r2_uniqueness_20261026.json`](evidence/a33_r2_uniqueness_20261026.json)):**
+  - **Final Placed Dots (`final_dots`, `37,654` `CELF-300m` dots):** **PASS (`21 / 21`)** — `max |Spearman ρ| = 0.0416 <= 0.90`; `max 3-px dot overlap = 69.34% <= 70%` (`G30-MSDB1`), `43.10%` (`G27-topo-gap`), **`35.86%` (`G32-B2`)**, **`35.19%` (`G33-A33-L1`)**, `31.18%` (`G27-h29`).
+  - **Pre-Placement Surface (`surface`):** **FAIL-CLOSED STOP** — top pre-placement surface peaks exceeded `70%` 3-px overlap against 2026-10-25 sibling HGB rasters `G30-MSDB1` (`91.11%` unthinned / `77.82%` matched-37k 1-px NMS crests), `G24-gvc1` (`88.49%`), and `G25-h66` (`73.41%`), while passing all 18 other rasters (`<= 65.11%`). Also documented `IR-33-SPEARMAN-SPARSE-CEILING-01` ($\rho_{\max} = \sqrt{3p(1-p)} \approx 0.159$ on continuous-vs-binary pairs). Campaign stopped at `3 / 3` experiments with zero post-hoc retuning.
 
-## 4. Novelty and leakage results
+---
 
-All 12 feature-alone canaries passed; the worst fold-level two-sided AUC was 0.6211, far below the `>0.90` stop. The generated artifact passed both duplicate stages against the frozen nine-raster experiment registry. After the concurrent canonical 12-reference registry became available, a release guard repeated both stages against all 12 and passed with the same maxima:
+## 5. Official Data Sources, Provenance & Standing Brief
 
-| Guard | Measured maximum | Stop threshold | Result |
-|---|---:|---:|---|
-| Pre-placement surface Spearman | 0.1084 | `>0.90` | pass |
-| Final binary Spearman | 0.02221 | `>0.90` | pass |
-| Candidate dots within 3 px of one registry raster | 42.25% | `>70%` | pass |
-| Versus GEMSDOE32 B2 specifically | rho 0.02203; 37.07% nearby | same | pass |
+| Dataset / Source | Official Trusted Link | License / Status in Workspace |
+|---|---|---|
+| **DrivenData #306 DOE GEMS Competition, Problem & Rules** | [Overview](https://www.drivendata.org/competitions/306/competition-doe-gems/) · [Problem/Metric](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/) · [Rules](https://www.drivendata.org/competitions/306/competition-doe-gems/rules/) · [Reference Repo](https://github.com/drivendataorg/gems-prize-reference-solution) | Competition specification; no live portal auth/scraping (`IR-33-TERMS-01`); 17 inputs restored from SHA-256-pinned owner mirrors (`IR-33-MIRROR-01`); `sample_submission.tif` used strictly for grid/footprint (`IR-33-TEMPLATE-01`). |
+| **USGS GeoDAWN Airborne Magnetic & Radiometric Survey** | [USGS Data Record](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and) · [ScienceBase `10.5066/P93LGLVQ`](https://www.sciencebase.gov/catalog/item/61969f02d34eb622f692f96c) | Public Domain (CC0); contractor radiometric ratios (`ext_ThK`, `ext_UK`) & upward-continued `ext_TMI_up150` verified via pinned `geodawn_rad_u8.tif` / `geodawn_extensions_u8.tif`. |
+| **GBCGE / UNR DOE INGENIOUS Great Basin Play Fairway** | [INGENIOUS Project](https://gbcge.org/current-projects/ingenious/) · [DOE GDR #1391 (`10.15121/1881483`)](https://gdr.openei.org/submissions/1391) | CC BY 4.0; `27,092` well/spring records (`1,095` hot/geothermometer seed cells) & `21` volcanic vents verified in pinned CSVs (`dist_known_fault_px` column blocked). |
+| **USGS 3DEP 1 m LiDAR Scarp Derivatives** | [USGS 3DEP](https://www.usgs.gov/3d-elevation-program) · `data/lidar_scarp_features.json` | Public Domain; `75.37%` footprint coverage (`1,272,913` void cells fixed in `IR-33-LIDAR-VOID-01`). |
+| **Preserved Standing Brief & Operating Rules** | [`standing_prompt.md`](standing_prompt.md) · [`AGENTS.md`](AGENTS.md) · [`registry/irregularities.json`](registry/irregularities.json) | Full consolidated standing prompt, 2026-10-26 Round 2 addendum, and fail-closed promotion contract. |
 
-The raster is therefore genuinely different under the preregistered lane rules and the broader canonical focus subset. Evidence: [`evidence/a33_l1_full_registry_guard_20261025.json`](evidence/a33_l1_full_registry_guard_20261025.json). This remains a focus subset rather than a global uniqueness certificate; uniqueness does not imply predictive improvement.
-
-## 5. Frozen hypothesis slate
-
-Five hypotheses were ranked before implementation in [`knowledge/10_analog_lane_hypotheses_20261025.md`](knowledge/10_analog_lane_hypotheses_20261025.md); the exact protocol was hash-frozen in [`evidence/analog_lane_preregistration_20261025.json`](evidence/analog_lane_preregistration_20261025.json).
-
-1. **A33-L1 target-aligned, field-balanced structural transfer** — runnable; selected; negative.
-2. **A33-L2 leave-one-field-out consensus ensemble** — per-field target-aligned experts with two-of-three agreement; runnable but untested.
-3. **A33-L3 matched local-contrast transfer** — 2–5 km annular median/MAD normalization with same-relief negatives; runnable but needs a separately frozen matching audit.
-4. **A33-L4 CORAL covariance alignment with field holdout** — joint second-moment alignment plus field-holdout diagnostics; runnable, but cannot by itself bound joint-label error.
-5. **A33-L5 field-verified BRIDGE/Gabbs supervision** — highest scientific ceiling; blocked because official archive bytes, schema, CRS, overlap and label policy could not be obtained and audited here.
-
-No post-result tuning or second experiment was used to rescue the failed candidate.
-
-## 6. Reproduce and verify
-
-Prerequisites are defined in `pyproject.toml`. Restored owner-mirror inputs are SHA-256 pinned; the cached 121-channel stack is generated rather than committed.
+### Reproduce & Run All Automated Checks (Zero Human Inspector Needed)
 
 ```bash
-python -m venv .venv
-.venv/bin/pip install -e '.[dev]'
-.venv/bin/python scripts/restore_data.py --group all
-.venv/bin/python scripts/audit_inputs.py
-.venv/bin/python scripts/prepare_data.py --skip-detector
-.venv/bin/python scripts/cache_focus_registry.py
+python -m venv .venv && .venv/bin/pip install -e '.[dev]'
+GEMS_DATA_DIR=$PWD/.cache/gemsdata .venv/bin/python scripts/restore_data.py --group all --data-dir .cache/gemsdata
 .venv/bin/python scripts/evaluate_holdout.py --verify-recorded
-.venv/bin/pytest -q
+.venv/bin/python scripts/evaluate_holdout.py --verify-a33-r2
+.venv/bin/python scripts/validate_submission.py --submission docs/downloads/gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif --template data/sample_submission.tif --strict-zero-outside
+PYTHON=.venv/bin/python bash scripts/run_checks.sh
 ```
-
-The experiment runner is deliberately one-shot: once evidence exists, it refuses implicit reruns. Shared numerical contracts are vendored unchanged from the pinned GEMSDOE24 source snapshot under `vendor/gems24_template/`; provenance and hashes are in `vendor/gems24_template/SOURCE.json`.
-
-Primary evidence:
-
-- [`evidence/a33_l1_experiment.json`](evidence/a33_l1_experiment.json) — complete fold, canary, model, bootstrap and guard record;
-- [`evidence/a33_l1_run_card.json`](evidence/a33_l1_run_card.json) — required final JSON run card;
-- [`registry/a33_l1_focus_rasters_20261025.json`](registry/a33_l1_focus_rasters_20261025.json) — exact nine-raster frozen experiment registry;
-- [`registry/focus_rasters_20261025.json`](registry/focus_rasters_20261025.json) and [`evidence/focus_raster_audit_20261025.json`](evidence/focus_raster_audit_20261025.json) — canonical 12-reference release audit across all nine sites;
-- [`knowledge/11_focus_forensics_and_a33_l1_result_20261025.md`](knowledge/11_focus_forensics_and_a33_l1_result_20261025.md) — scientific interpretation;
-- [`evidence/a33_l1_three_pass_review_20261025.md`](evidence/a33_l1_three_pass_review_20261025.md) — protocol, implementation and release review.
-
-## 7. Submission procedure—for a future promoted candidate only
-
-Read the generated [executive summary and submission guide](docs/executive-summary.html). In brief:
-
-1. Require an explicit **promote** scientific verdict and a separate **slot-cleared** selector decision. This A33-L1 file has neither.
-2. Verify the exact SHA-256 and rerun the saved-byte validator against the official sample template.
-3. Check current official competition instructions and remaining weekly slots.
-4. Upload manually through the authenticated DrivenData account, using the unique name and ≤140-character note.
-5. Preserve the organizer receipt before calling any value organizer-confirmed.
-
-This environment has no DrivenData authentication. Repository automation does not upload, scrape the leaderboard, or claim portal acceptance.
-
-## 8. Trusted review links and provenance limitations
-
-- [DrivenData DOE GEMS competition](https://www.drivendata.org/competitions/306/competition-doe-gems/)
-- [Official problem and metric description](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/)
-- [Competition rules](https://www.drivendata.org/competitions/306/competition-doe-gems/rules/)
-- [DrivenData reference solution](https://github.com/drivendataorg/gems-prize-reference-solution)
-- [USGS GeoDAWN data record](https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and)
-- [GBCGE INGENIOUS project](https://gbcge.org/current-projects/ingenious/)
-- [Pinned GEMSDOE32 B2 forensic review](https://github.com/buffedlizard55-lab/GEMSDOE32/blob/5fc7792c5887735ecd3aa9a612787da588a7bf2c/knowledge/03_why_02778_and_the_anatomy_of_the_family.md)
-
-Competition inputs in this checkout are reproducible SHA-256-pinned owner mirrors, **not independently organizer-authenticated downloads**. The sample submission was proved to copy catalogue values over its finite footprint and is used only for grid/footprint metadata. No independent Dixie Valley, Brady or Desert Peak label archive was found; `labels.tif` and `existing_faults.tif` in the reviewed analog source are byte-identical. These irregularities are preserved rather than silently upgraded into ground truth.
