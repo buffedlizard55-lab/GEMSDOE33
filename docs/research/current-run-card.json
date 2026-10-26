@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "run_id": "G33-focus-audit-20261025-181ee8c9",
+  "kind": "PREFLIGHT-NEGATIVE; PRIOR-ART-FORENSICS; NO NEW GEOLOGICAL EXPERIMENT",
+  "hypothesis": "AT1: independent-field fault labels plus cover-stratified magnetic/gravity edge-normal transfer may recover concealed faults outside the public catalogue.",
+  "mechanism": "Train and test across independent analog fields using shared cached physics; reject lithologic contacts and transfer only within common feature support. Planning only, not executed.",
+  "named_non_fault_mimic": "Basin-fill boundary or lithologic contact with coincident magnetic and gravity contrasts.",
+  "lane": "No explicit new single-method paragraph in current request. Historical README analog-transfer lane retained as planning scope; no lane selected.",
+  "experiments": 0,
+  "competition_slots_used": 0,
+  "new_raster_generated": false,
+  "hypothesis_slate": "registry/analog_hypotheses_20261025.json",
+  "holdout": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "pooled_dti": null,
+    "ci95": null,
+    "reason": "AT1 not run: official independent analog labels and canonical shared template absent; no candidate or performance estimate."
+  },
+  "historical_holdout_context": {
+    "label": "HOLDOUT-DTI",
+    "evaluator": "src/gemsdoe33/metric.py:dti_binary; source SHA256 5976aa84cbb2b4613543becfd776cfcad0989a5201612228a4b9d158bbae4bfb; evidence has no semantic evaluator version string",
+    "withheld_positives": 60988,
+    "folds": 4,
+    "mean_delta_dti": -0.0027373185904038984,
+    "fold_deltas": [
+      -0.004907409306639132,
+      -0.012736283824310524,
+      0.003240816987572573,
+      0.0034536017817614895
+    ],
+    "descriptive_95pct_t_interval_across_4_fold_deltas": [
+      -0.01502015276507913,
+      0.009545515584271334
+    ],
+    "interval_method": "two-sided Student-t interval, df=3, applied to 4 fold delta values; descriptive, small-n and conditional, not competition/private-label uncertainty",
+    "p2_sgmc_proxy_delta_dti": 0.0001590034879845742,
+    "qualification": "Conditional catalogue/SGMC proxy diagnostics; H19-5 fixed surface was not rederived fold-wise; not organizer score.",
+    "pooled_p1_candidate_dti": 0.11248622668807581,
+    "pooled_p1_control_dti": 0.1146690924917678,
+    "pooled_p1_delta_dti": -0.00218286580369198,
+    "pooled_metric_definition": "Recomputed by summing the retained per-fold TPw/FPw/FNw over all four held-out folds, then applying alpha=0.2, beta=0.8 and the local epsilon; each held-out positive is counted once.",
+    "pooled_components": {
+      "candidate": {
+        "tpw": 9315.705961297106,
+        "fpw": 160814.36593174894,
+        "fnw": 51672.294038702894,
+        "dti": 0.11248622668807581
+      },
+      "control": {
+        "tpw": 9498.79813730125,
+        "fpw": 160732.21887627244,
+        "fnw": 51489.201862698756,
+        "dti": 0.1146690924917678
+      }
+    },
+    "ci_note": "The interval describes fold-level delta distribution (mean fold \u0394DTI), not the pooled delta estimator."
+  },
+  "registry_checks": {
+    "new_surface": null,
+    "new_final_dots": null,
+    "reason": "No new surface or dots built; focus registry is not complete global registry.",
+    "prior_art_only": {
+      "audit": "evidence/focus_raster_audit_20261025.json",
+      "references": 12,
+      "ordered_pairs": 132,
+      "b2_recipe": {
+        "recipe": "GEMSDOE28 H27-4 dots AND Euclidean distance from full catalogue >2 px",
+        "pixel_exact_match": true,
+        "disagreement_cells": 0,
+        "base_dots": 40199,
+        "b2_dots": 37654,
+        "deleted_dots": 2545,
+        "added_dots": 0
+      },
+      "b2_vs_h27_4": {
+        "candidate": "G32-e5eb6e7e",
+        "registry": "G28-8acb75e1f2cc",
+        "spearman_rho": 0.9675873339320898,
+        "candidate_dots": 37654,
+        "registry_dots": 40199,
+        "candidate_dots_within_3px": 37654,
+        "fraction_candidate_within_3px": 1.0,
+        "duplicate_trigger": true,
+        "guard_pass": false,
+        "undefined": false
+      }
+    }
+  },
+  "raster_sha256": null,
+  "validator": {
+    "new_candidate": {
+      "pass": false,
+      "no_nan_inside_footprint": null,
+      "values_0_1": null,
+      "crs_shape_transform_match": null,
+      "reason": "No new raster exists; format-validity cannot be asserted."
+    },
+    "historical_research_only": {
+      "nan_variant": "evidence/current_research_format_20261025.json",
+      "zero_variant": "evidence/current_research_zero_format_20261025.json",
+      "template_now_present": true,
+      "both_local_format_pass": true,
+      "portal_acceptance": false,
+      "qualification": "Rechecked against restored owner-mirror template, not organizer-authenticated. Failed scientific result remains not for upload."
+    }
+  },
+  "submission": {
+    "name": null,
+    "planned_research_id": "G33-AT1-independent-field-transfer",
+    "note": "AT1 independent-label analog transfer: blocked by missing official fault labels, lane and shared template. No new TIFF.",
+    "ok_to_download": "Existing reference/research files only; no new submission file.",
+    "ok_to_submit": false
+  },
+  "gate_decision": "evidence/promotion_gate_20261025.json",
+  "limitations": [
+    "No explicit assigned new method lane or canonical template identifier.",
+    "Independent official analog geometry payloads unavailable under outbound-host restrictions.",
+    "No organizer score receipt, current leaderboard verification or verified weekly cap.",
+    "No valid comparable current holdout best established; fixed-H19-5 conditional evidence cannot authorize a slot.",
+    "Feature cache restored but feature-alone holdout canaries not run; no features trusted for promotion.",
+    "No new unique TIFF delivered; unique-submission goal remains incomplete."
+  ],
+  "verdict": "negative"
+}

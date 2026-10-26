@@ -31,7 +31,7 @@ import rasterio
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from gems33.grid import data_dir  # noqa: E402
+from gemsdoe33.paths import DATA  # noqa: E402
 
 TARGET_EPSG = 32611
 TARGET_RESOLUTION = (100.0, 100.0)
@@ -167,7 +167,7 @@ def main() -> int:
                     help="require 0.0 outside the footprint (owner-reported troubleshooting policy)")
     args = ap.parse_args()
 
-    template = Path(args.template) if args.template else data_dir() / "core" / "sample_submission.tif"
+    template = Path(args.template) if args.template else DATA / "sample_submission.tif"
     report = audit(Path(args.submission), template, strict_zero_outside=args.strict_zero_outside)
     text = json.dumps(report, indent=1)
     if args.out:

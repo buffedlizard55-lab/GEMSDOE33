@@ -99,10 +99,20 @@ def test_focus_sites_forensic_set_identities():
 
 
 def test_shared_evaluate_holdout_and_submission_writer_guards(tmp_path):
+    import importlib.util
     import numpy as np
     import pytest
-    import evaluate_holdout as eh
-    import submission_writer as sw
+
+    def _load(name: str, path: Path):
+        import sys
+        spec = importlib.util.spec_from_file_location(name, path)
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules[name] = mod
+        spec.loader.exec_module(mod)
+        return mod
+
+    eh = _load("root_evaluate_holdout", ROOT / "evaluate_holdout.py")
+    sw = _load("root_submission_writer", ROOT / "submission_writer.py")
 
     # 1. Hide-and-recover folds enforce zero overlap between visible_faults and withheld_pos
     fp = np.ones((80, 80), dtype=bool)
