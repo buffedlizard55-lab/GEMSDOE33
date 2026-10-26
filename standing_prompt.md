@@ -314,3 +314,10 @@ The repeated standing request remains in force: unique TIFFs, explicit download 
   not reproduce H19-5's 0.162 reference; deciding leakage-vs-1m-data requires raw USGS 3DEP tiles
   (host outside sandbox allowlist). Next lane must target lineaments outside the supervised ridge
   network with genuinely new evidence, or obtain the 1 m data first. Do not retune FSML/FSML2/CSHT.
+
+## 2026-10-26 selector-safety continuation (parallel session, PR #32)
+
+Read `knowledge/22_selector_safety_review_20261026.md` before new experiments. This session
+received no identifiable single assigned method lane; it did not infer one or rerun negative
+experiments. The selector now rejects internally contradictory gate flags and invalid ranking
+DTI. No new TIFF or score is claimed in that session. The FSML session above is the latest experimental state: unique FSML2-CC TIF exists, verdict negative, selector 0 eligible.

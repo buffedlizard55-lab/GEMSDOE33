@@ -396,8 +396,24 @@ def build_exec() -> str:
     tif = "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif"
     note = ("GEMSDOE33 G33 tilt-gravity-lidar coherence TIFF; proxy holdout FAILED "
             "dDTI -0.0907 0/4 folds; NOT cleared to submit. id 171b8b87dbf7")
+    focus = reg("focus_rasters_20261026.json").get("rasters", [])
+
+    def historical_download(site, score):
+        matches = [r for r in focus if r.get("site") == site
+                   and r.get("reported_dti") == float(score)]
+        if not matches:
+            return "No exact pinned file/score pairing; see registry"
+        r = matches[0]
+        if r.get("local_path"):
+            return local_link(r["local_path"].removeprefix("docs/"), Path(r["local_path"]).name)
+        url = f"https://github.com/{r['repo']}/blob/{r['ref']}/{r['path']}"
+        return f'<a href="{esc(url)}"><code>{esc(Path(r["path"]).name)}</code></a>'
+
     rows = "\n".join(
-        f"<tr><td>{site}</td><td><code>{name}</code></td><td>{score}</td><td>NO</td><td>{status}</td></tr>"
+        f"<tr><td>{site}</td><td><code>{name}</code><br>{historical_download(site, score)}</td>"
+        f"<td>{score}</td><td>Not estimable from available evidence</td>"
+        f"<td>Historical submission, not new; global uniqueness not established</td>"
+        f"<td>NO</td><td>{status}</td></tr>"
         for site, name, score, status in (
             ("GEMSDOE24", "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan", "0.2477",
              "Owner-reported; no organizer score/file receipt in this repo"),
@@ -444,7 +460,7 @@ def build_exec() -> str:
 <h3>Which focus-site submission is the best to submit?</h3>
 <p>Among the nine focus sites (GEMSDOE 24, 25, 27, 28, 30, 31, 32, 33, 36), the highest owner-reported value is <b>GEMSDOE32 h33-h33-2-b2-...-zeros at 0.2778</b>, followed by GEMSDOE36 at 0.2750 and GEMSDOE28 h36-1 at 0.2710. <b>Every one of these values is an owner/user report: none is backed by an organizer submission-page receipt in this repository, and none is organizer-confirmed.</b> They are leads, not proven scores.</p>
 <div class="scroll"><table><thead>
-<tr><th>Site</th><th>Best owner-reported submission</th><th>Reported score (owner-reported, not organizer-confirmed)</th><th>Submit this now?</th><th>Status / caveat</th></tr>
+<tr><th>Site</th><th>Best owner-reported submission</th><th>Reported score (owner-reported, not organizer-confirmed)</th><th>Estimated leaderboard score</th><th>Unique new submission?</th><th>Submit this now?</th><th>Status / caveat</th></tr>
 </thead><tbody>
 {rows}
 </tbody></table></div>

@@ -119,3 +119,11 @@ def test_portal_range_error_is_not_claimed_fixed_by_zero_outside():
     irregularities = build_site.build_irregularities()
     assert "IR-33-PORTAL-RANGE-CLAIM-01" in irregularities
     assert "root cause unconfirmed" in irregularities
+
+
+def test_focus_table_explicitly_separates_estimates_and_historical_novelty():
+    page = build_site.build_exec()
+    assert "Estimated leaderboard score" in page
+    assert page.count("Not estimable from available evidence") == 9
+    assert page.count("Historical submission, not new; global uniqueness not established") == 9
+    assert "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif" in page
