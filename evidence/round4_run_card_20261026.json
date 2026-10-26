@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "campaign": "Round-4 feasibility triage",
+  "date_utc": "2026-10-26",
+  "hypothesis": "No candidate selected for evaluation: the assigned single-method lane is not identifiable in the current request. The prior slate's conceptual rank-1 candidate A33-R4-COULOMB cannot be implemented faithfully from staged geometry; its companion vector coordinates lack an identified CRS and are outside the target grid.",
+  "mechanism": "Feasibility audit only. Restored 17 registered owner-mirror inputs, rebuilt the shared 121-channel cache, checked QFault geometry metadata against EPSG:32611 template bounds, audited the existing submission selector, and reran local tests. No candidate surface, feature canary, holdout screen, confirmation, or TIFF build was run.",
+  "named_non_fault_process_that_could_mimic_it": "If an elastic-stress-transfer candidate is later approved, intrusive/caldera margins and spatial frictional heterogeneity could mimic positive Coulomb stress lobes; no such candidate surface was generated here.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1 (shared evaluator; no run performed)",
+    "withheld_positives": null,
+    "candidate": null,
+    "candidate_95pct_ci": null,
+    "reason_unmeasured": "No candidate was selected or run because the request did not specify one single method lane; the conceptual rank-1 COULOMB data lack usable trace geometry. No score projection is made."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_spearman": null,
+    "surface_max_3px_overlap": null,
+    "final_dots_max_abs_spearman": null,
+    "final_dots_max_3px_overlap": null,
+    "reason_unmeasured": "No new candidate surface or final dots were created."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_matches_template": null,
+    "shape_matches_template": null,
+    "transform_matches_template": null,
+    "reason_unmeasured": "No new submission raster was created. Separately, the pre-existing A33-R3-LLC zeros artifact passed the local strict-zero-outside validator when reopened against the restored template; this does not change its negative promotion verdict or establish organizer acceptance."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_reason": "No new TIF; do not upload. The existing newest file is a research-only A33-R3-LLC artifact and is not a new candidate from this review.",
+  "data_and_software_checks": {
+    "owner_mirror_inputs_expected": 17,
+    "owner_mirror_inputs_verified": 17,
+    "cache_channels_prepared": 121,
+    "detector_fit": false,
+    "pytest": "149 passed",
+    "selector": "NO RASTER IS OK TO SUBMIT; 0 eligible of 11 run cards",
+    "local_provenance_limit": "SHA-256 verifies equality with registered owner mirrors, not official organizer provenance or licensing."
+  },
+  "experiments_run": 0,
+  "submission_slots_used": 0,
+  "verdict": "negative"
+}

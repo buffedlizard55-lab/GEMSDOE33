@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-26T16:22:43+00:00",
+  "generated_utc": "2026-10-26T16:29:26+00:00",
   "selector": "scripts/select_submission.py (automated, fail-closed)",
   "ok_to_submit": false,
   "decision": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
@@ -186,6 +186,27 @@
         "note_1_to_140_chars": true
       },
       "note": "GEMSDOE33 H33-R3-1 invariant analog co-train B2; 37654 dots; research only, do not submit (40f15a687381)",
+      "sha256": null,
+      "confirm_holdout_dti": null,
+      "eligible": false
+    },
+    {
+      "run_card": "evidence/round4_run_card_20261026.json",
+      "campaign": "Round-4 feasibility triage",
+      "verdict": "negative",
+      "submission_name": null,
+      "file": null,
+      "checks": {
+        "verdict_promote": false,
+        "promotion_gates_all_pass": false,
+        "file_exists": false,
+        "sha256_matches_run_card": false,
+        "format_audit_pass_on_saved_bytes": false,
+        "all_cells_finite_and_in_0_1": false,
+        "zip_single_geotiff_same_bytes": false,
+        "note_1_to_140_chars": false
+      },
+      "note": null,
       "sha256": null,
       "confirm_holdout_dti": null,
       "eligible": false
