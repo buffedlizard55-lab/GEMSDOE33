@@ -47,6 +47,8 @@ def test_hypothesis_page_has_ranked_prior_art_and_blocked_statuses():
     assert "No untested candidate is promoted" in page
     assert "COULOMB" in page and "CURVTRACE" in page and "PFRT" in page and "PALEOTEMP" in page
     assert "no HOLDOUT-DTI result" in page
+    assert "this repo has no separate USGS QFFD source record" in page
+    assert "not verified as byte-identical to the official USGS QFFD" in page
     assert "Not implemented or holdout-validated" in page
     assert "Blocked: do not implement until a named file is obtainable and audited" in page
 
