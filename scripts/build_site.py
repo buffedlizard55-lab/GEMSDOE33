@@ -208,8 +208,32 @@ On buffered whole-segment holdout (<code>60,988</code> withheld positives, <code
 </div>"""
 
 
+def a33_r3_lchc_hero() -> str:
+    tif = "downloads/gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.tif"
+    zip_ = "downloads/gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros.zip"
+    nan_tif = "downloads/gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-nan.tif"
+    rcpt = "downloads/receipt-gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7.json"
+    card = "data/a33_r3_lchc_run_card_20261026.json"
+    sha = "a58219e1cc9f15f0ede99863b0e5a619dbfa6946c7fdd4fb61f7050ddd5070ac"
+    sub_name = "gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7"
+    sub_note = "GEMS33 A33-R3-LCHC: thermal/vent least-cost connectivity graph 37654d | gate NEGATIVE | 77337fc0c6c7"
+    return f"""<div class=\"hero-download\" id=\"a33-r3-lchc\">
+<h2>2026-10-26 A33-R3-LCHC GeoTIFF — OK TO DOWNLOAD: YES · OK TO SUBMIT: NO — HONEST NEGATIVE HOLDOUT RESULT (verdict: negative, not duplicate)</h2>
+<p><span class=\"badge good\">OK TO DOWNLOAD: YES · STRICT [0, 1] FORMAT PASS</span> <span class=\"badge good\">FULLY UNIQUE: MAX SPEARMAN 0.0054, MAX 3-PX OVERLAP 18.6%/16.7%</span> <span class=\"badge bad\">HOLDOUT-DTI 0/8 FOLDS (0.043712 / 0.035199 vs 0.125441 / 0.128184)</span> <span class=\"badge bad\">OK TO SUBMIT: NO (verdict: negative)</span></p>
+<p><b>Second independently preregistered 2026-10-26 hypothesis (Least-Cost Hydrothermal Connectivity):</b> a Dijkstra + minimum-spanning-tree graph threads <code>1,116</code> catalogue-free DOE GDR #1391 thermal/vent seeds through a label-free conductivity/gravity/geodetic-strain/basement-edge resistance surface, placed via the shared 300 m triangular-kernel <code>CELF</code> operator (<code>37,654</code> dots, strict <code>[0.0, 1.0]</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, <code>0</code> catalogue overlap).</p>
+<p><b>Why OK TO SUBMIT is NO (<code>verdict: negative</code>, <code>0</code> slots spent):</b> On buffered whole-segment holdout (<code>gems-segment-pooled-v1</code>), the candidate <b>lost</b> to regional control <code>B1_regional</code> in both the quadrant screen (<code>HOLDOUT-DTI = 0.043712</code> vs <code>0.125441</code>, <code>0/4</code> folds) and the frozen orthogonal diagonal-wedge confirmation (<code>HOLDOUT-DTI = 0.035199</code> vs <code>0.128184</code>, <code>0/4</code> folds). This is an honest negative result, reported as a required deliverable rather than withheld: a graph-connectivity surface is structurally too sparse to avoid the metric's <code>4×</code> false-negative penalty, even though — unlike the sibling <code>A33-R2-CSHT</code> artifact — it passes <b>both</b> uniqueness gates cleanly (surface and final dots each &lt; 19% 3-px overlap against all 21 pinned registry rasters).</p>
+<p><a class=\"btn\" href=\"{tif}\">Download A33-R3-LCHC [0, 1] GeoTIFF (787 KB)</a> <a class=\"btn alt\" href=\"{zip_}\">Download Single-TIFF .zip</a> <a class=\"btn alt\" href=\"{nan_tif}\">NaN-outside Twin .tif</a> <a class=\"btn alt\" href=\"{rcpt}\">Validator Receipt JSON</a> <a class=\"btn alt\" href=\"{card}\">A33-R3 Run Card JSON</a></p>
+<table><tbody>
+<tr><th>Unique submission name</th><td><code>{sub_name}</code></td></tr>
+<tr><th>Suggested note (100 / 140 chars)</th><td><code>{sub_note}</code></td></tr>
+<tr><th>GeoTIFF SHA-256</th><td><code>{sha}</code></td></tr>
+</tbody></table>
+</div>"""
+
+
 def build_index() -> str:
     body = f"""{a33_r2_csht_hero()}
+{a33_r3_lchc_hero()}
 {round3_da_hgcm_hero()}
 {unique_submission_hero()}
 <h2>Project decision</h2>
@@ -254,6 +278,7 @@ def build_exec() -> str:
         )
     )
     body = f"""{a33_r2_csht_hero()}
+{a33_r3_lchc_hero()}
 {round3_da_hgcm_hero()}
 <h2>Executive summary — per-site best submissions and how to submit</h2>
 <div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b></div>
