@@ -73,9 +73,11 @@ Notation: `rank(X)` = empirical CDF (average tied ranks / N) of finite footprint
   (`diagonal-wedge-buffered-20px-confirm-v1`), frozen now, before screen results exist.
   Candidate vs B1_regional and CTRL-PIXEL.
 - **Exp 3 production:** full-footprint surface → 37,654 CELF dots → strict saved-byte audit.
-  Primary file = **zeros outside** (whole array finite in [0,1]; this is the variant that cannot
-  trigger the owner-reported portal error *"Predicted values must be in range [0, 1]"* from NaN
-  handling); NaN-outside twin written for the official-text convention.
+  Primary file = **zeros outside** (whole array finite in [0,1]; selected as a conservative output
+  matching the organizer reference writer and passing the local strict all-array audit). A NaN-outside
+  twin is retained for the official-text convention. The exact file behind the earlier owner-reported
+  portal message and the organizer's diagnostic are absent, so its cause and live portal acceptance
+  remain unknown.
 - **Uniqueness (surface AND final dots)** vs an expanded 25-raster registry: the 21 pinned
   rasters in `registry/focus_rasters_20261026.json` **plus** local A33-R2-CSHT, G33,
   Round-3 DA-HGCM and H33-R3-invariant zeros twins. Stop/duplicate if |Spearman ρ| > 0.90 or

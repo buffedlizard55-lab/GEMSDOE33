@@ -116,3 +116,13 @@ avoid `FN_w` starvation, physically distinct enough to avoid the HGB
 duplicate-convergence trap — and are the recommended next experiments for a
 future session's 3-experiment/2-hour budget, screened on holdout **before**
 any submission slot is spent.
+
+---
+
+## Review correction (2026-10-26): LiDAR resolution and local availability
+
+The round-4 table's Rank-2 shorthand "1 m LiDAR already restored/pinned" overstates what is available in the working tree. Inspection of the restored `data/lidar_scarp_features.json` metadata and owner-mirror pin shows that the available file is a 12-band **derived descriptor raster on the 100 m competition grid**. The metadata reports `work_resolution_m = 2.0`, 706 successful tiles out of 716 listed, 3,892,964 grid cells with LiDAR, and partial valid-footprint coverage (about 75.37%). The original USGS 1 m DEM tile stack is not present in the restored `data/` directory. Its manifest/tile inventory is not proof that the raw tiles are locally available.
+
+Consequently, a direct multi-azimuth **1 m** curvilinear trace detector is blocked until original DEM bytes are obtained, individually provenance-pinned, and audited. A distinct method using the available 100 m-grid descriptors could be proposed, but it must be named and preregistered honestly as a derivative-scale method; the existing 1 m hypothesis does not validate it. Non-fault mimics include Lahontan beach ridges, fluvial/alluvial terrace risers, channels, roads, canals and levees.
+
+The QFFD and thermal layers restored in the same review are likewise owner-mirror copies whose hashes match local pins. The hash match is an integrity check against those pins, not organizer/source authentication. No external source page was freshly authenticated and no experiment or holdout was run in this review. Current unresolved lane/template blockers still preclude starting a new run.

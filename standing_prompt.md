@@ -1,9 +1,6 @@
 # GEMSDOE33 standing brief and operating contract
 
-**Read this entire file at the start of every session, then read `README.md`.** This is the complete
-working specification consolidated from the owner's task and explicit standing corrections recorded
-for this repository. It is not presented as a verbatim chat transcript. Update it only when the owner
-changes the requirements; record any change and its consequence in the repository.
+**At the start of every session, read `README.md`, then read this entire file and `AGENTS.md`.** The README is the concise status dashboard; this is the complete working specification consolidated from the owner's task and explicit standing corrections recorded for this repository. It is not presented as a verbatim chat transcript. The latest dated addendum governs current status while older addenda remain historical audit records. Update this file only when the owner changes requirements or when a review addendum records new evidence; state the consequence in the repository.
 
 ---
 
@@ -281,3 +278,50 @@ The full user-reported score list from the brief is in `registry/user_reported_s
 - **Automated selector:** new `scripts/select_submission.py` makes the OK-TO-SUBMIT decision. It re-checks sha256, format, the zip contents, the note, and the promotion gates from bytes on disk. Today: 0 of 9 eligible.
 - **Open lead (`IR-33-H19-HOLDOUT-GAP-01`):** the H19-5 reference, which is not fold-safe, scores 0.162 on the screen. Next session, start with a fold-safe re-derivation of the H19-5 recipe.
 - **Irregularities flagged:** `IR-33-HMDT-UNGATED-01` (HMDT has no holdout, so it is NOT OK to submit), `IR-33-R3-PREREG-TIMESTAMP-01`, `IR-33-R3-CSHT-REPRO-01`, `IR-33-DUAL-WRITER-01`, `IR-33-LEDGER-STALE-01`.
+
+---
+
+## Repository review addendum (2026-10-26, current status)
+
+This addendum supersedes older next-step suggestions where they conflict with the current lane/template gate. The project aim remains a scientifically defensible, genuinely unique GeoTIFF; this review did **not** generate a new TIFF, run a model experiment or holdout, spend a competition slot, make a DrivenData upload, or produce an organizer receipt.
+
+### Current decision and existing artifact
+
+- **No raster is OK TO SUBMIT.** The existing `A33-R3-LLC` TIFF is downloadable for research, not promotion: `docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif`; SHA-256 `76f9e157d01bb9bec2d98c3c5941b6114e06e0f439272d5f140af6e3584c8825`.
+- Its saved-byte validator passed (`EPSG:32611`, `3730×3292`, 37,654 dots, zero catalogue overlap, finite `[0,1]`, zero outside footprint). Recorded surface/final-dot uniqueness checks passed against 22 pinned rasters (final max `|ρ|=0.019359`, max candidate-dot 3-px coverage `43.25%`). Format and uniqueness do not cure its negative promotion result.
+- **HOLDOUT-DTI**, evaluator `gems-segment-pooled-v1`, 60,988 withheld positives per split: screen candidate `0.137868` [95% CI `0.128559, 0.147913`] vs CSHT `0.137555`, paired Δ `+0.000313` [`−0.008009, +0.008288`], 2/4 folds; independent confirmation `0.131506` [`0.1208, 0.1414`] vs `0.132066`, paired Δ `−0.000560` [`−0.009035, +0.007547`], 2/4 folds. Verdict `negative`. These are catalogue-proxy holdout metrics, **not** competition scores; no defensible competition-score estimate is available.
+- Historical leader claims `0.3195` / `0.4413` remain conflicting and unverified. All focus-site score values are USER/OWNER-REPORTED, not ORGANIZER-CONFIRMED, absent an organizer submission receipt.
+
+### Explicit blockers — do not infer around them
+
+- The current task still has no identifiable standalone single-method lane paragraph. Do not infer a lane from historical analog-field material in the README.
+- The repository contains pinned shared-tool material, including a vendor pin, but the current task does not explicitly designate the canonical shared-template commit/path. Do not assume a same-named script or an unassigned pin resolves the requirement.
+- Therefore no new candidate experiment may start yet. If future instructions do not resolve these blockers, continue only with review, source/provenance audit, documentation and tests.
+
+### Focus-site evidence and uniqueness audit
+
+The full downloadable table is `registry/focus_best_artifact_summary_20261026.csv` / `.json`; its source is `evidence/focus_registry_analysis_20261025.json`. It covers nine classic best-reported rasters and 36 pairwise comparisons among those nine—not a global registry. For every row the reported score has no receipt in this checkout, the score estimate is `NOT_ESTIMABLE`, the pinned owner-mirror source is downloadable, and the raster is **not to be submitted** because it breaches at least one project uniqueness threshold (absolute rank correlation `>0.90` OR more than 70% candidate-dot coverage within 3 px):
+
+| Site | Best reported artifact | Reported value (unverified) | Max `|ρ|` (closest peer) | Max candidate-dot 3-px coverage (closest peer) |
+|---|---|---:|---:|---:|
+| GEMSDOE24 | H25-1 | 0.2477 | 0.9896 (GEMSDOE27) | 100.00% (GEMSDOE25) |
+| GEMSDOE25 | D2.8 | 0.2600 | 1.0000 (GEMSDOE30) | 100.00% (GEMSDOE24) |
+| GEMSDOE27 | topo-gap | 0.2449 | 0.9896 (GEMSDOE24) | 98.02% (GEMSDOE24) |
+| GEMSDOE28 | H36-1 | 0.2710 | 0.7137 (GEMSDOE31) | 100.00% (GEMSDOE24) |
+| GEMSDOE30 | D2.8 / 91eae1ca | 0.2600 | 1.0000 (GEMSDOE25) | 100.00% (GEMSDOE24) |
+| GEMSDOE31 | H27-4 solo D2.8 | 0.2708 | 0.9676 (GEMSDOE32) | 100.00% (GEMSDOE24) |
+| GEMSDOE32 | H33-2 B2 | 0.2778 | 0.9843 (GEMSDOE36) | 100.00% (GEMSDOE24) |
+| GEMSDOE33 | H33d | 0.2632 | 0.8193 (GEMSDOE31) | 99.71% (GEMSDOE27) |
+| GEMSDOE36 | Anderson | 0.2750 | 0.9843 (GEMSDOE32) | 97.58% (GEMSDOE27) |
+
+### Data preparation completed; no experiment
+
+On 2026-10-26, `scripts/restore_data.py --group all` restored 17 owner-mirror inputs totalling 521,272,127 bytes and matched each recorded SHA-256 pin. `scripts/audit_inputs.py` independently verified 17/17 pins and the shared grid (`evidence/input_grid_audit.json`). `scripts/prepare_data.py --skip-detector` completed and built 121 cached channels in gitignored `.cache/feature_stack`; detector/model training, holdout scoring and submission generation were not run. The cache/data bytes may be ephemeral. Hash matches establish identity relative to owner-supplied pins only—not organizer origin, license, schema, coverage, or feature validity. Auditable snapshot: `evidence/data_preparation_20261026.json`.
+
+The stored LiDAR scarp product is a 100 m-grid derivative (metadata: 2 m work resolution; 706/716 source tiles succeeded; about 75.37% valid footprint); the original 1 m DEM tile stack is not present. Any direct 1 m continuity claim requires the raw tiles to be separately staged and audited.
+
+### Next work and documentation state
+
+- The qualitative, untested ranks `A33-R4-COULOMB`, reframed `A33-R4-CURVTRACE`, `A33-R4-PFRT`, and blocked `A33-R4-PALEOTEMP` are in `knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md` and surfaced in the site. They are hypotheses only, not performance estimates. `A33-R2-HMDT` is an existing ungated artifact, not a novel hypothesis or submit candidate.
+- The site generator/tests and README now display the current negative decision, nine-site evidence/uniqueness table, source limits, and exact missing-lane/template blockers. Pages were rebuilt; `PYTHON=.venv/bin/python bash scripts/run_checks.sh` passed (148 tests), and the selector still reports no raster eligible. `scripts/audit_inputs.py` verified 17/17 owner-mirror pins and the shared grid. Never rebuild from an older site page without reconciling it against this addendum.
+- If and when the method lane and canonical evaluator/writer/template identity are explicitly assigned, preregister a hypothesis, test each feature for leakage, withhold whole buffered fault segments, derive catalogue features only from visible faults, use exact visible-fault masking and pooled DTI (`α=0.2`, `β=0.8`, 300 m triangular kernel), compare against matched controls and the current comparable best, report 95% CIs, check surface and dots against the registry, validate saved bytes, and end with the required JSON run card. Do not select or spend a slot; selector promotion remains separate.

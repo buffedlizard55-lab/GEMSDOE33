@@ -29,7 +29,7 @@ The nine focus rasters were retrieved from pinned GitHub commits before this sla
 5. **Emission:** deterministic priority Poisson placement, 37,654 full-footprint-equivalent dots, minimum spacing 2.8 px, and distance >2 px from the fold-visible catalogue. Candidate and baselines use identical budgets/operators. Include a matched-N uniform eligible control for context.
 6. **Promotion gate:** candidate pooled HOLDOUT-DTI must exceed both baselines; paired 95% spatial-block-bootstrap ΔDTI interval versus the best baseline must be strictly above zero; candidate must win at least 3/4 folds; all canaries and both uniqueness stages must pass. Failure is a negative deliverable and forbids slot promotion.
 7. **Uniqueness:** before placement compare the continuous full-data A33-L1 surface against every cached focus-registry raster; after placement compare final dots. Stop if any Spearman ρ >0.90 or if >70% of candidate dots lie within 3 px of one registry raster.
-8. **Output:** if uniqueness passes, write a new zero-outside and NaN-outside GeoTIFF through the shared strict writer even when the scientific verdict is negative, clearly marked research-only. The zero-outside file is the portal-range-safe format candidate. A valid format does not authorize a weekly slot or prove portal acceptance.
+8. **Output:** if uniqueness passes, write a new zero-outside and NaN-outside GeoTIFF through the shared strict writer even when the scientific verdict is negative, clearly marked research-only. The zero-outside file is the strict whole-array-range format candidate; this local property does not establish the historical portal error's cause or prove portal acceptance. A valid format does not authorize a weekly slot.
 
 ## Sources retained for manual review
 

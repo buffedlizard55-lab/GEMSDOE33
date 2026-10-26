@@ -1,0 +1,309 @@
+{
+  "activity": "data_restore_and_feature_preparation_only",
+  "date_utc": "2026-10-26",
+  "feature_preparation": {
+    "cache_location": ".cache/feature_stack (gitignored; not distributed in repository)",
+    "channel_count": 121,
+    "channel_names": [
+      "mag_anom",
+      "rtp",
+      "tmi_hg",
+      "geod_2ndinv",
+      "iso_grav_anom_slope",
+      "tc",
+      "geod_shearrate",
+      "geod_dilaterate",
+      "tmi_vg",
+      "deq_n100a15",
+      "iso_grav_anom_vg",
+      "det_elev",
+      "iso_grav_anom",
+      "tmi",
+      "depth_to_base_surf",
+      "ieq_n100a15",
+      "cond_surf",
+      "iso_grav_anom_hg",
+      "det_elev_slope",
+      "rad_K",
+      "rad_Th",
+      "rad_U",
+      "rad_TC",
+      "ext_ThK",
+      "ext_UK",
+      "ext_UTh",
+      "ext_TMI_up150",
+      "lid_ex_max",
+      "lid_ex_mean",
+      "lid_step_max",
+      "lid_lapneg_max",
+      "lid_lappos_max",
+      "lid_downface_max",
+      "lid_upface_max",
+      "lid_cross_max",
+      "lid_relief",
+      "lid_coh100",
+      "lid_strike",
+      "lid_valid",
+      "det_elev_gms1",
+      "det_elev_laps1",
+      "det_elev_gms2",
+      "det_elev_laps2",
+      "det_elev_gms4",
+      "det_elev_laps4",
+      "det_elev_curv2",
+      "det_elev_curv4",
+      "det_elev_ridge",
+      "det_elev_coh",
+      "depth_to_base_surf_gms1",
+      "depth_to_base_surf_laps1",
+      "depth_to_base_surf_gms2",
+      "depth_to_base_surf_laps2",
+      "depth_to_base_surf_gms4",
+      "depth_to_base_surf_laps4",
+      "depth_to_base_surf_curv2",
+      "depth_to_base_surf_curv4",
+      "depth_to_base_surf_ridge",
+      "depth_to_base_surf_coh",
+      "iso_grav_anom_gms1",
+      "iso_grav_anom_laps1",
+      "iso_grav_anom_gms2",
+      "iso_grav_anom_laps2",
+      "iso_grav_anom_gms4",
+      "iso_grav_anom_laps4",
+      "iso_grav_anom_curv2",
+      "iso_grav_anom_curv4",
+      "iso_grav_anom_ridge",
+      "iso_grav_anom_coh",
+      "rtp_gms1",
+      "rtp_laps1",
+      "rtp_gms2",
+      "rtp_laps2",
+      "rtp_gms4",
+      "rtp_laps4",
+      "rtp_curv2",
+      "rtp_curv4",
+      "rtp_ridge",
+      "rtp_coh",
+      "mag_anom_gms1",
+      "mag_anom_laps1",
+      "mag_anom_gms2",
+      "mag_anom_laps2",
+      "mag_anom_gms4",
+      "mag_anom_laps4",
+      "mag_anom_curv2",
+      "mag_anom_curv4",
+      "mag_anom_ridge",
+      "mag_anom_coh",
+      "cond_surf_gms1",
+      "cond_surf_laps1",
+      "cond_surf_gms2",
+      "cond_surf_laps2",
+      "cond_surf_gms4",
+      "cond_surf_laps4",
+      "cond_surf_curv2",
+      "cond_surf_curv4",
+      "cond_surf_ridge",
+      "cond_surf_coh",
+      "ieq_n100a15_gms1",
+      "ieq_n100a15_laps1",
+      "ieq_n100a15_gms2",
+      "ieq_n100a15_laps2",
+      "ieq_n100a15_gms4",
+      "ieq_n100a15_laps4",
+      "ieq_n100a15_curv2",
+      "ieq_n100a15_curv4",
+      "ieq_n100a15_ridge",
+      "ieq_n100a15_coh",
+      "tmi_gms1",
+      "tmi_laps1",
+      "tmi_gms2",
+      "tmi_laps2",
+      "tmi_gms4",
+      "tmi_laps4",
+      "tmi_curv2",
+      "tmi_curv4",
+      "tmi_ridge",
+      "tmi_coh",
+      "ext_TMI_up150_gm2",
+      "ext_TMI_up150_ridge"
+    ],
+    "channel_names_sha256": "50e11a1503a0f9f8f92bac8fe2d414afbe3b1dd095a72151edc442d52740eb90",
+    "core_band_count": 17,
+    "detector_training": "skipped",
+    "footprint_cells": 5167373,
+    "grid": {
+      "count": 19,
+      "crs": "EPSG:32611",
+      "descriptions": [
+        "mag_anom - Magnetic anomaly - deviation from expected Earth's magnetic field",
+        "rtp - Reduced to pole magnetic data - magnetic anomaly corrected for latitude effects",
+        "tmi_hg - Total magnetic intensity horizontal gradient - rate of change in horizontal direction",
+        "geod_2ndinv - Geodetic second invariant - measure of strain rate tensor magnitude",
+        "iso_grav_anom_slope - Isostatic gravity anomaly slope - gradient of gravity after isostatic correction",
+        "tc - Tilt angle or total curvature - magnetic field derivative for edge detection",
+        "geod_shearrate - Geodetic shear rate - rate of angular deformation from GPS/InSAR",
+        "geod_dilaterate - Geodetic dilatation rate - rate of volumetric strain (expansion/contraction)",
+        "tmi_vg - Total magnetic intensity vertical gradient - rate of change in vertical direction",
+        "deq_n100a15 - Distance to earthquake (n=100km radius, a=15\u00b0 azimuth parameters)",
+        "iso_grav_anom_vg - Isostatic gravity anomaly vertical gradient - vertical rate of change",
+        "det_elev - Detrended elevation - topography with regional trends removed",
+        "iso_grav_anom - Isostatic gravity anomaly - gravity after compensating for topographic mass",
+        "tmi - Total magnetic intensity - total strength of magnetic field",
+        "depth_to_base_surf - Depth to basement surface - thickness of sedimentary cover",
+        "ieq_n100a15 - Earthquake intensity or density (n=100km radius, a=15\u00b0 parameters)",
+        "cond_surf - Conductivity surface - electrical conductivity of subsurface",
+        "iso_grav_anom_hg - Isostatic gravity anomaly horizontal gradient - horizontal rate of change",
+        "det_elev_slope - Detrended elevation slope - gradient of elevation after detrending"
+      ],
+      "dtype": "float32",
+      "height": 3730,
+      "nodata": -3.4028234663852886e+38,
+      "transform": [
+        100.0,
+        0.0,
+        243350.0,
+        0.0,
+        -100.0,
+        4508550.0
+      ],
+      "width": 3292
+    },
+    "holdout_evaluation": "none",
+    "model_training": "none",
+    "script": "scripts/prepare_data.py --skip-detector"
+  },
+  "interpretation": "Hash verification establishes integrity against owner-supplied pins only; it does not establish organizer origin, license, coverage, schema, or scientific suitability. Preparation is not an experiment.",
+  "restore": {
+    "all_hashes_verified": true,
+    "group": "all",
+    "input_count": 17,
+    "inputs": [
+      {
+        "bytes": 418912844,
+        "id": "training_features",
+        "sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 425830,
+        "id": "labels",
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 425830,
+        "id": "existing_faults",
+        "sha256": "7ba308ccdc4418b31a178f4f1ef21aaa6e152e4028f2f6f64b01f7eb25ae4093",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 1599597,
+        "id": "sample_submission",
+        "sha256": "2176d08e485aa2cd2860ce8df539db4faf4d76163b38a4dd8c30a40454d35cbc",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 1712322,
+        "id": "h19_5",
+        "sha256": "ec1f9b56b83ce33cad781ceb9f104b18fb4f2ff785263a4e89616af4aabdee8d",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 1632732,
+        "id": "dotted_h19_5_d1_5",
+        "sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 1603424,
+        "id": "dotted_h19_5_d2_8",
+        "sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 36943606,
+        "id": "lidar_scarp_features",
+        "sha256": "d580bb8bdcdb941e32fefb8b38044bc5bf04e199bf2e83498c3576e6fc465568",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 3531,
+        "id": "lidar_scarp_features_metadata",
+        "sha256": "9ef0df6e87598a8b0cd52fe821661e5fdb3a00568c5d9b1c5d61fd6b242dcd41",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 27132925,
+        "id": "geodawn_extensions",
+        "sha256": "a35a9c6d2a14786f4dab85481ee59769213072f5dab5b2535ea82ae4d9bb7d9b",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 26612970,
+        "id": "geodawn_rad",
+        "sha256": "c22420f75999030d7cc65c9e31e50d232ea6158423bca051613a18a8b20ba682",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 198602,
+        "id": "derived_sgmc_faults",
+        "sha256": "643cbe992ef4ba37588fb469163ed8291e3ceb23d6c1f78a3cfaa462430c2da0",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 126177,
+        "id": "gdr_qfaults_traces",
+        "sha256": "9702f2e5c382a4f472ae834d22b94990983b059677a37adfafd51c50f75e643c",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 1252341,
+        "id": "qfaults_v2_vectors",
+        "sha256": "4d6efc7bb3659ea2545353fcec574ef085b0acdb189c7590e4420a7c6c57b41c",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 672,
+        "id": "gdr_volcanic_vents",
+        "sha256": "f91bafbaccaaf2754e71d60434fc0f9eb2c7b880c6e714883f4974542ff6a0bf",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 2146771,
+        "id": "gdr_wellspring",
+        "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+        "status": "restored-and-verified"
+      },
+      {
+        "bytes": 541953,
+        "id": "dem_links",
+        "sha256": "8804dbff8754dd885df88bf412cced52b0be6490aa79142f4588700a8e4ada7b",
+        "status": "restored-and-verified"
+      }
+    ],
+    "restore_receipt_sha256": "72a2c102852ee14d381c15c5e6cf5fa8330a1ec6ea26a6dfc60c25ea5e484919",
+    "total_bytes": 521272127
+  },
+  "schema_version": 1,
+  "sources": {
+    "pinned_mirror_commits": {
+      "prior_mirror": {
+        "ref": "07345ea0604953d7efb858d9cfbc21e20c7aca0b",
+        "repo": "buffedlizard55-lab/GEMSDOE24",
+        "status": "owner-supplied mirror; not organizer-authenticated"
+      },
+      "prior_public_layers": {
+        "ref": "ee5d7c65ede2d0b891f747619ac8da81e8e76a15",
+        "repo": "buffedlizard55-lab/GEMSDOE24",
+        "status": "owner-supplied mirror; not organizer-authenticated"
+      },
+      "training_mirror": {
+        "ref": "c0c06ac82178f26b94fce3397036ef8f12a2f3a0",
+        "repo": "buffedlizard55-lab/GEMSDOE",
+        "status": "owner-supplied mirror; not organizer-authenticated"
+      }
+    },
+    "provenance_class": "OWNER_MIRROR_NOT_ORGANIZER_AUTHENTICATED",
+    "warning": "All competition rasters listed here are owner-supplied public GitHub mirrors, integrity-pinned but NOT organizer-authenticated. Public mirror/hash availability is not proof of original downloadability, coverage, schema or license. Do not contact DrivenData automatically."
+  }
+}

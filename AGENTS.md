@@ -1,6 +1,6 @@
 # Operating rules for every session in GEMSDOE33
 
-1. **Read `README.md` (standing brief) first.** It is the contract this repo is built against.
+1. **Read `README.md`, then read all of `standing_prompt.md`, then read this file.** README is the current status dashboard; the latest dated addendum in the standing prompt governs where older records conflict.
 2. **No DrivenData login, upload, scraping, or polling from code.** The official
    [DrivenData Terms of Use, §Prohibited Uses](https://www.drivendata.org/termsofuse/)
    (read 2026-10-04) prohibit automated monitoring/copying and manual monitoring/copying without
@@ -18,10 +18,10 @@
    independent confirmation against a comparable local reference, and must pass the exact format
    audit before a slot is even considered.
 4. **Submission-output policy**: single-band float32, EPSG:32611, 100 m, same
-   shape/geotransform/bounds as the owner-mirror sample. The top-level D2.8 file is a historical
-   reference, not a new model or verified score/file pair. Its NaN-outside variant follows the
-   recorded official null/NaN wording; a zero-outside alternative is troubleshooting only. H33-F
-   and H33-6 TIFFs are separate failed research artifacts, not featured submissions. An earlier
+   shape/geotransform/bounds as the owner-mirror sample. The current top-site artifact is A33-R3-LLC:
+   it is a historical research emission, finite in [0,1] with zero outside, and is **not** slot-approved.
+   The D2.8 file is a historical reference, not a new model or verified score/file pair. H33-F,
+   H33-6 and other prior TIFFs are separate research artifacts, not featured submissions. An earlier
    owner-observed portal range error did not establish that NaN caused it. A local format pass is
    not organizer acceptance.
 5. **Sample-template values are not truth.** Use only finiteness/grid metadata from the restored
@@ -46,3 +46,5 @@
     folds, but it **failed vs B1_regional on both splits** (screen HOLDOUT-DTI 0.095407 vs
     0.111285; confirmation 0.096015 vs 0.114619). It is **NOT OK TO SUBMIT**; do not retune it.
     No file in this repo is currently slot-approved.
+12. **Current 2026-10-26 repository review:** no raster is OK TO SUBMIT; A33-R3-LLC is available for research download only and failed promotion against the matched HOLDOUT-DTI baseline. No new TIFF, experiment, holdout evaluation, slot use, DrivenData upload, or organizer receipt was created in the latest review. The review restored 17 owner-mirror inputs and prepared 121 channels with detector training skipped; hashes authenticate only the recorded pins.
+13. **Fail closed on unresolved authority:** the current task does not identify an explicit standalone method lane or explicitly designate the canonical shared-template commit/path. Do not infer either from the README's historical analog paragraph, a local vendor pin, or a same-named script in another site. No new model experiment may start until both are explicitly resolved. See `standing_prompt.md`'s latest addendum and `evidence/repository_review_20261026.json`.

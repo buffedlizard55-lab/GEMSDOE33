@@ -1,0 +1,85 @@
+{
+  "blockers": [
+    "The current task does not identify a standalone single-method lane paragraph; do not infer one from historical README text.",
+    "No canonical shared-template commit/path is identified; same-named tools in other sites are not automatically canonical.",
+    "Historical focus-site score claims have no organizer receipt here; no defensible competition-score estimate is available."
+  ],
+  "branch": "arena/bb00fc47-gemsdoe33",
+  "competition_slots_used": 0,
+  "current_research_artifact": {
+    "holdout_label": "HOLDOUT-DTI",
+    "holdout_reference": "evidence/a33_r3_run_card_20261026.json",
+    "hypothesis_id": "A33-R3-LLC",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "path": "docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif",
+    "promotion_verdict": "negative",
+    "sha256": "76f9e157d01bb9bec2d98c3c5941b6114e06e0f439272d5f140af6e3584c8825"
+  },
+  "decision": "NO_RASTER_OK_TO_SUBMIT",
+  "experiments_run": 0,
+  "external_verification": "No new external pages or organizer sources were authenticated during this review; source links are discovery/review links, not proof of payload availability or organizer provenance.",
+  "new_submission_uploaded": false,
+  "new_tiff_generated": false,
+  "pr_merge": "not yet attempted at time this evidence record was created",
+  "repository": "buffedlizard55-lab/GEMSDOE33",
+  "review_date_utc": "2026-10-26",
+  "schema_version": 1,
+  "scope": "repository/site/evidence review and data restoration/preparation; no new modeling experiment",
+  "verification": {
+    "current_download_revalidation": {
+      "all_finite": true,
+      "bands": 1,
+      "catalogue_overlap_dots": 0,
+      "command": "python scripts/validate_submission.py --submission docs/downloads/gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif --template data/sample_submission.tif --strict-zero-outside",
+      "crs": "EPSG:32611",
+      "dots": 37654,
+      "dtype": "float32",
+      "footprint_cells": 5167373,
+      "outside_footprint_all_zero": true,
+      "pass": true,
+      "range": [
+        0.0,
+        1.0
+      ],
+      "resolution_m": [
+        100.0,
+        100.0
+      ],
+      "sha256": "76f9e157d01bb9bec2d98c3c5941b6114e06e0f439272d5f140af6e3584c8825",
+      "shape": [
+        3730,
+        3292
+      ]
+    },
+    "input_audit": {
+      "command": "python scripts/audit_inputs.py",
+      "evidence_path": "evidence/input_grid_audit.json",
+      "finite_template_footprint_cells": 5167373,
+      "interpretation": "grid/integrity check only; sample values are not truth",
+      "result": "PASS",
+      "sample_vs_labels_positive_set_disagreements": 0,
+      "verified_inputs": "17/17 owner-mirror pins"
+    },
+    "local_checks": {
+      "command": "PYTHON=.venv/bin/python bash scripts/run_checks.sh",
+      "compileall_passed": true,
+      "git_diff_check_passed": true,
+      "pytest_tests_passed": 148,
+      "result": "PASS",
+      "selector": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
+      "site_rebuilt": true
+    },
+    "review_passes": [
+      "Pass 1: repo/site-generator/evidence review and current status correction.",
+      "Pass 2: adversarial review of score provenance, duplicate metrics, source availability, LiDAR resolution, and lane/template blockers.",
+      "Pass 3: rebuild generated pages, validate saved TIFF bytes, run input audit, and run the complete local check sequence."
+    ]
+  },
+  "work_done": [
+    "Restored and hash-verified 17 owner-mirror inputs; scripts/audit_inputs.py independently verified 17/17 pins and the shared template grid (evidence/input_grid_audit.json). Evidence/data_preparation_20261026.json records hashes and the provenance caveat.",
+    "Prepared 121 cached feature channels with detector training explicitly skipped; no modeling, holdout evaluation, TIFF generation, submission, or slot use.",
+    "Audited nine classic focus artifacts against the other eight classic artifacts using pinned raster bytes; each fails at least one configured uniqueness threshold.",
+    "Reviewed website generator/tests and identified stale H33-6 claims, executive table column mismatch, and obsolete campaign assertions; documentation/tests corrected in the accompanying change."
+  ]
+}

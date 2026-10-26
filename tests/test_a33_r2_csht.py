@@ -201,17 +201,19 @@ def test_recorded_r2_artifacts_gates_and_saved_bytes():
     assert 0 < len(sub["note"]) <= 140
 
 
-def test_site_and_readme_prominently_expose_r2_download_and_do_not_submit():
+def test_site_and_readme_preserve_r2_as_historical_not_current_download():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     index_html = build_site.build_index()
     exec_html = build_site.build_exec()
     results_html = build_site.build_results()
 
     r2_file = "gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros.tif"
-    for doc in (readme, index_html, exec_html):
-        assert r2_file in doc
+    assert r2_file in readme  # preserved in the historical audit trail
+    assert r2_file not in index_html and r2_file not in exec_html  # current pages feature A33-R3-LLC
+    for doc in (index_html, exec_html):
+        assert "A33-R3-LLC" in doc
         assert "OK TO DOWNLOAD" in doc.upper()
-        assert "DO NOT" in doc.upper() and "SUBMIT" in doc.upper()
+        assert "OK TO SUBMIT: NO" in doc
     assert "0.136716" in results_html
     assert "0.131169" in results_html
     assert "G30-MSDB1-e7856ec3f14a" in results_html

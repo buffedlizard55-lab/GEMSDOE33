@@ -153,9 +153,10 @@ def test_round3_geotiff_zip_and_run_card_contracts():
         assert not np.any((arr > 0) & cat), "Zero positive predictions allowed on mapped catalogue"
 
 
-def test_site_surfaces_round3_status_at_top_of_index_and_exec():
+def test_current_site_features_llc_and_does_not_resurface_older_round3_artifact():
     for page_html in (build_site.build_index(), build_site.build_exec()):
-        assert "gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif" in page_html
-        assert "gemsdoe33-r3-da-hgcm-37654-a6a8552e" in page_html
+        assert "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif" in page_html
+        assert "A33-R3-LLC" in page_html
+        assert "OK TO SUBMIT: NO" in page_html
         assert "verdict: negative" in page_html
-        assert "DO NOT AUTO-SUBMIT" in page_html
+        assert "gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif" not in page_html

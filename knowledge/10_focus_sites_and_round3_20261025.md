@@ -82,7 +82,7 @@ $$\tau^* = \frac{0.2 \times 0.2720}{1 - 0.8 \times 0.2720} = \frac{0.0544}{0.782
    - **Why `GEMSDOE36` (`0.2756`, `38,854` px) Scored `-0.0022` Lower Than `GEMSDOE32` (`0.2778`):**
      Our byte-level set diff (`evidence/focus_sites_forensic_20261025.json`) proves that `GEMSDOE36` took the exact `37,654` dots of `GEMSDOE32` (`H33-2-B2`) and appended `1,200` extra dots at $d_{\text{cat}} > 2\text{ px}$. Adding `1,200` lower-precision dots diluted $\text{FP}_w$ by `+3.19%` (`+240` weighted denominator units at $\alpha = 0.2$) without meeting the $\tau^* \approx 0.0715$ marginal recall threshold, lowering DTI from `0.2778` to `0.2756` (`-0.0022`).
    - **Why `GEMSDOE32` and `GEMSDOE36` Used `-zeros.tif` (`0.0` outside footprint):**
-     Both `GEMSDOE32` and `GEMSDOE36` replaced the `7,111,787` outside-footprint `NaN` cells with `0.0` (`nodata=None`), ensuring `np.all((arr >= 0.0) & (arr <= 1.0)) == True` across the entire `3730 × 3292` array so the DrivenData portal never triggers `"Predicted values must be in range [0, 1]"`.
+     Both `GEMSDOE32` and `GEMSDOE36` replaced the `7,111,787` outside-footprint `NaN` cells with `0.0` (`nodata=None`), so the saved arrays pass the local whole-array predicate `np.all((arr >= 0.0) & (arr <= 1.0))`. This is consistent with the inspected reference writer and is a conservative local format choice; it does not prove portal acceptance or establish the cause of the earlier owner-reported message.
 
 ---
 

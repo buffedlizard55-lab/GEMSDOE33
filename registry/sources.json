@@ -41,7 +41,7 @@
       "id": "reference-solution",
       "title": "DrivenData GEMS Prize official reference solution (Prof. John Lipor U-Net benchmark)",
       "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
-      "used_for": "Inspected line-by-line on 2026-10-25 (unet-mc-cv-reference-solution.ipynb Cell 19): official reference writer initializes y_out = np.zeros(...) and writes predicted_faults_example.tif as single-band float32 GeoTIFF with 0.0 outside valid patches and nodata=None, motivating all-finite -zeros.tif output to avoid IEEE-754 NaN range-check rejections.",
+      "used_for": "Inspected line-by-line on 2026-10-25 (unet-mc-cv-reference-solution.ipynb Cell 19): official reference writer initializes y_out = np.zeros(...) and writes predicted_faults_example.tif as single-band float32 GeoTIFF with 0.0 outside valid patches and nodata=None, motivating an all-finite -zeros.tif output as a conservative format choice matching the reference writer; this does not establish the cause of the earlier owner-reported portal error or prove portal acceptance.",
       "evidence_class": "OFFICIAL REPOSITORY; fetched & inspected 2026-10-25"
     },
     {
@@ -209,7 +209,7 @@
       "id": "usgs-3dep-1m",
       "title": "USGS 3D Elevation Program (3DEP) 1-meter DEM products",
       "url": "https://www.usgs.gov/3d-elevation-program",
-      "used_for": "Provenance for 12-band 1 m LiDAR scarp summary (lidar_scarp_features_u8.tif, including upface_max antislope and cross_max channel-bank bands).",
+      "used_for": "Provenance for a 12-band LiDAR-derived scarp descriptor (lidar_scarp_features_u8.tif, including upface_max antislope and cross_max channel-bank bands). The stored derivative is on the 100 m competition grid; metadata reports 2 m work resolution, 706/716 source tiles succeeded, and about 75.37% valid footprint coverage. Raw 1 m DEM tiles are not in the restored data directory; restored bytes are owner-mirror copies, not organizer-authenticated.",
       "evidence_class": "OFFICIAL USGS PROGRAM"
     },
     {
