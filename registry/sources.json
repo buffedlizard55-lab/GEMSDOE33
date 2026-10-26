@@ -39,10 +39,10 @@
     },
     {
       "id": "reference-solution",
-      "title": "DrivenData GEMS Prize reference solution",
+      "title": "DrivenData GEMS Prize official reference solution (Prof. John Lipor U-Net benchmark)",
       "url": "https://github.com/drivendataorg/gems-prize-reference-solution",
-      "used_for": "Organiser's baseline code, available for manual review.",
-      "evidence_class": "OFFICIAL REPOSITORY"
+      "used_for": "Inspected line-by-line on 2026-10-25 (unet-mc-cv-reference-solution.ipynb Cell 19): official reference writer initializes y_out = np.zeros(...) and writes predicted_faults_example.tif as single-band float32 GeoTIFF with 0.0 outside valid patches and nodata=None, motivating all-finite -zeros.tif output to avoid IEEE-754 NaN range-check rejections.",
+      "evidence_class": "OFFICIAL REPOSITORY; fetched & inspected 2026-10-25"
     },
     {
       "id": "geodawn",
@@ -197,6 +197,48 @@
       "url": "https://openei.org/wiki/Desert_Peak_II_Geothermal_Facility",
       "used_for": "Named analog-field centroid 39.753855 N, 118.953781 W.",
       "evidence_class": "OFFICIAL OPENEI"
+    },
+    {
+      "id": "usgs-sgmc",
+      "title": "USGS State Geologic Map Compilation (SGMC) geodatabase — Horton, San Juan & Stoeser (2017)",
+      "url": "https://doi.org/10.3133/ds1052",
+      "used_for": "Provenance for off-catalogue regional compilation fault proxy (derived_sgmc_faults_100m_u8.tif, d_cat >= 300 m); never used as a feature or training label.",
+      "evidence_class": "OFFICIAL USGS DATA SERIES"
+    },
+    {
+      "id": "usgs-3dep-1m",
+      "title": "USGS 3D Elevation Program (3DEP) 1-meter DEM products",
+      "url": "https://www.usgs.gov/3d-elevation-program",
+      "used_for": "Provenance for 12-band 1 m LiDAR scarp summary (lidar_scarp_features_u8.tif, including upface_max antislope and cross_max channel-bank bands).",
+      "evidence_class": "OFFICIAL USGS PROGRAM"
+    },
+    {
+      "id": "iris-spud-emtf",
+      "title": "IRIS SPUD / EarthScope Magnetotelluric Transfer Functions (EMTF) repository",
+      "url": "https://ds.iris.edu/spud/emtf",
+      "used_for": "Official public CC0 source identified for Hypothesis H33-R3-4 (3D MT phase-tensor skew); blocked from direct download in this sandbox by outbound host allowlist.",
+      "evidence_class": "OFFICIAL PUBLIC ARCHIVE; blocked by sandbox host allowlist 2026-10-25"
+    },
+    {
+      "id": "caldwell-2004-mt",
+      "title": "Caldwell, Bibby & Brown (2004) — The magnetotelluric phase tensor, Geophys. J. Int. 158:457–469",
+      "url": "https://doi.org/10.1111/j.1365-246X.2004.02281.x",
+      "used_for": "Theoretical basis for static-shift-free MT phase-tensor skew beta_MT isolating 3D sub-vertical geothermal fluid conduits beneath conductive basin fill (H33-R3-4).",
+      "evidence_class": "PEER-REVIEWED GEOPHYSICS LITERATURE"
+    },
+    {
+      "id": "vendor-gems57-pin",
+      "title": "buffedlizard55-lab/GEMSDOE78 shared template stack (commit 30f1ab9400f92036b0bc613425f1b5b6046f3897)",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE78/tree/30f1ab9400f92036b0bc613425f1b5b6046f3897/vendor/gems57",
+      "used_for": "SHA-256-pinned shared holdout evaluator (evaluate_holdout.py:gems57-pooled-hide-v2), CELF submodular allocator (emit.py:dinkelbach_allocate), literal registry guard (uniqueness.py), and GeoTIFF writer (submission_writer.py).",
+      "evidence_class": "SHARED REPOSITORY TEMPLATE; 23/23 SHA-256 pins verified 2026-10-25"
+    },
+    {
+      "id": "focused-9sites-audit",
+      "title": "Focused 9-site GeoTIFF inventory (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36)",
+      "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
+      "used_for": "214 unique valid-grid GeoTIFFs (201 in published docs/downloads/ + local GEMSDOE33) fetched via GitHub API and byte-audited on 2026-10-25 for set-algebra forensics and pre-placement/final-dot uniqueness checks.",
+      "evidence_class": "OWNER REPOSITORIES; byte-verified 2026-10-25 (scores remain user/owner-reported without organizer receipts)"
     }
   ]
 }

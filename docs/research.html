@@ -1,10 +1,216 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
-<title>Research &amp; Diagnostics · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
+<meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, Round-3 domain-adapted GeoTIFF, holdout results, provenance and submission gate status.">
+<title>Research &amp; Run Card · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-25</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html" aria-current=page>Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
-<main class="wrap"><h2>Research candidates and proxy holdout records</h2>
+<p>DrivenData #306 · Round-3 domain-adaptation &amp; submodular allocation audit · 2026-10-25</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; 9-Site Forensics</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html" aria-current=page>Research &amp; Run Card</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
+<main class="wrap"><h2>Round-3 Official JSON Run Card &amp; Archived Negative Research Records</h2>
+<div class="panel accent">
+<h3>Round-3 Parallel-Run Protocol JSON RUN CARD (<code>evidence/round3_run_card_20261025.json</code>)</h3>
+<p>Generated automatically by <code>scripts/run_round3_campaign.py</code> (3 experiments executed within budget cap; 0 live weekly slots spent; <code>verdict: negative</code> under literal unexempted <code>r13-lattice-s5</code> calibration lattice guard while passing Gates G1–G5).</p>
+<pre>{
+  &quot;protocol&quot;: &quot;GEMS Parallel-Run Protocol v2 (2026-10-25)&quot;,
+  &quot;repository&quot;: &quot;buffedlizard55-lab/GEMSDOE33&quot;,
+  &quot;branch&quot;: &quot;arena/ceffa63e-gemsdoe33&quot;,
+  &quot;lane&quot;: &quot;Bounded Analog-Field Domain Adaptation &amp; Geothermal Vent/Conduit Discovery (Ben-David et al., 2010; README.md \u00a71)&quot;,
+  &quot;experiments_run&quot;: 3,
+  &quot;budget_cap_respected&quot;: true,
+  &quot;submission_slots_spent&quot;: 0,
+  &quot;hypothesis&quot;: &quot;H33-R3-3 (DA-LinearVC-Submod): Finite-VC Linear Halfspace Domain-Adapted Classifier with Measured Empirical d_H_Delta_H&quot;,
+  &quot;mechanism&quot;: &quot;46/48 divergence-screened label-free differential geophysical, 1 m 3DEP LiDAR antislope scarp (scarp_antislope_contrast), and hydrothermal magnetite-destruction/conductivity coupling (hydro_demag_clay_coupling) channels (zero visible-network features; 2 point-sampled GDR enthalpy plumes automatically rejected by the 20 km spatial-block |AUC-0.5|&lt;=0.20 domain-shift screen) fitted with an explicit finite-VC L2-regularized linear halfspace (vc_dim=47, emp d_H_Delta_H=0.0712) under Ben-David et al. (2010) Theorem 3 source+target LOQO weighting, paired with exact 6-ring Choquet self-credit and CELF submodular 300 m Tversky allocation (37,654 binary dots outside d_cat &lt;= 2.0 px).&quot;,
+  &quot;non_fault_mimic&quot;: &quot;Regional linear lithologic unconformities (e.g., Mesozoic metasedimentary basement against Tertiary volcanics).&quot;,
+  &quot;holdout_dti&quot;: {
+    &quot;evidence_class&quot;: &quot;HOLDOUT-DTI&quot;,
+    &quot;evaluator_version&quot;: &quot;gems57-pooled-hide-v2&quot;,
+    &quot;split_version&quot;: &quot;buffered-whole-components-loqo-v2 (hide_frac=0.20, buffer_px=3, boundary_px=12)&quot;,
+    &quot;selection_seeds_20_21&quot;: {
+      &quot;withheld_positive_pixels&quot;: 22893,
+      &quot;dti&quot;: 0.101977,
+      &quot;ci95_20km_block_bootstrap&quot;: [
+        0.090344,
+        0.114066
+      ],
+      &quot;delta_vs_ctrl_ridge_b2&quot;: 0.057201,
+      &quot;delta_vs_ctrl_ridge_b2_ci95&quot;: [
+        0.04436,
+        0.070284
+      ],
+      &quot;delta_vs_ctrl_gbdt&quot;: 0.015294,
+      &quot;delta_vs_ctrl_gbdt_ci95&quot;: [
+        0.00693,
+        0.02328
+      ]
+    },
+    &quot;independent_confirmation_seeds_33_34&quot;: {
+      &quot;withheld_positive_pixels&quot;: 22733,
+      &quot;dti&quot;: 0.114084,
+      &quot;ci95_20km_block_bootstrap&quot;: [
+        0.096891,
+        0.132095
+      ],
+      &quot;delta_vs_ctrl_ridge_b2&quot;: 0.066412,
+      &quot;delta_vs_ctrl_ridge_b2_ci95&quot;: [
+        0.048662,
+        0.08613
+      ],
+      &quot;delta_vs_ctrl_gbdt&quot;: 0.027924,
+      &quot;delta_vs_ctrl_gbdt_ci95&quot;: [
+        0.01896,
+        0.038021
+      ],
+      &quot;delta_vs_ctrl_random&quot;: 0.067842,
+      &quot;delta_vs_ctrl_random_ci95&quot;: [
+        0.052076,
+        0.0861
+      ],
+      &quot;fold_wins_vs_ctrl_ridge_b2&quot;: &quot;8/8&quot;,
+      &quot;fold_wins_vs_ctrl_gbdt&quot;: &quot;8/8&quot;
+    },
+    &quot;off_catalogue_sgmc_proxy&quot;: {
+      &quot;evidence_class&quot;: &quot;OFF-CATALOGUE-PROXY-SGMC&quot;,
+      &quot;sgmc_positive_pixels_d_ge_3px&quot;: 63121,
+      &quot;candidate&quot;: {
+        &quot;arm&quot;: &quot;H33-R3-3&quot;,
+        &quot;dots&quot;: 37654,
+        &quot;dti&quot;: 0.120202
+      },
+      &quot;gemsdoe32_h33_2_b2&quot;: {
+        &quot;dots&quot;: 37654,
+        &quot;dti&quot;: 0.096132
+      },
+      &quot;gemsdoe28_h27_4&quot;: {
+        &quot;dots&quot;: 40199,
+        &quot;dti&quot;: 0.096615
+      },
+      &quot;delta_vs_gemsdoe32_h33_2_b2&quot;: 0.02407,
+      &quot;delta_vs_gemsdoe28_h27_4&quot;: 0.023587
+    }
+  },
+  &quot;leakage_canary&quot;: {
+    &quot;n_features_tested&quot;: 52,
+    &quot;max_oriented_auc&quot;: 0.79446,
+    &quot;threshold&quot;: 0.9,
+    &quot;pass&quot;: true
+  },
+  &quot;registry_correlation_overlap&quot;: {
+    &quot;scope_a_9site_published_downloads_201_rasters&quot;: {
+      &quot;rasters_checked&quot;: 201,
+      &quot;pre_placement_surface_max_abs_rho&quot;: 0.11618,
+      &quot;pre_placement_topk_max_3px_overlap&quot;: 0.68107,
+      &quot;final_dots_max_abs_rho&quot;: 0.06142,
+      &quot;final_dots_max_3px_overlap&quot;: 0.52648,
+      &quot;closest_raster&quot;: &quot;buffedlizard55-lab/GEMSDOE24:docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif&quot;,
+      &quot;final_dots_max_jaccard_diagnostic&quot;: 0.03229,
+      &quot;unique_pass&quot;: true
+    },
+    &quot;scope_b_complete_9repo_tree_214_rasters_literal&quot;: {
+      &quot;rasters_checked&quot;: 214,
+      &quot;final_dots_max_abs_rho&quot;: 0.0636,
+      &quot;final_dots_max_3px_overlap&quot;: 0.99971,
+      &quot;blocking_witness&quot;: &quot;buffedlizard55-lab/GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif&quot;,
+      &quot;witness_explanation&quot;: &quot;GEMSDOE24/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif is a uniform spacing-5 synthetic calibration lattice from 13GEMSDOE (206,895 dots) whose 3-px disk covers 99.87% of the entire off-catalogue footprint; vendor/gems57/uniqueness.py does not exempt lattice priors, so literal Scope B fails closed even though Jaccard is &lt;0.03 and Scope A (all 201 published submissions across GEMSDOE24..36) passes cleanly.&quot;,
+      &quot;unique_pass&quot;: false
+    }
+  },
+  &quot;raster_sha256&quot;: &quot;2c1b648364d976bb29a52ab9045f5e2233920870f7a9670533283f00a0b1e2a8&quot;,
+  &quot;zip_sha256&quot;: &quot;0d9b53c93da8c28a0cfeaeb5c5b83a433c3919f3d0b43fa2ed7d6ff63c414926&quot;,
+  &quot;artifact_path&quot;: &quot;docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif&quot;,
+  &quot;validator_output&quot;: {
+    &quot;vendor_gems57_validate&quot;: {
+      &quot;file&quot;: &quot;docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif&quot;,
+      &quot;bytes&quot;: 148375,
+      &quot;sha256&quot;: &quot;2c1b648364d976bb29a52ab9045f5e2233920870f7a9670533283f00a0b1e2a8&quot;,
+      &quot;meta&quot;: {
+        &quot;crs&quot;: &quot;EPSG:32611&quot;,
+        &quot;shape&quot;: [
+          3730,
+          3292
+        ],
+        &quot;dtype&quot;: &quot;float32&quot;,
+        &quot;count&quot;: 1,
+        &quot;nodata&quot;: null,
+        &quot;transform&quot;: [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        &quot;profile_compress&quot;: &quot;deflate&quot;
+      },
+      &quot;band_description&quot;: [
+        null
+      ],
+      &quot;n_finite&quot;: 12279160,
+      &quot;n_nan&quot;: 0,
+      &quot;n_infinite&quot;: 0,
+      &quot;min&quot;: 0.0,
+      &quot;max&quot;: 1.0,
+      &quot;mean&quot;: 0.0030664964579045773,
+      &quot;emitted_positive_pixels&quot;: 37654,
+      &quot;checks&quot;: {
+        &quot;single_band&quot;: true,
+        &quot;dtype_float32&quot;: true,
+        &quot;dimensions_3730x3292&quot;: true,
+        &quot;crs_epsg_32611&quot;: true,
+        &quot;transform_matches_sample_submission&quot;: true,
+        &quot;no_nan_anywhere&quot;: true,
+        &quot;no_inf_anywhere&quot;: true,
+        &quot;no_sentinel_values&quot;: true,
+        &quot;range_0_1_guaranteed&quot;: true,
+        &quot;min_ge_0&quot;: true,
+        &quot;max_le_1&quot;: true,
+        &quot;in_footprint_all_finite&quot;: true,
+        &quot;in_footprint_range_0_1&quot;: true,
+        &quot;outside_footprint_zero&quot;: true,
+        &quot;zero_dots_on_mapped_catalogue&quot;: true
+      },
+      &quot;all_checks_passed&quot;: true,
+      &quot;validation_class&quot;: &quot;local format/range preflight; not organizer acceptance or uniqueness clearance&quot;,
+      &quot;on_catalogue_positive_pixels&quot;: 0,
+      &quot;in_footprint_positive_pixels&quot;: 37654,
+      &quot;footprint_fraction&quot;: 0.007286874781441169
+    },
+    &quot;secondary_strict_zero_outside_audit&quot;: {
+      &quot;pass&quot;: true,
+      &quot;bands&quot;: 1,
+      &quot;dtype&quot;: &quot;float32&quot;,
+      &quot;crs&quot;: &quot;EPSG:32611&quot;,
+      &quot;shape&quot;: [
+        3730,
+        3292
+      ],
+      &quot;transform_match&quot;: true,
+      &quot;all_finite_whole_raster&quot;: true,
+      &quot;nonfinite_count&quot;: 0,
+      &quot;min&quot;: 0.0,
+      &quot;max&quot;: 1.0,
+      &quot;in_range_0_1_footprint&quot;: true,
+      &quot;in_range_0_1_whole_array&quot;: true,
+      &quot;outside_footprint_all_zero&quot;: true,
+      &quot;on_catalogue_positive_pixels&quot;: 0,
+      &quot;emitted_pixels&quot;: 37654
+    }
+  },
+  &quot;submission_name&quot;: &quot;gemsdoe33-r3-da-hgcm-37654-a6a8552e&quot;,
+  &quot;note&quot;: &quot;GEMSDOE33 H33-R3-3 37654d [0,1] zeros; unique vs 201 9-site dl; gated (r13-lattice-s5/proxy); id a6a8552e&quot;,
+  &quot;note_chars&quot;: 105,
+  &quot;gate_breakdown&quot;: {
+    &quot;G1_format_and_0_1_range_all_finite&quot;: true,
+    &quot;G2_leakage_canary_le_0_90&quot;: true,
+    &quot;G3_domain_divergence_reduced_vs_h33f&quot;: true,
+    &quot;G4_holdout_selection_and_independent_confirmation_and_sgmc&quot;: true,
+    &quot;G5_unique_vs_201_focused_9site_published_submissions&quot;: true,
+    &quot;G6_literal_unexempted_global_lattice_guard&quot;: false
+  },
+  &quot;verdict&quot;: &quot;negative&quot;,
+  &quot;submission_clearance_summary&quot;: &quot;VALIDATED FORMAT &amp; UNIQUE VS ALL 201 FOCUSED-SITE SUBMISSIONS, BUT GATED BY LITERAL LATTICE / PROTOCOL GUARD \u2014 DO NOT AUTO-SPEND LIVE WEEKLY SLOT&quot;
+}
+</pre>
+</div>
+
+<h2>Archived Round-1 &amp; Round-2 Negative Deliverables (Retained for Audit Continuity)</h2>
 <div class="panel bad"><b>EXPLORATORY_NOT_LICENSED · BLOCKED_NOT_ESTIMATED</b>
 <p>The first-round shortlist was retrospective and remains archived; H33-6 failed P1 and no candidate is slot-approved.
 The score/file pairing unverified for historical baselines. H33-6 P1 mean ΔDTI was <b>−0.00273732</b> (2/4 folds positive);
@@ -27,10 +233,10 @@ This was evaluated under Ben-David principles, but was <b>not</b> a Ben-David bo
 <p>Format pass: None · SHA-256: <code>None</code></p>
 </div>
 
-<div class="panel bad"><h3>2026-10-25 duplicate guard and run card</h3>
+<div class="panel bad"><h3>2026-10-25 duplicate guard and run card (H33-6 historical audit)</h3>
 <p>H33-6 is not eligible for a slot. Its final raster crossed the duplicate threshold against 7 of 9 same-grid TIFFs available in this checkout. The external site rasters were not staged; the pre-placement edge surface was not screened in this audit; no new placement was run. The feature-alone leakage canary is also missing from retained evidence.</p>
 <p>HOLDOUT-DTI (local <code>dti_binary</code>, four-fold conditional diagnostic; 60,988 withheld catalogue pixels): pooled DTI candidate <b>0.112486</b> vs control <b>0.114669</b>, pooled ΔDTI <b>−0.002183</b>; mean of fold deltas −0.002737 (2/4 positive). Descriptive fold-t 95% interval [−0.015020, +0.009546], df=3; not a private-label CI. The evaluator source has no semantic version field. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/duplicate_guard_run_card_20261025.json">machine-readable run card</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout_h33_6.json">original holdout evidence</a>.</p>
 </div>
 </main>
-<footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
+<footer><div class="wrap">Generated deterministically from repository evidence by <code>scripts/build_site.py</code>. Zero weekly submission slots were auto-spent from this workspace. All local metrics are labelled <code>HOLDOUT-DTI</code> or <code>OFF-CATALOGUE-PROXY-SGMC</code>; user/owner-reported historical scores are never treated as organizer receipts.</div></footer>
 </body></html>
