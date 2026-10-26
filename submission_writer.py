@@ -62,6 +62,15 @@ def write_submission_bundle(
     max_note_chars: int = PROTOCOL_MAX_NOTE,
 ) -> dict:
     """Write and validate -zeros.tif, -nan.tif, .zip archives, and JSON receipt."""
+    note_probe = note_template.replace("{cid}", "0" * 12).replace("{cid8}", "0" * 8)
+    if len(note_probe) > max_note_chars:
+        raise ValueError(f"submission note length {len(note_probe)} exceeds protocol limit {max_note_chars}: {note_probe!r}")
+
+    pred_raw = np.asarray(prediction)
+    finite_raw = pred_raw[np.isfinite(pred_raw)]
+    if finite_raw.size and bool((finite_raw < 0.0).any() or (finite_raw > 1.0).any()):
+        raise ValueError("prediction contains finite values outside [0.0, 1.0]")
+
     tpl_path = Path(template_path) if template_path else grid.DATA / grid.SAMPLE_SUBMISSION
     with rasterio.open(tpl_path) as src:
         tpl_arr = src.read(1)

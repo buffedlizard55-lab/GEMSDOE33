@@ -159,8 +159,33 @@ leaderboard. Its reported 0.2600 association is owner-reported; exact score-to-f
 confirmed. The top card is the recommended, NaN-outside file.</p>{primary}{alt}</div>"""
 
 
+def round3_da_hgcm_hero() -> str:
+    tif = "downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif"
+    zip_ = "downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.zip"
+    rcpt = "downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.json"
+    card = "research/round3-da-hgcm-run-card.json"
+    sha = "2c1b648364d976bb29a52ab9045f5e2233920870f7a9670533283f00a0b1e2a8"
+    sub_name = "gemsdoe33-r3-da-hgcm-37654-a6a8552e"
+    sub_note = "GEMSDOE33 H33-R3-3 37654d [0,1] zeros; unique vs 201 9-site dl; gated (r13-lattice-s5/proxy); id a6a8552e"
+    return f"""<div class="hero-download" id="round3-da-hgcm">
+<h2>Round-3 H33-R3-3 (DA-LinearVC-Submod) GeoTIFF — Format [0, 1] &amp; 9-Site Uniqueness PASS · Live Slot GATED (verdict: negative · DO NOT AUTO-SUBMIT)</h2>
+<p><span class="badge good">OK TO DOWNLOAD · 15/15 FORMAT [0, 1] PASS</span> <span class="badge good">HOLDOUT-DTI 8/8 FOLDS PASS (0.114084)</span> <span class="badge good">UNIQUE VS ALL 204 9-SITE PUBLISHED TIFS</span> <span class="badge warn">LIVE SLOT GATED (verdict: negative)</span></p>
+<p><b>Unique Round-3 artifact (zero NaNs anywhere, <code>0.0</code> outside footprint matching official reference Cell 19):</b>
+<code>37,654</code> binary dots in <code>[0.0, 1.0]</code>, <code>EPSG:32611</code>, <code>3730 × 3292</code>, <code>0</code> on-catalogue pixels.
+On fresh independent confirmation seeds (<code>33, 34</code>, <code>22,733</code> withheld positives, <code>gems57-pooled-hide-v2</code>), frozen <b>H33-R3-3</b> reached <b>HOLDOUT-DTI = 0.114084</b> (20 km spatial-block 95% CI <code>[0.096891, 0.132095]</code>), beating fold-rebuilt matched controls in <b>8/8 folds</b> (<code>+0.066412</code> vs <code>CTRL-RIDGE-B2</code>, <code>+0.027924</code> vs <code>CTRL-GBDT</code>) and improving independent off-catalogue USGS SGMC fault recovery by <b>+25.0%</b> (<code>0.120202</code> vs <code>0.096132</code>).</p>
+<p><b>Why live competition slot promotion remains GATED (<code>verdict: negative</code>, <code>0</code> slots spent):</b> Although H33-R3-3 passes uniqueness across <b>all 204 published submission GeoTIFFs of GEMSDOE24..36</b> (max <code>|ρ| = 0.0650 ≤ 0.90</code>, max 3-px overlap = <code>0.5265 ≤ 0.70</code>), literal unexempted subdirectory scanning flags <code>GEMSDOE24/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif</code> (a 206,895-dot synthetic spacing-5 calibration lattice whose 3-px disks cover <b>99.87%</b> of the GeoDAWN footprint: <code>0.9997 &gt; 0.70</code>). Per Parallel-Run Protocol Rule 6, do not upload without explicit human selector clearance.</p>
+<p><a class="btn" href="{tif}">Download H33-R3-3 [0, 1] GeoTIFF (148 KB)</a> <a class="btn alt" href="{zip_}">Download Single-TIFF .zip (117 KB)</a> <a class="btn alt" href="{rcpt}">Validator Receipt JSON</a> <a class="btn alt" href="{card}">Official Run Card JSON</a></p>
+<table><tbody>
+<tr><th>Unique submission name</th><td><code>{sub_name}</code></td></tr>
+<tr><th>Suggested note (105 / 140 chars)</th><td><code>{sub_note}</code></td></tr>
+<tr><th>GeoTIFF SHA-256</th><td><code>{sha}</code></td></tr>
+</tbody></table>
+</div>"""
+
+
 def build_index() -> str:
-    body = f"""{unique_submission_hero()}
+    body = f"""{round3_da_hgcm_hero()}
+{unique_submission_hero()}
 <h2>Project decision</h2>
 <div class="panel bad"><b>No real competition submission is approved.</b> The top-ranked candidate H33-6 failed the recorded spatial proxy gate (P1 mean ΔDTI −0.00273732; 2/4 folds positive). The evidence is conditional because the fixed H19-5 baseline surface was not regenerated per fold; private expert labels were not available. No upload was made and no score is predicted.</div>
 <h2>What can be concluded about the cited scores?</h2>
@@ -202,7 +227,8 @@ def build_exec() -> str:
              "Owner-reported; filename references a PINN but no geothermal-discovery mechanism is established by local evidence"),
         )
     )
-    body = f"""<h2>Executive summary — per-site best submissions and how to submit</h2>
+    body = f"""{round3_da_hgcm_hero()}
+<h2>Executive summary — per-site best submissions and how to submit</h2>
 <div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b></div>
 
 <h3>Which focus-site submission is the best to submit?</h3>
@@ -306,7 +332,9 @@ def build_sources() -> str:
     sources = reg("sources.json")
     rows = "".join(
         f"<tr><td><b>{esc(s.get('id'))}</b></td><td><a href='{esc(s.get('url'))}'>{esc(s.get('title'))}</a></td>"
-        f"<td>{esc(s.get('type'))}</td><td>{esc(s.get('license'))}</td><td>{esc(s.get('note'))}</td></tr>"
+        f"<td>{esc(s.get('type') or s.get('evidence_class', 'SOURCE'))}</td>"
+        f"<td>{esc(s.get('license') or s.get('verified_utc', '—'))}</td>"
+        f"<td>{esc(s.get('note') or s.get('used_for', '—'))}</td></tr>"
         for s in sources.get("sources", [])
     )
     pins = reg("owner_mirror_input_pins.json")
@@ -463,6 +491,7 @@ def main() -> int:
     research.mkdir(exist_ok=True)
     for source, name in (
         ("run_card_g33_20261026.json", "current-run-card.json"),
+        ("round3_da_hgcm_run_card_20261025.json", "round3-da-hgcm-run-card.json"),
         ("promotion_gate_20261025.json", "current-promotion-gate.json"),
         ("focus_raster_audit_20261025.json", "focus-raster-audit.json"),
     ):
