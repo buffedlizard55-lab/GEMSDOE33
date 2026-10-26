@@ -1,0 +1,67 @@
+{
+  "name": "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026",
+  "content_id": "171b8b87dbf7",
+  "note": "GEMSDOE33 G33 tilt-gravity-lidar coherence TIFF; proxy holdout FAILED dDTI -0.0907 0/4 folds; NOT cleared to submit. id 171b8b87dbf7",
+  "note_chars": 132,
+  "emitted_pixels": 7949,
+  "emitted_fraction_of_footprint": 0.0015383058277387755,
+  "value_range_inside": [
+    0.0,
+    1.0
+  ],
+  "zeros": {
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-zeros.tif",
+    "bytes": 237594,
+    "sha256": "f20c547f20a022863a4ba56e3a165a95fb819ecdadb4c04c89fe0db6630ced96",
+    "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-zeros.tif",
+    "checks": {
+      "count_is_1": true,
+      "dtype_is_float32": true,
+      "crs_is_epsg_32611": true,
+      "shape_is_3730x3292": true,
+      "georef_matches_template": true,
+      "no_nan_inside_footprint": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "outside_is_null_or_zero": true,
+      "single_band_description": true
+    },
+    "errors": [],
+    "n_checks": 10,
+    "pass": true
+  },
+  "nan": {
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif",
+    "bytes": 312838,
+    "sha256": "403e6925a5b32a1ad79084636336c60dd4a4ce56aacacb66910542ace6683d44",
+    "file": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif",
+    "checks": {
+      "count_is_1": true,
+      "dtype_is_float32": true,
+      "crs_is_epsg_32611": true,
+      "shape_is_3730x3292": true,
+      "georef_matches_template": true,
+      "no_nan_inside_footprint": true,
+      "min_ge_0": true,
+      "max_le_1": true,
+      "outside_is_null_or_zero": true,
+      "single_band_description": true
+    },
+    "errors": [],
+    "n_checks": 10,
+    "pass": true
+  },
+  "zip_zeros": {
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-zeros.zip",
+    "bytes": 84635,
+    "sha256": "a126c5f9691ef2555033ec4899ecec5dc88647c1dd07d3e52a2a62fde0d6961a",
+    "members": 1
+  },
+  "zip_nan": {
+    "path": "/home/user/GEMSDOE33/docs/downloads/gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.zip",
+    "bytes": 167598,
+    "sha256": "799b7c1f929d18dcdd9f5d8e189f3508655f1c7bd88affa3b3d3cfa1d32783c9",
+    "members": 1
+  },
+  "all_checks_pass": true
+}

@@ -4,17 +4,33 @@
 <title>Research &amp; Diagnostics · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
 <p>DrivenData #306 · evidence-led research · review status 2026-10-25</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html" aria-current=page>Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
-<main class="wrap"><h2>A33-L1 complete research record</h2>
-<div class="panel bad"><b>Final verdict: NEGATIVE — NOT OK TO SUBMIT.</b> The experiment completed in 194.28 seconds, used one of the three allowed experiments and consumed zero submission slots. The output is retained because unique negative results are part of the scientific record.</div>
-<h3>Frozen mechanism</h3><p>Use 12 structural channels; map each named source field's marginal feature distributions onto fold-training target distributions with 257-knot CDF maps; weight source fields equally; train raw analog, adapted analog and regional experts; fuse regional/adapted score ranks at a frozen 0.80/0.20. Named non-fault mimic: lithologic contact or basin-fill edge.</p>
-<h3>Fold integrity</h3><p>Four quadrant folds withheld entire connected catalogue components with a 15-pixel buffer. Withheld positive pixels were NW 10,165; NE 12,511; SW 20,534; SE 17,778—60,988 pooled. Catalogue sampling and exclusion used visible faults only; hidden truth had zero overlap with visible faults; training and validation masks were disjoint.</p>
-<h3>Leakage canary</h3><p>All 12 frozen features passed standalone tests. Worst fold-level two-sided AUC was <b>0.6211</b>; stop threshold was strictly above 0.90. This rejects obvious direct leakage but does not establish independent labels.</p>
-<h3>HOLDOUT-DTI result</h3><p>A33-L1 = <b>0.108374</b> (95% CI [0.097607, 0.119402]); best regional comparator = <b>0.113244</b> (95% CI [0.102796, 0.124169]). Paired delta = <b>-0.004870</b>, 95% CI [-0.010900, +0.001226], 0/4 fold wins. Label: HOLDOUT-DTI (<code>gems-segment-pooled-v1</code>; 60,988 withheld positives; spatial-block bootstrap 95% CI). Not a competition score.</p>
-<h3>Uniqueness</h3><p>Before placement, max Spearman was 0.1084. Final max Spearman was 0.02221; max candidate-dot fraction within 3 px was 42.25%. All are below frozen stop thresholds. The post-merge release guard repeated both stages against the canonical 12-reference focus subset and passed with the same maxima.</p>
-<h3>Artifacts and evidence</h3><ul><li><a href="downloads/gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-zeros.tif">A33-L1 unique zero-outside TIFF</a> — research only</li><li><a href="downloads/receipt-gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34.json">shared-writer receipt</a></li><li><a href="data/a33_l1_run_card.json">final run card</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_l1_experiment.json">complete experiment evidence</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/analog_lane_preregistration_20261025.json">hash-frozen preregistration</a></li><li><a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_l1_three_pass_review_20261025.md">three-pass release review</a></li></ul>
-<h2>Historical negative controls &amp; companion Round-3 experiments (<code>H33-R3-1..3</code>)</h2>
-<p>Companion Round-3 domain-invariant analog co-training (<code>H33-R3-1</code>, 25 km rolling basin standardization across 32 channels + GDR 1391 geothermometer upflow + B=2 visible collar) achieved pooled <b>HOLDOUT-DTI 0.075943</b> (95% CI <code>[0.067108, 0.085451]</code>, <code>GEMSDOE33-HIDE-AND-RECOVER-v1.0</code>, 60,988 withheld positives), beating the fold-safe physical baseline (<code>0.049488</code>, &Delta;DTI <code>+0.026455</code>, 3/4 folds) and matched-random control (<code>0.053858</code>), passing all 32 feature leakage canaries (max AUC <code>0.6035 &le; 0.90</code>) and all 22 registry duplicate checks (<code>0/22</code> triggers: max |surface &rho;| <code>0.1000</code>, max 3-px overlap <code>50.58%</code>), while reducing 20 km spatial-block domain AUC from <code>0.9172</code> (<code>H33-F</code>) to <code>0.7778</code>. Because it remained below the historical fixed-H19-5 B=2 reference (<code>0.116963</code>), its verdict is likewise <code>negative</code> (<a href="research/round3-run-card.json">Round-3 Run Card JSON</a> · <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/10_focus_sites_and_round3_20261025.md">Round-3 Forensic Report</a>).</p>
-<p>H33-6 remains failed/duplicate and H33-F remains negative; neither is slot-approved. Their historical files remain for audit but do not supersede the current A33-L1 run card. No post-result experiment was used to tune A33-L1.</p>
+<main class="wrap"><h2>Research candidates and proxy holdout records</h2>
+<div class="panel bad"><b>EXPLORATORY_NOT_LICENSED · BLOCKED_NOT_ESTIMATED</b>
+<p>The first-round shortlist was retrospective and remains archived; H33-6 failed P1 and no candidate is slot-approved.
+The score/file pairing unverified for historical baselines. H33-6 P1 mean ΔDTI was <b>−0.00273732</b> (2/4 folds positive);
+A generic two-sample AUC is not itself that bound. The artifacts below are for research only.</p></div>
+
+<div class="panel">
+<h3>H33-6 Edge-Normal Consensus Research TIFF (Failed P1, Research Only)</h3>
+<p><a class="btn alt" href="downloads/research/GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7-nan.tif">Download H33-6 research TIFF</a> ·
+<a href="downloads/research/receipt-GEMSDOE33-H33-6-edge-consensus-research-20261004-6c888d2ce0f7.json">Audit JSON</a> ·
+<span class="badge bad">RESEARCH ONLY</span></p>
+<p>Independent local format audit: True · SHA-256: <code>18604d71f11db269a3f70007433d1dd74e4f09eb195861dc2aeda4d98aa8efe7</code></p>
+</div>
+
+<div class="panel">
+<h3>Earlier H33-F analog-field screen</h3>
+<p>Earlier H33-F analog-field screen failed local proxies (P1 mean <b>-0.093072</b>, 0/4 positive).
+This was evaluated under Ben-David principles, but was <b>not</b> a Ben-David bound because independent BRIDGE labels were blocked.</p>
+<p><a class="btn alt" href="downloads/gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-nan.tif">Download H33-F research TIFF</a> ·
+<span class="badge bad">NOT SLOT-APPROVED</span></p>
+<p>Format pass: None · SHA-256: <code>None</code></p>
+</div>
+
+<div class="panel bad"><h3>2026-10-25 duplicate guard and run card</h3>
+<p>H33-6 is not eligible for a slot. Its final raster crossed the duplicate threshold against 7 of 9 same-grid TIFFs available in this checkout. The external site rasters were not staged; the pre-placement edge surface was not screened in this audit; no new placement was run. The feature-alone leakage canary is also missing from retained evidence.</p>
+<p>HOLDOUT-DTI (local <code>dti_binary</code>, four-fold conditional diagnostic; 60,988 withheld catalogue pixels): pooled DTI candidate <b>0.112486</b> vs control <b>0.114669</b>, pooled ΔDTI <b>−0.002183</b>; mean of fold deltas −0.002737 (2/4 positive). Descriptive fold-t 95% interval [−0.015020, +0.009546], df=3; not a private-label CI. The evaluator source has no semantic version field. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/duplicate_guard_run_card_20261025.json">machine-readable run card</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/holdout_h33_6.json">original holdout evidence</a>.</p>
+</div>
 </main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>
