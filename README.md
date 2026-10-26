@@ -4,7 +4,7 @@
 
 > ### **STATUS: FORMAT `[0, 1]` & 9-SITE UNIQUENESS VALIDATED — LIVE WEEKLY SLOT GATED (`verdict: negative` · DO NOT AUTO-SUBMIT)**
 >
-> - **Generated Unique GeoTIFF (Round 3):** [`docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif`](docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif) (`148,375` bytes) · [Single-TIFF `.zip`](docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.zip) (`116,535` bytes) · [Validator Receipt JSON](docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.json) · [Run Card JSON](evidence/round3_run_card_20261025.json)
+> - **Generated Unique GeoTIFF (Round 3):** [`docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif`](docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif) (`148,375` bytes) · [Single-TIFF `.zip`](docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.zip) (`116,535` bytes) · [Validator Receipt JSON](docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.json) · [Run Card JSON](evidence/round3_da_hgcm_run_card_20261025.json)
 > - **Unique Submission Name:** `gemsdoe33-r3-da-hgcm-37654-a6a8552e`
 > - **Suggested Note (`105 / 140` chars):** `GEMSDOE33 H33-R3-3 37654d [0,1] zeros; unique vs 201 9-site dl; gated (r13-lattice-s5/proxy); id a6a8552e`
 > - **Raster SHA-256:** `2c1b648364d976bb29a52ab9045f5e2233920870f7a9670533283f00a0b1e2a8`
@@ -108,7 +108,7 @@ Full results in [`evidence/round3_campaign_results_20261025.json`](evidence/roun
 
 ---
 
-## §6. Official Parallel-Run Protocol JSON RUN CARD (`evidence/round3_run_card_20261025.json`)
+## §6. Official Parallel-Run Protocol JSON RUN CARD (`evidence/round3_da_hgcm_run_card_20261025.json`)
 
 ```json
 {
@@ -189,7 +189,7 @@ GEMS_DATA_DIR=.cache/gems_data .venv/bin/python scripts/audit_inputs.py
 GEMS_DATA_DIR=.cache/gems_data .venv/bin/python scripts/prepare_data.py --skip-detector
 
 # 3. Execute preregistered Round-3 3-experiment campaign + automated validators
-GEMS_DATA_DIR=.cache/gems_data .venv/bin/python scripts/run_round3_campaign.py
+GEMS_DATA_DIR=.cache/gems_data .venv/bin/python scripts/run_round3_da_hgcm_campaign.py
 
 # 4. Re-validate saved Round-3 GeoTIFF bytes & rebuild GitHub Pages + run full test suite
 GEMS_DATA_DIR=.cache/gems_data .venv/bin/python scripts/validate_submission.py \

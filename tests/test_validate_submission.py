@@ -48,6 +48,21 @@ class SubmissionAuditTests(unittest.TestCase):
             ds.write(np.asarray(array, dtype=use_profile["dtype"]), 1)
         return path
 
+    def test_cli_defaults_to_restored_data_dir_template(self):
+        import json
+        import os
+        import shutil
+        import subprocess
+        root = Path(__file__).resolve().parents[1]
+        shutil.copyfile(self.template, self.root / "sample_submission.tif")
+        env = dict(os.environ, GEMS_DATA_DIR=str(self.root))
+        result = subprocess.run(
+            [sys.executable, "scripts/validate_submission.py", "--submission", str(self.good)],
+            cwd=root, env=env, capture_output=True, text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertTrue(json.loads(result.stdout)["pass"])
+
     def test_valid_local_policy_grid_passes(self):
         result = audit(self.good, self.template)
         self.assertTrue(result["pass"])

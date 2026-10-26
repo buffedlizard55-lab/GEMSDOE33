@@ -1,0 +1,199 @@
+{
+  "protocol": "GEMS Parallel-Run Protocol v2 (2026-10-25)",
+  "repository": "buffedlizard55-lab/GEMSDOE33",
+  "branch": "arena/ceffa63e-gemsdoe33",
+  "lane": "Bounded Analog-Field Domain Adaptation & Geothermal Vent/Conduit Discovery (Ben-David et al., 2010; README.md \u00a71)",
+  "experiments_run": 3,
+  "budget_cap_respected": true,
+  "submission_slots_spent": 0,
+  "hypothesis": "H33-R3-3 (DA-LinearVC-Submod): Finite-VC Linear Halfspace Domain-Adapted Classifier with Measured Empirical d_H_Delta_H",
+  "mechanism": "46/48 divergence-screened label-free differential geophysical, 1 m 3DEP LiDAR antislope scarp (scarp_antislope_contrast), and hydrothermal magnetite-destruction/conductivity coupling (hydro_demag_clay_coupling) channels (zero visible-network features; 2 point-sampled GDR enthalpy plumes automatically rejected by the 20 km spatial-block |AUC-0.5|<=0.20 domain-shift screen) fitted with an explicit finite-VC L2-regularized linear halfspace (vc_dim=47, emp d_H_Delta_H=0.0712) under Ben-David et al. (2010) Theorem 3 source+target LOQO weighting, paired with exact 6-ring Choquet self-credit and CELF submodular 300 m Tversky allocation (37,654 binary dots outside d_cat <= 2.0 px).",
+  "non_fault_mimic": "Regional linear lithologic unconformities (e.g., Mesozoic metasedimentary basement against Tertiary volcanics).",
+  "holdout_dti": {
+    "evidence_class": "HOLDOUT-DTI",
+    "evaluator_version": "gems57-pooled-hide-v2",
+    "split_version": "buffered-whole-components-loqo-v2 (hide_frac=0.20, buffer_px=3, boundary_px=12)",
+    "selection_seeds_20_21": {
+      "withheld_positive_pixels": 22893,
+      "dti": 0.101977,
+      "ci95_20km_block_bootstrap": [
+        0.090344,
+        0.114066
+      ],
+      "delta_vs_ctrl_ridge_b2": 0.057201,
+      "delta_vs_ctrl_ridge_b2_ci95": [
+        0.04436,
+        0.070284
+      ],
+      "delta_vs_ctrl_gbdt": 0.015294,
+      "delta_vs_ctrl_gbdt_ci95": [
+        0.00693,
+        0.02328
+      ]
+    },
+    "independent_confirmation_seeds_33_34": {
+      "withheld_positive_pixels": 22733,
+      "dti": 0.114084,
+      "ci95_20km_block_bootstrap": [
+        0.096891,
+        0.132095
+      ],
+      "delta_vs_ctrl_ridge_b2": 0.066412,
+      "delta_vs_ctrl_ridge_b2_ci95": [
+        0.048662,
+        0.08613
+      ],
+      "delta_vs_ctrl_gbdt": 0.027924,
+      "delta_vs_ctrl_gbdt_ci95": [
+        0.01896,
+        0.038021
+      ],
+      "delta_vs_ctrl_random": 0.067842,
+      "delta_vs_ctrl_random_ci95": [
+        0.052076,
+        0.0861
+      ],
+      "fold_wins_vs_ctrl_ridge_b2": "8/8",
+      "fold_wins_vs_ctrl_gbdt": "8/8"
+    },
+    "off_catalogue_sgmc_proxy": {
+      "evidence_class": "OFF-CATALOGUE-PROXY-SGMC",
+      "sgmc_positive_pixels_d_ge_3px": 63121,
+      "candidate": {
+        "arm": "H33-R3-3",
+        "dots": 37654,
+        "dti": 0.120202
+      },
+      "gemsdoe32_h33_2_b2": {
+        "dots": 37654,
+        "dti": 0.096132
+      },
+      "gemsdoe28_h27_4": {
+        "dots": 40199,
+        "dti": 0.096615
+      },
+      "delta_vs_gemsdoe32_h33_2_b2": 0.02407,
+      "delta_vs_gemsdoe28_h27_4": 0.023587
+    }
+  },
+  "leakage_canary": {
+    "n_features_tested": 52,
+    "max_oriented_auc": 0.79446,
+    "threshold": 0.9,
+    "pass": true
+  },
+  "registry_correlation_overlap": {
+    "scope_a_9site_published_downloads_201_rasters": {
+      "rasters_checked": 201,
+      "pre_placement_surface_max_abs_rho": 0.11618,
+      "pre_placement_topk_max_3px_overlap": 0.68107,
+      "final_dots_max_abs_rho": 0.06142,
+      "final_dots_max_3px_overlap": 0.52648,
+      "closest_raster": "buffedlizard55-lab/GEMSDOE24:docs/downloads/gems24-h24-0-mirror-h19-5-group-best-20261002-e27054cf-allfinite.tif",
+      "final_dots_max_jaccard_diagnostic": 0.03229,
+      "unique_pass": true
+    },
+    "scope_b_complete_9repo_tree_214_rasters_literal": {
+      "rasters_checked": 214,
+      "final_dots_max_abs_rho": 0.0636,
+      "final_dots_max_3px_overlap": 0.99971,
+      "blocking_witness": "buffedlizard55-lab/GEMSDOE24:inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif",
+      "witness_explanation": "GEMSDOE24/inputs/calibration/13gems_20261001_r13-lattice-s5_v2_nan-outside.tif is a uniform spacing-5 synthetic calibration lattice from 13GEMSDOE (206,895 dots) whose 3-px disk covers 99.87% of the entire off-catalogue footprint; vendor/gems57/uniqueness.py does not exempt lattice priors, so literal Scope B fails closed even though Jaccard is <0.03 and Scope A (all 201 published submissions across GEMSDOE24..36) passes cleanly.",
+      "unique_pass": false
+    }
+  },
+  "raster_sha256": "2c1b648364d976bb29a52ab9045f5e2233920870f7a9670533283f00a0b1e2a8",
+  "zip_sha256": "0d9b53c93da8c28a0cfeaeb5c5b83a433c3919f3d0b43fa2ed7d6ff63c414926",
+  "artifact_path": "docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif",
+  "validator_output": {
+    "vendor_gems57_validate": {
+      "file": "docs/downloads/round3/gemsdoe33-r3-da-hgcm-submod-37654-20261025-a6a8552e-zeros.tif",
+      "bytes": 148375,
+      "sha256": "2c1b648364d976bb29a52ab9045f5e2233920870f7a9670533283f00a0b1e2a8",
+      "meta": {
+        "crs": "EPSG:32611",
+        "shape": [
+          3730,
+          3292
+        ],
+        "dtype": "float32",
+        "count": 1,
+        "nodata": null,
+        "transform": [
+          100.0,
+          0.0,
+          243350.0,
+          0.0,
+          -100.0,
+          4508550.0
+        ],
+        "profile_compress": "deflate"
+      },
+      "band_description": [
+        null
+      ],
+      "n_finite": 12279160,
+      "n_nan": 0,
+      "n_infinite": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.0030664964579045773,
+      "emitted_positive_pixels": 37654,
+      "checks": {
+        "single_band": true,
+        "dtype_float32": true,
+        "dimensions_3730x3292": true,
+        "crs_epsg_32611": true,
+        "transform_matches_sample_submission": true,
+        "no_nan_anywhere": true,
+        "no_inf_anywhere": true,
+        "no_sentinel_values": true,
+        "range_0_1_guaranteed": true,
+        "min_ge_0": true,
+        "max_le_1": true,
+        "in_footprint_all_finite": true,
+        "in_footprint_range_0_1": true,
+        "outside_footprint_zero": true,
+        "zero_dots_on_mapped_catalogue": true
+      },
+      "all_checks_passed": true,
+      "validation_class": "local format/range preflight; not organizer acceptance or uniqueness clearance",
+      "on_catalogue_positive_pixels": 0,
+      "in_footprint_positive_pixels": 37654,
+      "footprint_fraction": 0.007286874781441169
+    },
+    "secondary_strict_zero_outside_audit": {
+      "pass": true,
+      "bands": 1,
+      "dtype": "float32",
+      "crs": "EPSG:32611",
+      "shape": [
+        3730,
+        3292
+      ],
+      "transform_match": true,
+      "all_finite_whole_raster": true,
+      "nonfinite_count": 0,
+      "min": 0.0,
+      "max": 1.0,
+      "in_range_0_1_footprint": true,
+      "in_range_0_1_whole_array": true,
+      "outside_footprint_all_zero": true,
+      "on_catalogue_positive_pixels": 0,
+      "emitted_pixels": 37654
+    }
+  },
+  "submission_name": "gemsdoe33-r3-da-hgcm-37654-a6a8552e",
+  "note": "GEMSDOE33 H33-R3-3 37654d [0,1] zeros; unique vs 201 9-site dl; gated (r13-lattice-s5/proxy); id a6a8552e",
+  "note_chars": 105,
+  "gate_breakdown": {
+    "G1_format_and_0_1_range_all_finite": true,
+    "G2_leakage_canary_le_0_90": true,
+    "G3_domain_divergence_reduced_vs_h33f": true,
+    "G4_holdout_selection_and_independent_confirmation_and_sgmc": true,
+    "G5_unique_vs_201_focused_9site_published_submissions": true,
+    "G6_literal_unexempted_global_lattice_guard": false
+  },
+  "verdict": "negative",
+  "submission_clearance_summary": "VALIDATED FORMAT & UNIQUE VS ALL 201 FOCUSED-SITE SUBMISSIONS, BUT GATED BY LITERAL LATTICE / PROTOCOL GUARD \u2014 DO NOT AUTO-SPEND LIVE WEEKLY SLOT"
+}

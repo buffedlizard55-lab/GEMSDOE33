@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-25",
+  "branch": "arena/181ee8c9-gemsdoe33",
+  "passes": [
+    {
+      "pass": 1,
+      "status": "complete",
+      "checks": "Repository/source review; 17 input pins; 121 cached channels; 12 reference rasters/132 comparisons; negative scientific preflight."
+    },
+    {
+      "pass": 2,
+      "status": "complete",
+      "checks": "Exact GEMSDOE31 filename corrected and audit rerun; strict writer/evidence/duplicate regression tests; no uniqueness claim on research download."
+    },
+    {
+      "pass": 3,
+      "status": "complete",
+      "checks": "109 tests pass both with restored inputs and an empty GEMS_DATA_DIR; compileall; git diff --check; generated-site determinism; local links; five live preview routes HTTP 200."
+    }
+  ],
+  "tests": {
+    "command": "PYTHON=.venv/bin/python bash scripts/run_checks.sh",
+    "passed": 109,
+    "failed": 0,
+    "independent_no_data_run": {
+      "passed": 109,
+      "failed": 0
+    }
+  },
+  "site_deterministic": true,
+  "preview_http_routes": {
+    "/": 200,
+    "/latest-review.html": 200,
+    "/executive-summary.html": 200,
+    "/research/current-run-card.json": 200,
+    "/research/current-promotion-gate.json": 200
+  },
+  "new_experiments": 0,
+  "new_submission_tif": false,
+  "competition_slots_used": 0,
+  "organizer_upload": false,
+  "promotion_gate_expected_exit": 2,
+  "pr": {
+    "number": 12,
+    "url": "https://github.com/buffedlizard55-lab/GEMSDOE33/pull/12",
+    "snapshot": "Created after local three-pass verification; this snapshot precedes merge. The GitHub PR record is authoritative for checks and final merge outcome."
+  },
+  "incomplete_requirements": [
+    "No genuinely new submission TIFF.",
+    "No viable new-lane hypothesis evaluated on canonical shared holdout.",
+    "No independent official analog-label payloads.",
+    "No organizer-confirmed scores/current leaderboard or weekly cap."
+  ]
+}

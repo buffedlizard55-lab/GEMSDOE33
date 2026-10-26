@@ -141,3 +141,74 @@ its diagnostics remain conditional. **No candidate is approved for a weekly slot
 ## Review addendum (2026-10-25)
 
 This session compared the existing H33-6 final raster against all same-grid TIFFs available in the checkout. Seven of nine comparisons exceeded the run protocol's correlation/3-pixel proximity threshold; no new placement or TIFF build was made. The pre-placement score surface and remote GEMSDOE registry rasters were unavailable, so the uniqueness screen is incomplete and remains a stop. H33-6 is **NOT OK TO SUBMIT**: its P1 mean delta was negative, its retained baseline was not re-derived per fold, its feature-alone canary is absent, and its final dots trigger the duplicate guard. See `evidence/duplicate_guard_run_card_20261025.json`, `knowledge/09_20261025_review.md`, and `registry/irregularities.json` entry `IR-33-DUP-20261025`. Treat all scores listed in the user brief as user/owner reports unless an organizer receipt is retained.
+
+## Active request addendum — 2026-10-25 continuation
+
+Read this addendum and README before future work. This preserves the current requirements in a consolidated form, not a verbatim transcript of repeated chat paragraphs. Earlier dated decisions remain historical.
+
+### Highest urgency and parallel-run protocol
+
+**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT'S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** Do not meet this requirement by renaming, re-encoding, randomly perturbing or lightly editing a previous raster. A negative result is preferable to a falsely cleared submission.
+
+1. **LANE.** Stay in the single assigned method paragraph. If raster rank-correlation with any registry raster exceeds 0.90, or more than 70% of candidate dots fall within 3 px of one registry raster's dots, log duplicate and stop. Check the surface before placement AND final dots. The current request does not contain an identifiable new standalone lane paragraph; the README's analog-field transfer paragraph is historical context, not authority to switch lanes.
+2. **REUSE, DON'T REBUILD.** Use the template's cached feature stack, `evaluate_holdout.py` and `submission_writer.py`. Holdout = hide-and-recover: withhold whole fault segments with a buffer; derive every catalogue-based feature from visible faults only; mask visible faults pixel-exactly; score pooled DTI (alpha 0.2, beta 0.8, 300 m triangular kernel). Fix a shared-tool bug in its actual template, once; do not keep a private evaluator fork. There is no identified canonical shared-template commit/path in this checkout. Other sites' same-named scripts are not automatically the canonical template.
+3. **LABEL EVERY NUMBER.** Performance results must be HOLDOUT-DTI (evaluator version, withheld-positive count, 95% CI) or ORGANIZER-CONFIRMED (submission-page receipt). User-supplied scores are unverified historical claims, not measured results; projections must never be presented as scores. Counts, distances, hashes, and diagnostics are not performance scores.
+4. **LEAKAGE CANARY.** Test each feature alone on the holdout before trusting it. AUC above 0.90 means leakage until proven otherwise.
+5. **RUN CARD.** End with one JSON card: hypothesis; mechanism; named non-fault mimic; holdout DTI + CI; correlation/overlap vs registry; raster sha256; validator output (no NaN inside footprint, values in [0,1], matching CRS/shape/transform); submission name + note <=140 characters; verdict promote/negative. Use null plus a reason for unmeasured fields, not invented values.
+6. **BUDGET.** Stop after 3 experiments or 2 hours. Do not pick submissions: promotion to a real slot is a separate selector within the verified weekly cap. Never guess the cap or spend a slot on an unvalidated idea.
+
+### Focus and goals
+
+- Review the highest-scoring named artifacts from GEMSDOE24, GEMSDOE25, GEMSDOE27, GEMSDOE28, GEMSDOE30, GEMSDOE31, GEMSDOE32, GEMSDOE33 and GEMSDOE36. Study GEMSDOE32 `h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros`, user-reported at 0.2778; explain its construction from audited bytes, distinguish causal hypotheses from proof, and seek a genuinely distinct strategy.
+- The request gives conflicting current-leader values, 0.4413 and 0.3195. Neither is a verified current score in this checkout. Do not choose one or fabricate a live feed.
+- Before model implementation, rank 3–5 new geological hypotheses with named layers, transform/physical signature, reason for missing-catalogue sensitivity, difference from local prior art, expected improvement (qualitative unless measured), cost, and verified obtainable free official data. An unverified source is blocked, not viable.
+- Validate the top viable candidate on spatially blocked holdout and independent confirmation against the current comparable holdout best. Do not spend a weekly slot unless all scientific, leakage, uniqueness and format gates pass. Inspection must be automated in-project, not delegated to a human scientific inspector.
+- Build a clean GitHub Pages site with a first-screen download/status area and executive-summary submission instructions. The download must say separately whether it is safe for research and whether it is cleared for submission. Single-band GeoTIFF or ZIP containing one GeoTIFF; exact template CRS, shape and geotransform; finite in-footprint predictions in [0,1]; explain unresolved outside-mask semantics. Give a distinctive name and <=140-character note. Do not assert that the reported range error was caused by NaN without the rejected bytes and organizer diagnostic.
+- Organize trusted-source research and data into auditable tables with links, hashes and explicit provenance limitations. The scientific competition target is missing faults relevant to geothermal exploration, not direct verified geothermal vent discovery. External-source licensing, independence, schema and coverage must be checked before training.
+- Complete available data restoration/feature preparation autonomously. Do not treat an owner mirror as an official authenticated download. Do not claim a GPU is mandatory for every model: the official reference supports CPU, though GPU training may be faster.
+- Implement, then adversarially review, then reconcile against the full request; fix defects in each pass. Preserve negative results and flag irregularities. No hallucinated scores, access, validation or receipts. Keep Maximize P(Win) and Own the Outcome central.
+- Create a PR on this session branch and merge using the explicit PR number if checks/protections permit. Suggest the next work and report limitations accurately. Never upload to DrivenData or select a competition slot in this session.
+
+### Review links supplied by the owner
+
+- Competition/problem: https://www.drivendata.org/competitions/306/competition-doe-gems/ and https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/
+- About/data/leaderboard: https://www.drivendata.org/competitions/306/competition-doe-gems/page/968/ ; https://www.drivendata.org/competitions/306/competition-doe-gems/data/ ; https://www.drivendata.org/competitions/306/competition-doe-gems/leaderboard/
+- Organizer reference: https://github.com/drivendataorg/gems-prize-reference-solution
+- Rules PDF: https://docs.nlr.gov/docs/fy26osti/96647.pdf (not reauthenticated here)
+- GeoDAWN official source: https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and
+- INGENIOUS: https://gbcge.org/current-projects/ingenious/
+- GDR: https://gdr.openei.org/submissions/1391
+- Grid and metric background: https://epsg.io/32611 ; https://en.wikipedia.org/wiki/Tversky_index (secondary background, not the competition metric contract)
+- Owner Pages for each focus repo: `https://buffedlizard55-lab.github.io/GEMSDOE{N}/` (N = 24,25,27,28,30,31,32,33,36); GEMSDOE32 source page: https://buffedlizard55-lab.github.io/GEMSDOE32/docs/index.html
+- Dropbox data/rules links in the original owner request remain unverified third-party mirrors, not official authentication. Prefer the recorded hash-pinned GitHub mirrors for this restricted workspace; never embed credentials.
+
+
+## Current outcome addendum (2026-10-25, A33-L1)
+
+The earlier dated project-decision and review sections above remain historical audit records; this
+addendum is the current outcome. The analog-transfer lane has now restored and grid-audited all 17
+hash-pinned inputs, rebuilt the shared feature cache, restored all nine pinned focus rasters, frozen
+five new analog hypotheses, and executed one A33-L1 experiment through the pinned shared evaluator
+and writer.
+
+A genuinely new 37,654-dot GeoTIFF is available at
+`docs/downloads/gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-zeros.tif`,
+with an official-template-profile NaN-outside twin. It passes exact grid, dtype, in-footprint range,
+saved-byte and uniqueness checks. Its maximum final registry Spearman is `0.02221` and maximum
+candidate-dot fraction within three pixels is `42.25%`. **It is NOT OK TO SUBMIT.** A33-L1
+HOLDOUT-DTI (`gems-segment-pooled-v1`, 60,988 withheld positives, spatial-block bootstrap 95% CI)
+is `0.108374 [0.097607, 0.119402]`; the fold-safe regional comparator is
+`0.113244 [0.102796, 0.124169]`. Paired delta is `−0.004870`, 95% CI
+`[−0.010900, +0.001226]`, with 0/4 fold wins. The scientific gate failed, the separate slot selector
+was not run, zero competition slots were spent, no upload occurred, and no score is projected.
+
+The nine-site forensic review established byte-level dependence in the reported high-score family:
+GEMSDOE25 and 30 are identical; GEMSDOE31 solo is an exact subset after removing 3,891 one-pixel
+catalogue-flank dots; GEMSDOE32 B2 is an exact subset after removing another 2,545 dots at one-to-two
+pixels; GEMSDOE36 contains all B2 dots plus 1,200. Metric-aware pruning is therefore a plausible
+explanation for the owner-reported `0.2778`, not authenticated causal proof. Every historical DTI
+value remains **OWNER/USER-REPORTED, NOT ORGANIZER-CONFIRMED** absent a retained receipt.
+
+Current evidence: `evidence/a33_l1_experiment.json`, `evidence/a33_l1_run_card.json`,
+`evidence/focus_registry_analysis_20261025.json`, and
+`knowledge/11_focus_forensics_and_a33_l1_result_20261025.md`.

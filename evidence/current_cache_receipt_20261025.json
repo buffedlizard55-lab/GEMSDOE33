@@ -1,0 +1,736 @@
+{
+  "schema_version": 1,
+  "kind": "FEATURE-CACHE-INTEGRITY, NOT HOLDOUT-DTI",
+  "channels": 121,
+  "training": "Not run in this session; no feature-alone leakage canary run. Cache is not trusted promotion evidence.",
+  "source_input_pins_sha256": "cd31840ccff6ce889f342d54332401e6861342ae7e1462df2272c1236482d16a",
+  "channel_names_sha256": "50e11a1503a0f9f8f92bac8fe2d414afbe3b1dd095a72151edc442d52740eb90",
+  "files": [
+    {
+      "channel": "mag_anom",
+      "path": ".cache/features/mag_anom.npy",
+      "bytes": 49116768,
+      "sha256": "782845fa2df47339197af2ddc03b2a438bbc13da73cfc31f1ab6557eb8360fd7"
+    },
+    {
+      "channel": "rtp",
+      "path": ".cache/features/rtp.npy",
+      "bytes": 49116768,
+      "sha256": "8fc270abb49421ada782b8c85e13cdae012624d19912120d1c1b83df09899cc6"
+    },
+    {
+      "channel": "tmi_hg",
+      "path": ".cache/features/tmi_hg.npy",
+      "bytes": 49116768,
+      "sha256": "5ac94d622ead8bf293249796d4d0acb990b4fd828240fa12d19e3131796938bf"
+    },
+    {
+      "channel": "geod_2ndinv",
+      "path": ".cache/features/geod_2ndinv.npy",
+      "bytes": 49116768,
+      "sha256": "b32187d763e79afdf132a3a970b2b1806800dcc9b2a348f9786fb93b88c3048c"
+    },
+    {
+      "channel": "iso_grav_anom_slope",
+      "path": ".cache/features/iso_grav_anom_slope.npy",
+      "bytes": 49116768,
+      "sha256": "24e36eb08235a917945d977903c3f16541682b4f1b6f26850ee4e1a31f39c6b5"
+    },
+    {
+      "channel": "tc",
+      "path": ".cache/features/tc.npy",
+      "bytes": 49116768,
+      "sha256": "f864aa361f7798e20595c0da134dd8ccd7bef75deb41784c8cf18ed48ab7d79d"
+    },
+    {
+      "channel": "geod_shearrate",
+      "path": ".cache/features/geod_shearrate.npy",
+      "bytes": 49116768,
+      "sha256": "5f1ca220b525651c8984627eb2e0dff314b91940a0c0352f7284a66fc2bdfe3a"
+    },
+    {
+      "channel": "geod_dilaterate",
+      "path": ".cache/features/geod_dilaterate.npy",
+      "bytes": 49116768,
+      "sha256": "e2e2f6b1388255dbd7094c3f22ff6897e58510f0c54b6d451e8a4f9cc2844e88"
+    },
+    {
+      "channel": "tmi_vg",
+      "path": ".cache/features/tmi_vg.npy",
+      "bytes": 49116768,
+      "sha256": "ff90d7b1b423fd5ac16f4267b6da8eca383d1c42d867cb0dd171ca1f27d67ef0"
+    },
+    {
+      "channel": "deq_n100a15",
+      "path": ".cache/features/deq_n100a15.npy",
+      "bytes": 49116768,
+      "sha256": "00edddbd8eb2f1e57b4e05dc2b33594a34148aa6cf8e915afa995a199294c14c"
+    },
+    {
+      "channel": "iso_grav_anom_vg",
+      "path": ".cache/features/iso_grav_anom_vg.npy",
+      "bytes": 49116768,
+      "sha256": "275ecdbe0797e051d0bdd1347860f634a39f76d4585a7d59bb0557d0f88e9617"
+    },
+    {
+      "channel": "det_elev",
+      "path": ".cache/features/det_elev.npy",
+      "bytes": 49116768,
+      "sha256": "4631b61f01872e28fcda21c3dda6f48bbd6347af5e0812931ee2077557863afd"
+    },
+    {
+      "channel": "iso_grav_anom",
+      "path": ".cache/features/iso_grav_anom.npy",
+      "bytes": 49116768,
+      "sha256": "e666c65f770df17978d3fbb7d892ac09e0df83fd10d7a43341ab187ba3afa107"
+    },
+    {
+      "channel": "tmi",
+      "path": ".cache/features/tmi.npy",
+      "bytes": 49116768,
+      "sha256": "b0fc44970995813f426e4e2db9f558a7ece6705b6d2c9fa3a01ab78b681ae665"
+    },
+    {
+      "channel": "depth_to_base_surf",
+      "path": ".cache/features/depth_to_base_surf.npy",
+      "bytes": 49116768,
+      "sha256": "dd2e207afc53659ade45d0b388baeb24adc4830224dd46dbde36a5bf360c7c04"
+    },
+    {
+      "channel": "ieq_n100a15",
+      "path": ".cache/features/ieq_n100a15.npy",
+      "bytes": 49116768,
+      "sha256": "387c9ebe70a4946ee179f6eccbadf6f790c2c5c00b578f5d7a0d4a4586dc3891"
+    },
+    {
+      "channel": "cond_surf",
+      "path": ".cache/features/cond_surf.npy",
+      "bytes": 49116768,
+      "sha256": "27ee725b21a7212131916290d3fbfd14ca918ed7afc212c91a2f94b44198259c"
+    },
+    {
+      "channel": "iso_grav_anom_hg",
+      "path": ".cache/features/iso_grav_anom_hg.npy",
+      "bytes": 49116768,
+      "sha256": "5a2db3b68bee872c6f4c3e22bacd536ee05d1c97fc15828c33002329beaef62a"
+    },
+    {
+      "channel": "det_elev_slope",
+      "path": ".cache/features/det_elev_slope.npy",
+      "bytes": 49116768,
+      "sha256": "29d92be0b48946433a1249eb1a8abef31a75fb6a6d4d246d1e2b82a3d7dd5d3d"
+    },
+    {
+      "channel": "rad_K",
+      "path": ".cache/features/rad_K.npy",
+      "bytes": 49116768,
+      "sha256": "889788e1be8f1d17adbcff00c20f0ec3258452136dd79c16ffe88bffebeb4635"
+    },
+    {
+      "channel": "rad_Th",
+      "path": ".cache/features/rad_Th.npy",
+      "bytes": 49116768,
+      "sha256": "6fbd7a535dc379af84f117084cc0a5d33c6b51baeae04f8f894d4f36efeb2544"
+    },
+    {
+      "channel": "rad_U",
+      "path": ".cache/features/rad_U.npy",
+      "bytes": 49116768,
+      "sha256": "dd41a4025e50289cb174625917ae5244f7e7e6cb0497fdbdc63e20acb83d1d9c"
+    },
+    {
+      "channel": "rad_TC",
+      "path": ".cache/features/rad_TC.npy",
+      "bytes": 49116768,
+      "sha256": "162fba8852dbaa82b7e3dc29cbc228510829ff274b1d746532f422ecfbdaa682"
+    },
+    {
+      "channel": "ext_ThK",
+      "path": ".cache/features/ext_ThK.npy",
+      "bytes": 49116768,
+      "sha256": "4ec78e814efbdd6e93db44f818ad2cf07e4df0f1556f08e88302eabfed627d65"
+    },
+    {
+      "channel": "ext_UK",
+      "path": ".cache/features/ext_UK.npy",
+      "bytes": 49116768,
+      "sha256": "422658d81c2f0979d22a1e9723de0573d7ef8ac4dd2e748d787dbff739be6dd5"
+    },
+    {
+      "channel": "ext_UTh",
+      "path": ".cache/features/ext_UTh.npy",
+      "bytes": 49116768,
+      "sha256": "fb36965a4a3b999ca827c5d35365b742f4bafae43eb994c53940815afef429cc"
+    },
+    {
+      "channel": "ext_TMI_up150",
+      "path": ".cache/features/ext_TMI_up150.npy",
+      "bytes": 49116768,
+      "sha256": "230313cc695ff3d2812f4c71f85596f40968f106c856057d0ce7c29625809ef1"
+    },
+    {
+      "channel": "lid_ex_max",
+      "path": ".cache/features/lid_ex_max.npy",
+      "bytes": 49116768,
+      "sha256": "c1fb02aeb5daa981c54d1d88cbd85da4ba25381bc3a40948ca39fecfe108c8f0"
+    },
+    {
+      "channel": "lid_ex_mean",
+      "path": ".cache/features/lid_ex_mean.npy",
+      "bytes": 49116768,
+      "sha256": "6f00a8628740d9dc133627c7b87cfba318be6491379f77cb8352fc21fc52e6d5"
+    },
+    {
+      "channel": "lid_step_max",
+      "path": ".cache/features/lid_step_max.npy",
+      "bytes": 49116768,
+      "sha256": "a34e897d9677fb0cb8480342c709a35daaddbad4a863c9fe97e4e2913c9aa7ff"
+    },
+    {
+      "channel": "lid_lapneg_max",
+      "path": ".cache/features/lid_lapneg_max.npy",
+      "bytes": 49116768,
+      "sha256": "6da87072fad7ad86e44e7bc190b04aff3ddc5c8738b9dd177e8ee90254fbd01b"
+    },
+    {
+      "channel": "lid_lappos_max",
+      "path": ".cache/features/lid_lappos_max.npy",
+      "bytes": 49116768,
+      "sha256": "f9320e7d11d6ca88194131f4701b75f6e8ba913ec1219f45a5c33dd4941ee23f"
+    },
+    {
+      "channel": "lid_downface_max",
+      "path": ".cache/features/lid_downface_max.npy",
+      "bytes": 49116768,
+      "sha256": "c1917fd034ad056c58c8956b9c26f3741fc226664144550e4abe062abe8851ba"
+    },
+    {
+      "channel": "lid_upface_max",
+      "path": ".cache/features/lid_upface_max.npy",
+      "bytes": 49116768,
+      "sha256": "7350544b09f6f4329b6330f13b2fa12c8da72060dbf64da75c2b675f96908b53"
+    },
+    {
+      "channel": "lid_cross_max",
+      "path": ".cache/features/lid_cross_max.npy",
+      "bytes": 49116768,
+      "sha256": "463800a442da306c955cba6c16c2a9ea9b05c43dfdacfc308e32844291c96c52"
+    },
+    {
+      "channel": "lid_relief",
+      "path": ".cache/features/lid_relief.npy",
+      "bytes": 49116768,
+      "sha256": "91687f918c5fec66ea9d3446d104ef78a73001deca5b3a54368087c990b5d3e6"
+    },
+    {
+      "channel": "lid_coh100",
+      "path": ".cache/features/lid_coh100.npy",
+      "bytes": 49116768,
+      "sha256": "93dc9949b50c5ae70ecedf7f0b798bfd8475ccd605589e7cb09c2b85287e1117"
+    },
+    {
+      "channel": "lid_strike",
+      "path": ".cache/features/lid_strike.npy",
+      "bytes": 49116768,
+      "sha256": "93abd1b87bebe4009c788f1e7d4b2c56ec5d615af82e02bbc50f9269b07bc845"
+    },
+    {
+      "channel": "lid_valid",
+      "path": ".cache/features/lid_valid.npy",
+      "bytes": 49116768,
+      "sha256": "23e98d9f0fb69330439303c1e80859d1d29d6a3fd95cacdae040f04dd241fe30"
+    },
+    {
+      "channel": "det_elev_gms1",
+      "path": ".cache/features/det_elev_gms1.npy",
+      "bytes": 49116768,
+      "sha256": "8d8f3a373f0a6c532f0356e5ef6b284b681d62a8635194e2ddbd83c6fd24f4a0"
+    },
+    {
+      "channel": "det_elev_laps1",
+      "path": ".cache/features/det_elev_laps1.npy",
+      "bytes": 49116768,
+      "sha256": "4719114cfc6bbcb824b50e7b4509dc44798dcd1c81d948973dbe74fcdedf5d34"
+    },
+    {
+      "channel": "det_elev_gms2",
+      "path": ".cache/features/det_elev_gms2.npy",
+      "bytes": 49116768,
+      "sha256": "dbea46f6a3da5573a28db2e3aedc63ec06605fb4613b88ad5a630679f9360c43"
+    },
+    {
+      "channel": "det_elev_laps2",
+      "path": ".cache/features/det_elev_laps2.npy",
+      "bytes": 49116768,
+      "sha256": "c3880ffbf1ecb2e1ed70dc82fcf583666e2835082e2bd18adba66ad4ea00e049"
+    },
+    {
+      "channel": "det_elev_gms4",
+      "path": ".cache/features/det_elev_gms4.npy",
+      "bytes": 49116768,
+      "sha256": "de72551980357e1662de741ee544f217e47da8c8a1ef271ca8fa5d3c22aa01a6"
+    },
+    {
+      "channel": "det_elev_laps4",
+      "path": ".cache/features/det_elev_laps4.npy",
+      "bytes": 49116768,
+      "sha256": "29b1552470c6c1d953a47fd968bf4a99607bf40bf867484691e445350626df0e"
+    },
+    {
+      "channel": "det_elev_curv2",
+      "path": ".cache/features/det_elev_curv2.npy",
+      "bytes": 49116768,
+      "sha256": "99c436b0d67d9f8567de76d5a2dabd9b1253217cc3cd73f546f50e212cd1b653"
+    },
+    {
+      "channel": "det_elev_curv4",
+      "path": ".cache/features/det_elev_curv4.npy",
+      "bytes": 49116768,
+      "sha256": "d8724519ab541a241a378ab22faa5108518c3d0b423bff70bda47ec6f46e6a78"
+    },
+    {
+      "channel": "det_elev_ridge",
+      "path": ".cache/features/det_elev_ridge.npy",
+      "bytes": 49116768,
+      "sha256": "ae0f453956cd0a26112b2a5a5a6893abd0e0c168112213d825bcf28f7b26559b"
+    },
+    {
+      "channel": "det_elev_coh",
+      "path": ".cache/features/det_elev_coh.npy",
+      "bytes": 49116768,
+      "sha256": "1713f5c46d21739f2618b806929baf6b370f8c2a46021853f661fa58ad07be96"
+    },
+    {
+      "channel": "depth_to_base_surf_gms1",
+      "path": ".cache/features/depth_to_base_surf_gms1.npy",
+      "bytes": 49116768,
+      "sha256": "463172b8df24e3d59d1dd54106b54b29a415143f175a8d8f0e92e3e09354b0c2"
+    },
+    {
+      "channel": "depth_to_base_surf_laps1",
+      "path": ".cache/features/depth_to_base_surf_laps1.npy",
+      "bytes": 49116768,
+      "sha256": "c0df7ef439d8950926d2514e5cddea70c4a71680519a7e071fff12ce1b457c53"
+    },
+    {
+      "channel": "depth_to_base_surf_gms2",
+      "path": ".cache/features/depth_to_base_surf_gms2.npy",
+      "bytes": 49116768,
+      "sha256": "173002a947254b900aa542b86aecc28947372f0f17fc92621ef5abb82d41fa00"
+    },
+    {
+      "channel": "depth_to_base_surf_laps2",
+      "path": ".cache/features/depth_to_base_surf_laps2.npy",
+      "bytes": 49116768,
+      "sha256": "97f808ca446facb8066b1959dd15c7e18dabe13a0745923fa11d095a781eb23a"
+    },
+    {
+      "channel": "depth_to_base_surf_gms4",
+      "path": ".cache/features/depth_to_base_surf_gms4.npy",
+      "bytes": 49116768,
+      "sha256": "8a708cc70cb0a72032f915a3870f5f61bf316754ce86189f0996196eaca589b2"
+    },
+    {
+      "channel": "depth_to_base_surf_laps4",
+      "path": ".cache/features/depth_to_base_surf_laps4.npy",
+      "bytes": 49116768,
+      "sha256": "dc475a04d1e9588ee3916c50405d3eba6a9ac75f66dbcef318c033f9f86f7516"
+    },
+    {
+      "channel": "depth_to_base_surf_curv2",
+      "path": ".cache/features/depth_to_base_surf_curv2.npy",
+      "bytes": 49116768,
+      "sha256": "f8683541404fcaf794d609513a43e9fd2f6a4dd5b927820310c5e79f112e1826"
+    },
+    {
+      "channel": "depth_to_base_surf_curv4",
+      "path": ".cache/features/depth_to_base_surf_curv4.npy",
+      "bytes": 49116768,
+      "sha256": "7109c46659ebbe1f7a2faa337fe9500551eeafdbbb46f9f52f237c0820a2ac8f"
+    },
+    {
+      "channel": "depth_to_base_surf_ridge",
+      "path": ".cache/features/depth_to_base_surf_ridge.npy",
+      "bytes": 49116768,
+      "sha256": "485693786f79bd0cafa361f0a29ddc774ea623e37d57b342c224c1a00ab5d067"
+    },
+    {
+      "channel": "depth_to_base_surf_coh",
+      "path": ".cache/features/depth_to_base_surf_coh.npy",
+      "bytes": 49116768,
+      "sha256": "e3be33afba3379f30ffb15aac98edf2e60631a4a51bf14d5982a28cee4bcfd91"
+    },
+    {
+      "channel": "iso_grav_anom_gms1",
+      "path": ".cache/features/iso_grav_anom_gms1.npy",
+      "bytes": 49116768,
+      "sha256": "c29281eb14a10e1918ef0b173c2bf1af3b4174241bf46d490d4195113a8d57ab"
+    },
+    {
+      "channel": "iso_grav_anom_laps1",
+      "path": ".cache/features/iso_grav_anom_laps1.npy",
+      "bytes": 49116768,
+      "sha256": "a9ad2d2c7c92525f5d063e0426f1276307cd8f045d170b7cebca08c5f3b1de5b"
+    },
+    {
+      "channel": "iso_grav_anom_gms2",
+      "path": ".cache/features/iso_grav_anom_gms2.npy",
+      "bytes": 49116768,
+      "sha256": "f0a28983e11ccf2814d8165bbd0c675862d262ae4ec6c867fe7f71830901c221"
+    },
+    {
+      "channel": "iso_grav_anom_laps2",
+      "path": ".cache/features/iso_grav_anom_laps2.npy",
+      "bytes": 49116768,
+      "sha256": "481639bcb97c7cf3b98950cf7ccfb19412f4a076ee4b31e0ad526318bc36b808"
+    },
+    {
+      "channel": "iso_grav_anom_gms4",
+      "path": ".cache/features/iso_grav_anom_gms4.npy",
+      "bytes": 49116768,
+      "sha256": "37a9f97e0227e81168a8b9176b61c038de3b098a452590b3ded0009d74df2257"
+    },
+    {
+      "channel": "iso_grav_anom_laps4",
+      "path": ".cache/features/iso_grav_anom_laps4.npy",
+      "bytes": 49116768,
+      "sha256": "895a05f1c98e76e7227c7e7dbe60a2b3906fcdba402c9ef5342e7dd68e179b7c"
+    },
+    {
+      "channel": "iso_grav_anom_curv2",
+      "path": ".cache/features/iso_grav_anom_curv2.npy",
+      "bytes": 49116768,
+      "sha256": "2775d967f4858952979541601ff885a16dd7e076fa66e9c2a301dc9125abbed7"
+    },
+    {
+      "channel": "iso_grav_anom_curv4",
+      "path": ".cache/features/iso_grav_anom_curv4.npy",
+      "bytes": 49116768,
+      "sha256": "a423de5e567ace61df3f75857bc6df2dcc7da3708dc475314a16dab9f0cba41f"
+    },
+    {
+      "channel": "iso_grav_anom_ridge",
+      "path": ".cache/features/iso_grav_anom_ridge.npy",
+      "bytes": 49116768,
+      "sha256": "70ebc3d2e665ca7097e4eb60896a3a6784053d59cf74f1154672907bfe87175c"
+    },
+    {
+      "channel": "iso_grav_anom_coh",
+      "path": ".cache/features/iso_grav_anom_coh.npy",
+      "bytes": 49116768,
+      "sha256": "4146d09a8ef5f79d90aca902c4b5b538deaa07c54629ce3b5ba20802e6b0ba59"
+    },
+    {
+      "channel": "rtp_gms1",
+      "path": ".cache/features/rtp_gms1.npy",
+      "bytes": 49116768,
+      "sha256": "c2d27e61c205cd1387942e0c8f46c24920d06dc62d4f824fef97add51b56ad50"
+    },
+    {
+      "channel": "rtp_laps1",
+      "path": ".cache/features/rtp_laps1.npy",
+      "bytes": 49116768,
+      "sha256": "2fddb1d9a70344e8c5af92892169a2d82e5135fb08bf9b7249ba763a15b472dd"
+    },
+    {
+      "channel": "rtp_gms2",
+      "path": ".cache/features/rtp_gms2.npy",
+      "bytes": 49116768,
+      "sha256": "faf0bb914aebea09dc227537cb54429851cb33f12edc9644ffa0dc0d89144358"
+    },
+    {
+      "channel": "rtp_laps2",
+      "path": ".cache/features/rtp_laps2.npy",
+      "bytes": 49116768,
+      "sha256": "1d41461ac362edeed9dfb20a1b34a6345910fd2c2abacc880f481b724513fb23"
+    },
+    {
+      "channel": "rtp_gms4",
+      "path": ".cache/features/rtp_gms4.npy",
+      "bytes": 49116768,
+      "sha256": "1d92efe8a4b459304977b67f8dc0ab5e937a3f0212f71580ed73752a71e2be3b"
+    },
+    {
+      "channel": "rtp_laps4",
+      "path": ".cache/features/rtp_laps4.npy",
+      "bytes": 49116768,
+      "sha256": "09e72a2da91835c827e7060a3086f35a45ef3beaccdf75d9ed5bb0eb5ef7a2c6"
+    },
+    {
+      "channel": "rtp_curv2",
+      "path": ".cache/features/rtp_curv2.npy",
+      "bytes": 49116768,
+      "sha256": "e2808971cb0138a5c9715331d80ff96e6fa7dde8f2eb9af6ac3825d4583d827b"
+    },
+    {
+      "channel": "rtp_curv4",
+      "path": ".cache/features/rtp_curv4.npy",
+      "bytes": 49116768,
+      "sha256": "17bc9c8d29b86df2cf95f2c006af7efed9e92016f8061ebaa42c3cf9ba3e4413"
+    },
+    {
+      "channel": "rtp_ridge",
+      "path": ".cache/features/rtp_ridge.npy",
+      "bytes": 49116768,
+      "sha256": "f321f14378b4255609f4927312b25fe686a4d0e82237751bfc6effbe490c05ce"
+    },
+    {
+      "channel": "rtp_coh",
+      "path": ".cache/features/rtp_coh.npy",
+      "bytes": 49116768,
+      "sha256": "e855f950399d5b966472601f3f3b72f56f90e71144445058db5ef97819bf368a"
+    },
+    {
+      "channel": "mag_anom_gms1",
+      "path": ".cache/features/mag_anom_gms1.npy",
+      "bytes": 49116768,
+      "sha256": "a200a1034d41d6953e23be816175a9b9c59f42e4626c730d110c09b4f336ba1a"
+    },
+    {
+      "channel": "mag_anom_laps1",
+      "path": ".cache/features/mag_anom_laps1.npy",
+      "bytes": 49116768,
+      "sha256": "0521053d648fa686cf5b1a5ff8c6ce9321cfbcc19d5d78cbdae2b3987af29769"
+    },
+    {
+      "channel": "mag_anom_gms2",
+      "path": ".cache/features/mag_anom_gms2.npy",
+      "bytes": 49116768,
+      "sha256": "ea823a876a39e4739eeeec83169521170d654d27dc40b0678b97daf0442e340e"
+    },
+    {
+      "channel": "mag_anom_laps2",
+      "path": ".cache/features/mag_anom_laps2.npy",
+      "bytes": 49116768,
+      "sha256": "46551ba4bedac7682ddef49c82649fb937e2ce33181b8f59192ea6de53c5b419"
+    },
+    {
+      "channel": "mag_anom_gms4",
+      "path": ".cache/features/mag_anom_gms4.npy",
+      "bytes": 49116768,
+      "sha256": "fa957e4958800bb67f357179336a063be8c519a3549f64a5028e38f4a0079f00"
+    },
+    {
+      "channel": "mag_anom_laps4",
+      "path": ".cache/features/mag_anom_laps4.npy",
+      "bytes": 49116768,
+      "sha256": "59b5815aab44585efef937a0e938b067f0c53a0cfb3ba6c62e8bf2ae82516eee"
+    },
+    {
+      "channel": "mag_anom_curv2",
+      "path": ".cache/features/mag_anom_curv2.npy",
+      "bytes": 49116768,
+      "sha256": "992c650f9b87cebf57b65c7d045d89e07e7fbedc3db6a8d7a87a0ef149b2c02a"
+    },
+    {
+      "channel": "mag_anom_curv4",
+      "path": ".cache/features/mag_anom_curv4.npy",
+      "bytes": 49116768,
+      "sha256": "bbb3976f84c6c4f48b3111dba62d7b53a0306b9dc4555447a7234c050986048b"
+    },
+    {
+      "channel": "mag_anom_ridge",
+      "path": ".cache/features/mag_anom_ridge.npy",
+      "bytes": 49116768,
+      "sha256": "556e913cf8c4970774cbd688b04760f1d940d8bd91cdcea0c1f03fe141a66c52"
+    },
+    {
+      "channel": "mag_anom_coh",
+      "path": ".cache/features/mag_anom_coh.npy",
+      "bytes": 49116768,
+      "sha256": "2d81cd21f259f9888b1b0c55296454b53fa292dd309bd5fb3326246211a8b766"
+    },
+    {
+      "channel": "cond_surf_gms1",
+      "path": ".cache/features/cond_surf_gms1.npy",
+      "bytes": 49116768,
+      "sha256": "f70e80afbe841613dcb6ce01e54761b8fe1ce41e06ee0c2bb42e6f909477fd16"
+    },
+    {
+      "channel": "cond_surf_laps1",
+      "path": ".cache/features/cond_surf_laps1.npy",
+      "bytes": 49116768,
+      "sha256": "097738272bd10364217942f7d088fe0fc86bf630953541acde0fe18f21306e24"
+    },
+    {
+      "channel": "cond_surf_gms2",
+      "path": ".cache/features/cond_surf_gms2.npy",
+      "bytes": 49116768,
+      "sha256": "b0fd81511bb043f3e9bdc013f3c25992177eac9eead24d8379fd2b220ff1d17f"
+    },
+    {
+      "channel": "cond_surf_laps2",
+      "path": ".cache/features/cond_surf_laps2.npy",
+      "bytes": 49116768,
+      "sha256": "d1f106ec10d47710e13b20e1a6abf06bd1452bbbdefd17401174a359d4b01672"
+    },
+    {
+      "channel": "cond_surf_gms4",
+      "path": ".cache/features/cond_surf_gms4.npy",
+      "bytes": 49116768,
+      "sha256": "0ee564c84205355481e28251ed405b8055c6e296343b13b144188d92cf74f7b1"
+    },
+    {
+      "channel": "cond_surf_laps4",
+      "path": ".cache/features/cond_surf_laps4.npy",
+      "bytes": 49116768,
+      "sha256": "801ad8113e9f2558f0effb7827fe898154070c39d213539cdd860366061b5a2d"
+    },
+    {
+      "channel": "cond_surf_curv2",
+      "path": ".cache/features/cond_surf_curv2.npy",
+      "bytes": 49116768,
+      "sha256": "6a592d296cc5b09ad588d8c6f350b443d7f2f6c58cf6e2e6265cb1bc2aac6fd2"
+    },
+    {
+      "channel": "cond_surf_curv4",
+      "path": ".cache/features/cond_surf_curv4.npy",
+      "bytes": 49116768,
+      "sha256": "2b1767f0165f02134c9095b5e8dc60af9663a17d742c02cd2ce8f67d3e440639"
+    },
+    {
+      "channel": "cond_surf_ridge",
+      "path": ".cache/features/cond_surf_ridge.npy",
+      "bytes": 49116768,
+      "sha256": "331bdefcd5d9db5a707b1c015eaf48a6547e40e471f87df3bfeed7e2d4fcd6c5"
+    },
+    {
+      "channel": "cond_surf_coh",
+      "path": ".cache/features/cond_surf_coh.npy",
+      "bytes": 49116768,
+      "sha256": "c76f5d981d291f49f6e24d18fc7e757f65945f4cc54a9ae9544ef0ca36dcc981"
+    },
+    {
+      "channel": "ieq_n100a15_gms1",
+      "path": ".cache/features/ieq_n100a15_gms1.npy",
+      "bytes": 49116768,
+      "sha256": "b41756f2a365e9e671e244aacbede5c1c6e77b8fbda1c45f6c34a738bccd2277"
+    },
+    {
+      "channel": "ieq_n100a15_laps1",
+      "path": ".cache/features/ieq_n100a15_laps1.npy",
+      "bytes": 49116768,
+      "sha256": "a43d4bab459eaba1bc966ac434fb01ced0e49c012b470806b80d59af7c767a1e"
+    },
+    {
+      "channel": "ieq_n100a15_gms2",
+      "path": ".cache/features/ieq_n100a15_gms2.npy",
+      "bytes": 49116768,
+      "sha256": "55f62c8015afdec7487e8b6902f2e35234a89af3289a0d7d558c7a9d8e1e1816"
+    },
+    {
+      "channel": "ieq_n100a15_laps2",
+      "path": ".cache/features/ieq_n100a15_laps2.npy",
+      "bytes": 49116768,
+      "sha256": "b590a659a180b6fb2a1a385940b71609ea336217f029bd52a893874f96872eeb"
+    },
+    {
+      "channel": "ieq_n100a15_gms4",
+      "path": ".cache/features/ieq_n100a15_gms4.npy",
+      "bytes": 49116768,
+      "sha256": "5c1e0f6b7282de8600f41183d6a565866f999ba55066c288ace73ba232e88647"
+    },
+    {
+      "channel": "ieq_n100a15_laps4",
+      "path": ".cache/features/ieq_n100a15_laps4.npy",
+      "bytes": 49116768,
+      "sha256": "e82653d321bdfb03c1be13bff82ca3007b77a8ee5d3df2ffb8ed2c3885fbc607"
+    },
+    {
+      "channel": "ieq_n100a15_curv2",
+      "path": ".cache/features/ieq_n100a15_curv2.npy",
+      "bytes": 49116768,
+      "sha256": "0bb8adfaec5fe6828f79eb432a458e8e9479821d55aa0873c655b297181fe3f2"
+    },
+    {
+      "channel": "ieq_n100a15_curv4",
+      "path": ".cache/features/ieq_n100a15_curv4.npy",
+      "bytes": 49116768,
+      "sha256": "936c3aece999be5c57270761d6b1f793be166b35c735878e1012591c9659e27f"
+    },
+    {
+      "channel": "ieq_n100a15_ridge",
+      "path": ".cache/features/ieq_n100a15_ridge.npy",
+      "bytes": 49116768,
+      "sha256": "dc302342f0c790e15207b0d0934092e48ecb1fec8382a926415b688adaf1a659"
+    },
+    {
+      "channel": "ieq_n100a15_coh",
+      "path": ".cache/features/ieq_n100a15_coh.npy",
+      "bytes": 49116768,
+      "sha256": "eae2a1236a5bfaee18b0d4897872e3e48ece9b602d6ddd3ea50ae9e5c34a33f6"
+    },
+    {
+      "channel": "tmi_gms1",
+      "path": ".cache/features/tmi_gms1.npy",
+      "bytes": 49116768,
+      "sha256": "fae11939d957893628f774e9a5f95a9260332ada7f18939a8563ad041e7afceb"
+    },
+    {
+      "channel": "tmi_laps1",
+      "path": ".cache/features/tmi_laps1.npy",
+      "bytes": 49116768,
+      "sha256": "3dd339471267f42d7e8a535a043e0091e932317d182b6900db3f53ed6c56f967"
+    },
+    {
+      "channel": "tmi_gms2",
+      "path": ".cache/features/tmi_gms2.npy",
+      "bytes": 49116768,
+      "sha256": "d95067504de5e9b034e92f47fe61e0c96ffd4c087502abceba47a8e277aa28f9"
+    },
+    {
+      "channel": "tmi_laps2",
+      "path": ".cache/features/tmi_laps2.npy",
+      "bytes": 49116768,
+      "sha256": "9352c270be730fcec2d168b710d7f863136c352b9b8636e8e1136ed7f77b379c"
+    },
+    {
+      "channel": "tmi_gms4",
+      "path": ".cache/features/tmi_gms4.npy",
+      "bytes": 49116768,
+      "sha256": "20306ef60bcfe47314dba3abe1185a7865eddb23c3f8fcf204967f224a1fbcea"
+    },
+    {
+      "channel": "tmi_laps4",
+      "path": ".cache/features/tmi_laps4.npy",
+      "bytes": 49116768,
+      "sha256": "275d56633fa4707f416aa9c7e49d0fc2341f88014d6fbee7874ee1b2201ba777"
+    },
+    {
+      "channel": "tmi_curv2",
+      "path": ".cache/features/tmi_curv2.npy",
+      "bytes": 49116768,
+      "sha256": "030fe355c78da4dbec564417be07dd1a64eec9463344aea3726b45c1156e0267"
+    },
+    {
+      "channel": "tmi_curv4",
+      "path": ".cache/features/tmi_curv4.npy",
+      "bytes": 49116768,
+      "sha256": "32f308e09248e06e88ca9d9027670a0427e1c8787adb7067ed258d92d65c6e4d"
+    },
+    {
+      "channel": "tmi_ridge",
+      "path": ".cache/features/tmi_ridge.npy",
+      "bytes": 49116768,
+      "sha256": "5a8d2ad08bed7e9a6d9a25e6d0c84d2c01f6acfd49a00edc781ca706acc27468"
+    },
+    {
+      "channel": "tmi_coh",
+      "path": ".cache/features/tmi_coh.npy",
+      "bytes": 49116768,
+      "sha256": "2f6bd21fe036f160dc298bfb19a2192a9ddba3e5ff42b0b1e588ce9b89827f92"
+    },
+    {
+      "channel": "ext_TMI_up150_gm2",
+      "path": ".cache/features/ext_TMI_up150_gm2.npy",
+      "bytes": 49116768,
+      "sha256": "d9896aacb33f84619121de4ed84cb5f4d1edb7498a654bd35306017adb70269d"
+    },
+    {
+      "channel": "ext_TMI_up150_ridge",
+      "path": ".cache/features/ext_TMI_up150_ridge.npy",
+      "bytes": 49116768,
+      "sha256": "360abec0c6a5b12b6dbece89c5a5e71d5f2a807c2da3e62fa9c98409ff3322ea"
+    }
+  ]
+}

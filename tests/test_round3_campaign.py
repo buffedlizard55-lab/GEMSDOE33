@@ -84,7 +84,7 @@ def test_exact_choquet_self_credit_matches_monte_carlo_and_stays_in_unit_interva
 
 
 def test_round3_geotiff_zip_and_run_card_contracts():
-    rc_path = ROOT / "evidence" / "round3_run_card_20261025.json"
+    rc_path = ROOT / "evidence" / "round3_da_hgcm_run_card_20261025.json"
     assert rc_path.is_file()
     rc_raw = rc_path.read_text()
     assert "/home/user/" not in rc_raw, "Committed Run Card must not leak sandbox host paths"
