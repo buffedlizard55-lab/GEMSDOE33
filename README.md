@@ -312,3 +312,7 @@ failed lane from its holdout. Maximize P(Win) and Own the Outcome include preser
 results. This continuation's exact scope, three proposed mechanisms, blockers and three-pass
 checks are in the linked selector-safety review. The full standing brief remains in
 [`standing_prompt.md`](standing_prompt.md); this paragraph is a dated summary, not a verbatim copy.
+
+## PFRT continuation — 2026-10-27 (this session)
+
+Read `knowledge/24_pfrt_hypothesis_slate_20261027.md` (ranked slate; COULOMB/CURVTRACE/PALEOTEMP blocked with named sources) and `knowledge/25_pfrt_result_20261027.md`. PFRT — the top *viable* untried lane, frozen in `evidence/pfrt_preregistration_20261027.json` (SHA `3ad1002c…`) — generated a genuinely unique TIF: `gemsdoe33-pfrt-listric-37654-20261027-048e07cb9d0e-zeros.tif` (SHA-256 `fdbb6c27…83`, 37,654 dots, whole-array finite [0,1], independent strict audit PASS; surface/final 3-px overlap vs 22 registry rasters 22.6%/22.7%). **OK TO DOWNLOAD: YES · OK TO SUBMIT: NO** — HOLDOUT-DTI (`gems-segment-pooled-v1`, 60,988 withheld) 0.083142/0.079098 vs in-run CSHT 0.138400/0.130055 (paired Δ −0.0553/−0.0510, 0/4+0/4). Selector: 0 eligible of 14. No leaderboard score is estimated for any file; all historical scores remain USER/OWNER-REPORTED. Do not retune PFRT from this holdout. Remaining physically-capable ideas (CURVTRACE, fold-safe H19-5 with 1 m data) need data outside the sandbox allowlist — that, not tuning, is the blocker.

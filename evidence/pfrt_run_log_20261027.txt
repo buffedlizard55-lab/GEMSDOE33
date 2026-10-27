@@ -1,0 +1,27 @@
+[17:28:52] [1] canaries + full surface
+[17:29:00]   pfrt_surface pooled2s=0.5306 maxfold2s=0.5539
+[17:29:00]   pfrt_depth_gm pooled2s=0.5361 maxfold2s=0.5786
+[17:29:00]   pfrt_abs_grav_hg pooled2s=0.5384 maxfold2s=0.5735
+[17:29:00] [2] surface uniqueness
+[17:29:17]   surface passed=True max3px=0.2262 maxrho=0.0280
+[17:29:17] [3] Exp1 screen
+[17:30:34]   screen fold NW done crest=751
+[17:31:57]   screen fold NE_LidarGapHeavy done crest=1116
+[17:33:19]   screen fold SW done crest=1046
+[17:34:34]   screen fold SE done crest=689
+[17:35:03]   SCREEN matched_random: 0.068673 CI [0.06597378962780934, 0.07141065276628668]
+[17:35:03]   SCREEN B1_regional: 0.109960 CI [0.09962385739786815, 0.12093411644395312]
+[17:35:03]   SCREEN A33_R2_CSHT@37654: 0.138400 CI [0.1268725729477629, 0.15014433716101655]
+[17:35:03]   SCREEN PFRT@37654: 0.083142 CI [0.06725762717559217, 0.09902612126548846]
+[17:35:03]   SCREEN H19_5_reference_not_fold_safe: 0.162036 CI [0.15162279648820517, 0.17252691174111592]
+[17:35:14] [4] Exp2 confirmation
+[17:36:21]   confirm fold N_wedge done crest=413
+[17:37:35]   confirm fold E_wedge done crest=777
+[17:39:05]   confirm fold S_wedge done crest=895
+[17:40:28]   confirm fold W_wedge done crest=904
+[17:40:54]   CONFIRM matched_random: 0.072240 CI [0.06919880260028535, 0.07522106783100627]
+[17:40:54]   CONFIRM B1_regional: 0.113392 CI [0.10280783620943276, 0.1241775838675811]
+[17:40:54]   CONFIRM A33_R2_CSHT@37654: 0.130055 CI [0.11816399760624899, 0.14248384973169806]
+[17:40:54]   CONFIRM PFRT@37654: 0.079098 CI [0.06310963500400894, 0.09572406656842221]
+[17:41:06] [5] placement/uniqueness/writer
+[17:41:29] DONE verdict=negative sha=fdbb6c273f9bcfbf10469090101bb23426ec185378616c16cdf88ee64c550983 elapsed=830.69s
