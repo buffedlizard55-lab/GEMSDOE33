@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "campaign": "A33-R5-THKCOND",
+  "date": "20261027",
+  "hypothesis": "Radiometric alteration (GeoDAWN Th/K, U/K) x conductive reservoir x shallow basement x gravity-edge gate emits concealed-hydrology fault dots; label-free, catalogue-independent detector.",
+  "mechanism": "High Th/K alteration cap over conductive shallow basement near gravity-margin edges marks permeable faults missing from USGS/INGENIOUS surface traces.",
+  "named_non_fault_mimic": "Saline playa/evaporite and nonmagnetic lacustrine tuff with high radiometric K/Th and near-surface conductivity.",
+  "verdict": "negative",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "withheld_positives": 60988,
+    "screen": {
+      "split_id": "quadrant-buffered-15px-v1",
+      "candidate": 0.129866565893911,
+      "ci95": [
+        0.10807680786602207,
+        0.14984761816451578
+      ],
+      "paired_delta_vs_matched_random": -0.05112563324254471,
+      "paired_delta_ci95": [
+        -0.07163700529110337,
+        -0.03014748890503279
+      ],
+      "fold_wins": 0
+    },
+    "confirmation": {
+      "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+      "candidate": 0.10834072681682852,
+      "ci95": [
+        0.08923085776381814,
+        0.1282943891505296
+      ],
+      "note": "independent orthogonal split, buffer 20 px"
+    },
+    "recorded_context_unpaired": {
+      "A33_R2_CSHT_screen": 0.112418,
+      "A33_R2_CSHT_confirm": 0.115122,
+      "note": "recorded B1_regional context from evidence/a33_r2_run_card_20261026.json; no paired comparison claimed"
+    },
+    "qualification": "Catalogue whole-segment hide-and-recover proxy. NOT the private organizer truth, NOT a competition score, NOT a projection."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_spearman": 0.0059913435014509,
+    "surface_max_3px_overlap": 0.20499814096775906,
+    "surface_passed": true,
+    "final_dots_max_abs_spearman": 0.004970528182790081,
+    "final_dots_max_3px_overlap": 0.16906570351091518,
+    "final_dots_passed": true,
+    "scope": "21 pinned rasters (GEMSDOE24/25/27/28/30/31/32/33/36 focus + local GEMSDOE33)"
+  },
+  "leakage_canary": {
+    "passed": true,
+    "max_two_sided_auc": 0.500660433277647,
+    "features": {
+      "thk_cond_surface": {
+        "pooled_auc": 0.500660433277647,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.5034130447614362,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5012150853915222,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.49923252888888886,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.5001003199999999,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      }
+    }
+  },
+  "raster_sha256": "0aa610b0b6ace73baecfb819fe77e982038710ea73c12686f74e2ebb05e6a5ff",
+  "nan_twin_sha256": "e46318c1abe2c8749ef8e6c2b01a375926f8b250993e990e8948c08a564f9981",
+  "submission": {
+    "file": "gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.tif",
+    "zip": "gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.zip",
+    "note": "GEMS33 A33-R5-THKCOND: radiometric Th/K x conductivity x shallow cover x gravity edge, CELF300 37654d | gate negative | f47ef136b543",
+    "name": "gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros",
+    "ok_to_submit": false
+  },
+  "promotion_assessment": {
+    "eligible_for_selector": false,
+    "verdict": "negative",
+    "gates": {
+      "screen_beats_recorded_b1_with_positive_ci": false,
+      "confirm_beats_recorded_b1_with_positive_ci": false,
+      "surface_not_duplicate": true,
+      "final_dots_not_duplicate": true,
+      "format_audit_pass": true,
+      "canary_pass": true
+    },
+    "failed_gates": [
+      "screen_beats_recorded_b1_with_positive_ci",
+      "confirm_beats_recorded_b1_with_positive_ci"
+    ]
+  },
+  "runtime_seconds": 92.3
+}
