@@ -263,6 +263,34 @@ re-derivation of the H19-5 multi-line idea that produced the 0.2778* B2 family (
 </div>"""
 
 
+def basestep_hero() -> str:
+    """Newest unique research artifact banner (A33-R6-BASESTEP), built from its run card."""
+    card = read_json(ROOT / "evidence" / "a33_r6_basestep_run_card_20261027.json")
+    if not card:
+        return ""
+    sub = card["submission"]; hs = card["holdout_dti"]["screen"]; hc = card["holdout_dti"]["confirmation"]
+    u = card["correlation_overlap_vs_registry"]
+    note = sub["note"]
+    return f"""<div class="hero-download" id="basestep">
+<h2>NEW UNIQUE TIF (2026-10-27, A33-R6-BASESTEP) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
+<p><span class="badge good">UNIQUE vs all 21 registry rasters (all 9 focus sites + local GEMSDOE33): surface max |ρ| {u['surface_max_abs_spearman']:.4f}, max 3-px overlap {100*u['surface_max_3px_overlap']:.2f}% ≤ 70%; final dots max |ρ| {u['final_dots_max_abs_spearman']:.4f}, max 3-px overlap {100*u['final_dots_max_3px_overlap']:.2f}% ≤ 70% — NOT a copy of any previous submission</span>
+<span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, template 100 m geotransform, whole array finite in [0,1] (37,654 binary dots), 0 NaN inside footprint</span>
+<span class="badge bad">HOLDOUT GATE FAILED — screen {hs['candidate']:.4f} [{hs['ci95'][0]:.4f}, {hs['ci95'][1]:.4f}] vs recorded regional baseline 0.112418 (CI spans baseline); confirmation {hc['candidate']:.4f} [{hc['ci95'][0]:.4f}, {hc['ci95'][1]:.4f}] vs 0.115122; vs matched-random control Δ {hs['paired_delta_vs_matched_random']:+.4f} [{hs['paired_delta_ci95'][0]:+.4f}, {hs['paired_delta_ci95'][1]:+.4f}], {hs['fold_wins']}/4 folds — DO NOT SPEND A SLOT</span></p>
+<p><b>What it is:</b> label-free basement-depth-step × conductive-cover × gravity-margin-edge × magnetic-basement-fabric detector targeting blind listric fault soles under piedmont cover; thresholds fit on catalogue-negative background cells only, so the catalogue is never a detector input; CELF-300 m placement of 37,654 dots, &gt;2 px off the USGS/INGENIOUS catalogue. Preregistered in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/26_thk_cond_slate_20261027.md">knowledge/26_thk_cond_slate_20261027.md</a> (Candidate 4).</p>
+<div class="scroll"><table><thead><tr><th>File to download</th><th>HOLDOUT-DTI (gems-segment-pooled-v1, 60,988 withheld positives) — NOT a leaderboard estimate</th><th>Unique vs all 9 focus sites' registry?</th><th>OK to submit?</th></tr></thead><tbody>
+<tr><td><code>{sub['file']}</code></td><td>screen {hs['candidate']:.4f} vs recorded B1 0.112418 (CI spans baseline); confirmation {hc['candidate']:.4f} vs 0.115122; vs matched-random Δ {hs['paired_delta_vs_matched_random']:+.4f} [{hs['paired_delta_ci95'][0]:+.4f}, {hs['paired_delta_ci95'][1]:+.4f}], {hs['fold_wins']}/4 folds. <b>Estimated leaderboard score: not estimable</b>.</td><td><b>YES</b> — surface max |ρ| {u['surface_max_abs_spearman']:.4f} ≤ 0.90; max 3-px {100*u['surface_max_3px_overlap']:.1f}% ≤ 70%; final dots max |ρ| {u['final_dots_max_abs_spearman']:.4f} ≤ 0.90; max 3-px {100*u['final_dots_max_3px_overlap']:.1f}% ≤ 70% (21 pinned registry rasters)</td><td><b>NO</b> — both holdout splits failed their gates; research only</td></tr>
+</tbody></table></div>
+<p><a class="btn" href="downloads/{sub['file']}">⬇ Download unique A33-R6-BASESTEP GeoTIFF (research only)</a> <a class="btn alt" href="downloads/{sub['zip']}">Single-TIFF .zip</a> <a class="btn alt" href="downloads/gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-nan.tif">NaN-outside twin</a> <a class="btn alt" href="downloads/receipt-gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros.json">Validator receipt JSON</a> <a class="btn alt" href="data/a33_r6_basestep_run_card_20261027.json">Run card JSON</a></p>
+<table><tbody>
+<tr><th>Unique submission name</th><td><code>{sub['name']}</code></td></tr>
+<tr><th>Note (≤140 characters)</th><td><code>{esc(note)}</code> ({len(note)}/140)</td></tr>
+<tr><th>SHA-256 (.tif)</th><td><code>{card['raster_sha256']}</code></td></tr>
+<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Automated selector: 0 eligible of 14 run cards. Slots spent: 0.</td></tr>
+</tbody></table>
+<p class="small"><b>Range-error note:</b> every cell of this <code>-zeros.tif</code> is finite and in [0,1] (re-opened and checked byte-wise), so its values cannot themselves violate a [0,1] range check. The <code>-nan.tif</code> twin follows the recorded null/NaN-outside wording. Portal acceptance remains unverified; do not upload this negative artifact.</p>
+</div>"""
+
+
 def pfrt_hero() -> str:
     """Newest unique research artifact banner (PFRT), built from its run card."""
     card = read_json(ROOT / "evidence" / "pfrt_run_card_20261027.json")
@@ -397,7 +425,8 @@ def submission_steps() -> str:
 
 
 def build_index() -> str:
-    body = f"""{pfrt_hero()}
+    body = f"""{basestep_hero()}
+{pfrt_hero()}
 {fsml2_hero()}
 {s33_seisdil_hero()}
 {a33_r3_llc_hero()}
@@ -405,8 +434,8 @@ def build_index() -> str:
 {a33_r3_lchc_hero()}
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
-<h2>Current decision (2026-10-26)</h2>
-<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The newest unique research TIFF, PFRT (top banner, 2026-10-27), is downloadable for research only and is NOT OK TO SUBMIT: HOLDOUT-DTI 0.0831/0.0791 vs in-run CSHT 0.1384/0.1301 on screen/confirmation. The automated selector rechecked 14 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
+<h2>Current decision (2026-10-27)</h2>
+<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The two newest unique research TIFFs — A33-R6-BASESTEP (top banner) and A33-R5-THKCOND — are downloadable for research only and NOT OK TO SUBMIT: both failed their preregistered holdout gates (screen/confirmation CIs span the recorded regional baseline; both worse than matched-random controls, 0/4 folds). The automated selector rechecked 14 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
 <p><b>Best reported focus-site artifact:</b> GEMSDOE32 B2, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with <b>0.2778 USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)</b>. Raster forensics reproduced it as deletion-only pruning of GEMSDOE28 H27-4; it is prior art and must not be copied or lightly altered. S33-SEISDIL and prior novel lanes have not demonstrated a basis to predict a competition score above it; do not project holdout DTI to the leaderboard. See the <a href="executive-summary.html">nine-site executive summary</a> and <a href="results.html">score provenance</a>.</p>
 <h2>What can be concluded about the cited scores?</h2>
 <p>Historical values in owner pages and the prompt are not organizer-confirmed without a submission receipt linked to the exact file. The prompt's current-leader values 0.3195 and 0.4413 conflict and are unverified here. The GEMSDOE28 owner page was recorded as labeling H27-4 unscored/research-only, so the premise that this raster earned 0.2708 is unresolved. These reports motivate forensic research; they are not independent validation or a score forecast.</p>
@@ -464,7 +493,8 @@ def build_exec() -> str:
              "Owner-reported; MEASURED 2026-10-26: contains all 37,654 GEMSDOE32 B2 dots exactly + 1,200 extra dots (knowledge/22) — same emission family, not an independent surface"),
         )
     )
-    body = f"""{pfrt_hero()}
+    body = f"""{basestep_hero()}
+{pfrt_hero()}
 {fsml2_hero()}
 {s33_seisdil_hero()}
 {a33_r3_llc_hero()}
@@ -473,7 +503,7 @@ def build_exec() -> str:
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 <h2>Executive summary — per-site best submissions and how to submit</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (PFRT, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. It failed the preregistered holdout gate (HOLDOUT-DTI 0.0831/0.0791 vs CSHT 0.1384/0.1301). Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
+<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The two newest unique files (A33-R6-BASESTEP and PFRT, above) are <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. Both failed their preregistered holdout gates (BASESTEP screen/confirmation CIs span the recorded regional baseline; PFRT 0.0831/0.0791 vs CSHT 0.1384/0.1301). Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
 
 <h3>Exactly how a submission is made (when a future candidate passes every gate)</h3>
 <ol>

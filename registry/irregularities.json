@@ -419,7 +419,15 @@
       "finding": "Selector trusted eligible_for_selector=true even when promotion_assessment.gates contained false scientific gates. Nonfinite or boolean confirmation ranking values were not excluded. False informational format diagnostics were shown as failed requirements.",
       "evidence": "tests/test_selector_contract.py; tests/test_select_submission.py; knowledge/22_selector_safety_review_20261026.md",
       "consequence": "Require the complete shared gate schema with literal true values, no failed gates, and finite numeric confirmation DTI in [0,1]. All existing candidates remain blocked; no new model or slot."
+    },
+    {
+      "id": "IR-33-REGISTRY-RESTORE-01",
+      "severity": "medium",
+      "status": "resolved for this session; not durable in a clean checkout",
+      "finding": "The 21 pinned focus-registry rasters referenced by registry/focus_rasters_20261026.json were absent from the working tree (data/focus_registry/ and .cache/focus_registry_20261026/ missing), so the Parallel-Run Protocol duplicate guard (pre-placement surface + final dots vs all registry rasters) could not run from a clean checkout.",
+      "evidence": "registry/focus_rasters_20261026.json; scripts/restore_focus_registry_r3.py; all 22 registry rasters restored from pinned owner mirrors and SHA-256 verified on 2026-10-27 (data/focus_registry/ and .cache/focus_registry_20261026/). Mirrors are integrity-pinned, not organizer-authenticated.",
+      "consequence": "Uniqueness screens for A33-R6-BASESTEP and A33-R5-THKCOND ran against restored mirrors. A clean checkout must re-run scripts/restore_focus_registry_r3.py before any uniqueness screen or campaign that audits the registry manifest."
     }
   ],
-  "last_review": "2026-10-26 FSML session; FSML duplicate + G36/B2 subset flagged (knowledge/22, knowledge/23)"
+  "last_review": "2026-10-27"
 }

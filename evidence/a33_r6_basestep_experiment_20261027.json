@@ -1,0 +1,878 @@
+{
+  "schema": 1,
+  "campaign": "A33-R6-BASESTEP",
+  "date": "20261027",
+  "preregistration_note": "A33-R5-BASESTEP (knowledge/26 candidate 4): depth_to_base_surf first derivative x ext_TMI_up150 x cond_surf x iso_grav_anom_hg",
+  "preregistration_note_sha256": "7e44d338ecb3d39f9923a453c68a83e5d1b471f10b9aa5ab92835c721a43d0cf",
+  "verdict": "negative",
+  "screen": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "TP_w": 9753.349813884397,
+    "FP_w": 123363.16975376324,
+    "FN_w": 51234.6501861156,
+    "n_truth": 60988.0,
+    "n_emitted": 129184.0,
+    "dti": 0.12933126617219068,
+    "n_withheld_positive_pixels": 60988,
+    "n_unique_withheld_components": 3199,
+    "ci95": {
+      "level": 0.95,
+      "interval": [
+        0.10758623033437838,
+        0.14974071895771193
+      ],
+      "method": "percentile spatial-block bootstrap of pooled TPw/FPw/FNw",
+      "block_pixels": 100,
+      "block_size_m": 10000,
+      "n_blocks": 583,
+      "resamples": 1999,
+      "seed": 20261025,
+      "limitation": "Internal-validation uncertainty; geologic structures may cross blocks. Not a hidden-score interval."
+    },
+    "folds": [
+      {
+        "fold": "NW",
+        "TP_w": 894.8039152936303,
+        "FP_w": 28290.119330196147,
+        "FN_w": 9270.19608470637,
+        "n_truth": 10165,
+        "n_emitted": 28868,
+        "dti": 0.06405647495253038,
+        "coverage": 0.08802793067325433
+      },
+      {
+        "fold": "NE_LidarGapHeavy",
+        "TP_w": 1996.6523174788613,
+        "FP_w": 34494.38362505893,
+        "FN_w": 10514.347682521138,
+        "n_truth": 12511,
+        "n_emitted": 35693,
+        "dti": 0.115366700650195,
+        "coverage": 0.15959174466300546
+      },
+      {
+        "fold": "SW",
+        "TP_w": 3404.6027250825073,
+        "FP_w": 33690.206653398884,
+        "FN_w": 17129.397274917494,
+        "n_truth": 20534,
+        "n_emitted": 35716,
+        "dti": 0.14277361458902785,
+        "coverage": 0.16580319105301
+      },
+      {
+        "fold": "SE",
+        "TP_w": 3457.290856029398,
+        "FP_w": 26888.460145109268,
+        "FN_w": 14320.709143970602,
+        "n_truth": 17778,
+        "n_emitted": 28907,
+        "dti": 0.17038081476759515,
+        "coverage": 0.19447017977440648
+      }
+    ],
+    "protocol": {
+      "aggregation": "pooled TPw/FPw/FNw, not mean fold DTI",
+      "buffer_m": 1500,
+      "whole_components_hidden_everywhere": true,
+      "visible_fault_mask": "pixel-exact, applied before credit and FP calculation",
+      "catalogue_features": "must be constructed from fold.visible only",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_kernel_radius_m": 300
+    }
+  },
+  "confirmation": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+    "TP_w": 8162.933555415972,
+    "FP_w": 123982.61366283294,
+    "FN_w": 52825.06644458403,
+    "n_truth": 60988.0,
+    "n_emitted": 129185.0,
+    "dti": 0.10852149416795025,
+    "n_withheld_positive_pixels": 60988,
+    "n_unique_withheld_components": 3199,
+    "ci95": {
+      "level": 0.95,
+      "interval": [
+        0.08952088515982777,
+        0.12816717103085237
+      ],
+      "method": "percentile spatial-block bootstrap of pooled TPw/FPw/FNw",
+      "block_pixels": 100,
+      "block_size_m": 10000,
+      "n_blocks": 583,
+      "resamples": 1999,
+      "seed": 20261025,
+      "limitation": "Internal-validation uncertainty; geologic structures may cross blocks. Not a hidden-score interval."
+    },
+    "folds": [
+      {
+        "fold": "N_wedge",
+        "TP_w": 725.3370825676913,
+        "FP_w": 21414.870748140267,
+        "FN_w": 5232.662917432309,
+        "n_truth": 5958,
+        "n_emitted": 21881,
+        "dti": 0.07888864998945085,
+        "coverage": 0.12174170570119021
+      },
+      {
+        "fold": "E_wedge",
+        "TP_w": 1389.02334214974,
+        "FP_w": 24271.17243622878,
+        "FN_w": 8088.97665785026,
+        "n_truth": 9478,
+        "n_emitted": 25106,
+        "dti": 0.10924770846213516,
+        "coverage": 0.14655236781491243
+      },
+      {
+        "fold": "S_wedge",
+        "TP_w": 3926.343727788141,
+        "FP_w": 46116.06071613231,
+        "FN_w": 23892.656272211858,
+        "n_truth": 27819,
+        "n_emitted": 48643,
+        "dti": 0.12169546746108864,
+        "coverage": 0.14113892403710201
+      },
+      {
+        "fold": "W_wedge",
+        "TP_w": 2122.2294029104,
+        "FP_w": 32180.50976233158,
+        "FN_w": 15610.7705970896,
+        "n_truth": 17733,
+        "n_emitted": 33555,
+        "dti": 0.10083311935462412,
+        "coverage": 0.11967683995434501
+      }
+    ],
+    "protocol": {
+      "aggregation": "pooled TPw/FPw/FNw, not mean fold DTI",
+      "geometry": "45-degree rotated diagonal wedges (N/E/S/W) orthogonal to NW/NE/SW/SE",
+      "buffer_m": 2000,
+      "whole_components_hidden_everywhere": true,
+      "visible_fault_mask": "pixel-exact, applied before credit and FP calculation",
+      "catalogue_features": "must be constructed from fold.visible only",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_kernel_radius_m": 300
+    }
+  },
+  "vs_matched_random": {
+    "evaluator_version": "gems-segment-pooled-v1",
+    "candidate_dti": 0.12933126617219068,
+    "baseline_dti": 0.1809921991364557,
+    "paired_delta_dti": -0.05166093296426502,
+    "paired_delta_ci95": [
+      -0.07217877873216602,
+      -0.030907769363563316
+    ],
+    "ci95_strictly_positive": false,
+    "fold_wins": 0,
+    "n_folds": 4,
+    "min_fold_delta": -0.09711652854089291,
+    "folds": [
+      {
+        "fold": "NW",
+        "candidate_dti": 0.06405647495253038,
+        "baseline_dti": 0.16117300349342328,
+        "delta_dti": -0.09711652854089291,
+        "candidate_wins": false
+      },
+      {
+        "fold": "NE_LidarGapHeavy",
+        "candidate_dti": 0.115366700650195,
+        "baseline_dti": 0.16317342292561082,
+        "delta_dti": -0.047806722275415825,
+        "candidate_wins": false
+      },
+      {
+        "fold": "SW",
+        "candidate_dti": 0.14277361458902785,
+        "baseline_dti": 0.18921925985711066,
+        "delta_dti": -0.046445645268082814,
+        "candidate_wins": false
+      },
+      {
+        "fold": "SE",
+        "candidate_dti": 0.17038081476759515,
+        "baseline_dti": 0.2001933571002301,
+        "delta_dti": -0.029812542332634945,
+        "candidate_wins": false
+      }
+    ]
+  },
+  "leakage_canary": {
+    "passed": true,
+    "max_two_sided_auc": 0.5059841739269444,
+    "features": {
+      "basement_step_surface": {
+        "pooled_auc": 0.5007265680765435,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.4996,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5059841739269444,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.49960001555555544,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.49782418666666667,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      }
+    }
+  },
+  "uniqueness": {
+    "manifest": "registry/focus_rasters_20261026.json",
+    "registry_sha256": "6e71453c77dd4b2bbb5f1d7e36db74f6641f9a47f6ecfb87b099db21ea8f1500",
+    "registry_count": 21,
+    "surface_sha256": "ec508ce7bb0fe1eb79720f5024d60358811b832e73a69beab7fed7614fc29080",
+    "surface": {
+      "stage": "surface_before_placement",
+      "registry_sha256": "6e71453c77dd4b2bbb5f1d7e36db74f6641f9a47f6ecfb87b099db21ea8f1500",
+      "surface_sha256": "ec508ce7bb0fe1eb79720f5024d60358811b832e73a69beab7fed7614fc29080",
+      "registry_count": 21,
+      "sample_pixels": 250000,
+      "spearman_stop_gt": 0.9,
+      "overlap_stop_gt": 0.7,
+      "passed": true,
+      "max_abs_spearman_rho": 0.004418360866901204,
+      "max_preview_fraction_within_3px": 0.12827322462420992,
+      "comparisons": [
+        {
+          "registry_id": "G24-989f59505db1",
+          "site": "GEMSDOE24",
+          "raster_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+          "registry_dots": 60069,
+          "spearman_rho": 0.00036878430962433565,
+          "fraction_candidate_within_3px": 0.10947044138736921,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G25-e56ea318af89",
+          "site": "GEMSDOE25",
+          "raster_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+          "registry_dots": 44090,
+          "spearman_rho": -0.0023360023630281932,
+          "fraction_candidate_within_3px": 0.10482286078504276,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G27-5512495c6bd1",
+          "site": "GEMSDOE27",
+          "raster_sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+          "registry_dots": 61328,
+          "spearman_rho": 0.00023574956700388508,
+          "fraction_candidate_within_3px": 0.11265735380039306,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-8acb75e1f2cc",
+          "site": "GEMSDOE28",
+          "raster_sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+          "registry_dots": 40199,
+          "spearman_rho": -0.0026201635410328696,
+          "fraction_candidate_within_3px": 0.10285759813034472,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-31e35eee884e",
+          "site": "GEMSDOE28",
+          "raster_sha256": "04d31922f5c1ea4016984fc470ab2b0ff8e266c615792f0e86020da3b940d3ff",
+          "registry_dots": 42294,
+          "spearman_rho": -0.0035505242198002303,
+          "fraction_candidate_within_3px": 0.10434482392308918,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-b531dae0a36f",
+          "site": "GEMSDOE28",
+          "raster_sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+          "registry_dots": 37660,
+          "spearman_rho": -0.0030398198703191098,
+          "fraction_candidate_within_3px": 0.10251234928560046,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-56a9f473edc7",
+          "site": "GEMSDOE28",
+          "raster_sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+          "registry_dots": 37860,
+          "spearman_rho": -0.0030544310375714345,
+          "fraction_candidate_within_3px": 0.10251234928560046,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G30-91eae1ca",
+          "site": "GEMSDOE30",
+          "raster_sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+          "registry_dots": 44090,
+          "spearman_rho": -0.0023360023630281932,
+          "fraction_candidate_within_3px": 0.10482286078504276,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G31-8acb75e1",
+          "site": "GEMSDOE31",
+          "raster_sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+          "registry_dots": 40199,
+          "spearman_rho": -0.0026201635410328696,
+          "fraction_candidate_within_3px": 0.10285759813034472,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G32-e5eb6e7e",
+          "site": "GEMSDOE32",
+          "raster_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "registry_dots": 37654,
+          "spearman_rho": -0.0030988946378425596,
+          "fraction_candidate_within_3px": 0.10089233547564667,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G36-9b9ea4e6",
+          "site": "GEMSDOE36",
+          "raster_sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+          "registry_dots": 38854,
+          "spearman_rho": -0.0017473247508274627,
+          "fraction_candidate_within_3px": 0.10320284697508897,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33d",
+          "site": "GEMSDOE33",
+          "raster_sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+          "registry_dots": 41865,
+          "spearman_rho": -0.003441845871002218,
+          "fraction_candidate_within_3px": 0.10572581930206618,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G24-gvc1-abe8e51c719d",
+          "site": "GEMSDOE24",
+          "raster_sha256": "b5ca6f1755af059e17f5edf0940fd7e945d43a1359e103a4789eae33c536ad41",
+          "registry_dots": 37654,
+          "spearman_rho": -0.0022577435757128047,
+          "fraction_candidate_within_3px": 0.05991395336484836,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G25-h66-da617550a0e9",
+          "site": "GEMSDOE25",
+          "raster_sha256": "7503f4d498694c0107e0efad92cd06613b56d6fe402712532c1805e778166c1a",
+          "registry_dots": 44832,
+          "spearman_rho": -0.0009416624326184044,
+          "fraction_candidate_within_3px": 0.06854517448345461,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G27-h29-511898747886",
+          "site": "GEMSDOE27",
+          "raster_sha256": "8585c5e870f197f84fda5bac7f22047d646fb73d455eb8b1129486c79bb976cf",
+          "registry_dots": 37654,
+          "spearman_rho": -0.0023607579972920907,
+          "fraction_candidate_within_3px": 0.06381792107080257,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-s18-3e95505c011a",
+          "site": "GEMSDOE28",
+          "raster_sha256": "ce043566a96a1bf0abae366ba706ed6be5907297248b1d14deace8596500b186",
+          "registry_dots": 11082,
+          "spearman_rho": 4.2022472178915594e-05,
+          "fraction_candidate_within_3px": 0.05733786583098741,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G30-MSDB1-e7856ec3f14a",
+          "site": "GEMSDOE30",
+          "raster_sha256": "22850984a68c393f60c6cc9aeafd8d74fd8a3479654bdfcfd3626a4b99ff0381",
+          "registry_dots": 44090,
+          "spearman_rho": -0.004418360866901204,
+          "fraction_candidate_within_3px": 0.08939289318531896,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-a33-l1-85c94a805a34",
+          "site": "GEMSDOE33",
+          "raster_sha256": "2bbbf7e381720f2242959e3efd6f2437f273afe6e7c48540d769524d2b4e8759",
+          "registry_dots": 37654,
+          "spearman_rho": 9.450717980721492e-05,
+          "fraction_candidate_within_3px": 0.12827322462420992,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33f-d042874b26ef",
+          "site": "GEMSDOE33",
+          "raster_sha256": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
+          "registry_dots": 44090,
+          "spearman_rho": -0.0036513612719707394,
+          "fraction_candidate_within_3px": 0.12386466245286025,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33-6-6c888d2ce0f7",
+          "site": "GEMSDOE33",
+          "raster_sha256": "dadd32169f9d31c024dc8ada98e93a6a36c25f802820fc0871781c6c8644a33a",
+          "registry_dots": 40199,
+          "spearman_rho": -0.002641579139929678,
+          "fraction_candidate_within_3px": 0.047299091729962287,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-d28-426073b6b4ab",
+          "site": "GEMSDOE33",
+          "raster_sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
+          "registry_dots": 44090,
+          "spearman_rho": -0.0023360023630281932,
+          "fraction_candidate_within_3px": 0.10482286078504276,
+          "duplicate": false
+        }
+      ]
+    },
+    "final_dots": {
+      "stage": "final_dots",
+      "registry_sha256": "6e71453c77dd4b2bbb5f1d7e36db74f6641f9a47f6ecfb87b099db21ea8f1500",
+      "registry_count": 21,
+      "spearman_stop_gt": 0.9,
+      "overlap_stop_gt": 0.7,
+      "overlap_radius_px": 3,
+      "passed": true,
+      "max_abs_spearman_rho": 0.005617985018538809,
+      "max_candidate_fraction_within_3px": 0.15966431189249483,
+      "comparisons": [
+        {
+          "registry_id": "G24-989f59505db1",
+          "site": "GEMSDOE24",
+          "raster_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+          "registry_dots": 60069,
+          "spearman_rho": -0.0017133740049192362,
+          "fraction_candidate_within_3px": 0.15828331651351782,
+          "candidate_dots_within_3px": 5960,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G25-e56ea318af89",
+          "site": "GEMSDOE25",
+          "raster_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+          "registry_dots": 44090,
+          "spearman_rho": -0.0011448556317296377,
+          "fraction_candidate_within_3px": 0.1502363626706326,
+          "candidate_dots_within_3px": 5657,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G27-5512495c6bd1",
+          "site": "GEMSDOE27",
+          "raster_sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+          "registry_dots": 61328,
+          "spearman_rho": -0.0018466412140830835,
+          "fraction_candidate_within_3px": 0.15966431189249483,
+          "candidate_dots_within_3px": 6012,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-8acb75e1f2cc",
+          "site": "GEMSDOE28",
+          "raster_sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+          "registry_dots": 40199,
+          "spearman_rho": -0.0004642286059789311,
+          "fraction_candidate_within_3px": 0.1466245286025389,
+          "candidate_dots_within_3px": 5521,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-31e35eee884e",
+          "site": "GEMSDOE28",
+          "raster_sha256": "04d31922f5c1ea4016984fc470ab2b0ff8e266c615792f0e86020da3b940d3ff",
+          "registry_dots": 42294,
+          "spearman_rho": -0.0008129491411489105,
+          "fraction_candidate_within_3px": 0.14890848249853933,
+          "candidate_dots_within_3px": 5607,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-b531dae0a36f",
+          "site": "GEMSDOE28",
+          "raster_sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+          "registry_dots": 37660,
+          "spearman_rho": -6.483513222056558e-05,
+          "fraction_candidate_within_3px": 0.14439368991342222,
+          "candidate_dots_within_3px": 5437,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-56a9f473edc7",
+          "site": "GEMSDOE28",
+          "raster_sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+          "registry_dots": 37860,
+          "spearman_rho": -0.00010354797273204108,
+          "fraction_candidate_within_3px": 0.14444680512030594,
+          "candidate_dots_within_3px": 5439,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G30-91eae1ca",
+          "site": "GEMSDOE30",
+          "raster_sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+          "registry_dots": 44090,
+          "spearman_rho": -0.0011448556317296377,
+          "fraction_candidate_within_3px": 0.1502363626706326,
+          "candidate_dots_within_3px": 5657,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G31-8acb75e1",
+          "site": "GEMSDOE31",
+          "raster_sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+          "registry_dots": 40199,
+          "spearman_rho": -0.0004642286059789311,
+          "fraction_candidate_within_3px": 0.1466245286025389,
+          "candidate_dots_within_3px": 5521,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G32-e5eb6e7e",
+          "site": "GEMSDOE32",
+          "raster_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "registry_dots": 37654,
+          "spearman_rho": 1.6587032702113206e-05,
+          "fraction_candidate_within_3px": 0.14359696181016626,
+          "candidate_dots_within_3px": 5407,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G36-9b9ea4e6",
+          "site": "GEMSDOE36",
+          "raster_sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+          "registry_dots": 38854,
+          "spearman_rho": -0.00021398630013247597,
+          "fraction_candidate_within_3px": 0.14412811387900357,
+          "candidate_dots_within_3px": 5427,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33d",
+          "site": "GEMSDOE33",
+          "raster_sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+          "registry_dots": 41865,
+          "spearman_rho": -0.0007884878306791333,
+          "fraction_candidate_within_3px": 0.14967865299835342,
+          "candidate_dots_within_3px": 5636,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G24-gvc1-abe8e51c719d",
+          "site": "GEMSDOE24",
+          "raster_sha256": "b5ca6f1755af059e17f5edf0940fd7e945d43a1359e103a4789eae33c536ad41",
+          "registry_dots": 37654,
+          "spearman_rho": -0.002685420102579652,
+          "fraction_candidate_within_3px": 0.056620810538057044,
+          "candidate_dots_within_3px": 2132,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G25-h66-da617550a0e9",
+          "site": "GEMSDOE25",
+          "raster_sha256": "7503f4d498694c0107e0efad92cd06613b56d6fe402712532c1805e778166c1a",
+          "registry_dots": 44832,
+          "spearman_rho": -0.0043594516865382614,
+          "fraction_candidate_within_3px": 0.09037552451266798,
+          "candidate_dots_within_3px": 3403,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G27-h29-511898747886",
+          "site": "GEMSDOE27",
+          "raster_sha256": "8585c5e870f197f84fda5bac7f22047d646fb73d455eb8b1129486c79bb976cf",
+          "registry_dots": 37654,
+          "spearman_rho": 0.002477821254938968,
+          "fraction_candidate_within_3px": 0.11579115100653317,
+          "candidate_dots_within_3px": 4360,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-s18-3e95505c011a",
+          "site": "GEMSDOE28",
+          "raster_sha256": "ce043566a96a1bf0abae366ba706ed6be5907297248b1d14deace8596500b186",
+          "registry_dots": 11082,
+          "spearman_rho": 0.0009466717704073789,
+          "fraction_candidate_within_3px": 0.054735220693684604,
+          "candidate_dots_within_3px": 2061,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G30-MSDB1-e7856ec3f14a",
+          "site": "GEMSDOE30",
+          "raster_sha256": "22850984a68c393f60c6cc9aeafd8d74fd8a3479654bdfcfd3626a4b99ff0381",
+          "registry_dots": 44090,
+          "spearman_rho": -0.0037671359027110253,
+          "fraction_candidate_within_3px": 0.08028363520475912,
+          "candidate_dots_within_3px": 3023,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-a33-l1-85c94a805a34",
+          "site": "GEMSDOE33",
+          "raster_sha256": "2bbbf7e381720f2242959e3efd6f2437f273afe6e7c48540d769524d2b4e8759",
+          "registry_dots": 37654,
+          "spearman_rho": 0.002156790704212422,
+          "fraction_candidate_within_3px": 0.1329739204334201,
+          "candidate_dots_within_3px": 5007,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33f-d042874b26ef",
+          "site": "GEMSDOE33",
+          "raster_sha256": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
+          "registry_dots": 44090,
+          "spearman_rho": -0.0003037468655657963,
+          "fraction_candidate_within_3px": 0.15939873585807618,
+          "candidate_dots_within_3px": 6002,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33-6-6c888d2ce0f7",
+          "site": "GEMSDOE33",
+          "raster_sha256": "dadd32169f9d31c024dc8ada98e93a6a36c25f802820fc0871781c6c8644a33a",
+          "registry_dots": 40199,
+          "spearman_rho": -0.005617985018538809,
+          "fraction_candidate_within_3px": 0.04265151112763584,
+          "candidate_dots_within_3px": 1606,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-d28-426073b6b4ab",
+          "site": "GEMSDOE33",
+          "raster_sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
+          "registry_dots": 44090,
+          "spearman_rho": -0.0011448556317296377,
+          "fraction_candidate_within_3px": 0.1502363626706326,
+          "candidate_dots_within_3px": 5657,
+          "candidate_dots": 37654,
+          "duplicate": false
+        }
+      ]
+    }
+  },
+  "format_audit": {
+    "zero_outside": {
+      "file": "gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros.tif",
+      "bytes": 786396,
+      "sha256": "b4cddc4c59975ab76169f15d284f9a138c6452ef11bfec5a226a2368b2a8f00e",
+      "format_valid": true,
+      "ok_to_upload": false,
+      "upload_authorization": "not evaluated by a format validator; separate scientific selector required",
+      "format_acceptable": true,
+      "submission_authorized": false,
+      "scope": "Format only; this does not certify bias audit, holdout promotion or weekly-slot eligibility",
+      "hard_failures": [],
+      "official_format_compliant": false,
+      "in_footprint_positive_pixels": 37654,
+      "in_footprint_mass": 37654.0,
+      "checks": {
+        "official_template_grid_and_footprint": {
+          "pass": true,
+          "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+          "hard_requirement": true
+        },
+        "single_band": {
+          "pass": true,
+          "detail": "count=1",
+          "hard_requirement": true
+        },
+        "dtype_float32": {
+          "pass": true,
+          "detail": "dtypes=('float32',)",
+          "hard_requirement": true
+        },
+        "crs_epsg_32611": {
+          "pass": true,
+          "detail": "EPSG:32611",
+          "hard_requirement": true
+        },
+        "shape_matches_template": {
+          "pass": true,
+          "detail": "(3730, 3292) vs (3730, 3292)",
+          "hard_requirement": true
+        },
+        "geotransform_matches_template": {
+          "pass": true,
+          "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+          "hard_requirement": true
+        },
+        "footprint_all_finite": {
+          "pass": true,
+          "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+          "hard_requirement": true
+        },
+        "footprint_range_0_1": {
+          "pass": true,
+          "detail": "finite=5167373/5167373; range=0.0 to 1.0",
+          "hard_requirement": true
+        },
+        "outside_is_nan_official_text": {
+          "pass": false,
+          "detail": "0 of 7,111,787 outside pixels are NaN",
+          "hard_requirement": false
+        },
+        "nodata_tag_is_nan": {
+          "pass": false,
+          "detail": "nodata=None",
+          "hard_requirement": false
+        },
+        "variant_nan_aware_whole_array": {
+          "pass": true,
+          "detail": "np.nanmin/np.nanmax over the whole array",
+          "hard_requirement": true
+        },
+        "variant_masked_read": {
+          "pass": true,
+          "detail": "rasterio read(masked=True).compressed()",
+          "hard_requirement": true
+        },
+        "variant_strict_whole_array_no_nan_allowed": {
+          "pass": true,
+          "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+          "hard_requirement": false
+        },
+        "profile_matches_official_sample": {
+          "pass": false,
+          "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+          "hard_requirement": false
+        }
+      }
+    },
+    "nan_outside": {
+      "file": "gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-nan.tif",
+      "bytes": 1545954,
+      "sha256": "d41838ba5ef52962c0a373de08859fb2e615282976d12e97e90f710905f26150",
+      "format_valid": true,
+      "ok_to_upload": false,
+      "upload_authorization": "not evaluated by a format validator; separate scientific selector required",
+      "format_acceptable": true,
+      "submission_authorized": false,
+      "scope": "Format only; this does not certify bias audit, holdout promotion or weekly-slot eligibility",
+      "hard_failures": [],
+      "official_format_compliant": true,
+      "in_footprint_positive_pixels": 37654,
+      "in_footprint_mass": 37654.0,
+      "checks": {
+        "official_template_grid_and_footprint": {
+          "pass": true,
+          "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+          "hard_requirement": true
+        },
+        "single_band": {
+          "pass": true,
+          "detail": "count=1",
+          "hard_requirement": true
+        },
+        "dtype_float32": {
+          "pass": true,
+          "detail": "dtypes=('float32',)",
+          "hard_requirement": true
+        },
+        "crs_epsg_32611": {
+          "pass": true,
+          "detail": "EPSG:32611",
+          "hard_requirement": true
+        },
+        "shape_matches_template": {
+          "pass": true,
+          "detail": "(3730, 3292) vs (3730, 3292)",
+          "hard_requirement": true
+        },
+        "geotransform_matches_template": {
+          "pass": true,
+          "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+          "hard_requirement": true
+        },
+        "footprint_all_finite": {
+          "pass": true,
+          "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+          "hard_requirement": true
+        },
+        "footprint_range_0_1": {
+          "pass": true,
+          "detail": "finite=5167373/5167373; range=0.0 to 1.0",
+          "hard_requirement": true
+        },
+        "outside_is_nan_official_text": {
+          "pass": true,
+          "detail": "7,111,787 of 7,111,787 outside pixels are NaN",
+          "hard_requirement": false
+        },
+        "nodata_tag_is_nan": {
+          "pass": true,
+          "detail": "nodata=nan",
+          "hard_requirement": false
+        },
+        "variant_nan_aware_whole_array": {
+          "pass": true,
+          "detail": "np.nanmin/np.nanmax over the whole array",
+          "hard_requirement": true
+        },
+        "variant_masked_read": {
+          "pass": true,
+          "detail": "rasterio read(masked=True).compressed()",
+          "hard_requirement": true
+        },
+        "variant_strict_whole_array_no_nan_allowed": {
+          "pass": false,
+          "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+          "hard_requirement": false
+        },
+        "profile_matches_official_sample": {
+          "pass": true,
+          "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+          "hard_requirement": false
+        }
+      }
+    },
+    "all_checks_pass": true
+  },
+  "raster_sha256": "b4cddc4c59975ab76169f15d284f9a138c6452ef11bfec5a226a2368b2a8f00e",
+  "nan_twin_sha256": "d41838ba5ef52962c0a373de08859fb2e615282976d12e97e90f710905f26150"
+}

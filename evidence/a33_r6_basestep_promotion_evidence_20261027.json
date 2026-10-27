@@ -1,0 +1,449 @@
+{
+  "candidate_sha256": "b4cddc4c59975ab76169f15d284f9a138c6452ef11bfec5a226a2368b2a8f00e",
+  "lane": "GEMSDOE33 buried listric-basement sole detector (A33-R6-BASESTEP)",
+  "preregistration": "knowledge/26_thk_cond_slate_20261027.md",
+  "preregistration_note": "A33-R5-BASESTEP (knowledge/26 candidate 4): depth_to_base_surf first derivative x ext_TMI_up150 x cond_surf x iso_grav_anom_hg",
+  "fit_percentiles": {
+    "grad_thr": 162.6866912841797,
+    "cond_thr": 3.2940831184387207,
+    "grav_thr": 0.9017844200134277,
+    "tmi_thr": 114.0,
+    "leading_term": "|grad depth_to_base_surf|"
+  },
+  "screen": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "TP_w": 9753.349813884397,
+    "FP_w": 123363.16975376324,
+    "FN_w": 51234.6501861156,
+    "n_truth": 60988.0,
+    "n_emitted": 129184.0,
+    "dti": 0.12933126617219068,
+    "n_withheld_positive_pixels": 60988,
+    "n_unique_withheld_components": 3199,
+    "ci95": {
+      "level": 0.95,
+      "interval": [
+        0.10758623033437838,
+        0.14974071895771193
+      ],
+      "method": "percentile spatial-block bootstrap of pooled TPw/FPw/FNw",
+      "block_pixels": 100,
+      "block_size_m": 10000,
+      "n_blocks": 583,
+      "resamples": 1999,
+      "seed": 20261025,
+      "limitation": "Internal-validation uncertainty; geologic structures may cross blocks. Not a hidden-score interval."
+    },
+    "folds": [
+      {
+        "fold": "NW",
+        "TP_w": 894.8039152936303,
+        "FP_w": 28290.119330196147,
+        "FN_w": 9270.19608470637,
+        "n_truth": 10165,
+        "n_emitted": 28868,
+        "dti": 0.06405647495253038,
+        "coverage": 0.08802793067325433
+      },
+      {
+        "fold": "NE_LidarGapHeavy",
+        "TP_w": 1996.6523174788613,
+        "FP_w": 34494.38362505893,
+        "FN_w": 10514.347682521138,
+        "n_truth": 12511,
+        "n_emitted": 35693,
+        "dti": 0.115366700650195,
+        "coverage": 0.15959174466300546
+      },
+      {
+        "fold": "SW",
+        "TP_w": 3404.6027250825073,
+        "FP_w": 33690.206653398884,
+        "FN_w": 17129.397274917494,
+        "n_truth": 20534,
+        "n_emitted": 35716,
+        "dti": 0.14277361458902785,
+        "coverage": 0.16580319105301
+      },
+      {
+        "fold": "SE",
+        "TP_w": 3457.290856029398,
+        "FP_w": 26888.460145109268,
+        "FN_w": 14320.709143970602,
+        "n_truth": 17778,
+        "n_emitted": 28907,
+        "dti": 0.17038081476759515,
+        "coverage": 0.19447017977440648
+      }
+    ],
+    "protocol": {
+      "aggregation": "pooled TPw/FPw/FNw, not mean fold DTI",
+      "buffer_m": 1500,
+      "whole_components_hidden_everywhere": true,
+      "visible_fault_mask": "pixel-exact, applied before credit and FP calculation",
+      "catalogue_features": "must be constructed from fold.visible only",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_kernel_radius_m": 300
+    },
+    "vs_recorded_b1_unpaired": 0.112418
+  },
+  "confirmation": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+    "TP_w": 8162.933555415972,
+    "FP_w": 123982.61366283294,
+    "FN_w": 52825.06644458403,
+    "n_truth": 60988.0,
+    "n_emitted": 129185.0,
+    "dti": 0.10852149416795025,
+    "n_withheld_positive_pixels": 60988,
+    "n_unique_withheld_components": 3199,
+    "ci95": {
+      "level": 0.95,
+      "interval": [
+        0.08952088515982777,
+        0.12816717103085237
+      ],
+      "method": "percentile spatial-block bootstrap of pooled TPw/FPw/FNw",
+      "block_pixels": 100,
+      "block_size_m": 10000,
+      "n_blocks": 583,
+      "resamples": 1999,
+      "seed": 20261025,
+      "limitation": "Internal-validation uncertainty; geologic structures may cross blocks. Not a hidden-score interval."
+    },
+    "folds": [
+      {
+        "fold": "N_wedge",
+        "TP_w": 725.3370825676913,
+        "FP_w": 21414.870748140267,
+        "FN_w": 5232.662917432309,
+        "n_truth": 5958,
+        "n_emitted": 21881,
+        "dti": 0.07888864998945085,
+        "coverage": 0.12174170570119021
+      },
+      {
+        "fold": "E_wedge",
+        "TP_w": 1389.02334214974,
+        "FP_w": 24271.17243622878,
+        "FN_w": 8088.97665785026,
+        "n_truth": 9478,
+        "n_emitted": 25106,
+        "dti": 0.10924770846213516,
+        "coverage": 0.14655236781491243
+      },
+      {
+        "fold": "S_wedge",
+        "TP_w": 3926.343727788141,
+        "FP_w": 46116.06071613231,
+        "FN_w": 23892.656272211858,
+        "n_truth": 27819,
+        "n_emitted": 48643,
+        "dti": 0.12169546746108864,
+        "coverage": 0.14113892403710201
+      },
+      {
+        "fold": "W_wedge",
+        "TP_w": 2122.2294029104,
+        "FP_w": 32180.50976233158,
+        "FN_w": 15610.7705970896,
+        "n_truth": 17733,
+        "n_emitted": 33555,
+        "dti": 0.10083311935462412,
+        "coverage": 0.11967683995434501
+      }
+    ],
+    "protocol": {
+      "aggregation": "pooled TPw/FPw/FNw, not mean fold DTI",
+      "geometry": "45-degree rotated diagonal wedges (N/E/S/W) orthogonal to NW/NE/SW/SE",
+      "buffer_m": 2000,
+      "whole_components_hidden_everywhere": true,
+      "visible_fault_mask": "pixel-exact, applied before credit and FP calculation",
+      "catalogue_features": "must be constructed from fold.visible only",
+      "alpha": 0.2,
+      "beta": 0.8,
+      "triangular_kernel_radius_m": 300
+    },
+    "vs_recorded_b1_unpaired": 0.115122
+  },
+  "vs_matched_random": {
+    "evaluator_version": "gems-segment-pooled-v1",
+    "candidate_dti": 0.12933126617219068,
+    "baseline_dti": 0.1809921991364557,
+    "paired_delta_dti": -0.05166093296426502,
+    "paired_delta_ci95": [
+      -0.07217877873216602,
+      -0.030907769363563316
+    ],
+    "ci95_strictly_positive": false,
+    "fold_wins": 0,
+    "n_folds": 4,
+    "min_fold_delta": -0.09711652854089291,
+    "folds": [
+      {
+        "fold": "NW",
+        "candidate_dti": 0.06405647495253038,
+        "baseline_dti": 0.16117300349342328,
+        "delta_dti": -0.09711652854089291,
+        "candidate_wins": false
+      },
+      {
+        "fold": "NE_LidarGapHeavy",
+        "candidate_dti": 0.115366700650195,
+        "baseline_dti": 0.16317342292561082,
+        "delta_dti": -0.047806722275415825,
+        "candidate_wins": false
+      },
+      {
+        "fold": "SW",
+        "candidate_dti": 0.14277361458902785,
+        "baseline_dti": 0.18921925985711066,
+        "delta_dti": -0.046445645268082814,
+        "candidate_wins": false
+      },
+      {
+        "fold": "SE",
+        "candidate_dti": 0.17038081476759515,
+        "baseline_dti": 0.2001933571002301,
+        "delta_dti": -0.029812542332634945,
+        "candidate_wins": false
+      }
+    ]
+  },
+  "leakage_canary": {
+    "passed": true,
+    "max_two_sided_auc": 0.5059841739269444,
+    "features": {
+      "basement_step_surface": {
+        "pooled_auc": 0.5007265680765435,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.4996,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5059841739269444,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.49960001555555544,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.49782418666666667,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      }
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_spearman": 0.004418360866901204,
+    "surface_max_3px_overlap": 0.12827322462420992,
+    "surface_passed": true,
+    "final_dots_max_abs_spearman": 0.005617985018538809,
+    "final_dots_max_3px_overlap": 0.15966431189249483,
+    "final_dots_passed": true,
+    "scope": "21 pinned rasters (GEMSDOE24/25/27/28/30/31/32/33/36 focus + local GEMSDOE33)"
+  },
+  "format_audit": {
+    "zero_outside": {
+      "file": "gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros.tif",
+      "bytes": 786396,
+      "sha256": "b4cddc4c59975ab76169f15d284f9a138c6452ef11bfec5a226a2368b2a8f00e",
+      "format_valid": true,
+      "ok_to_upload": false,
+      "upload_authorization": "not evaluated by a format validator; separate scientific selector required",
+      "format_acceptable": true,
+      "submission_authorized": false,
+      "scope": "Format only; this does not certify bias audit, holdout promotion or weekly-slot eligibility",
+      "hard_failures": [],
+      "official_format_compliant": false,
+      "in_footprint_positive_pixels": 37654,
+      "in_footprint_mass": 37654.0,
+      "checks": {
+        "official_template_grid_and_footprint": {
+          "pass": true,
+          "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+          "hard_requirement": true
+        },
+        "single_band": {
+          "pass": true,
+          "detail": "count=1",
+          "hard_requirement": true
+        },
+        "dtype_float32": {
+          "pass": true,
+          "detail": "dtypes=('float32',)",
+          "hard_requirement": true
+        },
+        "crs_epsg_32611": {
+          "pass": true,
+          "detail": "EPSG:32611",
+          "hard_requirement": true
+        },
+        "shape_matches_template": {
+          "pass": true,
+          "detail": "(3730, 3292) vs (3730, 3292)",
+          "hard_requirement": true
+        },
+        "geotransform_matches_template": {
+          "pass": true,
+          "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+          "hard_requirement": true
+        },
+        "footprint_all_finite": {
+          "pass": true,
+          "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+          "hard_requirement": true
+        },
+        "footprint_range_0_1": {
+          "pass": true,
+          "detail": "finite=5167373/5167373; range=0.0 to 1.0",
+          "hard_requirement": true
+        },
+        "outside_is_nan_official_text": {
+          "pass": false,
+          "detail": "0 of 7,111,787 outside pixels are NaN",
+          "hard_requirement": false
+        },
+        "nodata_tag_is_nan": {
+          "pass": false,
+          "detail": "nodata=None",
+          "hard_requirement": false
+        },
+        "variant_nan_aware_whole_array": {
+          "pass": true,
+          "detail": "np.nanmin/np.nanmax over the whole array",
+          "hard_requirement": true
+        },
+        "variant_masked_read": {
+          "pass": true,
+          "detail": "rasterio read(masked=True).compressed()",
+          "hard_requirement": true
+        },
+        "variant_strict_whole_array_no_nan_allowed": {
+          "pass": true,
+          "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+          "hard_requirement": false
+        },
+        "profile_matches_official_sample": {
+          "pass": false,
+          "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+          "hard_requirement": false
+        }
+      }
+    },
+    "nan_outside": {
+      "file": "gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-nan.tif",
+      "bytes": 1545954,
+      "sha256": "d41838ba5ef52962c0a373de08859fb2e615282976d12e97e90f710905f26150",
+      "format_valid": true,
+      "ok_to_upload": false,
+      "upload_authorization": "not evaluated by a format validator; separate scientific selector required",
+      "format_acceptable": true,
+      "submission_authorized": false,
+      "scope": "Format only; this does not certify bias audit, holdout promotion or weekly-slot eligibility",
+      "hard_failures": [],
+      "official_format_compliant": true,
+      "in_footprint_positive_pixels": 37654,
+      "in_footprint_mass": 37654.0,
+      "checks": {
+        "official_template_grid_and_footprint": {
+          "pass": true,
+          "detail": "Template must be the pinned organizer grid, not just a self-consistent arbitrary raster",
+          "hard_requirement": true
+        },
+        "single_band": {
+          "pass": true,
+          "detail": "count=1",
+          "hard_requirement": true
+        },
+        "dtype_float32": {
+          "pass": true,
+          "detail": "dtypes=('float32',)",
+          "hard_requirement": true
+        },
+        "crs_epsg_32611": {
+          "pass": true,
+          "detail": "EPSG:32611",
+          "hard_requirement": true
+        },
+        "shape_matches_template": {
+          "pass": true,
+          "detail": "(3730, 3292) vs (3730, 3292)",
+          "hard_requirement": true
+        },
+        "geotransform_matches_template": {
+          "pass": true,
+          "detail": "(100.0, 0.0, 243350.0, 0.0, -100.0, 4508550.0)",
+          "hard_requirement": true
+        },
+        "footprint_all_finite": {
+          "pass": true,
+          "detail": "0 NaN/Inf inside the 5,167,373-pixel footprint",
+          "hard_requirement": true
+        },
+        "footprint_range_0_1": {
+          "pass": true,
+          "detail": "finite=5167373/5167373; range=0.0 to 1.0",
+          "hard_requirement": true
+        },
+        "outside_is_nan_official_text": {
+          "pass": true,
+          "detail": "7,111,787 of 7,111,787 outside pixels are NaN",
+          "hard_requirement": false
+        },
+        "nodata_tag_is_nan": {
+          "pass": true,
+          "detail": "nodata=nan",
+          "hard_requirement": false
+        },
+        "variant_nan_aware_whole_array": {
+          "pass": true,
+          "detail": "np.nanmin/np.nanmax over the whole array",
+          "hard_requirement": true
+        },
+        "variant_masked_read": {
+          "pass": true,
+          "detail": "rasterio read(masked=True).compressed()",
+          "hard_requirement": true
+        },
+        "variant_strict_whole_array_no_nan_allowed": {
+          "pass": false,
+          "detail": "((a>=0)&(a<=1)).all() over the whole array - fails for ANY NaN, including the official sample's NaN outside",
+          "hard_requirement": false
+        },
+        "profile_matches_official_sample": {
+          "pass": true,
+          "detail": "driver/dtype/nodata/size/crs/transform equal to template; compress=lzw (template lzw)",
+          "hard_requirement": false
+        }
+      }
+    },
+    "all_checks_pass": true
+  },
+  "gates": {
+    "screen_beats_recorded_b1_with_positive_ci": false,
+    "confirm_beats_recorded_b1_with_positive_ci": false,
+    "surface_not_duplicate": true,
+    "final_dots_not_duplicate": true,
+    "format_audit_pass": true,
+    "canary_pass": true
+  },
+  "all_gates_pass": false,
+  "verdict": "negative"
+}
