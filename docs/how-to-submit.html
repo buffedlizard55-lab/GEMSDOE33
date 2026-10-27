@@ -4,7 +4,25 @@
 <title>Executive summary &amp; submission guidance · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
 <p>DrivenData #306 · evidence-led research · review status 2026-10-26</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html" aria-current=page>How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
-<main class="wrap"><div class="hero-download" id="fsml2-cc">
+<main class="wrap"><div class="hero-download" id="pfrt">
+<h2>NEW UNIQUE TIF (2026-10-27, PFRT) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
+<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap 22.6% ≤ 70%, max |ρ| 0.028; final dots 22.7% — NOT a copy of any previous submission</span>
+<span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1] (values exactly {0,1}), 0 outside footprint</span>
+<span class="badge bad">HOLDOUT GATE FAILED vs CSHT — DO NOT SPEND A SLOT</span></p>
+<p><b>What it is:</b> PFRT listric dip-projection — basement-edge crests (depth-to-basement gradient × gravity HG) displaced updip by depth·cot(dip), dip 50°/60°, before CELF-300 m emission. Label-free, 37,654 dots, 0 on catalogue. The displacement is the tested mechanism; unshifted gradient classifiers are prior art.</p>
+<div class="scroll"><table><thead><tr><th>File to download</th><th>HOLDOUT-DTI (gems-segment-pooled-v1, 60,988 withheld positives) — NOT a leaderboard estimate</th><th>Unique vs all 9 focus sites' registry?</th><th>OK to submit?</th></tr></thead><tbody>
+<tr><td><code>gemsdoe33-pfrt-listric-37654-20261027-048e07cb9d0e-zeros.tif</code></td><td>screen 0.0831 [0.0673, 0.0990] vs CSHT 0.1384 (paired Δ -0.0553 [-0.0769, -0.0341], 0/4); confirmation 0.0791 vs 0.1301 (Δ -0.0510 [-0.0695, -0.0320], 0/4). <b>Estimated leaderboard score: not estimable</b> — no validated transfer from catalogue-proxy HOLDOUT-DTI to the private score exists (knowledge/22 §3); the only labelled numbers are HOLDOUT-DTI and USER-REPORTED historical scores.</td><td><b>YES</b> — passes surface + final-dot guards vs all 22 registry rasters (all 9 focus sites included)</td><td><b>NO</b> — holdout gate failed on both splits; research only</td></tr>
+</tbody></table></div>
+<p><a class="btn" href="downloads/gemsdoe33-pfrt-listric-37654-20261027-048e07cb9d0e-zeros.tif">⬇ Download unique PFRT GeoTIFF (research only)</a> <a class="btn alt" href="downloads/gemsdoe33-pfrt-listric-37654-20261027-048e07cb9d0e-zeros.zip">Single-TIFF .zip</a> <a class="btn alt" href="downloads/gemsdoe33-pfrt-listric-37654-20261027-048e07cb9d0e-nan.tif">NaN-outside twin</a> <a class="btn alt" href="data/pfrt_run_card_20261027.json">Run card JSON</a></p>
+<table><tbody>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-pfrt-listric-37654-20261027-048e07cb9d0e-zeros</code></td></tr>
+<tr><th>Note (≤140 characters)</th><td><code>GEMS33 PFRT listric dip-proj CELF 37654d | 048e07cb9d0e | NEGATIVE</code> (66/140)</td></tr>
+<tr><th>SHA-256 (.tif)</th><td><code>fdbb6c273f9bcfbf10469090101bb23426ec185378616c16cdf88ee64c550983</code></td></tr>
+<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Failed gates: screen_beats_current_best, independent_confirmation. Automated selector: 0 eligible of 14 run cards. Slots spent: 0.</td></tr>
+</tbody></table>
+<p class="small"><b>Range-error note:</b> every cell of this <code>-zeros.tif</code> is finite and in [0,1] (independent re-audit: pass, min 0.0 / max 1.0, 0 NaN), so its values cannot themselves violate a [0,1] range check. Portal acceptance remains unverified; do not upload this negative artifact.</p>
+</div>
+<div class="hero-download" id="fsml2-cc">
 <h2>NEW UNIQUE TIF (2026-10-26, FSML2-CC) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
 <p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap 65.4% ≤ 70%; final dots 40.7%, max |ρ| 0.019 — NOT a copy of any previous submission</span>
 <span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1] (values exactly {0,1})</span>
@@ -128,7 +146,7 @@ On fresh independent confirmation seeds (<code>33, 34</code>, <code>22,733</code
 </tbody></table>
 </div>
 <h2>Executive summary — per-site best submissions and how to submit</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (FSML2-CC, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. It failed the preregistered holdout gate. Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
+<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (PFRT, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. It failed the preregistered holdout gate (HOLDOUT-DTI 0.0831/0.0791 vs CSHT 0.1384/0.1301). Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
 
 <h3>Exactly how a submission is made (when a future candidate passes every gate)</h3>
 <ol>

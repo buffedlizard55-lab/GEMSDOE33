@@ -1,0 +1,593 @@
+{
+  "candidate_sha256": "fdbb6c273f9bcfbf10469090101bb23426ec185378616c16cdf88ee64c550983",
+  "current_holdout_best_sha256": "01085d717b4061323b2902e023d44bc41bcf364a8ac9ee8f9045e1ab4115b049",
+  "lane": "GEMSDOE33 PFRT listric dip-projection lane (knowledge/24 + pfrt preregistration 20261027)",
+  "shared_template": {
+    "source_manifest_sha256": "4b6e69851e08073cae9cce554ade0b9164bd8f046b3170b13c060531861d2f4e",
+    "feature_cache_sha256": "907a261504e740b71dd8a435972ddb514f7d92f585b3490332c0c9a7b6f9821f",
+    "evaluator_sha256": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc",
+    "writer_sha256": "380ef4c785680d0c9063f53f9fa6227e8a564314d40df02fa46f02fe37d29711"
+  },
+  "screen": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "evaluator_sha256": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc",
+    "candidate_sha256": "fdbb6c273f9bcfbf10469090101bb23426ec185378616c16cdf88ee64c550983",
+    "baseline_sha256": "01085d717b4061323b2902e023d44bc41bcf364a8ac9ee8f9045e1ab4115b049",
+    "withheld_positives": 60988,
+    "whole_segments_with_buffer": true,
+    "all_catalogue_features_visible_only": true,
+    "visible_faults_masked_pixel_exactly": true,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel": "triangular",
+    "radius_m": 300,
+    "candidate_pooled_dti": 0.08314249203601194,
+    "baseline_pooled_dti": 0.13839991360970938,
+    "pooled_delta_ci95": [
+      -0.07687433354839343,
+      -0.034123216872379424
+    ],
+    "ci_estimand": "pooled paired delta",
+    "split_id": "quadrant-buffered-15px-v1",
+    "fold_wins": 0,
+    "n_folds": 4
+  },
+  "confirmation": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "evaluator_sha256": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc",
+    "candidate_sha256": "fdbb6c273f9bcfbf10469090101bb23426ec185378616c16cdf88ee64c550983",
+    "baseline_sha256": "01085d717b4061323b2902e023d44bc41bcf364a8ac9ee8f9045e1ab4115b049",
+    "withheld_positives": 60988,
+    "whole_segments_with_buffer": true,
+    "all_catalogue_features_visible_only": true,
+    "visible_faults_masked_pixel_exactly": true,
+    "alpha": 0.2,
+    "beta": 0.8,
+    "kernel": "triangular",
+    "radius_m": 300,
+    "candidate_pooled_dti": 0.0790980857424866,
+    "baseline_pooled_dti": 0.1300550770045689,
+    "pooled_delta_ci95": [
+      -0.06947620608466386,
+      -0.032002660763327764
+    ],
+    "ci_estimand": "pooled paired delta",
+    "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+    "fold_wins": 0,
+    "n_folds": 4,
+    "independent_of_screen": true,
+    "frozen_before_screen_results": true
+  },
+  "feature_names": [
+    "pfrt_surface",
+    "pfrt_depth_gm",
+    "pfrt_abs_grav_hg"
+  ],
+  "feature_canaries": [
+    {
+      "feature": "pfrt_surface",
+      "holdout_auc": 0.5539467822222223,
+      "max_fold_auc": 0.5539467822222223,
+      "pooled_auc": 0.5305598849570962,
+      "split_id": "quadrant-buffered-15px-v1",
+      "visible_only": true
+    },
+    {
+      "feature": "pfrt_depth_gm",
+      "holdout_auc": 0.578575608131511,
+      "max_fold_auc": 0.578575608131511,
+      "pooled_auc": 0.5360500955526869,
+      "split_id": "quadrant-buffered-15px-v1",
+      "visible_only": true
+    },
+    {
+      "feature": "pfrt_abs_grav_hg",
+      "holdout_auc": 0.5735310100444941,
+      "max_fold_auc": 0.5735310100444941,
+      "pooled_auc": 0.5383691641671096,
+      "split_id": "quadrant-buffered-15px-v1",
+      "visible_only": true
+    }
+  ],
+  "registry_sha256": "9c6b5f349fd127182c4f4a1a5f3c3601b129bd17e3b4394c8b34011b5fc30fd7",
+  "registry_complete": true,
+  "registry_raster_sha256s": [
+    "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+    "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+    "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+    "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+    "04d31922f5c1ea4016984fc470ab2b0ff8e266c615792f0e86020da3b940d3ff",
+    "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+    "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+    "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+    "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+    "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+    "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+    "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+    "b5ca6f1755af059e17f5edf0940fd7e945d43a1359e103a4789eae33c536ad41",
+    "7503f4d498694c0107e0efad92cd06613b56d6fe402712532c1805e778166c1a",
+    "8585c5e870f197f84fda5bac7f22047d646fb73d455eb8b1129486c79bb976cf",
+    "ce043566a96a1bf0abae366ba706ed6be5907297248b1d14deace8596500b186",
+    "22850984a68c393f60c6cc9aeafd8d74fd8a3479654bdfcfd3626a4b99ff0381",
+    "2bbbf7e381720f2242959e3efd6f2437f273afe6e7c48540d769524d2b4e8759",
+    "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
+    "dadd32169f9d31c024dc8ada98e93a6a36c25f802820fc0871781c6c8644a33a",
+    "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
+    "14ab452c22aaf07444cd02e589fce4627d682e99f44c63e78dc1383955e0c602"
+  ],
+  "duplicates": {
+    "surface": {
+      "stage": "surface_before_placement",
+      "registry_sha256": "9c6b5f349fd127182c4f4a1a5f3c3601b129bd17e3b4394c8b34011b5fc30fd7",
+      "surface_sha256": "3102499c1e465ac1437eefaf1548ae4038e67afbfc002ef62d0ab9485c9b49ea",
+      "registry_count": 22,
+      "sample_pixels": 250000,
+      "spearman_stop_gt": 0.9,
+      "overlap_stop_gt": 0.7,
+      "passed": true,
+      "max_abs_spearman_rho": 0.02796610972279838,
+      "max_preview_fraction_within_3px": 0.2262442237212514,
+      "comparisons": [
+        {
+          "registry_id": "G24-989f59505db1",
+          "site": "GEMSDOE24",
+          "raster_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+          "registry_dots": 60069,
+          "spearman_rho": 0.0018489337525179734,
+          "fraction_candidate_within_3px": 0.16980931640728741,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G25-e56ea318af89",
+          "site": "GEMSDOE25",
+          "raster_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+          "registry_dots": 44090,
+          "spearman_rho": 0.0031170231748316127,
+          "fraction_candidate_within_3px": 0.16202793859882084,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G27-5512495c6bd1",
+          "site": "GEMSDOE27",
+          "raster_sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+          "registry_dots": 61328,
+          "spearman_rho": 0.0021337641835300156,
+          "fraction_candidate_within_3px": 0.18045891538747544,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-8acb75e1f2cc",
+          "site": "GEMSDOE28",
+          "raster_sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+          "registry_dots": 40199,
+          "spearman_rho": 0.0017089552793675671,
+          "fraction_candidate_within_3px": 0.15788495246188983,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-31e35eee884e",
+          "site": "GEMSDOE28",
+          "raster_sha256": "04d31922f5c1ea4016984fc470ab2b0ff8e266c615792f0e86020da3b940d3ff",
+          "registry_dots": 42294,
+          "spearman_rho": 0.0013379059599186234,
+          "fraction_candidate_within_3px": 0.16077973123705316,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-b531dae0a36f",
+          "site": "GEMSDOE28",
+          "raster_sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+          "registry_dots": 37660,
+          "spearman_rho": 0.00036985797414411045,
+          "fraction_candidate_within_3px": 0.15732724278961066,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-56a9f473edc7",
+          "site": "GEMSDOE28",
+          "raster_sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+          "registry_dots": 37860,
+          "spearman_rho": 0.0003487362553328565,
+          "fraction_candidate_within_3px": 0.15785839485844796,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G30-91eae1ca",
+          "site": "GEMSDOE30",
+          "raster_sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+          "registry_dots": 44090,
+          "spearman_rho": 0.0031170231748316127,
+          "fraction_candidate_within_3px": 0.16202793859882084,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G31-8acb75e1",
+          "site": "GEMSDOE31",
+          "raster_sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+          "registry_dots": 40199,
+          "spearman_rho": 0.0017089552793675671,
+          "fraction_candidate_within_3px": 0.15788495246188983,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G32-e5eb6e7e",
+          "site": "GEMSDOE32",
+          "raster_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "registry_dots": 37654,
+          "spearman_rho": 0.0022421832162583446,
+          "fraction_candidate_within_3px": 0.15475115525574973,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G36-9b9ea4e6",
+          "site": "GEMSDOE36",
+          "raster_sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+          "registry_dots": 38854,
+          "spearman_rho": 0.0027634122067841022,
+          "fraction_candidate_within_3px": 0.15910660222021564,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33d",
+          "site": "GEMSDOE33",
+          "raster_sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+          "registry_dots": 41865,
+          "spearman_rho": -0.0012689223610889986,
+          "fraction_candidate_within_3px": 0.1631433579433792,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G24-gvc1-abe8e51c719d",
+          "site": "GEMSDOE24",
+          "raster_sha256": "b5ca6f1755af059e17f5edf0940fd7e945d43a1359e103a4789eae33c536ad41",
+          "registry_dots": 37654,
+          "spearman_rho": 0.02593345759782427,
+          "fraction_candidate_within_3px": 0.1635151643915653,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G25-h66-da617550a0e9",
+          "site": "GEMSDOE25",
+          "raster_sha256": "7503f4d498694c0107e0efad92cd06613b56d6fe402712532c1805e778166c1a",
+          "registry_dots": 44832,
+          "spearman_rho": 0.023877317746764503,
+          "fraction_candidate_within_3px": 0.19118818717798905,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G27-h29-511898747886",
+          "site": "GEMSDOE27",
+          "raster_sha256": "8585c5e870f197f84fda5bac7f22047d646fb73d455eb8b1129486c79bb976cf",
+          "registry_dots": 37654,
+          "spearman_rho": -0.0012056266622715696,
+          "fraction_candidate_within_3px": 0.1342752430020715,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-s18-3e95505c011a",
+          "site": "GEMSDOE28",
+          "raster_sha256": "ce043566a96a1bf0abae366ba706ed6be5907297248b1d14deace8596500b186",
+          "registry_dots": 11082,
+          "spearman_rho": 0.0042922259167420315,
+          "fraction_candidate_within_3px": 0.12309449195304616,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G30-MSDB1-e7856ec3f14a",
+          "site": "GEMSDOE30",
+          "raster_sha256": "22850984a68c393f60c6cc9aeafd8d74fd8a3479654bdfcfd3626a4b99ff0381",
+          "registry_dots": 44090,
+          "spearman_rho": 0.02796610972279838,
+          "fraction_candidate_within_3px": 0.20385616401975887,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-a33-l1-85c94a805a34",
+          "site": "GEMSDOE33",
+          "raster_sha256": "2bbbf7e381720f2242959e3efd6f2437f273afe6e7c48540d769524d2b4e8759",
+          "registry_dots": 37654,
+          "spearman_rho": 0.007060415209895824,
+          "fraction_candidate_within_3px": 0.2262442237212514,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33f-d042874b26ef",
+          "site": "GEMSDOE33",
+          "raster_sha256": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
+          "registry_dots": 44090,
+          "spearman_rho": -0.005821737879242805,
+          "fraction_candidate_within_3px": 0.1817867955595687,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33-6-6c888d2ce0f7",
+          "site": "GEMSDOE33",
+          "raster_sha256": "dadd32169f9d31c024dc8ada98e93a6a36c25f802820fc0871781c6c8644a33a",
+          "registry_dots": 40199,
+          "spearman_rho": 0.009777889974618635,
+          "fraction_candidate_within_3px": 0.18728421947203486,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-d28-426073b6b4ab",
+          "site": "GEMSDOE33",
+          "raster_sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
+          "registry_dots": 44090,
+          "spearman_rho": 0.0031170231748316127,
+          "fraction_candidate_within_3px": 0.16202793859882084,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-a33-r2-csht-0b78c04d5fad",
+          "site": "GEMSDOE33",
+          "raster_sha256": "14ab452c22aaf07444cd02e589fce4627d682e99f44c63e78dc1383955e0c602",
+          "registry_dots": 37654,
+          "spearman_rho": 0.027873340568183438,
+          "fraction_candidate_within_3px": 0.14829765761937644,
+          "duplicate": false
+        }
+      ]
+    },
+    "final_dots": {
+      "stage": "final_dots",
+      "registry_sha256": "9c6b5f349fd127182c4f4a1a5f3c3601b129bd17e3b4394c8b34011b5fc30fd7",
+      "registry_count": 22,
+      "spearman_stop_gt": 0.9,
+      "overlap_stop_gt": 0.7,
+      "overlap_radius_px": 3,
+      "passed": true,
+      "max_abs_spearman_rho": 0.014971260187380396,
+      "max_candidate_fraction_within_3px": 0.22661603016943752,
+      "comparisons": [
+        {
+          "registry_id": "G24-989f59505db1",
+          "site": "GEMSDOE24",
+          "raster_sha256": "68d0e2e4fcc594f9a23f56c44b885fee733d026d39be55e18ad2a07289525310",
+          "registry_dots": 60069,
+          "spearman_rho": -0.0006732323496512272,
+          "fraction_candidate_within_3px": 0.17052637170021778,
+          "candidate_dots_within_3px": 6421,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G25-e56ea318af89",
+          "site": "GEMSDOE25",
+          "raster_sha256": "91eae1ca42ec845eaa8c2ba32da49806e24751743459b8a10017c479bbe639b8",
+          "registry_dots": 44090,
+          "spearman_rho": -0.000996424672994842,
+          "fraction_candidate_within_3px": 0.16234662984012324,
+          "candidate_dots_within_3px": 6113,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G27-5512495c6bd1",
+          "site": "GEMSDOE27",
+          "raster_sha256": "33003374335d84bf885f2d8f5e9dd4c57044c8ec58fa6a0d7fa581e8bc41c11d",
+          "registry_dots": 61328,
+          "spearman_rho": -0.0007330607217603188,
+          "fraction_candidate_within_3px": 0.17708609975035852,
+          "candidate_dots_within_3px": 6668,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-8acb75e1f2cc",
+          "site": "GEMSDOE28",
+          "raster_sha256": "ab02300152248fdda04e988e2cd2a0c13f35eec42fcf670a15e8b76b19e24a73",
+          "registry_dots": 40199,
+          "spearman_rho": -0.00030883896539923633,
+          "fraction_candidate_within_3px": 0.15275933499760982,
+          "candidate_dots_within_3px": 5752,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-31e35eee884e",
+          "site": "GEMSDOE28",
+          "raster_sha256": "04d31922f5c1ea4016984fc470ab2b0ff8e266c615792f0e86020da3b940d3ff",
+          "registry_dots": 42294,
+          "spearman_rho": -0.00043414121183303774,
+          "fraction_candidate_within_3px": 0.15825675891007596,
+          "candidate_dots_within_3px": 5959,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-b531dae0a36f",
+          "site": "GEMSDOE28",
+          "raster_sha256": "5556aa1438fd67376b60d5ffc99228ec09dcc11a8408298a743ccb88d6163641",
+          "registry_dots": 37660,
+          "spearman_rho": 4.216658914921967e-05,
+          "fraction_candidate_within_3px": 0.1500239018430977,
+          "candidate_dots_within_3px": 5649,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-56a9f473edc7",
+          "site": "GEMSDOE28",
+          "raster_sha256": "81d5b87bc8424f162a8f56aa9aac8fbe630c61646b9cac24d5ebbdc1b1951783",
+          "registry_dots": 37860,
+          "spearman_rho": 0.00013657383372278173,
+          "fraction_candidate_within_3px": 0.15193604929091198,
+          "candidate_dots_within_3px": 5721,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G30-91eae1ca",
+          "site": "GEMSDOE30",
+          "raster_sha256": "5f963b8bca5ec226ddc7caaadec239c6be6d28aa567f890033be04d04bfd5e32",
+          "registry_dots": 44090,
+          "spearman_rho": -0.000996424672994842,
+          "fraction_candidate_within_3px": 0.16234662984012324,
+          "candidate_dots_within_3px": 6113,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G31-8acb75e1",
+          "site": "GEMSDOE31",
+          "raster_sha256": "07b6db440535404bb41ec8ddc797713e200d308e3da35937393efde5eb84bc40",
+          "registry_dots": 40199,
+          "spearman_rho": -0.00030883896539923633,
+          "fraction_candidate_within_3px": 0.15275933499760982,
+          "candidate_dots_within_3px": 5752,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G32-e5eb6e7e",
+          "site": "GEMSDOE32",
+          "raster_sha256": "c55bafc470054e8271dcb89347a17e07fefe50de6af6e6ba6c4b169ef7ab6fa9",
+          "registry_dots": 37654,
+          "spearman_rho": 0.00017710230806538635,
+          "fraction_candidate_within_3px": 0.14290646412067776,
+          "candidate_dots_within_3px": 5381,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G36-9b9ea4e6",
+          "site": "GEMSDOE36",
+          "raster_sha256": "e15891020b9c57056ac7fa874a5e506fbd6ed9314a4ea8e73af0753887a3708a",
+          "registry_dots": 38854,
+          "spearman_rho": 7.57455885933861e-05,
+          "fraction_candidate_within_3px": 0.14457959313751528,
+          "candidate_dots_within_3px": 5444,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33d",
+          "site": "GEMSDOE33",
+          "raster_sha256": "87f857d505e23247e991ccfab2cbe9f49a04df4f9c8028dce7ea261554690757",
+          "registry_dots": 41865,
+          "spearman_rho": -0.0003569961960163519,
+          "fraction_candidate_within_3px": 0.15801774047909917,
+          "candidate_dots_within_3px": 5950,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G24-gvc1-abe8e51c719d",
+          "site": "GEMSDOE24",
+          "raster_sha256": "b5ca6f1755af059e17f5edf0940fd7e945d43a1359e103a4789eae33c536ad41",
+          "registry_dots": 37654,
+          "spearman_rho": 0.014971260187380396,
+          "fraction_candidate_within_3px": 0.20452010410580548,
+          "candidate_dots_within_3px": 7701,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G25-h66-da617550a0e9",
+          "site": "GEMSDOE25",
+          "raster_sha256": "7503f4d498694c0107e0efad92cd06613b56d6fe402712532c1805e778166c1a",
+          "registry_dots": 44832,
+          "spearman_rho": 0.0017742223865326516,
+          "fraction_candidate_within_3px": 0.21222180910394645,
+          "candidate_dots_within_3px": 7991,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G27-h29-511898747886",
+          "site": "GEMSDOE27",
+          "raster_sha256": "8585c5e870f197f84fda5bac7f22047d646fb73d455eb8b1129486c79bb976cf",
+          "registry_dots": 37654,
+          "spearman_rho": 0.0055276114868411585,
+          "fraction_candidate_within_3px": 0.14606681893025975,
+          "candidate_dots_within_3px": 5500,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G28-s18-3e95505c011a",
+          "site": "GEMSDOE28",
+          "raster_sha256": "ce043566a96a1bf0abae366ba706ed6be5907297248b1d14deace8596500b186",
+          "registry_dots": 11082,
+          "spearman_rho": 0.0010450433574248652,
+          "fraction_candidate_within_3px": 0.06105593031284857,
+          "candidate_dots_within_3px": 2299,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G30-MSDB1-e7856ec3f14a",
+          "site": "GEMSDOE30",
+          "raster_sha256": "22850984a68c393f60c6cc9aeafd8d74fd8a3479654bdfcfd3626a4b99ff0381",
+          "registry_dots": 44090,
+          "spearman_rho": 0.006548815729357264,
+          "fraction_candidate_within_3px": 0.22661603016943752,
+          "candidate_dots_within_3px": 8533,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-a33-l1-85c94a805a34",
+          "site": "GEMSDOE33",
+          "raster_sha256": "2bbbf7e381720f2242959e3efd6f2437f273afe6e7c48540d769524d2b4e8759",
+          "registry_dots": 37654,
+          "spearman_rho": 0.0073735371535187996,
+          "fraction_candidate_within_3px": 0.19711053274552504,
+          "candidate_dots_within_3px": 7422,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33f-d042874b26ef",
+          "site": "GEMSDOE33",
+          "raster_sha256": "05d656cf3f24047d440fe24d42f28d4c64b1da29261c235cca3954953d5d3e27",
+          "registry_dots": 44090,
+          "spearman_rho": 0.00028997696937338576,
+          "fraction_candidate_within_3px": 0.16943750995910128,
+          "candidate_dots_within_3px": 6380,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-h33-6-6c888d2ce0f7",
+          "site": "GEMSDOE33",
+          "raster_sha256": "dadd32169f9d31c024dc8ada98e93a6a36c25f802820fc0871781c6c8644a33a",
+          "registry_dots": 40199,
+          "spearman_rho": 0.0003386178703494921,
+          "fraction_candidate_within_3px": 0.16587879109789133,
+          "candidate_dots_within_3px": 6246,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-d28-426073b6b4ab",
+          "site": "GEMSDOE33",
+          "raster_sha256": "29ca0bc2cf249f96f1504b8c0ec5e775e78668f6d0f54f5c1c33c580cce74f73",
+          "registry_dots": 44090,
+          "spearman_rho": -0.000996424672994842,
+          "fraction_candidate_within_3px": 0.16234662984012324,
+          "candidate_dots_within_3px": 6113,
+          "candidate_dots": 37654,
+          "duplicate": false
+        },
+        {
+          "registry_id": "G33-a33-r2-csht-0b78c04d5fad",
+          "site": "GEMSDOE33",
+          "raster_sha256": "14ab452c22aaf07444cd02e589fce4627d682e99f44c63e78dc1383955e0c602",
+          "registry_dots": 37654,
+          "spearman_rho": 0.009192710274302561,
+          "fraction_candidate_within_3px": 0.17852021033621926,
+          "candidate_dots_within_3px": 6722,
+          "candidate_dots": 37654,
+          "duplicate": false
+        }
+      ],
+      "candidate_sha256": "fdbb6c273f9bcfbf10469090101bb23426ec185378616c16cdf88ee64c550983"
+    }
+  },
+  "submission_note": "GEMS33 PFRT listric dip-proj CELF 37654d | 048e07cb9d0e | NEGATIVE",
+  "experiments": 2,
+  "elapsed_seconds": 830.69
+}

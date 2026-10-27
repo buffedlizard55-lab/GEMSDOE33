@@ -47,7 +47,7 @@ def test_executive_summary_explains_process_and_blocks_failed_candidate():
     assert "no DrivenData auth" in page
     assert "GEMSDOE32" in page and "0.2778" in page
     assert "HIGHEST owner-reported focus-site value" in page
-    assert "FSML2-CC, above" in page
+    assert "PFRT, above" in page
 
 
 def test_hypothesis_page_has_ranked_round4_triage_and_historical_prior_art():
