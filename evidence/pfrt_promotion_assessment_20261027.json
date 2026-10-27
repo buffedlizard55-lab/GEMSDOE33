@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "gates": {
+    "identity": true,
+    "explicit_lane": true,
+    "shared_template": true,
+    "baseline_identity": true,
+    "screen_beats_current_best": false,
+    "independent_confirmation": false,
+    "all_feature_canaries": true,
+    "surface_not_duplicate": true,
+    "final_dots_not_duplicate": true,
+    "saved_bytes_format": true,
+    "short_note": true,
+    "budget": true
+  },
+  "failed_gates": [
+    "screen_beats_current_best",
+    "independent_confirmation"
+  ],
+  "verdict": "negative",
+  "eligible_for_selector": false,
+  "ok_to_submit": false,
+  "slot_policy": "Separate selector and verified weekly-cap check required; this tool never uploads.",
+  "qualification": "Evidence completeness/arithmetic only; cannot authenticate arbitrary supplied receipts."
+}

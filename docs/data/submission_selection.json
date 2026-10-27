@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-26T22:55:04+00:00",
+  "generated_utc": "2026-10-27T17:43:35+00:00",
   "selector": "scripts/select_submission.py (automated, fail-closed)",
   "ok_to_submit": false,
   "decision": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
@@ -164,6 +164,29 @@
       "format_audit_failures": [],
       "note": "GEMS33 FSML2-CC V1_cc6 spyPU+worm+line CELF 37654d | NEGATIVE | 6fd4410bbaee",
       "sha256": "be5013aad085c23a9317959f85c7d494e28eac5875f61addce8ec81b5bb51de3",
+      "confirm_holdout_dti": null,
+      "eligible": false
+    },
+    {
+      "run_card": "evidence/pfrt_run_card_20261027.json",
+      "campaign": "PFRT",
+      "verdict": "negative",
+      "submission_name": "gemsdoe33-pfrt-listric-37654-20261027-048e07cb9d0e-zeros",
+      "file": "gemsdoe33-pfrt-listric-37654-20261027-048e07cb9d0e-zeros.tif",
+      "checks": {
+        "verdict_promote": false,
+        "promotion_gates_all_pass": false,
+        "file_exists": true,
+        "sha256_matches_run_card": true,
+        "format_audit_pass_on_saved_bytes": true,
+        "all_cells_finite_and_in_0_1": true,
+        "zip_single_geotiff_same_bytes": true,
+        "note_1_to_140_chars": true,
+        "confirmation_dti_finite_in_0_1": false
+      },
+      "format_audit_failures": [],
+      "note": "GEMS33 PFRT listric dip-proj CELF 37654d | 048e07cb9d0e | NEGATIVE",
+      "sha256": "fdbb6c273f9bcfbf10469090101bb23426ec185378616c16cdf88ee64c550983",
       "confirm_holdout_dti": null,
       "eligible": false
     },

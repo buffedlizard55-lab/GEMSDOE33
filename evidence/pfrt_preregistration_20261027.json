@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "campaign": "PFRT",
+  "date": "20261027",
+  "lane": "PFRT label-free listric dip-projection: basement-edge crests (rank product of depth_to_base gradient magnitude and |iso_grav_anom_hg|) displaced updip along -grad(depth_to_base_surf) by depth*cot(dip)/100m px for dip in {50,60} deg, offset clipped [1,10] px, 3x3 tent splat, gaussian sigma=1, CELF-300m emission d_visible>2px budget 37654 spacing 2.5",
+  "dips_deg": [50.0, 60.0],
+  "crest_rank_min": 0.90,
+  "offset_clip_px": [1.0, 10.0],
+  "budget": 37654,
+  "exclusion_px": 2.0,
+  "spacing_px": 2.5,
+  "evaluator_version": "gems-segment-pooled-v1",
+  "screen_split": "quadrant-buffered-15px-v1",
+  "confirmation_split": "diagonal-wedge-buffered-20px-confirm-v1",
+  "comparators_in_run": ["A33_R2_CSHT@37654", "B1_regional", "matched_random"],
+  "gate": "promote only if PFRT beats in-run CSHT pooled on both splits with paired CI strictly positive and >=3/4 fold wins, plus surface and final-dot uniqueness vs 22-raster registry (rho<=0.90, <=70% within 3px), plus strict saved-byte format audit",
+  "experiments_budget": 3,
+  "named_non_fault_mimic": "Prograding alluvial-fan toes and buried pediment edges that displace basement/gravity breaks updip without a throughgoing Quaternary fault",
+  "leaderboard_projection": null
+}
