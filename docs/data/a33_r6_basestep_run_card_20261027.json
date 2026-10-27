@@ -1,0 +1,114 @@
+{
+  "schema": 1,
+  "campaign": "A33-R6-BASESTEP",
+  "date": "20261027",
+  "hypothesis": "Buried listric-basement sole detector: basement-depth-step x conductive-cover x gravity-edge x magnetic-basement-fabric surface, label-free, catalogue-independent; CELF-300 m emission.",
+  "mechanism": "Sharp basement-depth steps at conductive cover above gravity-mapped basin-margin edges mark permeable blind faults missing from USGS/INGENIOUS surface traces.",
+  "named_non_fault_mimic": "Prograding alluvial fan toes, buried pediment fronts and lithologic basement-contact steps without displacement.",
+  "verdict": "negative",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "withheld_positives": 60988,
+    "screen": {
+      "split_id": "quadrant-buffered-15px-v1",
+      "candidate": 0.12933126617219068,
+      "ci95": [
+        0.10758623033437838,
+        0.14974071895771193
+      ],
+      "paired_delta_vs_matched_random": -0.05166093296426502,
+      "paired_delta_ci95": [
+        -0.07217877873216602,
+        -0.030907769363563316
+      ],
+      "fold_wins": 0
+    },
+    "confirmation": {
+      "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+      "candidate": 0.10852149416795025,
+      "ci95": [
+        0.08952088515982777,
+        0.12816717103085237
+      ],
+      "note": "independent orthogonal split, buffer 20 px"
+    },
+    "recorded_context_unpaired": {
+      "A33_R2_CSHT_screen": 0.112418,
+      "A33_R2_CSHT_confirm": 0.115122,
+      "note": "recorded B1_regional context from evidence/a33_r2_run_card_20261026.json; no paired comparison claimed"
+    },
+    "qualification": "Catalogue whole-segment hide-and-recover proxy. NOT the private organizer truth, NOT a competition score, NOT a projection."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_spearman": 0.004418360866901204,
+    "surface_max_3px_overlap": 0.12827322462420992,
+    "surface_passed": true,
+    "final_dots_max_abs_spearman": 0.005617985018538809,
+    "final_dots_max_3px_overlap": 0.15966431189249483,
+    "final_dots_passed": true,
+    "scope": "21 pinned rasters (GEMSDOE24/25/27/28/30/31/32/33/36 focus + local GEMSDOE33)"
+  },
+  "leakage_canary": {
+    "passed": true,
+    "max_two_sided_auc": 0.5059841739269444,
+    "features": {
+      "basement_step_surface": {
+        "pooled_auc": 0.5007265680765435,
+        "leakage_suspected": false,
+        "folds": [
+          {
+            "fold": "NW",
+            "auc": 0.4996,
+            "positives": 10165,
+            "background": 15000
+          },
+          {
+            "fold": "NE_LidarGapHeavy",
+            "auc": 0.5059841739269444,
+            "positives": 12511,
+            "background": 15000
+          },
+          {
+            "fold": "SW",
+            "auc": 0.49960001555555544,
+            "positives": 15000,
+            "background": 15000
+          },
+          {
+            "fold": "SE",
+            "auc": 0.49782418666666667,
+            "positives": 15000,
+            "background": 15000
+          }
+        ]
+      }
+    }
+  },
+  "raster_sha256": "b4cddc4c59975ab76169f15d284f9a138c6452ef11bfec5a226a2368b2a8f00e",
+  "nan_twin_sha256": "d41838ba5ef52962c0a373de08859fb2e615282976d12e97e90f710905f26150",
+  "submission": {
+    "file": "gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros.tif",
+    "zip": "gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros.zip",
+    "note": "GEMS33 A33-R6-BASESTEP: basement step x conductive cover x gravity edge, CELF300 37654d | gate negative | 4e0c37d1d539",
+    "name": "gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros",
+    "ok_to_submit": false
+  },
+  "promotion_assessment": {
+    "eligible_for_selector": false,
+    "verdict": "negative",
+    "gates": {
+      "screen_beats_recorded_b1_with_positive_ci": false,
+      "confirm_beats_recorded_b1_with_positive_ci": false,
+      "surface_not_duplicate": true,
+      "final_dots_not_duplicate": true,
+      "format_audit_pass": true,
+      "canary_pass": true
+    },
+    "failed_gates": [
+      "screen_beats_recorded_b1_with_positive_ci",
+      "confirm_beats_recorded_b1_with_positive_ci"
+    ]
+  },
+  "runtime_seconds": 82.06
+}
