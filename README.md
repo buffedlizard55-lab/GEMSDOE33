@@ -1,19 +1,27 @@
 # GEMSDOE33 — DOE GEMS Fault Discovery Project (DrivenData #306)
 
 > **Read first, every session:** [`standing_prompt.md`](standing_prompt.md) (the full standing brief with dated addenda) and [`AGENTS.md`](AGENTS.md).
-> **Latest work:** [`knowledge/22_b2_forensics_and_fsml_slate_20261026.md`](knowledge/22_b2_forensics_and_fsml_slate_20261026.md) (why B2 0.2778\* won — one emission family, byte-verified) + [`knowledge/23_fsml_results_20261026.md`](knowledge/23_fsml_results_20261026.md) (FSML duplicate; FSML2-CC unique-but-negative). FSML2-CC TIFF is the newest unique download, **NOT OK TO SUBMIT**. Parallel selector-safety hardening: [`knowledge/22_selector_safety_review_20261026.md`](knowledge/22_selector_safety_review_20261026.md). Owner-mirror data/cache remain local and git-ignored; SHA pins do not authenticate organizer provenance.
+> **Latest work:** [`knowledge/22_b2_forensics_and_fsml_slate_20261026.md`](knowledge/22_b2_forensics_and_fsml_slate_20261026.md) (why B2 0.2778\* won — one emission family, byte-verified) + [`knowledge/23_fsml_results_20261026.md`](knowledge/23_fsml_results_20261026.md) (FSML duplicate; FSML2-CC unique-but-negative). Latest (2026-10-27): Experiment 1 `A33-R5-THKCOND` — preregistered [`knowledge/26_thk_cond_slate_20261027.md`](knowledge/26_thk_cond_slate_20261027.md); unique vs all 21 registry rasters and format-valid, but holdout **negative** (screen vs matched-random Δ −0.0512, 0/4 folds; confirmation CI spans baseline). **NOT OK TO SUBMIT**. FSML2-CC below is the previous unique download, also **NOT OK TO SUBMIT**. Parallel selector-safety hardening: [`knowledge/22_selector_safety_review_20261026.md`](knowledge/22_selector_safety_review_20261026.md). Owner-mirror data/cache remain local and git-ignored; SHA pins do not authenticate organizer provenance.
 > **Core values:** Maximize P(Win) · Own the Outcome.
 > **Labels:** every number is HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED. Leaderboard figures marked \* are USER/OWNER-REPORTED.
 
-## 🔴 Current decision (2026-10-26, after FSML2-CC): **NO raster is OK TO SUBMIT** · newest unique TIF is **OK TO DOWNLOAD for research only**
+## 🔴 Current decision (2026-10-27, after A33-R5-THKCOND): **NO raster is OK TO SUBMIT** · newest unique TIF is **OK TO DOWNLOAD for research only**
 
 | Question | Answer (decided by code: [`scripts/select_submission.py`](scripts/select_submission.py) → [`docs/data/submission_selection.json`](docs/data/submission_selection.json)) |
 |---|---|
-| **OK TO DOWNLOAD?** | **✅ YES, research only.** Newest unique file: [`gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.tif`](docs/downloads/gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.tif) — generated this session, **not a copy of any previous submission**: unique vs 22 registry rasters (surface worst 3-px overlap `65.44% ≤ 70%`; final dots max `|ρ|=0.0191`, overlap `40.68%`). Saved-byte audit: single-band `float32`, `EPSG:32611`, `3730×3292`, template transform, whole array finite with values exactly `{0,1}` — its values cannot themselves violate a `[0,1]` range check (portal acceptance still unverified; NaN twin included). |
-| **OK TO SUBMIT?** | **🛑 NO — do not spend a slot.** FSML2-CC failed both holdout comparisons vs in-run CSHT. HOLDOUT-DTI (`gems-segment-pooled-v1`, `60,988` withheld positives): screen `0.110427 [0.1009, 0.1203]` vs CSHT `0.135672`, paired Δ `−0.025246 [−0.0355, −0.0151]`, `0/4` folds; confirmation `0.103077 [0.0941, 0.1129]` vs `0.132066`, Δ `−0.028989 [−0.0410, −0.0174]`, `0/4`. These are catalogue-proxy numbers, **not leaderboard estimates** — no numeric public score is estimable (the proxy anti-ranks the public B2 ladder; [`knowledge/22`](knowledge/22_b2_forensics_and_fsml_slate_20261026.md) §3). Selector: **0 eligible of 13** run cards. |
+| **OK TO DOWNLOAD?** | **✅ YES, research only.** Newest unique file: [`gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.tif`](docs/downloads/gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.tif) — generated this session under a SHA-frozen preregistration ([`knowledge/26_thk_cond_slate_20261027.md`](knowledge/26_thk_cond_slate_20261027.md)), **not a copy of any previous submission**: unique vs all 21 registry rasters covering the 9 focus sites (surface max 3-px overlap `20.50% ≤ 70%`; final dots max `|ρ|=0.0050`, overlap `16.91%`). Saved-byte audit: single-band `float32`, `EPSG:32611`, `3730×3292`, template transform, whole array finite in `[0,1]` — its values cannot themselves violate a `[0,1]` range check (portal acceptance still unverified; NaN twin included). |
+| **OK TO SUBMIT?** | **🛑 NO — do not spend a slot.** A33-R5-THKCOND failed the preregistered holdout gates vs the recorded regional baseline: screen HOLDOUT-DTI `0.129867 [0.10808, 0.14985]` (CI spans baseline `0.112418`), confirmation `0.108341 [0.08923, 0.12829]` vs baseline `0.115122`, and vs matched-random control paired Δ `−0.05113 [−0.07164, −0.03015]`, `0/4` folds — worse than random placement at the same dot budget. These are catalogue-proxy numbers, **not leaderboard estimates** — no numeric public score is estimable. Selector: **0 eligible of 14** run cards. |
 | **Why did GEMSDOE32 B2 get 0.2778\* — and can we beat it?** | Byte-verified this session ([`knowledge/22`](knowledge/22_b2_forensics_and_fsml_slate_20261026.md)): **all nine focus sites' best files are one emission family** — thinnings/prunings of the 121,131-px H19-5 binary mask (0.1922\* → 60,069 dots 0.2477\* → 44,090 0.2600\* → −flank≤1px 40,199 0.2708\* → −flank≤2px **37,654 = B2 0.2778\***; GEMSDOE36's 0.2750\* file contains B2's dots exactly +1,200). Mechanism: kernel-saturation + catalogue-flank FP-mass deletion under α=0.2/β=0.8 DTI. The fold-safe re-derivation of the H19-5 recipe (FSML/FSML2) ran this session and did **not** reproduce its advantage — **nothing measured here beats 0.2778\***, and B2-family dots are prior art that must not be copied or re-submitted. |
 
-**Newest unique artifact — FSML2-CC (research only, NOT OK TO SUBMIT):**
+**Newest unique artifact — A33-R5-THKCOND (2026-10-27, research only, NOT OK TO SUBMIT):**
+- **[Download the [0,1] GeoTIFF](docs/downloads/gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.tif)** · [single-TIFF ZIP](docs/downloads/gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.zip) · [NaN twin](docs/downloads/gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-nan.tif) · [run card](evidence/a33_r5_thkcond_run_card_20261027.json) · [preregistration slate](knowledge/26_thk_cond_slate_20261027.md) · [experiment evidence](evidence/a33_r5_thkcond_experiment_20261027.json)
+- Name: `gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros`
+- Note (132/140): `GEMS33 A33-R5-THKCOND: radiometric Th/K x conductivity x shallow cover x gravity edge, CELF300 37654d | gate negative | f47ef136b543`
+- SHA-256: `0aa610b0b6ace73baecfb819fe77e982038710ea73c12686f74e2ebb05e6a5ff`
+- Holdout: screen `0.129867 [0.10808, 0.14985]` vs recorded B1 `0.112418` (CI spans baseline); confirmation `0.108341 [0.08923, 0.12829]` vs `0.115122`; vs matched-random paired Δ `−0.05113 [−0.07164, −0.03015]`, `0/4` folds. Uniqueness: final dots max `|ρ|=0.0050`, max 3-px overlap `16.91%` vs all 21 registry rasters. Format: saved-byte validator pass, whole array finite in `[0,1]`.
+- Verdict: **unique and format-valid, but negative holdout — download for research only, do not submit**. No organizer score is estimated or claimed.
+
+**Previous unique artifact — FSML2-CC (2026-10-26, research only, NOT OK TO SUBMIT):**
 - **[Download the [0,1] GeoTIFF](docs/downloads/gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.tif)** · [single-TIFF ZIP](docs/downloads/gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.zip) · [NaN twin](docs/downloads/gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-nan.tif) · [run card](evidence/fsml2_run_card_20261026.json) · [forensics + slate](knowledge/22_b2_forensics_and_fsml_slate_20261026.md) · [results](knowledge/23_fsml_results_20261026.md)
 - Name: `gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros`
 - Note (77/140): `GEMS33 FSML2-CC V1_cc6 spyPU+worm+line CELF 37654d | NEGATIVE | 6fd4410bbaee`
@@ -246,19 +254,18 @@ Source: user request (parallel-run protocol, GEMSDOE24/25/27/28/30/31/32/33/36 f
 - GEMSDOE30: 91eae1ca (44,090 dots, 0.2600*); MSDB1 (44,090 dots, 0.1462*)
 - GEMSDOE31: solo d2.8 (40,199 dots, 0.2708*)
 - GEMSDOE32: B2 (37,654 dots, 0.2778*) — 9-site reported peak; exact pixel-algebraic mechanism known (pruning of d=2.8 by halo removal)
-- GEMSDOE33: A33-R2-CSHT (37,654 dots, HOLDOUT-DTI 0.136716/0.131169, format pass, duplicate-blocked by surface convergence with G30 MSDB1); H33d analog (41,865 dots, 0.2632*)
+- GEMSDOE33: A33-R2-CSHT (37,654 dots, HOLDOUT-DTI 0.136716/0.131169, format pass, duplicate-blocked by surface convergence with G30 MSDB1); H33d analog (41,865 dots, 0.2632*); **A33-R5-THKCOND (2026-10-27, 37,654 dots, format-valid, UNIQUE vs all other focus-site rasters, holdout NEGATIVE: screen vs matched-random Δ −0.0512, 0/4 folds — download OK, submit NO)**
 - GEMSDOE36: Anderson (38,854 dots, 0.2750*); exact B2 + 1,200 tip dots
 
 *All historical DTI figures are USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED); aspirational leaderboard context 0.3195 / 0.4413 unverified; see registry/focus_rasters_20261026.json and evidence files for audit.
 
-### New Candidate Generated This Session
-- Name: gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros / -nan
-- Mechanism: A33-R2-HMDT (magnetite-destruction × clay-cap coherence + 300m CELF)
-- Dots: 42,000; overlap with parents: 0%; Spearman ρ vs registry: ≤ 0.0046
-- Format: PASS; Uniqueness: PASS
-- Holdout: NOT MEASURED (no feature stack restored; derivation from validated parents via interaction)
-- Verdict: negative-on-score-unknown / positive-on-format-and-uniqueness — download OK, submit as experimental only with awareness no holdout improvement over 0.2778 demonstrated.
-- **2026-10-26 A33-R3 correction (`IR-33-HMDT-UNGATED-01`): OK TO SUBMIT = NO.** Holdout was never measured, so this candidate cannot satisfy the standing rule "don't spend a slot on an idea that hasn't beaten the current holdout best". The automated selector also finds no run card for it.
+### New Candidate Generated This Session (2026-10-27, Experiment 1)
+- Name: `gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros` / `-nan`
+- Mechanism: **A33-R5-THKCOND** — radiometric alteration (GeoDAWN Th/K × UK) × conductive reservoir (`cond_surf`) × shallow-basement gate (`depth_to_base_surf`) × gravity-margin edge (`iso_grav_anom_hg`); thresholds fit on catalogue-negative background cells only; label-free, catalogue-independent detector; 300 m CELF emission. Preregistered [`knowledge/26_thk_cond_slate_20261027.md`](knowledge/26_thk_cond_slate_20261027.md).
+- Dots: 37,654; overlap with parents: n/a (new physical axis); final dots vs registry max |ρ| = 0.0050, max 3-px overlap 16.91% (all 21 registry rasters)
+- Format: PASS (saved-byte validator, whole array finite in [0,1]); Uniqueness: PASS vs GEMSDOE24/25/27/28/30/31/32/33/36 focus rasters + local GEMSDOE33
+- Holdout: MEASURED — screen `0.129867 [0.10808, 0.14985]`, confirmation `0.108341 [0.08923, 0.12829]` vs recorded regional baseline; vs matched-random paired Δ `−0.05113 [−0.07164, −0.03015]`, `0/4` folds (worse than random at equal budget). Single-feature canary max AUC 0.5007 ≤ 0.90.
+- Verdict: **negative** — unique and format-valid, **OK TO DOWNLOAD for research only, NOT OK TO SUBMIT**. No holdout improvement demonstrated; no score above any leaderboard value is claimed or projected.
 
 ---
 
@@ -269,15 +276,31 @@ Source: user request (parallel-run protocol, GEMSDOE24/25/27/28/30/31/32/33/36 f
    - If it stays near 0.16, the B2 family's edge is real signal. Port that mechanism into a new, non-duplicate lane, then apply B2-style halo pruning (d_cat > 2 px).
    - If it falls to about 0.13, the holdout cannot rank the B2 family, and any future slot decision must rely on other evidence.
 2. **A33-R3-SGC** (reserve, low cost): weight by conformity to the regional structural grain.
-3. **`A33-R4-COULOMB`** (new, Rank 1 of the `A33-R3-LCHC` Round-4 slate; recommended): Okada elastic Coulomb-stress-transfer from mapped USGS Quaternary Fault and Fold Database traces (already pinned locally as `data/gdr_qfaults_traces.csv` / `data/qfaults_v2_in_footprint.json`, zero new data needed) — a genuinely different physical mechanism (static stress triggering, not geometric proximity) from every lane tried so far. Full derivation: [`knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md`](knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md).
-4. **`A33-R4-CURVTRACE`** (new, Rank 2 of the same slate): multi-azimuth curvilinear 1 m LiDAR trace-continuity detector, the mechanism `knowledge/13`/`knowledge/17` both independently identify as what would actually be required to beat `GEMSDOE32` `B2` (`0.2778`*).
-5. **Outside the sandbox:** fetch the USGS 3DEP absolute DEM to run the Lahontan-shoreline rejection test (LSRT), and DOE GDR #1391 for paleotemperature conduits.
+3. **`A33-R4-COULOMB`** (blocked — do not run as staged): Okada elastic Coulomb-stress-transfer from mapped Quaternary traces would be a genuinely different physical mechanism (static stress triggering), but the staged `gdr_qfaults_traces.csv` has centroids/slip without strike or vertices, and `qfaults_v2_in_footprint.json` declares a geographic bbox whose coordinates do not align with the EPSG:32611 template grid. Centroid-only approximation is not Okada stress transfer and would risk arbitrary, catalogue-correlated output (likely duplicate-guard failure). Unblock condition: trace polylines with a declared CRS aligned to EPSG:32611 (official review: USGS Quaternary Fault & Fold Database via ScienceBase, or DOE [GDR #1391](https://gdr.openei.org/submissions/1391)) plus a unit-verified Okada ΔCFS implementation, then a surface duplicate screen. [`knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md`](knowledge/17_a33_r3_lchc_result_and_round4_hypothesis_slate_20261026.md); [`knowledge/26_thk_cond_slate_20261027.md`](knowledge/26_thk_cond_slate_20261027.md) §Candidate 2.
+4. **`A33-R4-CURVTRACE`** (new, Rank 2 of the same slate): multi-azimuth curvilinear 1 m LiDAR trace-continuity detector, the mechanism `knowledge/13`/`knowledge/17` both independently identify as what would actually be required to beat `GEMSDOE32` `B2` (`0.2778`*). Blocked: raw 1 m USGS 3DEP tiles are not staged and the tile host is outside this session's outbound allowlist.
+5. **`A33-R5-BASESTEP`** (viable, not yet run): `depth_to_base_surf` first derivative × `ext_TMI_up150` × `cond_surf` targeting buried listric soles under piedmont cover; all inputs staged; low–moderate cost; moderate duplicate risk (gravity-gradient family). [`knowledge/26_thk_cond_slate_20261027.md`](knowledge/26_thk_cond_slate_20261027.md) §Candidate 4.
+6. **Outside the sandbox:** fetch the USGS 3DEP absolute DEM to run the Lahontan-shoreline rejection test (LSRT), and DOE GDR #1391 for paleotemperature conduits (2 m probes / sinter inventory carry the hard-blocked `dist_known_fault_px` column — IR-33-CSV-DIST-FAULT-01).
 
 **Limitations:**
 - Hide-and-recover holdout withholds whole catalogue systems at least 600 m from visible faults. It cannot measure near-catalogue strands, and it is a proxy, not the private expert truth.
 - HOLDOUT-DTI and public leaderboard values are on different scales (≈0.13–0.16 vs ≈0.27\*) and must not be converted into each other.
 - No organizer receipts exist in this repository, so every leaderboard figure is user/owner-reported. The two leader values in the brief (0.4413 vs 0.3195) conflict and are unverified.
 - The weekly slot count cannot be observed from this sandbox, because the rules forbid DrivenData access. The selector's YES/NO covers science and format only.
+
+### 2026-10-27 session brief (distilled standing request — read at the start of every session)
+
+**Mission:** place top of the DrivenData #306 DOE GEMS fault-discovery leaderboard with a genuine, unique, downloadable submission; never relabel a projection as a score, never copy a previous submission as a new model, never spend a weekly slot on an unvalidated idea.
+
+**Required at all times, visible on the site:**
+1. **Executive summary per focus site** (GEMSDOE24/25/27/28/30/31/32/33/36) naming the best reported submission and why, in a table listing: file to download, estimated score (labelled HOLDOUT-DTI proxy or owner-reported; never a leaderboard estimate unless organizer-confirmed), and whether it is a unique submission unlike any other GEMSDOE site listed.
+2. **A unique TIF submission ready to download** at the top of the project site, generated independently of any previous submission, with an unmistakable OK TO DOWNLOAD / OK TO SUBMIT verdict (format gates + uniqueness vs all registry rasters + holdout status), plus `.tif` and single-TIFF `.zip` download links, a unique submission name, a note ≤ 140 characters, and SHA-256.
+3. **How-to-submit subpage** (`docs/executive-summary.html`) explaining exactly how to make a submission: file, note, portal steps, slot check, and saving the organizer receipt as the only thing that makes a score ORGANIZER-CONFIRMED.
+4. **Zero-human-inspector validation:** every gate (leakage canaries, spatially blocked holdout vs matched controls, surface + final-dot duplicate guards, saved-byte format audit) runs automatically in-project via `scripts/validate_submission.py`, `scripts/select_submission.py`, and the campaign runners.
+5. **New hypotheses before implementing:** 3–5 ranked geological hypotheses (layers, physical signature, catalogue-missing rationale, distinction from prior work, expected-improvement rank, cost, named free official source + availability check), the top viable candidate validated on the spatially-blocked holdout before any slot is considered (`knowledge/26_thk_cond_slate_20261027.md` this session).
+6. **Every number labelled:** HOLDOUT-DTI (evaluator version, withheld positives, 95% CI) or ORGANIZER-CONFIRMED (submission-page receipt); projections are never scores.
+7. **No DrivenData login/upload/scraping from code** (Terms of Use); official links provided for manual review; irregularities flagged in `registry/irregularities.json`.
+
+**2026-10-27 state:** `gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.tif` is the unique new TIF — ✅ OK TO DOWNLOAD, 🛑 OK TO SUBMIT: NO (negative holdout). Selector: 0 eligible of 14 run cards. No slot spent; no upload made.
 
 ## Standing request reaffirmed — 2026-10-26 selector-safety continuation
 

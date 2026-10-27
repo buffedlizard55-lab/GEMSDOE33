@@ -4,7 +4,22 @@
 <title>GEMSDOE33 · Evidence-led fault discovery</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
 <p>DrivenData #306 · evidence-led research · review status 2026-10-26</p><nav class="nav" aria-label="Primary"><a href="index.html" aria-current=page>Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
-<main class="wrap"><div class="hero-download" id="fsml2-cc">
+<main class="wrap"><div class="hero-download" id="thkcond">
+<h2>NEW UNIQUE TIF (2026-10-27, A33-R5-THKCOND) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
+<p><span class="badge good">UNIQUE vs all 21 registry rasters (all 9 focus sites + local GEMSDOE33): final dots max |ρ| 0.0050 ≤ 0.90; max 3-px overlap 16.9% ≤ 70% — NOT a copy of any previous submission</span>
+<span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, template 100 m geotransform, whole array finite in [0,1] (37,654 binary dots; 0 NaN inside footprint)</span>
+<span class="badge bad">HOLDOUT GATE FAILED — screen 0.1299 [0.1081, 0.1498] and confirmation 0.1083 [0.0892, 0.1283] do not strictly beat the recorded regional baseline; vs matched-random control Δ −0.0512 [−0.0716, −0.0301], 0/4 folds — DO NOT SPEND A SLOT</span></p>
+<p><b>What it is:</b> the first label-free radiometric-primary detector in this repo — GeoDAWN airborne Th/K alteration ratio × conductivity conduit score, gated by shallow basement depth and gravity-margin edge; thresholds fit on catalogue-negative background cells only; 300 m triangular-kernel CELF placement of 37,654 dots, >2 px off the catalogue. Preregistered in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/26_thk_cond_slate_20261027.md">knowledge/26_thk_cond_slate_20261027.md</a> (SHA-256 961631a7…).</p>
+<p><a class="btn" href="downloads/gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.tif">⬇ Download unique A33-R5-THKCOND GeoTIFF (research only)</a> <a class="btn alt" href="downloads/gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.zip">Single-TIFF .zip</a> <a class="btn alt" href="downloads/receipt-gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.json">Validator receipt JSON</a> <a class="btn alt" href="data/a33_r5_thkcond_run_card_20261027.json">Run card JSON</a> <a class="btn alt" href="executive-summary.html">Full executive summary &amp; how to submit &rarr;</a></p>
+<table><tbody>
+<tr><th>Unique submission name</th><td><code>gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros</code></td></tr>
+<tr><th>Note (≤140 characters)</th><td><code>GEMS33 A33-R5-THKCOND: radiometric Th/K x conductivity x shallow cover x gravity edge, CELF300 37654d | gate negative | f47ef136b543</code> (132/140)</td></tr>
+<tr><th>SHA-256 (.tif)</th><td><code>0aa610b0b6ace73baecfb819fe77e982038710ea73c12686f74e2ebb05e6a5ff</code></td></tr>
+<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Failed gates: screen beat-baseline with strictly positive CI, confirmation beat-baseline, matched-random control. Automated selector: 0 eligible of 14 run cards. Slots spent: 0.</td></tr>
+</tbody></table>
+<p class="small"><b>Range-error note:</b> every cell of this <code>-zeros.tif</code> is finite and in [0,1] (re-opened and checked byte-wise), so its values cannot themselves violate a [0,1] range check. The <code>-nan.tif</code> twin follows the recorded null/NaN-outside wording. Portal acceptance of either encoding remains unverified; do not upload this negative artifact.</p>
+</div>
+<div class="hero-download" id="fsml2-cc">
 <h2>NEW UNIQUE TIF (2026-10-26, FSML2-CC) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
 <p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap 65.4% ≤ 70%; final dots 40.7%, max |ρ| 0.019 — NOT a copy of any previous submission</span>
 <span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1] (values exactly {0,1})</span>

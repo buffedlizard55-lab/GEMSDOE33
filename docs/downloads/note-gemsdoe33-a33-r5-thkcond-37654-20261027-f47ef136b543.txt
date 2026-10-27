@@ -1,0 +1,1 @@
+GEMS33 A33-R5-THKCOND: radiometric Th/K x conductivity x shallow cover x gravity edge, CELF300 37654d | gate negative | f47ef136b543

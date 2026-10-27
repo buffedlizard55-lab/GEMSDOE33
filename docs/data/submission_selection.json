@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-26T22:55:04+00:00",
+  "generated_utc": "2026-10-27T17:47:46+00:00",
   "selector": "scripts/select_submission.py (automated, fail-closed)",
   "ok_to_submit": false,
   "decision": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
@@ -97,6 +97,29 @@
       "note": "GEMS33 A33-R3-LLC V2_gamma05: scarp line-integral x CSHT prior, CELF300 37654d | NEGATIVE | 7f91f9f3ced9",
       "sha256": "76f9e157d01bb9bec2d98c3c5941b6114e06e0f439272d5f140af6e3584c8825",
       "confirm_holdout_dti": 0.13150573239542543,
+      "eligible": false
+    },
+    {
+      "run_card": "evidence/a33_r5_thkcond_run_card_20261027.json",
+      "campaign": "A33-R5-THKCOND",
+      "verdict": "negative",
+      "submission_name": "gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros",
+      "file": "gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros.tif",
+      "checks": {
+        "verdict_promote": false,
+        "promotion_gates_all_pass": false,
+        "file_exists": true,
+        "sha256_matches_run_card": true,
+        "format_audit_pass_on_saved_bytes": true,
+        "all_cells_finite_and_in_0_1": true,
+        "zip_single_geotiff_same_bytes": true,
+        "note_1_to_140_chars": true,
+        "confirmation_dti_finite_in_0_1": false
+      },
+      "format_audit_failures": [],
+      "note": "GEMS33 A33-R5-THKCOND: radiometric Th/K x conductivity x shallow cover x gravity edge, CELF300 37654d | gate negative | f47ef136b543",
+      "sha256": "0aa610b0b6ace73baecfb819fe77e982038710ea73c12686f74e2ebb05e6a5ff",
+      "confirm_holdout_dti": null,
       "eligible": false
     },
     {
