@@ -27,7 +27,7 @@ def test_four_new_hypotheses_are_blocked_not_viable():
     assert all(h["official_sources"] and h["non_fault_mimic"] for h in r["candidates"])
 
 
-def test_site_exposes_current_gates_and_no_false_unique_download_claim():
+def test_site_exposes_current_gates_and_current_provenance():
     hero = build_site.a33_r3_llc_hero()
     assert "OK TO DOWNLOAD: YES" in hero
     assert "OK TO SUBMIT: NO" in hero
@@ -35,14 +35,16 @@ def test_site_exposes_current_gates_and_no_false_unique_download_claim():
     assert "submission_selection.json" in hero
     assert "do not spend a weekly slot" in hero
     latest = build_site.build_focus_review()
-    assert "132 ordered comparisons" in latest
-    assert "0.967587" in latest
-    assert "NOT a complete global uniqueness registry" in latest
-    assert "not a request for a human scientific inspector" in latest
-    assert "Round-4 feasibility decision" in latest
-    assert "round4-run-card.json" in latest
+    assert "2026-10-27 repository review — three passes" in latest
+    assert "17 of 17" in latest
+    assert "121 cached channels" in latest
+    assert "0 eligible of 13" in latest
+    assert "No experiment was run" in latest
+    assert "not organizer" in latest.lower()
+    assert "NOT OK TO SUBMIT" in latest
+    executive = build_site.build_exec()
     for i in (24, 25, 27, 28, 30, 31, 32, 33, 36):
-        assert f"GEMSDOE{i}" in latest
+        assert f"GEMSDOE{i}" in executive
 
 
 def test_current_card_never_reuses_historical_holdout_as_current():

@@ -114,7 +114,7 @@ def page(title: str, body: str, active: str) -> str:
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>{esc(title)}</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-26</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
+<p>DrivenData #306 · evidence-led research · review status 2026-10-27</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
 <main class="wrap">{body}</main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>"""
@@ -241,16 +241,16 @@ def fsml2_hero() -> str:
     u = card["correlation_overlap_vs_registry"]
     surf = u["surface_checks_all_variants"][sel]
     return f"""<div class="hero-download" id="fsml2-cc">
-<h2>NEW UNIQUE TIF (2026-10-26, FSML2-CC) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
-<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap {100*surf['max_preview_fraction_within_3px']:.1f}% ≤ 70%; final dots {100*u['final_dots_max_3px_overlap']:.1f}%, max |ρ| {u['final_dots_max_abs_spearman']:.3f} — NOT a copy of any previous submission</span>
+<h2>LATEST UNIQUE RESEARCH TIFF (generated 2026-10-26; not generated in this review) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
+<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap {100*surf['max_preview_fraction_within_3px']:.1f}% ≤ 70%; final dots {100*u['final_dots_max_3px_overlap']:.1f}%, max |ρ| {u['final_dots_max_abs_spearman']:.3f} — passes the checked registry screen (not global uniqueness proof)</span>
 <span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1] (values exactly {{0,1}})</span>
 <span class="badge bad">HOLDOUT GATE FAILED vs CSHT (0/4 + 0/4 folds) — DO NOT SPEND A SLOT</span></p>
 <p><b>What it is:</b> corroboration-count fusion — 4 fold-safe spy-PU physics experts + 2 label-free lines
 (multiscale geopotential worms; strike-integrated LiDAR scarp lines); a pixel ranks by how many independent
 lines place it in their top decile. CELF-300 m dotted emission, {bud:,} dots, 0 on catalogue. It is the fold-safe
 re-derivation of the H19-5 multi-line idea that produced the 0.2778* B2 family (<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/22_b2_forensics_and_fsml_slate_20261026.md">forensics + slate</a>).</p>
-<div class="scroll"><table><thead><tr><th>File to download</th><th>HOLDOUT-DTI (gems-segment-pooled-v1, 60,988 withheld positives) — NOT a leaderboard estimate</th><th>Unique vs all 9 focus sites' registry?</th><th>OK to submit?</th></tr></thead><tbody>
-<tr><td><code>{sub['file']}</code></td><td>screen {hs[sk]['dti']:.4f} [{hs[sk]['ci95'][0]:.4f}, {hs[sk]['ci95'][1]:.4f}] vs CSHT {hs[ck]['dti']:.4f} (paired Δ {ps['paired_delta_dti']:+.4f} [{ps['paired_delta_ci95'][0]:+.4f}, {ps['paired_delta_ci95'][1]:+.4f}], {ps['fold_wins']}/4); confirmation {hc[sk]['dti']:.4f} vs {hc[ck]['dti']:.4f} (Δ {pc['paired_delta_dti']:+.4f} [{pc['paired_delta_ci95'][0]:+.4f}, {pc['paired_delta_ci95'][1]:+.4f}], {pc['fold_wins']}/4). <b>Public score: not estimable</b> — the catalogue proxy anti-ranks the public B2 ladder on the emission axis (measured), so no numeric projection is defensible.</td><td><b>YES</b> — passes surface + final-dot guards vs all 22 registry rasters (B2-family included)</td><td><b>NO</b> — holdout gate failed; research only</td></tr>
+<div class="scroll"><table><thead><tr><th>File to download</th><th>HOLDOUT-DTI (α=0.2, β=0.8, 300 m triangular kernel; gems-segment-pooled-v1, 60,988 withheld positives; 10 km block-bootstrap 95% CI) — NOT a leaderboard estimate</th><th>Unique vs all 9 focus sites' registry?</th><th>OK to submit?</th></tr></thead><tbody>
+<tr><td><code>{sub['file']}</code></td><td>screen {hs[sk]['dti']:.4f} [{hs[sk]['ci95'][0]:.4f}, {hs[sk]['ci95'][1]:.4f}] vs CSHT {hs[ck]['dti']:.4f} [{hs[ck]['ci95'][0]:.4f}, {hs[ck]['ci95'][1]:.4f}] (paired Δ {ps['paired_delta_dti']:+.4f} [{ps['paired_delta_ci95'][0]:+.4f}, {ps['paired_delta_ci95'][1]:+.4f}], {ps['fold_wins']}/4); confirmation {hc[sk]['dti']:.4f} [{hc[sk]['ci95'][0]:.4f}, {hc[sk]['ci95'][1]:.4f}] vs CSHT {hc[ck]['dti']:.4f} [{hc[ck]['ci95'][0]:.4f}, {hc[ck]['ci95'][1]:.4f}] (paired Δ {pc['paired_delta_dti']:+.4f} [{pc['paired_delta_ci95'][0]:+.4f}, {pc['paired_delta_ci95'][1]:+.4f}], {pc['fold_wins']}/4). <b>Public score: not estimable</b>; this proxy is not calibrated to the public leaderboard.</td><td><b>YES vs the checked 22-raster registry only</b></td><td><b>NO</b> — holdout gate failed; research only</td></tr>
 </tbody></table></div>
 <p><a class="btn" href="downloads/{sub['file']}">⬇ Download unique FSML2-CC GeoTIFF (research only)</a> <a class="btn alt" href="downloads/{sub['zip']}">Single-TIFF .zip</a> <a class="btn alt" href="downloads/{sub['nan_twin']}">NaN-outside twin</a> <a class="btn alt" href="data/fsml2_run_card_20261026.json">Run card JSON</a></p>
 <table><tbody>
@@ -369,161 +369,97 @@ def submission_steps() -> str:
 
 
 def build_index() -> str:
-    body = f"""{fsml2_hero()}
+    body = f"""<div class="panel bad"><b>Current decision · 2026-10-27:</b> NO RASTER IS OK TO SUBMIT. The selector reports <b>0 eligible of 13</b>. This review ran no experiment, generated no new TIFF, selected no slot, and made no upload. The required single method lane is not identifiable in the current task; no hypothesis was self-selected. See <a href="{GITHUB}/knowledge/24_repository_review_20261027.md">the complete three-pass review</a> and <a href="data/20261027_review_card.json">the no-experiment card</a>.</div>
+{fsml2_hero()}
 {s33_seisdil_hero()}
 {a33_r3_llc_hero()}
 {dpps_hero()}
 {a33_r3_lchc_hero()}
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
-<h2>Current decision (2026-10-26)</h2>
-<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The newest unique research TIFF, FSML2-CC (top banner), is downloadable for research only and is NOT OK TO SUBMIT because both buffered hide-and-recover comparisons lost to the matched CSHT baseline (Δ −0.0252 / −0.0290, 0/4 folds each). The automated selector rechecked 13 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
-<p><b>Best reported focus-site artifact:</b> GEMSDOE32 B2, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with <b>0.2778 USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)</b>. Raster forensics reproduced it as deletion-only pruning of GEMSDOE28 H27-4; it is prior art and must not be copied or lightly altered. S33-SEISDIL and prior novel lanes have not demonstrated a basis to predict a competition score above it; do not project holdout DTI to the leaderboard. See the <a href="executive-summary.html">nine-site executive summary</a> and <a href="results.html">score provenance</a>.</p>
-<h2>What can be concluded about the cited scores?</h2>
-<p>Historical values in owner pages and the prompt are not organizer-confirmed without a submission receipt linked to the exact file. The prompt's current-leader values 0.3195 and 0.4413 conflict and are unverified here. The GEMSDOE28 owner page was recorded as labeling H27-4 unscored/research-only, so the premise that this raster earned 0.2708 is unresolved. These reports motivate forensic research; they are not independent validation or a score forecast.</p>
-<p>Do not refresh or copy the official leaderboard without the permission/API described in the project's terms review. See <a href="irregularities.html">irregularities</a> for known conflicts.</p>
+<h2>What the evidence supports</h2>
+<p><b>GEMSDOE32 B2's 0.2778 is USER/OWNER-REPORTED, not ORGANIZER-CONFIRMED.</b> Byte forensics show that B2 is a 37,654-dot exact subset of the 40,199-dot H27-4 emission. Removing low-credit catalogue-flank detections is a plausible metric explanation for the reported increase, not a causal proof against private labels. B2-family rasters are prior art and must not be copied or lightly perturbed. See the <a href="executive-summary.html">nine-site executive comparison</a> and <a href="results.html">score provenance</a>.</p>
+<p>No public-score estimate is made. The supplied leader claims 0.3195 and 0.4413 conflict and remain unverified. No DrivenData page or leaderboard was accessed for this review; automatic or manual monitoring is not permitted without recorded written consent or an authorized API.</p>
 <h2>Hypothesis and experiment status</h2>
-<p>Round 4 feasibility triage and ranked geological hypotheses are documented in <a href="hypotheses.html">Ranked hypotheses</a> and <a href="latest-review.html">the latest review</a>. A separately preregistered S33-SEISDIL lane was tested in the parallel-session PR #30; its unique TIFF is the research-only banner above and its result is negative. Its paired HOLDOUT-DTI intervals are not contest-score projections.</p>
-<div class="panel warn"><b>Data/provenance status:</b> 17 SHA-256-pinned owner-mirror inputs and the shared 121-channel cache were restored/rebuilt locally; these are git-ignored and not distributed by this GitHub Pages site. The S33-SEISDIL run card/unique TIFF are committed research artifacts, not organizer-authenticated inputs or an organizer score. No raster is slot-approved. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/21_post_merge_review_20261026.md">latest repository review</a> and <code>data/README.md</code>.</div>
-<h2>Our operating values</h2>
-<div class="grid-2"><div class="panel accent"><h3>Maximize P(Win)</h3><p>Prefer evidence that predicts useful hidden-fault detection, not a download or a hopeful score projection. No slot until a fresh, leakage-audited holdout improves over a matched baseline.</p></div><div class="panel accent"><h3>Own the Outcome</h3><p>Make failures visible, preserve provenance, correct misleading pages, and distinguish local format validation from scientific validity and organizer acceptance.</p></div></div>
-<h2>Use artifacts safely</h2>
-<p>The newest FSML2-CC TIFF is downloadable for research only and <b>must not be uploaded</b> because its holdout gate was negative. A33-R3-LLC and the other historical TIFFs are also research records or prior-site submissions, not approved new submissions. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
+<p>The three ranked 2026-10-27 candidates are qualitative proposals, not a lane assignment or numerical forecast. Cached channels are available locally from hash-pinned owner mirrors; the raw 1 m USGS 3DEP tiles required by the third idea are absent and blocked. See <a href="hypotheses.html">Ranked hypotheses</a> and <a href="latest-review.html">the latest audit</a>.</p>
+<div class="panel warn"><b>Provenance:</b> 17 SHA-256-pinned owner-mirror inputs matched their registered pins; the shared 121-channel cache was prepared locally and is git-ignored. Mirror-byte identity does not authenticate organizer origin, licensing, or completeness. The sample template exactly copies catalogue labels on the footprint, so it is grid/footprint metadata only—not truth.</div>
+<h2>Operating values</h2>
+<div class="grid-2"><div class="panel accent"><h3>Maximize P(Win)</h3><p>Prefer evidence over hopeful score projections. No slot until a fresh, leakage-audited holdout beats a matched baseline and all uniqueness, confirmation, format, and selector gates pass.</p></div><div class="panel accent"><h3>Own the Outcome</h3><p>Make failures visible, preserve provenance, correct misleading pages, and distinguish local format validation from scientific validity and organizer acceptance.</p></div></div>
+<p>See <a href="standing-prompt.html">the full operating brief</a> before using any artifact. The only existing current research download is FSML2-CC above; it is explicitly NOT OK TO SUBMIT.</p>
 """
     return page("GEMSDOE33 · Evidence-led fault discovery", body, "index.html")
 
 def build_exec() -> str:
-    tif = "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif"
-    note = ("GEMSDOE33 G33 tilt-gravity-lidar coherence TIFF; proxy holdout FAILED "
-            "dDTI -0.0907 0/4 folds; NOT cleared to submit. id 171b8b87dbf7")
-    focus = reg("focus_rasters_20261026.json").get("rasters", [])
-
-    def historical_download(site, score):
-        matches = [r for r in focus if r.get("site") == site
-                   and r.get("reported_dti") == float(score)]
-        if not matches:
-            return "No exact pinned file/score pairing; see registry"
-        r = matches[0]
-        if r.get("local_path"):
-            return local_link(r["local_path"].removeprefix("docs/"), Path(r["local_path"]).name)
-        url = f"https://github.com/{r['repo']}/blob/{r['ref']}/{r['path']}"
-        return f'<a href="{esc(url)}"><code>{esc(Path(r["path"]).name)}</code></a>'
-
+    site_rows = [
+        ("GEMSDOE24", "H25-1 · 60,069 dots · 0.2477*", "GVC1 · 0.0859*", "The recent GVC1 result is lower; both values are owner-reported."),
+        ("GEMSDOE25", "H19-5 d2.8 · 44,090 dots · 0.2600*", "H66 · 0.0742*", "H66 is a lower gravity-flank attempt; d2.8 belongs to the shared H19-5 emission family."),
+        ("GEMSDOE27", "topo-gap · 61,328 dots · 0.2449*", "H29 · 0.2190*; H31 · 0.2250*", "H29 is the strongest supplied independent non-H19-5 comparator; reports are not organizer-confirmed."),
+        ("GEMSDOE28", "H36-1 · 37,660 dots · 0.2710*; H27-4 · 0.2708*", "S18 · 0.0217*; S21 · 0.0206*", "The high-score files are in the H19-5 pruning family; the recent sparse results are much lower."),
+        ("GEMSDOE30", "d2.8 baseline · 44,090 dots · 0.2600*", "MSDB1 · 0.1462*", "The classic d2.8 raster is shared with GEMSDOE25; MSDB1 is a catalogue-supervised HGB reference."),
+        ("GEMSDOE31", "H27-4 solo d2.8 · 40,199 dots · 0.2708*", "H31R-1 · unscored; failed holdout gate", "H27-4 is a prior-art subset in the B2 pruning sequence; do not re-emit it."),
+        ("GEMSDOE32", "B2 · 37,654 dots · 0.2778*", "SBIR1 · unscored; failed holdout gate", "Highest supplied focus-site report; exact subset of H27-4, not a verified independent discovery."),
+        ("GEMSDOE33", "H33-D analog tip/stepover · 41,865 dots · 0.2632* (retired)", "S33-SEISDIL · 0.0963*", "Local research candidates are negative or duplicate-blocked; no GEMSDOE33 raster is submission-approved."),
+        ("GEMSDOE36", "Anderson · 38,854 dots · 0.2750*", "KPL36 · 0.1647*", "Anderson contains B2 plus 1,200 dots; not an independent high-scoring surface."),
+    ]
     rows = "\n".join(
-        f"<tr><td>{site}</td><td><code>{name}</code><br>{historical_download(site, score)}</td>"
-        f"<td>{score}</td><td>Not estimable from available evidence</td>"
-        f"<td>Historical submission, not new; global uniqueness not established</td>"
-        f"<td>NO</td><td>{status}</td></tr>"
-        for site, name, score, status in (
-            ("GEMSDOE24", "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan", "0.2477",
-             "Owner-reported; no organizer score/file receipt in this repo"),
-            ("GEMSDOE25", "dotted-h19-5-d2-8-20261002-e56ea318af89-nan", "0.2600",
-             "Owner-reported; same 44,090-dot dotted-h19-5 family as GEMSDOE24/GEMSDOE30"),
-            ("GEMSDOE27", "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan", "0.2449",
-             "Owner-reported; no organizer score/file receipt in this repo"),
-            ("GEMSDOE28", "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan", "0.2710",
-             "Owner-reported; GEMSDOE28 page labels H27-4 unscored/research-only; H27-4 at 0.2708 is also listed"),
-            ("GEMSDOE30", "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca-nanoutside", "0.2600",
-             "Owner-reported; shares the 44,090-dot dotted-h19-5 prediction with GEMSDOE24/GEMSDOE25"),
-            ("GEMSDOE31", "h27-4-solo-d28-20261004-8acb75e1-nan", "0.2708",
-             "Owner-reported; same 40,199-dot prediction family as GEMSDOE28 H27-4"),
-            ("GEMSDOE32", "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros", "0.2778",
-             "HIGHEST owner-reported focus-site value; reproduced pixel-exactly as deletion-only pruning of GEMSDOE28 H27-4 (40,199 → 37,654 dots; Spearman 0.9676 vs H27-4, 100% dot overlap within 3 px) — copying it would trip the lane duplicate gate"),
-            ("GEMSDOE33", "h33d-analog-tip-stepover-r30-20261004-cb490425926e", "0.2632",
-             "Owner-reported; local research artifact, no organizer receipt in this repo"),
-            ("GEMSDOE36", "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros", "0.2750",
-             "Owner-reported; MEASURED 2026-10-26: contains all 37,654 GEMSDOE32 B2 dots exactly + 1,200 extra dots (knowledge/22) — same emission family, not an independent surface"),
-        )
+        f"<tr><th>{esc(site)}</th><td>{esc(best)}</td><td>{esc(recent)}</td>"
+        f"<td>Not estimable</td><td>{esc(reading)}</td><td>NO</td></tr>"
+        for site,best,recent,reading in site_rows
     )
     body = f"""{fsml2_hero()}
-{s33_seisdil_hero()}
-{a33_r3_llc_hero()}
-{dpps_hero(include_b2_score=True)}
-{a33_r3_lchc_hero()}
-{a33_r2_csht_hero()}
-{round3_da_hgcm_hero()}
-<h2>Executive summary — per-site best submissions and how to submit</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest unique file (FSML2-CC, above) is <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. It failed the preregistered holdout gate. Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
-
-<h3>Exactly how a submission is made (when a future candidate passes every gate)</h3>
-<ol>
-<li><b>Check the banner at the top of this page.</b> Submit only if it says <code>OK TO SUBMIT: YES</code> for that exact filename. Today it says <b>NO</b> for every file on this site.</li>
-<li><b>Download the exact file only after the selector says OK TO SUBMIT: YES.</b> The <code>-zeros.tif</code> variant is finite in [0,1] across the whole array and passes the local range check, but the official instructions' outside-footprint null/NaN wording and the previously reported portal error are unresolved. No claim is made that zeros or NaN encoding is accepted by the live form; follow the current official format contract and do not upload while the selector says NO.</li>
-<li><b>Verify the bytes you downloaded</b> (optional, 10 seconds): SHA-256 must equal the hash in the banner table, and <code>python scripts/validate_submission.py --submission FILE.tif --template sample_submission.tif --strict-zero-outside</code> must print <code>"pass": true</code> (1 band, float32, EPSG:32611, 3730 × 3292, template transform, min 0.0 / max 1.0).</li>
-<li><b>Open the DrivenData submission form</b> (competition 306 → <i>New submission</i>): choose the <code>.tif</code> file (single-band GeoTIFF, or a .zip containing exactly one GeoTIFF, matching the format CRS/shape/geotransform).</li>
-<li><b>Paste the note exactly as given</b> in the banner table (≤ 140 characters) into the <i>Note</i> box, e.g. the DPPS provenance note above — the note is how you tell submissions apart later.</li>
-<li><b>Confirm a weekly slot is available</b> on the submission page, then submit once. Do not submit the same dots twice under different names.</li>
-<li><b>Save the organizer receipt/score screenshot</b> and add it to the repo: only an organizer receipt converts an owner-reported number into an ORGANIZER-CONFIRMED score. Until then every historical score on this page stays labelled owner-reported.</li>
-</ol>
-<div class="panel warn"><b>No human inspector is in this loop:</b> leakage canaries, spatially blocked holdout vs matched controls, surface+final-dots duplicate guards, and the saved-byte format audit all run automatically in-project (<code>scripts/run_dpps_campaign.py</code>, <code>scripts/validate_submission.py</code>). The only human step is the account-holder clicking upload in step 4–6, because this workspace has no DrivenData auth.</div>
-
-<h3>Which focus-site submission is the best to submit?</h3>
-<p>Among the nine focus sites (GEMSDOE 24, 25, 27, 28, 30, 31, 32, 33, 36), the highest owner-reported value is <b>GEMSDOE32 h33-h33-2-b2-...-zeros at 0.2778</b>, followed by GEMSDOE36 at 0.2750 and GEMSDOE28 h36-1 at 0.2710. <b>Every one of these values is an owner/user report: none is backed by an organizer submission-page receipt in this repository, and none is organizer-confirmed.</b> They are leads, not proven scores.</p>
-<div class="scroll"><table><thead>
-<tr><th>Site</th><th>Best owner-reported submission</th><th>Reported score (owner-reported, not organizer-confirmed)</th><th>Estimated leaderboard score</th><th>Unique new submission?</th><th>Submit this now?</th><th>Status / caveat</th></tr>
-</thead><tbody>
-{rows}
-</tbody></table></div>
-
-<h3>Why did GEMSDOE32 B2 score 0.2778 — and can we beat it?</h3>
-<p>We reproduced B2 pixel-exactly from the GEMSDOE28 H27-4 owner raster: it deletes 2,545 dots within 2 px of the catalogue and adds nothing (40,199 → 37,654 dots; Spearman ρ = 0.9676 vs H27-4; 100% of B2 dots within 3 px of H27-4 dots). Under the competition DTI (α=0.2 per false positive, β=0.8 per missed truth, 300 m kernel), every isolated prediction dot costs roughly 1 unit of weighted false-positive mass unless it lies within 300 m of a truth pixel, while dense clusters of dots share the same truth credit. Removing low-credit, catalogue-adjacent dots can therefore raise DTI even though no new fault is found: the most plausible mechanism is FP-mass reduction, not discovery. That is an inference from audited bytes, not proof, and no organizer receipt ties 0.2778 to B2's exact bytes.</p>
-<p>Can we beat it? Not demonstrated here. Every fold-safe surface in this repository reaches HOLDOUT-DTI 0.13&ndash;0.14. The newest, A33-R3-LLC, tied CSHT: &Delta; +0.0003 on the screen and &minus;0.0006 on confirmation, with both CIs spanning 0. The fixed H19-5 surface that B2 descends from is not fold-safe, and on the same withheld segments it reaches 0.162. That gap of +0.0242 [+0.0150, +0.0328] (4/4 folds) is either real signal or leakage. That experiment has now run (FSML/FSML2-CC, 2026-10-26): the fold-safe re-derivation with the cached channel stack did <b>not</b> reproduce the gap — the plain PU blend duplicated CSHT at the surface guard (87.5% 3-px overlap), and the unique corroboration-count variant scored HOLDOUT-DTI 0.1104/0.1031 vs CSHT 0.1357/0.1321. So H19-5’s advantage either uses information outside the cached stack (1 m DEM tiles, full-catalogue geometry) or is not fold-safe; it is not reproducible as a unique fold-safe lane here. The full public ladder (121,131-px mask 0.1922* → thinned 0.2477* → 0.2600* → flank-pruned 0.2708* → B2 0.2778*) is byte-verified in knowledge/22: every step is emission pruning of one mask, and uniform budget cuts were separately rejected on holdout (25,000 dots scored worse for both FSML2 and CSHT). An older candidate, G33-HA (tilt &asymp; 0 &times; gravity edge &times; LiDAR coherence), failed the catalogue-proxy holdout (confirmation &Delta;DTI &minus;0.0907, 0/4 folds; CI [&minus;0.1210, &minus;0.0594]). No score above 0.2778, or above any leaderboard value, is projected or claimed. The two leader values in the brief (0.3195 and 0.4413) conflict and are unverified in this checkout. Under the DrivenData Terms of Use, this workspace does not scrape or refresh the leaderboard.</p>
-
-<h3>Older H-N1 research GeoTIFF (archived; do not upload)</h3>
-<p><b>This is not the newest artifact and is not cleared for the competition.</b> Its catalogue-proxy holdout failed (confirmation ΔDTI −0.0907, 0/4 folds). The historical uniqueness audit covered only the then-pinned 12-raster registry; it is not a current uniqueness certificate.</p>
-<p><a class="btn alt" href="downloads/{tif}">Download archived H-N1 research GeoTIFF — NOT CLEARED FOR SUBMISSION</a></p>
-<ul><li>Artifact: <code>gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7</code></li><li>SHA-256: <code>403e6925a5b32a1ad79084636336c60dd4a4ce56aacacb66910542ace6683d44</code></li><li>Note (≤140 characters): <code>{note}</code></li><li>Verdict: <b>negative</b> — preserved as an older research result; format-valid but not slot-cleared. No organizer receipt exists.</li></ul>
-
-{submission_steps()}
-<h2>Steps for a future approved candidate (policy summary)</h2>
-<ol><li>Require a passing automatic evidence gate <b>and</b> a separate selector decision within the verified weekly cap. A <b>promote</b> research verdict alone is not slot clearance; if either is missing, do not upload.</li><li>Download the exact named single-band GeoTIFF (or a ZIP with exactly one GeoTIFF) and keep it unchanged.</li><li>Run <code>python scripts/validate_submission.py --submission PATH --template PATH</code> against the official/sample template available in the local cache. Review CRS, shape, transform, dtype, footprint values, and outside-footprint handling against current official instructions.</li><li>In the authenticated DrivenData submission form, select the TIFF, enter a distinct name and concise note (portal limit: concise, e.g. ≤ 140 characters in this project), and submit only if a competition slot is available and the submission rules permit it.</li><li>Save the organizer receipt. Only that receipt can confirm a score/file association; report the organizer score separately from holdout diagnostics.</li></ol>
-<div class="panel warn"><b>Outside-footprint semantics unresolved:</b> the repository's recorded official-format wording says null/NaN outside, while the owner separately reported a portal range error for a NaN-containing file; the exact rejected bytes and organizer diagnosis are not retained. A <code>-zeros.tif</code> passes the local all-array finite [0,1] check but may not match the null/NaN wording. Neither encoding has organizer acceptance evidence here. Do not upload while the selector says NO; for any future approved file, check the current official contract first.</div>
-<h3>What is required before the next competition submission</h3><ul><li>New spatially blocked holdout where every catalogue-derived feature, including baseline/pseudo-label surfaces, is rebuilt using fold-visible data only.</li><li>Feature-by-feature leakage canary; investigate AUC &gt; 0.90 before trusting a signal.</li><li>Predeclared experiment, matched budget/control, uncertainty interval, and uniqueness screen against accessible registry rasters.</li><li>Exact format check from source inputs plus saved-byte re-open; current validator requires installed rasterio/numpy.</li><li>All scientific/format inspections must be run automatically in-project. Only the final authorized account upload is outside this project; no human scientific inspector is required by the project gate. This workspace has no DrivenData auth and cannot upload or retrieve a receipt.</li></ul>
-<h2>Previous research artifacts (OK to download, DO NOT submit)</h2>
-{a33_r2_csht_hero()}
-{round3_da_hgcm_hero()}
+<h2>Executive comparison · GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36</h2>
+<div class="panel bad"><b>Current decision: NO RASTER IS OK TO SUBMIT.</b> The selector reports <b>0 eligible of 13</b>. No experiment or TIFF was produced in this 2026-10-27 review because the single assigned method lane is not specified. The existing FSML2-CC file above is downloadable for research only; its holdout is negative. No slot was selected and no upload was made.</div>
+<p>All public values below are <b>USER/OWNER-REPORTED, NOT ORGANIZER-CONFIRMED</b>. “Not estimable” means the available catalogue holdout does not provide a calibrated leaderboard-score estimate. No user-supplied leaderboard score is represented as current or verified.</p>
+<div class="scroll"><table><thead><tr><th>Focus site</th><th>Highest supplied report</th><th>Other recent report in supplied brief</th><th>Public-score estimate</th><th>Executive read</th><th>Submit?</th></tr></thead><tbody>{rows}</tbody></table></div>
+<p>Full 130-row USER-REPORTED score ledger (blank values preserved): <a href="{GITHUB}/registry/user_reported_scores_20261026.csv">CSV</a>. The pinned raster inventory contains 21 files and is not the complete set of all historical site submissions; hash pins verify mirror bytes only.</p>
+<h3>Why GEMSDOE32 B2 is reported at 0.2778</h3>
+<p>Byte-level forensics show a 37,654-dot B2 raster that is an exact subset of the 40,199-dot H27-4 raster: <b>2,545 deletions, zero additions</b>. H27-4 is itself a thinning of the 44,090-dot d2.8 H19-5 emission. The reported score sequence is 0.2600* → 0.2708* → 0.2778*. With DTI α=0.2 for weighted false positives, β=0.8 for weighted false negatives, and a 300 m triangular kernel, pruning detections near already mapped traces may reduce redundant false-positive cost while losing little weighted recall. This is a <b>plausible mechanism, not a causal demonstration</b>: the organizer's private truth and score-to-file receipt are unavailable. Do not copy or perturb B2-family rasters.</p>
+<h3>HOLDOUT-DTI is not a public-score estimate</h3>
+<p>The FSML2-CC candidate failed its matched CSHT comparisons on screen and independent confirmation; both use <code>gems-segment-pooled-v1</code>, 60,988 withheld positives, and 10 km spatial block-bootstrap 95% CIs. Details are in <a href="{GITHUB}/knowledge/23_fsml_results_20261026.md">the saved report</a> and <a href="{GITHUB}/evidence/fsml2_run_card_20261026.json">run card</a>. The informational fixed H19-5 surface is not fold-safe; do not treat it or any HOLDOUT-DTI value as a contest score.</p>
+<h3>Safe workflow for any future candidate</h3>
+<ol><li>Work only inside one explicit, assigned method lane; if none is identifiable, stop before experiments.</li><li>Freeze a preregistered hypothesis, mechanism, named non-fault mimic, source/availability check, and matched evaluation design.</li><li>Use whole-segment buffered hide-and-recover folds; derive all catalogue features from fold-visible faults and mask them pixel-exactly. Use the shared evaluator/writer, pooled DTI α=0.2, β=0.8, 300 m triangular kernel, and report evaluator version, withheld positives, and 95% CI.</li><li>Run each feature-alone leakage canary; AUC &gt;0.90 is leakage-suspect. Check continuous-surface uniqueness before placement and final dots. Stop if rank-correlation &gt;0.90 or more than 70% of candidate dots lie within 3 px of a registry raster.</li><li>Reopen saved bytes for CRS, shape, transform, dtype and value validation. Require screen, independent confirmation, uniqueness and selector gates before any submission decision. This workspace does not choose a weekly slot or upload.</li></ol>
+<div class="panel warn"><b>Outside-footprint convention remains unresolved.</b> The repository records null/NaN-outside wording, but no organizer receipt settles the reported range error or confirms zero-outside files. Local format success is not portal acceptance. Check the current official contract before any future approved upload.</div>
+<p>Official competition, USGS and DOE links are listed on the <a href="sources.html">sources page</a>; none was freshly authenticated in this review. See <a href="hypotheses.html">the ranked proposal slate</a> and <a href="latest-review.html">the full three-pass audit</a>.</p>
 """
-    return page("Executive summary & submission guidance · GEMSDOE33", body, "executive-summary.html")
+    return page("Executive comparison & submission guidance · GEMSDOE33", body, "executive-summary.html")
 
 def build_results() -> str:
-    body = f"""<h2>Results, score claims, and evidence boundaries</h2>
-<p><a href="latest-review.html">New: twelve-raster byte-level forensic review, GEMSDOE32 pruning recipe and automatic gate status</a> · <a href="{GITHUB}/knowledge/13_focus_forensics_g32_proof_and_a33_r2_results_20261026.md">2026-10-26 21-raster forensic proof &amp; A33-R2-CSHT report</a> · <a href="{GITHUB}/knowledge/16_a33_r3_llc_preregistration_and_result_20261026.md">A33-R3-LLC preregistration &amp; negative result</a> · <a href="{GITHUB}/registry/user_reported_scores_20261026.csv">full user-reported score list</a>.</p>
-<h3>2026-10-26 A33-R3-LLC (negative: ties CSHT)</h3>
-<p><b>HOLDOUT-DTI</b> (<code>gems-segment-pooled-v1</code>, 60,988 withheld): screen <code>0.137868</code> [0.1286, 0.1479] vs in-run CSHT <code>0.137555</code>, &Delta; +0.000313 [&minus;0.008009, +0.008288], 2/4 folds; confirmation <code>0.131506</code> [0.1208, 0.1414] vs <code>0.132066</code>, &Delta; &minus;0.000560 [&minus;0.009035, +0.007547], 2/4 folds. Informational H19-5 reference (not fold-safe): screen <code>0.162036</code>. Verdict <b>negative</b>; OK TO DOWNLOAD: YES · OK TO SUBMIT: NO.</p>
-<div class="panel bad"><b>No organizer-confirmed submission result is available in this checkout.</b> The leaderboard values in the user's research brief and owner-maintained GEMSDOE pages are historical reports, not organizer receipts linking scores to raster bytes. Do not infer or present projected scores.</div>
-<h3>2026-10-26 G33-DPPS local holdout (unique both stages; beats ablation, fails vs B1 — negative)</h3>
-<p><b>HOLDOUT-DTI</b> (<code>gems-segment-pooled-v1</code>, <code>60,988</code> withheld catalogue pixels): quadrant screen DPPS <code>0.095407</code> (95% CI <code>[0.084971, 0.106370]</code>) vs <code>B1_regional = 0.111285</code>, paired <code>Δ = −0.015878 [−0.028932, −0.002121]</code>, <b>1/4 folds</b>; diagonal-wedge confirmation <code>0.096015</code> (<code>[0.085295, 0.106776]</code>) vs <code>B1_regional = 0.114619</code>, paired <code>Δ = −0.018604 [−0.031369, −0.005925]</code>, <b>0/4 folds</b>. Against its own pixel-scarp ablation at identical CELF emission, DPPS won <b>8/8 folds</b> (screen <code>Δ = +0.022590 [+0.016578, +0.028826]</code>; confirmation <code>Δ = +0.023079 [+0.016931, +0.029462]</code>), so persistence + dip-projection carry real signal, but the preregistered system gate (beat B1) failed on both splits. Surface and final dots are unique vs all 25 registry rasters (final max 3-px overlap <code>44.62%</code>; <code>24.0%</code> vs GEMSDOE32 B2). Verdict: <b>negative (✅ OK TO DOWNLOAD · 🛑 OK TO SUBMIT: NO)</b>. Evidence: <a href="{GITHUB}/evidence/dpps_experiment_20261026.json">experiment JSON</a> · <a href="data/dpps_run_card_20261026.json">run card</a> · <a href="{GITHUB}/knowledge/15_dpps_results_20261026.md">interpretation</a>.</p>
-<h3>2026-10-26 A33-R2-CSHT local holdout (8/8 fold wins; surface duplicate-stopped)</h3>
-<p><b>HOLDOUT-DTI</b> (<code>gems-segment-pooled-v1</code>, <code>60,988</code> withheld catalogue pixels): primary quadrant screen <code>0.136716</code> (95% CI <code>[0.119069, 0.154424]</code>) vs <code>B1_regional = 0.112418</code> (<code>0.113244</code> recorded), paired <code>Δ = +0.024298 [+0.012427, +0.035833]</code>, <b>4/4 folds positive</b>; frozen orthogonal diagonal-wedge confirmation <code>0.131169</code> (<code>[0.115241, 0.146693]</code>) vs <code>B1_regional = 0.115122</code>, paired <code>Δ = +0.016047 [+0.003817, +0.028030]</code>, <b>4/4 folds positive</b>. Among 2026-10-25 sibling focus uploads (owner/user-reported, not organizer-confirmed), <code>G27-h29</code> reported <code>0.2190</code>, <code>G30-MSDB1</code> <code>0.1462</code>, <code>G24-gvc1</code> <code>0.0859</code>, <code>G25-h66</code> <code>0.0742</code>, and <code>G28-s18</code> <code>0.0217</code>, while <code>GEMSDOE32</code> <code>H33-2-B2</code> (<code>37,654</code> dots = <code>H27-4</code> minus <code>2,545</code> <code>1 &lt; d_cat ≤ 2 px</code> boundary-halo dots) remains the highest owner-reported focus-site value at <code>0.2778</code>. Because <code>A33-R2-CSHT</code> pre-placement surface peaks converged with <code>G30-MSDB1-e7856ec3f14a</code> (<code>91.11%</code> unthinned / <code>77.82%</code> matched-37k NMS 3-px overlap &gt; <code>70%</code>), its promotion verdict is <code>duplicate</code> (<b>OK TO DOWNLOAD: YES · OK TO SUBMIT: NO</b>).</p>
-<h3>H27-4 claim (0.2708)</h3><p>The repo records that the linked GEMSDOE28 owner page labels H27-4 unscored/research-only. No authenticated organizer receipt proves the quoted 0.2708 or associates it with the raster. Therefore the question “why did it score 0.2708?” has no verified premise here. At most, the owner report suggests a dotted H19-5 baseline with d=2.8; its mechanism is not confirmed as the cause of any official score.</p>
-<h3>H33-6 local holdout</h3><p>HOLDOUT-DTI (four spatial folds; 60,988 withheld catalogue pixels total): pooled candidate DTI 0.112486 versus pooled control DTI 0.114669, pooled ΔDTI −0.002183. The unweighted mean of four fold deltas is −0.002737 (2/4 positive). A descriptive Student-t 95% interval across those fold deltas is [−0.015020, +0.009546], df=3; it is imprecise with n=4, conditional, and does not estimate uncertainty against private expert truth. P2 SGMC proxy ΔDTI is +0.00015900. These are local proxy diagnostics, not competition scores. The upstream H19-5 baseline was not re-derived per fold, and no independent confirmation was run.</p>
-<p>Evaluator source: <code>src/gemsdoe33/metric.py</code>, function <code>dti_binary</code>; evidence does not record a semantic evaluator version. Record SHA-256 in the run card, rather than inventing a version label. See <a href="research.html">full run and caveats</a>.</p>
-<h3>Historical context and provenance</h3><p>Prior owner-reported results are retained as historical context in <code>registry/score_ledger.json</code>; they are not a live feed and are not organizer-confirmed. The user's listed scores are not independently reproduced here. Official leaderboard access is not refreshed automatically. No result above can establish a higher-than-0.2778 or higher-than-0.3195 submission.</p>
+    body = f"""<h2>Results and score provenance</h2>
+<div class="panel bad"><b>No organizer-confirmed score or exact submission-page receipt is retained here.</b> Historical values marked * are USER/OWNER-REPORTED. No leaderboard was accessed or refreshed in this review. No numeric leaderboard-score projection is made.</div>
+<p>See the <a href="{GITHUB}/registry/user_reported_scores_20261026.csv">130-row user-reported score ledger</a>, <a href="{GITHUB}/registry/leaderboard_review.json">dated score-source review</a>, and <a href="{GITHUB}/registry/irregularities.json">irregularity register</a>. The latest current selector snapshot is <a href="{GITHUB}/evidence/submission_selection_20261027.json">0 eligible of 13</a>.</p>
+<h3>GEMSDOE32 B2 byte forensics</h3>
+<p>The 37,654-dot B2 raster is an exact subset of H27-4: 2,545 cells were deleted and none added. That is a measured set relation. The 0.2778* public report is not organizer-confirmed, and no exact bytes/receipt association is available. Pruning low-credit detections near known traces may explain the metric gain, but private truth is not available to establish causation. Full analysis: <a href="{GITHUB}/knowledge/22_b2_forensics_and_fsml_slate_20261026.md">B2 forensics</a>.</p>
+<h3>FSML2-CC — negative research result</h3>
+<p><b>HOLDOUT-DTI</b> (α=0.2, β=0.8, 300 m triangular kernel; `gems-segment-pooled-v1`; 60,988 withheld positives; 10 km spatial block-bootstrap 95% CI): screen candidate 0.110427 [0.1009, 0.1203] vs CSHT 0.135672 [0.1241, 0.1477], paired difference −0.025246 [−0.0355, −0.0151], 0/4 folds; independent confirmation candidate 0.103077 [0.0941, 0.1129] vs CSHT 0.132066 [0.1201, 0.1440], paired difference −0.028989 [−0.0410, −0.0174], 0/4 folds. The candidate is unique against the checked registry but fails the holdout promotion gate. No public score is estimated. See <a href="{GITHUB}/knowledge/23_fsml_results_20261026.md">full report</a> and <a href="{GITHUB}/evidence/fsml2_run_card_20261026.json">run card</a>.</p>
+<h3>Historical leaderboard context</h3>
+<p>The supplied leader claims 0.3195 and 0.4413 conflict and remain unverified. In the nine focus sites, B2's 0.2778* is the highest supplied historical value. No file in this repository has an organizer receipt binding score, account, timestamp and exact raster bytes. Do not convert a local holdout result to a public score.</p>
 """
     return page("Results & score provenance · GEMSDOE33", body, "results.html")
 
 def build_hypotheses() -> str:
-    body = f"""<h2>Ranked geological hypothesis slate</h2>
-<div class="panel warn"><b>Current planning slate: Round-4 feasibility audit (2026-10-26).</b> No new experiment or TIFF was produced. The assigned lane was not specified as one single method; candidate availability also failed source/geometry checks for the first two ideas. All candidates below remain proposals, not scores. Full audit: <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/18_round4_feasibility_audit_20261026.md">Round-4 feasibility audit</a>; machine-readable card: <a href="research/round4-run-card.json">run card</a>.</div>
-<p>Qualitative priority is not a numerical DTI estimate. A candidate becomes viable only after its inputs are locally available, correctly georeferenced, independent of withheld labels, and feature-canary/uniqueness checks pass. All numerical contest scores remain user/owner-reported unless an organizer receipt is retained.</p>
-<div class="scroll"><table><thead><tr><th>Rank</th><th>Candidate; layers and physical signature</th><th>Why it could find missing faults; distinction from prior art</th><th>Official source / availability, mimic, cost, status</th></tr></thead><tbody>
-<tr><td>1</td><td><b>A33-R4-COULOMB</b>; mapped Quaternary-fault trace geometry, slip rate, slip sense, dip, plus elastic half-space ΔCFS lobes.</td><td>Stress-transfer lobes could indicate blind synthetic/antithetic splays away from mapped traces. Distinct from geometric stepover halos and the earlier Mohr-slip surface because it requires a full spatial dislocation model.</td><td>Official source listing: <a href="https://gdr.openei.org/submissions/1391">DOE GDR #1391</a>. Local CSV contains centroids/attributes but no trace vertices; the companion vector mirror's coordinates lack an identified CRS and do not fall on the EPSG:32611 grid or match CSV UTM extents. Static stress/rake assumptions add uncertainty. Intrusive/caldera margins and frictional heterogeneity mimic. Moderate cost; <b>blocked pending auditable, correctly georeferenced trace geometry</b>.</td></tr>
-<tr><td>2</td><td><b>A33-R4-CURVTRACE</b>; raw 1 m USGS 3DEP DEM, multi-azimuth hillshade/curvature and ≥1.5 km orientation-tracked scarp continuity.</td><td>Trace-scale morphology could reveal low-relief fault scarps unresolved by the 100 m feature grid; distinct from pixel-HGB, but overlaps conceptually with the earlier 100 m line-localized R3 work.</td><td>Official source: <a href="https://www.usgs.gov/3d-elevation-program">USGS 3DEP</a>. Cached LiDAR product is 12-band, 100 m aggregated features from 2 m processing; raw 1 m tiles are not in the pinned input set. Tile host is outside this session's network allowlist. Shoreline benches, terrace risers, roads, canals mimic. Higher cost; <b>blocked until official raw tiles are staged and hashed</b>.</td></tr>
-<tr><td>3</td><td><b>A33-R4-PFRT</b>; cached <code>depth_to_base_surf</code>, gravity horizontal-gradient and directional updip projection.</td><td>Could transfer basement offsets basinward into subtle piedmont flexures, where the exposed trace is absent. Different from unshifted gradient-favorability models, but shares gravity layers with prior regional detectors.</td><td>Cached stack available; official upstream GeoDAWN page: <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a>. Coalescent fan toes and buried pediments mimic; medium cost and high duplicate risk. <b>Potentially testable only after explicit lane/preregistration and early surface uniqueness screen; not run.</b></td></tr>
-<tr><td>4</td><td><b>A33-R4-HMDT</b>; cached conductivity, upward-continued TMI, gravity gradient and dilatation; signed cross-gradient doublet.</td><td>Hydrothermal alteration may create asymmetric magnetic/conductive anomalies around concealed faults; distinct from unsigned CSHT rank averaging.</td><td>Official layers reference: <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> and <a href="https://gdr.openei.org/submissions/1391">DOE GDR #1391</a>. Saline playa / nonmagnetic lacustrine tuff mimic. Low–medium cost. An HMDT TIFF exists but has no retained reproducible fold-safe runner/card; <b>not a fresh untried hypothesis; do not score static bytes as fold-safe evidence</b>.</td></tr>
-<tr><td>5</td><td><b>A33-R4-PALEOTEMP</b>; DOE 2 m temperature probes and paleosinter/tufa inventory with cached conductivity and geophysical edges.</td><td>Relict, inactive hydrothermal conduits could mark buried faults missed by active-vent-only approaches; distinct from current well/spring seeds.</td><td>Official source: <a href="https://gdr.openei.org/submissions/1391">DOE GDR #1391</a> (CC BY 4.0 as recorded in source registry). The specific probe/sinter payload is not among pinned 17 files and GDR host is not reachable from the workspace. Paleochannel thermal outflow mimic. Blocked; <b>not viable until exact payload/coverage/license is staged and audited</b>.</td></tr>
-</tbody></table></div>
-<p><b>Result:</b> Round-4 rank 1 (COULOMB) cannot be validated from the staged geometry, and rank 2 needs raw external 3DEP tiles that are unavailable here. The highest cache-only candidate is PFRT, but no standalone lane was specified in the request; therefore no holdout experiment was started and no TIF was fabricated. The single next executable step is a new frozen lane definition selecting PFRT (or correctly staged COULOMB/CURVTRACE), then three-budget screen/confirmation/build through the shared evaluator and writer.</p>
-<p>The frozen 2026-10-04 slate below is historical prior art, retained without rerunning failed arms.</p>
-<table><thead><tr><th>Rank</th><th>Hypothesis / layers and signature</th><th>Why it might reveal omitted faults</th><th>Difference / cost / status</th></tr></thead><tbody>
-<tr><td>1</td><td><b>H33-6 cross-physics edge-normal consensus.</b> GeoDAWN bands 14 TMI and 13 isostatic gravity gradients, corroborated by band 15 basement depth or band 17 conductivity edge; aligned normals at 2-pixel Gaussian scale.</td><td>Buried basin-bounding/intrabasin structures may create aligned magnetic/gravity transitions without a surface scarp; contacts can mimic this signal.</td><td>Joint normal agreement plus corroboration and matched-budget reallocation; not just single-layer gradients. Low–medium cost. Tested once; conditional P1 gate failed. Do not upload.</td></tr>
-<tr><td>2</td><td><b>H33-7 field-verified BRIDGE transfer.</b> DOE GDR #1682 LiDAR fault picks plus common GeoDAWN features.</td><td>Independent field picks could test structures absent from the regional compilation, if overlaps and label policies are resolved.</td><td>Named-field transfer is not implemented. Medium–high cost; blocked until official bytes, schema, CRS, licence and coverage are audited.</td></tr>
-<tr><td>3</td><td><b>H33-8 Gabbs Valley 3D fault-surface analogue.</b> USGS ScienceBase item 62b21845d34e74f0d80f17aa with shared geophysical layers.</td><td>Subsurface interpretation may expose buried structures beyond surface fault traces.</td><td>Tests shallow projection of mapped surfaces, not only line picks. Medium cost; blocked pending payload retrieval/schema audit.</td></tr>
-<tr><td>4</td><td><b>H33-9 ComCat focal-mechanism orientation.</b> USGS event focal mechanisms (strike/dip/rake) with potential-field edges.</td><td>Mechanism-plane orientation can test active structure orientation, but nodal-plane ambiguity and sparse events matter.</td><td>Different from earthquake-density proximity; carried-forward from earlier H33-2, so not novel. Medium cost; no full extract staged.</td></tr>
-<tr><td>5</td><td><b>H33-10 signed strain-lobe / conductor edge.</b> GeoDAWN bands 7/8 strain, 17 conductivity, 15 basement depth and 18 gravity gradient.</td><td>Asymmetric strain across conductive/basement edge may flag concealed deformation, but fluids/contact geometry can mimic it.</td><td>Signed edge formulation differs from raw/multiplicative strain screens; partly pre-empted. Low–medium cost; no validation.</td></tr></tbody></table>
-<p>No untested candidate is promoted. H33-6's failure is a negative deliverable; remaining ideas require fresh preregistration and a valid holdout. Candidate details, official free-source availability checks and limitations are preserved in the linked slate.</p>
-<p><b>New untried hypotheses (2026-10-26):</b> five further candidates are ranked in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/11_new_hypotheses_20261026.md">knowledge/11_new_hypotheses_20261026.md</a>: (H-N2) catalogue-flank frontier dots with H19-5 corroboration; (H-N3) signed strain-lobe across conductor–basement edge; (H-N4) 2 m probe proximity from DOE GDR #1391 (blocked — payload not retrievable here); (H-N5) ComCat focal-plane orientation vs potential-field lineaments (partially blocked). The top new candidate, H-N1 tilt-gravity-LiDAR coherence, was implemented and evaluated on the spatially blocked holdout: pooled confirmation ΔDTI −0.0907 (0/4 folds, CI [−0.1210, −0.0594]), no channel AUC > 0.90, unique vs all 12 pinned registry rasters — reported as a negative result; its format-valid unique TIFF is published as <code>gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif</code> and is <b>not cleared to submit</b>.</p>
-<p><b>2026-10-26 A33-R2-CSHT preregistered 5-hypothesis slate:</b> frozen prior to implementation in <a href="{GITHUB}/knowledge/12_preregistered_a33_r2_hypotheses_20261026.md">knowledge/12_preregistered_a33_r2_hypotheses_20261026.md</a> and <a href="{GITHUB}/evidence/a33_r2_preregistration_20261026.json">evidence/a33_r2_preregistration_20261026.json</a> (<code>SHA-256: f6144c2b6e0cd5bddb0966d9321697be3bb5a070808559a94f38eddcd2a70268</code>): (1) <b>A33-R2-H1 (`A33-R2-CSHT`)</b> cover-state + INGENIOUS <code>1,116</code>-seed hydrothermal conduit transfer + 300 m submodular <code>CELF</code> (tested: <code>8/8</code> fold wins across screen + orthogonal confirmation, stopped on pre-placement surface duplicate guard vs <code>G30-MSDB1</code>); (2) <b>A33-R2-H2</b> thermal-fluid strike-azimuth projection along MT/gravity walls; (3) <b>A33-R2-H3</b> cover-thickness normalized basement-relief edge ratio; (4) <b>A33-R2-H4</b> earthquake-swarm + strain-dilatation blind stepover transfer; (5) <b>A33-R2-H5</b> DOE GDR #1682 BRIDGE dense LiDAR transfer (blocked pending outbound host access).</p>
+    slate = reg("hypotheses_20261027.json")
+    cards = []
+    for h in slate.get("hypotheses", []):
+        layers = "; ".join(h.get("layers", []))
+        source = h.get("official_source_and_availability", {})
+        url = source.get("url", "")
+        source_link = f'<a href="{esc(url)}">{esc(source.get("source_name", "official source"))}</a>' if url else "No additional official source listed"
+        cards.append(f"""<div class="panel warn"><h3>Rank {h['rank']}: {esc(h['title'])} <code>{esc(h['id'])}</code></h3>
+<p><b>Layers:</b> {esc(layers)}</p><p><b>Physical signature:</b> {esc(h['physical_signature'])}</p>
+<p><b>Missing-fault mechanism:</b> {esc(h['why_it_may_find_catalogue_missing_faults'])}</p>
+<p><b>Difference / prior art:</b> {esc(h['difference_from_repository_prior_art'])}</p>
+<p><b>Named non-fault mimic:</b> {esc(h['named_non_fault_mimic'])}</p>
+<p><b>Qualitative rank:</b> {esc(h['qualitative_expected_improvement'])} · <b>Cost:</b> {esc(h['implementation_cost'])}</p>
+<p><b>Official source:</b> {source_link}. <b>Availability:</b> {esc(source.get('status', 'not checked'))} {esc(source.get('local_check', ''))}</p>
+<p><b>Holdout status:</b> {esc(h['holdout_status'])}</p></div>""")
+    shared = slate.get("shared_validation_requirements", {})
+    body = f"""<h2>Ranked geological hypotheses — proposals only</h2>
+<div class="panel bad"><b>No lane assigned; no hypothesis implemented or scored.</b> The task refers to a “single method paragraph below” but no identifiable assigned method paragraph is present. The ranking below is qualitative planning, not a lane assignment, not permission to experiment, not a novelty guarantee, and not a numeric DTI forecast. Full machine-readable slate: <a href="data/hypotheses_20261027.json">registry/hypotheses_20261027.json</a>.</div>
+<p>Ranking balances plausible geology, implementation cost, repository prior art, and local availability. The 17 local inputs are SHA-pinned owner mirrors, not organizer-authenticated payloads. Official URLs are retained for manual review and were not re-fetched on 2026-10-27.</p>
+{''.join(cards)}
+<h3>Shared gates before any future experiment</h3>
+<ul><li><b>Evaluator:</b> {esc(shared.get('evaluator', ''))}</li><li><b>Fold design:</b> {esc(shared.get('split', ''))}</li><li><b>Metric:</b> {esc(shared.get('metric', ''))}</li><li><b>Leakage:</b> {esc(shared.get('leakage', ''))}</li><li><b>Uniqueness:</b> {esc(shared.get('uniqueness', ''))}</li><li><b>Promotion:</b> {esc(shared.get('promotion', ''))}</li></ul>
+<p>Tracked-code prior-art search found no exact implementation of these specific formulations. H27-BIFURCATION is explicitly adjacent to existing ridge/network work; H27-CATCHMENT-PROFILE is blocked until official raw 1 m tiles are locally obtainable and audited.</p>
 """
     return page("Ranked hypotheses · GEMSDOE33", body, "hypotheses.html")
 
@@ -593,7 +529,8 @@ def build_sources() -> str:
         f"<td>{int(f.get('bytes', 0)):,} B</td><td><code>{esc(f.get('sha256')[:16])}...</code></td></tr>"
         for f in pins.get("files", [])
     )
-    body = f"""<h2>Verified Sources & Data Provenance</h2>
+    body = f"""<h2>Registered Primary Sources & Data Provenance</h2>
+<div class="panel warn"><b>Not freshly authenticated in this 2026-10-27 review.</b> The links below are preserved official/primary-source references for manual review. No DrivenData page or leaderboard was accessed; external-source availability and licence must be checked before future use.</div>
 <p>Sources are classified by provenance. A public listing or hash does not prove local binary availability, license suitability, exact geometry overlap, or organizer authenticity. See each source's recorded note and limitations.</p>
 
 <h3>Official Competition & Geoscientific Sources</h3>
@@ -606,7 +543,7 @@ def build_sources() -> str:
 </div>
 
 <h3>Historical input pin registry (not proof of current placement)</h3>
-<p>The pin list records 17 owner-mirror inputs restored and hash-verified in the 2026-10-26 working session; the receipt is <code>evidence/input_grid_audit.json</code>. These large rasters and derived cache are git-ignored and are not published with this static site. Hashes identify mirror bytes only and do not authenticate organizer provenance.</p>
+<p>The pin list records 17 owner-mirror inputs restored and hash-verified in the 2026-10-27 working session; the receipt is <code>evidence/input_grid_audit.json</code>. These large rasters and derived cache are git-ignored and are not published with this static site. Hashes identify mirror bytes only and do not authenticate organizer provenance.</p>
 <div class="scroll">
 <table><thead>
 <tr><th>Identifier</th><th>Local File</th><th>Bytes</th><th>SHA-256 Prefix</th></tr>
@@ -642,58 +579,34 @@ def build_irregularities() -> str:
 
 
 def build_focus_review() -> str:
-    audit = read_json(ROOT / "evidence/focus_raster_audit_20261025.json")
-    manifest = reg("focus_rasters_20261025.json")
-    gate = read_json(ROOT / "evidence/promotion_gate_20261025.json")
-    slate = reg("analog_hypotheses_20261025.json")
-    rows = []
-    for item in manifest.get("rasters", []):
-        measured = next((r for r in audit.get("rasters", []) if r["id"] == item["id"]), {})
-        url = (f"https://github.com/{item['repo']}/blob/{item['ref']}/{item['path']}"
-               if "repo" in item else f"{GITHUB}/{item['local_path']}")
-        rows.append(f"<tr><td>{esc(item['site'])}</td><td><a href='{esc(url)}'>{esc(item['id'])}</a></td>"
-                    f"<td>{esc(measured.get('dots', 'not measured'))}</td>"
-                    f"<td><code>{esc(item['sha256'])}</code></td></tr>")
-    hypotheses = []
-    for h in slate.get("candidates", []):
-        sources = " · ".join(f'<a href="{esc(url)}">Official source</a>' for url in h["official_sources"])
-        hypotheses.append(f"<div class='panel warn'><h3>{h['rank']}. {esc(h['id'])} — {esc(h['hypothesis'])}</h3>"
-                          f"<p><b>Layers:</b> {esc(h['layers'])}</p><p><b>Signature:</b> {esc(h['signature'])}</p>"
-                          f"<p><b>Missing-fault rationale:</b> {esc(h['missing_fault_rationale'])}</p>"
-                          f"<p><b>Difference from local prior art:</b> {esc(h['difference_from_repo'])}</p>"
-                          f"<p><b>Non-fault mimic:</b> {esc(h['non_fault_mimic'])}</p>"
-                          f"<p><b>Qualitative priority / cost:</b> {esc(h['expected_improvement'])}; {esc(h['cost'])}</p>"
-                          f"<p><b>{esc(h['availability'])}</b></p><p>{sources}</p></div>")
-    gates = "".join(f"<tr><td>{esc(k)}</td><td>{'PASS' if v is True else 'BLOCKED'}</td></tr>"
-                    for k, v in gate.get("gates", {}).items())
-    body = f"""<h2>Latest audit: what the highest-scoring lineage actually contains</h2>
-<div class="panel bad"><b>NOT OK TO SUBMIT. The restoration/claims audit itself ran zero experiments; the subsequent, separately preregistered S33-SEISDIL artifact from parallel PR #30 is unique and downloadable, but failed both holdout comparisons and is not slot-approved.</b>
-<p>Do not relabel a negative raster as a winner. The S33 result and run card are linked from the overview and executive summary; this repository review did not rerun or retune that candidate.</p>
-<p><a href="research/round4-run-card.json" download>Download this review's run card JSON</a> · <a href="research/current-promotion-gate.json" download>Automatic gate decision</a> · <a href="research/focus-raster-audit.json" download>Measured forensic audit</a></p></div>
-<h3>GEMSDOE32 B2: reproducible construction, not a verified contest score</h3>
-<p>The user-reported 0.2778 has no organizer receipt here. The pinned owner build record describes deletion of baseline dots at catalogue distance ≤2 pixels (200 m). We downloaded the named B2 raster and reproduced it pixel-exactly from GEMSDOE28 H27-4: <b>40,199 → 37,654 dots; 2,545 deletions, zero additions, zero mismatched cells.</b> This is prior-art forensics, not HOLDOUT-DTI.</p>
-<p>B2 versus H27-4: Spearman <b>0.967587</b> and <b>100% candidate-dot overlap within 3 px</b>. It fails the lane thresholds if reused as a new candidate. GEMSDOE25/GEMSDOE30 share the same 44,090-dot prediction; GEMSDOE28 H27-4/GEMSDOE31 share the same 40,199-dot prediction. These pairs are not independent evidence of scientific improvement. GEMSDOE36 also has high overlap with B2; no PINN or geothermal-discovery claim is established by a filename.</p>
-<h3>Why pruning might help — inference, not score attribution</h3>
-<p>The local metric rewards a maximum nearby match, so redundant predictions can add false-positive cost without proportional new recovery. Deleting low-credit prediction mass can help; deleting near a real missing parallel fault can hurt. The exact net change requires held-out truth, which is unavailable for the reported organizer result. Neither the score list nor a source-code projection proves causation or predicts a higher competition score.</p>
-<p><b>Irregularity:</b> the owner B2 audit's recorded aggregate means disagree with the average of its listed quadrant values; its note also contains an unverified score projection. We do not use that instrument as validation. The request's conflicting leader values 0.4413/0.3195 are not authenticated; no leaderboard was accessed.</p>
-<h3>All nine requested sites covered</h3>
-<p>Twelve precisely named historical rasters, pinned by SHA-256; 132 ordered comparisons on the shared template footprint. This is a focus subset, NOT a complete global uniqueness registry. Hashes authenticate mirror bytes only.</p>
-<div class="scroll"><table><thead><tr><th>Site</th><th>Reference / pinned source</th><th>Positive cells</th><th>SHA-256</th></tr></thead><tbody>{''.join(rows)}</tbody></table></div>
-<h3>Data placement completed; scientific blockers remain</h3>
-<p>All 17 owner-mirror inputs were restored and hash-audited. The existing preparer rebuilt 121 cached feature channels; no detector or stopped arm was retrained. Each feature still requires a leakage canary before being trusted. The sample mirror's finite values equal the catalogue, so only its grid and finiteness mask may be used.</p>
-<p>Both archived H33-6 outside-mask variants were reopened and checked against the now-restored template. Local format passes do not repair its failed science or duplicate status. The writer now rejects invalid values rather than silently clipping them, rejects infinity outside, checks shape and enforces notes ≤140 characters. The organizer reference supports CPU training; a GPU is not mandatory.</p>
-<h3>Prior 2025 promotion-gate snapshot (not a current candidate result)</h3>
-<p>These are deterministic in-project checks, not a request for a human scientific inspector. <code>scripts/check_promotion.py</code> requires source-pinned shared tools, pooled paired improvement plus CI on screen and independent confirmation, complete feature canaries, both duplicate screens, exact saved-byte validation and budget compliance. It checks evidence completeness, not the truth of arbitrary supplied JSON. Even a pass is only eligibility for a separate weekly-cap-aware selector. The table below is the archived 2025 focus-review gate record; the current selector separately reports 0 eligible of 12 run cards (including S33-SEISDIL).</p>
-<table><thead><tr><th>Archived gate</th><th>Prior snapshot</th></tr></thead><tbody>{gates}</tbody></table>
-<h3>Round-4 feasibility decision</h3>
-<p>The ranked five-candidate Round-4 slate and input-by-input feasibility audit are <a href="hypotheses.html">on the hypotheses page</a> and in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/18_round4_feasibility_audit_20261026.md">the full audit note</a>. The conceptual top candidate (Coulomb stress transfer) lacked usable local trace geometry; 1 m CURVTRACE needed unstaged raw 3DEP tiles. PFRT was not run in that restoration review because no single lane was specified there. A subsequent, separate S33-SEISDIL lane was preregistered and evaluated in PR #30; see its run card and the top-level banner. It failed both holdout comparisons, so no submission is promoted. No additional candidate was run in this repository review.</p>
-<div class="panel warn"><b>Current-checkout verification (2026-10-26):</b> all 17 registered owner-mirror inputs were restored and hash-verified; the shared 121-channel cache was rebuilt without training in the restoration audit. A separate preregistered S33-SEISDIL candidate was later evaluated and generated on parallel PR #30; it is unique/format-valid but negative and NOT OK TO SUBMIT. No additional candidate or slot was created by this review. Data/cache remain ignored and are not included in Git snapshots. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/21_post_merge_review_20261026.md">the latest repository review</a>.</div>
-<p><a href="research/round4-run-card.json" download>Round-4 feasibility run card</a> · <a href="{GITHUB}/evidence/round4_input_feasibility_20261026.json">machine-readable input feasibility audit</a> · <a href="{GITHUB}/evidence/input_grid_audit.json">17-input hash/grid audit</a>.</p>
-<h3>Primary evidence and reviewable limitations</h3>
-<p><a href="{GITHUB}/knowledge/21_post_merge_review_20261026.md">Latest post-merge review</a> · <a href="{GITHUB}/knowledge/20_restoration_and_claims_audit_20261026.md">Restoration and claims audit</a> · <a href="{GITHUB}/knowledge/18_round4_feasibility_audit_20261026.md">Previous Round-4 feasibility report</a> · <a href="{GITHUB}/evidence/source_review_20261025.json">Pinned source inventory</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">Organizer CPU/GPU reference</a>. Official competition rules, weekly cap, current leaderboard and score-to-file receipts were not freshly verified; no automated DrivenData contact was made.</p>
+    selection = read_json(ROOT / "evidence/submission_selection_20261027.json")
+    inputs = read_json(ROOT / "evidence/input_grid_audit.json")
+    card = read_json(ROOT / "evidence/20261027_review_card.json")
+    n_cards = len(selection.get("candidates", []))
+    candidates = "".join(
+        f"<tr><td>{esc(item.get('campaign') or '—')}</td><td><code>{esc(item.get('submission_name') or item.get('file') or '—')}</code></td>"
+        f"<td>{esc(item.get('verdict') or '—')}</td><td>{'ELIGIBLE' if item.get('eligible') is True else 'BLOCKED'}</td></tr>"
+        for item in selection.get("candidates", [])
+    )
+    body = f"""<h2>2026-10-27 repository review — three passes</h2>
+<div class="panel bad"><b>{esc(selection.get('decision', 'NO RASTER IS OK TO SUBMIT'))}</b> No experiment was run in this review; no new TIFF was generated, no competition slot was chosen, and no upload was made. The assigned single method lane remains unidentified. Review card status: <code>{esc(card.get('status', 'missing'))}</code>.</div>
+<p><a href="{GITHUB}/knowledge/24_repository_review_20261027.md">Full review report</a> · <a href="data/20261027_review_card.json">No-experiment JSON card</a> · <a href="data/submission_selection_20261027.json">Selector evidence</a>.</p>
+<h3>Pass 1 — input and baseline inspection</h3>
+<p>Restored and SHA-256 checked {inputs.get('registered_inputs', {}).get('verified', 17)} of {inputs.get('registered_inputs', {}).get('expected', 17)} registered SHA-256-pinned owner-mirror inputs. The common preparer built 121 cached channels; the cache is ignored. The sample-template positive set exactly matches catalogue labels on the finite footprint, so it is not used as truth.</p>
+<h3>Pass 2 — adversarial review</h3>
+<ul><li>Corrected the README's stale A33-R2-HMDT lane claim and the misleading “generated this session” language.</li><li>Replaced the stale 0-of-12 selector description with 0 eligible of {n_cards} current cards.</li><li>Updated the score ledger with four user-supplied lower-scoring focus-site reports; they remain USER-REPORTED.</li><li>Marked the H19-5 re-derivation recommendation as already tested on the cached stack; no same-stack retuning is proposed.</li><li>Prior-art search found no exact implementation of the three current formulations, but ridge/network overlap is material; novelty beyond this repository is not claimed.</li></ul>
+<h3>Pass 3 — final reconciliation</h3>
+<p>Updated README, standing brief, machine-readable slate, irregularity register, result pages and this site page. Candidate hypotheses remain untested because the lane is absent. Raw 1 m USGS 3DEP tiles are not in the local inputs; the third candidate is blocked. No current contest-score estimate is made.</p>
+<h3>Selector audit ({n_cards} saved run cards)</h3>
+<div class="scroll"><table><thead><tr><th>Campaign</th><th>Saved candidate</th><th>Verdict</th><th>Selector result</th></tr></thead><tbody>{candidates}</tbody></table></div>
+<p><b>Current decision:</b> {esc(selection.get('decision', 'NO RASTER IS OK TO SUBMIT'))}.</p>
+<h3>Automated verification</h3>
+<p>Final post-restoration command <code>PYTHON=.venv/bin/python GEMS_DATA_DIR=$PWD/.cache/gemsdata bash scripts/run_checks.sh</code> completed with <b>177 passed</b>. It rebuilt the site, verified 17/17 owner-mirror input pins, reran the sample-template diagnostic, confirmed the selector's 0/13 result, compiled Python files and passed <code>git diff --check</code>. This is repository/test evidence, not a new scientific experiment or organizer validation.</p>
+<h3>Input provenance and limits</h3>
+<div class="panel warn"><b>{esc(inputs.get('evidence_class', 'MEASURED from local owner-mirror bytes'))}.</b> Pins establish identity with recorded mirror bytes only, not organizer origin, completeness or licensing. Data/cache are not published by GitHub Pages. No DrivenData page or leaderboard was contacted.</div>
+<p>Existing FSML2-CC is an older, negative research artifact. It passed the checked-registry uniqueness and local-format audits but failed holdout promotion; it is OK TO DOWNLOAD FOR RESEARCH, NOT OK TO SUBMIT. Its run card and candidate binary are linked on the overview.</p>
 """
     return page("Latest forensic review & automatic gates · GEMSDOE33", body, "latest-review.html")
-
 
 def build_prompt() -> str:
     content = (ROOT / "standing_prompt.md").read_text(encoding="utf-8")
@@ -752,6 +665,14 @@ def main() -> int:
         (research / name).write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n")
     data_dir = DOCS / "data"
     data_dir.mkdir(exist_ok=True)
+    for source, destination in (
+        (ROOT / "evidence" / "20261027_review_card.json", data_dir / "20261027_review_card.json"),
+        (ROOT / "evidence" / "submission_selection_20261027.json", data_dir / "submission_selection_20261027.json"),
+        (ROOT / "registry" / "hypotheses_20261027.json", data_dir / "hypotheses_20261027.json"),
+    ):
+        if source.exists():
+            payload = json.loads(source.read_text(encoding="utf-8"))
+            destination.write_text(json.dumps(payload, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     r2_card = read_json(ROOT / "evidence" / "a33_r2_run_card_20261026.json")
     if r2_card:
         (data_dir / "a33_r2_run_card_20261026.json").write_text(

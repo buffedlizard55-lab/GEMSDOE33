@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-27",
+  "status": "NEGATIVE_STOPPED_BEFORE_EXPERIMENT",
+  "hypothesis": null,
+  "hypothesis_reason": "The prompt requires staying inside a single assigned method paragraph, but no identifiable method paragraph/lane is present. Selecting a candidate from the slate would infer authorization that was not supplied.",
+  "mechanism": null,
+  "mechanism_reason": "No candidate mechanism was implemented or evaluated in this review.",
+  "named_non_fault_process_that_could_mimic_it": null,
+  "mimic_reason": "No single hypothesis was selected or run; candidate-specific mimics are listed in registry/hypotheses_20261027.json.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": null,
+    "withheld_positives": null,
+    "pooled_dti": null,
+    "ci95": null,
+    "status": "NOT RUN",
+    "reason": "No candidate experiment was authorized because the assigned lane is unspecified. No leaderboard score is estimated."
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "NOT RUN",
+    "registry_count": 22,
+    "surface_rank_correlation_max": null,
+    "surface_max_dot_overlap_within_3px": null,
+    "final_dot_rank_correlation_max": null,
+    "final_dot_max_overlap_within_3px": null,
+    "reason": "No new prediction surface or final dots were generated. Existing FSML2-CC checks are historical and are not reused as this review's novelty result."
+  },
+  "raster_sha256": null,
+  "raster_sha256_reason": "No raster was written in this review.",
+  "validator_output": {
+    "status": "NOT RUN",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_matches_template": null,
+    "shape_matches_template": null,
+    "transform_matches_template": null,
+    "reason": "There is no new candidate raster to validate. The selector separately reopened existing candidate artifacts from saved bytes."
+  },
+  "submission_name": null,
+  "submission_note": null,
+  "submission_note_characters": null,
+  "submission_status": {
+    "new_tif_generated": false,
+    "ok_to_download": false,
+    "ok_to_submit": false,
+    "competition_slots_used": 0,
+    "upload_made": false,
+    "reason": "No new candidate exists. The existing FSML2-CC research TIFF is available in docs/downloads but remains NOT OK TO SUBMIT because its holdout result was negative."
+  },
+  "data_readiness": {
+    "owner_mirror_inputs_restored_and_hash_checked": 17,
+    "shared_feature_cache_channels_prepared": 121,
+    "provenance": "Owner-maintained GitHub mirrors only; SHA-256 pin equality is not organizer authentication. Inputs/cache remain git-ignored."
+  },
+  "experiment_budget": {
+    "experiments_used": 0,
+    "maximum_experiments": 3,
+    "elapsed_workflow_hours": null,
+    "elapsed_workflow_hours_reason": "Not instrumented; no model experiment was run.",
+    "competition_slots_used": 0
+  },
+  "verdict": "negative",
+  "verdict_reason": "Stop at the lane-definition gate. Preserve prior negative results; do not generate a novel-looking raster, pick a slot, or convert holdout diagnostics into a leaderboard estimate."
+}

@@ -3,7 +3,7 @@
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>Standing Brief · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-26</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html" aria-current=page>Standing brief</a></nav></div></header>
+<p>DrivenData #306 · evidence-led research · review status 2026-10-27</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html" aria-current=page>Standing brief</a></nav></div></header>
 <main class="wrap"><h2>Standing Brief & Operational Prompt</h2>
 <pre style="white-space:pre-wrap;background:#0d1520;padding:20px;border-radius:12px;"># GEMSDOE33 standing brief and operating contract
 
@@ -11,6 +11,38 @@
 working specification consolidated from the owner&#x27;s task and explicit standing corrections recorded
 for this repository. It is not presented as a verbatim chat transcript. Update it only when the owner
 changes the requirements; record any change and its consequence in the repository.
+
+## Controlling current status — 2026-10-27
+
+This section supersedes every older “current”, “next experiment”, lane, selector-count, and site-status
+statement below when they conflict. The detailed three-pass audit is in
+[`knowledge/24_repository_review_20261027.md`](knowledge/24_repository_review_20261027.md).
+
+- The current task refers to a “single method paragraph below” but no identifiable assigned method
+  paragraph is present. The earlier README statement naming A33-R2-HMDT was incorrect; HMDT was a
+  historical reserve, not a current assignment, and has no fold-safe holdout card. Do not infer a
+  lane from the ranked slate, implement a method, or create a TIFF on that basis. If a later task
+  still lacks an identifiable lane, stop at the authorization gate rather than switching lanes.
+- All 17 registered public owner-mirror inputs were restored and matched to their saved SHA-256 pins.
+  The shared feature preparation produced 121 local channels, with 3,073 footprint cells missing a
+  core band. This is local owner-mirror availability, not organizer-authenticated provenance. The
+  inputs and cache are git-ignored. The sample template&#x27;s finite labels exactly reproduce catalogue
+  labels on the footprint; use it only for grid/footprint metadata, never as truth.
+- The 2026-10-27 selector snapshot is **0 eligible of 13**. No experiment, candidate TIFF, slot
+  selection, or upload occurred in this review. The prior FSML2-CC TIFF (generated 2026-10-26) is
+  **OK TO DOWNLOAD FOR RESEARCH: YES / OK TO SUBMIT: NO**, due to negative holdout comparisons.
+- The qualitative three-hypothesis slate is recorded in `registry/hypotheses_20261027.json`. It is
+  not an assignment, preregistered experiment, novelty guarantee, or numeric performance forecast.
+  Raw USGS 3DEP 1 m tiles are absent and the recorded tile host is outside this workspace&#x27;s
+  allowlist; that candidate is blocked, not viable.
+- The score ledger contains 130 user/owner-reported rows, including four lower-scoring 2026-10-26
+  entries from the supplied prompt. None is organizer-confirmed. Do not scrape, poll, or refresh
+  DrivenData. No official page was freshly opened in this review.
+- Preserve the no-slot/no-upload rule. Use shared `evaluate_holdout.py` and `submission_writer.py`,
+  whole-segment buffered folds, fold-visible catalogue features, pixel-exact visible-fault masking,
+  pooled DTI (α=0.2, β=0.8, 300 m triangular kernel), feature-alone canaries, and both continuous-
+  surface and final-dot duplicate stops. A feature-only AUC &gt;0.90 is leakage-suspect. Maximum
+  experiment budget remains 3 experiments or 2 hours.
 
 ---
 
@@ -43,14 +75,16 @@ only be proposed for use when its source, licence and any share-to-sponsor condi
 
 1. **Inspect the repository and the entire brief before extending the project.** Keep this file and
    the README as the session starting point.
-2. Put a valid, readily discoverable submission GeoTIFF at the very top of the project site, and
-   provide an executive-summary page with exact upload steps. The recommended file must be a single-
-   band `float32` GeoTIFF on the official training/sample grid, EPSG:32611, 100 m, matching bounds
-   and transform, with probability values in `[0,1]` and null/NaN outside the footprint as specified
-   by the official instructions. Re-open and validate the saved bytes. Give it a unique submission
-   filename/name and a concise paste-ready note/comment within the portal limit. State whether the
-   file is a reference, owner-reported historical artifact, or a new model. Do not imply local format
-   checks guarantee portal acceptance.
+2. Put a valid candidate GeoTIFF at the top of the project site **only if every scientific,
+   uniqueness, saved-byte format, and fail-closed selector gate passes**; otherwise make the first-
+   screen decision explicitly say that no raster is OK TO SUBMIT and keep any negative artifact
+   clearly research-only. Provide concise executive-summary instructions, but never present an
+   unvalidated file as a recommended submission. A promoted file must be a single-band `float32`
+   GeoTIFF on the official training/sample grid, EPSG:32611, 100 m, matching bounds and transform,
+   with in-footprint values in `[0,1]` and outside-footprint semantics matching verified official
+   instructions. Re-open and validate saved bytes. Give it a unique name and a paste-ready note within
+   the portal limit. State whether it is historical or a new model; local format checks do not prove
+   portal acceptance.
 3. Review why the reported H27-4 value of `0.2708` was claimed and distinguish official observations,
    local measurements, model-derived values and owner-reported scores. The official leaderboard was
    reviewed once on 2026-10-04 at the owner&#x27;s request; that observation did not support the brief&#x27;s
@@ -118,7 +152,7 @@ only be proposed for use when its source, licence and any share-to-sponsor condi
   actually performed. No DrivenData account/session is available in this workspace unless a verified
   receipt is explicitly added.
 
-## Current project decision (2026-10-04)
+## Historical project decision (2026-10-04; superseded)
 
 The top-level recommended download remains a locally format-checked **D2.8 reference emission** from
 an owner-mirror. Its `0.2600` association is owner-reported and is not authenticated to the exact file
@@ -149,13 +183,13 @@ its diagnostics remain conditional. **No candidate is approved for a weekly slot
 
 This session compared the existing H33-6 final raster against all same-grid TIFFs available in the checkout. Seven of nine comparisons exceeded the run protocol&#x27;s correlation/3-pixel proximity threshold; no new placement or TIFF build was made. The pre-placement score surface and remote GEMSDOE registry rasters were unavailable, so the uniqueness screen is incomplete and remains a stop. H33-6 is **NOT OK TO SUBMIT**: its P1 mean delta was negative, its retained baseline was not re-derived per fold, its feature-alone canary is absent, and its final dots trigger the duplicate guard. See `evidence/duplicate_guard_run_card_20261025.json`, `knowledge/09_20261025_review.md`, and `registry/irregularities.json` entry `IR-33-DUP-20261025`. Treat all scores listed in the user brief as user/owner reports unless an organizer receipt is retained.
 
-## Active request addendum — 2026-10-25 continuation
+## Dated request addendum — 2026-10-25 (standing constraints remain in force)
 
 Read this addendum and README before future work. This preserves the current requirements in a consolidated form, not a verbatim transcript of repeated chat paragraphs. Earlier dated decisions remain historical.
 
 ### Highest urgency and parallel-run protocol
 
-**MUST GENERATE A UNIQUE TIF SUBMISSION FOR THE COMPETITION. DO NOT COPY A PREVIOUS SUBMISSION UNLESS IT&#x27;S FOR LEARNING AND EDUCATION. IT MUST BE OBVIOUS WHETHER IT IS OK TO DOWNLOAD AND SUBMIT THE GENERATED TIF SUBMISSION.** Do not meet this requirement by renaming, re-encoding, randomly perturbing or lightly editing a previous raster. A negative result is preferable to a falsely cleared submission.
+**When evidence gates pass, produce a genuinely unique TIF candidate and make its research-download versus submit-approved status unmistakable. If the lane is missing, the holdout fails, or any uniqueness/format/selector gate is blocked, do not manufacture a candidate or label it cleared: publish the negative decision instead.** Never meet the goal by renaming, re-encoding, randomly perturbing or lightly editing a previous raster. A defensible negative result is preferable to a falsely cleared submission.
 
 1. **LANE.** Stay in the single assigned method paragraph. If raster rank-correlation with any registry raster exceeds 0.90, or more than 70% of candidate dots fall within 3 px of one registry raster&#x27;s dots, log duplicate and stop. Check the surface before placement AND final dots. The current request does not contain an identifiable new standalone lane paragraph; the README&#x27;s analog-field transfer paragraph is historical context, not authority to switch lanes.
 2. **REUSE, DON&#x27;T REBUILD.** Use the template&#x27;s cached feature stack, `evaluate_holdout.py` and `submission_writer.py`. Holdout = hide-and-recover: withhold whole fault segments with a buffer; derive every catalogue-based feature from visible faults only; mask visible faults pixel-exactly; score pooled DTI (alpha 0.2, beta 0.8, 300 m triangular kernel). Fix a shared-tool bug in its actual template, once; do not keep a private evaluator fork. There is no identified canonical shared-template commit/path in this checkout. Other sites&#x27; same-named scripts are not automatically the canonical template.
@@ -190,7 +224,7 @@ Read this addendum and README before future work. This preserves the current req
 - Dropbox data/rules links in the original owner request remain unverified third-party mirrors, not official authentication. Prefer the recorded hash-pinned GitHub mirrors for this restricted workspace; never embed credentials.
 
 
-## Current outcome addendum (2026-10-25, A33-L1)
+## Historical outcome addendum (2026-10-25, A33-L1; superseded by later reviews)
 
 The earlier dated project-decision and review sections above remain historical audit records; this
 addendum is the current outcome. The analog-transfer lane has now restored and grid-audited all 17
@@ -222,7 +256,7 @@ Current evidence: `evidence/a33_l1_experiment.json`, `evidence/a33_l1_run_card.j
 
 ---
 
-## Round 2 Standing Brief &amp; Outcome Addendum (2026-10-26, `A33-R2-CSHT`)
+## Historical Round 2 Standing Brief &amp; Outcome Addendum (2026-10-26, `A33-R2-CSHT`)
 
 ### Newly user-reported 2026-10-25 focus-site submissions audited in Round 2
 All scores below are **USER/OWNER-REPORTED — NOT ORGANIZER-CONFIRMED** (pinned and SHA-256-verified in `registry/focus_rasters_20261026.json`):
@@ -267,7 +301,7 @@ All historical scores remain OWNER-REPORTED (NOT ORGANIZER-CONFIRMED); 0 slots s
 
 ---
 
-## Round 3 Addendum (2026-10-26, `A33-R3-LLC`): read before the next session
+## Historical Round 3 Addendum (2026-10-26, `A33-R3-LLC`)
 
 **What the 2026-10-26 brief asked for:**
 1. Review the repo and continue the earlier next steps.
@@ -289,7 +323,7 @@ The full user-reported score list from the brief is in `registry/user_reported_s
 - **Open lead (`IR-33-H19-HOLDOUT-GAP-01`):** the H19-5 reference, which is not fold-safe, scores 0.162 on the screen. Next session, start with a fold-safe re-derivation of the H19-5 recipe.
 - **Irregularities flagged:** `IR-33-HMDT-UNGATED-01` (HMDT has no holdout, so it is NOT OK to submit), `IR-33-R3-PREREG-TIMESTAMP-01`, `IR-33-R3-CSHT-REPRO-01`, `IR-33-DUAL-WRITER-01`, `IR-33-LEDGER-STALE-01`.
 
-## Round-4 feasibility addendum (2026-10-26; latest continuation state)
+## Round-4 feasibility addendum (2026-10-26; historical, superseded by 2026-10-27 status)
 
 This addendum supersedes older &quot;next session&quot; suggestions where they conflict. Read [`knowledge/18_round4_feasibility_audit_20261026.md`](knowledge/18_round4_feasibility_audit_20261026.md) and [`evidence/round4_run_card_20261026.json`](evidence/round4_run_card_20261026.json) before any new modeling.
 
@@ -302,11 +336,11 @@ This addendum supersedes older &quot;next session&quot; suggestions where they c
 - The next executable step is to define/freeze one explicit method lane and its no-post-hoc holdout protocol, then use the shared cache, evaluator and writer. No numerical contest-score estimate is allowed; HOLDOUT-DTI remains a mapped-catalogue proxy, not organizer truth. No slot may be spent without passing fresh screen, independent confirmation, canary, both uniqueness, format, and selector gates.
 - Keep the nine-site table and first-screen decision clear: GEMSDOE32 B2&#x27;s 0.2778 is USER/OWNER-REPORTED, not ORGANIZER-CONFIRMED; the prompt&#x27;s 0.3195 and 0.4413 leaders conflict. Neither is a verified current score.
 
-## Continuation checkpoint — restoration/claims audit, 2026-10-26
+## Historical continuation checkpoint — restoration/claims audit, 2026-10-26
 
-The repeated standing request remains in force: unique TIFFs, explicit download versus submit status, nine-site executive comparison, ranked hypotheses before implementation, shared fold-safe tooling, no invented score estimates, three review passes, and PR/merge. See `knowledge/21_post_merge_review_20261026.md` for this continuation and `knowledge/20_restoration_and_claims_audit_20261026.md` for the prior restoration audit. All 17 mirror inputs and 121 cached channels have been restored locally; these ignored files will not survive a fresh checkout. S33-SEISDIL was evaluated in the separate parallel PR #30 and is preserved as a unique but negative research artifact; this post-merge review did not rerun or create a candidate. No slot was used. The current decision remains **NOT OK TO SUBMIT** (0 eligible of 12 selector cards).
+The repeated standing request remains in force: unique TIFFs, explicit download versus submit status, nine-site executive comparison, ranked hypotheses before implementation, shared fold-safe tooling, no invented score estimates, three review passes, and PR/merge. See `knowledge/21_post_merge_review_20261026.md` for this continuation and `knowledge/20_restoration_and_claims_audit_20261026.md` for the prior restoration audit. All 17 mirror inputs and 121 cached channels have been restored locally; these ignored files will not survive a fresh checkout. S33-SEISDIL was evaluated in the separate parallel PR #30 and is preserved as a unique but negative research artifact; this post-merge review did not rerun or create a candidate. No slot was used. That 2026-10-26 snapshot reported **NOT OK TO SUBMIT** (0 eligible of 12 selector cards); the later 2026-10-27 refresh is 0 eligible of 13.
 
-## FSML addendum — 2026-10-26 (latest)
+## FSML addendum — experimental state at 2026-10-26 (historical)
 
 - B2 forensics completed byte-exactly (`scripts/forensic_b2_20261026.py`, `knowledge/22…`): the nine
   focus sites&#x27; best files are thinnings/prunings of ONE 121,131-px H19-5 binary mask; the public
@@ -328,6 +362,22 @@ Read `knowledge/22_selector_safety_review_20261026.md` before new experiments. T
 received no identifiable single assigned method lane; it did not infer one or rerun negative
 experiments. The selector now rejects internally contradictory gate flags and invalid ranking
 DTI. No new TIFF or score is claimed in that session. The FSML session above is the latest experimental state: unique FSML2-CC TIF exists, verdict negative, selector 0 eligible.
+
+## Current continuation — 2026-10-27
+
+This is the latest completed repository review and overrides the 2026-10-26 selector snapshot&#x27;s
+count/date where they differ. The 17 owner-mirror inputs were restored and hash-checked; the shared
+121-channel stack was prepared. The sample template was audited and must remain excluded as truth.
+The current selector snapshot is 0 eligible of 13. No experiment, new candidate TIFF, slot, or upload
+was made because the assigned method lane remains unidentified. The existing FSML2-CC file remains
+research-only and negative. A three-item qualitative proposal slate is in
+`registry/hypotheses_20261027.json`; it is not an assigned lane or authorization. The refreshed
+nine-site comparison, B2 explanation, complete three-pass review, source caveats, and current status
+are in `README.md` and `knowledge/24_repository_review_20261027.md`. Four additional lower-scoring
+user-provided focus-site reports were appended to the USER-REPORTED ledger; no current leaderboard
+feed or official score was verified. The static site was rebuilt; the final `run_checks.sh` completed
+with 177 passed and no failures, including the restored-input audit (17/17), template/label diagnostic,
+selector (0/13), compileall, and `git diff --check`. No experiment or TIFF was produced.
 </pre></main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>

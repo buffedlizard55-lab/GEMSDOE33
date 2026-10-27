@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-27",
+  "status": "PROPOSALS ONLY; no hypothesis evaluated because the current request does not identify a single assigned method paragraph/lane.",
+  "ranking_basis": "Qualitative scientific plausibility balanced against implementation cost, prior-art overlap, and current input availability. No numerical HOLDOUT-DTI or leaderboard improvement is forecast.",
+  "data_provenance": "The 17 pinned inputs were restored from public owner-maintained GitHub mirrors and matched the registered SHA-256 pins; this does not authenticate organizer origin or licensing. Current official-source URLs are carried from registry/sources.json and were not re-fetched on 2026-10-27.",
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H27-PHASEEDGE",
+      "title": "Amplitude-invariant, cross-physics phase-congruency edges",
+      "layers": [
+        "Cached GeoDAWN total magnetic intensity (tmi; input band 14)",
+        "Cached upward-continued total magnetic intensity (ext_TMI_up150)",
+        "Cached isostatic gravity anomaly (iso_grav_anom; input band 13)",
+        "Optional separate basement-depth corroboration (depth_to_base_surf; input band 15)"
+      ],
+      "physical_signature": "At several frozen spatial scales, compute local phase congruency from quadrature/log-Gabor responses, estimate edge normals, and reward co-located magnetic and gravity phase-aligned edges. Basement-depth edge agreement may be a capped corroborator, not a learned label-derived feature.",
+      "why_it_may_find_catalogue_missing_faults": "A buried fault can juxtapose susceptibility, density, or basement depth under alluvial cover while producing a weak-amplitude boundary and little preserved surface scarp. Local phase alignment is intended to retain coherent boundaries across wavelength scales when absolute anomaly amplitude varies. It is a fault-favorability hypothesis, not direct evidence of a fault or geothermal vent.",
+      "difference_from_repository_prior_art": "The exact multiscale phase-congruency transform was not found in tracked implementation code. H33-6 tested aligned raw gradient edges, while other work used Hessian/ridge transforms, scarp line integrals, dip projection, and catalogue-supervised fusion. This proposal changes the signal representation to local phase congruency; it still shares geophysical layers with prior art and therefore has material duplicate risk.",
+      "named_non_fault_mimic": "Intrusive or stratigraphic contacts, magnetic-domain boundaries, GeoDAWN survey seams, and gridding/processing artifacts can create aligned magnetic-gravity edges without a fault.",
+      "qualitative_expected_improvement": "Rank 1 of this slate; moderate-to-high plausibility relative to the cached-stack candidates, but unmeasured and not a numeric DTI estimate.",
+      "implementation_cost": "Medium-high: multiscale oriented filtering over a 5-million-cell footprint, feature-alone canary, and memory/runtime benchmarking; use the shared cache/evaluator rather than a private stack.",
+      "official_source_and_availability": {
+        "source_name": "USGS GeoDAWN airborne magnetic and radiometric survey data record",
+        "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+        "new_external_data_required": false,
+        "local_check": "The relevant cached channels were present after restoring the 17 SHA-pinned owner-mirror inputs and preparing the repository's shared 121-channel cache. This establishes local mirror availability only; official payload provenance was not independently reauthenticated in this session.",
+        "status": "Research-screenable from the local owner mirror only after an explicit lane is assigned; not an organizer-authenticated input claim."
+      },
+      "holdout_status": "NOT RUN: no lane was assigned. Feature-alone AUC, surface uniqueness, and spatial holdout remain unmeasured."
+    },
+    {
+      "rank": 2,
+      "id": "H27-BIFURCATION",
+      "title": "Scale-persistent basement/gravity ridge bifurcation graph",
+      "layers": [
+        "Cached depth_to_base_surf and its scale-space ridge/curvature channels",
+        "Cached iso_grav_anom and iso_grav_anom_hg",
+        "Optional ext_TMI_up150 as a third, capped physical corroborator"
+      ],
+      "physical_signature": "Extract ridges independently at frozen smoothing scales, track ridge branches across scale, and score persistent Y-junctions or branch terminations only when a second potential-field layer supports the local edge orientation. The graph is constructed from subsurface fields, not catalogue traces or vent seeds.",
+      "why_it_may_find_catalogue_missing_faults": "Concealed basement steps and relay-zone splays can produce branching density or basement-depth boundaries without a mapped surface trace. Requiring persistence across scale aims to reject one-pixel noise and unstable interpolation features.",
+      "difference_from_repository_prior_art": "No exact scale-persistent Y-junction statistic for the basement/gravity fields was found in tracked implementation code. Existing work includes fault-tip/stepover geometry, ridge persistence, line networks, and least-cost connectivity; this candidate is conceptually adjacent to those methods, so novelty is uncertain and must be screened before placement.",
+      "named_non_fault_mimic": "Intersecting lithologic contacts, basin margins, magnetic basement domains, and interpolation seams may form persistent ridge junctions without displacement.",
+      "qualitative_expected_improvement": "Rank 2; plausible but lower confidence than H27-PHASEEDGE because persistent junctions may be common in non-fault geology and the repository already contains related ridge/network methods.",
+      "implementation_cost": "Medium: multiscale skeleton/graph extraction plus matched controls, feature-alone canaries, and an early continuous-surface uniqueness stop.",
+      "official_source_and_availability": {
+        "source_name": "USGS GeoDAWN airborne magnetic and radiometric survey data record",
+        "url": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+        "new_external_data_required": false,
+        "local_check": "Required named channels exist in the shared cache prepared from the registered owner mirror. Hash pins verify mirror-byte identity, not official source origin, licence, or completeness.",
+        "status": "Research-screenable from the local owner mirror only after an explicit lane is assigned; high prior-art and duplicate risk remains."
+      },
+      "holdout_status": "NOT RUN: no lane was assigned. Feature-alone AUC, surface uniqueness, and spatial holdout remain unmeasured."
+    },
+    {
+      "rank": 3,
+      "id": "H27-CATCHMENT-PROFILE",
+      "title": "Repeated cross-valley profile asymmetry and channel deflection",
+      "layers": [
+        "Raw USGS 3DEP 1 m elevation tiles (required for the intended trace-scale test)",
+        "Cached det_elev, depth_to_base_surf, and gravity fields for regional structural context"
+      ],
+      "physical_signature": "Measure signed cross-valley elevation-profile asymmetry and longitudinal channel-profile breaks across multiple neighboring catchments; require repeated orientation-consistent anomalies across independent valleys rather than a single scarp or knickpoint.",
+      "why_it_may_find_catalogue_missing_faults": "Blind or low-relief displacement can tilt drainage networks, produce aligned channel deflections, or create repeated profile breaks where no continuous Quaternary surface trace is mapped. A multi-catchment rule could distinguish a regional structural signal from one local landform.",
+      "difference_from_repository_prior_art": "This repeated drainage-response test is not the existing maximum LiDAR scarp-line integral, pixel classifier, or catalogue-tip bridge. The cached DEM is only 100 m aggregated, so it cannot support the intended 1 m channel/profile signature; using it alone would change and weaken the hypothesis.",
+      "named_non_fault_mimic": "Lithologic knickpoints, stream capture, fan-head incision, terrace risers, roads, and irrigation channels can produce profile asymmetry or channel deflection.",
+      "qualitative_expected_improvement": "Rank 3; potentially useful scale-specific evidence, but expected value is unquantified and presently blocked by raw-data availability.",
+      "implementation_cost": "High: obtain and hash raw tiles, verify CRS/coverage/licence, derive hydrologic profiles, control for lithology and land-use artifacts, then run spatially blocked tests.",
+      "official_source_and_availability": {
+        "source_name": "USGS 3D Elevation Program (3DEP)",
+        "url": "https://www.usgs.gov/3d-elevation-program",
+        "new_external_data_required": true,
+        "local_check": "Raw 1 m tiles are absent from the 17 pinned inputs. The recorded feasibility review says the tile host is outside this workspace's outbound allowlist; no tile download was attempted in this review. The existing 100 m LiDAR descriptor raster is not a substitute for raw 1 m terrain.",
+        "status": "BLOCKED; not viable until the exact official tile payloads are obtainable through an authorized path and their bytes, CRS, coverage, licensing, and schema are audited."
+      },
+      "holdout_status": "NOT RUN: no lane was assigned; required raw official tiles are also unavailable in this workspace."
+    }
+  ],
+  "shared_validation_requirements": {
+    "evaluator": "Reuse the repository's shared hide-and-recover evaluator and writer; do not maintain a private fork.",
+    "split": "Withhold whole fault segments with a spatial buffer; derive every catalogue-based feature from fold-visible faults only; mask visible faults pixel-exactly.",
+    "metric": "Pooled DTI with alpha=0.2, beta=0.8, and the 300 m triangular kernel; report evaluator version, withheld-positive count, and 95% CI.",
+    "leakage": "Test every feature alone; AUC > 0.90 is leakage until proven otherwise.",
+    "uniqueness": "Check the continuous surface before placement and final dots; stop if rank-correlation exceeds 0.90 or more than 70% of dots fall within 3 px of any registry raster.",
+    "promotion": "Require a fresh screen, an independent frozen confirmation, passing leakage and both uniqueness checks, saved-byte format validation, and a separate fail-closed selector. Do not upload or choose a weekly slot in this workstream."
+  }
+}

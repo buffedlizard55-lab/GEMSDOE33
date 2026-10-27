@@ -1,129 +1,129 @@
-"""Public-site content must distinguish research artifacts from approved submissions."""
+"""Public pages must reflect current, fail-closed research status and provenance."""
+import json
+from pathlib import Path
+
 from scripts import build_site
 
 
-def test_overview_marks_latest_unique_tif_research_only_and_not_uploadable():
+FSML2_TIF = "gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros.tif"
+
+
+def test_overview_puts_current_no_submit_decision_first():
     page = build_site.build_index()
-    assert "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif" in page
-    assert page.index("s33-seisdil") < page.index("a33-r3-llc")
-    assert "HOLDOUT-DTI" in page and "0.114154" in page and "0.117619" in page
-    assert "portal acceptance" in page.lower()
-    assert "fixes the reported" not in page.lower()
+    assert page.index("Current decision · 2026-10-27") < page.index(FSML2_TIF)
+    assert "NO RASTER IS OK TO SUBMIT" in page
+    assert "0 eligible of 13" in page
+    assert "no experiment" in page.lower()
+    assert "generated 2026-10-26; not generated in this review" in page
     assert "OK TO DOWNLOAD: YES" in page
     assert "OK TO SUBMIT: NO" in page
-    assert "no raster in this project is ok to submit" in page.lower()
-    assert "0.2778" in page
-    assert "USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)" in page
+    assert "USER/OWNER-REPORTED, not ORGANIZER-CONFIRMED" in page
     assert "0.3195 and 0.4413 conflict" in page
-    assert "have not demonstrated a basis to predict a competition score above it" in page.lower()
-    assert "do not project holdout dti to the leaderboard" in page.lower()
-    assert "A33-R3-LLC" in page
-    assert "Data/provenance status" in page
-    assert "17 SHA-256-pinned owner-mirror inputs" in page
-    assert "shared 121-channel cache" in page
-    assert "knowledge/21_post_merge_review_20261026.md" in page
+    assert "No public-score estimate is made" in page
+    assert "knowledge/24_repository_review_20261027.md" in page
 
 
-def test_s33_seisdil_banner_has_download_and_explicit_negative_verdict():
-    page = build_site.build_index()
-    assert "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif" in page
-    assert "OK TO DOWNLOAD: YES" in page and "OK TO SUBMIT: NO" in page
-    assert "-0.010458" in page and "-0.016294" in page
-    assert "-0.011869" in page and "-0.017655" in page
-    assert "standalone candidate-DTI CI" in page
-    assert "organizer acceptance" in page
-    assert "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96" in page
+def test_fsml2_hero_labels_holdout_and_not_public_score():
+    page = build_site.fsml2_hero()
+    assert FSML2_TIF in page
+    assert "gems-segment-pooled-v1" in page
+    assert "60,988 withheld positives" in page
+    assert "screen 0.1104" in page
+    assert "confirmation 0.1031" in page
+    assert "HOLDOUT GATE FAILED" in page
+    assert "0 eligible of 13" in page
+    assert "Portal acceptance" in page
+    assert "not global uniqueness proof" in page
+    assert "DO NOT SPEND A SLOT" in page
 
 
-def test_executive_summary_explains_process_and_blocks_failed_candidate():
+def test_executive_summary_compares_all_nine_and_explains_b2_cautiously():
     page = build_site.build_exec()
-    assert "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9" in page
-    assert "OK TO SUBMIT: NO" in page
-    assert "do not upload any file until its banner says" in page
-    assert "predicted" not in page.lower() or "score" in page.lower()
-    assert "Note (≤140 characters)" in page
-    assert "current official contract" in page
-    assert "organizer receipt" in page
-    assert "no DrivenData auth" in page
-    assert "GEMSDOE32" in page and "0.2778" in page
-    assert "HIGHEST owner-reported focus-site value" in page
-    assert "FSML2-CC, above" in page
+    for site in ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
+                 "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36"):
+        assert site in page
+    assert page.count("<td>Not estimable</td>") == 9
+    for value in ("0.2477", "0.2600", "0.2449", "0.2710", "0.2708", "0.1462",
+                  "0.2778", "0.2632", "0.2750", "0.2250", "0.0206", "0.0963", "0.1647"):
+        assert value in page
+    assert "2,545 deletions, zero additions" in page
+    assert "plausible mechanism, not a causal demonstration" in page
+    assert "0 eligible of 13" in page
+    assert "Not estimable" in page
+    assert "no weekly slot" in page.lower() or "no slot" in page.lower()
+    assert "Outside-footprint convention remains unresolved" in page
+    assert "organizer" in page.lower()
 
 
-def test_hypothesis_page_has_ranked_round4_triage_and_historical_prior_art():
+def test_hypothesis_page_uses_current_three_item_proposal_slate():
     page = build_site.build_hypotheses()
-    assert "A33-R4-COULOMB" in page
-    assert "A33-R4-CURVTRACE" in page
-    assert "A33-R4-PFRT" in page
-    assert "A33-R4-HMDT" in page
-    assert "A33-R4-PALEOTEMP" in page
-    assert "no standalone lane" in page
-    assert "not run" in page
-    assert "H33-6 cross-physics edge-normal consensus" in page
-    assert "DOE GDR #1682" in page
-    assert "USGS ScienceBase" in page
-    assert "ComCat focal-mechanism" in page
-    assert "H33-10" in page
-    assert "No untested candidate is promoted" in page
+    assert "H27-PHASEEDGE" in page
+    assert "H27-BIFURCATION" in page
+    assert "H27-CATCHMENT-PROFILE" in page
+    assert "Rank 1" in page and "Rank 2" in page and "Rank 3" in page
+    assert "no identifiable assigned method paragraph" in page
+    assert "not a lane assignment" in page
+    assert "USGS GeoDAWN" in page
+    assert "USGS 3DEP" in page
+    assert "blocked" in page.lower() and "not viable" in page.lower()
+    assert "Named non-fault mimic" in page
+    assert "AUC &gt; 0.90" in page
+    assert "more than 70%" in page
 
 
-def test_research_page_exposes_failed_gate_duplicate_guard_and_run_card():
-    page = build_site.build_research()
-    assert "H33-6 failed P1" in page
-    assert "no candidate is slot-approved" in page
-    assert "−0.00273732" in page
-    assert "Download H33-6 research TIFF" in page
-    assert "RESEARCH ONLY" in page
-    assert "Earlier H33-F analog-field screen" in page
-    assert "-0.093072" in page
-    assert "duplicate threshold" in page
-    assert "60,988" in page
-    assert "pre-placement edge surface was not screened" in page
-    assert "H33-6 is not eligible for a slot" in page
+def test_latest_review_reports_restoration_selector_and_three_passes():
+    page = build_site.build_focus_review()
+    assert "2026-10-27 repository review — three passes" in page
+    assert "17 of 17" in page
+    assert "121 cached channels" in page
+    assert "0 eligible of 13" in page
+    assert "No experiment" in page
+    assert "no new TIFF" in page
+    assert "SHA-256-pinned owner-mirror inputs" in page
+    assert "not organizer" in page.lower()
+    assert "FSML2-CC" in page
+    assert "177 passed" in page
+    assert "NOT OK TO SUBMIT" in page
 
 
-def test_a33_r3_hero_is_first_and_blocks_submission():
-    page = build_site.build_index()
-    assert page.index("a33-r3-llc") < page.index("a33-r2-csht")
-    assert "OK TO DOWNLOAD: YES" in page and "OK TO SUBMIT: NO" in page
-    assert "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros.tif" in page
-    exec_page = build_site.build_exec()
-    assert "Exact submission steps" in exec_page and "select_submission.py" in exec_page
-    assert "-zeros.tif" in exec_page and "local range check" in exec_page
-    assert "No claim is made that zeros or NaN encoding is accepted" in exec_page
-    assert exec_page.count("</html>") == 1
+def test_results_page_does_not_project_holdout_to_score():
+    page = build_site.build_results()
+    assert "HOLDOUT-DTI" in page
+    assert "gems-segment-pooled-v1" in page
+    assert "60,988 withheld positives" in page
+    assert "95% CI" in page
+    assert "No numeric leaderboard-score projection" in page
+    assert "No organizer-confirmed score" in page
+    assert "0 eligible of 13" in page
 
 
-def test_source_page_does_not_claim_restored_owner_mirrors_are_absent():
+def test_source_page_preserves_owner_mirror_provenance_caveat():
     page = build_site.build_sources()
     assert "17 owner-mirror inputs restored and hash-verified" in page
+    assert "2026-10-27 working session" in page
     assert "git-ignored" in page
     assert "do not authenticate organizer provenance" in page
 
 
-def test_latest_review_discloses_restoration_and_parallel_negative_candidate():
-    page = build_site.build_focus_review()
-    assert "Current-checkout verification" in page
-    assert "17 registered owner-mirror inputs were restored and hash-verified" in page
-    assert "S33-SEISDIL candidate was later evaluated and generated on parallel PR #30" in page
-    assert "NOT OK TO SUBMIT" in page
-    assert "knowledge/21_post_merge_review_20261026.md" in page
+def test_site_no_longer_claims_stale_current_selector_count():
+    pages = [
+        build_site.build_index(),
+        build_site.build_exec(),
+        build_site.build_results(),
+        build_site.build_hypotheses(),
+        build_site.build_focus_review(),
+    ]
+    for page in pages:
+        assert "0 eligible of 12" not in page
+        assert "0 of 12 run cards" not in page
 
 
-def test_portal_range_error_is_not_claimed_fixed_by_zero_outside():
-    page = build_site.build_exec()
-    assert "portal error's cause" in page
-    assert "organizer acceptance of zero-outside encoding are unverified" in page
-    assert "No claim is made that zeros or NaN encoding is accepted" in page
-    assert "cannot trip the portal message" not in page
-    irregularities = build_site.build_irregularities()
-    assert "IR-33-PORTAL-RANGE-CLAIM-01" in irregularities
-    assert "root cause unconfirmed" in irregularities
-
-
-def test_focus_table_explicitly_separates_estimates_and_historical_novelty():
-    page = build_site.build_exec()
-    assert "Estimated leaderboard score" in page
-    assert page.count("Not estimable from available evidence") == 9
-    assert page.count("Historical submission, not new; global uniqueness not established") == 9
-    assert "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif" in page
+def test_site_build_publishes_current_review_assets_as_valid_json():
+    build_site.main()
+    for filename in (
+        "20261027_review_card.json",
+        "submission_selection_20261027.json",
+        "hypotheses_20261027.json",
+    ):
+        path = Path(__file__).resolve().parents[1] / "docs" / "data" / filename
+        assert json.loads(path.read_text(encoding="utf-8"))
