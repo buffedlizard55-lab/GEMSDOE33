@@ -5,6 +5,22 @@
   "convention": "Flagged, not silently corrected. Every status says what was measured, what was not, and what the consequence is.",
   "irregularities": [
     {
+      "id": "IR-33-20261028-LEAK",
+      "severity": "critical",
+      "status": "detected; runners disabled; prior results retained as exploratory only",
+      "finding": "A33-R5-THKCOND and A33-R6-BASESTEP fit thresholds from footprint & ~full catalogue before constructing their holdout splits. Their canaries test only a composite surface, not each input feature. Their surface novelty check is also performed after final-dot placement. Thus the recorded runs do not satisfy the requested fold-safe protocol. Their negative verdicts are unchanged.",
+      "evidence": "scripts/run_thk_cond_campaign.py:build_surface,main; scripts/run_basestep_campaign.py:build_surface,main; knowledge/27_20261028_safety_review.md",
+      "consequence": "Neither historical holdout is valid for promotion or leaderboard prediction. Legacy runners fail closed; a fresh preregistered lane must rebuild all catalogue-dependent transforms per fold, canary each feature and screen novelty before placement."
+    },
+    {
+      "id": "IR-33-20261028-SELECTOR",
+      "severity": "high",
+      "status": "mitigated; claimed evidence not independently authenticated",
+      "finding": "A negative run card could be made eligible by changing only its verdict and gate flags; no underlying evidence was reassessed.",
+      "evidence": "tests/test_select_submission.py; scripts/select_submission.py; knowledge/27_20261028_safety_review.md",
+      "consequence": "Selector now requires a hash-bound underlying evidence record and reassesses it against saved-byte validation and the shared gate. Reassessment does not authenticate arbitrary JSON or establish independent confirmation."
+    },
+    {
       "id": "IR-33-F-01",
       "severity": "high",
       "status": "measured; not slot-cleared",

@@ -114,9 +114,9 @@ def page(title: str, body: str, active: str) -> str:
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>{esc(title)}</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-26</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
+<p>DrivenData #306 · evidence-led research · review status 2026-10-28</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
 <main class="wrap">{body}</main>
-<footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
+<footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. The selector checks declared evidence consistency, not the independent authenticity of measurements. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>"""
 
 
@@ -242,7 +242,7 @@ def fsml2_hero() -> str:
     surf = u["surface_checks_all_variants"][sel]
     return f"""<div class="hero-download" id="fsml2-cc">
 <h2>NEW UNIQUE TIF (2026-10-26, FSML2-CC) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
-<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap {100*surf['max_preview_fraction_within_3px']:.1f}% ≤ 70%; final dots {100*u['final_dots_max_3px_overlap']:.1f}%, max |ρ| {u['final_dots_max_abs_spearman']:.3f} — NOT a copy of any previous submission</span>
+<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap {100*surf['max_preview_fraction_within_3px']:.1f}% ≤ 70%; final dots {100*u['final_dots_max_3px_overlap']:.1f}%, max |ρ| {u['final_dots_max_abs_spearman']:.3f} — comparisons are limited to the pinned registry</span>
 <span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1] (values exactly {{0,1}})</span>
 <span class="badge bad">HOLDOUT GATE FAILED vs CSHT (0/4 + 0/4 folds) — DO NOT SPEND A SLOT</span></p>
 <p><b>What it is:</b> corroboration-count fusion — 4 fold-safe spy-PU physics experts + 2 label-free lines
@@ -295,19 +295,19 @@ def basestep_hero() -> str:
     note = sub["note"]
     return f"""<div class="hero-download" id="basestep">
 <h2>NEW UNIQUE TIF (2026-10-27, A33-R6-BASESTEP) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
-<p><span class="badge good">UNIQUE vs all 21 registry rasters (all 9 focus sites + local GEMSDOE33): surface max |ρ| {u['surface_max_abs_spearman']:.4f}, max 3-px overlap {100*u['surface_max_3px_overlap']:.2f}% ≤ 70%; final dots max |ρ| {u['final_dots_max_abs_spearman']:.4f}, max 3-px overlap {100*u['final_dots_max_3px_overlap']:.2f}% ≤ 70% — NOT a copy of any previous submission</span>
+<p><span class="badge good">UNIQUE vs all 21 registry rasters (all 9 focus sites + local GEMSDOE33): surface max |ρ| {u['surface_max_abs_spearman']:.4f}, max 3-px overlap {100*u['surface_max_3px_overlap']:.2f}% ≤ 70%; final dots max |ρ| {u['final_dots_max_abs_spearman']:.4f}, max 3-px overlap {100*u['final_dots_max_3px_overlap']:.2f}% ≤ 70% — comparisons are limited to the pinned registry</span>
 <span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, template 100 m geotransform, whole array finite in [0,1] (37,654 binary dots), 0 NaN inside footprint</span>
-<span class="badge bad">HOLDOUT GATE FAILED — screen {hs['candidate']:.4f} [{hs['ci95'][0]:.4f}, {hs['ci95'][1]:.4f}] vs recorded regional baseline 0.112418 (CI spans baseline); confirmation {hc['candidate']:.4f} [{hc['ci95'][0]:.4f}, {hc['ci95'][1]:.4f}] vs 0.115122; vs matched-random control Δ {hs['paired_delta_vs_matched_random']:+.4f} [{hs['paired_delta_ci95'][0]:+.4f}, {hs['paired_delta_ci95'][1]:+.4f}], {hs['fold_wins']}/4 folds — DO NOT SPEND A SLOT</span></p>
-<p><b>What it is:</b> label-free basement-depth-step × conductive-cover × gravity-margin-edge × magnetic-basement-fabric detector targeting blind listric fault soles under piedmont cover; thresholds fit on catalogue-negative background cells only, so the catalogue is never a detector input; CELF-300 m placement of 37,654 dots, &gt;2 px off the USGS/INGENIOUS catalogue. Preregistered in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/26_thk_cond_slate_20261027.md">knowledge/26_thk_cond_slate_20261027.md</a> (Candidate 4).</p>
+<span class="badge bad">HOLDOUT GATE FAILED — screen {hs['candidate']:.4f} [{hs['ci95'][0]:.4f}, {hs['ci95'][1]:.4f}] vs recorded regional baseline 0.112418 (CI spans the unpaired recorded baseline); confirmation {hc['candidate']:.4f} [{hc['ci95'][0]:.4f}, {hc['ci95'][1]:.4f}] vs 0.115122; vs matched-random control Δ {hs['paired_delta_vs_matched_random']:+.4f} [{hs['paired_delta_ci95'][0]:+.4f}, {hs['paired_delta_ci95'][1]:+.4f}], {hs['fold_wins']}/4 folds — DO NOT SPEND A SLOT</span></p>
+<p><b>What it is:</b> label-free basement-depth-step × conductive-cover × gravity-margin-edge × magnetic-basement-fabric detector targeting blind listric fault soles under piedmont cover; thresholds were fit using the full catalogue before the split, a protocol violation; the holdout is not fold-safe; CELF-300 m placement of 37,654 dots, &gt;2 px off the USGS/INGENIOUS catalogue. Preregistered in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/26_thk_cond_slate_20261027.md">knowledge/26_thk_cond_slate_20261027.md</a> (Candidate 4).</p>
 <div class="scroll"><table><thead><tr><th>File to download</th><th>HOLDOUT-DTI (gems-segment-pooled-v1, 60,988 withheld positives) — NOT a leaderboard estimate</th><th>Unique vs all 9 focus sites' registry?</th><th>OK to submit?</th></tr></thead><tbody>
-<tr><td><code>{sub['file']}</code></td><td>screen {hs['candidate']:.4f} vs recorded B1 0.112418 (CI spans baseline); confirmation {hc['candidate']:.4f} vs 0.115122; vs matched-random Δ {hs['paired_delta_vs_matched_random']:+.4f} [{hs['paired_delta_ci95'][0]:+.4f}, {hs['paired_delta_ci95'][1]:+.4f}], {hs['fold_wins']}/4 folds. <b>Estimated leaderboard score: not estimable</b>.</td><td><b>YES</b> — surface max |ρ| {u['surface_max_abs_spearman']:.4f} ≤ 0.90; max 3-px {100*u['surface_max_3px_overlap']:.1f}% ≤ 70%; final dots max |ρ| {u['final_dots_max_abs_spearman']:.4f} ≤ 0.90; max 3-px {100*u['final_dots_max_3px_overlap']:.1f}% ≤ 70% (21 pinned registry rasters)</td><td><b>NO</b> — both holdout splits failed their gates; research only</td></tr>
+<tr><td><code>{sub['file']}</code></td><td>screen {hs['candidate']:.4f} vs recorded B1 0.112418 (CI spans the unpaired recorded baseline); confirmation {hc['candidate']:.4f} vs 0.115122; vs matched-random Δ {hs['paired_delta_vs_matched_random']:+.4f} [{hs['paired_delta_ci95'][0]:+.4f}, {hs['paired_delta_ci95'][1]:+.4f}], {hs['fold_wins']}/4 folds. <b>Estimated leaderboard score: not estimable</b>.</td><td><b>YES</b> — surface max |ρ| {u['surface_max_abs_spearman']:.4f} ≤ 0.90; max 3-px {100*u['surface_max_3px_overlap']:.1f}% ≤ 70%; final dots max |ρ| {u['final_dots_max_abs_spearman']:.4f} ≤ 0.90; max 3-px {100*u['final_dots_max_3px_overlap']:.1f}% ≤ 70% (21 pinned registry rasters)</td><td><b>NO</b> — both holdout splits failed their gates; research only</td></tr>
 </tbody></table></div>
 <p><a class="btn" href="downloads/{sub['file']}">⬇ Download unique A33-R6-BASESTEP GeoTIFF (research only)</a> <a class="btn alt" href="downloads/{sub['zip']}">Single-TIFF .zip</a> <a class="btn alt" href="downloads/gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-nan.tif">NaN-outside twin</a> <a class="btn alt" href="downloads/receipt-gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539.json">Validator receipt JSON</a> <a class="btn alt" href="data/a33_r6_basestep_run_card_20261027.json">Run card JSON</a></p>
 <table><tbody>
 <tr><th>Unique submission name</th><td><code>{sub['name']}</code></td></tr>
 <tr><th>Note (≤140 characters)</th><td><code>{esc(note)}</code> ({len(note)}/140)</td></tr>
 <tr><th>SHA-256 (.tif)</th><td><code>{card['raster_sha256']}</code></td></tr>
-<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Automated selector: 0 eligible of 14 run cards. Slots spent: 0.</td></tr>
+<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Selector snapshot 2026-10-28: 0 eligible of 16 run cards. Slots spent: 0.</td></tr>
 </tbody></table>
 <p class="small"><b>Range-error note:</b> every cell of this <code>-zeros.tif</code> is finite and in [0,1] (re-opened and checked byte-wise), so its values cannot themselves violate a [0,1] range check. The <code>-nan.tif</code> twin follows the recorded null/NaN-outside wording. Portal acceptance remains unverified; do not upload this negative artifact.</p>
 </div>"""
@@ -323,7 +323,7 @@ def pfrt_hero() -> str:
     sk, ck = "PFRT@37654", "A33_R2_CSHT@37654"
     return f"""<div class="hero-download" id="pfrt">
 <h2>NEW UNIQUE TIF (2026-10-27, PFRT) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
-<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap {100*u['surface_max_3px']:.1f}% ≤ 70%, max |ρ| {u['surface_max_abs_spearman']:.3f}; final dots {100*u['final_dots_max_3px']:.1f}% — NOT a copy of any previous submission</span>
+<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap {100*u['surface_max_3px']:.1f}% ≤ 70%, max |ρ| {u['surface_max_abs_spearman']:.3f}; final dots {100*u['final_dots_max_3px']:.1f}% — comparisons are limited to the pinned registry</span>
 <span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1] (values exactly {{0,1}}), 0 outside footprint</span>
 <span class="badge bad">HOLDOUT GATE FAILED vs CSHT — DO NOT SPEND A SLOT</span></p>
 <p><b>What it is:</b> PFRT listric dip-projection — basement-edge crests (depth-to-basement gradient × gravity HG) displaced updip by depth·cot(dip), dip 50°/60°, before CELF-300 m emission. Label-free, 37,654 dots, 0 on catalogue. The displacement is the tested mechanism; unshifted gradient classifiers are prior art.</p>
@@ -335,7 +335,7 @@ def pfrt_hero() -> str:
 <tr><th>Unique submission name</th><td><code>{sub['name']}</code></td></tr>
 <tr><th>Note (≤140 characters)</th><td><code>{esc(sub['note'])}</code> ({sub['note_characters']}/140)</td></tr>
 <tr><th>SHA-256 (.tif)</th><td><code>{card['raster_sha256']}</code></td></tr>
-<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Failed gates: screen_beats_current_best, independent_confirmation. Automated selector: 0 eligible of 14 run cards. Slots spent: 0.</td></tr>
+<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Failed gates: screen_beats_current_best, independent_confirmation. Selector snapshot 2026-10-28: 0 eligible of 16 run cards. Slots spent: 0.</td></tr>
 </tbody></table>
 <p class="small"><b>Range-error note:</b> every cell of this <code>-zeros.tif</code> is finite and in [0,1] (independent re-audit: pass, min 0.0 / max 1.0, 0 NaN), so its values cannot themselves violate a [0,1] range check. Portal acceptance remains unverified; do not upload this negative artifact.</p>
 </div>"""
@@ -446,8 +446,16 @@ def submission_steps() -> str:
 </ol>"""
 
 
+def review_warning() -> str:
+    return """<div class="panel bad"><b>2026-10-28 safety review: NO FILE IS OK TO SUBMIT.</b>
+The BASESTEP and THKCOND historical holdouts used full-catalogue-fitted thresholds and composite-only canaries;
+they are exploratory, not valid protocol evidence. Their runners are disabled. The selector now reassesses
+hash-bound underlying evidence, but this cannot independently authenticate claimed measurements.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/27_20261028_safety_review.md">Read the audit</a>.</div>"""
+
+
 def build_index() -> str:
-    body = f"""{r7_pcsup_hero()}
+    body = f"""{review_warning()}{r7_pcsup_hero()}
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
@@ -457,8 +465,8 @@ def build_index() -> str:
 {a33_r3_lchc_hero()}
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
-<h2>Current decision (2026-10-27)</h2>
-<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The two newest unique research TIFFs — A33-R6-BASESTEP (top banner) and A33-R5-THKCOND — are downloadable for research only and NOT OK TO SUBMIT: both failed their preregistered holdout gates (screen/confirmation CIs span the recorded regional baseline; both worse than matched-random controls, 0/4 folds). The automated selector rechecked 14 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
+<h2>Current decision (2026-10-28)</h2>
+<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The two newest unique research TIFFs — A33-R6-BASESTEP (top banner) and A33-R5-THKCOND — are downloadable for research only and NOT OK TO SUBMIT: both are negative research artifacts; full-catalogue threshold fitting and composite-only canaries invalidate their protocol claims. The selector snapshot on 2026-10-28 rechecked 16 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
 <p><b>Best reported focus-site artifact:</b> GEMSDOE32 B2, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with <b>0.2778 USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)</b>. Raster forensics reproduced it as deletion-only pruning of GEMSDOE28 H27-4; it is prior art and must not be copied or lightly altered. S33-SEISDIL and prior novel lanes have not demonstrated a basis to predict a competition score above it; do not project holdout DTI to the leaderboard. See the <a href="executive-summary.html">nine-site executive summary</a> and <a href="results.html">score provenance</a>.</p>
 <h2>What can be concluded about the cited scores?</h2>
 <p>Historical values in owner pages and the prompt are not organizer-confirmed without a submission receipt linked to the exact file. The prompt's current-leader values 0.3195 and 0.4413 conflict and are unverified here. The GEMSDOE28 owner page was recorded as labeling H27-4 unscored/research-only, so the premise that this raster earned 0.2708 is unresolved. These reports motivate forensic research; they are not independent validation or a score forecast.</p>
@@ -516,7 +524,7 @@ def build_exec() -> str:
              "Owner-reported; MEASURED 2026-10-26: contains all 37,654 GEMSDOE32 B2 dots exactly + 1,200 extra dots (knowledge/22) — same emission family, not an independent surface"),
         )
     )
-    body = f"""{basestep_hero()}
+    body = f"""{review_warning()}{basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
 {s33_seisdil_hero()}
@@ -526,7 +534,7 @@ def build_exec() -> str:
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 <h2>Executive summary — per-site best submissions and how to submit</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The two newest unique files (A33-R6-BASESTEP and PFRT, above) are <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. Both failed their preregistered holdout gates (BASESTEP screen/confirmation CIs span the recorded regional baseline; PFRT 0.0831/0.0791 vs CSHT 0.1384/0.1301). Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
+<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The two newest unique files (A33-R6-BASESTEP and PFRT, above) are <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. BASESTEP used full-catalogue threshold fitting and is not fold-safe; PFRT failed its recorded holdout gate (PFRT 0.0831/0.0791 vs CSHT 0.1384/0.1301). Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
 
 <h3>Exactly how a submission is made (when a future candidate passes every gate)</h3>
 <ol>

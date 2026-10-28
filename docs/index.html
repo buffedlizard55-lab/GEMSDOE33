@@ -3,8 +3,12 @@
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>GEMSDOE33 · Evidence-led fault discovery</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-26</p><nav class="nav" aria-label="Primary"><a href="index.html" aria-current=page>Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
-<main class="wrap"><div class="hero-download" id="r7-pcsup">
+<p>DrivenData #306 · evidence-led research · review status 2026-10-28</p><nav class="nav" aria-label="Primary"><a href="index.html" aria-current=page>Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html">Standing brief</a></nav></div></header>
+<main class="wrap"><div class="panel bad"><b>2026-10-28 safety review: NO FILE IS OK TO SUBMIT.</b>
+The BASESTEP and THKCOND historical holdouts used full-catalogue-fitted thresholds and composite-only canaries;
+they are exploratory, not valid protocol evidence. Their runners are disabled. The selector now reassesses
+hash-bound underlying evidence, but this cannot independently authenticate claimed measurements.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/27_20261028_safety_review.md">Read the audit</a>.</div><div class="hero-download" id="r7-pcsup">
 <h2>NEWEST UNIQUE TIF (2026-10-28, A33-R7-PCSUP) — ✅ OK TO DOWNLOAD: YES (research only) · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
 <p><span class="badge good">UNIQUE vs 21 registry rasters: surface max |ρ| 0.1010, final dots max 3-px overlap 58.3% ≤ 70% — NOT a copy of any previous submission</span>
 <span class="badge good">FORMAT PASS (automated, no human inspection): single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1], 37,654 dots</span>
@@ -20,25 +24,25 @@
 </tbody></table></div>
 <div class="hero-download" id="basestep">
 <h2>NEW UNIQUE TIF (2026-10-27, A33-R6-BASESTEP) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
-<p><span class="badge good">UNIQUE vs all 21 registry rasters (all 9 focus sites + local GEMSDOE33): surface max |ρ| 0.0044, max 3-px overlap 12.83% ≤ 70%; final dots max |ρ| 0.0056, max 3-px overlap 15.97% ≤ 70% — NOT a copy of any previous submission</span>
+<p><span class="badge good">UNIQUE vs all 21 registry rasters (all 9 focus sites + local GEMSDOE33): surface max |ρ| 0.0044, max 3-px overlap 12.83% ≤ 70%; final dots max |ρ| 0.0056, max 3-px overlap 15.97% ≤ 70% — comparisons are limited to the pinned registry</span>
 <span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, template 100 m geotransform, whole array finite in [0,1] (37,654 binary dots), 0 NaN inside footprint</span>
-<span class="badge bad">HOLDOUT GATE FAILED — screen 0.1293 [0.1076, 0.1497] vs recorded regional baseline 0.112418 (CI spans baseline); confirmation 0.1085 [0.0895, 0.1282] vs 0.115122; vs matched-random control Δ -0.0517 [-0.0722, -0.0309], 0/4 folds — DO NOT SPEND A SLOT</span></p>
-<p><b>What it is:</b> label-free basement-depth-step × conductive-cover × gravity-margin-edge × magnetic-basement-fabric detector targeting blind listric fault soles under piedmont cover; thresholds fit on catalogue-negative background cells only, so the catalogue is never a detector input; CELF-300 m placement of 37,654 dots, &gt;2 px off the USGS/INGENIOUS catalogue. Preregistered in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/26_thk_cond_slate_20261027.md">knowledge/26_thk_cond_slate_20261027.md</a> (Candidate 4).</p>
+<span class="badge bad">HOLDOUT GATE FAILED — screen 0.1293 [0.1076, 0.1497] vs recorded regional baseline 0.112418 (CI spans the unpaired recorded baseline); confirmation 0.1085 [0.0895, 0.1282] vs 0.115122; vs matched-random control Δ -0.0517 [-0.0722, -0.0309], 0/4 folds — DO NOT SPEND A SLOT</span></p>
+<p><b>What it is:</b> label-free basement-depth-step × conductive-cover × gravity-margin-edge × magnetic-basement-fabric detector targeting blind listric fault soles under piedmont cover; thresholds were fit using the full catalogue before the split, a protocol violation; the holdout is not fold-safe; CELF-300 m placement of 37,654 dots, &gt;2 px off the USGS/INGENIOUS catalogue. Preregistered in <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/26_thk_cond_slate_20261027.md">knowledge/26_thk_cond_slate_20261027.md</a> (Candidate 4).</p>
 <div class="scroll"><table><thead><tr><th>File to download</th><th>HOLDOUT-DTI (gems-segment-pooled-v1, 60,988 withheld positives) — NOT a leaderboard estimate</th><th>Unique vs all 9 focus sites' registry?</th><th>OK to submit?</th></tr></thead><tbody>
-<tr><td><code>gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros.tif</code></td><td>screen 0.1293 vs recorded B1 0.112418 (CI spans baseline); confirmation 0.1085 vs 0.115122; vs matched-random Δ -0.0517 [-0.0722, -0.0309], 0/4 folds. <b>Estimated leaderboard score: not estimable</b>.</td><td><b>YES</b> — surface max |ρ| 0.0044 ≤ 0.90; max 3-px 12.8% ≤ 70%; final dots max |ρ| 0.0056 ≤ 0.90; max 3-px 16.0% ≤ 70% (21 pinned registry rasters)</td><td><b>NO</b> — both holdout splits failed their gates; research only</td></tr>
+<tr><td><code>gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros.tif</code></td><td>screen 0.1293 vs recorded B1 0.112418 (CI spans the unpaired recorded baseline); confirmation 0.1085 vs 0.115122; vs matched-random Δ -0.0517 [-0.0722, -0.0309], 0/4 folds. <b>Estimated leaderboard score: not estimable</b>.</td><td><b>YES</b> — surface max |ρ| 0.0044 ≤ 0.90; max 3-px 12.8% ≤ 70%; final dots max |ρ| 0.0056 ≤ 0.90; max 3-px 16.0% ≤ 70% (21 pinned registry rasters)</td><td><b>NO</b> — both holdout splits failed their gates; research only</td></tr>
 </tbody></table></div>
 <p><a class="btn" href="downloads/gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros.tif">⬇ Download unique A33-R6-BASESTEP GeoTIFF (research only)</a> <a class="btn alt" href="downloads/gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros.zip">Single-TIFF .zip</a> <a class="btn alt" href="downloads/gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-nan.tif">NaN-outside twin</a> <a class="btn alt" href="downloads/receipt-gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539.json">Validator receipt JSON</a> <a class="btn alt" href="data/a33_r6_basestep_run_card_20261027.json">Run card JSON</a></p>
 <table><tbody>
 <tr><th>Unique submission name</th><td><code>gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros</code></td></tr>
 <tr><th>Note (≤140 characters)</th><td><code>GEMS33 A33-R6-BASESTEP: basement step x conductive cover x gravity edge, CELF300 37654d | gate negative | 4e0c37d1d539</code> (118/140)</td></tr>
 <tr><th>SHA-256 (.tif)</th><td><code>b4cddc4c59975ab76169f15d284f9a138c6452ef11bfec5a226a2368b2a8f00e</code></td></tr>
-<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Automated selector: 0 eligible of 14 run cards. Slots spent: 0.</td></tr>
+<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Selector snapshot 2026-10-28: 0 eligible of 16 run cards. Slots spent: 0.</td></tr>
 </tbody></table>
 <p class="small"><b>Range-error note:</b> every cell of this <code>-zeros.tif</code> is finite and in [0,1] (re-opened and checked byte-wise), so its values cannot themselves violate a [0,1] range check. The <code>-nan.tif</code> twin follows the recorded null/NaN-outside wording. Portal acceptance remains unverified; do not upload this negative artifact.</p>
 </div>
 <div class="hero-download" id="pfrt">
 <h2>NEW UNIQUE TIF (2026-10-27, PFRT) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
-<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap 22.6% ≤ 70%, max |ρ| 0.028; final dots 22.7% — NOT a copy of any previous submission</span>
+<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap 22.6% ≤ 70%, max |ρ| 0.028; final dots 22.7% — comparisons are limited to the pinned registry</span>
 <span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1] (values exactly {0,1}), 0 outside footprint</span>
 <span class="badge bad">HOLDOUT GATE FAILED vs CSHT — DO NOT SPEND A SLOT</span></p>
 <p><b>What it is:</b> PFRT listric dip-projection — basement-edge crests (depth-to-basement gradient × gravity HG) displaced updip by depth·cot(dip), dip 50°/60°, before CELF-300 m emission. Label-free, 37,654 dots, 0 on catalogue. The displacement is the tested mechanism; unshifted gradient classifiers are prior art.</p>
@@ -50,13 +54,13 @@
 <tr><th>Unique submission name</th><td><code>gemsdoe33-pfrt-listric-37654-20261027-048e07cb9d0e-zeros</code></td></tr>
 <tr><th>Note (≤140 characters)</th><td><code>GEMS33 PFRT listric dip-proj CELF 37654d | 048e07cb9d0e | NEGATIVE</code> (66/140)</td></tr>
 <tr><th>SHA-256 (.tif)</th><td><code>fdbb6c273f9bcfbf10469090101bb23426ec185378616c16cdf88ee64c550983</code></td></tr>
-<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Failed gates: screen_beats_current_best, independent_confirmation. Automated selector: 0 eligible of 14 run cards. Slots spent: 0.</td></tr>
+<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO.</b> Failed gates: screen_beats_current_best, independent_confirmation. Selector snapshot 2026-10-28: 0 eligible of 16 run cards. Slots spent: 0.</td></tr>
 </tbody></table>
 <p class="small"><b>Range-error note:</b> every cell of this <code>-zeros.tif</code> is finite and in [0,1] (independent re-audit: pass, min 0.0 / max 1.0, 0 NaN), so its values cannot themselves violate a [0,1] range check. Portal acceptance remains unverified; do not upload this negative artifact.</p>
 </div>
 <div class="hero-download" id="fsml2-cc">
 <h2>NEW UNIQUE TIF (2026-10-26, FSML2-CC) — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
-<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap 65.4% ≤ 70%; final dots 40.7%, max |ρ| 0.019 — NOT a copy of any previous submission</span>
+<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max 3-px overlap 65.4% ≤ 70%; final dots 40.7%, max |ρ| 0.019 — comparisons are limited to the pinned registry</span>
 <span class="badge good">FORMAT PASS: single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1] (values exactly {0,1})</span>
 <span class="badge bad">HOLDOUT GATE FAILED vs CSHT (0/4 + 0/4 folds) — DO NOT SPEND A SLOT</span></p>
 <p><b>What it is:</b> corroboration-count fusion — 4 fold-safe spy-PU physics experts + 2 label-free lines
@@ -177,8 +181,8 @@ On fresh independent confirmation seeds (<code>33, 34</code>, <code>22,733</code
 <tr><th>GeoTIFF SHA-256</th><td><code>2c1b648364d976bb29a52ab9045f5e2233920870f7a9670533283f00a0b1e2a8</code></td></tr>
 </tbody></table>
 </div>
-<h2>Current decision (2026-10-27)</h2>
-<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The two newest unique research TIFFs — A33-R6-BASESTEP (top banner) and A33-R5-THKCOND — are downloadable for research only and NOT OK TO SUBMIT: both failed their preregistered holdout gates (screen/confirmation CIs span the recorded regional baseline; both worse than matched-random controls, 0/4 folds). The automated selector rechecked 14 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
+<h2>Current decision (2026-10-28)</h2>
+<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The two newest unique research TIFFs — A33-R6-BASESTEP (top banner) and A33-R5-THKCOND — are downloadable for research only and NOT OK TO SUBMIT: both are negative research artifacts; full-catalogue threshold fitting and composite-only canaries invalidate their protocol claims. The selector snapshot on 2026-10-28 rechecked 16 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
 <p><b>Best reported focus-site artifact:</b> GEMSDOE32 B2, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with <b>0.2778 USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)</b>. Raster forensics reproduced it as deletion-only pruning of GEMSDOE28 H27-4; it is prior art and must not be copied or lightly altered. S33-SEISDIL and prior novel lanes have not demonstrated a basis to predict a competition score above it; do not project holdout DTI to the leaderboard. See the <a href="executive-summary.html">nine-site executive summary</a> and <a href="results.html">score provenance</a>.</p>
 <h2>What can be concluded about the cited scores?</h2>
 <p>Historical values in owner pages and the prompt are not organizer-confirmed without a submission receipt linked to the exact file. The prompt's current-leader values 0.3195 and 0.4413 conflict and are unverified here. The GEMSDOE28 owner page was recorded as labeling H27-4 unscored/research-only, so the premise that this raster earned 0.2708 is unresolved. These reports motivate forensic research; they are not independent validation or a score forecast.</p>
@@ -191,5 +195,5 @@ On fresh independent confirmation seeds (<code>33, 34</code>, <code>22,733</code
 <h2>Use artifacts safely</h2>
 <p>The newest PFRT TIFF is downloadable for research only and <b>must not be uploaded</b> because its holdout gate was negative. A33-R3-LLC and the other historical TIFFs are also research records or prior-site submissions, not approved new submissions. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
 </main>
-<footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
+<footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. The selector checks declared evidence consistency, not the independent authenticity of measurements. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>
