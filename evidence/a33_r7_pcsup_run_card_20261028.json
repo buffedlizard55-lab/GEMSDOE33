@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "campaign": "A33-R7-PCSUP",
+  "date": "20261028",
+  "hypothesis": "Fold-safe HGB supervised only on PHCONG + potential-field/subsurface channels (no topo/LiDAR/radiometric) + CELF emission.",
+  "mechanism": "Learned fault-vs-intrusive weighting of amplitude-invariant basement edges under cover, targeting catalogue-missing blind faults.",
+  "named_non_fault_mimic": "Intrusive plutonic contacts and caldera margins learned as faults.",
+  "verdict": "negative",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "withheld_positives": 60988,
+    "screen": {
+      "split_id": "quadrant-buffered-15px-v1",
+      "candidate": 0.16829778999689143,
+      "ci95": [
+        0.15589688819609882,
+        0.18076412357359656
+      ],
+      "paired_delta_vs_matched_random": -0.010162673865603045,
+      "paired_delta_ci95": [
+        -0.022979460690692417,
+        0.002860984341644209
+      ],
+      "fold_wins": 1,
+      "paired_delta_vs_phcong": -0.0010182299548574802,
+      "paired_delta_vs_phcong_ci95": [
+        -0.013909377454048818,
+        0.01235300803805919
+      ]
+    },
+    "confirmation": {
+      "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+      "candidate": 0.16303695409560834,
+      "ci95": [
+        0.1507010938860683,
+        0.17569744995537195
+      ]
+    },
+    "recorded_context_unpaired": {
+      "B1_regional_screen": 0.112418,
+      "B1_regional_confirm": 0.115122
+    },
+    "qualification": "Catalogue hide-and-recover proxy. NOT private organizer truth, NOT a competition score or projection."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_spearman": 0.10095914928039568,
+    "surface_max_3px_overlap": 0.8608381579646253,
+    "surface_passed": false,
+    "final_dots_max_abs_spearman": 0.037229378371087606,
+    "final_dots_max_3px_overlap": 0.5827534923248526,
+    "final_dots_passed": true,
+    "scope": "21 pinned rasters"
+  },
+  "leakage_canary": {
+    "passed": true,
+    "max_two_sided_auc": 0.5726410691459741
+  },
+  "raster_sha256": "7165ef02ade6eeec17f4fc99b02cf871783d3070704a119c414e8e818fe8cf5e",
+  "nan_twin_sha256": "5b1b5d902e08c231d0ec235add0b8c7789ddbc8398836de022546348c8316b05",
+  "submission": {
+    "file": "gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.tif",
+    "zip": "gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.zip",
+    "note": "GEMS33 A33-R7-PCSUP: supervised subsurface PHCONG HGB CELF 37654d | gate negative | d1f9cca0af02",
+    "name": "gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros",
+    "ok_to_submit": false
+  },
+  "promotion_assessment": {
+    "eligible_for_selector": false,
+    "verdict": "negative",
+    "gates": {
+      "screen_beats_recorded_b1_with_positive_ci": true,
+      "confirm_beats_recorded_b1_with_positive_ci": true,
+      "screen_beats_celf_random_positive_ci": false,
+      "screen_beats_phcong_positive_ci": false,
+      "surface_not_duplicate": false,
+      "final_dots_not_duplicate": true,
+      "format_audit_pass": true,
+      "canary_pass": true
+    },
+    "failed_gates": [
+      "celf_random",
+      "phcong",
+      "uniqueness"
+    ]
+  },
+  "runtime_seconds": 339.29
+}
