@@ -263,6 +263,28 @@ re-derivation of the H19-5 multi-line idea that produced the 0.2778* B2 family (
 </div>"""
 
 
+def r7_pcsup_hero() -> str:
+    card = read_json(ROOT / "evidence" / "a33_r7_pcsup_run_card_20261028.json")
+    if not card:
+        return ""
+    sub = card["submission"]; hs = card["holdout_dti"]["screen"]; hc = card["holdout_dti"]["confirmation"]
+    u = card["correlation_overlap_vs_registry"]
+    return f"""<div class="hero-download" id="r7-pcsup">
+<h2>NEWEST UNIQUE TIF (2026-10-28, A33-R7-PCSUP) — ✅ OK TO DOWNLOAD: YES (research only) · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
+<p><span class="badge good">UNIQUE vs 21 registry rasters: surface max |ρ| {u['surface_max_abs_spearman']:.4f}, final dots max 3-px overlap {100*u['final_dots_max_3px_overlap']:.1f}% ≤ 70% — NOT a copy of any previous submission</span>
+<span class="badge good">FORMAT PASS (automated, no human inspection): single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1], 37,654 dots</span>
+<span class="badge bad">HOLDOUT GATE FAILED vs same-operator matched-random (screen Δ {hs['paired_delta_vs_matched_random']:+.4f}, CI spans 0) — DO NOT SPEND A SLOT. Estimated leaderboard score: NOT ESTIMABLE (HOLDOUT-DTI is a catalogue proxy, not a score)</span></p>
+<p><b>What it is:</b> supervised subsurface-only HGB on phase-congruency + potential-field channels (no topo/LiDAR), CELF-300 m emission. Three A33-R7 experiments (PHCONG/PHCONGDT/PCSUP) all negative; Exp 1's initial promote was withdrawn after the same-operator random control beat it. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/30_phcong_results_20261028.md">knowledge/30 results + executive table</a>.</p>
+<p><a class="btn" href="downloads/{sub['file']}">⬇ Download unique A33-R7-PCSUP GeoTIFF (research only)</a> <a class="btn alt" href="downloads/{sub['zip']}">Single-TIFF .zip</a> <a class="btn alt" href="data/a33_r7_pcsup_run_card_20261028.json">Run card JSON</a></p>
+<table><tbody>
+<tr><th>Unique submission name</th><td><code>{sub['name']}</code></td></tr>
+<tr><th>Note (≤140)</th><td><code>{esc(sub['note'])}</code></td></tr>
+<tr><th>SHA-256</th><td><code>{card['raster_sha256']}</code></td></tr>
+<tr><th>HOLDOUT-DTI</th><td>screen {hs['candidate']:.4f}, confirmation {hc['candidate']:.4f} (gems-segment-pooled-v1, 60,988 withheld) — NOT a leaderboard estimate</td></tr>
+<tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO</b></td></tr>
+</tbody></table></div>"""
+
+
 def basestep_hero() -> str:
     """Newest unique research artifact banner (A33-R6-BASESTEP), built from its run card."""
     card = read_json(ROOT / "evidence" / "a33_r6_basestep_run_card_20261027.json")
@@ -433,7 +455,8 @@ hash-bound underlying evidence, but this cannot independently authenticate claim
 
 
 def build_index() -> str:
-    body = f"""{review_warning()}{basestep_hero()}
+    body = f"""{review_warning()}{r7_pcsup_hero()}
+{basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
 {s33_seisdil_hero()}

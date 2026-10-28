@@ -443,6 +443,22 @@
       "finding": "The 21 pinned focus-registry rasters referenced by registry/focus_rasters_20261026.json were absent from the working tree (data/focus_registry/ and .cache/focus_registry_20261026/ missing), so the Parallel-Run Protocol duplicate guard (pre-placement surface + final dots vs all registry rasters) could not run from a clean checkout.",
       "evidence": "registry/focus_rasters_20261026.json; scripts/restore_focus_registry_r3.py; all 22 registry rasters restored from pinned owner mirrors and SHA-256 verified on 2026-10-27 (data/focus_registry/ and .cache/focus_registry_20261026/). Mirrors are integrity-pinned, not organizer-authenticated.",
       "consequence": "Uniqueness screens for A33-R6-BASESTEP and A33-R5-THKCOND ran against restored mirrors. A clean checkout must re-run scripts/restore_focus_registry_r3.py before any uniqueness screen or campaign that audits the registry manifest."
+    },
+    {
+      "id": "IR-33-CELF-RANDOM-01",
+      "severity": "high",
+      "status": "measured 2026-10-28; Exp1 A33-R7-PHCONG promote withdrawn",
+      "finding": "CELF-300m greedily maximises the same 300m triangular-kernel coverage the DTI metric rewards, so a random surface under CELF is a uniform-coverage optimiser, not a neutral control: CELF-random HOLDOUT-DTI ~0.181 beat PHCONG (paired -0.011098, 0/4), PHCONGDT dot-thin random also beat its candidate (-0.009834, 0/4), and PCSUP could not beat CELF-random (CI spans 0). PHCONG per-pixel canary AUC ~0.507. Prior THKCOND/BASESTEP cards record the same pattern (matched-random 0.181 vs candidates 0.129).",
+      "evidence": "evidence/a33_r7_phcong_experiment_20261028.json; evidence/a33_r7_phcongdt_experiment_20261028.json; evidence/a33_r7_pcsup_experiment_20261028.json; knowledge/30_phcong_results_20261028.md",
+      "consequence": "No CELF/dot-thin holdout DTI at the 2.5% fold budget may be promoted without a strictly positive paired delta vs the same-operator matched-random control. Exp1 promote withdrawn; no A33-R7 artifact is OK to submit."
+    },
+    {
+      "id": "IR-33-FOLD-BUDGET-01",
+      "severity": "high",
+      "status": "measured 2026-10-28; affects THKCOND/BASESTEP/PHCONG campaign family",
+      "finding": "Those campaigns emit fold dots at BUDGET_FRAC=0.025 of each fold's valid area, while full deployment emits 37654/5167373=0.73% of the footprint - a 3.4x denser fold emission than deployment. At 2.5% density, spaced uniform dots put a dot within 300m of most withheld catalogue pixels, compressing DTI discrimination (random ~0.17-0.18). A33-R3 used the deployment-matched 0.73% scaling, where matched-random scored 0.073931.",
+      "evidence": "scripts/run_thk_cond_campaign.py (BUDGET_FRAC=0.025); scripts/run_a33_r3.py (BUDGET*valid/n_fp); knowledge/30_phcong_results_20261028.md",
+      "consequence": "Cross-campaign HOLDOUT-DTI comparisons at mismatched fold densities are invalid. Future campaigns must emit folds at the deployment density (37654/5167373) and re-baseline B1 at that density before any promotion gate is applied."
     }
   ],
   "last_review": "2026-10-27"

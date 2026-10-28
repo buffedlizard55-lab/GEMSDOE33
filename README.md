@@ -7,7 +7,11 @@
 > **Core values:** Maximize P(Win) · Own the Outcome.
 > **Labels:** every number is HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED. Leaderboard figures marked \* are USER/OWNER-REPORTED.
 
-## 🔴 Current decision (2026-10-27, after Experiments 1–2): **NO raster is OK TO SUBMIT** · the two newest unique TIFs are **OK TO DOWNLOAD for research only** · both failed their preregistered holdout gates
+## 🔴 Current decision (2026-10-28, A33-R7, 3/3 experiments used): **NO raster is OK TO SUBMIT** · newest unique TIF is **OK TO DOWNLOAD for research only**
+
+> **2026-10-28 A33-R7 summary:** preregistered phase-congruency lane ([`knowledge/27`](knowledge/27_phcong_slate_20261028.md), [`28`](knowledge/28_phcong_exp2_emission_preregistration_20261028.md), [`29`](knowledge/29_phcong_exp3_pcsup_preregistration_20261028.md)); results in [`knowledge/30_phcong_results_20261028.md`](knowledge/30_phcong_results_20261028.md). Newest unique file: [`gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.tif`](docs/downloads/gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.tif) — HOLDOUT-DTI screen 0.168298 / confirmation 0.163037, unique vs 21 registry rasters, saved-byte format pass, **but failed the same-operator matched-random gate → NOT OK TO SUBMIT**. Exp 1's initial `promote` was **withdrawn** (CELF-random beat it, Δ −0.011098, 0/4). New irregularities **IR-33-CELF-RANDOM-01** and **IR-33-FOLD-BUDGET-01**: at the inherited 2.5% fold-emission density (deployment 0.73%), spaced random dots saturate the 300 m kernel (random ≈0.17–0.18), so no candidate in that campaign family can be promoted without a deployment-density re-baseline. Selector: **0 eligible of 19** run cards. **Estimated leaderboard score for every unique file: not estimable** (HOLDOUT-DTI is a catalogue proxy, never a score).
+
+## 🔴 Previous decision (2026-10-27, after Experiments 1–2): **NO raster is OK TO SUBMIT** · the two newest unique TIFs are **OK TO DOWNLOAD for research only** · both failed their preregistered holdout gates
 
 | Question | Answer (decided by code: [`scripts/select_submission.py`](scripts/select_submission.py) → [`docs/data/submission_selection.json`](docs/data/submission_selection.json)) |
 |---|---|

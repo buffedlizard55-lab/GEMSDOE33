@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "campaign": "A33-R7-PHCONGDT",
+  "date": "20261028",
+  "hypothesis": "PHCONG surface (Exp 1) emitted by historical d=2.8 dot-thinning instead of CELF, isolating surface value from the CELF coverage operator.",
+  "mechanism": "Amplitude-invariant phase-coherent mag/grav step edges mark buried basement faults; d=2.8 dotted emission matches the B2-family operator without copying its dots.",
+  "named_non_fault_mimic": "Intrusive plutonic contacts, caldera ring margins and airborne survey line seams.",
+  "verdict": "negative",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "withheld_positives": 60988,
+    "screen": {
+      "split_id": "quadrant-buffered-15px-v1",
+      "candidate": 0.16009265788286842,
+      "ci95": [
+        0.15354556493853377,
+        0.16613235646446814
+      ],
+      "paired_delta_vs_matched_random": -0.009834098048485868,
+      "paired_delta_ci95": [
+        -0.01575774367066155,
+        -0.003545196959726694
+      ],
+      "fold_wins": 0
+    },
+    "confirmation": {
+      "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+      "candidate": 0.15998631584223283,
+      "ci95": [
+        0.15354371621167617,
+        0.1659853547005673
+      ],
+      "paired_delta_vs_matched_random": -0.01108194373205243,
+      "paired_delta_ci95": [
+        -0.016290452245423515,
+        -0.005583264757352611
+      ],
+      "fold_wins": 0
+    },
+    "recorded_context_unpaired": {
+      "B1_regional_screen": 0.112418,
+      "B1_regional_confirm": 0.115122
+    },
+    "exp1_celf_context": {
+      "screen": 0.16931590667916066,
+      "confirmation": 0.17058841899235586,
+      "note": "same surface/splits, CELF operator; CELF-random control 0.181-class \u2014 see IR-33-CELF-RANDOM-01"
+    },
+    "qualification": "Catalogue hide-and-recover proxy. NOT private organizer truth, NOT a competition score or projection."
+  },
+  "correlation_overlap_vs_registry": {
+    "surface_max_abs_spearman": 0.0036353136053994175,
+    "surface_max_3px_overlap": 0.18515961119668561,
+    "surface_passed": true,
+    "final_dots_max_abs_spearman": 0.002959367081028788,
+    "final_dots_max_3px_overlap": 0.18784192914431402,
+    "final_dots_passed": true,
+    "scope": "21 pinned rasters"
+  },
+  "leakage_canary": {
+    "passed": true,
+    "max_two_sided_auc": 0.5223932320538133
+  },
+  "raster_sha256": "e168708615bea7a64505ab6c7569601bee72dab6463dad70a4e418ca8526ce02",
+  "nan_twin_sha256": "836959069ef73d964f6b6da66792f7dddf4faafa586bc429a2eff1b2908927a1",
+  "submission": {
+    "file": "gemsdoe33-a33-r7-phcongdt-37654-20261028-98f7bfe0cff6-zeros.tif",
+    "zip": "gemsdoe33-a33-r7-phcongdt-37654-20261028-98f7bfe0cff6-zeros.zip",
+    "note": "GEMS33 A33-R7-PHCONGDT: phase-congruency edges dotthin d2.8 37654d | gate negative | 98f7bfe0cff6",
+    "name": "gemsdoe33-a33-r7-phcongdt-37654-20261028-98f7bfe0cff6-zeros",
+    "ok_to_submit": false
+  },
+  "promotion_assessment": {
+    "eligible_for_selector": false,
+    "verdict": "negative",
+    "gates": {
+      "screen_beats_recorded_b1_with_positive_ci": true,
+      "confirm_beats_recorded_b1_with_positive_ci": true,
+      "screen_beats_dotthin_random_positive_ci": false,
+      "surface_not_duplicate": true,
+      "final_dots_not_duplicate": true,
+      "format_audit_pass": true,
+      "canary_pass": true
+    },
+    "failed_gates": [
+      "random"
+    ]
+  },
+  "runtime_seconds": 109.23
+}

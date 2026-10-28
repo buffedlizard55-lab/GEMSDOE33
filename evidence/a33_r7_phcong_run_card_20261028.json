@@ -1,0 +1,235 @@
+{
+ "schema": 1,
+ "campaign": "A33-R7-PHCONG",
+ "date": "20261028",
+ "hypothesis": "Multiscale monogenic phase-congruency of tmi/up150/gravity x orientation agreement emits blind basement fault dots; label-free, catalogue-independent.",
+ "mechanism": "Amplitude-invariant phase-coherent step edges in magnetics+gravity mark buried basement faults missing from USGS/INGENIOUS surface traces, where gradient magnitude is weak.",
+ "named_non_fault_mimic": "Intrusive plutonic contacts, caldera ring margins and airborne survey line seams (genuine potential-field step edges).",
+ "verdict": "negative",
+ "holdout_dti": {
+  "label": "HOLDOUT-DTI",
+  "evaluator_version": "gems-segment-pooled-v1",
+  "withheld_positives": 60988,
+  "screen": {
+   "split_id": "quadrant-buffered-15px-v1",
+   "candidate": 0.16931590667916066,
+   "ci95": [
+    0.16277197239033178,
+    0.1754956664316033
+   ],
+   "paired_delta_vs_matched_random": -0.011097721145904238,
+   "paired_delta_ci95": [
+    -0.016259579146801716,
+    -0.006097602280383678
+   ],
+   "fold_wins": 0
+  },
+  "confirmation": {
+   "split_id": "diagonal-wedge-buffered-20px-confirm-v1",
+   "candidate": 0.17058841899235586,
+   "ci95": [
+    0.16399600565569358,
+    0.17658050363460914
+   ],
+   "note": "independent orthogonal split, buffer 20 px"
+  },
+  "recorded_context_unpaired": {
+   "A33_R2_CSHT_screen": 0.112418,
+   "A33_R2_CSHT_confirm": 0.115122,
+   "note": "recorded B1_regional context from evidence/a33_r2_run_card_20261026.json; no paired comparison claimed"
+  },
+  "qualification": "Catalogue whole-segment hide-and-recover proxy. NOT the private organizer truth, NOT a competition score, NOT a projection."
+ },
+ "correlation_overlap_vs_registry": {
+  "surface_max_abs_spearman": 0.0036494119994755062,
+  "surface_max_3px_overlap": 0.18492059276570882,
+  "surface_passed": true,
+  "final_dots_max_abs_spearman": 0.0023817802878529338,
+  "final_dots_max_3px_overlap": 0.16157645934030912,
+  "final_dots_passed": true,
+  "scope": "21 pinned rasters (GEMSDOE24/25/27/28/30/31/32/33/36 focus + local GEMSDOE33)"
+ },
+ "leakage_canary": {
+  "passed": true,
+  "max_two_sided_auc": 0.5224060862631938,
+  "features": {
+   "pc_tmi": {
+    "pooled_auc": 0.5189227168603032,
+    "leakage_suspected": false,
+    "folds": [
+     {
+      "fold": "NW",
+      "auc": 0.5152769240859157,
+      "positives": 10165,
+      "background": 15000
+     },
+     {
+      "fold": "NE_LidarGapHeavy",
+      "auc": 0.5210245410705245,
+      "positives": 12511,
+      "background": 15000
+     },
+     {
+      "fold": "SW",
+      "auc": 0.5004052555555555,
+      "positives": 15000,
+      "background": 15000
+     },
+     {
+      "fold": "SE",
+      "auc": 0.5359591,
+      "positives": 15000,
+      "background": 15000
+     }
+    ]
+   },
+   "pc_ext_TMI_up150": {
+    "pooled_auc": 0.5224060862631938,
+    "leakage_suspected": false,
+    "folds": [
+     {
+      "fold": "NW",
+      "auc": 0.5181020626332186,
+      "positives": 10165,
+      "background": 15000
+     },
+     {
+      "fold": "NE_LidarGapHeavy",
+      "auc": 0.5169419843870727,
+      "positives": 12511,
+      "background": 15000
+     },
+     {
+      "fold": "SW",
+      "auc": 0.5058954066666667,
+      "positives": 15000,
+      "background": 15000
+     },
+     {
+      "fold": "SE",
+      "auc": 0.54176856,
+      "positives": 15000,
+      "background": 15000
+     }
+    ]
+   },
+   "pc_iso_grav_anom": {
+    "pooled_auc": 0.5136879124269117,
+    "leakage_suspected": false,
+    "folds": [
+     {
+      "fold": "NW",
+      "auc": 0.5135407804558124,
+      "positives": 10165,
+      "background": 15000
+     },
+     {
+      "fold": "NE_LidarGapHeavy",
+      "auc": 0.5198516212399755,
+      "positives": 12511,
+      "background": 15000
+     },
+     {
+      "fold": "SW",
+      "auc": 0.51825998,
+      "positives": 15000,
+      "background": 15000
+     },
+     {
+      "fold": "SE",
+      "auc": 0.4926950133333333,
+      "positives": 15000,
+      "background": 15000
+     }
+    ]
+   },
+   "orientation_agreement": {
+    "pooled_auc": 0.4952388477042043,
+    "leakage_suspected": false,
+    "folds": [
+     {
+      "fold": "NW",
+      "auc": 0.4967545859977046,
+      "positives": 10165,
+      "background": 15000
+     },
+     {
+      "fold": "NE_LidarGapHeavy",
+      "auc": 0.4859249007540032,
+      "positives": 12511,
+      "background": 15000
+     },
+     {
+      "fold": "SW",
+      "auc": 0.5017212911111111,
+      "positives": 15000,
+      "background": 15000
+     },
+     {
+      "fold": "SE",
+      "auc": 0.49548664888888894,
+      "positives": 15000,
+      "background": 15000
+     }
+    ]
+   },
+   "phcong_surface": {
+    "pooled_auc": 0.5067791249019161,
+    "leakage_suspected": false,
+    "folds": [
+     {
+      "fold": "NW",
+      "auc": 0.506050864076078,
+      "positives": 10165,
+      "background": 15000
+     },
+     {
+      "fold": "NE_LidarGapHeavy",
+      "auc": 0.4975839554525351,
+      "positives": 12511,
+      "background": 15000
+     },
+     {
+      "fold": "SW",
+      "auc": 0.50787022,
+      "positives": 15000,
+      "background": 15000
+     },
+     {
+      "fold": "SE",
+      "auc": 0.5102238955555556,
+      "positives": 15000,
+      "background": 15000
+     }
+    ]
+   }
+  }
+ },
+ "raster_sha256": "e59f43427504f63b4b26de9e44ae6a1f5d91d7decf246c3920bc7947ed53810d",
+ "nan_twin_sha256": "338a585ea213b3dc956abe325e53fea791e377a68ec903eb2a69a9e994af97da",
+ "submission": {
+  "file": "gemsdoe33-a33-r7-phcong-37654-20261028-45958ee5a5bc-zeros.tif",
+  "zip": "gemsdoe33-a33-r7-phcong-37654-20261028-45958ee5a5bc-zeros.zip",
+  "note": "GEMS33 A33-R7-PHCONG: phase-congruency mag/grav edges, CELF300 37654d | gate negative | 45958ee5a5bc",
+  "name": "gemsdoe33-a33-r7-phcong-37654-20261028-45958ee5a5bc-zeros",
+  "ok_to_submit": false
+ },
+ "promotion_assessment": {
+  "eligible_for_selector": false,
+  "verdict": "negative",
+  "gates": {
+   "screen_beats_recorded_b1_with_positive_ci": true,
+   "confirm_beats_recorded_b1_with_positive_ci": true,
+   "surface_not_duplicate": true,
+   "final_dots_not_duplicate": true,
+   "format_audit_pass": true,
+   "canary_pass": true
+  },
+  "failed_gates": [
+   "screen_beats_dotthin_random_positive_ci",
+   "screen_beats_matched_random_same_operator"
+  ],
+  "withdrawal": "2026-10-28: Exp1 promote WITHDRAWN by Exp2/Exp3 (knowledge/28,29,30). CELF-random paired delta -0.011098 [-0.016260,-0.006098], 0/4 folds; per-pixel surface AUC ~0.507. Not OK to submit."
+ },
+ "runtime_seconds": 172.18
+}
