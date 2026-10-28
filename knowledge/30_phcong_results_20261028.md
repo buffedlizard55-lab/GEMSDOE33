@@ -18,7 +18,7 @@ the catalogue proxy to the private expert-labelled truth exists in this repo).
 | GEMSDOE31 | h27-4 solo, 40,199d, 0.2708* | — | not estimable | B2 parent | NO |
 | **GEMSDOE32** | **h33-2-b2, 37,654d, 0.2778* (9-site peak)** | — (do not copy) | not estimable | reference | NO — already submitted, duplicate |
 | GEMSDOE36 | anderson, 38,854d, 0.2750* | — | not estimable | B2 dots +1,200 exactly | NO |
-| **GEMSDOE33 (this repo, newest)** | h33d 0.2632* (retired) | **`gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.tif`** | HOLDOUT-DTI screen 0.168298 [0.161, 0.175†], confirmation 0.163037 — **leaderboard: not estimable** | **YES** — surface+dots pass vs 21 rasters (see run card) | **🛑 NO — holdout gate failed vs same-operator random; research only** |
+| **GEMSDOE33 (this repo, newest)** | h33d 0.2632* (retired) | **`gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.tif`** | HOLDOUT-DTI screen 0.168298 [0.155897, 0.180764], confirmation 0.163037 [0.150701, 0.175697] — **leaderboard: not estimable** | **NO** — pre-placement surface fails: max 3-px overlap 86.08% (>70% stop threshold); final dots pass, but that does not cure the pre-placement failure | **🛑 NO — novelty and holdout gates failed; research-only artifact** |
 
 †CI from experiment JSON. The newest unique download is PCSUP; PHCONG/PHCONGDT twins are
 also in `docs/downloads/` (research only). **No file in this repo is OK TO SUBMIT.**
@@ -69,9 +69,11 @@ Name/note (≤140): see run card. Portal acceptance remains unverified; the earl
 {"hypothesis":"Multiscale monogenic phase-congruency (tmi/up150/gravity) x orientation agreement finds blind basement faults; supervised variant learns fault-vs-intrusive weighting on subsurface channels only","mechanism":"Amplitude-invariant phase-coherent potential-field step edges under cover","named_non_fault_mimic":"Intrusive plutonic contacts, caldera ring margins, airborne survey seams","holdout_dti":{"label":"HOLDOUT-DTI","evaluator_version":"gems-segment-pooled-v1","withheld_positives":60988,"PCSUP_screen":0.168298,"PCSUP_confirmation":0.163037,"paired_vs_CELF_random_CI95":[-0.022979,0.002861]},"correlation_overlap_vs_registry":"pass vs 21 rasters (surface and final dots; see pcsup run card)","raster_sha256":"see evidence/a33_r7_pcsup_run_card_20261028.json","validator":"saved-byte pass; no NaN inside footprint; values in [0,1]; CRS/shape/transform match","submission_name":"gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros","verdict":"negative"}
 ```
 
+**Protocol correction:** the saved PCSUP uniqueness record reports pre-placement surface max 3-px overlap 86.0838% against a registry raster, exceeding the 70% stop threshold. Final-dot overlap passes, but the lane protocol requires both stages to pass. Therefore the candidate fails uniqueness and should have been stopped before placement; its existing final raster remains research-only. See `evidence/a33_r7_pcsup_uniqueness_20261028.json` and the run card; this correction supersedes the older “surface+dots pass” wording above.
+
 **Next decisive step (new session, fresh preregistration):** rebuild the holdout at
 deployment density (0.73%), re-baseline B1/CSHT/H19-5-reference at that density, and
-only then test a new surface. Do not spend a slot on any current artifact.
+only then test a new surface. Any new candidate must pass pre-placement novelty before placement, as well as final-dot novelty. Do not spend a slot on any current artifact.
 Sources: DrivenData competition https://www.drivendata.org/competitions/306/ ,
 reference solution https://github.com/drivendataorg/gems-prize-reference-solution ,
 USGS GeoDAWN https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and ,
