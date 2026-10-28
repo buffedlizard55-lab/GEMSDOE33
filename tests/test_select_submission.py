@@ -39,16 +39,18 @@ def test_real_negative_card_is_blocked_only_by_science_gates():
     row = _check(json.loads(CARD.read_text()))
     failed = {k for k, v in row["checks"].items() if not v}
     assert row["eligible"] is False
-    assert failed == {"verdict_promote", "promotion_gates_all_pass"}
+    assert failed == {"verdict_promote", "promotion_gates_all_pass", "underlying_evidence_reassessed"}
 
 
-def test_positive_control_promote_card_on_valid_bytes_is_eligible():
+def test_forged_promote_card_without_underlying_evidence_is_blocked():
     card = copy.deepcopy(json.loads(CARD.read_text()))
     card["verdict"] = "promote"
     card["promotion_assessment"]["eligible_for_selector"] = True
     card["promotion_assessment"]["gates"] = dict.fromkeys(_selector().REQUIRED_GATE_NAMES, True)
     card["promotion_assessment"]["failed_gates"] = []
-    assert _check(card)["eligible"] is True
+    row = _check(card)
+    assert row["eligible"] is False
+    assert row["checks"]["underlying_evidence_reassessed"] is False
 
 
 def test_flat_s33_run_card_locates_saved_bytes_by_sha_and_stays_negative():
@@ -61,7 +63,7 @@ def test_flat_s33_run_card_locates_saved_bytes_by_sha_and_stays_negative():
     assert row["checks"]["format_audit_pass_on_saved_bytes"] is True
     assert row["checks"]["zip_single_geotiff_same_bytes"] is True
     assert row["checks"]["note_1_to_140_chars"] is True
-    assert {k for k, v in row["checks"].items() if not v} == {"verdict_promote", "promotion_gates_all_pass"}
+    assert {k for k, v in row["checks"].items() if not v} == {"verdict_promote", "promotion_gates_all_pass", "underlying_evidence_reassessed"}
 
 
 def test_sha_tamper_and_long_note_fail_closed():

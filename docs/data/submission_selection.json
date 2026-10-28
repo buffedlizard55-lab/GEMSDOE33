@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-27T23:48:32+00:00",
+  "generated_utc": "2026-10-28T11:37:43+00:00",
   "selector": "scripts/select_submission.py (automated, fail-closed)",
   "ok_to_submit": false,
   "decision": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
@@ -22,7 +22,8 @@
         "all_cells_finite_and_in_0_1": true,
         "zip_single_geotiff_same_bytes": false,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "format_audit_failures": [],
       "note": "A33-L1 analog-CDF fusion 37654d | holdout gate FAIL | research; selector not run | 85c94a805a34",
@@ -45,7 +46,8 @@
         "all_cells_finite_and_in_0_1": true,
         "zip_single_geotiff_same_bytes": true,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "format_audit_failures": [],
       "note": "GEMS33 A33-R2-CSHT: cover+hydrothermal transfer + 300m CELF 37654d | gate DUPLICATE | 0b78c04d5fad",
@@ -68,7 +70,8 @@
         "all_cells_finite_and_in_0_1": true,
         "zip_single_geotiff_same_bytes": true,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "format_audit_failures": [],
       "note": "GEMS33 A33-R3-LCHC: thermal/vent least-cost connectivity graph 37654d | gate NEGATIVE | 77337fc0c6c7",
@@ -91,7 +94,8 @@
         "all_cells_finite_and_in_0_1": true,
         "zip_single_geotiff_same_bytes": true,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": true
+        "confirmation_dti_finite_in_0_1": true,
+        "underlying_evidence_reassessed": false
       },
       "format_audit_failures": [],
       "note": "GEMS33 A33-R3-LLC V2_gamma05: scarp line-integral x CSHT prior, CELF300 37654d | NEGATIVE | 7f91f9f3ced9",
@@ -114,7 +118,8 @@
         "all_cells_finite_and_in_0_1": true,
         "zip_single_geotiff_same_bytes": true,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "format_audit_failures": [],
       "note": "GEMS33 A33-R5-THKCOND: radiometric Th/K x conductivity x shallow cover x gravity edge, CELF300 37654d | gate negative | f47ef136b543",
@@ -137,7 +142,8 @@
         "all_cells_finite_and_in_0_1": true,
         "zip_single_geotiff_same_bytes": true,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "format_audit_failures": [],
       "note": "GEMS33 A33-R6-BASESTEP: basement step x conductive cover x gravity edge, CELF300 37654d | gate negative | 4e0c37d1d539",
@@ -160,7 +166,8 @@
         "all_cells_finite_and_in_0_1": true,
         "zip_single_geotiff_same_bytes": true,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "format_audit_failures": [],
       "note": "GEMS33 DPPS dip-projected persistence scarp CELF 37654d | 111ae96bb235 | gate FAIL",
@@ -183,7 +190,8 @@
         "all_cells_finite_and_in_0_1": false,
         "zip_single_geotiff_same_bytes": false,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "note": "H33-6 edge-normal research artifact; holdout gate failed; not approved for competition upload. id 6c888d2ce0f7",
       "sha256": null,
@@ -205,7 +213,8 @@
         "all_cells_finite_and_in_0_1": true,
         "zip_single_geotiff_same_bytes": true,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "format_audit_failures": [],
       "note": "GEMS33 FSML2-CC V1_cc6 spyPU+worm+line CELF 37654d | NEGATIVE | 6fd4410bbaee",
@@ -228,7 +237,8 @@
         "all_cells_finite_and_in_0_1": true,
         "zip_single_geotiff_same_bytes": true,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "format_audit_failures": [],
       "note": "GEMS33 PFRT listric dip-proj CELF 37654d | 048e07cb9d0e | NEGATIVE",
@@ -251,7 +261,8 @@
         "all_cells_finite_and_in_0_1": false,
         "zip_single_geotiff_same_bytes": false,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "note": "GEMSDOE33 H33-R3-3 37654d [0,1] zeros; unique vs 201 9-site dl; gated (r13-lattice-s5/proxy); id a6a8552e",
       "sha256": null,
@@ -273,7 +284,8 @@
         "all_cells_finite_and_in_0_1": false,
         "zip_single_geotiff_same_bytes": false,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "note": "GEMSDOE33 H33-R3-1 invariant analog co-train B2; 37654 dots; research only, do not submit (40f15a687381)",
       "sha256": null,
@@ -295,7 +307,8 @@
         "all_cells_finite_and_in_0_1": false,
         "zip_single_geotiff_same_bytes": false,
         "note_1_to_140_chars": false,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "note": null,
       "sha256": null,
@@ -317,7 +330,8 @@
         "all_cells_finite_and_in_0_1": false,
         "zip_single_geotiff_same_bytes": false,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "note": "AT1 independent-label analog transfer: blocked by missing official fault labels, lane and shared template. No new TIFF.",
       "sha256": null,
@@ -339,7 +353,8 @@
         "all_cells_finite_and_in_0_1": false,
         "zip_single_geotiff_same_bytes": false,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": false
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
       },
       "note": "GEMSDOE33 G33 tilt-gravity-lidar coherence TIFF; proxy holdout FAILED dDTI -0.0907 0/4 folds; NOT cleared to submit. id 171b8b87dbf7",
       "sha256": null,
@@ -361,7 +376,8 @@
         "all_cells_finite_and_in_0_1": true,
         "zip_single_geotiff_same_bytes": true,
         "note_1_to_140_chars": true,
-        "confirmation_dti_finite_in_0_1": true
+        "confirmation_dti_finite_in_0_1": true,
+        "underlying_evidence_reassessed": false
       },
       "format_audit_failures": [],
       "note": "GEMS33 S33-SEISDIL strain-seismicity gate 37654d | gate NEGATIVE | 3463540a7e02",
