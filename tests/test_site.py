@@ -2,7 +2,7 @@
 from scripts import build_site
 
 
-def test_overview_marks_latest_unique_tif_research_only_and_not_uploadable():
+def test_overview_marks_latest_research_tif_research_only_and_not_uploadable():
     page = build_site.build_index()
     assert "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif" in page
     assert page.index("s33-seisdil") < page.index("a33-r3-llc")
@@ -22,6 +22,22 @@ def test_overview_marks_latest_unique_tif_research_only_and_not_uploadable():
     assert "17 SHA-256-pinned owner-mirror inputs" in page
     assert "shared 121-channel cache" in page
     assert "knowledge/21_post_merge_review_20261026.md" in page
+
+
+def test_r7_pcsup_surface_novelty_failure_is_visible_and_not_mislabeled_unique():
+    from pathlib import Path
+    import json
+
+    root = Path(__file__).resolve().parents[1]
+    uniqueness = json.loads((root / "evidence/a33_r7_pcsup_uniqueness_20261028.json").read_text())
+    surface = uniqueness["surface"]
+    assert surface["passed"] is False
+    assert surface["max_preview_fraction_within_3px"] > surface["overlap_stop_gt"]
+    page = build_site.build_index()
+    assert "PRE-PLACEMENT UNIQUENESS FAILED" in page
+    assert "86.08%" in page
+    assert "uniqueness gate failed" in page
+    assert "Download unique A33-R7-PCSUP" not in page
 
 
 def test_s33_seisdil_banner_has_download_and_explicit_negative_verdict():
