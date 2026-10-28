@@ -270,17 +270,17 @@ def r7_pcsup_hero() -> str:
     sub = card["submission"]; hs = card["holdout_dti"]["screen"]; hc = card["holdout_dti"]["confirmation"]
     u = card["correlation_overlap_vs_registry"]
     return f"""<div class="hero-download" id="r7-pcsup">
-<h2>NEWEST UNIQUE TIF (2026-10-28, A33-R7-PCSUP) — ✅ OK TO DOWNLOAD: YES (research only) · 🛑 OK TO SUBMIT: NO (verdict: negative)</h2>
-<p><span class="badge good">UNIQUE vs 21 registry rasters: surface max |ρ| {u['surface_max_abs_spearman']:.4f}, final dots max 3-px overlap {100*u['final_dots_max_3px_overlap']:.1f}% ≤ 70% — NOT a copy of any previous submission</span>
-<span class="badge good">FORMAT PASS (automated, no human inspection): single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1], 37,654 dots</span>
-<span class="badge bad">HOLDOUT GATE FAILED vs same-operator matched-random (screen Δ {hs['paired_delta_vs_matched_random']:+.4f}, CI spans 0) — DO NOT SPEND A SLOT. Estimated leaderboard score: NOT ESTIMABLE (HOLDOUT-DTI is a catalogue proxy, not a score)</span></p>
-<p><b>What it is:</b> supervised subsurface-only HGB on phase-congruency + potential-field channels (no topo/LiDAR), CELF-300 m emission. Three A33-R7 experiments (PHCONG/PHCONGDT/PCSUP) all negative; Exp 1's initial promote was withdrawn after the same-operator random control beat it. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/30_phcong_results_20261028.md">knowledge/30 results + executive table</a>.</p>
-<p><a class="btn" href="downloads/{sub['file']}">⬇ Download unique A33-R7-PCSUP GeoTIFF (research only)</a> <a class="btn alt" href="downloads/{sub['zip']}">Single-TIFF .zip</a> <a class="btn alt" href="data/a33_r7_pcsup_run_card_20261028.json">Run card JSON</a></p>
+<h2>A33-R7-PCSUP TIFF (2026-10-28) — 🛑 NOT UNIQUE UNDER LANE RULE · research artifact only · NOT OK TO SUBMIT</h2>
+<p><span class="badge bad">PRE-PLACEMENT SURFACE DUPLICATE STOP: max 3-px overlap {100*u['surface_max_3px_overlap']:.2f}% &gt; 70% (21-raster registry); max |ρ| {u['surface_max_abs_spearman']:.4f}. Final dots passed (max overlap {100*u['final_dots_max_3px_overlap']:.2f}%) but cannot cure the failed surface guard.</span>
+<span class="badge good">FORMAT PASS ONLY (not science/uniqueness): single-band float32, EPSG:32611, 3730×3292, whole array finite in [0,1], 37,654 dots</span>
+<span class="badge bad">The saved holdout numbers are exploratory because the lane should have stopped at the failed surface guard. Separate matched-random screen also failed (Δ {hs['paired_delta_vs_matched_random']:+.4f}, CI spans 0). Estimated leaderboard score: NOT ESTIMABLE.</span></p>
+<p><b>What it is:</b> supervised subsurface-only HGB on phase-congruency + potential-field channels (no topo/LiDAR), CELF-300 m emission. A post-run evidence audit found the pre-placement surface exceeded the hard overlap threshold; per protocol, log as duplicate/drift and stop. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/31_r7_pcsup_lane_correction_20261028.md">correction and scope</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/30_phcong_results_20261028.md">A33-R7 results</a>.</p>
+<p><a class="btn alt" href="downloads/{sub['file']}">Download archived PCSUP TIFF (NOT unique under protocol; do not submit)</a> <a class="btn alt" href="downloads/{sub['zip']}">Single-TIFF .zip (research archive only)</a> <a class="btn alt" href="data/a33_r7_pcsup_run_card_20261028.json">Run card JSON</a></p>
 <table><tbody>
 <tr><th>Unique submission name</th><td><code>{sub['name']}</code></td></tr>
 <tr><th>Note (≤140)</th><td><code>{esc(sub['note'])}</code></td></tr>
 <tr><th>SHA-256</th><td><code>{card['raster_sha256']}</code></td></tr>
-<tr><th>HOLDOUT-DTI</th><td>screen {hs['candidate']:.4f}, confirmation {hc['candidate']:.4f} (gems-segment-pooled-v1, 60,988 withheld) — NOT a leaderboard estimate</td></tr>
+<tr><th>Exploratory HOLDOUT-DTI (not valid promotion evidence)</th><td>gems-segment-pooled-v1, 60,988 withheld positives; screen {hs['candidate']:.6f} [{hs['ci95'][0]:.6f}, {hs['ci95'][1]:.6f}], confirmation {hc['candidate']:.6f} [{hc['ci95'][0]:.6f}, {hc['ci95'][1]:.6f}]. NOT a leaderboard estimate; surface duplicate guard failed before placement.</td></tr>
 <tr><th>Decision</th><td><b>✅ DOWNLOAD YES · 🛑 SUBMIT NO</b></td></tr>
 </tbody></table></div>"""
 
@@ -466,18 +466,18 @@ def build_index() -> str:
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 <h2>Current decision (2026-10-28)</h2>
-<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The two newest unique research TIFFs — A33-R6-BASESTEP (top banner) and A33-R5-THKCOND — are downloadable for research only and NOT OK TO SUBMIT: both are negative research artifacts; full-catalogue threshold fitting and composite-only canaries invalidate their protocol claims. The selector snapshot on 2026-10-28 rechecked 16 recorded run cards and found zero eligible candidates. No contest slot was used and no upload was made.</div>
-<p><b>Best reported focus-site artifact:</b> GEMSDOE32 B2, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with <b>0.2778 USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)</b>. Raster forensics reproduced it as deletion-only pruning of GEMSDOE28 H27-4; it is prior art and must not be copied or lightly altered. S33-SEISDIL and prior novel lanes have not demonstrated a basis to predict a competition score above it; do not project holdout DTI to the leaderboard. See the <a href="executive-summary.html">nine-site executive summary</a> and <a href="results.html">score provenance</a>.</p>
+<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The newest PCSUP TIFF is an archived research artifact, not unique under the lane rule: its pre-placement surface exceeds the 70% overlap limit (86.08%); do not submit. The A33-R7 budget is exhausted (3/3), so do not rerun or tune these holdouts. The automated selector found zero eligible candidates. No contest slot was used and no upload was made. Older BASESTEP/THKCOND records are additionally protocol-invalid because full-catalogue thresholds and composite-only canaries were used.</div>
+<p><b>Best reported focus-site artifact:</b> GEMSDOE32 B2, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with <b>0.2778 USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)</b>. Raster forensics reproduced it as deletion-only pruning of GEMSDOE28 H27-4; it is prior art and must not be copied or lightly altered. No current candidate has demonstrated a valid basis to predict a higher competition score. HOLDOUT-DTI is a catalogue proxy, not a leaderboard score estimate. See the <a href="executive-summary.html">nine-site executive summary</a> and <a href="results.html">score provenance</a>.</p>
 <h2>What can be concluded about the cited scores?</h2>
 <p>Historical values in owner pages and the prompt are not organizer-confirmed without a submission receipt linked to the exact file. The prompt's current-leader values 0.3195 and 0.4413 conflict and are unverified here. The GEMSDOE28 owner page was recorded as labeling H27-4 unscored/research-only, so the premise that this raster earned 0.2708 is unresolved. These reports motivate forensic research; they are not independent validation or a score forecast.</p>
 <p>Do not refresh or copy the official leaderboard without the permission/API described in the project's terms review. See <a href="irregularities.html">irregularities</a> for known conflicts.</p>
 <h2>Hypothesis and experiment status</h2>
-<p>Round 4 feasibility triage and ranked geological hypotheses are documented in <a href="hypotheses.html">Ranked hypotheses</a> and <a href="latest-review.html">the latest review</a>. A separately preregistered S33-SEISDIL lane was tested in the parallel-session PR #30; its unique TIFF is the research-only banner above and its result is negative. Its paired HOLDOUT-DTI intervals are not contest-score projections.</p>
-<div class="panel warn"><b>Data/provenance status:</b> 17 SHA-256-pinned owner-mirror inputs and the shared 121-channel cache were restored/rebuilt locally; these are git-ignored and not distributed by this GitHub Pages site. The S33-SEISDIL run card/unique TIFF are committed research artifacts, not organizer-authenticated inputs or an organizer score. No raster is slot-approved. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/21_post_merge_review_20261026.md">latest repository review</a> and <code>data/README.md</code>.</div>
+<p>Current A33-R7 review found PCSUP's pre-placement surface fails the lane duplicate guard (86.08% within 3 px &gt; 70%); its final dots and later holdout cannot reverse the earlier stop. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/31_r7_pcsup_lane_correction_20261028.md">correction</a>, <a href="hypotheses.html">ranked prior hypothesis slates</a>, and <a href="latest-review.html">latest review</a>. No new experiment or fourth run is authorized in this exhausted campaign.</p>
+<div class="panel warn"><b>Data/provenance status:</b> 17 SHA-256-pinned owner-mirror inputs and the shared 121-channel cache were restored/rebuilt locally; these are git-ignored and not distributed by this GitHub Pages site. Mirror hashes establish byte identity only, not organizer authentication. No raster is slot-approved. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/27_20261028_safety_review.md">safety review</a> and <code>data/README.md</code>.</div>
 <h2>Our operating values</h2>
 <div class="grid-2"><div class="panel accent"><h3>Maximize P(Win)</h3><p>Prefer evidence that predicts useful hidden-fault detection, not a download or a hopeful score projection. No slot until a fresh, leakage-audited holdout improves over a matched baseline.</p></div><div class="panel accent"><h3>Own the Outcome</h3><p>Make failures visible, preserve provenance, correct misleading pages, and distinguish local format validation from scientific validity and organizer acceptance.</p></div></div>
 <h2>Use artifacts safely</h2>
-<p>The newest PFRT TIFF is downloadable for research only and <b>must not be uploaded</b> because its holdout gate was negative. A33-R3-LLC and the other historical TIFFs are also research records or prior-site submissions, not approved new submissions. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
+<p>The newest PCSUP TIFF is retained only as an audit artifact: its pre-placement surface failed the duplicate guard and it is not unique under the lane rule. Do not submit it. A33-R3-LLC and the other historical TIFFs are also research records or prior-site submissions, not approved new submissions. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
 """
     return page("GEMSDOE33 · Evidence-led fault discovery", body, "index.html")
 
@@ -498,10 +498,22 @@ def build_exec() -> str:
         url = f"https://github.com/{r['repo']}/blob/{r['ref']}/{r['path']}"
         return f'<a href="{esc(url)}"><code>{esc(Path(r["path"]).name)}</code></a>'
 
+    novelty_by_site = {
+        "GEMSDOE24": "NO — shared H19-5 emission family; 100% of its dots fall within 3 px of GEMSDOE25 d2.8 (focus audit).",
+        "GEMSDOE25": "NO — pixel-identical prediction set to GEMSDOE30 d2.8 (XOR=0; forensic audit).",
+        "GEMSDOE27": "NO — H19-5 gap-closure variant; 98.0% of GEMSDOE27 dots are within 3 px of GEMSDOE24, with binary ρ=0.9896 (focus audit).",
+        "GEMSDOE28": "NO — reported best h36-1 remains in the shared emission family (≥93% 3-px overlap vs GEMSDOE24/25); h27-4 is byte-set-identical to GEMSDOE31.",
+        "GEMSDOE30": "NO — pixel-identical prediction set to GEMSDOE25 d2.8 (XOR=0; forensic audit).",
+        "GEMSDOE31": "NO — h27-4 prediction set is pixel-identical to GEMSDOE28 h27-4 (XOR=0; forensic audit).",
+        "GEMSDOE32": "NO — B2 is exactly GEMSDOE28/31 h27-4 after deleting 2,545 dots; every B2 dot is within 3 px of its parent.",
+        "GEMSDOE33": "NO — h33d is family-adjacent; 92.6% of its dots lie within 3 px of B2 (focus audit).",
+        "GEMSDOE36": "NO — contains all 37,654 GEMSDOE32 B2 dots exactly plus 1,200 extra (forensic audit).",
+    }
+
     rows = "\n".join(
         f"<tr><td>{site}</td><td><code>{name}</code><br>{historical_download(site, score)}</td>"
         f"<td>{score}</td><td>Not estimable from available evidence</td>"
-        f"<td>Historical submission, not new; global uniqueness not established</td>"
+        f"<td>{esc(novelty_by_site[site])} Scope: pinned focus rasters only, not a global registry.</td>"
         f"<td>NO</td><td>{status}</td></tr>"
         for site, name, score, status in (
             ("GEMSDOE24", "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan", "0.2477",
@@ -524,7 +536,8 @@ def build_exec() -> str:
              "Owner-reported; MEASURED 2026-10-26: contains all 37,654 GEMSDOE32 B2 dots exactly + 1,200 extra dots (knowledge/22) — same emission family, not an independent surface"),
         )
     )
-    body = f"""{review_warning()}{basestep_hero()}
+    body = f"""{review_warning()}{r7_pcsup_hero()}
+{basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
 {s33_seisdil_hero()}
@@ -534,7 +547,7 @@ def build_exec() -> str:
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
 <h2>Executive summary — per-site best submissions and how to submit</h2>
-<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The two newest unique files (A33-R6-BASESTEP and PFRT, above) are <b>✅ OK TO DOWNLOAD / 🛑 OK TO SUBMIT: NO</b>. BASESTEP used full-catalogue threshold fitting and is not fold-safe; PFRT failed its recorded holdout gate (PFRT 0.0831/0.0791 vs CSHT 0.1384/0.1301). Historical site scores remain owner-reported unless an organizer receipt is linked to the exact file. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
+<div class="panel bad"><b>Current status: no file in this project is approved for a competition slot, and no DrivenData upload was made from this workspace.</b> The newest file is A33-R7-PCSUP (above), <b>archive download only / 🛑 NOT OK TO SUBMIT</b>; it failed the pre-placement surface uniqueness guard and the same-operator matched-random gate. Its estimated leaderboard score is not estimable. The A33-R7 budget is exhausted. Older BASESTEP/THKCOND results are also invalid as confirmatory evidence because of full-catalogue threshold fitting and composite-only canaries. Historical site scores remain owner-reported unless an organizer receipt is linked to exact bytes. <b>There is currently no “submit this one” file; do not upload any file until its banner says OK TO SUBMIT: YES.</b></div>
 
 <h3>Exactly how a submission is made (when a future candidate passes every gate)</h3>
 <ol>
@@ -783,7 +796,8 @@ def build_focus_review() -> str:
 <h3>Primary evidence and reviewable limitations</h3>
 <p><a href="{GITHUB}/knowledge/21_post_merge_review_20261026.md">Latest post-merge review</a> · <a href="{GITHUB}/knowledge/20_restoration_and_claims_audit_20261026.md">Restoration and claims audit</a> · <a href="{GITHUB}/knowledge/18_round4_feasibility_audit_20261026.md">Previous Round-4 feasibility report</a> · <a href="{GITHUB}/evidence/source_review_20261025.json">Pinned source inventory</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">Organizer CPU/GPU reference</a>. Official competition rules, weekly cap, current leaderboard and score-to-file receipts were not freshly verified; no automated DrivenData contact was made.</p>
 """
-    return page("Latest forensic review & automatic gates · GEMSDOE33", body, "latest-review.html")
+    current = """<div class="panel bad"><b>Current correction (2026-10-28): no candidate is OK TO SUBMIT.</b> A33-R7-PCSUP's pre-placement surface failed the required 21-raster guard: 86.08% within 3 px exceeds 70%. Its later final-dot pass does not clear the earlier stop; the holdout values are exploratory. No fourth experiment was run. Read <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/31_r7_pcsup_lane_correction_20261028.md">the correction note</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_r7_pcsup_lane_correction_20261028.json">machine-readable correction</a>. All content below this notice is dated historical audit material, not the latest campaign result.</div>"""
+    return page("Latest forensic review & automatic gates · GEMSDOE33", current + body, "latest-review.html")
 
 
 def build_prompt() -> str:

@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "date": "2026-10-28",
+  "type": "post-run protocol correction",
+  "candidate": "A33-R7-PCSUP",
+  "source_experiment": "evidence/a33_r7_pcsup_experiment_20261028.json",
+  "source_run_card": "evidence/a33_r7_pcsup_run_card_20261028.json",
+  "source_run_card_sha256": "e501e7986bd64a6a7f8067bc8f81d98284118d12269bcf4c8cec790c2db1d8d8",
+  "raster": "docs/downloads/gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.tif",
+  "raster_sha256": "7165ef02ade6eeec17f4fc99b02cf871783d3070704a119c414e8e818fe8cf5e",
+  "protocol_thresholds": {
+    "max_abs_spearman_rho": 0.9,
+    "max_fraction_within_3px": 0.7
+  },
+  "surface_before_placement": {
+    "registry_rasters": 21,
+    "passed": false,
+    "max_abs_spearman_rho": 0.10095914928039568,
+    "max_fraction_within_3px": 0.8608381579646253,
+    "exceeded_overlap_threshold_by": 0.16083815796462528
+  },
+  "final_dots": {
+    "passed": true,
+    "max_abs_spearman_rho": 0.037229378371087606,
+    "max_fraction_within_3px": 0.5827534923248526
+  },
+  "disposition": "duplicate/drift under the lane rule; final-dot pass does not cure failed surface guard",
+  "holdout_disposition": "historical HOLDOUT-DTI figures are exploratory only because the pre-placement stop condition failed; not promotion evidence or score estimate",
+  "actions": [
+    "do not submit",
+    "do not claim protocol uniqueness",
+    "preserve source run card and experiment record unchanged",
+    "do not run a fourth A33-R7 experiment"
+  ],
+  "verdict": "negative",
+  "hypothesis": "Supervised subsurface-only HGB on phase-congruency and potential-field channels can rank catalogue-missing blind faults beneath cover.",
+  "mechanism": "Learned phase-coherent potential-field edge weighting is intended to distinguish fault-like basement steps from intrusive contacts; this candidate failed the required pre-placement registry guard.",
+  "named_non_fault_mimic": "Intrusive plutonic contacts and caldera margins.",
+  "holdout_dti": {
+    "label": "EXPLORATORY HOLDOUT-DTI — invalid for promotion because the required surface stop was violated",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "withheld_positive_count": 60988,
+    "screen": {
+      "split": "quadrant-buffered-15px-v1",
+      "dti": 0.16829778999689143,
+      "ci95": [
+        0.15589688819609882,
+        0.18076412357359656
+      ]
+    },
+    "confirmation": {
+      "split": "diagonal-wedge-buffered-20px-confirm-v1",
+      "dti": 0.16303695409560834,
+      "ci95": [
+        0.1507010938860683,
+        0.17569744995537195
+      ]
+    },
+    "qualification": "These values are copied from the preserved experiment/run card for audit only. They are not valid promotion evidence, organizer truth, or score projections."
+  },
+  "correlation_overlap_vs_registry": {
+    "scope": "21 pinned rasters covering GEMSDOE24/25/27/28/30/31/32/33/36 plus local records; not global",
+    "surface_before_placement": {
+      "max_abs_spearman": 0.10095914928039568,
+      "max_fraction_within_3px": 0.8608381579646253,
+      "passed": false
+    },
+    "final_dots": {
+      "max_abs_spearman": 0.037229378371087606,
+      "max_fraction_within_3px": 0.5827534923248526,
+      "passed": true
+    },
+    "interpretation": "Failed surface guard dictates duplicate/drift despite final-dot pass."
+  },
+  "validator": {
+    "saved_byte_audit": "pass for archived zero-outside TIFF against the pinned owner-mirror template; not organizer-authenticated or accepted",
+    "single_band_float32": true,
+    "crs": "EPSG:32611",
+    "shape": [
+      3730,
+      3292
+    ],
+    "transform": [
+      100.0,
+      0.0,
+      243350.0,
+      0.0,
+      -100.0,
+      4508550.0
+    ],
+    "inside_footprint_nan_or_inf": 0,
+    "inside_footprint_range": [
+      0.0,
+      1.0
+    ],
+    "organizer_acceptance": "not verified; format pass does not authorize upload"
+  },
+  "submission_name": "gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros",
+  "submission_note": "GEMS33 A33-R7-PCSUP: supervised subsurface PHCONG HGB CELF 37654d | gate negative | d1f9cca0af02",
+  "experiment_run_in_this_review": false
+}
