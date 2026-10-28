@@ -328,6 +328,39 @@ Read `knowledge/22_selector_safety_review_20261026.md` before new experiments. T
 received no identifiable single assigned method lane; it did not infer one or rerun negative
 experiments. The selector now rejects internally contradictory gate flags and invalid ranking
 DTI. No new TIFF or score is claimed in that session. The FSML session above is the latest experimental state: unique FSML2-CC TIF exists, verdict negative, selector 0 eligible.
+
+## Current outcome addendum (2026-10-28, A33-R7 and post-run audit)
+
+The A33-R7 preregistered campaign used its full three-experiment budget (PHCONG, PHCONGDT,
+PCSUP). No additional experiment or weekly submission slot was used in the 2026-10-28 safety review.
+The current site summary must say **NO FILE IS OK TO SUBMIT** and **leaderboard score not estimable**.
+
+**Critical correction:** the preserved PCSUP experiment record,
+`evidence/a33_r7_pcsup_experiment_20261028.json`, explicitly marks the `surface_before_placement`
+uniqueness guard `passed: false`: maximum candidate-preview within-3-pixel overlap is `0.860838`
+(86.08%), exceeding the 0.70 limit in the 21-raster registry. Maximum absolute Spearman is 0.100959,
+below the 0.90 limit. Final dots subsequently passed (max overlap 0.582753), but this cannot cure the
+failed earlier surface guard. The campaign continued past its required stop; log PCSUP as duplicate/
+drift and treat its later HOLDOUT-DTI numbers as exploratory, not promotion evidence. Do not say it
+is unique or recommend its TIFF for submission. The original run-card and experiment records remain
+unchanged; correction evidence is `evidence/a33_r7_pcsup_lane_correction_20261028.json`, and the
+readable audit is `knowledge/31_r7_pcsup_lane_correction_20261028.md`.
+
+The other A33-R7 candidates&#x27; recorded uniqueness guards passed, but each failed its scientific gate:
+PHCONG&#x27;s initial promote was withdrawn after matched-random comparison; PHCONGDT and PCSUP also did
+not beat their same-operator controls. All score figures in `knowledge/30_phcong_results_20261028.md`
+are labelled HOLDOUT-DTI and are not organizer scores. The fold emission budget was 2.5% while
+full-footprint emission was 0.73%, which compresses discrimination; do not make cross-campaign score
+comparisons at mismatched densities. No score for a unique TIFF is estimable from these proxies.
+
+**Next session:** do not continue A33-R7 or rerun its holdouts. Before authorizing a new method lane,
+freeze an explicit lane and correct the evaluator campaign so it hard-stops on a failing *surface*
+novelty check before placement; match fold emission density to deployment and rebuild matched
+baselines; confirm the accessible registry scope; canary each input independently; re-open and
+validate saved TIFF bytes. Any future 3–5 hypothesis slate must be marked as proposals only until
+official source availability/terms and local prior-art differences are checked. Do not spend a slot
+unless independent matched holdout gates pass. No DrivenData login or organizer receipt is available
+here. See `registry/irregularities.json` (`IR-33-R7-PCSUP-SURFACE-01`) for the correction.
 </pre></main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. The selector checks declared evidence consistency, not the independent authenticity of measurements. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>

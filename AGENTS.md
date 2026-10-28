@@ -55,3 +55,11 @@
     splits (Δ −0.0252/−0.0290, 0/4+0/4); uniform 25k budget descent was also rejected for both
     surfaces. Do not retune either. All nine focus sites' best files are one H19-5 emission family;
     GEMSDOE36's file contains B2's dots exactly. No file is slot-approved (selector 0/13).
+
+13. **A33-R7 correction (2026-10-28):** read `knowledge/31_r7_pcsup_lane_correction_20261028.md`
+    and `evidence/a33_r7_pcsup_lane_correction_20261028.json`. A33-R7-PCSUP's preserved experiment JSON
+    explicitly records pre-placement surface overlap `0.860838` > `0.70` (max |ρ| `0.100959`), even
+    though its final dots later passed. The surface gate failed and must have stopped the lane before
+    placement/evaluation. Treat PCSUP as duplicate/drift, not unique; its later HOLDOUT-DTI is
+    exploratory only. Original evidence is immutable. Do not retune or run a fourth A33-R7 experiment.
+    No raster is OK TO SUBMIT; the latest site/README summary must preserve this correction.

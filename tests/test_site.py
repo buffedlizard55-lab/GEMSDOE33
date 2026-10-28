@@ -2,26 +2,51 @@
 from scripts import build_site
 
 
-def test_overview_marks_latest_research_tif_research_only_and_not_uploadable():
+def test_overview_marks_latest_artifact_as_surface_duplicate_and_not_uploadable():
     page = build_site.build_index()
-    assert "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros.tif" in page
-    assert page.index("s33-seisdil") < page.index("a33-r3-llc")
-    assert "HOLDOUT-DTI" in page and "0.114154" in page and "0.117619" in page
+    assert "gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.tif" in page
+    assert page.index("r7-pcsup") < page.index("a33-r3-llc")
+    assert "surface duplicate stop" in page.lower()
+    assert "86.08%" in page and "70%" in page
+    assert "HOLDOUT-DTI" in page and "0.168298" in page
+    assert "Estimated leaderboard score: NOT ESTIMABLE" in page
     assert "portal acceptance" in page.lower()
     assert "fixes the reported" not in page.lower()
     assert "OK TO DOWNLOAD: YES" in page
     assert "OK TO SUBMIT: NO" in page
-    assert "no raster in this project is ok to submit" in page.lower()
+    assert "no file is ok to submit" in page.lower()
     assert "0.2778" in page
     assert "USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)" in page
     assert "0.3195 and 0.4413 conflict" in page
-    assert "have not demonstrated a basis to predict a competition score above it" in page.lower()
-    assert "do not project holdout dti to the leaderboard" in page.lower()
+    assert "HOLDOUT-DTI is a catalogue proxy, not a leaderboard score estimate" in page
+    assert "do not project holdout dti to the leaderboard" not in page.lower()
     assert "A33-R3-LLC" in page
     assert "Data/provenance status" in page
     assert "17 SHA-256-pinned owner-mirror inputs" in page
     assert "shared 121-channel cache" in page
-    assert "knowledge/21_post_merge_review_20261026.md" in page
+    assert "knowledge/27_20261028_safety_review.md" in page
+
+
+def test_pcsup_correction_fails_closed_on_source_surface_measurement():
+    import hashlib
+    import json
+    from pathlib import Path
+
+    correction = json.loads(Path("evidence/a33_r7_pcsup_lane_correction_20261028.json").read_text())
+    source = json.loads(Path(correction["source_experiment"]).read_text())
+    surface = source["uniqueness"]["surface"]
+    final = source["uniqueness"]["final_dots"]
+    assert correction["surface_before_placement"]["passed"] is surface["passed"] is False
+    assert correction["surface_before_placement"]["max_fraction_within_3px"] == surface["max_preview_fraction_within_3px"]
+    assert correction["surface_before_placement"]["max_fraction_within_3px"] > correction["protocol_thresholds"]["max_fraction_within_3px"]
+    assert correction["final_dots"]["passed"] is final["passed"] is True
+    assert correction["final_dots"]["max_fraction_within_3px"] == final["max_candidate_fraction_within_3px"]
+    assert hashlib.sha256(Path(correction["raster"]).read_bytes()).hexdigest() == correction["raster_sha256"]
+    assert hashlib.sha256(Path(correction["source_run_card"]).read_bytes()).hexdigest() == correction["source_run_card_sha256"]
+    assert "cannot retroactively clear" in Path("knowledge/31_r7_pcsup_lane_correction_20261028.md").read_text()
+    page = build_site.build_exec()
+    assert "86.08%" in page and "NOT unique under protocol" in page
+    assert "estimated leaderboard score is not estimable" in page.lower()
 
 
 def test_r7_pcsup_surface_novelty_failure_is_visible_and_not_mislabeled_unique():
@@ -34,9 +59,9 @@ def test_r7_pcsup_surface_novelty_failure_is_visible_and_not_mislabeled_unique()
     assert surface["passed"] is False
     assert surface["max_preview_fraction_within_3px"] > surface["overlap_stop_gt"]
     page = build_site.build_index()
-    assert "PRE-PLACEMENT UNIQUENESS FAILED" in page
+    assert "PRE-PLACEMENT SURFACE DUPLICATE STOP" in page
     assert "86.08%" in page
-    assert "uniqueness gate failed" in page
+    assert "not unique under protocol" in page.lower()
     assert "Download unique A33-R7-PCSUP" not in page
 
 
@@ -63,7 +88,10 @@ def test_executive_summary_explains_process_and_blocks_failed_candidate():
     assert "no DrivenData auth" in page
     assert "GEMSDOE32" in page and "0.2778" in page
     assert "HIGHEST owner-reported focus-site value" in page
-    assert "PFRT, above" in page
+    assert "A33-R7-PCSUP" in page
+    assert "pre-placement surface" in page
+    assert "86.08%" in page
+    assert "not unique under protocol" in page.lower()
 
 
 def test_hypothesis_page_has_ranked_round4_triage_and_historical_prior_art():
@@ -141,5 +169,8 @@ def test_focus_table_explicitly_separates_estimates_and_historical_novelty():
     page = build_site.build_exec()
     assert "Estimated leaderboard score" in page
     assert page.count("Not estimable from available evidence") == 9
-    assert page.count("Historical submission, not new; global uniqueness not established") == 9
+    assert page.count("NO —") >= 9
+    assert "pixel-identical prediction set to GEMSDOE30" in page
+    assert "92.6%" in page
+    assert "contains all 37,654 GEMSDOE32 B2 dots exactly" in page
     assert "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif" in page
