@@ -4,7 +4,8 @@
 Reads every run card in ``evidence/*run_card*.json``.  A raster is OK TO SUBMIT only
 if ALL of the following are re-verified from bytes on disk in this process:
 
-1. run card verdict == "promote" and promotion_assessment.eligible_for_selector is True
+1. a hash-bound underlying evidence record is reassessed by the shared promotion gate;
+   the run card verdict == "promote" and promotion_assessment.eligible_for_selector is True
    (screen + independent confirmation beat the in-run and recorded holdout best with a
    strictly positive paired CI, canaries pass, surface + final-dot uniqueness pass);
 2. the zero-outside GeoTIFF exists and its sha256 equals the run card's raster_sha256;
@@ -14,6 +15,7 @@ if ALL of the following are re-verified from bytes on disk in this process:
 5. the submission note is 1..140 characters.
 
 Among eligible rasters the one with the highest confirmation HOLDOUT-DTI is selected.
+Reassessment checks declared evidence consistency, not independent authenticity of claimed measurements.
 It never logs in, uploads or polls DrivenData (AGENTS.md / Terms of Use).  The weekly
 slot count is not observable from this sandbox and is stated as an owner-side check.
 
@@ -35,7 +37,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from validate_submission import audit, DATA  # noqa: E402
-from gemsdoe33.promotion import REQUIRED_GATE_NAMES  # noqa: E402
+from gemsdoe33.promotion import REQUIRED_GATE_NAMES, assess  # noqa: E402
 
 # Follow the same GEMS_DATA_DIR/cache resolution as the validator, rather than
 # silently assuming that restored owner-mirror inputs live under repository/data.
@@ -101,6 +103,33 @@ def _locate_zip_for_tif(tif: Path, digest: str) -> Path | None:
     return candidate if len(matches) > 1 and candidate in matches else None
 
 
+def _reassess_evidence(card: dict, fmt: dict, digest: str | None, note: str, confirm_dti) -> bool:
+    """Re-run the shared gate on a hash-bound evidence file, not card summary flags.
+
+    A complete declared evidence record is still not an independent scientific audit:
+    hashes of claimed inputs and measurements require separate verification.
+    """
+    link = card.get("promotion_evidence")
+    if not isinstance(link, dict):
+        return False
+    name, expected_sha = link.get("file"), link.get("sha256")
+    if not isinstance(name, str) or Path(name).name != name or not name.endswith(".json"):
+        return False
+    evidence_path = ROOT / "evidence" / name
+    if not evidence_path.is_file() or _sha(evidence_path) != expected_sha:
+        return False
+    try:
+        def reject_constant(value):
+            raise ValueError(f"non-finite JSON: {value}")
+        evidence = json.loads(evidence_path.read_text(), parse_constant=reject_constant)
+        result = assess(evidence, fmt, digest)
+        return (result.get("eligible_for_selector") is True
+                and evidence.get("submission_note") == note
+                and evidence.get("confirmation", {}).get("candidate_pooled_dti") == confirm_dti)
+    except (OSError, ValueError, TypeError, AttributeError):
+        return False
+
+
 def check_card(path: Path) -> dict:
     card = json.loads(path.read_text())
     sub = card.get("submission") or {}
@@ -128,6 +157,7 @@ def check_card(path: Path) -> dict:
     c["file_exists"] = bool(tif and tif.is_file())
     sha = _sha(tif) if c["file_exists"] else None
     c["sha256_matches_run_card"] = bool(sha) and sha == card.get("raster_sha256")
+    fmt = {}
     if c["file_exists"] and TEMPLATE.is_file():
         fmt = audit(tif, TEMPLATE, strict_zero_outside=True)
         c["format_audit_pass_on_saved_bytes"] = fmt.get("pass") is True and fmt.get("sha256") == sha
@@ -158,6 +188,7 @@ def check_card(path: Path) -> dict:
     valid_dti = type(confirm_dti) in (int, float) and math.isfinite(confirm_dti) and 0 <= confirm_dti <= 1
     c["confirmation_dti_finite_in_0_1"] = valid_dti
     row["confirm_holdout_dti"] = confirm_dti if valid_dti else None
+    c["underlying_evidence_reassessed"] = _reassess_evidence(card, fmt, sha, note, confirm_dti)
     row["eligible"] = all(c.values())
     return row
 

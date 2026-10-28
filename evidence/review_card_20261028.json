@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "date": "2026-10-28",
+  "campaign": "repository safety review; no assigned method lane",
+  "hypothesis": null,
+  "mechanism": null,
+  "named_non_fault_mimic": null,
+  "holdout_dti": null,
+  "holdout_reason": "No new experiment was run. Earlier BASESTEP and THKCOND results are exploratory because full-catalogue threshold fitting and composite-only canaries violate the requested protocol.",
+  "correlation_overlap_vs_registry": null,
+  "raster_sha256": null,
+  "validator": null,
+  "submission_name": null,
+  "submission_note": null,
+  "verdict": "negative",
+  "reason": "No specified single method lane, no new candidate, no valid new holdout or uniqueness evidence; no slot selected or spent.",
+  "prior_research_artifact": {
+    "file": "docs/downloads/gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros.tif",
+    "sha256": "b4cddc4c59975ab76169f15d284f9a138c6452ef11bfec5a226a2368b2a8f00e",
+    "format_recheck": "evidence/basestep_format_recheck_20261028.json",
+    "format_recheck_result": "pass against pinned owner-mirror template; not organizer-authenticated or organizer acceptance",
+    "recorded_registry_scope": "21 pinned rasters; not recomputed in this review",
+    "recorded_surface_max_abs_spearman": 0.004418360866901204,
+    "recorded_surface_max_fraction_within_3px": 0.12827322462420992,
+    "recorded_final_max_abs_spearman": 0.005617985018538809,
+    "recorded_final_max_fraction_within_3px": 0.15966431189249483,
+    "ok_to_submit": false
+  }
+}

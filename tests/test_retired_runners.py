@@ -24,3 +24,14 @@ def test_domain_adaptation_runner_is_disabled():
     assert result.returncode != 0
     assert "not a valid HΔH bound" in result.stderr
     assert "no independent analog labels" in result.stderr
+
+
+def test_full_catalogue_threshold_runners_are_retired():
+    import subprocess
+    import sys
+
+    for name in ("run_basestep_campaign.py", "run_thk_cond_campaign.py"):
+        result = subprocess.run([sys.executable, str(ROOT / "scripts" / name)],
+                                cwd=ROOT, capture_output=True, text=True)
+        assert result.returncode != 0
+        assert "IR-33-20261028-LEAK" in result.stderr

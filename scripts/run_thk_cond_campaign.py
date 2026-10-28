@@ -134,6 +134,7 @@ def emit_for(surface: np.ndarray, holdout) -> list:
 
 
 def main() -> int:
+    raise SystemExit("Retired: full-catalogue threshold fitting and composite-only canary violate the holdout protocol; see IR-33-20261028-LEAK.")
     t0 = time.monotonic()
     actual_prereg = _sha(PREREG)
     if actual_prereg != PREREG_SHA:
