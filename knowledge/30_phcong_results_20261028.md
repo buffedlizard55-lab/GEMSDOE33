@@ -68,9 +68,11 @@ Name/note (≤140): see run card. Portal acceptance remains unverified; the earl
 {"hypothesis":"Multiscale monogenic phase-congruency (tmi/up150/gravity) x orientation agreement finds blind basement faults; supervised variant learns fault-vs-intrusive weighting on subsurface channels only","mechanism":"Amplitude-invariant phase-coherent potential-field step edges under cover","named_non_fault_mimic":"Intrusive plutonic contacts, caldera ring margins, airborne survey seams","holdout_dti":{"label":"HOLDOUT-DTI","evaluator_version":"gems-segment-pooled-v1","withheld_positives":60988,"PCSUP_screen":0.168298,"PCSUP_confirmation":0.163037,"paired_vs_CELF_random_CI95":[-0.022979,0.002861]},"correlation_overlap_vs_registry":"FAIL: surface 86.08% within 3px > 70% guard (21 rasters); final dots pass but cannot cure surface failure; see lane correction","raster_sha256":"see evidence/a33_r7_pcsup_run_card_20261028.json","validator":"saved-byte pass; no NaN inside footprint; values in [0,1]; CRS/shape/transform match","submission_name":"gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros","verdict":"negative"}
 ```
 
+**Protocol correction:** the saved PCSUP uniqueness record reports pre-placement surface max 3-px overlap 86.0838% against a registry raster, exceeding the 70% stop threshold. Final-dot overlap passes, but the lane protocol requires both stages to pass. Therefore the candidate fails uniqueness and should have been stopped before placement; its existing final raster remains research-only. See `evidence/a33_r7_pcsup_uniqueness_20261028.json` and the run card; this correction supersedes the older “surface+dots pass” wording above.
+
 **Next decisive step (new session, fresh preregistration):** rebuild the holdout at
 deployment density (0.73%), re-baseline B1/CSHT/H19-5-reference at that density, and
-only then test a new surface. Do not spend a slot on any current artifact.
+only then test a new surface. Any new candidate must pass pre-placement novelty before placement, as well as final-dot novelty. Do not spend a slot on any current artifact.
 Sources: DrivenData competition https://www.drivendata.org/competitions/306/ ,
 reference solution https://github.com/drivendataorg/gems-prize-reference-solution ,
 USGS GeoDAWN https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and ,
