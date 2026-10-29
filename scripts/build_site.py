@@ -375,6 +375,37 @@ def s33_seisdil_hero() -> str:
 </div>"""
 
 
+def h34_coh_hero() -> str:
+    """2026-10-29 H34-COH research GeoTIFF: unique, format-valid, holdout-negative (from its run card)."""
+    card = read_json(ROOT / "evidence" / "h34_coh_run_card_20261029.json")
+    if not card:
+        return ""
+    h = card["holdout_dti"]
+    sp = h["screen_paired_vs_B1"]
+    cp = h["confirm_paired_vs_B1"]
+    rnd = card["gate_detail"]["screen"]["screen_or_confirm_dti"]
+    surf = card["correlation_overlap_vs_registry"]["surface"]
+    fin = card["correlation_overlap_vs_registry"]["final_dots"]
+    filename = f"{card['submission_name']}.tif"
+    zipname = f"{card['submission_name']}.zip"
+    nanname = card["submission_name"].replace("-zeros", "-nan") + ".tif"
+    max_auc = max(x["max_fold_auc"] for x in card["feature_canaries"]["rows"])
+    verdict = card["verdict"].upper()
+    return f"""<div class="hero-download" id="h34-coh">
+<h2>H34-COH research GeoTIFF (2026-10-29) — ✅ OK TO DOWNLOAD (research): YES · 🛑 OK TO SUBMIT: NO · verdict: {verdict}</h2>
+<p><span class="badge good">UNIQUE vs {surf['registry_count']} registry rasters: surface max |ρ| {surf['max_abs_spearman_rho']:.3f}; surface max 3-px overlap {100*surf['max_preview_fraction_within_3px']:.1f}% (limit 70%)</span>
+<span class="badge good">FINAL DOTS: max |ρ| {fin['max_abs_spearman_rho']:.3f}; max 3-px overlap {100*fin['max_candidate_fraction_within_3px']:.1f}%</span>
+<span class="badge good">LOCAL FORMAT PASS · single-band float32, EPSG:32611, 3730×3292, [0,1] whole array, 37,654 dots, 0 outside footprint</span>
+<span class="badge good">FEATURE CANARY PASS (max AUC {max_auc:.3f} ≤ 0.90)</span>
+<span class="badge bad">HOLDOUT GATE FAILED: loses to B1 on both splits (0/4 folds each)</span></p>
+<p><b>Hypothesis.</b> A fault is a long, straight ridge set; isolated magnetic ridge pixels are not. Gating the B1 regional expert by 8-orientation line-coherence of the NMS magnetic ridge map should rank ridge-continuous segments above isolated ridge pixels. <b>Mechanism.</b> <code>surface = pct(B1) × (0.2 + 0.8·pct(C))</code>, where <code>C</code> = max minus mean of 11-px line averages over 8 orientations, then 300 m CELF emission. <b>Named non-fault mimic.</b> Airborne flight-line striping and levelling artefacts in the magnetic channel, plus drainage and cultural linears.</p>
+<p><b>HOLDOUT-DTI</b> (<code>{h['evaluator_version']}</code>, {h['withheld_positives']:,} withheld positives; local catalogue proxy, not an organizer score): screen H34-COH <code>{h['screen']['H34-COH']:.6f}</code> vs B1 <code>{h['screen']['B1']:.6f}</code> vs matched-random <code>{h['screen']['RANDOM']:.6f}</code>; paired Δ vs B1 <code>{sp['paired_delta_dti']:+.6f}</code>, 95% CI <code>[{sp['paired_delta_ci95'][0]:+.6f}, {sp['paired_delta_ci95'][1]:+.6f}]</code>, {sp['fold_wins']}/{sp['n_folds']} folds. Confirmation H34-COH <code>{h['confirm']['H34-COH']:.6f}</code> vs B1 <code>{h['confirm']['B1']:.6f}</code>; paired Δ <code>{cp['paired_delta_dti']:+.6f}</code>, 95% CI <code>[{cp['paired_delta_ci95'][0]:+.6f}, {cp['paired_delta_ci95'][1]:+.6f}]</code>, {cp['fold_wins']}/{cp['n_folds']} folds. It beats the matched-random control on both splits, so the signal is not pure density, but it does not beat B1. <b>Estimated leaderboard score: NOT ESTIMABLE</b> (catalogue proxy, never a score).</p>
+<p><a class="btn" href="downloads/{filename}">⬇ Download unique H34-COH GeoTIFF (research only)</a> <a class="btn alt" href="downloads/{zipname}">Single-TIFF .zip</a> <a class="btn alt" href="downloads/{nanname}">NaN-outside twin</a> <a class="btn alt" href="data/h34_coh_run_card_20261029.json">Run card JSON</a></p>
+<p><b>Submission name:</b> <code>{filename[:-4]}</code><br><b>Note (≤140):</b> <code>{card['submission_note']}</code><br><b>SHA-256:</b> <code>{card['raster_sha256']}</code></p>
+</div>
+"""
+
+
 def dpps_hero(*, include_b2_score: bool = False) -> str:
     card = read_json(ROOT / "evidence" / "dpps_run_card_20261026.json")
     if not card:
@@ -495,6 +526,7 @@ def build_index() -> str:
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
+{h34_coh_hero()}
 {s33_seisdil_hero()}
 {a33_r3_llc_hero()}
 {dpps_hero()}
@@ -750,6 +782,7 @@ def build_exec() -> str:
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
+{h34_coh_hero()}
 {s33_seisdil_hero()}
 {a33_r3_llc_hero()}
 {dpps_hero(include_b2_score=True)}
@@ -818,8 +851,8 @@ def build_results() -> str:
 
 def build_hypotheses() -> str:
     body = f"""<h2>Ranked geological hypothesis slate</h2>
-<div class="panel bad"><b>Latest verified slate (2026-10-29).</b> The five candidates below are proposals, not results. Top rank H-MAGDEPTH is <b>blocked</b>: the official source-depth layer described in the feature list is absent from both the restored 19-band mirror and the organizer reference notebook's 19-band list; official training data remain login-walled. No canary, novelty test, holdout, or TIFF exists for this hypothesis. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/35_hypothesis_slate_20261029.md">ranked slate</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/36_official_verification_20261029.md">line-by-line source verification</a>. The deployment-density experiment found a null for PHCONG at operating density; read its <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/34_density_audit_results_20261029.md">HOLDOUT-DTI report</a>.</div>
-<p>Qualitative priority is not a numerical DTI estimate. A candidate becomes viable only after its inputs are locally available, correctly georeferenced, independent of withheld labels, and feature-canary/uniqueness checks pass. All numerical contest scores remain user/owner-reported unless an organizer receipt is retained.</p>
+<div class="panel bad"><b>Latest tested lane: H34-COH (2026-10-29) — negative.</b> HOLDOUT-DTI was 0.104769 vs B1 0.126012 on screen and 0.105973 vs B1 0.130060 on confirm (0/4 folds against B1 in both); it beat matched random but failed the preregistered promotion gates. Its saved-byte TIFF passes format and uniqueness checks against 22 registry rasters: <b>OK TO DOWNLOAD for research only; NOT OK TO SUBMIT</b>. [<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/38_h34_coh_result_and_b2_answer_20261029.md">full result and B2 answer</a>] [<a href="downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif">research TIFF</a>]. Its five-candidate preregistered slate is <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/37_h34_hypothesis_slate_and_prereg_20261029.md">here</a>. The separate deployment-density PHCONG audit found a null; details: <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/34_density_audit_results_20261029.md">HOLDOUT-DTI report</a>.</div>
+<p>For a separate official-source feasibility slate, H-MAGDEPTH is the highest-ranked candidate but is blocked: the source-depth layer described in the official feature list is absent from both the restored 19-band mirror and organizer reference notebook list, and official training data remain login-walled. No holdout or TIFF exists for H-MAGDEPTH. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/35_hypothesis_slate_20261029.md">ranked source-availability slate</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/36_official_verification_20261029.md">line-by-line source verification</a>. This is separate from the H34 experiment slate. All contest score claims are owner/user-reported unless an organizer receipt is retained; HOLDOUT-DTI is not a leaderboard score.</p>
 <div class="scroll"><table><thead><tr><th>Rank</th><th>Candidate, layers and signature</th><th>Missing-fault rationale and named mimic</th><th>Prior art, cost and official-source availability</th></tr></thead><tbody>
 <tr><td>1 — blocked</td><td><b>H-MAGDEPTH.</b> Official top-of-crust magnetic source-depth estimate; test a depth step along structural grain.</td><td>Buried basement offsets can shift source depth without a surface trace. Mimics: shallow intrusions, volcanic bodies, magnetite-rich contacts, sediment-thickness changes.</td><td>No prior source-depth lane found, but official feature is absent from the local 19-band stack and reference notebook list. Medium cost; needs an authoritative layer/documentation. <a href="https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and">USGS GeoDAWN</a> / <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/data/">official login-walled competition data</a>. Blocked; do not estimate score.</td></tr>
 <tr><td>2</td><td><b>H-STRAINRIDGE.</b> Orientation-coherent ridges in <code>geod_shearrate</code>, <code>geod_dilaterate</code>, <code>geod_2ndinv</code>.</td><td>Strain localization may mark active unmapped shear zones. Mimics: irrigation/reservoir loading and geodetic survey artifacts.</td><td>Overlaps S33-SEISDIL and prior analog/CSHT lanes. Low cost, mirror data available; upstream geodetic provenance not independently verified in the local mirror. Not prioritized.</td></tr>

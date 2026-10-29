@@ -4,7 +4,9 @@
 
 **OK TO SUBMIT: NO. No new geological candidate TIFF was generated in this revalidation.** The latest nine-site audit has been rerun from pinned owner-repository blobs; all nine site-best rasters still trigger the duplicate guard and the automatic selector still returns zero eligible candidates. Existing unique research TIFFs remain research-only because none has cleared the applicable holdout gate. Historical scores are **USER/OWNER-REPORTED**, not organizer-confirmed.
 
-This note records the fresh-checkout restore/retest performed on the session branch. It does not supersede or duplicate the separate 2026-10-29 deployment-density experiment recorded in `knowledge/34_density_audit_results_20261029.md` and `evidence/run_card_density_audit_20261029.json`. That deployment-density audit is Experiment 1 of the new 3-experiment/2-hour methodological campaign and returned a density-robust null; no TIFF or slot resulted. The older A33-R7-PHCONG campaign remains exhausted at 3/3.
+This note records the fresh-checkout restore/retest performed on the session branch. It does not supersede or duplicate the separate 2026-10-29 deployment-density experiment recorded in `knowledge/34_density_audit_results_20261029.md` and `evidence/run_card_density_audit_20261029.json`. That deployment-density audit is Experiment 1 of its 3-experiment/2-hour methodological campaign and returned a density-robust null. The older A33-R7-PHCONG campaign remains exhausted at 3/3.
+
+**Update after integrating newer main (PR #46):** a separate preregistered H34-COH lane tested line coherence of magnetic ridges, created a genuinely unique and format-valid research TIFF, and returned a negative holdout result versus B1 on both screen and confirmation. The file is **OK TO DOWNLOAD for research only: YES; OK TO SUBMIT: NO**. This experiment is documented in `knowledge/37_h34_hypothesis_slate_and_prereg_20261029.md` and `knowledge/38_h34_coh_result_and_b2_answer_20261029.md`; do not attribute that TIFF to the fresh-checkout revalidation above, and do not mix H34's 2/3 experiment budget with the separate density audit budget.
 
 ## Fresh-checkout reproducibility work (MEASURED)
 

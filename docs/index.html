@@ -88,6 +88,19 @@ re-derivation of the H19-5 multi-line idea that produced the 0.2778* B2 family (
 </tbody></table>
 <p class="small"><b>Range-error note:</b> every cell of this <code>-zeros.tif</code> is finite and in [0,1] (re-opened and checked byte-wise), so its values cannot themselves violate a [0,1] range check. Portal acceptance and the cause of the previously reported range error remain unverified; the <code>-nan.tif</code> twin follows the recorded null/NaN-outside wording. Do not upload this negative artifact either way.</p>
 </div>
+<div class="hero-download" id="h34-coh">
+<h2>H34-COH research GeoTIFF (2026-10-29) — ✅ OK TO DOWNLOAD (research): YES · 🛑 OK TO SUBMIT: NO · verdict: NEGATIVE</h2>
+<p><span class="badge good">UNIQUE vs 22 registry rasters: surface max |ρ| 0.078; surface max 3-px overlap 67.7% (limit 70%)</span>
+<span class="badge good">FINAL DOTS: max |ρ| 0.029; max 3-px overlap 46.0%</span>
+<span class="badge good">LOCAL FORMAT PASS · single-band float32, EPSG:32611, 3730×3292, [0,1] whole array, 37,654 dots, 0 outside footprint</span>
+<span class="badge good">FEATURE CANARY PASS (max AUC 0.519 ≤ 0.90)</span>
+<span class="badge bad">HOLDOUT GATE FAILED: loses to B1 on both splits (0/4 folds each)</span></p>
+<p><b>Hypothesis.</b> A fault is a long, straight ridge set; isolated magnetic ridge pixels are not. Gating the B1 regional expert by 8-orientation line-coherence of the NMS magnetic ridge map should rank ridge-continuous segments above isolated ridge pixels. <b>Mechanism.</b> <code>surface = pct(B1) × (0.2 + 0.8·pct(C))</code>, where <code>C</code> = max minus mean of 11-px line averages over 8 orientations, then 300 m CELF emission. <b>Named non-fault mimic.</b> Airborne flight-line striping and levelling artefacts in the magnetic channel, plus drainage and cultural linears.</p>
+<p><b>HOLDOUT-DTI</b> (<code>gems-segment-pooled-v1</code>, 60,988 withheld positives; local catalogue proxy, not an organizer score): screen H34-COH <code>0.104769</code> vs B1 <code>0.126012</code> vs matched-random <code>0.069819</code>; paired Δ vs B1 <code>-0.021243</code>, 95% CI <code>[-0.028714, -0.014335]</code>, 0/4 folds. Confirmation H34-COH <code>0.105973</code> vs B1 <code>0.130060</code>; paired Δ <code>-0.024087</code>, 95% CI <code>[-0.031118, -0.017497]</code>, 0/4 folds. It beats the matched-random control on both splits, so the signal is not pure density, but it does not beat B1. <b>Estimated leaderboard score: NOT ESTIMABLE</b> (catalogue proxy, never a score).</p>
+<p><a class="btn" href="downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif">⬇ Download unique H34-COH GeoTIFF (research only)</a> <a class="btn alt" href="downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.zip">Single-TIFF .zip</a> <a class="btn alt" href="downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-nan.tif">NaN-outside twin</a> <a class="btn alt" href="data/h34_coh_run_card_20261029.json">Run card JSON</a></p>
+<p><b>Submission name:</b> <code>gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros</code><br><b>Note (≤140):</b> <code>GEMS33 H34-COH line-coherence gate on B1 37654d | gate NEGATIVE | 1181c8712300</code><br><b>SHA-256:</b> <code>9fc35db23586d04af2481eb3b32f8912c1d99d029a2bf18bb6cccf63d2caac9d</code></p>
+</div>
+
 <div class="hero-download" id="s33-seisdil">
 <h2>S33-SEISDIL research GeoTIFF — ✅ OK TO DOWNLOAD: YES · 🛑 OK TO SUBMIT: NO</h2>
 <p><span class="badge good">UNIQUE vs 22 registry rasters: surface max |ρ| 0.093; max 3-px overlap 58.1%</span>

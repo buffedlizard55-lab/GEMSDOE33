@@ -68,6 +68,27 @@
   "new_methodological_campaign_budget": "1 of 3 experiments used by separate deployment-density audit; maximum 2 hours; see related run card",
   "a33_r7_budget": "exhausted at 3/3; not rerun",
   "slot_selection": "not performed; 0 competition slots used",
+  "related_completed_geological_experiment": {
+    "run_card": "evidence/h34_coh_run_card_20261029.json",
+    "hypothesis": "H34-COH magnetic-ridge line coherence gate on B1",
+    "verdict": "negative: screen and confirm both lose to B1",
+    "holdout_dti": {
+      "label": "HOLDOUT-DTI",
+      "screen_candidate": 0.104769,
+      "screen_B1": 0.126012,
+      "screen_fold_wins_vs_B1": "0/4",
+      "confirm_candidate": 0.105973,
+      "confirm_B1": 0.130060,
+      "confirm_fold_wins_vs_B1": "0/4",
+      "matched_random_beaten": "yes on both holdouts",
+      "leaderboard_estimate": null
+    },
+    "artifact": "docs/downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif",
+    "uniqueness_and_format": "passes against 22 pinned registry rasters; saved-byte format audit passes",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "experiment_budget": "2 of 3 in the separate H34 lane; third held in reserve"
+  },
   "fresh_checkout_checks": {
     "owner_mirror_inputs": "17/17 SHA-256 verified; hashes authenticate mirror bytes only",
     "prepared_feature_stack": "121 channels rebuilt from pinned owner-mirror inputs",
