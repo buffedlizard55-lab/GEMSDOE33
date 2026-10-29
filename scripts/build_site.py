@@ -114,7 +114,7 @@ def page(title: str, body: str, active: str) -> str:
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>{esc(title)}</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-28</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
+<p>DrivenData #306 · evidence-led research · review status 2026-10-29</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
 <main class="wrap">{body}</main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. The selector checks declared evidence consistency, not the independent authenticity of measurements. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>"""
@@ -476,16 +476,53 @@ def submission_steps() -> str:
 </ol>"""
 
 
+def density_audit_hero() -> str:
+    """Top-of-site banner for the 2026-10-29 deployment-density audit (evidence/density_audit_20261029.json)."""
+    ev = read_json(ROOT / "evidence" / "density_audit_20261029.json", {})
+    runs = ev.get("runs", {})
+    camp = runs.get("campaign_2p5pct", {})
+    dep = runs.get("deployment", {})
+    if not dep:
+        return ""
+    ci = dep["paired_delta_ci95"]
+    return f"""<div class="panel bad" id="density-audit">
+<h2>2026-10-29 deployment-density audit: density-robust NULL · OK TO SUBMIT: NO for every file</h2>
+<p><span class="badge bad">OK TO SUBMIT: NO</span> <span class="badge bad">ESTIMATED LEADERBOARD SCORE: NOT ESTIMABLE</span> <span class="badge good">HARNESS REPRODUCES RECORDED 2.5% VALUES</span></p>
+<p><b>What changed.</b> Every earlier HOLDOUT-DTI comparison in this repo used 2.5% emission per fold. The deployment file emits 37,654 dots, which is 0.7287% of the footprint. At deployment density the proxy falls by about half, and a random emitter scores {dep['control_dti']:.4f}.</p>
+<table><thead><tr><th>Run (HOLDOUT-DTI proxy, gems-segment-pooled-v1, 60,988 withheld positives)</th><th>PHCONG candidate screen [95% CI]</th><th>Matched random</th><th>Paired Δ, candidate − random [95% CI]</th><th>Folds won</th></tr></thead><tbody>
+<tr><td>Campaign density 2.5% (reproduces recorded A33-R7 values exactly)</td><td>{camp.get('candidate_screen_dti', float('nan')):.6f} [{camp.get('candidate_screen_ci95', [0,0])[0]:.6f}, {camp.get('candidate_screen_ci95', [0,0])[1]:.6f}]</td><td>{camp.get('control_dti', float('nan')):.6f}</td><td>{camp.get('paired_delta_dti', float('nan')):+.6f} [{camp.get('paired_delta_ci95', [0,0])[0]:+.6f}, {camp.get('paired_delta_ci95', [0,0])[1]:+.6f}]</td><td>{camp.get('fold_wins', 0)}/{camp.get('n_folds', 4)}</td></tr>
+<tr><td><b>Deployment density 0.7287% (37,654 dots)</b></td><td><b>{dep['candidate_screen_dti']:.6f} [{dep['candidate_screen_ci95'][0]:.6f}, {dep['candidate_screen_ci95'][1]:.6f}]</b></td><td><b>{dep['control_dti']:.6f}</b></td><td><b>{dep['paired_delta_dti']:+.6f} [{ci[0]:+.6f}, {ci[1]:+.6f}]</b></td><td><b>{dep['fold_wins']}/{dep['n_folds']}</b></td></tr>
+</tbody></table>
+<p><b>Verdict (preregistered rule).</b> The paired CI includes zero, so the result is a null. The PHCONG surface does not beat its matched random control at deployment density. Evidence: <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/density_audit_20261029.json"><code>evidence/density_audit_20261029.json</code></a>; run card: <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/run_card_density_audit_20261029.json"><code>evidence/run_card_density_audit_20261029.json</code></a>; results note: <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/34_density_audit_results_20261029.md"><code>knowledge/34</code></a>.</p>
+<p><b>Estimated score.</b> There is no honest number for a leaderboard estimate. The only measured anchor is the random floor at deployment density, <b>{dep['control_dti']:.4f} HOLDOUT-DTI</b>. Owner-reported site-best values (0.2449 to 0.2778*, nine sites) are on a different scale and cannot be converted. Any candidate must beat the random floor with a paired CI above zero before it is considered.</p>
+<p><b>Unique file to download?</b> None is OK to submit. The unique research TIFFs in this repo are listed below with their own verdicts; none is cleared for a weekly slot.</p>
+<p><b>Official-source checks (2026-10-29):</b> metric and format match the <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem page</a>. The <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a> allow three submissions a week. Open items are logged in <a href="irregularities.html">Irregularities</a>: the NaN-versus-zero outside encoding (IR-33-20261029-OUTSIDE-01), the catalogue-masking rule (IR-33-20261029-METRIC-MASK-01), and a magnetic source-depth band that the official feature list names but the organizer's 19-band file does not contain (IR-33-20261029-BAND-DEPTH-01). Full line-by-line log: <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/36_official_verification_20261029.md"><code>knowledge/36</code></a>.</p>
+</div>"""
+
+
+def submission_instructions_panel() -> str:
+    return """<div class="panel" id="how-to-submit">
+<h2>How to submit (only when a file is cleared)</h2>
+<p><span class="badge bad">CURRENTLY NOTHING IS CLEARED: OK TO SUBMIT = NO FOR EVERY FILE</span></p>
+<ol>
+<li><b>Download</b> only a file whose page shows <b>OK TO SUBMIT: YES</b> and whose selector record shows <code>ok_to_submit: true</code> (<a href="data-sources.html">data and file sources</a>). Research TIFFs are not submission files even when they are listed.</li>
+<li><b>Name.</b> Use the exact file name in the run card. Each name carries the lane, the 37,654-dot budget, the date and a 12-character SHA-256 prefix, so it is unique. Do not rename files.</li>
+<li><b>Comment (the portal note field).</b> Use the run card's <code>submission_note</code>, 1 to 140 characters, one line. The selector checks the length and fails closed.</li>
+<li><b>Range errors.</b> Every file must be single-band float32, EPSG:32611, 100 m, 3,730 by 3,292, with every value in [0, 1]. Check the exact <code>.tif</code> with <code>scripts/validate_submission.py --submission FILE.tif --strict-zero-outside</code> (the repo's zero-outside variant) and without the flag (NaN outside, as the official text describes). The portal message <i>"Predicted values must be in range [0, 1]"</i> is not reproduced by any local check. If it appears, record it as <code>IR-33-PORTAL-RANGE-CLAIM-01</code> and do not retry without a new local diagnosis. Which outside encoding the portal accepts is unresolved (<code>IR-33-20261029-OUTSIDE-01</code>).</li>
+<li><b>Limit.</b> The official rules allow up to three submissions a week (§3.2). Do not spend a slot on a file that the selector has not cleared.</li>
+</ol>
+<p class="small">Sources: <a href="https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/">official problem page</a> (submission format); <a href="https://docs.nlr.gov/docs/fy26osti/96647.pdf">official rules</a> §3.2.</p>
+</div>"""
+
+
 def review_warning() -> str:
-    return """<div class="panel bad"><b>2026-10-28 safety review: NO FILE IS OK TO SUBMIT.</b>
-The BASESTEP and THKCOND historical holdouts used full-catalogue-fitted thresholds and composite-only canaries;
-they are exploratory, not valid protocol evidence. Their runners are disabled. The selector now reassesses
-hash-bound underlying evidence, but this cannot independently authenticate claimed measurements.
-<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/27_20261028_safety_review.md">Read the audit</a>.</div>"""
+    return """<div class="panel bad"><b>2026-10-29 nine-site audit: NO FILE IS OK TO SUBMIT.</b>
+All nine focus-site best files trigger the duplicate guard; the highest owner-reported value is GEMSDOE32 B2 (0.2778*), which is not unique. No unscored candidate passed the holdout gate, and no leaderboard score estimate is defensible. The selector has 0 eligible files. Historical BASESTEP/THKCOND evidence also remains exploratory after the 2026-10-28 safety review.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/32_nine_site_audit_20261029.md">Read the latest audit</a>.</div>"""
 
 
 def build_index() -> str:
-    body = f"""{review_warning()}{nine_site_index_panel()}{r7_pcsup_hero()}
+    body = f"""{density_audit_hero()}{review_warning()}{nine_site_index_panel()}{r7_pcsup_hero()}
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
@@ -741,7 +778,7 @@ def build_exec() -> str:
              "Owner-reported; MEASURED 2026-10-26: contains all 37,654 GEMSDOE32 B2 dots exactly + 1,200 extra dots (knowledge/22) — same emission family, not an independent surface"),
         )
     )
-    body = f"""{review_warning()}{nine_site_audit_section()}{r7_pcsup_hero()}
+    body = f"""{density_audit_hero()}{submission_instructions_panel()}{review_warning()}{nine_site_audit_section()}{r7_pcsup_hero()}
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}

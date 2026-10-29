@@ -3,6 +3,8 @@
 > **Read first, every session:** [`standing_prompt.md`](standing_prompt.md) (the full standing brief with dated addenda) and [`AGENTS.md`](AGENTS.md).
 > **Latest (2026-10-29, H34 lane):** new unique research TIFF, holdout negative, NOT OK TO SUBMIT — see the 🟢 block below.
 > **Previous (2026-10-29):** nine-site duplicate audit — NO file is OK TO SUBMIT ([`evidence/nine_site_audit_20261029.json`](evidence/nine_site_audit_20261029.json)).
+> **Newest (2026-10-29, deployment-density audit):** every earlier holdout comparison used 2.5% emission; deployment is 0.7287%. At deployment density the PHCONG candidate is statistically indistinguishable from its matched random control (paired Δ +0.0033, 95% CI [−0.0010, +0.0077], 3/4 folds; random floor 0.0737 HOLDOUT-DTI). **OK TO SUBMIT: NO for every file. Estimated leaderboard score: not estimable.** See [`knowledge/34_density_audit_results_20261029.md`](knowledge/34_density_audit_results_20261029.md), the run card [`evidence/run_card_density_audit_20261029.json`](evidence/run_card_density_audit_20261029.json), the ranked slate [`knowledge/35_hypothesis_slate_20261029.md`](knowledge/35_hypothesis_slate_20261029.md) and the line-by-line official check [`knowledge/36_official_verification_20261029.md`](knowledge/36_official_verification_20261029.md).
+> **Latest (2026-10-29):** nine-site duplicate audit — NO file is OK TO SUBMIT ([`evidence/nine_site_audit_20261029.json`](evidence/nine_site_audit_20261029.json)). Repository review, current candidate slate, and verification results: [`knowledge/33_repo_review_20261029.md`](knowledge/33_repo_review_20261029.md).
 > **Latest work:** [`knowledge/31_r7_pcsup_lane_correction_20261028.md`](knowledge/31_r7_pcsup_lane_correction_20261028.md) corrects a material guard failure: PCSUP surface overlap was 86.08% (>70%) against the 21-raster registry, despite final dots passing. It is a protocol duplicate/drift, not a unique recommendation; holdout figures are exploratory. No candidate is OK TO SUBMIT. Earlier B2 forensics ([`knowledge/22`](knowledge/22_b2_forensics_and_fsml_slate_20261026.md)) explain the owner-reported 0.2778 family; these score claims remain unauthenticated to organizer receipts. Latest A33-R7 campaign exhausted its 3-experiment budget. Selector-safety hardening is in [`knowledge/22_selector_safety_review_20261026.md`](knowledge/22_selector_safety_review_20261026.md). Owner-mirror data/cache remain local and git-ignored; SHA pins do not authenticate organizer provenance.
 > **2026-10-28 safety review — NO FILE IS OK TO SUBMIT:** [`knowledge/27_20261028_safety_review.md`](knowledge/27_20261028_safety_review.md). BASESTEP and THKCOND fitted thresholds using the full catalogue before holdout, tested only their composite surface, and screened novelty after placement. Their historical DTI values are exploratory, not protocol-valid. Runners are disabled. The selector now reassesses hash-bound evidence, but cannot independently authenticate claims. No new TIFF or experiment was created in this review. Owner-mirror files were restored and verified in this workspace, not organizer-authenticated.
 > **2026-10-28 repository review:** [`knowledge/31_repo_review_20261028.md`](knowledge/31_repo_review_20261028.md) records three-pass review, test result (172 passed, 12 skipped), current no-submit decision, evaluation-density limitation, and ranked next work. No new experiment or slot use.
@@ -38,7 +40,18 @@
 - **Preregistration and ranked hypotheses:** [`knowledge/37`](knowledge/37_h34_hypothesis_slate_and_prereg_20261029.md) (5 candidates; 2 blocked by missing official inputs).
 - **Baseline audit (Exp 1):** B1 is well above matched-random (paired Δ +0.056/+0.059, 4/4 folds each). Evidence: [`evidence/h34_baseline_experiment_20261029.json`](evidence/h34_baseline_experiment_20261029.json).
 - **Irregularities:** `IR-33-20261029-H34-*`, `-B2-MECHANISM-UNTESTABLE-01`, `-RESTORE-ORDER-01` in [`registry/irregularities.json`](registry/irregularities.json).
+- **Cross-check with the parallel density audit on `main`** ([`knowledge/34_density_audit_results_20261029.md`](knowledge/34_density_audit_results_20261029.md)): its matched-random emitter at 0.7287% density scores 0.073664. This session's matched-random control at the same budget scores 0.069819 (screen) and 0.070827 (confirm). The two are consistent. The different values reflect different seeds and eligibility masks. Its PHCONG surface and this lane's B1 surface are different, so the two surface results are not comparable.
 - **Restore order on a clean checkout:** `restore_data.py --group all` → `prepare_data.py --skip-detector` → `restore_focus_registry_r3.py`. Then `scripts/run_h34_coh.py --stage baseline|candidate` reproduces the numbers.
+## 🔴 Decision (2026-10-29, deployment-density audit): **OK TO SUBMIT: NO for every file · estimated leaderboard score: NOT ESTIMABLE**
+
+- **Experiment 1 of 3** (budget 3 / 2 h). Preregistered in [`knowledge/33`](knowledge/33_density_audit_preregistration_20261029.md) (SHA-256 `cd4a2b6a…981f0`) before any code ran. Script: [`scripts/density_audit_20261029.py`](scripts/density_audit_20261029.py).
+- **Harness gate passed.** At the 2.5% campaign density the shared holdout reproduces the recorded PHCONG values exactly (screen `0.169316`, matched random `0.180414`).
+- **Result at deployment density (0.7287%, 37,654 dots, HOLDOUT-DTI `gems-segment-pooled-v1`, 60,988 withheld positives):** candidate `0.076921 [0.073266, 0.080423]`; matched random `0.073664`; paired Δ `+0.003258 [−0.000990, +0.007711]`; folds won `3/4`. Preregistered verdict: **density-robust null** (the CI includes zero).
+- **Consequence.** The random floor at deployment density is about half its 2.5% value. Earlier negative verdicts stand, but any new lane must report its candidate, matched random and paired CI at deployment density.
+- **Candidates (ranked, not implemented):** H-MAGDEPTH (magnetic source-depth step) is top-ranked and has no prior lane, but is **blocked**: the official feature list names a top-of-crust magnetic source-depth band that neither the owner mirror nor the organizer's 19-band reference listing contains. Ranks 2 to 5 overlap prior negative lanes. See [`knowledge/35`](knowledge/35_hypothesis_slate_20261029.md).
+- **Official-source checks:** metric and format match the [official problem page](https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/); the [official rules PDF](https://docs.nlr.gov/docs/fy26osti/96647.pdf) §3.2 allows three submissions a week and requires reproducible code from finalists; the organizer's [reference notebook](https://github.com/drivendataorg/gems-prize-reference-solution/blob/main/unet-mc-cv-reference-solution.ipynb) lists the same 19 bands as the owner mirror. Open ambiguities are logged as `IR-33-20261029-*` in [`registry/irregularities.json`](registry/irregularities.json).
+- **Cross-reference.** The parallel repository review on `main` ([`knowledge/33_repo_review_20261029.md`](knowledge/33_repo_review_20261029.md)) ranks deployment-density evaluation first. This session executed that item (Experiment 1). Its decision (no TIF cleared) is the same.
+- **No DrivenData access, no leaderboard read, no slot, no upload, no new TIFF.** A new TIFF would have no measured advantage to offer, so none was written.
 
 ## 🔴 Decision (2026-10-29, nine-site audit): **OK TO SUBMIT: NO for every file**
 
@@ -328,6 +341,24 @@ Source: user request (parallel-run protocol, GEMSDOE24/25/27/28/30/31/32/33/36 f
 ---
 
 ## 6. Suggested next work & limitations
+
+### 2026-10-29 session: remaining work and limitations (read this first)
+
+**Done this session.** Restore of all 17 pinned owner-mirror inputs is complete and every file matches its pinned SHA-256 and byte count (`data/restore_receipt.json`). The feature cache is built (121 channels on 5,167,373 cells). Density audit Experiment 1 ran once, under the preregistration SHA `cd4a2b6a…981f0`, and returned a density-robust null. Hypothesis slate ([`knowledge/35`](knowledge/35_hypothesis_slate_20261029.md)) and official check ([`knowledge/36`](knowledge/36_official_verification_20261029.md)) are written. Tests: 204 passed, 0 skipped.
+
+**Remaining work (in priority order).**
+1. **Organizer clarifications, through the official forum only.** Three questions decide the next lane: which file carries the magnetic source-depth band (`IR-33-20261029-BAND-DEPTH-01`); whether catalogue pixels are masked from the FP and G terms (`IR-33-20261029-METRIC-MASK-01`); and whether the portal accepts NaN or zero outside the bounds (`IR-33-20261029-OUTSIDE-01`). This repo does not automate any of these.
+2. **Rebuild or rescope H-MAGDEPTH** only if item 1 names a source. A self-derived depth grid would need its own preregistered estimator and would not be the official feature.
+3. **Only candidates that beat the random floor at deployment density** (0.0737 HOLDOUT-DTI, paired CI above zero, 3/4 folds) are eligible for a slot-level check. None exists today.
+4. **Portal diagnostic.** One deliberate, documented submission to check the range-error and outside-encoding behaviour would settle `IR-33-PORTAL-RANGE-CLAIM-01`. It is a weekly-slot decision for the owner, not an automated step.
+
+**Limitations.**
+- The leaderboard was not read (no scraping, per the ToU and the no-polling rule). The 0.4413 and 0.3195 figures conflict and are unauthenticated.
+- Owner-reported scores (`*`) are not organizer-confirmed. Owner-mirror hashes do not authenticate organizer provenance (AGENTS.md).
+- HOLDOUT-DTI is a proxy built on the catalogue; its absolute values are not comparable with leaderboard scores (about 0.27*). **No estimated leaderboard score is given for any file.**
+- All holdout comparisons before 2026-10-29 used 2.5% emission. Deployment density is 0.7287%; the earlier verdicts are retained but read at that density.
+- Several prior negative lanes (`A33-R5-THKCOND`, `A33-R6-BASESTEP`) used full-catalogue-fitted thresholds and are exploratory only (see the 2026-10-28 safety review).
+- No file is OK TO SUBMIT. No weekly slot was used on any file in this session.
 
 ### Experiments run this session (2026-10-27) vs the ranked hypothesis slate
 
