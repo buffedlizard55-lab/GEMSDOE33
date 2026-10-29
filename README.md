@@ -1,12 +1,43 @@
 # GEMSDOE33 — DOE GEMS Fault Discovery Project (DrivenData #306)
 
 > **Read first, every session:** [`standing_prompt.md`](standing_prompt.md) (the full standing brief with dated addenda) and [`AGENTS.md`](AGENTS.md).
+> **Latest (2026-10-29):** nine-site duplicate audit — NO file is OK TO SUBMIT ([`evidence/nine_site_audit_20261029.json`](evidence/nine_site_audit_20261029.json)).
 > **Latest work:** [`knowledge/31_r7_pcsup_lane_correction_20261028.md`](knowledge/31_r7_pcsup_lane_correction_20261028.md) corrects a material guard failure: PCSUP surface overlap was 86.08% (>70%) against the 21-raster registry, despite final dots passing. It is a protocol duplicate/drift, not a unique recommendation; holdout figures are exploratory. No candidate is OK TO SUBMIT. Earlier B2 forensics ([`knowledge/22`](knowledge/22_b2_forensics_and_fsml_slate_20261026.md)) explain the owner-reported 0.2778 family; these score claims remain unauthenticated to organizer receipts. Latest A33-R7 campaign exhausted its 3-experiment budget. Selector-safety hardening is in [`knowledge/22_selector_safety_review_20261026.md`](knowledge/22_selector_safety_review_20261026.md). Owner-mirror data/cache remain local and git-ignored; SHA pins do not authenticate organizer provenance.
 > **2026-10-28 safety review — NO FILE IS OK TO SUBMIT:** [`knowledge/27_20261028_safety_review.md`](knowledge/27_20261028_safety_review.md). BASESTEP and THKCOND fitted thresholds using the full catalogue before holdout, tested only their composite surface, and screened novelty after placement. Their historical DTI values are exploratory, not protocol-valid. Runners are disabled. The selector now reassesses hash-bound evidence, but cannot independently authenticate claims. No new TIFF or experiment was created in this review. Owner-mirror files were restored and verified in this workspace, not organizer-authenticated.
 > **2026-10-28 repository review:** [`knowledge/31_repo_review_20261028.md`](knowledge/31_repo_review_20261028.md) records three-pass review, test result (172 passed, 12 skipped), current no-submit decision, evaluation-density limitation, and ranked next work. No new experiment or slot use.
 
 > **Core values:** Maximize P(Win) · Own the Outcome.
 > **Labels:** every number is HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED. Leaderboard figures marked \* are USER/OWNER-REPORTED.
+
+## 📌 Standing prompt — read at the start of every session (recorded 2026-10-29)
+
+**Goal.** Produce a **unique** single-band GeoTIFF for DrivenData #306 (DOE GEMS fault discovery) that is not a duplicate of any listed site's submission, passes automated in-project validation, and carries an unambiguous OK-to-download / OK-to-submit label. Target: beat **0.2778** (GEMSDOE32 B2, owner-reported) and ideally the leaderboard high **0.4413** (user-reported) / **0.3195** (user-stated current highest). Scores are not verifiable locally.
+
+**Standing rules (condensed from [`standing_prompt.md`](standing_prompt.md), which is authoritative):**
+1. Read this README, `standing_prompt.md` and `AGENTS.md` first. Work on the session branch only.
+2. No DrivenData login, upload, scraping or polling, and no manual input. Validation is automated in-project (`scripts/validate_submission.py`, `scripts/select_submission.py`).
+3. Format: single-band float32 GeoTIFF, values in **[0, 1]** (portal error text: "Predicted values must be in range [0, 1]"), CRS EPSG:32611, 100 m, template shape 3730 × 3292 and geotransform.
+4. Every submission needs a unique name and a short comment (for example, "clustering with k=25").
+5. Duplicate guard: a candidate is a duplicate if rank correlation > 0.90 **or** more than 70% of its dots lie within 3 px of any registry raster.
+6. Leakage canary: a single feature with AUC > 0.90 is leakage.
+7. Parallel-lane protocol: stay in one method lane; reuse the template feature stack, `evaluate_holdout.py` and `submission_writer.py`; stop after 3 experiments or 2 hours; finish with one JSON run card; label every number **HOLDOUT-DTI** or **ORGANIZER-CONFIRMED** and mark owner/user-reported scores with `*`. Promotion is a separate selector step, not a lane decision.
+8. Generate 3–5 ranked geological hypotheses (expected DTI gain vs implementation cost). Validate the top one on the spatially blocked holdout before spending a slot. Require a fold-safe, leakage-clean holdout pass and a passing duplicate guard before any slot is used.
+9. Multi-pass work: pass 1 implement and verify; pass 2 review bugs; pass 3 recheck against the request.
+10. Flag irregularities as `IR-*`, cite official sources with links, do not invent scores, and label projections as projections.
+11. Publish the GitHub Pages site: executive summary with a table of the best file per focus site (file, estimated score, uniqueness), submission instructions (download, unique name, comment), and error handling (values must lie in [0, 1]).
+12. Open a PR, merge to `main`, and list remaining work and limitations.
+
+**Core values:** Maximize P(Win) · Own the Outcome.
+
+## 🔴 Decision (2026-10-29, nine-site audit): **OK TO SUBMIT: NO for every file**
+
+- Evidence: [`evidence/nine_site_audit_20261029.json`](evidence/nine_site_audit_20261029.json) (also [`docs/data/nine_site_audit.json`](docs/data/nine_site_audit.json)), produced by [`scripts/nine_site_audit.py`](scripts/nine_site_audit.py). It covers the nine site-best files, the 12 other owner-listed TIFFs on those sites, and 17 of this repo's research TIFFs, each compared against every other pinned file (byte-identical copies excluded).
+- Result: all nine site-best files belong to one H19-5 emission family and each triggers the duplicate guard (25–26 triggers). The owner-reported best, GEMSDOE32 B2 (0.2778\*), is exactly GEMSDOE28/31 H27-4 minus 2,545 dots; that deletion was independently recounted.
+- Uniqueness that does pass the dot-level guard: GEMSDOE27 h31 (0.2250\*), GEMSDOE36 kpl36 (0.1647\*, 69.9% overlap, borderline), GEMSDOE30 MSDB1 (0.1462\*), GEMSDOE33 s33-seisdil (0.0963\*), GEMSDOE24 gvc1 (0.0859\*), GEMSDOE25 h66 (0.0742\*), GEMSDOE28 s18 (0.0217\*) and s21 (0.0206\*). These are already owner-scored, so re-sending them adds nothing. None is OK TO SUBMIT.
+- Among this repo's research TIFFs, the R3-LCHC, R5-THKCOND and R6-BASESTEP files overlap each other by 90.7–94.0% (IR-33-20261029-MUTUAL-DUP-01). The HMDT file has 33,616 cells of 1.0 outside the footprint (IR-33-20261029-HMDT-OUTSIDE-01). PCSUP passes the dot guard but failed the surface gate (86.08%).
+- Selector: 0 eligible (19 run cards checked). No slot used. No DrivenData access. Run card: [`evidence/run_card_nine_site_20261029.json`](evidence/run_card_nine_site_20261029.json); notes: [`knowledge/32_nine_site_audit_20261029.md`](knowledge/32_nine_site_audit_20261029.md); validator: [`evidence/nine_site_validator_20261029.json`](evidence/nine_site_validator_20261029.json) (default format pass 37/38; strict zero-outside 28/38).
+- **Not done in this session:** no new candidate was generated and no new experiment was run. Starting one requires confirming this session's experiment budget (the A33-R7 lane is at 3/3) and choosing a lane. See the remaining-work list in the executive summary.
+- Site: [`docs/executive-summary.html`](docs/executive-summary.html) (the nine-site table, with download links and banner) and [`docs/index.html`](docs/index.html).
 
 ## 🔴 Current decision (2026-10-28, A33-R7, 3/3 experiments used): **NO raster is OK TO SUBMIT** · newest artifact fails the pre-placement uniqueness guard
 

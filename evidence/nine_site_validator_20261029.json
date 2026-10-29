@@ -1,0 +1,796 @@
+{
+  "summary": {
+    "schema": 1,
+    "evidence_class": "MEASURED: in-project validator on owner-repo git blobs; no organizer validation",
+    "files": 38,
+    "blobs_verified": 38,
+    "pass_default": 37,
+    "pass_strict_zero_outside": 28,
+    "ok_to_submit": 0,
+    "note": "Validator pass is a format check only. OK TO SUBMIT also requires the duplicate guard and the holdout gate, see evidence/nine_site_audit_20261029.json and evidence/submission_selection_20261029.json."
+  },
+  "rows": [
+    {
+      "site": "GEMSDOE24",
+      "role": "site_best",
+      "name": "h25-1-dotted-h19-5-d1-5-20261002-989f59505db1-nan",
+      "blob_sha1": "cc1752f2ea48b23bd41232c1fdcdceb5f439e401",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE25",
+      "role": "site_best",
+      "name": "dotted-h19-5-d2-8-20261002-e56ea318af89-nan",
+      "blob_sha1": "c8d3a46481152bbdfd61b113484be979fde9d4c6",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE27",
+      "role": "site_best",
+      "name": "topo-gap-closure-t-v2-on-d1-5-20261002-5512495c6bd1-nan",
+      "blob_sha1": "c64e48b8bece14391fb59c1969c42c7efd718d39",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE28",
+      "role": "site_best",
+      "name": "h36-1-rung30-blind-r1-20261003-b531dae0a36f-nan",
+      "blob_sha1": "d0fc9ebbda0b15c31208022dbd124d4b9b112108",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE30",
+      "role": "site_best",
+      "name": "d28-poisson300m-offcat-44090-20261003T233156Z-91eae1ca",
+      "blob_sha1": "a59665a7fad659dcc6a45e5e7e71059586c3247a",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE31",
+      "role": "site_best",
+      "name": "h27-4-solo-d28-20261004-8acb75e1-nan",
+      "blob_sha1": "36c2aa32e0bba3d976d1ba76f3fb14903199262d",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE32",
+      "role": "site_best",
+      "name": "h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros",
+      "blob_sha1": "17a76895f68174cc93f3cb1597d25686f6d6bc67",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "site_best",
+      "name": "h33d-analog-tip-stepover-r30-20261004-cb490425926e",
+      "blob_sha1": "901d9db3f008f0f5c3be9c314524ccc8e95fb43e",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE36",
+      "role": "site_best",
+      "name": "anderson-geothermal-pinn-38854-20261004T230000Z-9b9ea4e6-zeros",
+      "blob_sha1": "e79b7bdb633369c724628e30efba6de60c1d25d9",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE24",
+      "role": "site_listed",
+      "name": "gems24-gvc1-negative-geothermal-lineament-submod-20261025-abe8e51c719d-zeros",
+      "blob_sha1": "ef573a5513e9afd12fd00598e355bd936f235663",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE25",
+      "role": "site_listed",
+      "name": "gems25-h66-mgd-flank-sapd3-0-k3p5-20261025-da617550a0e9-zeros",
+      "blob_sha1": "581702650a3377adf0745c8d1a63afda0ec1dde8",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE27",
+      "role": "site_listed",
+      "name": "gems27-h29-hydrothermal-piedmont-celf-20261025-511898747886-allfinite",
+      "blob_sha1": "cf1c1bb264dea82fcee1ad0b8610675a15814445",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE27",
+      "role": "site_listed",
+      "name": "gems27-h31-drcg-wl-celf28-20261026-cf8e1bbef244-allfinite",
+      "blob_sha1": "b6d4e55739b982d2a2486b97886637b61b141767",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE28",
+      "role": "site_listed",
+      "name": "h27-4-r1-solo-d2-8-20261003-8acb75e1f2cc-nan",
+      "blob_sha1": "12b0a4ddf1cf76f2552621b8a8b1a1b88d783786",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE28",
+      "role": "site_listed",
+      "name": "h32-1-prethin-tip-euler-d2-8-20261003-31e35eee884e-nan",
+      "blob_sha1": "6d9717d75f144ccbd3c8ec7886000fae95af312e",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE28",
+      "role": "site_listed",
+      "name": "h38-1-hf-euler-r30-r1-20261003-56a9f473edc7-nan",
+      "blob_sha1": "c20459cd43667af1404447362c8cb8e81696871e",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE28",
+      "role": "site_listed",
+      "name": "gems28-s18-mxtp-20261025-3e95505c011a-allfinite",
+      "blob_sha1": "7edeb9c044a23655675512e07f7b59f537fb4246",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE28",
+      "role": "site_listed",
+      "name": "gems28-s21-puhgb-20261026-16bbf281ba9b-allfinite",
+      "blob_sha1": "e1d0cc3aae4cace4b5f80132b60a160a9866bb5c",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE30",
+      "role": "site_listed",
+      "name": "gems30-MSDB1-edge44090-20261025-e7856ec3f14a",
+      "blob_sha1": "b15147a1abbe4f9eafe09c700b7b66b6c1d61c30",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "site_listed",
+      "name": "gemsdoe33-s33-seisdil-strain-seismicity-37654-20261026-3463540a7e02-zeros",
+      "blob_sha1": "49e7113118e4846467be654ed938a506c7adf91e",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE36",
+      "role": "site_listed",
+      "name": "gemsdoe36-kpl36-exp3-20261026-fc869911e88c-zeros",
+      "blob_sha1": "933a7a65eab0193e806f86d24c07f7af96bfbe03",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-a33-l1-analog-transfer-research-37654-20261025-85c94a805a34-zeros",
+      "blob_sha1": "660819694339a7c316a87aedeb641f2314a93862",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-a33-r2-csht-transfer-37654-20261026-0b78c04d5fad-zeros",
+      "blob_sha1": "59e22cce68a93ad747d4d145f4c443d48ed03a4a",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-a33-r2-hmdt-20261026-hmdt-unique-zeros",
+      "blob_sha1": "14c9e799fca7f01a0a91746ca31f742a4605fa70",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 2,
+        "pass": false,
+        "failed_gates": [
+          "outside_policy_pass"
+        ],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-a33-r3-lchc-connectivity-37654-20261026-77337fc0c6c7-zeros",
+      "blob_sha1": "c243908819971e85f432fa0ff5a531633abb0540",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9-zeros",
+      "blob_sha1": "aba34e9f0f03bec7d0fc25325d831c0f3f327122",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-a33-r5-thkcond-37654-20261027-f47ef136b543-zeros",
+      "blob_sha1": "72de7f9e1c7b85fbe3546e43b18a5d8ddb6ba685",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-a33-r6-basestep-37654-20261027-4e0c37d1d539-zeros",
+      "blob_sha1": "74ac7d447b1167fe21cae5c23acb32c50133c2f6",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros",
+      "blob_sha1": "58f3c9729a48e1effbda5e11cce9edb52b7fd3a9",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-a33-r7-phcong-37654-20261028-45958ee5a5bc-zeros",
+      "blob_sha1": "5c21e444fd3a26d4442e9684fc7ed776b2b9e471",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-a33-r7-phcongdt-37654-20261028-98f7bfe0cff6-zeros",
+      "blob_sha1": "cc86fe31af101914eae73ce31001fff31fa8bbee",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-d28-reference-20261004-426073b6b4ab-zeros",
+      "blob_sha1": "298f61a156c54c49a285621707e0ed13ffb80eab",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-dpps-dipproj-persistence-37654-20261026-111ae96bb235-zeros",
+      "blob_sha1": "d1158047157be66b7dabf01ec4f7b20ee4af835d",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-fsml2-cc-37654-20261026-6fd4410bbaee-zeros",
+      "blob_sha1": "1084f9c0532d3df115b4a65c91f56c428d4a364f",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-zeros",
+      "blob_sha1": "82d2870a0cdb09f8535087076b809f32b38ca470",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-h33f-analog-xfer-20261004-d042874b26ef-zeros",
+      "blob_sha1": "a8d18edcff1e464cc5b46b61592c01ecd529bff7",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-h33r3-invariant-analog-20261025-40f15a687381-zeros",
+      "blob_sha1": "2d821d339859b5fc0e77a98a15c6c2c68808f85e",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    },
+    {
+      "site": "GEMSDOE33",
+      "role": "local_research_zeros",
+      "name": "gemsdoe33-pfrt-listric-37654-20261027-048e07cb9d0e-zeros",
+      "blob_sha1": "4d0dc6d86d8707a0c8d9e350bc0e1d0047b9c935",
+      "cached": true,
+      "blob_verified": true,
+      "validator_default": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      },
+      "validator_strict_zero_outside": {
+        "exit_code": 0,
+        "pass": true,
+        "failed_gates": [],
+        "stderr_tail": []
+      }
+    }
+  ]
+}

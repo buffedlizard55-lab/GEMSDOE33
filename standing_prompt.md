@@ -354,3 +354,11 @@ validate saved TIFF bytes. Any future 3–5 hypothesis slate must be marked as p
 official source availability/terms and local prior-art differences are checked. Do not spend a slot
 unless independent matched holdout gates pass. No DrivenData login or organizer receipt is available
 here. See `registry/irregularities.json` (`IR-33-R7-PCSUP-SURFACE-01`) for the correction.
+
+
+## 2026-10-29 addendum — nine-site audit and standing prompt in README
+
+- The owner asked for a unique GeoTIFF that is not a duplicate of any listed site's submission and for an unambiguous OK-to-download / OK-to-submit label. The standing rules are now copied into `README.md` under "Standing prompt" and must be read at the start of each session.
+- Nine-site audit (`scripts/nine_site_audit.py`, `evidence/nine_site_audit_20261029.json`) compares every owner-listed file on the nine focus sites with every other pinned file. Result: **no file is OK TO SUBMIT**. The nine site-best files are one family and all trigger the duplicate guard. The owner-reported best, GEMSDOE32 B2 (0.2778\*), is a deletion-only copy of GEMSDOE28/31 H27-4.
+- Irregularities recorded: `IR-33-20261029-NINE-FAMILY-01`, `-B2-DELETION-01`, `-MUTUAL-DUP-01`, `-HMDT-OUTSIDE-01`, `-PCSUP-SCOPE-01`, `-SCORE-CONFLICT-01`.
+- No new candidate and no experiment in this session. Confirming the experiment budget and choosing a new lane remain owner decisions.
