@@ -114,7 +114,7 @@ def page(title: str, body: str, active: str) -> str:
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>{esc(title)}</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-28</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
+<p>DrivenData #306 · evidence-led research · review status 2026-10-29</p><nav class="nav" aria-label="Primary">{links}</nav></div></header>
 <main class="wrap">{body}</main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. The selector checks declared evidence consistency, not the independent authenticity of measurements. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>"""
@@ -446,11 +446,9 @@ def submission_steps() -> str:
 
 
 def review_warning() -> str:
-    return """<div class="panel bad"><b>2026-10-28 safety review: NO FILE IS OK TO SUBMIT.</b>
-The BASESTEP and THKCOND historical holdouts used full-catalogue-fitted thresholds and composite-only canaries;
-they are exploratory, not valid protocol evidence. Their runners are disabled. The selector now reassesses
-hash-bound underlying evidence, but this cannot independently authenticate claimed measurements.
-<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/27_20261028_safety_review.md">Read the audit</a>.</div>"""
+    return """<div class="panel bad"><b>2026-10-29 nine-site audit: NO FILE IS OK TO SUBMIT.</b>
+All nine focus-site best files trigger the duplicate guard; the highest owner-reported value is GEMSDOE32 B2 (0.2778*), which is not unique. No unscored candidate passed the holdout gate, and no leaderboard score estimate is defensible. The selector has 0 eligible files. Historical BASESTEP/THKCOND evidence also remains exploratory after the 2026-10-28 safety review.
+<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/32_nine_site_audit_20261029.md">Read the latest audit</a>.</div>"""
 
 
 def build_index() -> str:
