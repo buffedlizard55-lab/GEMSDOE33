@@ -454,7 +454,7 @@ hash-bound underlying evidence, but this cannot independently authenticate claim
 
 
 def build_index() -> str:
-    body = f"""{review_warning()}{r7_pcsup_hero()}
+    body = f"""{review_warning()}{nine_site_index_panel()}{r7_pcsup_hero()}
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
@@ -479,6 +479,180 @@ def build_index() -> str:
 <p>The newest PCSUP TIFF is retained only as an audit artifact: its pre-placement surface failed the duplicate guard and it is not unique under the lane rule. Do not submit it. A33-R3-LLC and the other historical TIFFs are also research records or prior-site submissions, not approved new submissions. Read <a href="executive-summary.html">the executive summary</a> before using any artifact.</p>
 """
     return page("GEMSDOE33 · Evidence-led fault discovery", body, "index.html")
+
+# ---------------------------------------------------------------------------
+# 2026-10-29 nine-site audit section (generated from evidence/nine_site_audit_20261029.json)
+# ---------------------------------------------------------------------------
+NINE_SITES = ("GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
+              "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36")
+NINE_AUDIT_EVIDENCE = "evidence/nine_site_audit_20261029.json"
+NINE_MANIFEST = "registry/nine_site_best_files_20261029.json"
+
+
+def _short(name: str, width: int = 58) -> str:
+    return name if len(name) <= width else name[: width - 1] + "…"
+
+
+def _raw_link(entry: dict) -> str:
+    head = entry.get("repo_head_at_pin") or "main"
+    url = f"https://github.com/{entry['repo']}/raw/{head}/{entry['path']}"
+    return (f'<a class="btn alt" href="{esc(url)}"><code>{esc(Path(entry["path"]).name)}</code></a>'
+            f'<div class="small">{entry["bytes"]:,} bytes · git blob <code>{esc(entry["blob_sha1"][:12])}</code></div>')
+
+
+def _unique_cell(v: dict) -> str:
+    trig = v.get("duplicate_trigger_vs_other_submissions", [])
+    m = v.get("max_frac_dots_within_3px_vs_other_submission") or {}
+    value = m.get("value")
+    near = f"; nearest {esc(_short(str(m.get('vs', '')), 46))}" if value is not None else ""
+    pct = f"{value:.1%}" if value is not None else "n/a"
+    border = " (borderline: limit 70%)" if value is not None and 0.65 <= value <= 0.70 else ""
+    if v.get("unique_under_guard"):
+        return f"<b>YES</b> — 0 guard triggers; max 3-px overlap {pct}{border}{near}"
+    return f"<b>NO</b> — {len(trig)} guard trigger(s); max 3-px overlap {pct}{near}"
+
+
+def _format_cell(v: dict, files: dict | None = None) -> str:
+    if v.get("format_pass"):
+        return "pass"
+    checks = (files or {}).get(v["name"], {}).get("format_checks") or v.get("format_checks") or {}
+    failed = [k for k, ok in checks.items() if not ok] or ["unknown"]
+    return "<b>FAIL</b>: " + esc(", ".join(failed))
+
+
+def nine_site_audit_section() -> str:
+    audit = read_json(ROOT / NINE_AUDIT_EVIDENCE, None)
+    manifest = read_json(ROOT / NINE_MANIFEST, None)
+    if not audit or not manifest:
+        return ("<div class='panel bad'><b>Nine-site audit evidence is missing.</b> "
+                "Run <code>python scripts/nine_site_audit.py</code> after restoring the data.</div>")
+    man = {f"{e['site']}/{e['user_reported_name']}": e for e in manifest["entries"]}
+    files = {f["name"]: f for f in audit["nine_site_files"]}
+    verdicts = audit["site_verdicts"]
+    by_role = {r: [v for v in verdicts if v["role"] == r]
+               for r in ("site_best", "site_listed", "local_research_zeros")}
+
+    def score_key(v):
+        s = v.get("reported_score_USER_REPORTED")
+        return -1.0 if s is None else float(s)
+
+    banner = (
+        "<div class='panel bad'><b>OK TO SUBMIT: NO — for every file on this site.</b> "
+        "The nine focus sites' best files are one H19-5 emission family, and no file that passes the duplicate guard "
+        "has cleared the holdout gate. Selector result: <b>0 eligible</b> "
+        "(<code>evidence/submission_selection_20261029.json</code>). "
+        "The highest owner-reported value, GEMSDOE32 B2 at 0.2778, is a deletion-only copy of GEMSDOE28/31 H27-4 and "
+        "is <b>not unique</b>. Reported scores are owner-reported, not organizer-confirmed, and no estimated score is given "
+        "for any file here.</div>")
+
+    # Table 1 — the nine site-best files
+    site_best = sorted(by_role["site_best"], key=score_key, reverse=True)
+    t1 = "\n".join(
+        f"<tr><td><b>{esc(v['site'])}</b></td>"
+        f"<td>{_raw_link(man[v['name']])}<div class='small'>{esc(_short(v['name'], 70))}</div></td>"
+        f"<td>{v['reported_score_USER_REPORTED']:.4f} <span class='small'>owner-reported</span></td>"
+        f"<td>Not estimable from evidence</td>"
+        f"<td>{v['n_dots']:,}</td>"
+        f"<td>{_unique_cell(v)}</td>"
+        f"<td>{_format_cell(v, files)}</td>"
+        f"<td>Learning only — not a new submission</td>"
+        f"<td><b>NO</b></td></tr>"
+        for v in site_best)
+
+    # Table 2 — listed files that are unique under the guard
+    listed_unique = sorted([v for v in by_role["site_listed"] if v["unique_under_guard"]],
+                           key=score_key, reverse=True)
+    listed_dup = sorted([v for v in by_role["site_listed"] if not v["unique_under_guard"]],
+                        key=score_key, reverse=True)
+
+    def listed_row(v):
+        return (f"<tr><td>{esc(v['site'])}</td>"
+                f"<td>{_raw_link(man[v['name']])}<div class='small'>{esc(_short(v['name'], 70))}</div></td>"
+                f"<td>{v['reported_score_USER_REPORTED']:.4f} <span class='small'>owner-reported</span></td>"
+                f"<td>{v['n_dots']:,}</td>"
+                f"<td>{_unique_cell(v)}</td>"
+                f"<td>{_format_cell(v, files)}</td>"
+                f"<td>Research only</td>"
+                f"<td><b>NO</b> — already scored by its owner; no holdout-validated gain recorded</td></tr>")
+
+    t2 = "\n".join(listed_row(v) for v in listed_unique)
+    t2b = "\n".join(listed_row(v) for v in listed_dup)
+
+    # Table 3 — this repository's own research TIFFs
+    research = sorted(by_role["local_research_zeros"], key=lambda v: (v["unique_under_guard"] is False, v["name"]))
+
+    def research_row(v):
+        notes = []
+        if not v["format_pass"]:
+            notes.append("format FAIL (see IR-33-20261029-HMDT-OUTSIDE-01)")
+        if "lchc" in v["name"] or "thkcond" in v["name"] or "basestep" in v["name"]:
+            notes.append("mutual family 90.7–94.0% overlap (IR-33-20261029-MUTUAL-DUP-01)")
+        if "pcsup" in v["name"]:
+            notes.append("final dots unique but pre-placement surface FAILED at 86.08% (IR-33-R7-PCSUP-SURFACE-01)")
+        if "hmdt" in v["name"]:
+            notes.append("no holdout run card (IR-33-HMDT-UNGATED-01)")
+        good = v["unique_under_guard"] and v["format_pass"] and not any("MUTUAL" in n or "PCSUP" in n for n in notes)
+        dl = "Research/education only" if good else "<b>NO</b>"
+        return (f"<tr><td>{esc(_short(Path(man[v['name']]['path']).name, 60))}</td>"
+                f"<td>{_unique_cell(v)}</td><td>{_format_cell(v, files)}</td>"
+                f"<td>{esc('; '.join(notes)) or 'no holdout run card; repo selector: not eligible'}</td>"
+                f"<td>{dl}</td><td><b>NO</b></td></tr>")
+
+    t3 = "\n".join(research_row(v) for v in research)
+
+    irregularity_list = (
+        "<ul>"
+        "<li><b>IR-33-20261029-NINE-FAMILY-01</b> — all nine site-best files are one H19-5 family; two pairs are dot-identical copies.</li>"
+        "<li><b>IR-33-20261029-B2-DELETION-01</b> — B2 = H27-4 minus 2,545 dots at 1–2 px from the catalogue; nothing added (independently recounted).</li>"
+        "<li><b>IR-33-20261029-MUTUAL-DUP-01</b> — LCHC, THKCOND and BASESTEP overlap 90.7–94.0% with each other; their 'unique' labels were scoped to the pinned registry only.</li>"
+        "<li><b>IR-33-20261029-HMDT-OUTSIDE-01</b> — the HMDT 'zeros' TIFF has 33,616 cells of 1.0 outside the template footprint.</li>"
+        "<li><b>IR-33-20261029-PCSUP-SCOPE-01</b> — PCSUP passes the final-dot guard but failed the surface gate; dot-level uniqueness is not sufficient.</li>"
+        "<li><b>IR-33-20261029-SCORE-CONFLICT-01</b> — the brief's 0.4413 leaderboard high, 0.3195 'current highest' and 0.2778 owner best cannot be reconciled without a receipt.</li>"
+        "</ul>")
+
+    return f"""
+<h2>Nine-site audit (2026-10-29) — which file to submit?</h2>
+{banner}
+<p><b>Answer:</b> none. The owner-reported best (GEMSDOE32 B2, 0.2778) is a duplicate of GEMSDOE28/31 H27-4, and every listed site-best file triggers the duplicate guard. If you are looking for a reference point only, the highest owner-reported values are GEMSDOE32 B2 0.2778, GEMSDOE36 pinn 0.2750 and GEMSDOE28 h36-1 0.2710. None is a new submission.</p>
+<p class="small">Method: each file is compared with every other pinned file in the audit (the 38-entry manifest plus 22 registry rasters; byte-identical copies excluded). A file is <b>duplicate</b> if Spearman/phi &gt; 0.90 or more than 70% of its dots lie within 3 px of another file's dots. Format is checked against the template (single-band float32, EPSG:32611, 3730 × 3292, template transform, values in [0, 1] in the footprint, zero or NaN outside). Estimated scores are <b>not</b> produced: the only scores here are owner/user-reported. Source: <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/{NINE_AUDIT_EVIDENCE}"><code>{NINE_AUDIT_EVIDENCE}</code></a>.</p>
+
+<h3>Table 1 — best file per focus site (the nine owner-listed site-best files)</h3>
+<div class="scroll"><table><thead><tr>
+<th>Site</th><th>File to download (raw)</th><th>Reported score</th><th>Estimated score</th><th>Dots</th>
+<th>Unique vs other GEMSDOE sites?</th><th>Format</th><th>OK to download?</th><th>OK to submit?</th>
+</tr></thead><tbody>
+{t1}
+</tbody></table></div>
+
+<h3>Table 2 — other owner-listed TIFFs on the nine focus sites</h3>
+<p>Files that pass the duplicate guard against all other known files, sorted by reported score. None is OK to submit because each is already scored by its owner and no holdout-validated gain is recorded.</p>
+<div class="scroll"><table><thead><tr>
+<th>Site</th><th>File (raw)</th><th>Reported score</th><th>Dots</th><th>Unique vs other GEMSDOE sites?</th><th>Format</th><th>OK to download?</th><th>OK to submit?</th>
+</tr></thead><tbody>
+{t2}
+{t2b}
+</tbody></table></div>
+
+<h3>Table 3 — this repository's own downloadable research TIFFs</h3>
+<p>No owner score exists for these files. Uniqueness is measured against every other pinned file in the audit (38 manifest entries plus 22 registry rasters). A unique file still cannot be submitted without a passing holdout gate and a selector decision, and the selector returned 0 eligible.</p>
+<div class="scroll"><table><thead><tr>
+<th>File</th><th>Unique vs other pinned files?</th><th>Format</th><th>Notes / irregularity</th><th>OK to download?</th><th>OK to submit?</th>
+</tr></thead><tbody>
+{t3}
+</tbody></table></div>
+
+<h3>Irregularities found by this audit</h3>
+{irregularity_list}
+<p class="small">Full list and status: <a href="irregularities.html">irregularities page</a> (registry/irregularities.json).</p>
+"""
+
+
+def nine_site_index_panel() -> str:
+    return ("<div class='panel bad'><b>Nine-site audit (2026-10-29): OK TO SUBMIT — NO for every file.</b> "
+            "Every focus-site best file is a duplicate of the same H19-5 family, and no unique file has cleared the holdout gate. "
+            "Highest owner-reported value: GEMSDOE32 B2 0.2778 (not unique, not an organizer score). "
+            "See the <a href=\"executive-summary.html\">nine-site table and download guidance</a>.</div>")
+
 
 def build_exec() -> str:
     tif = "gemsdoe33-g33-tilt-gravity-lidar-coherence-20261026-171b8b87dbf7-nan.tif"
@@ -535,7 +709,7 @@ def build_exec() -> str:
              "Owner-reported; MEASURED 2026-10-26: contains all 37,654 GEMSDOE32 B2 dots exactly + 1,200 extra dots (knowledge/22) — same emission family, not an independent surface"),
         )
     )
-    body = f"""{review_warning()}{r7_pcsup_hero()}
+    body = f"""{review_warning()}{nine_site_audit_section()}{r7_pcsup_hero()}
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}

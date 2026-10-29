@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "run_id": "nine-site-audit-20261029",
+  "lane": "none (audit only; no candidate generated)",
+  "experiments_used": 0,
+  "experiment_budget": "3 per lane / 2 h; not consumed by this audit; new lane requires owner confirmation",
+  "verdict": "NO FILE IS OK TO SUBMIT",
+  "ok_to_download": "research/education only: unique research TIFFs listed in knowledge/32 Table 3 (none is a submission)",
+  "ok_to_submit": [],
+  "selector": {
+    "ok_to_submit": false,
+    "selected": null,
+    "candidates_checked": 19,
+    "decision": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
+    "evidence": "evidence/submission_selection_20261029.json"
+  },
+  "audit": {
+    "files": 38,
+    "site_best_unique": 0,
+    "unique_under_guard_all": 20,
+    "evidence": "evidence/nine_site_audit_20261029.json"
+  },
+  "validator": {
+    "files": 38,
+    "pass_default": 37,
+    "pass_strict_zero_outside": 28,
+    "evidence": "evidence/nine_site_validator_20261029.json"
+  },
+  "scores": "OWNER/USER-REPORTED only (*), NOT ORGANIZER-CONFIRMED; no estimated score produced",
+  "holdout": "not run (no new candidate); HOLDOUT-DTI not computed in this session",
+  "irregularities": [
+    "IR-33-20261029-NINE-FAMILY-01",
+    "IR-33-20261029-B2-DELETION-01",
+    "IR-33-20261029-MUTUAL-DUP-01",
+    "IR-33-20261029-HMDT-OUTSIDE-01",
+    "IR-33-20261029-PCSUP-SCOPE-01",
+    "IR-33-20261029-SCORE-CONFLICT-01"
+  ],
+  "checks": {
+    "run_checks_sh": "exit 0",
+    "pytest": "197 passed (includes 11 new nine-site audit tests)"
+  },
+  "commands": [
+    "python scripts/restore_data.py --group all",
+    "python scripts/restore_focus_registry_r3.py",
+    "python scripts/nine_site_audit.py",
+    "python scripts/validate_nine_site_files.py",
+    "bash scripts/run_checks.sh"
+  ],
+  "knowledge": "knowledge/32_nine_site_audit_20261029.md"
+}
