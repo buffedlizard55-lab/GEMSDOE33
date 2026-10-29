@@ -32,7 +32,7 @@ Reading: the B1 operating point is well above random, so the control is valid. C
 
 ## 3. Experiment 2: H34-COH candidate (one preregistered lane)
 
-Frozen definition and decision rule: [`knowledge/34`](34_hypothesis_slate_and_prereg_20261029.md) (SHA-256 `5d40648deb0039a11465a00ab4e331ad323f22facbdfc25c853e89949e3b2f09`). The decision rule was written before the run, and the code applies it as written.
+Frozen definition and decision rule: [`knowledge/37`](37_h34_hypothesis_slate_and_prereg_20261029.md) (SHA-256 `5d40648deb0039a11465a00ab4e331ad323f22facbdfc25c853e89949e3b2f09`). The decision rule was written before the run, and the code applies it as written.
 
 | Holdout | H34-COH (95% CI) | B1 | Paired Δ vs B1 (95% CI) | Folds vs B1 | Δ vs matched-random |
 |---|---|---|---|---|---|
@@ -45,7 +45,7 @@ Gates (from the run card): (a) beats B1 on screen ✗; (b) beats B1 on confirm �
 
 **Format (re-opened from disk this session):** one float32 band, EPSG:32611, 3730 × 3292, template transform, finite, whole array in [0, 1], 37,654 dots, 0 dots outside the footprint. SHA-256 of the saved bytes matches the run card.
 
-## 4. Hypothesis ledger (ranked, from `knowledge/34`)
+## 4. Hypothesis ledger (ranked, from `knowledge/37`)
 
 1. H34-COH: **tested, negative.**
 2. H34-SPUR (flight-line stripe suppression): not tested. Low cost. Requires a preregistration before use.

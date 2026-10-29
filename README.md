@@ -34,8 +34,8 @@
 
 - **Decision: OK TO DOWNLOAD (research only): YES · OK TO SUBMIT: NO · verdict: negative.** No slot spent, no upload.
 - **New file:** [`gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif`](docs/downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif) (H34-COH line-coherence gate on the B1 regional expert, 37,654 dots). Unique vs 22 registry rasters; format pass; **HOLDOUT-DTI 0.104769 vs B1 0.126012 (screen) and 0.105973 vs 0.130060 (confirm), 0/4 folds each.** Beats matched-random on both. Estimated leaderboard score: **not estimable**.
-- **0.2778 question** (GEMSDOE32 B2, owner-reported): B2 = H27-4 minus 2,545 dots 1–2 px from the catalogue; the mechanism is a hypothesis; no measurement in this repo shows we can beat it. Full answer: [`knowledge/35`](knowledge/35_h34_coh_result_and_b2_answer_20261029.md).
-- **Preregistration and ranked hypotheses:** [`knowledge/34`](knowledge/34_hypothesis_slate_and_prereg_20261029.md) (5 candidates; 2 blocked by missing official inputs).
+- **0.2778 question** (GEMSDOE32 B2, owner-reported): B2 = H27-4 minus 2,545 dots 1–2 px from the catalogue; the mechanism is a hypothesis; no measurement in this repo shows we can beat it. Full answer: [`knowledge/38`](knowledge/38_h34_coh_result_and_b2_answer_20261029.md).
+- **Preregistration and ranked hypotheses:** [`knowledge/37`](knowledge/37_h34_hypothesis_slate_and_prereg_20261029.md) (5 candidates; 2 blocked by missing official inputs).
 - **Baseline audit (Exp 1):** B1 is well above matched-random (paired Δ +0.056/+0.059, 4/4 folds each). Evidence: [`evidence/h34_baseline_experiment_20261029.json`](evidence/h34_baseline_experiment_20261029.json).
 - **Irregularities:** `IR-33-20261029-H34-*`, `-B2-MECHANISM-UNTESTABLE-01`, `-RESTORE-ORDER-01` in [`registry/irregularities.json`](registry/irregularities.json).
 - **Restore order on a clean checkout:** `restore_data.py --group all` → `prepare_data.py --skip-detector` → `restore_focus_registry_r3.py`. Then `scripts/run_h34_coh.py --stage baseline|candidate` reproduces the numbers.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """H34 lane: deployment-density baseline audit (Exp 1) and H34-COH candidate (Exp 2).
 
-Frozen design: knowledge/34_hypothesis_slate_and_prereg_20261029.md
+Frozen design: knowledge/37_h34_hypothesis_slate_and_prereg_20261029.md
 (hash in evidence/h34_coh_preregistration_20261029.sha256).
 
 Shared tools only: analog_invariant (B1 regional expert, percentile surface), csht_transfer
@@ -154,7 +154,7 @@ def _gate_pass(results, hname) -> dict:
 
 
 def decide_and_emit(results, arrays, footprint, catalogue, gate_surface_fn, canary) -> dict:
-    """Frozen decision rule (knowledge/34 section 3). Full-deployment emission, uniqueness, writer."""
+    """Frozen decision rule (knowledge/37 section 3). Full-deployment emission, uniqueness, writer."""
     screen_g = _gate_pass(results, "screen")
     confirm_g = _gate_pass(results, "confirm")
     dcat = distance_transform_edt(~catalogue)
@@ -301,8 +301,8 @@ def main() -> int:
         "schema": 1,
         "stage": args.stage,
         "date_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "preregistration": "knowledge/34_hypothesis_slate_and_prereg_20261029.md",
-        "preregistration_sha256": sha256_file(ROOT / "knowledge" / "34_hypothesis_slate_and_prereg_20261029.md"),
+        "preregistration": "knowledge/37_h34_hypothesis_slate_and_prereg_20261029.md",
+        "preregistration_sha256": sha256_file(ROOT / "knowledge" / "37_h34_hypothesis_slate_and_prereg_20261029.md"),
         "evaluator": "evaluate_holdout.py / vendor.gems24_template.holdout (shared)",
         "evaluator_sha256": sha256_file(ROOT / "evaluate_holdout.py"),
         "canary": canary,

@@ -537,7 +537,7 @@
       "severity": "low",
       "status": "open; informational",
       "finding": "Uniqueness here is measured at the raster/dot level only. H34-COH is conceptually close to the multiplicative gate family already tested (SEISDIL, PHCONG), which gate B1 by a continuous physical proxy. A low raster correlation does not establish a new hypothesis.",
-      "evidence": "knowledge/34 section 1 prior-art column; evidence/h34_coh_uniqueness_20261029.json",
+      "evidence": "knowledge/37 section 1 prior-art column; evidence/h34_coh_uniqueness_20261029.json",
       "consequence": "Future gate-family candidates should be judged on hypothesis overlap as well as raster overlap."
     },
     {

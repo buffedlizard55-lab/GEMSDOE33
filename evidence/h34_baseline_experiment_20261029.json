@@ -2,7 +2,7 @@
   "schema": 1,
   "stage": "baseline",
   "date_utc": "2026-10-29T18:03:46+00:00",
-  "preregistration": "knowledge/34_hypothesis_slate_and_prereg_20261029.md",
+  "preregistration": "knowledge/37_h34_hypothesis_slate_and_prereg_20261029.md",
   "preregistration_sha256": "5d40648deb0039a11465a00ab4e331ad323f22facbdfc25c853e89949e3b2f09",
   "evaluator": "evaluate_holdout.py / vendor.gems24_template.holdout (shared)",
   "evaluator_sha256": "51dd3aa1315b5fd195c2c5301b6bd65826d07390372eae991408367b92fcb099",
