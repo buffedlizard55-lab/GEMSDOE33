@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "experiment": "GEMSDOE33 deployment-density audit (Experiment 1, 2026-10-29)",
+  "generated_utc": "2026-10-29T18:02:31+00:00",
+  "preregistration": {
+    "path": "knowledge/33_density_audit_preregistration_20261029.md",
+    "sha256": "cd4a2b6a9b76cba383d1ee000868ddcca486ba5e7aede09407fc0ffac40981f0"
+  },
+  "surface": "PHCONG label-free phase-congruency surface (src/gemsdoe33/phcong.py)",
+  "holdout": {
+    "class": "vendor.gems24_template.holdout.SegmentHoldout",
+    "buffer_px": 15,
+    "evaluator_version": "gems-segment-pooled-v1",
+    "n_withheld_positive_pixels": 60988
+  },
+  "footprint_cells": 5167373,
+  "deployment_fraction": 0.007286874781441169,
+  "campaign_fraction": 0.025,
+  "recorded_campaign_values": {
+    "screen_dti": 0.16931590667916066,
+    "control_dti": 0.1804136278250649
+  },
+  "canary_max_two_sided_auc": 0.5224060862631938,
+  "runs": {
+    "campaign_2p5pct": {
+      "label": "campaign_2p5pct",
+      "per_fold_fraction_of_valid_cells": 0.025,
+      "emitted_dots_candidate_total": 129184,
+      "emitted_dots_control_total": 129184,
+      "format_candidate": {
+        "binary": true,
+        "shape_matches_footprint": true,
+        "zero_outside_footprint": true
+      },
+      "format_control": {
+        "binary": true,
+        "shape_matches_footprint": true,
+        "zero_outside_footprint": true
+      },
+      "candidate_screen_dti": 0.16931590667916066,
+      "candidate_screen_ci95": [
+        0.16277197239033178,
+        0.1754956664316033
+      ],
+      "control_dti": 0.1804136278250649,
+      "paired_delta_dti": -0.011097721145904238,
+      "paired_delta_ci95": [
+        -0.016259579146801716,
+        -0.006097602280383678
+      ],
+      "fold_wins": 0,
+      "n_folds": 4,
+      "evaluator_version": "gems-segment-pooled-v1",
+      "n_withheld_positive_pixels": 60988,
+      "seconds": 47.5
+    },
+    "deployment": {
+      "label": "deployment",
+      "per_fold_fraction_of_valid_cells": 0.007286874781441169,
+      "emitted_dots_candidate_total": 37654,
+      "emitted_dots_control_total": 37654,
+      "format_candidate": {
+        "binary": true,
+        "shape_matches_footprint": true,
+        "zero_outside_footprint": true
+      },
+      "format_control": {
+        "binary": true,
+        "shape_matches_footprint": true,
+        "zero_outside_footprint": true
+      },
+      "candidate_screen_dti": 0.07692113879105945,
+      "candidate_screen_ci95": [
+        0.0732663785158347,
+        0.08042278298794822
+      ],
+      "control_dti": 0.07366359058143468,
+      "paired_delta_dti": 0.003257548209624775,
+      "paired_delta_ci95": [
+        -0.0009899097026574812,
+        0.007711004406733435
+      ],
+      "fold_wins": 3,
+      "n_folds": 4,
+      "evaluator_version": "gems-segment-pooled-v1",
+      "n_withheld_positive_pixels": 60988,
+      "seconds": 42.0
+    }
+  },
+  "gates": {
+    "G1_harness_reproduces_recorded_campaign": true,
+    "G2_canary_max_two_sided_auc_le_0.90": true,
+    "G3_format_clean": true
+  },
+  "verdict": "density-robust null: negative PHCONG verdict stands at both densities",
+  "labels": "HOLDOUT-DTI (gems-segment-pooled-v1; withheld positives in field above; 95% spatial-block CI). Proxy only; not a leaderboard estimate.",
+  "no_submission_written": true,
+  "no_slot_used": true
+}
