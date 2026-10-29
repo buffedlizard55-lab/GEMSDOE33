@@ -63,3 +63,6 @@
     placement/evaluation. Treat PCSUP as duplicate/drift, not unique; its later HOLDOUT-DTI is
     exploratory only. Original evidence is immutable. Do not retune or run a fourth A33-R7 experiment.
     No raster is OK TO SUBMIT; the latest site/README summary must preserve this correction.
+
+14. **Density rule (2026-10-29):** report every holdout comparison at deployment density (37,654 dots, 0.7287% of the footprint) as well as the 2.5% campaign density. A candidate counts only if its paired CI against the matched random control at deployment density lies strictly above zero with at least 3/4 fold wins. Read `knowledge/34_density_audit_results_20261029.md` and `evidence/density_audit_20261029.json`. Random floor at deployment density: 0.0737 HOLDOUT-DTI.
+15. **Official check rule (2026-10-29):** every official claim used in a run card or page must have a row in `knowledge/36_official_verification_20261029.md` with its link and the text actually read. Do not rely on memory. The organizer's reference notebook is an official source for band names and output format.

@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "run_card_for": "Parallel-Run Protocol item 5 (one JSON card per session)",
+  "session_date_utc": "2026-10-29",
+  "experiment": "Experiment 1 of 3 (budget: 3 experiments / 2 hours) — deployment-density audit",
+  "preregistration": {
+    "path": "knowledge/33_density_audit_preregistration_20261029.md",
+    "sha256": "cd4a2b6a9b76cba383d1ee000868ddcca486ba5e7aede09407fc0ffac40981f0"
+  },
+  "hypothesis": "No new geological hypothesis. Methodological: the matched-random comparisons recorded at the 2.5% per-fold emission density do not transfer to the 0.73% deployment density.",
+  "mechanism": "At 2.5% emission, a random emitter covers a large share of the 300 m triangular-kernel neighbourhoods, which inflates the matched-random control and lowers the apparent margin of structured surfaces. The audit reruns the same surface and control at deployment density.",
+  "surface_under_test": "PHCONG label-free phase-congruency surface (src/gemsdoe33/phcong.py); no catalogue input to the detector",
+  "named_non_fault_process_that_could_mimic_result": "Dot-placement density and spacing, not geology: at low emission density the matched-random control achieves high 300 m kernel coverage, so a density artefact could look like a surface effect or the reverse.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "evaluator_version": "gems-segment-pooled-v1",
+    "withheld_positive_pixels": 60988,
+    "campaign_density_2p5pct": {
+      "candidate_screen": 0.169316,
+      "candidate_screen_ci95": [0.162772, 0.175496],
+      "matched_random_control": 0.180414,
+      "paired_delta_candidate_minus_control": -0.011098,
+      "paired_delta_ci95": [-0.016260, -0.006098],
+      "fold_wins": "0/4",
+      "reproduces_recorded_campaign_values": true
+    },
+    "deployment_density_0p73pct": {
+      "candidate_screen": 0.076921,
+      "candidate_screen_ci95": [0.073266, 0.080423],
+      "matched_random_control": 0.073664,
+      "paired_delta_candidate_minus_control": 0.003258,
+      "paired_delta_ci95": [-0.000990, 0.007711],
+      "fold_wins": "3/4"
+    }
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "not computed",
+    "reason": "No submission raster was produced in this experiment, so no registry surface or dot comparison applies."
+  },
+  "raster_sha256": "none (no raster produced)",
+  "validator_output": {
+    "source": "evidence/density_audit_20261029.json gates",
+    "G1_harness_reproduces_recorded_campaign": true,
+    "G2_canary_max_two_sided_auc": 0.5224,
+    "G2_canary_le_0.90": true,
+    "G3_format_clean_binary_zero_outside_shape": true,
+    "nan_inside_footprint": "not applicable (binary dot maps, no NaN produced)",
+    "crs_shape_transform": "template footprint shape 3730 x 3292 used for all maps; CRS and transform not re-derived in this audit"
+  },
+  "submission_name": "none — no submission produced",
+  "submission_note": "none",
+  "promotion_or_slot": "No slot used. No selector promotion. No upload.",
+  "verdict": "negative (density-robust null)",
+  "verdict_detail": "Preregistered rule: density-robust signal requires paired 95% CI strictly above 0 and at least 3/4 fold wins. Observed CI lower bound is -0.000990, so the rule returns the null. The PHCONG candidate and its matched random control are statistically indistinguishable at deployment density.",
+  "consequences": [
+    "All HOLDOUT-DTI values recorded at 2.5% emission overstate the deployment-density operating point: the deployment random control is 0.0737, versus 0.1804 at 2.5%.",
+    "No candidate in this repo currently beats its matched random control at deployment density.",
+    "Future lanes must report candidate, matched random control and paired CI at deployment density before any verdict."
+  ],
+  "no_drivendata_access": true,
+  "no_leaderboard_access": true,
+  "score_labels": "All scores here are HOLDOUT-DTI (local proxy). None is a leaderboard estimate. No ORGANIZER-CONFIRMED value exists in this run."
+}
