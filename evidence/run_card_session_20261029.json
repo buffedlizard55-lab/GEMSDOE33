@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "run_id": "session-review-20261029",
+  "status": "blocked_before_experiment",
+  "hypothesis": "Rank-1 proposal: cross-gradient-coherent basement edges from cached GeoDAWN total magnetic intensity and isostatic gravity may identify concealed faults where independent susceptibility and density contrasts coincide.",
+  "mechanism": "Proposed only: compute scale-specific gradient vectors for tmi and iso_grav_anom; reward co-located strong edges with concordant gradient direction and penalize one-field-only edges. The exact equation and thresholds are not frozen; no candidate surface was computed.",
+  "named_non_fault_process_that_could_mimic_it": "Intrusive contacts, caldera ring boundaries, lithologic boundaries, and airborne acquisition or processing seams can produce coincident magnetic and gravity edges without fault displacement.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "95pct_ci": null,
+    "withheld_positives": null,
+    "evaluator_version": "not run",
+    "reason": "No experiment was run because this session did not identify/freeze a single method paragraph; A33-R7-PHCONG is exhausted at 3/3 experiments. No DTI estimate or leaderboard projection is made."
+  },
+  "leakage_canary": {
+    "auc": null,
+    "threshold": 0.90,
+    "status": "not run; no feature was implemented"
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "not run",
+    "surface": null,
+    "final_dots": null,
+    "thresholds": {
+      "absolute_rank_correlation_gt": 0.90,
+      "fraction_within_3px_gt": 0.70
+    },
+    "registry": "registry/focus_rasters_20261026_r3.json",
+    "registry_sha256": "9c6b5f349fd127182c4f4a1a5f3c3601b129bd17e3b4394c8b34011b5fc30fd7",
+    "reason": "No surface or dots were generated."
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "not applicable; no raster generated",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null
+  },
+  "submission": {
+    "name": null,
+    "file": null,
+    "note": null,
+    "ok_to_download": false,
+    "ok_to_submit": false,
+    "reason": "No new submission artifact exists. Previously archived unique research TIFFs are not cleared for upload."
+  },
+  "verdict": "negative",
+  "experiments_used": 0,
+  "budget": "maximum 3 experiments or 2 hours; no experiment run",
+  "slot_selection": "not performed; 0 competition slots used",
+  "fresh_checkout_checks": {
+    "owner_mirror_inputs": "17/17 SHA-256 verified; hashes authenticate mirror bytes only",
+    "prepared_feature_stack": "121 channels rebuilt from pinned owner-mirror inputs",
+    "focus_registry": "22/22 rasters SHA-256 verified",
+    "nine_site_audit": "38 TIFFs compared; 9/9 site-best rasters trigger the duplicate guard",
+    "format_audit": "37/38 default pass; 28/38 strict-zero-outside pass; 0 OK TO SUBMIT",
+    "test_suite": "197 passed",
+    "sample_template_warning": "finite template values exactly match owner-mirror labels; template values are grid/footprint only, never truth"
+  },
+  "source_links": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://github.com/drivendataorg/gems-prize-reference-solution",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+    "https://www.usgs.gov/3d-elevation-program",
+    "https://ngmdb.usgs.gov/sgmc/",
+    "https://pubs.usgs.gov/publication/sim3498",
+    "https://earthquake.usgs.gov/data/comcat/index.php"
+  ],
+  "evidence": {
+    "hypothesis_slate": "knowledge/33_session_review_and_hypothesis_slate_20261029.md",
+    "nine_site_audit": "evidence/nine_site_audit_20261029.json",
+    "nine_site_validator": "evidence/nine_site_validator_20261029.json",
+    "submission_selector": "evidence/submission_selection_20261029.json",
+    "input_grid_audit": "evidence/input_grid_audit.json",
+    "holdout_template_sha256": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc",
+    "writer_sha256": "06c85f287ddcc42e6e89c22b98c8edb21567421f6945e93ff47613cb629ccaa4"
+  }
+}
