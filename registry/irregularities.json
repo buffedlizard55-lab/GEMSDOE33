@@ -517,6 +517,110 @@
       "consequence": "No score in this repo is ORGANIZER-CONFIRMED. Every score is labelled owner/user-reported. Do not infer a target gap from the 0.4413 figure without a receipt."
     },
     {
+      "id": "IR-33-20261029-DENSITY-01",
+      "severity": "high",
+      "status": "open; measured by evidence/density_audit_20261029.json (Experiment 1)",
+      "finding": "All prior HOLDOUT-DTI comparisons (A33-R2 to A33-R7) used 2.5% per-fold emission. Deployment emission is 37,654 dots = 0.7287% of the footprint. At deployment density the matched-random control scores 0.0737 (HOLDOUT-DTI), versus 0.1804 at 2.5%.",
+      "evidence": "evidence/density_audit_20261029.json; knowledge/34_density_audit_results_20261029.md; knowledge/31_repo_review_20261028.md",
+      "consequence": "Absolute proxy values from the 2.5% lanes are not comparable with deployment values. Negative verdicts stand as recorded; any new lane must report candidate, matched random and paired CI at deployment density."
+    },
+    {
+      "id": "IR-33-20261029-BAND-DEPTH-01",
+      "severity": "high",
+      "status": "open; ask the organizers which file carries the band",
+      "finding": "The official problem page lists a 'top-of-crustal magnetic source depth estimate' among the provided features. The owner-mirror training_features.tif (19 bands) has no such band, and neither does the organizer's own 19-band listing printed in the reference notebook (unet-mc-cv-reference-solution.ipynb, cell 5). A programmatic comparison found all 19 descriptions identical between the mirror tags and the notebook output.",
+      "evidence": "knowledge/36_official_verification_20261029.md rows V7, V8; restored data/training_features.tif band descriptions; https://github.com/drivendataorg/gems-prize-reference-solution/blob/main/unet-mc-cv-reference-solution.ipynb",
+      "consequence": "The top-ranked hypothesis (H-MAGDEPTH) is blocked. Do not substitute a self-derived depth grid and label it as the official feature."
+    },
+    {
+      "id": "IR-33-20261029-METRIC-MASK-01",
+      "severity": "high",
+      "status": "open; organizer clarification needed through the official forum (no automated access)",
+      "finding": "The official metric text (FP_w summed over all x with p(x)>0) does not state that visible catalogue pixels are masked from the false-positive cost or excluded from the truth set. The repository evaluator masks visible catalogue pixels (gems33.metric docstring; vendor SegmentHoldout).",
+      "evidence": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ (Mathematical representation); src/gems33/metric.py docstring",
+      "consequence": "If the organizer scores the catalogue, the repository evaluator is misspecified and every holdout number changes. Treat holdout numbers as conditional on the masking assumption."
+    },
+    {
+      "id": "IR-33-20261029-ALLFAULTS-01",
+      "severity": "medium",
+      "status": "open; interpretive",
+      "finding": "The official submission-format text asks for 'predictions for all faults in the region'. The metric section scores against newly identified faults, and the problem text says catalogue faults are public.",
+      "evidence": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/ (Submission format; Problem description)",
+      "consequence": "Whether catalogue faults should be predicted is unresolved. The repository's catalogue-exclusion policy is an assumption, not an official rule."
+    },
+    {
+      "id": "IR-33-20261029-OUTSIDE-01",
+      "severity": "high",
+      "status": "open; portal behaviour unverified",
+      "finding": "The official format says data outside the bounds is 'null or nan'. The organizer's reference notebook writes finite zeros in unpredicted cells (y_out = np.zeros, no NaN mask). Several repository files use zero outside and some use NaN outside. The user-reported portal error was 'Predicted values must be in range [0, 1]'.",
+      "evidence": "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/; notebook cells 16 and 19; docs/data/submission_selection.json",
+      "consequence": "Neither encoding is confirmed by the portal. Do not claim a file is accepted from local format checks. A portal-side diagnostic is needed before the encoding is settled."
+    },
+    {
+      "id": "IR-33-20261029-BAND-EQ-01",
+      "severity": "low",
+      "status": "open; wording only",
+      "finding": "The official page says 'density of earthquakes'. The organizer notebook and the mirror say 'Distance to earthquake' for band 10 and 'Earthquake intensity or density' for band 16.",
+      "evidence": "knowledge/36_official_verification_20261029.md row V9",
+      "consequence": "No data change. Record band semantics from band metadata, not from page prose."
+    },
+    {
+      "id": "IR-33-20261029-BAND-TC-01",
+      "severity": "low",
+      "status": "open; wording only",
+      "finding": "Band 6 is 'Tilt angle or total curvature' in both the notebook and the mirror. The official prose does not list a tilt feature.",
+      "evidence": "knowledge/36_official_verification_20261029.md row V10",
+      "consequence": "None for scoring. Documented for completeness."
+    },
+    {
+      "id": "IR-33-20261029-H34-EVALUATOR-VERSION-01",
+      "severity": "medium",
+      "status": "open; flagged for review",
+      "finding": "Two evaluator labels coexist. The root evaluate_holdout.py declares EVALUATOR_VERSION GEMSDOE33-HIDE-AND-RECOVER-v1.0, but the lane runners that were actually executed (run_s33_seisdil.py and the new run_h34_coh.py) call the vendored vendor/gems24_template SegmentHoldout, which reports gems-segment-pooled-v1. Both implement the same DTI definition per their docstrings; this session did not verify byte-equivalence of the two.",
+      "evidence": "evaluate_holdout.py L30-31; vendor/gems24_template/holdout.py; evidence/h34_baseline_experiment_20261029.json evaluator field",
+      "consequence": "All H34 numbers are labelled with gems-segment-pooled-v1. The two evaluators must be reconciled once, in the template, before any promotion claim (AGENTS rule 2)."
+    },
+    {
+      "id": "IR-33-20261029-H34-UNIQ-MARGIN-01",
+      "severity": "low",
+      "status": "open; informational",
+      "finding": "H34-COH passes the pre-placement surface guard, but its top-N preview 3-px overlap is 67.7% against the 70% limit (margin 2.3 points). The final-dot overlap is 46.0%.",
+      "evidence": "evidence/h34_coh_uniqueness_20261029.json surface.max_preview_fraction_within_3px",
+      "consequence": "Passes by a narrow margin, so the uniqueness claim is stated as passing, not as strongly unique."
+    },
+    {
+      "id": "IR-33-20261029-H34-PRIOR-ART-01",
+      "severity": "low",
+      "status": "open; informational",
+      "finding": "Uniqueness here is measured at the raster/dot level only. H34-COH is conceptually close to the multiplicative gate family already tested (SEISDIL, PHCONG), which gate B1 by a continuous physical proxy. A low raster correlation does not establish a new hypothesis.",
+      "evidence": "knowledge/37 section 1 prior-art column; evidence/h34_coh_uniqueness_20261029.json",
+      "consequence": "Future gate-family candidates should be judged on hypothesis overlap as well as raster overlap."
+    },
+    {
+      "id": "IR-33-20261029-B2-MECHANISM-UNTESTABLE-01",
+      "severity": "medium",
+      "status": "open; scientific limitation",
+      "finding": "The B2 near-catalogue prune (remove dots 1-2 px from known faults) cannot be tested on this holdout. The shared emission already excludes dots within 2 px of the visible catalogue (elig = valid & dist_to_visible > 2), so the mechanism is structurally absent from this lane.",
+      "evidence": "scripts/run_h34_coh.py (elig definition); knowledge/22; evidence/nine_site_audit_20261029.json b2_forensic_recount",
+      "consequence": "The B2 score cannot be explained or reproduced by any experiment in this repo. The mechanism is a hypothesis, not a finding."
+    },
+    {
+      "id": "IR-33-20261029-RESTORE-ORDER-01",
+      "severity": "low",
+      "status": "resolved in this session (documented)",
+      "finding": "On a clean checkout, restore_data.py --group core alone is insufficient for prepare_data.py: the build fails at geodawn_rad_u8.tif (public group). --group all is required, and prepare_data.py was run with --skip-detector as its analog_invariant error message advises. The focus-registry restore (restore_focus_registry_r3.py) must also run before the uniqueness guard.",
+      "evidence": "logs from this session; scripts/restore_data.py --help; scripts/prepare_data.py",
+      "consequence": "A new session must run restore --group all, prepare_data --skip-detector, and restore_focus_registry_r3 in that order."
+    },
+    {
+      "id": "IR-33-20261029-H34-SELECTOR-SCHEMA-01",
+      "severity": "low",
+      "status": "resolved in this session; recorded",
+      "finding": "The selector looks for holdout_dti.confirm_candidate (flat S33 schema). The H34 card first wrote the same values under nested keys, so the selector blocked it on confirmation_dti_finite_in_0_1 and reported a schema failure, not a measured one.",
+      "evidence": "scripts/select_submission.py _confirm_dti; /tmp selector log; evidence/h34_coh_run_card_20261029.json post_run_amendment",
+      "consequence": "Flat keys added to the card after the run. No measured value or gate outcome changed. The runner now writes the flat keys."
+    },
+    {
       "id": "IR-33-20261029-OFFICIAL-ACCESS-01",
       "severity": "medium",
       "status": "measured source-access blocker; no hypothesis declared viable",
@@ -533,5 +637,5 @@
       "consequence": "Do not interpret historical `n_unique_withheld_components: 3199` as the number of held-out components. It is metadata, not a DTI input, and does not invalidate pooled DTI arithmetic. Future cards must report the actual withheld-positive pixel count and, if reporting component counts, derive unique hidden IDs from each fold receipt; do not modify the pinned vendor snapshot in place."
     }
   ],
-  "last_review": "2026-10-28: added post-run PCSUP surface duplicate correction; see IR-33-R7-PCSUP-SURFACE-01."
+  "last_review": "2026-10-28: added post-run PCSUP surface duplicate correction; see IR-33-R7-PCSUP-SURFACE-01. | 2026-10-29 H34 lane added: IR-33-20261029-H34-EVALUATOR-VERSION-01, IR-33-20261029-H34-UNIQ-MARGIN-01, IR-33-20261029-H34-PRIOR-ART-01, IR-33-20261029-B2-MECHANISM-UNTESTABLE-01, IR-33-20261029-RESTORE-ORDER-01, IR-33-20261029-H34-SELECTOR-SCHEMA-01 | 2026-10-29 source-preflight review added IR-33-20261029-OFFICIAL-ACCESS-01 and IR-33-20261029-HOLDOUT-COUNT-01; 3,199 is the full-catalogue component count, not the withheld count."
 }

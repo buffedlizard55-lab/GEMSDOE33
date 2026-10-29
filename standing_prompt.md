@@ -292,7 +292,7 @@ This addendum supersedes older "next session" suggestions where they conflict. R
 - `IR-33-PORTAL-RANGE-CLAIM-01`: never claim zero-outside or NaN encoding fixes the reported portal range error. The rejected bytes and organizer diagnostic are absent. A local `[0,1]` pass does not prove portal acceptance; the official-format wording recorded here says null/NaN outside, so semantics remain unresolved.
 - The current user request did not identify one single assigned method paragraph. Per the parallel-run lane constraint, do not infer permission to jump lanes. No holdout candidate was run.
 - Round-4 candidate feasibility: COULOMB is blocked because staged CSVs have no trace vertices/strike and the companion vector JSON has no declared CRS and coordinate values outside the EPSG:32611 target bounds; CURVTRACE needs raw 1 m USGS 3DEP data not staged; PFRT can use local channels but was not run without an explicit lane; HMDT already has a TIFF but lacks a reproducible fold-safe runner/card; PALEOTEMP needs an unstaged GDR payload. See `evidence/round4_input_feasibility_20261026.json`.
-- No candidate-execution step is authorized by this historical addendum: the request did not identify a single assigned method paragraph. Do not choose a lane from an old slate. If a future task explicitly supplies an authorized method paragraph and the official source gate is clear, reuse the shared cache/evaluator/writer and the no-post-hoc holdout protocol. No numerical contest-score estimate is allowed; HOLDOUT-DTI remains a mapped-catalogue proxy, not organizer truth. No slot may be spent without fresh screen, independent confirmation, canaries, both uniqueness checks, format validation and a separate selector gate.
+- The next executable step is to define/freeze one explicit method lane and its no-post-hoc holdout protocol, then use the shared cache, evaluator and writer. No numerical contest-score estimate is allowed; HOLDOUT-DTI remains a mapped-catalogue proxy, not organizer truth. No slot may be spent without passing fresh screen, independent confirmation, canary, both uniqueness, format, and selector gates.
 - Keep the nine-site table and first-screen decision clear: GEMSDOE32 B2's 0.2778 is USER/OWNER-REPORTED, not ORGANIZER-CONFIRMED; the prompt's 0.3195 and 0.4413 leaders conflict. Neither is a verified current score.
 
 ## Continuation checkpoint — restoration/claims audit, 2026-10-26
@@ -361,35 +361,20 @@ here. See `registry/irregularities.json` (`IR-33-R7-PCSUP-SURFACE-01`) for the c
 - The owner asked for a unique GeoTIFF that is not a duplicate of any listed site's submission and for an unambiguous OK-to-download / OK-to-submit label. The standing rules are now copied into `README.md` under "Standing prompt" and must be read at the start of each session.
 - Nine-site audit (`scripts/nine_site_audit.py`, `evidence/nine_site_audit_20261029.json`) compares every owner-listed file on the nine focus sites with every other pinned file. Result: **no file is OK TO SUBMIT**. The nine site-best files are one family and all trigger the duplicate guard. The owner-reported best, GEMSDOE32 B2 (0.2778\*), is a deletion-only copy of GEMSDOE28/31 H27-4.
 - Irregularities recorded: `IR-33-20261029-NINE-FAMILY-01`, `-B2-DELETION-01`, `-MUTUAL-DUP-01`, `-HMDT-OUTSIDE-01`, `-PCSUP-SCOPE-01`, `-SCORE-CONFLICT-01`.
-- No new candidate and no experiment in the nine-site audit. A33-R7 was already exhausted at 3/3, and no new method paragraph was identified; neither a new lane nor an experiment was inferred. The subsequent 2026-10-29 source-preflight and hypothesis-slate status is recorded in the dated addendum below.
+- No new candidate and no experiment were run in that original audit session. Its wording about owner confirmation is historical; see the dated continuation below for the latest session review.
 
-## 2026-10-29 continuation — source preflight and ranked slate
+## 2026-10-29 continuation — deployment-density audit and fresh-checkout review
 
-Read `README.md` and this brief at the start of future sessions. This continuation does not reverse the
-no-submit decision and does not assign a method lane.
+Read `knowledge/34_density_audit_results_20261029.md`, `knowledge/35_hypothesis_slate_20261029.md`, `knowledge/36_official_verification_20261029.md`, and `knowledge/33_session_review_and_hypothesis_slate_20261029.md` first. The parallel deployment-density audit was **Experiment 1 of 3**: PHCONG at deployment density returned a density-robust null; its HOLDOUT-DTI result and paired CI are in `evidence/run_card_density_audit_20261029.json`. No TIF or slot resulted. A fresh checkout also restored and hash-verified 17 owner-mirror inputs, rebuilt the 121-channel stack, restored 22 comparison rasters, reran the 38-file audit, and passed 204 tests after integrating the parallel density-audit work. The nine site-best files still all trigger the duplicate guard; the selector returns 0 eligible.
 
-- Restored and hash-verified 17/17 owner-mirror inputs and rebuilt the ignored shared 121-channel
-  research cache; owner-mirror identity is not organizer provenance. The template/sample-label
-  equality canary remains a fail-closed warning: sample values are metadata/mask only, never labels.
-- The official-source preflight is `evidence/source_preflight_20261029.json`. Official page/catalog
-  records are not payload downloads: GDR #1391 and #1682 direct archive attempts returned HTTP 500;
-  TNM returned 1 m DEM catalog records in two finite-footprint spot checks but no DEM bytes were
-  downloaded; MT conductance attachments were not staged or audited for grid, coverage, resolution,
-  or license. Do not call any dependent hypothesis viable based on the catalog listing alone.
-- Three proposals are ranked (hydrochemical mixing front; depth-persistent MT conductance wall;
-  cross-catchment 3DEP channel-profile discontinuity) in `evidence/hypothesis_slate_20261029.json`
-  and `knowledge/33_hypothesis_slate_and_source_audit_20261029.md`. All are proposals only; 0/3
-  pass the source gate; no score/projection is made; no experiment, candidate TIFF, slot selection,
-  or upload occurred. Existing BRIDGE, Gabbs 3D and ComCat concepts are excluded as prior art.
-- The pinned GEMSDOE24 holdout/metric/writer/validator hashes match their source manifest and targeted
-  holdout/metric/writer tests passed (contract record `evidence/shared_pipeline_contract_review_20261029.json`).
-  The implementation treats 8-connected raster components as a proxy, not expert geological trace IDs;
-  future candidate code must visibly restrict catalogue-derived features to each fold's `visible` mask.
-  `n_unique_withheld_components` is a metadata bug (3,199 is total catalogue components, not withheld); see
-  `IR-33-20261029-HOLDOUT-COUNT-01` and do not reuse it as a withheld-component count.
-- The 2026-10-29 nine-site table in the executive summary is the single current per-site summary.
-  Historical artifact cards are explicitly research-only. Owner-reported scores remain unconfirmed;
-  GEMSDOE32 B2 0.2778* is deletion-only relative to H27-4, and neither conflicting 0.3195/0.4413
-  claim is reconciled. The public score is not estimable.
-- `IR-33-20261029-OFFICIAL-ACCESS-01` logs the official-payload access and provenance blocker.
-  Continue to preserve the three-pass process and update `knowledge/33...` with actual checks only.
+The source-verified slate in `knowledge/35` ranks H-MAGDEPTH first, but the source-depth feature is absent from the local 19-band stack and official reference notebook list; official data remain login-walled. It is blocked, not validated. A separate H34 lane, documented in `knowledge/37` and `knowledge/38`, has since tested H34-COH: the candidate lost to B1 on both screen and confirm; its unique, format-valid TIFF is **OK TO DOWNLOAD for research only, not OK TO SUBMIT**. Do not conflate the three experiment budgets: the density audit is its own campaign (1/3), H34 used 2/3, and A33-R7 is exhausted (3/3). Do not fill null run-card fields with estimates. No competition slot is approved. Use the deployment-density random floor and require candidate plus matched-random paired CI at 0.7287% emission for any future lane.
+
+## 2026-10-29 source-preflight and evaluator-metadata addendum
+
+Read `knowledge/33_hypothesis_slate_and_source_audit_20261029.md` and the linked JSON evidence before proposing a new method. This was a separate, source-gated review—not a continuation of H34-COH or the deployment-density audit. It found no additional identifiable method paragraph, did not assign a lane, and did not run an experiment, create a candidate TIFF, select a slot, or upload. A33-R7 remains exhausted at 3/3. Its three ranked geological proposals are proposals only: 0/3 pass official payload, schema, license, coverage, and local-grid checks.
+
+- Distinguish the existing H34-COH GeoTIFF (negative HOLDOUT-DTI, format-valid, unique in its recorded registry, research-only) from any submission recommendation: it is **not OK TO SUBMIT**. The deployment-density PHCONG result is also a null; neither result is an organizer score estimate.
+- On the nine-site executive table, Table 1 and Table 2 must say **YES — research/learning only** in the download column and **NO** in the submission column. That download label never authorizes an upload.
+- Official page/catalog access is not payload verification: GDR #1391/#1682 direct archive attempts returned HTTP 500; 3DEP coverage was checked only at two finite-footprint catalog samples and no DEM bytes were downloaded; MT conductance payloads, terms, grid, and coverage remain unchecked. Do not describe source-dependent hypotheses as viable until required official bytes and their schema/license/coverage are locally audited.
+- The vendored GEMSDOE24 source hashes match the pinned manifest. Its holdout hides 8-connected raster components, not necessarily complete expert trace segments; feature construction is not mechanically forced to use fold-visible labels. The `n_unique_withheld_components` metadata field reports 3,199 total-catalogue components, not the withheld count; this bug is not a DTI input. Preserve `IR-33-20261029-HOLDOUT-COUNT-01` and do not quote 3,199 as a withheld-positive/component count.
+- Preserve the three review passes, leakage canary and duplicate-stop rules. Never use a projection as a score; keep owner reports distinct from organizer receipts. No selector run, slot selection, or upload is authorized by this addendum.

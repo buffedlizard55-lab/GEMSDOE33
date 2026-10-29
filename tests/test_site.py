@@ -4,10 +4,11 @@ from scripts import build_site
 
 def test_overview_exposes_current_no_submit_source_block_and_archival_artifacts():
     page = build_site.build_index()
-    assert "Latest review — 2026-10-29" in page
+    assert "Latest source-preflight review — 2026-10-29" in page
     assert "A33-R7 is exhausted at 3/3" in page
     assert "0/3 pass source-payload/schema/license/coverage checks" in page
-    assert "No experiment, candidate TIFF, slot selection or upload occurred" in page
+    assert "This review did not start another experiment or candidate TIFF, select a slot, or upload." in page
+    assert "separate H34-COH research TIFF" in page and "negative, research-only result" in page
     assert "gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.tif" in page
     assert page.index("r7-pcsup") < page.index("a33-r3-llc")
     assert "surface duplicate stop" in page.lower()
@@ -85,7 +86,7 @@ def test_executive_summary_has_one_current_per_site_table_and_blocks_submission(
     assert "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9" in page
     assert "Current decision — 2026-10-29" in page
     assert "NO FILE IS OK TO SUBMIT" in page
-    assert "no identifiable current method paragraph" in page
+    assert "no identifiable current method paragraph" in page.lower()
     assert "0/3 hypotheses pass" in page
     assert "do not upload any file until its banner says" in page
     assert "predicted" not in page.lower() or "score" in page.lower()
