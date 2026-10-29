@@ -375,6 +375,37 @@ def s33_seisdil_hero() -> str:
 </div>"""
 
 
+def h34_coh_hero() -> str:
+    """2026-10-29 H34-COH research GeoTIFF: unique, format-valid, holdout-negative (from its run card)."""
+    card = read_json(ROOT / "evidence" / "h34_coh_run_card_20261029.json")
+    if not card:
+        return ""
+    h = card["holdout_dti"]
+    sp = h["screen_paired_vs_B1"]
+    cp = h["confirm_paired_vs_B1"]
+    rnd = card["gate_detail"]["screen"]["screen_or_confirm_dti"]
+    surf = card["correlation_overlap_vs_registry"]["surface"]
+    fin = card["correlation_overlap_vs_registry"]["final_dots"]
+    filename = f"{card['submission_name']}.tif"
+    zipname = f"{card['submission_name']}.zip"
+    nanname = card["submission_name"].replace("-zeros", "-nan") + ".tif"
+    max_auc = max(x["max_fold_auc"] for x in card["feature_canaries"]["rows"])
+    verdict = card["verdict"].upper()
+    return f"""<div class="hero-download" id="h34-coh">
+<h2>H34-COH research GeoTIFF (2026-10-29) — ✅ OK TO DOWNLOAD (research): YES · 🛑 OK TO SUBMIT: NO · verdict: {verdict}</h2>
+<p><span class="badge good">UNIQUE vs {surf['registry_count']} registry rasters: surface max |ρ| {surf['max_abs_spearman_rho']:.3f}; surface max 3-px overlap {100*surf['max_preview_fraction_within_3px']:.1f}% (limit 70%)</span>
+<span class="badge good">FINAL DOTS: max |ρ| {fin['max_abs_spearman_rho']:.3f}; max 3-px overlap {100*fin['max_candidate_fraction_within_3px']:.1f}%</span>
+<span class="badge good">LOCAL FORMAT PASS · single-band float32, EPSG:32611, 3730×3292, [0,1] whole array, 37,654 dots, 0 outside footprint</span>
+<span class="badge good">FEATURE CANARY PASS (max AUC {max_auc:.3f} ≤ 0.90)</span>
+<span class="badge bad">HOLDOUT GATE FAILED: loses to B1 on both splits (0/4 folds each)</span></p>
+<p><b>Hypothesis.</b> A fault is a long, straight ridge set; isolated magnetic ridge pixels are not. Gating the B1 regional expert by 8-orientation line-coherence of the NMS magnetic ridge map should rank ridge-continuous segments above isolated ridge pixels. <b>Mechanism.</b> <code>surface = pct(B1) × (0.2 + 0.8·pct(C))</code>, where <code>C</code> = max minus mean of 11-px line averages over 8 orientations, then 300 m CELF emission. <b>Named non-fault mimic.</b> Airborne flight-line striping and levelling artefacts in the magnetic channel, plus drainage and cultural linears.</p>
+<p><b>HOLDOUT-DTI</b> (<code>{h['evaluator_version']}</code>, {h['withheld_positives']:,} withheld positives; local catalogue proxy, not an organizer score): screen H34-COH <code>{h['screen']['H34-COH']:.6f}</code> vs B1 <code>{h['screen']['B1']:.6f}</code> vs matched-random <code>{h['screen']['RANDOM']:.6f}</code>; paired Δ vs B1 <code>{sp['paired_delta_dti']:+.6f}</code>, 95% CI <code>[{sp['paired_delta_ci95'][0]:+.6f}, {sp['paired_delta_ci95'][1]:+.6f}]</code>, {sp['fold_wins']}/{sp['n_folds']} folds. Confirmation H34-COH <code>{h['confirm']['H34-COH']:.6f}</code> vs B1 <code>{h['confirm']['B1']:.6f}</code>; paired Δ <code>{cp['paired_delta_dti']:+.6f}</code>, 95% CI <code>[{cp['paired_delta_ci95'][0]:+.6f}, {cp['paired_delta_ci95'][1]:+.6f}]</code>, {cp['fold_wins']}/{cp['n_folds']} folds. It beats the matched-random control on both splits, so the signal is not pure density, but it does not beat B1. <b>Estimated leaderboard score: NOT ESTIMABLE</b> (catalogue proxy, never a score).</p>
+<p><a class="btn" href="downloads/{filename}">⬇ Download unique H34-COH GeoTIFF (research only)</a> <a class="btn alt" href="downloads/{zipname}">Single-TIFF .zip</a> <a class="btn alt" href="downloads/{nanname}">NaN-outside twin</a> <a class="btn alt" href="data/h34_coh_run_card_20261029.json">Run card JSON</a></p>
+<p><b>Submission name:</b> <code>{filename[:-4]}</code><br><b>Note (≤140):</b> <code>{card['submission_note']}</code><br><b>SHA-256:</b> <code>{card['raster_sha256']}</code></p>
+</div>
+"""
+
+
 def dpps_hero(*, include_b2_score: bool = False) -> str:
     card = read_json(ROOT / "evidence" / "dpps_run_card_20261026.json")
     if not card:
@@ -458,6 +489,7 @@ def build_index() -> str:
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
+{h34_coh_hero()}
 {s33_seisdil_hero()}
 {a33_r3_llc_hero()}
 {dpps_hero()}
@@ -713,6 +745,7 @@ def build_exec() -> str:
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
+{h34_coh_hero()}
 {s33_seisdil_hero()}
 {a33_r3_llc_hero()}
 {dpps_hero(include_b2_score=True)}

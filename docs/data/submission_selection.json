@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-28T11:50:39+00:00",
+  "generated_utc": "2026-10-29T18:12:35+00:00",
   "selector": "scripts/select_submission.py (automated, fail-closed)",
   "ok_to_submit": false,
   "decision": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
@@ -295,6 +295,30 @@
       "eligible": false
     },
     {
+      "run_card": "evidence/h34_coh_run_card_20261029.json",
+      "campaign": "H34-COH",
+      "verdict": "negative",
+      "submission_name": "gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros",
+      "file": "gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif",
+      "checks": {
+        "verdict_promote": false,
+        "promotion_gates_all_pass": false,
+        "file_exists": true,
+        "sha256_matches_run_card": true,
+        "format_audit_pass_on_saved_bytes": true,
+        "all_cells_finite_and_in_0_1": true,
+        "zip_single_geotiff_same_bytes": true,
+        "note_1_to_140_chars": true,
+        "confirmation_dti_finite_in_0_1": true,
+        "underlying_evidence_reassessed": false
+      },
+      "format_audit_failures": [],
+      "note": "GEMS33 H34-COH line-coherence gate on B1 37654d | gate NEGATIVE | 1181c8712300",
+      "sha256": "9fc35db23586d04af2481eb3b32f8912c1d99d029a2bf18bb6cccf63d2caac9d",
+      "confirm_holdout_dti": 0.10597276601254811,
+      "eligible": false
+    },
+    {
       "run_card": "evidence/pfrt_run_card_20261027.json",
       "campaign": "PFRT",
       "verdict": "negative",
@@ -429,6 +453,29 @@
         "underlying_evidence_reassessed": false
       },
       "note": "GEMSDOE33 G33 tilt-gravity-lidar coherence TIFF; proxy holdout FAILED dDTI -0.0907 0/4 folds; NOT cleared to submit. id 171b8b87dbf7",
+      "sha256": null,
+      "confirm_holdout_dti": null,
+      "eligible": false
+    },
+    {
+      "run_card": "evidence/run_card_nine_site_20261029.json",
+      "campaign": null,
+      "verdict": "NO FILE IS OK TO SUBMIT",
+      "submission_name": null,
+      "file": null,
+      "checks": {
+        "verdict_promote": false,
+        "promotion_gates_all_pass": false,
+        "file_exists": false,
+        "sha256_matches_run_card": false,
+        "format_audit_pass_on_saved_bytes": false,
+        "all_cells_finite_and_in_0_1": false,
+        "zip_single_geotiff_same_bytes": false,
+        "note_1_to_140_chars": false,
+        "confirmation_dti_finite_in_0_1": false,
+        "underlying_evidence_reassessed": false
+      },
+      "note": null,
       "sha256": null,
       "confirm_holdout_dti": null,
       "eligible": false

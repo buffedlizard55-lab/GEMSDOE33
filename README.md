@@ -1,7 +1,8 @@
 # GEMSDOE33 — DOE GEMS Fault Discovery Project (DrivenData #306)
 
 > **Read first, every session:** [`standing_prompt.md`](standing_prompt.md) (the full standing brief with dated addenda) and [`AGENTS.md`](AGENTS.md).
-> **Latest (2026-10-29):** nine-site duplicate audit — NO file is OK TO SUBMIT ([`evidence/nine_site_audit_20261029.json`](evidence/nine_site_audit_20261029.json)).
+> **Latest (2026-10-29, H34 lane):** new unique research TIFF, holdout negative, NOT OK TO SUBMIT — see the 🟢 block below.
+> **Previous (2026-10-29):** nine-site duplicate audit — NO file is OK TO SUBMIT ([`evidence/nine_site_audit_20261029.json`](evidence/nine_site_audit_20261029.json)).
 > **Latest work:** [`knowledge/31_r7_pcsup_lane_correction_20261028.md`](knowledge/31_r7_pcsup_lane_correction_20261028.md) corrects a material guard failure: PCSUP surface overlap was 86.08% (>70%) against the 21-raster registry, despite final dots passing. It is a protocol duplicate/drift, not a unique recommendation; holdout figures are exploratory. No candidate is OK TO SUBMIT. Earlier B2 forensics ([`knowledge/22`](knowledge/22_b2_forensics_and_fsml_slate_20261026.md)) explain the owner-reported 0.2778 family; these score claims remain unauthenticated to organizer receipts. Latest A33-R7 campaign exhausted its 3-experiment budget. Selector-safety hardening is in [`knowledge/22_selector_safety_review_20261026.md`](knowledge/22_selector_safety_review_20261026.md). Owner-mirror data/cache remain local and git-ignored; SHA pins do not authenticate organizer provenance.
 > **2026-10-28 safety review — NO FILE IS OK TO SUBMIT:** [`knowledge/27_20261028_safety_review.md`](knowledge/27_20261028_safety_review.md). BASESTEP and THKCOND fitted thresholds using the full catalogue before holdout, tested only their composite surface, and screened novelty after placement. Their historical DTI values are exploratory, not protocol-valid. Runners are disabled. The selector now reassesses hash-bound evidence, but cannot independently authenticate claims. No new TIFF or experiment was created in this review. Owner-mirror files were restored and verified in this workspace, not organizer-authenticated.
 > **2026-10-28 repository review:** [`knowledge/31_repo_review_20261028.md`](knowledge/31_repo_review_20261028.md) records three-pass review, test result (172 passed, 12 skipped), current no-submit decision, evaluation-density limitation, and ranked next work. No new experiment or slot use.
@@ -28,6 +29,16 @@
 12. Open a PR, merge to `main`, and list remaining work and limitations.
 
 **Core values:** Maximize P(Win) · Own the Outcome.
+
+## 🟢 Session 2026-10-29 — H34 lane (new unique GeoTIFF, research only)
+
+- **Decision: OK TO DOWNLOAD (research only): YES · OK TO SUBMIT: NO · verdict: negative.** No slot spent, no upload.
+- **New file:** [`gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif`](docs/downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif) (H34-COH line-coherence gate on the B1 regional expert, 37,654 dots). Unique vs 22 registry rasters; format pass; **HOLDOUT-DTI 0.104769 vs B1 0.126012 (screen) and 0.105973 vs 0.130060 (confirm), 0/4 folds each.** Beats matched-random on both. Estimated leaderboard score: **not estimable**.
+- **0.2778 question** (GEMSDOE32 B2, owner-reported): B2 = H27-4 minus 2,545 dots 1–2 px from the catalogue; the mechanism is a hypothesis; no measurement in this repo shows we can beat it. Full answer: [`knowledge/35`](knowledge/35_h34_coh_result_and_b2_answer_20261029.md).
+- **Preregistration and ranked hypotheses:** [`knowledge/34`](knowledge/34_hypothesis_slate_and_prereg_20261029.md) (5 candidates; 2 blocked by missing official inputs).
+- **Baseline audit (Exp 1):** B1 is well above matched-random (paired Δ +0.056/+0.059, 4/4 folds each). Evidence: [`evidence/h34_baseline_experiment_20261029.json`](evidence/h34_baseline_experiment_20261029.json).
+- **Irregularities:** `IR-33-20261029-H34-*`, `-B2-MECHANISM-UNTESTABLE-01`, `-RESTORE-ORDER-01` in [`registry/irregularities.json`](registry/irregularities.json).
+- **Restore order on a clean checkout:** `restore_data.py --group all` → `prepare_data.py --skip-detector` → `restore_focus_registry_r3.py`. Then `scripts/run_h34_coh.py --stage baseline|candidate` reproduces the numbers.
 
 ## 🔴 Decision (2026-10-29, nine-site audit): **OK TO SUBMIT: NO for every file**
 

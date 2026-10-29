@@ -515,7 +515,55 @@
       "finding": "The brief cites a leaderboard high of 0.4413 (user-reported) and a user-stated current highest of 0.3195. The highest owner-reported focus-site value is 0.2778 (GEMSDOE32 B2). These three figures cannot all describe the same leaderboard snapshot.",
       "evidence": "registry/nine_site_best_files_20261029.json reported_score fields; brief text",
       "consequence": "No score in this repo is ORGANIZER-CONFIRMED. Every score is labelled owner/user-reported. Do not infer a target gap from the 0.4413 figure without a receipt."
+    },
+    {
+      "id": "IR-33-20261029-H34-EVALUATOR-VERSION-01",
+      "severity": "medium",
+      "status": "open; flagged for review",
+      "finding": "Two evaluator labels coexist. The root evaluate_holdout.py declares EVALUATOR_VERSION GEMSDOE33-HIDE-AND-RECOVER-v1.0, but the lane runners that were actually executed (run_s33_seisdil.py and the new run_h34_coh.py) call the vendored vendor/gems24_template SegmentHoldout, which reports gems-segment-pooled-v1. Both implement the same DTI definition per their docstrings; this session did not verify byte-equivalence of the two.",
+      "evidence": "evaluate_holdout.py L30-31; vendor/gems24_template/holdout.py; evidence/h34_baseline_experiment_20261029.json evaluator field",
+      "consequence": "All H34 numbers are labelled with gems-segment-pooled-v1. The two evaluators must be reconciled once, in the template, before any promotion claim (AGENTS rule 2)."
+    },
+    {
+      "id": "IR-33-20261029-H34-UNIQ-MARGIN-01",
+      "severity": "low",
+      "status": "open; informational",
+      "finding": "H34-COH passes the pre-placement surface guard, but its top-N preview 3-px overlap is 67.7% against the 70% limit (margin 2.3 points). The final-dot overlap is 46.0%.",
+      "evidence": "evidence/h34_coh_uniqueness_20261029.json surface.max_preview_fraction_within_3px",
+      "consequence": "Passes by a narrow margin, so the uniqueness claim is stated as passing, not as strongly unique."
+    },
+    {
+      "id": "IR-33-20261029-H34-PRIOR-ART-01",
+      "severity": "low",
+      "status": "open; informational",
+      "finding": "Uniqueness here is measured at the raster/dot level only. H34-COH is conceptually close to the multiplicative gate family already tested (SEISDIL, PHCONG), which gate B1 by a continuous physical proxy. A low raster correlation does not establish a new hypothesis.",
+      "evidence": "knowledge/34 section 1 prior-art column; evidence/h34_coh_uniqueness_20261029.json",
+      "consequence": "Future gate-family candidates should be judged on hypothesis overlap as well as raster overlap."
+    },
+    {
+      "id": "IR-33-20261029-B2-MECHANISM-UNTESTABLE-01",
+      "severity": "medium",
+      "status": "open; scientific limitation",
+      "finding": "The B2 near-catalogue prune (remove dots 1-2 px from known faults) cannot be tested on this holdout. The shared emission already excludes dots within 2 px of the visible catalogue (elig = valid & dist_to_visible > 2), so the mechanism is structurally absent from this lane.",
+      "evidence": "scripts/run_h34_coh.py (elig definition); knowledge/22; evidence/nine_site_audit_20261029.json b2_forensic_recount",
+      "consequence": "The B2 score cannot be explained or reproduced by any experiment in this repo. The mechanism is a hypothesis, not a finding."
+    },
+    {
+      "id": "IR-33-20261029-RESTORE-ORDER-01",
+      "severity": "low",
+      "status": "resolved in this session (documented)",
+      "finding": "On a clean checkout, restore_data.py --group core alone is insufficient for prepare_data.py: the build fails at geodawn_rad_u8.tif (public group). --group all is required, and prepare_data.py was run with --skip-detector as its analog_invariant error message advises. The focus-registry restore (restore_focus_registry_r3.py) must also run before the uniqueness guard.",
+      "evidence": "logs from this session; scripts/restore_data.py --help; scripts/prepare_data.py",
+      "consequence": "A new session must run restore --group all, prepare_data --skip-detector, and restore_focus_registry_r3 in that order."
+    },
+    {
+      "id": "IR-33-20261029-H34-SELECTOR-SCHEMA-01",
+      "severity": "low",
+      "status": "resolved in this session; recorded",
+      "finding": "The selector looks for holdout_dti.confirm_candidate (flat S33 schema). The H34 card first wrote the same values under nested keys, so the selector blocked it on confirmation_dti_finite_in_0_1 and reported a schema failure, not a measured one.",
+      "evidence": "scripts/select_submission.py _confirm_dti; /tmp selector log; evidence/h34_coh_run_card_20261029.json post_run_amendment",
+      "consequence": "Flat keys added to the card after the run. No measured value or gate outcome changed. The runner now writes the flat keys."
     }
   ],
-  "last_review": "2026-10-28: added post-run PCSUP surface duplicate correction; see IR-33-R7-PCSUP-SURFACE-01."
+  "last_review": "2026-10-29: H34-COH session added IR-33-20261029-H34-EVALUATOR-VERSION-01, -H34-UNIQ-MARGIN-01, -H34-PRIOR-ART-01, -B2-MECHANISM-UNTESTABLE-01, -RESTORE-ORDER-01."
 }

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-29T14:54:11+00:00",
+  "generated_utc": "2026-10-29T18:12:35+00:00",
   "selector": "scripts/select_submission.py (automated, fail-closed)",
   "ok_to_submit": false,
   "decision": "NO RASTER IS OK TO SUBMIT: no run card passes every automated gate.",
@@ -292,6 +292,30 @@
       "note": "GEMS33 FSML2-CC V1_cc6 spyPU+worm+line CELF 37654d | NEGATIVE | 6fd4410bbaee",
       "sha256": "be5013aad085c23a9317959f85c7d494e28eac5875f61addce8ec81b5bb51de3",
       "confirm_holdout_dti": null,
+      "eligible": false
+    },
+    {
+      "run_card": "evidence/h34_coh_run_card_20261029.json",
+      "campaign": "H34-COH",
+      "verdict": "negative",
+      "submission_name": "gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros",
+      "file": "gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif",
+      "checks": {
+        "verdict_promote": false,
+        "promotion_gates_all_pass": false,
+        "file_exists": true,
+        "sha256_matches_run_card": true,
+        "format_audit_pass_on_saved_bytes": true,
+        "all_cells_finite_and_in_0_1": true,
+        "zip_single_geotiff_same_bytes": true,
+        "note_1_to_140_chars": true,
+        "confirmation_dti_finite_in_0_1": true,
+        "underlying_evidence_reassessed": false
+      },
+      "format_audit_failures": [],
+      "note": "GEMS33 H34-COH line-coherence gate on B1 37654d | gate NEGATIVE | 1181c8712300",
+      "sha256": "9fc35db23586d04af2481eb3b32f8912c1d99d029a2bf18bb6cccf63d2caac9d",
+      "confirm_holdout_dti": 0.10597276601254811,
       "eligible": false
     },
     {
