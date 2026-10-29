@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_utc": "2026-10-29T14:46:57+00:00",
+  "generated_utc": "2026-10-29T18:08:14+00:00",
   "script": "scripts/nine_site_audit.py",
   "manifest": "registry/nine_site_best_files_20261029.json",
   "registry": "registry/focus_rasters_20261026_r3.json",

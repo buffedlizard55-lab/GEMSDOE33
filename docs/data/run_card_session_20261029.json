@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "run_id": "fresh-checkout-review-20261029",
+  "status": "blocked_before_geological_experiment",
+  "hypothesis": "Top ranked hypothesis: an independently derived step in magnetic source depth may reveal concealed basement-fault offsets that are absent from the surface-fault catalogue.",
+  "mechanism": "Not tested. The source-depth layer described in the official feature inventory is absent from the restored 19-band owner mirror and from the organizer reference notebook's 19-band list; deriving a substitute from TMI would be a different hypothesis and requires a new preregistration.",
+  "named_non_fault_process_that_could_mimic_it": "Shallow intrusive/volcanic bodies, magnetite-rich lithologic contacts, and sediment-thickness changes can generate magnetic-source-depth steps without a fault.",
+  "holdout_dti": {
+    "label": "HOLDOUT-DTI",
+    "value": null,
+    "95pct_ci": null,
+    "withheld_positives": null,
+    "evaluator_version": "not run for H-MAGDEPTH",
+    "reason": "Required magnetic source-depth feature is unavailable in the verified local 19-band stack; no replacement estimator was preregistered. No leaderboard score is estimated."
+  },
+  "related_completed_experiment": {
+    "run_card": "evidence/run_card_density_audit_20261029.json",
+    "campaign": "deployment-density methodological audit, Experiment 1 of 3",
+    "verdict": "negative (density-robust null)",
+    "measurement_label": "HOLDOUT-DTI",
+    "deployment_density": {
+      "candidate": 0.076921,
+      "candidate_95pct_ci": [0.073266, 0.080423],
+      "matched_random": 0.073664,
+      "paired_delta": 0.003258,
+      "paired_delta_95pct_ci": [-0.00099, 0.007711],
+      "fold_wins": "3/4",
+      "withheld_positive_pixels": 60988,
+      "evaluator_version": "gems-segment-pooled-v1"
+    },
+    "interpretation": "This tests PHCONG at deployment dot density against matched random; it is not H-MAGDEPTH validation and not a leaderboard estimate."
+  },
+  "leakage_canary": {
+    "auc": null,
+    "threshold": 0.90,
+    "status": "not run for H-MAGDEPTH; feature unavailable"
+  },
+  "correlation_overlap_vs_registry": {
+    "status": "not run for H-MAGDEPTH; no surface generated",
+    "surface": null,
+    "final_dots": null,
+    "thresholds": {
+      "absolute_rank_correlation_gt": 0.90,
+      "fraction_within_3px_gt": 0.70
+    },
+    "registry": "registry/focus_rasters_20261026_r3.json",
+    "registry_sha256": "9c6b5f349fd127182c4f4a1a5f3c3601b129bd17e3b4394c8b34011b5fc30fd7"
+  },
+  "raster_sha256": null,
+  "validator_output": {
+    "status": "not applicable; no H-MAGDEPTH raster generated",
+    "no_nan_inside_footprint": null,
+    "values_in_0_1": null,
+    "crs_match": null,
+    "shape_match": null,
+    "transform_match": null
+  },
+  "submission": {
+    "name": null,
+    "file": null,
+    "note": null,
+    "ok_to_download": false,
+    "ok_to_submit": false,
+    "reason": "No new geological candidate artifact. Existing unique research TIFFs have not cleared their holdout and selector gates."
+  },
+  "verdict": "negative",
+  "experiments_used_in_geological_lane": 0,
+  "new_methodological_campaign_budget": "1 of 3 experiments used by separate deployment-density audit; maximum 2 hours; see related run card",
+  "a33_r7_budget": "exhausted at 3/3; not rerun",
+  "slot_selection": "not performed; 0 competition slots used",
+  "related_completed_geological_experiment": {
+    "run_card": "evidence/h34_coh_run_card_20261029.json",
+    "hypothesis": "H34-COH magnetic-ridge line coherence gate on B1",
+    "verdict": "negative: screen and confirm both lose to B1",
+    "holdout_dti": {
+      "label": "HOLDOUT-DTI",
+      "screen_candidate": 0.104769,
+      "screen_B1": 0.126012,
+      "screen_fold_wins_vs_B1": "0/4",
+      "confirm_candidate": 0.105973,
+      "confirm_B1": 0.130060,
+      "confirm_fold_wins_vs_B1": "0/4",
+      "matched_random_beaten": "yes on both holdouts",
+      "leaderboard_estimate": null
+    },
+    "artifact": "docs/downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif",
+    "uniqueness_and_format": "passes against 22 pinned registry rasters; saved-byte format audit passes",
+    "ok_to_download": true,
+    "ok_to_submit": false,
+    "experiment_budget": "2 of 3 in the separate H34 lane; third held in reserve"
+  },
+  "fresh_checkout_checks": {
+    "owner_mirror_inputs": "17/17 SHA-256 verified; hashes authenticate mirror bytes only",
+    "prepared_feature_stack": "121 channels rebuilt from pinned owner-mirror inputs",
+    "focus_registry": "22/22 rasters SHA-256 verified",
+    "nine_site_audit": "38 TIFFs compared; 9/9 site-best rasters trigger the duplicate guard",
+    "format_audit": "37/38 default pass; 28/38 strict-zero-outside pass; 0 OK TO SUBMIT",
+    "test_suite": "204 passed after integrating deployment-density audit",
+    "sample_template_warning": "finite template values exactly match owner-mirror labels; template values are grid/footprint only, never truth"
+  },
+  "source_links": [
+    "https://www.drivendata.org/competitions/306/competition-doe-gems/page/967/",
+    "https://github.com/drivendataorg/gems-prize-reference-solution/blob/main/unet-mc-cv-reference-solution.ipynb",
+    "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and"
+  ],
+  "evidence": {
+    "ranked_slate": "knowledge/35_hypothesis_slate_20261029.md",
+    "official_verification": "knowledge/36_official_verification_20261029.md",
+    "fresh_checkout_report": "knowledge/33_session_review_and_hypothesis_slate_20261029.md",
+    "nine_site_audit": "evidence/nine_site_audit_20261029.json",
+    "nine_site_validator": "evidence/nine_site_validator_20261029.json",
+    "submission_selector": "evidence/submission_selection_20261029.json",
+    "input_grid_audit": "evidence/input_grid_audit.json",
+    "holdout_template_sha256": "34fb7f12e849280c8162d5c433aa972f70746ddecf1a289ce3a9c81144b344dc",
+    "writer_sha256": "06c85f287ddcc42e6e89c22b98c8edb21567421f6945e93ff47613cb629ccaa4"
+  }
+}
