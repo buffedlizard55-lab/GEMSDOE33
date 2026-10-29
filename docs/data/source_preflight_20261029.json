@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-29",
+  "recorded_utc": "2026-10-29T18:10:39Z",
+  "scope": "Official-source page and catalog checks for the 2026-10-29 proposal slate. This is availability triage, not an experiment, download receipt, source-byte hash, or organizer authentication.",
+  "method": {
+    "tool": "Arena page fetch / public official catalog API",
+    "drivendata_contact": false,
+    "binary_payloads_saved_locally": false,
+    "limitation": "A readable official record or returned download URL is not proof that the corresponding binary was downloaded, hashed, licensed for this exact use, or fully covers the template footprint."
+  },
+  "sources": [
+    {
+      "id": "usgs-3dep-1m",
+      "official_source": "https://www.usgs.gov/3d-elevation-program",
+      "official_catalog_api": "https://tnmaccess.nationalmap.gov/api/v1/products",
+      "page_fetch": "success",
+      "verified_facts": [
+        "USGS 3DEP page states that 3DEP products are available free of charge and without use restrictions.",
+        "TNM product queries for the 1-meter DEM GeoTIFF dataset returned public-domain USGS tiles with direct download URLs in small windows intersecting finite cells of the restored sample-template footprint."
+      ],
+      "spatial_spot_checks": [
+        {
+          "template_cell": {
+            "row": 1118,
+            "col": 1645,
+            "finite": true
+          },
+          "wgs84_center": [
+            -118.0745,
+            39.7152
+          ],
+          "query_bbox_wgs84": [
+            -118.1045,
+            39.6852,
+            -118.0445,
+            39.7452
+          ],
+          "api_total_products": 4,
+          "sample_product": "USGS_1M_11_x40y440_NV_WestCentral_EarthMRI_2020_D20.tif",
+          "sample_product_bytes": 251719620,
+          "sample_product_source_id": "640acd03d34e254fd352ca57",
+          "download_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/NV_WestCentral_EarthMRI_2020_D20/TIFF/USGS_1M_11_x40y440_NV_WestCentral_EarthMRI_2020_D20.tif"
+        },
+        {
+          "template_cell": {
+            "row": 2610,
+            "col": 1645,
+            "finite": true
+          },
+          "wgs84_center": [
+            -118.05433,
+            38.37095
+          ],
+          "query_bbox_wgs84": [
+            -118.0843,
+            38.3409,
+            -118.0243,
+            38.401
+          ],
+          "api_total_products": 4,
+          "sample_product": "USGS_1M_11_x40y425_NV_WestCentral_EarthMRI_2020_D20.tif",
+          "sample_product_bytes": 267659012,
+          "sample_product_source_id": "640acd13d34e254fd352ca88",
+          "download_url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/Elevation/1m/Projects/NV_WestCentral_EarthMRI_2020_D20/TIFF/USGS_1M_11_x40y425_NV_WestCentral_EarthMRI_2020_D20.tif"
+        }
+      ],
+      "payload_status": "Catalog availability and two active-footprint spot locations verified; the large GeoTIFF payloads were not downloaded or hashed. Complete footprint coverage, tile seams, and actual source bytes remain unverified.",
+      "candidate_gate": "not sufficient to declare an experiment-ready hypothesis viable"
+    },
+    {
+      "id": "gdr-1391-wellspring-chemistry",
+      "official_source": "https://gdr.openei.org/submissions/1391",
+      "listed_asset": "https://gdr.openei.org/files/1391/wellspringdata.gdb.zip",
+      "page_fetch": "success",
+      "verified_facts": [
+        "The GDR record is publicly accessible under CC BY 4.0 and describes well/spring temperature and aqueous-geochemistry datasets.",
+        "The record lists wellspringdata.gdb.zip at 19.85 MB."
+      ],
+      "direct_asset_fetch": "HTTP 500",
+      "local_owner_mirror_audit": {
+        "path": "data/gdr_wellspring_in_footprint.csv",
+        "sha256": "122718e65bdf55aab0ee12ad20d80062f0deb1de957225a61ad880dd5dc196ea",
+        "rows": 27092,
+        "unique_100m_cells": 12570,
+        "fields": [
+          "layer",
+          "name",
+          "thermalclass",
+          "row",
+          "col",
+          "utm_x",
+          "utm_y",
+          "dist_known_fault_px",
+          "temp_c",
+          "geothermquartz_c",
+          "geothermchalc_c",
+          "geothermcat_c"
+        ],
+        "raw_major_minor_ion_fields_present": false,
+        "leakage_warning": "dist_known_fault_px is catalogue-derived; it must not be used as a candidate feature or label. Repeated rows/cells are not independent samples."
+      },
+      "payload_status": "Official listing and license wording verified; exact official geodatabase retrieval failed with HTTP 500 and no official bytes are staged. The owner-mirror CSV is not an authenticated substitute and lacks the raw aqueous-ion fields required by the proposed mixing-front test.",
+      "candidate_gate": "blocked; not viable"
+    },
+    {
+      "id": "usgs-mt-conductance",
+      "official_source": "https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b",
+      "doi": "https://doi.org/10.5066/P9TWT2LU",
+      "page_fetch": "success",
+      "verified_facts": [
+        "The USGS ScienceBase record describes five conductance maps derived from a 3D Great Basin MT model, spanning 2\u2013200 km depth.",
+        "The record lists separate surface, middle-crust, lower-crust, upper-mantle, and mantle conductance GeoTIFF products."
+      ],
+      "payload_status": "Official metadata page and attachment names are readable; layer payloads were not downloaded, hashed, or checked for target-grid coverage, spatial resolution, license terms, or usable edge detail.",
+      "candidate_gate": "blocked pending payload, grid/resolution, coverage, and license audit"
+    },
+    {
+      "id": "usgs-geodawn",
+      "official_source": "https://www.usgs.gov/data/geodawn-airborne-magnetic-and-radiometric-surveys-northwestern-great-basin-nevada-and",
+      "doi": "https://doi.org/10.5066/P93LGLVQ",
+      "page_fetch": "success",
+      "verified_facts": [
+        "The official USGS record describes the 2024 GeoDAWN magnetic/radiometric survey release and identifies CC0 1.0 rights."
+      ],
+      "payload_status": "The local 19-band training raster matches an owner-mirror SHA-256 pin, not an official USGS file hash; no official GeoDAWN binary was downloaded in this review.",
+      "candidate_gate": "official source identified; local bytes remain owner-mirror provenance only"
+    },
+    {
+      "id": "gdr-1682-prior-art-check",
+      "official_source": "https://gdr.openei.org/submissions/1682",
+      "listed_asset": "https://gdr.openei.org/files/1682/BRIDGE_GIS.zip",
+      "readme": "https://gdr.openei.org/files/1682/BRIDGE_README.pdf",
+      "page_fetch": "success",
+      "readme_fetch": "success",
+      "direct_asset_fetch": "HTTP 500",
+      "verified_facts": [
+        "GDR lists a public CC BY 4.0 GIS Files.zip (3.79 MB).",
+        "The official README says LiDAR fault picks were only field-verified in Dixie Valley and Gabbs Valley.",
+        "BRIDGE fault-pick transfer is already proposed as H33-7 and A33-R2-H5 in repository prior art, so it is not included as a new hypothesis here."
+      ],
+      "payload_status": "Official page and README readable, but the GIS archive fetch returned HTTP 500; no archive bytes/schema/CRS/target-overlap evidence are staged.",
+      "candidate_gate": "blocked; retained as prior-art/source-access check only"
+    },
+    {
+      "id": "usgs-gabbs-3d-faults-prior-art-check",
+      "official_source": "https://www.usgs.gov/data/stratigraphic-and-fault-surfaces-three-dimensional-geologic-map-southeastern-gabbs-valley",
+      "doi": "https://doi.org/10.5066/P9BR3681",
+      "page_fetch": "success",
+      "verified_facts": [
+        "The official record describes 3D fault and stratigraphic-surface points in NAD83 UTM Zone 11N and marks the work CC0 1.0.",
+        "The generic Gabbs 3D-surface transfer idea is already listed as H33-8; it is not claimed as a new hypothesis here."
+      ],
+      "payload_status": "Official page is accessible; the attached fault-surface payload was not downloaded or geometrically inspected.",
+      "candidate_gate": "not selected; existing prior art and payload not staged"
+    }
+  ],
+  "decision": {
+    "hypotheses_declared_viable": 0,
+    "reason": "Official catalogue records and some in-footprint product listings are verified, but no candidate-required official binary payload has been staged with hash, schema, license, and full coverage validation. The 3DEP source passes only a two-point catalog-availability precheck.",
+    "experiment_authorized": false,
+    "method_lane": "not identifiable in the current request; no lane inferred",
+    "next_gate": "Obtain and pin required official payload(s), audit schema/CRS/license/coverage and leakage risks, and obtain an explicit method paragraph before any holdout run."
+  }
+}

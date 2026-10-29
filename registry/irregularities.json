@@ -619,7 +619,23 @@
       "finding": "The selector looks for holdout_dti.confirm_candidate (flat S33 schema). The H34 card first wrote the same values under nested keys, so the selector blocked it on confirmation_dti_finite_in_0_1 and reported a schema failure, not a measured one.",
       "evidence": "scripts/select_submission.py _confirm_dti; /tmp selector log; evidence/h34_coh_run_card_20261029.json post_run_amendment",
       "consequence": "Flat keys added to the card after the run. No measured value or gate outcome changed. The runner now writes the flat keys."
+    },
+    {
+      "id": "IR-33-20261029-OFFICIAL-ACCESS-01",
+      "severity": "medium",
+      "status": "measured source-access blocker; no hypothesis declared viable",
+      "finding": "Official source pages/catalogs were readable, but direct attempts to fetch the GDR #1391 wellspring geodatabase ZIP and GDR #1682 BRIDGE GIS ZIP returned HTTP 500. The 3DEP API returned direct product URLs at two finite-template sample cells, but those large DEM payloads were not downloaded; full target-footprint coverage is not established. The MT conductance page lists five layers, but no layer payload, grid, license terms, or coverage was audited. Owner-mirror hashes do not authenticate official source bytes.",
+      "evidence": "evidence/source_preflight_20261029.json; knowledge/33_hypothesis_slate_and_source_audit_20261029.md; official pages https://gdr.openei.org/submissions/1391, https://gdr.openei.org/submissions/1682, https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b, https://tnmaccess.nationalmap.gov/api/v1/products",
+      "consequence": "Do not call a source-dependent hypothesis viable based on an official listing or mirror. Keep the three proposals blocked until required official bytes are obtained, hashed, and audited for schema, CRS, license, coverage, spatial support, and leakage; no candidate experiment is authorized in this review."
+    },
+    {
+      "id": "IR-33-20261029-HOLDOUT-COUNT-01",
+      "severity": "medium",
+      "status": "measured by static contract review; historical DTI values are unaffected but component-count metadata is mislabeled",
+      "finding": "In the pinned `vendor/gems24_template/holdout.py`, both `SegmentHoldout.summarize` and the local diagonal confirmation wrapper set `n_unique_withheld_components` to `self.n_components`, the total 8-connected component count of the full catalogue, not the number of components withheld in the evaluated folds. The local labels contain 3,199 total 8-connected components, matching the 3,199 value repeatedly written to historical experiment records. The experiment records do not retain the actual per-fold hidden component IDs, so the withheld-segment count cannot be reconstructed from those summaries alone.",
+      "evidence": "evidence/shared_pipeline_contract_review_20261029.json; evidence/a33_r7_pcsup_experiment_20261028.json (screen/confirmation); vendor/gems24_template/holdout.py::SegmentHoldout.summarize; src/gemsdoe33/csht_transfer.py::DiagonalSegmentHoldout.summarize; local label recount: 60,988 positives / 3,199 8-connected components",
+      "consequence": "Do not interpret historical `n_unique_withheld_components: 3199` as the number of held-out components. It is metadata, not a DTI input, and does not invalidate pooled DTI arithmetic. Future cards must report the actual withheld-positive pixel count and, if reporting component counts, derive unique hidden IDs from each fold receipt; do not modify the pinned vendor snapshot in place."
     }
   ],
-  "last_review": "2026-10-28: added post-run PCSUP surface duplicate correction; see IR-33-R7-PCSUP-SURFACE-01. | 2026-10-29 H34 lane added: IR-33-20261029-H34-EVALUATOR-VERSION-01, IR-33-20261029-H34-UNIQ-MARGIN-01, IR-33-20261029-H34-PRIOR-ART-01, IR-33-20261029-B2-MECHANISM-UNTESTABLE-01, IR-33-20261029-RESTORE-ORDER-01, IR-33-20261029-H34-SELECTOR-SCHEMA-01"
+  "last_review": "2026-10-28: added post-run PCSUP surface duplicate correction; see IR-33-R7-PCSUP-SURFACE-01. | 2026-10-29 H34 lane added: IR-33-20261029-H34-EVALUATOR-VERSION-01, IR-33-20261029-H34-UNIQ-MARGIN-01, IR-33-20261029-H34-PRIOR-ART-01, IR-33-20261029-B2-MECHANISM-UNTESTABLE-01, IR-33-20261029-RESTORE-ORDER-01, IR-33-20261029-H34-SELECTOR-SCHEMA-01 | 2026-10-29 source-preflight review added IR-33-20261029-OFFICIAL-ACCESS-01 and IR-33-20261029-HOLDOUT-COUNT-01; 3,199 is the full-catalogue component count, not the withheld count."
 }

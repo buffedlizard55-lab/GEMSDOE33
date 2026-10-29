@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-29",
+  "status": "PROPOSAL SLATE ONLY — not preregistration, not an assigned lane, not validation",
+  "scope": "Three geological hypotheses distinct in mechanism from the implemented repository candidates. Rank is research-priority order, not predicted competition rank or score.",
+  "method_lane": null,
+  "lane_note": "The current request does not identify the single assigned method paragraph required by the standing protocol. A33-R7 is exhausted at 3/3. This slate does not authorize a holdout experiment or a competition slot.",
+  "ranking_basis": "Qualitative hidden-fault plausibility, novelty relative to local implementations, source risk, and implementation cost. No numeric DTI or leaderboard projection is made. Any future number must be HOLDOUT-DTI with evaluator version, withheld-positive count, and 95% CI, or ORGANIZER-CONFIRMED from a submission-page receipt.",
+  "source_audit": "evidence/source_preflight_20261029.json",
+  "hypotheses": [
+    {
+      "rank": 1,
+      "id": "H33-HYDRO-MIX-01",
+      "title": "Fault-guided aqueous-geochemistry mixing fronts",
+      "layers": [
+        "Official INGENIOUS GDR #1391 well/spring aqueous-geochemistry records, if raw analyte fields are present after a source-schema audit",
+        "GeoDAWN magnetic/gravity edge and conductivity context only after official/mirror provenance and common support are documented",
+        "No catalogue distance, fault-derived attribute, or thermalclass field may enter as a predictor"
+      ],
+      "physical_signature": "After mapping the actual source schema, transform eligible aqueous analytes with predeclared compositional log-ratios or endmember distances; test for spatially coherent mixing-front changes aligned with independent geophysical lineaments. Do not assume any particular ion or ratio exists until the GDB is inspected.",
+      "why_it_targets_catalogue_missing_faults": "Deep, permeable faults can mix hydrothermal and shallow groundwater endmembers and feed springs or wells without a mapped Quaternary surface trace. A chemistry transition may therefore reveal a fluid conduit where the catalogue has no trace, but it cannot establish a fault by itself.",
+      "difference_from_repo_prior_art": "Local `gdr_wellspring_in_footprint.csv` retains temperature, thermal class and quartz/chalcedony/cation geothermometers; H35/H38 and prior CSHT/PALEOTEMP concepts use thermal/geothermometer or spring-proximity evidence. No implemented candidate uses audited raw aqueous-ion mixing fronts. The local CSV has no raw major/minor-ion columns and contains `dist_known_fault_px`, which is catalogue-derived leakage and must be excluded.",
+      "named_non_fault_mimic": "Evaporite dissolution, lithology-controlled groundwater chemistry, or a shallow aquifer boundary unrelated to a fault.",
+      "expected_rank": "1 — highest research priority in this proposal slate only; expected leaderboard rank/score is not estimable.",
+      "expected_qualitative_holdout_potential": "Potentially medium-to-high mechanism relevance, but sign and utility are unknown; sparse/repeated point sampling and non-fault hydrochemistry may dominate.",
+      "implementation_cost": "Medium after source access; high uncertainty. Requires GDB schema/CRS/license audit, repeated-record deduplication, point-support treatment, analyte missingness checks, spatially blocked feature-alone canaries, and matched non-fault controls.",
+      "required_official_sources": [
+        {
+          "id": "gdr-1391-wellspring-chemistry",
+          "url": "https://gdr.openei.org/submissions/1391",
+          "asset_url": "https://gdr.openei.org/files/1391/wellspringdata.gdb.zip",
+          "availability": "Official listing is public under CC BY 4.0 and lists a 19.85 MB GDB, but direct asset retrieval returned HTTP 500; no official bytes/schema were obtained."
+        }
+      ],
+      "viable_now": false,
+      "block_reason": "Required official chemistry payload not locally obtainable/verified in this review; the community-mirror CSV is not a chemistry substitute and exposes a catalogue-distance leakage field."
+    },
+    {
+      "rank": 2,
+      "id": "H33-MT-DEPTHWALL-01",
+      "title": "Depth-persistent magnetotelluric conductance walls",
+      "layers": [
+        "USGS Great Basin electrical-conductance maps at 2–12, 12–20, 20–50, 50–90 and 90–200 km depth (actual layer support and resolution to be checked)",
+        "Potential-field/contact context only where grid and scale are compatible; no upsampling treated as new 100 m information"
+      ],
+      "physical_signature": "Measure whether a lateral conductance edge or wall persists across the crustal depth intervals and whether its orientation is compatible with independently resolved magnetic/gravity lineaments. Keep the 2–12 km map separate from deeper regional conductance; do not convert broad regional gradients into 100 m fault traces.",
+      "why_it_targets_catalogue_missing_faults": "A buried permeable structure or altered fault zone may create a subsurface conductive contrast beneath basin cover even when no surface fault trace is mapped. Cross-depth persistence could distinguish a deep structure from a shallow saline layer, subject to model resolution.",
+      "difference_from_repo_prior_art": "The local stack has a single owner-mirror `cond_surf` channel, while H33-R3-4 previously proposed MT phase-tensor skew from transfer functions. This proposal uses depth-interval conductance-map persistence, not phase-tensor skew or the existing single-surface-conductivity blend; it is adjacent MT prior art and requires explicit overlap review.",
+      "named_non_fault_mimic": "Regional conductive basin fill, saline groundwater, or a deep conductive lithologic/shear zone that is not a fault relevant to the target.",
+      "expected_rank": "2 — second research priority in this proposal slate only; expected leaderboard rank/score is not estimable.",
+      "expected_qualitative_holdout_potential": "Moderate conceptual upside for blind structures, discounted for coarse/inversion-smoothed map resolution and broad non-fault conductivity contrasts.",
+      "implementation_cost": "Medium-high. Requires retrieving and hashing the five USGS layers, inspecting CRS/grid/uncertainty and spatial resolution, aligning them without false 100 m precision, and testing each layer alone before any joint score.",
+      "required_official_sources": [
+        {
+          "id": "usgs-mt-conductance",
+          "url": "https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b",
+          "doi": "https://doi.org/10.5066/P9TWT2LU",
+          "availability": "Official metadata and five layer names verified; payloads, terms, target coverage, and grid support have not been audited."
+        }
+      ],
+      "viable_now": false,
+      "block_reason": "The official record is accessible, but no layer payload, target-grid coverage, licensing terms, or edge-scale resolution was verified from local bytes."
+    },
+    {
+      "rank": 3,
+      "id": "H33-3DEP-CHANNEL-KINK-01",
+      "title": "Cross-catchment channel-profile knickpoints and deflection alignments",
+      "layers": [
+        "USGS 3DEP 1 m bare-earth DEM tiles on the exact finite template footprint",
+        "Derived flow paths, longitudinal channel profiles, local slope/curvature breaks, and cross-catchment orientation consistency",
+        "Optional GeoDAWN edge context only after official payload/provenance and scale compatibility are checked"
+      ],
+      "physical_signature": "Detect prespecified channel-profile slope breaks and lateral deflections that recur along a common lineament across separate catchments; compare channel-bank and profile evidence to local terrain controls rather than treating every linear step as a fault.",
+      "why_it_targets_catalogue_missing_faults": "Subtle young or poorly mapped faults can locally offset drainage, create profile knickpoints, or align channel deflections without a trace in the regional catalogue. This is most relevant to weakly expressed structures; fully blind faults with no geomorphic response are outside its sensitivity.",
+      "difference_from_repo_prior_art": "Existing 12-band LiDAR summaries and H33-R3-1/DPPS characterize 100 m scarp steps, relief, coherence, and line-integrated scarps. No local implementation tests longitudinal channel-profile discontinuities and cross-catchment drainage-network topology from raw 1 m DEMs.",
+      "named_non_fault_mimic": "Lithologic knickpoints, Lake Lahontan shoreline/terrace risers, erosional base-level changes, roads, dams, or drainage engineering.",
+      "expected_rank": "3 — third research priority in this proposal slate only; expected leaderboard rank/score is not estimable.",
+      "expected_qualitative_holdout_potential": "Low-to-moderate for catalogue-missing faults: fine topography helps where expression exists, but erosion and shoreline geomorphology are strong competing explanations.",
+      "implementation_cost": "High: large multi-tile raw DEM staging, vertical/datum/collection seam audit, hydrologic conditioning, stream extraction, spatial blocking, and per-feature leakage canaries.",
+      "required_official_sources": [
+        {
+          "id": "usgs-3dep-1m",
+          "url": "https://www.usgs.gov/3d-elevation-program",
+          "api_url": "https://tnmaccess.nationalmap.gov/api/v1/products",
+          "availability": "Official page confirms free/no-use-restriction products; TNM API returned downloadable 1 m GeoTIFF tile records at two finite-template sample locations. Sample raw tiles were not downloaded, hashes and complete footprint coverage are not established."
+        }
+      ],
+      "viable_now": false,
+      "block_reason": "Catalog-level availability passed only at two sampled in-footprint locations; the raw DEM files are not staged, full coverage and tile continuity are unverified, and the current task supplies no authorized method lane."
+    }
+  ],
+  "excluded_prior_art": [
+    {
+      "id": "H33-7 / A33-R2-H5",
+      "concept": "BRIDGE field-mapped LiDAR fault-pick analog transfer",
+      "reason": "Already present in local historical hypothesis records and therefore not counted as new; official GIS archive still returned HTTP 500 and no source geometry is staged."
+    },
+    {
+      "id": "H33-8",
+      "concept": "Generic USGS Gabbs Valley 3D fault-surface analogue projection",
+      "reason": "Already present in the historical H33 slate; official metadata page is accessible but no binary geometry has been inspected."
+    },
+    {
+      "id": "H33-9 / H33-2",
+      "concept": "USGS ComCat focal-plane orientation consistency",
+      "reason": "Already described in repository prior art; not a fresh hypothesis."
+    }
+  ],
+  "decision": {
+    "candidate_implementation_started": false,
+    "holdout_experiments_run": 0,
+    "candidate_tif_created": false,
+    "candidate_run_card_created": false,
+    "hypotheses_declared_viable": 0,
+    "next_step": "Do not launch a candidate from this slate. First obtain and hash required official payload(s), complete schema/license/coverage and prior-art checks, and use only a future explicitly assigned method lane with the shared evaluator and writer."
+  }
+}

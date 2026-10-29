@@ -11,6 +11,7 @@
 
 > **Core values:** Maximize P(Win) · Own the Outcome.
 > **Labels:** every number is HOLDOUT-DTI (evaluator, withheld positives, 95% CI) or ORGANIZER-CONFIRMED. Leaderboard figures marked \* are USER/OWNER-REPORTED.
+> **Separate source-preflight review (2026-10-29):** `knowledge/33_hypothesis_slate_and_source_audit_20261029.md` ranks three source-dependent proposals; **0/3 pass** the official-payload/schema/license/coverage gate. This review started no additional candidate or experiment. GDR #1391/#1682 archives returned HTTP 500, 3DEP was checked only at two finite-footprint catalog windows with no DEM bytes, and MT conductance payload/grid/license/coverage remain unverified. Table 1 and Table 2 download labels are **YES — research/learning only**; their submission status remains **NO**. The shared holdout's `n_unique_withheld_components` is mislabeled (3,199 total components, not withheld); it does not enter DTI arithmetic. See `evidence/source_preflight_20261029.json`, `evidence/shared_pipeline_contract_review_20261029.json`, and `IR-33-20261029-HOLDOUT-COUNT-01`. These findings are separate from the negative H34-COH research-only TIFF and the deployment-density null already documented above.
 
 ## 📌 Standing prompt — read at the start of every session (recorded 2026-10-29)
 

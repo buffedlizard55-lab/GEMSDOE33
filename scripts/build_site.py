@@ -505,7 +505,7 @@ def submission_instructions_panel() -> str:
 <h2>How to submit (only when a file is cleared)</h2>
 <p><span class="badge bad">CURRENTLY NOTHING IS CLEARED: OK TO SUBMIT = NO FOR EVERY FILE</span></p>
 <ol>
-<li><b>Download</b> only a file whose page shows <b>OK TO SUBMIT: YES</b> and whose selector record shows <code>ok_to_submit: true</code> (<a href="data-sources.html">data and file sources</a>). Research TIFFs are not submission files even when they are listed.</li>
+<li><b>Research download versus submission:</b> a file marked <b>YES — research/learning only</b> may be downloaded for study, but that label never authorizes an upload. For a competition submission, require both <b>OK TO SUBMIT: YES</b> and a selector record with <code>ok_to_submit: true</code> (<a href="data-sources.html">data and file sources</a>).</li>
 <li><b>Name.</b> Use the exact file name in the run card. Each name carries the lane, the 37,654-dot budget, the date and a 12-character SHA-256 prefix, so it is unique. Do not rename files.</li>
 <li><b>Comment (the portal note field).</b> Use the run card's <code>submission_note</code>, 1 to 140 characters, one line. The selector checks the length and fails closed.</li>
 <li><b>Range errors.</b> Every file must be single-band float32, EPSG:32611, 100 m, 3,730 by 3,292, with every value in [0, 1]. Check the exact <code>.tif</code> with <code>scripts/validate_submission.py --submission FILE.tif --strict-zero-outside</code> (the repo's zero-outside variant) and without the flag (NaN outside, as the official text describes). The portal message <i>"Predicted values must be in range [0, 1]"</i> is not reproduced by any local check. If it appears, record it as <code>IR-33-PORTAL-RANGE-CLAIM-01</code> and do not retry without a new local diagnosis. Which outside encoding the portal accepts is unresolved (<code>IR-33-20261029-OUTSIDE-01</code>).</li>
@@ -522,7 +522,7 @@ All nine focus-site best files trigger the duplicate guard; the highest owner-re
 
 
 def build_index() -> str:
-    body = f"""{density_audit_hero()}{review_warning()}{nine_site_index_panel()}{r7_pcsup_hero()}
+    body = f"""<div class="panel warn"><b>Latest source-preflight review — 2026-10-29:</b> A33-R7 is exhausted at 3/3; this separate three-proposal review found 0/3 pass source-payload/schema/license/coverage checks and assigned no additional method lane. This review did not start another experiment or candidate TIFF, select a slot, or upload. The separate H34-COH research TIFF already recorded on this branch remains a negative, research-only result, not a submission recommendation. See <a href="hypotheses.html">the hypotheses</a>, <a href="sources.html">official source audit</a>, and <a href="latest-review.html">review record</a>.</div>{density_audit_hero()}{review_warning()}{nine_site_index_panel()}{r7_pcsup_hero()}
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
@@ -533,15 +533,15 @@ def build_index() -> str:
 {a33_r3_lchc_hero()}
 {a33_r2_csht_hero()}
 {round3_da_hgcm_hero()}
-<h2>Current decision (2026-10-28)</h2>
-<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The newest PCSUP TIFF is an archived research artifact, not unique under the lane rule: its pre-placement surface exceeds the 70% overlap limit (86.08%); do not submit. The A33-R7 budget is exhausted (3/3), so do not rerun or tune these holdouts. The automated selector found zero eligible candidates. No contest slot was used and no upload was made. Older BASESTEP/THKCOND records are additionally protocol-invalid because full-catalogue thresholds and composite-only canaries were used.</div>
+<h2>Current decision (2026-10-29)</h2>
+<div class="panel bad"><b>NO FILE IS OK TO SUBMIT.</b> The nine focus-site best files remain one duplicate family. The separate H34-COH GeoTIFF is unique and format-valid but failed its preregistered holdout comparison, so it is research-only and not submission-approved. The deployment-density PHCONG audit was a null. A33-R7 is exhausted at 3/3; the current source-preflight slate has 0/3 viable proposals. No slot was used and no upload was made. Older BASESTEP/THKCOND evidence also has protocol defects.</div>
 <p><b>Best reported focus-site artifact:</b> GEMSDOE32 B2, <code>h33-h33-2-b2-20261004T220000Z-e5eb6e7e-zeros</code>, with <b>0.2778 USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)</b>. Raster forensics reproduced it as deletion-only pruning of GEMSDOE28 H27-4; it is prior art and must not be copied or lightly altered. No current candidate has demonstrated a valid basis to predict a higher competition score. HOLDOUT-DTI is a catalogue proxy, not a leaderboard score estimate. See the <a href="executive-summary.html">nine-site executive summary</a> and <a href="results.html">score provenance</a>.</p>
 <h2>What can be concluded about the cited scores?</h2>
 <p>Historical values in owner pages and the prompt are not organizer-confirmed without a submission receipt linked to the exact file. The prompt's current-leader values 0.3195 and 0.4413 conflict and are unverified here. The GEMSDOE28 owner page was recorded as labeling H27-4 unscored/research-only, so the premise that this raster earned 0.2708 is unresolved. These reports motivate forensic research; they are not independent validation or a score forecast.</p>
 <p>Do not refresh or copy the official leaderboard without the permission/API described in the project's terms review. See <a href="irregularities.html">irregularities</a> for known conflicts.</p>
 <h2>Hypothesis and experiment status</h2>
 <p>Current A33-R7 review found PCSUP's pre-placement surface fails the lane duplicate guard (86.08% within 3 px &gt; 70%); its final dots and later holdout cannot reverse the earlier stop. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/31_r7_pcsup_lane_correction_20261028.md">correction</a>, <a href="hypotheses.html">ranked prior hypothesis slates</a>, and <a href="latest-review.html">latest review</a>. No new experiment or fourth run is authorized in this exhausted campaign.</p>
-<div class="panel warn"><b>Data/provenance status:</b> 17 SHA-256-pinned owner-mirror inputs and the shared 121-channel cache were restored/rebuilt locally; these are git-ignored and not distributed by this GitHub Pages site. Mirror hashes establish byte identity only, not organizer authentication. No raster is slot-approved. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/27_20261028_safety_review.md">safety review</a> and <code>data/README.md</code>.</div>
+<div class="panel warn"><b>Data/provenance status:</b> 17 SHA-256-pinned owner-mirror inputs and the shared 121-channel research cache were restored/rebuilt locally; these are git-ignored and not distributed by this GitHub Pages site. Mirror hashes establish byte identity only, not organizer authentication. No raster is slot-approved. See the <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/27_20261028_safety_review.md">safety review</a> and <code>data/README.md</code>.</div>
 <h2>Our operating values</h2>
 <div class="grid-2"><div class="panel accent"><h3>Maximize P(Win)</h3><p>Prefer evidence that predicts useful hidden-fault detection, not a download or a hopeful score projection. No slot until a fresh, leakage-audited holdout improves over a matched baseline.</p></div><div class="panel accent"><h3>Own the Outcome</h3><p>Make failures visible, preserve provenance, correct misleading pages, and distinguish local format validation from scientific validity and organizer acceptance.</p></div></div>
 <h2>Use artifacts safely</h2>
@@ -624,7 +624,7 @@ def nine_site_audit_section() -> str:
         f"<td>{v['n_dots']:,}</td>"
         f"<td>{_unique_cell(v)}</td>"
         f"<td>{_format_cell(v, files)}</td>"
-        f"<td>Learning only — not a new submission</td>"
+        f"<td><b>YES — research/learning only</b></td>"
         f"<td><b>NO</b></td></tr>"
         for v in site_best)
 
@@ -641,7 +641,7 @@ def nine_site_audit_section() -> str:
                 f"<td>{v['n_dots']:,}</td>"
                 f"<td>{_unique_cell(v)}</td>"
                 f"<td>{_format_cell(v, files)}</td>"
-                f"<td>Research only</td>"
+                f"<td><b>YES — research/learning only</b></td>"
                 f"<td><b>NO</b> — already scored by its owner; no holdout-validated gain recorded</td></tr>")
 
     t2 = "\n".join(listed_row(v) for v in listed_unique)
@@ -778,7 +778,11 @@ def build_exec() -> str:
              "Owner-reported; MEASURED 2026-10-26: contains all 37,654 GEMSDOE32 B2 dots exactly + 1,200 extra dots (knowledge/22) — same emission family, not an independent surface"),
         )
     )
-    body = f"""{density_audit_hero()}{submission_instructions_panel()}{review_warning()}{nine_site_audit_section()}{r7_pcsup_hero()}
+    body = f"""<h2>Current decision — 2026-10-29</h2>
+<div class="panel bad"><b>NO FILE IS OK TO SUBMIT for the nine focus sites.</b> All nine site-best files trigger the duplicate guard. The separate H34-COH TIFF in the repository is a negative, format-valid research artifact and remains <b>OK TO SUBMIT: NO</b>; no leaderboard score estimate is defensible. The selector has no eligible candidate, A33-R7 is exhausted, and the deployment-density PHCONG result is null.</div>
+<div class="panel warn"><b>Separate source-preflight review (2026-10-29):</b> three proposals were ranked; <b>0/3 hypotheses pass</b> the official-payload/schema/license/coverage gate. No identifiable current method paragraph was assigned to that slate, so this review ran no experiment and created no candidate TIFF. This is scoped to the source-preflight review and does not erase the separately documented H34-COH negative result.</div>
+<p><b>Shared evaluator/writer contract:</b> four pinned GEMSDOE24 source hashes match their manifest; 45 targeted tests passed. The evaluator uses 8-connected raster components as a proxy, not expert geological trace IDs. Its <code>n_unique_withheld_components</code> field reports the full-catalogue count (3,199), not the withheld count; this metadata bug is not a DTI input and does not alter DTI arithmetic. See <code>IR-33-20261029-HOLDOUT-COUNT-01</code> and <a href="data/shared_pipeline_contract_review_20261029.json">the contract review JSON</a>.</p>
+{density_audit_hero()}{submission_instructions_panel()}{review_warning()}{nine_site_audit_section()}{r7_pcsup_hero()}
 {basestep_hero()}
 {pfrt_hero()}
 {fsml2_hero()}
@@ -804,13 +808,11 @@ def build_exec() -> str:
 </ol>
 <div class="panel warn"><b>No human inspector is in this loop:</b> leakage canaries, spatially blocked holdout vs matched controls, surface+final-dots duplicate guards, and the saved-byte format audit all run automatically in-project (<code>scripts/run_dpps_campaign.py</code>, <code>scripts/validate_submission.py</code>). The only human step is the account-holder clicking upload in step 4–6, because this workspace has no DrivenData auth.</div>
 
-<h3>Which focus-site submission is the best to submit?</h3>
-<p>Among the nine focus sites (GEMSDOE 24, 25, 27, 28, 30, 31, 32, 33, 36), the highest owner-reported value is <b>GEMSDOE32 h33-h33-2-b2-...-zeros at 0.2778</b>, followed by GEMSDOE36 at 0.2750 and GEMSDOE28 h36-1 at 0.2710. <b>Every one of these values is an owner/user report: none is backed by an organizer submission-page receipt in this repository, and none is organizer-confirmed.</b> They are leads, not proven scores.</p>
-<div class="scroll"><table><thead>
-<tr><th>Site</th><th>Best owner-reported submission</th><th>Reported score (owner-reported, not organizer-confirmed)</th><th>Estimated leaderboard score</th><th>Unique new submission?</th><th>Submit this now?</th><th>Status / caveat</th></tr>
-</thead><tbody>
-{rows}
-</tbody></table></div>
+<h3>Per-site file, score evidence and uniqueness</h3>
+<p>This is the single current per-site inventory: one row for each of GEMSDOE24, 25, 27, 28, 30, 31, 32, 33 and 36, with file link, owner-reported score evidence, a non-estimable score field, registry novelty, format, and separate research-download / submission status. Do not use a historical artifact card below as a slot recommendation.</p>
+
+<h3>Current ranked hypotheses and source preflight (proposal only)</h3>
+<p>Three separate source-gated proposals—hydrochemical mixing fronts, depth-persistent MT conductance walls, and cross-catchment 3DEP channel-profile discontinuities—are listed in <a href="hypotheses.html">the hypotheses page</a> and <a href="data/hypothesis_slate_20261029.json">slate JSON</a>. The official-access audit is <a href="data/source_preflight_20261029.json">here</a>; the pinned shared evaluator/writer limitations are in <a href="data/shared_pipeline_contract_review_20261029.json">the contract review</a>. 0/3 pass source verification; Priority 1 denotes research order only, not expected contest rank or score. This source-preflight slate did not start a candidate or experiment.</p>
 
 <h3>Why did GEMSDOE32 B2 score 0.2778 — and can we beat it?</h3>
 <p>We reproduced B2 pixel-exactly from the GEMSDOE28 H27-4 owner raster: it deletes 2,545 dots within 2 px of the catalogue and adds nothing (40,199 → 37,654 dots; Spearman ρ = 0.9676 vs H27-4; 100% of B2 dots within 3 px of H27-4 dots). Under the competition DTI (α=0.2 per false positive, β=0.8 per missed truth, 300 m kernel), every isolated prediction dot costs roughly 1 unit of weighted false-positive mass unless it lies within 300 m of a truth pixel, while dense clusters of dots share the same truth credit. Removing low-credit, catalogue-adjacent dots can therefore raise DTI even though no new fault is found: the most plausible mechanism is FP-mass reduction, not discovery. That is an inference from audited bytes, not proof, and no organizer receipt ties 0.2778 to B2's exact bytes.</p>
@@ -849,8 +851,58 @@ def build_results() -> str:
 """
     return page("Results & score provenance · GEMSDOE33", body, "results.html")
 
+def current_hypothesis_slate_section() -> str:
+    slate = read_json(ROOT / "evidence/hypothesis_slate_20261029.json", {})
+    hypotheses = slate.get("hypotheses", [])
+    rows = []
+    for item in hypotheses:
+        layers = "<ul>" + "".join(f"<li>{esc(v)}</li>" for v in item.get("layers", [])) + "</ul>"
+        source_links = []
+        source_status = []
+        for source in item.get("required_official_sources", []):
+            url = source.get("url")
+            if url:
+                source_links.append(f'<a href="{esc(url)}">{esc(source.get("id", "official source"))}</a>')
+            if source.get("asset_url"):
+                source_links.append(f'<a href="{esc(source["asset_url"])}">listed asset URL (not downloaded)</a>')
+            if source.get("api_url"):
+                source_links.append(f'<a href="{esc(source["api_url"])}">official catalog API</a>')
+            if source.get("doi"):
+                source_links.append(f'<a href="{esc(source["doi"])}">DOI</a>')
+            source_status.append(esc(source.get("availability", "Availability not recorded")))
+        status = "<b>NOT VIABLE NOW</b> — " + esc(item.get("block_reason", "source gate incomplete"))
+        rows.append(
+            "<tr>"
+            f"<td><b>{item.get('rank')}</b><br><code>{esc(item.get('id'))}</code><br>{esc(item.get('title'))}</td>"
+            f"<td>{layers}</td>"
+            f"<td>{esc(item.get('physical_signature'))}</td>"
+            f"<td><b>Missing-catalogue rationale:</b> {esc(item.get('why_it_targets_catalogue_missing_faults'))}"
+            f"<br><b>Prior-art difference:</b> {esc(item.get('difference_from_repo_prior_art'))}"
+            f"<br><b>Named non-fault mimic:</b> {esc(item.get('named_non_fault_mimic'))}</td>"
+            f"<td><b>{esc(item.get('expected_rank'))}</b><br>{esc(item.get('expected_qualitative_holdout_potential'))}"
+            f"<br><b>Cost:</b> {esc(item.get('implementation_cost'))}</td>"
+            f"<td>{' · '.join(source_links)}<br>{'<br>'.join(source_status)}<br>{status}</td>"
+            "</tr>"
+        )
+    excluded = slate.get("excluded_prior_art", [])
+    exclusions = "<ul>" + "".join(
+        f"<li><b>{esc(v.get('id'))} — {esc(v.get('concept'))}:</b> {esc(v.get('reason'))}</li>"
+        for v in excluded
+    ) + "</ul>"
+    return f"""
+<h2>Current ranked hypotheses — proposal slate only (2026-10-29)</h2>
+<div class="panel bad"><b>No candidate is viable; no experiment is authorized.</b> This slate contains three ranked geological proposals, not a preregistration or assigned method lane. A33-R7 is exhausted at 3/3, and no current method paragraph is identifiable. Source records were checked before any viability claim: <b>0/3 pass</b> the required official-payload, hash, schema, CRS, license, target-coverage and spatial-support audit. No DTI, contest rank or leaderboard score is projected. Priority numbers below mean research order only.</div>
+<p>Machine-readable slate: <a href="data/hypothesis_slate_20261029.json"><code>evidence/hypothesis_slate_20261029.json</code></a> · source preflight: <a href="data/source_preflight_20261029.json"><code>evidence/source_preflight_20261029.json</code></a> · review: <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/33_hypothesis_slate_and_source_audit_20261029.md">knowledge/33_hypothesis_slate_and_source_audit_20261029.md</a>.</p>
+<div class="scroll"><table><thead><tr><th>Priority / candidate</th><th>Layers</th><th>Physical signature</th><th>Why missing faults / prior-art difference / named mimic</th><th>Expected priority, potential &amp; cost</th><th>Official source and availability / viability</th></tr></thead><tbody>
+{''.join(rows)}
+</tbody></table></div>
+<h3>Excluded as repository prior art</h3>{exclusions}
+<p><b>Experiment decision:</b> zero holdout experiments, zero candidate TIFFs and zero run cards were created from this slate. First obtain and hash the required official bytes, audit their schemas, CRS, license and full target coverage, then use an explicitly assigned single method paragraph and the shared evaluator/writer if a future run is authorized.</p>
+"""
+
 def build_hypotheses() -> str:
-    body = f"""<h2>Ranked geological hypothesis slate</h2>
+    body = f"""{current_hypothesis_slate_section()}
+<h2>Ranked geological hypothesis slate</h2>
 <div class="panel bad"><b>Latest tested lane: H34-COH (2026-10-29) — negative.</b> HOLDOUT-DTI was 0.104769 vs B1 0.126012 on screen and 0.105973 vs B1 0.130060 on confirm (0/4 folds against B1 in both); it beat matched random but failed the preregistered promotion gates. Its saved-byte TIFF passes format and uniqueness checks against 22 registry rasters: <b>OK TO DOWNLOAD for research only; NOT OK TO SUBMIT</b>. [<a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/38_h34_coh_result_and_b2_answer_20261029.md">full result and B2 answer</a>] [<a href="downloads/gemsdoe33-h34-coh-tmiline-37654-20261029-1181c8712300-zeros.tif">research TIFF</a>]. Its five-candidate preregistered slate is <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/37_h34_hypothesis_slate_and_prereg_20261029.md">here</a>. The separate deployment-density PHCONG audit found a null; details: <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/34_density_audit_results_20261029.md">HOLDOUT-DTI report</a>.</div>
 <p>For a separate official-source feasibility slate, H-MAGDEPTH is the highest-ranked candidate but is blocked: the source-depth layer described in the official feature list is absent from both the restored 19-band mirror and organizer reference notebook list, and official training data remain login-walled. No holdout or TIFF exists for H-MAGDEPTH. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/35_hypothesis_slate_20261029.md">ranked source-availability slate</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/36_official_verification_20261029.md">line-by-line source verification</a>. This is separate from the H34 experiment slate. All contest score claims are owner/user-reported unless an organizer receipt is retained; HOLDOUT-DTI is not a leaderboard score.</p>
 <div class="scroll"><table><thead><tr><th>Rank</th><th>Candidate, layers and signature</th><th>Missing-fault rationale and named mimic</th><th>Prior art, cost and official-source availability</th></tr></thead><tbody>
@@ -883,7 +935,8 @@ def build_hypotheses() -> str:
     return page("Ranked hypotheses · GEMSDOE33", body, "hypotheses.html")
 
 def build_data_sources() -> str:
-    body = """<h2>External data and domain-transfer status</h2>
+    body = """<h2>External data and source-preflight status (2026-10-29)</h2>
+<div class="panel bad"><b>No new data-dependent hypothesis is viable yet.</b> The official source review verified pages/catalog entries, not local binary payloads. GDR #1391 wellspring GDB and GDR #1682 BRIDGE ZIP direct fetches returned HTTP 500; TNM offered 1 m DEM product URLs at two finite-template sample cells but no DEM bytes were downloaded or full coverage checked; MT conductance layers remain metadata-only with grid, license and coverage unchecked. See <a href="data/source_preflight_20261029.json">auditable source preflight</a> and <a href="hypotheses.html">ranked proposal slate</a>.</div>
 <p>Analogue geology is plausible context, but no domain-transfer bound or independent validation is established. The previous H33-F screen used available owner-mirror products and did not have independent BRIDGE field labels. Its P1 mean delta was −0.093072 and it failed; its exploratory discriminator AUC 0.917 is not a Ben-David HΔH bound.</p>
 <div class="panel warn"><b>BRIDGE (DOE GDR #1682): listed, not locally audited.</b> Registry notes record a public listing and a CC BY 4.0 claim, but this workspace did not retrieve the GIS archive bytes. Geometry, CRS, field coverage, label independence, and overlap are therefore unverified. Do not use as viable transfer training/evaluation until retrieved and pinned.</div>
 <div class="panel warn"><b>Gabbs Valley USGS source: metadata/bounds only.</b> USGS ScienceBase lists the fault dataset; the binary payload was not obtained. Bounding-box overlap is not proof of actual feature overlap or usable training labels.</div>
@@ -948,7 +1001,8 @@ def build_sources() -> str:
         f"<td>{int(f.get('bytes', 0)):,} B</td><td><code>{esc(f.get('sha256')[:16])}...</code></td></tr>"
         for f in pins.get("files", [])
     )
-    body = f"""<h2>Verified Sources & Data Provenance</h2>
+    body = f"""<h2>Official Sources & Data Provenance</h2>
+<div class="panel bad"><b>Source preflight (2026-10-29): no candidate-required official binary is fully verified.</b> The source pages/API below are linked for manual review. GDR #1391/#1682 archive fetches returned HTTP 500; 3DEP catalog coverage is verified at only two finite-footprint sample cells, with no raw tile bytes; MT conductance is metadata-only pending payload, grid, license and coverage checks. Full record: <a href="data/source_preflight_20261029.json"><code>evidence/source_preflight_20261029.json</code></a>; evaluator/writer contract: <a href="data/shared_pipeline_contract_review_20261029.json">pinned API and limitations</a>; source blocker: <code>IR-33-20261029-OFFICIAL-ACCESS-01</code>.</div>
 <p>Sources are classified by provenance. A public listing or hash does not prove local binary availability, license suitability, exact geometry overlap, or organizer authenticity. See each source's recorded note and limitations.</p>
 
 <h3>Official Competition & Geoscientific Sources</h3>
@@ -960,8 +1014,8 @@ def build_sources() -> str:
 </tbody></table>
 </div>
 
-<h3>Historical input pin registry (not proof of current placement)</h3>
-<p>The pin list records 17 owner-mirror inputs restored and hash-verified in the 2026-10-26 working session; the receipt is <code>evidence/input_grid_audit.json</code>. These large rasters and derived cache are git-ignored and are not published with this static site. Hashes identify mirror bytes only and do not authenticate organizer provenance.</p>
+<h3>Owner-mirror input pins (verified 2026-10-29; not organizer authentication)</h3>
+<p>All 17 registered owner-mirror inputs were restored and hash-verified; <code>scripts/prepare_data.py</code> rebuilt the shared 121-channel research cache. The receipts are <a href="{GITHUB}/evidence/input_grid_audit.json"><code>evidence/input_grid_audit.json</code></a> and <a href="data/data_preparation_20261029.json"><code>evidence/data_preparation_20261029.json</code></a>. These large rasters and the derived cache are git-ignored and not published with this static site. Hashes identify mirror bytes only and do not authenticate organizer provenance.</p>
 <div class="scroll">
 <table><thead>
 <tr><th>Identifier</th><th>Local File</th><th>Bytes</th><th>SHA-256 Prefix</th></tr>
@@ -984,6 +1038,7 @@ def build_irregularities() -> str:
     )
     body = f"""<h2>Irregularities & audit trail</h2>
 <p>Known data-access, scientific, score-provenance and format issues are recorded below. Status labels preserve uncertainty; a repository note is not organizer verification.</p>
+<div class="panel warn"><b>IR-33-20261029-HOLDOUT-COUNT-01:</b> <code>n_unique_withheld_components</code> reports 3,199 total catalogue components, not withheld components. This is metadata, not a DTI input, and does not alter DTI arithmetic; historical summaries do not retain per-fold hidden IDs. Treat 8-connected raster components as proxies, not expert geological trace segments.</div>
 
 <div class="panel warn">
   <h3>Portal range error: reported, root cause unconfirmed</h3>
@@ -1047,7 +1102,7 @@ def build_focus_review() -> str:
 <h3>Primary evidence and reviewable limitations</h3>
 <p><a href="{GITHUB}/knowledge/21_post_merge_review_20261026.md">Latest post-merge review</a> · <a href="{GITHUB}/knowledge/20_restoration_and_claims_audit_20261026.md">Restoration and claims audit</a> · <a href="{GITHUB}/knowledge/18_round4_feasibility_audit_20261026.md">Previous Round-4 feasibility report</a> · <a href="{GITHUB}/evidence/source_review_20261025.json">Pinned source inventory</a> · <a href="https://github.com/drivendataorg/gems-prize-reference-solution/blob/aebe92f7c8a990f0e3443451b7a825d9afd6336b/README.md">Organizer CPU/GPU reference</a>. Official competition rules, weekly cap, current leaderboard and score-to-file receipts were not freshly verified; no automated DrivenData contact was made.</p>
 """
-    current = """<div class="panel bad"><b>Current correction (2026-10-28): no candidate is OK TO SUBMIT.</b> A33-R7-PCSUP's pre-placement surface failed the required 21-raster guard: 86.08% within 3 px exceeds 70%. Its later final-dot pass does not clear the earlier stop; the holdout values are exploratory. No fourth experiment was run. Read <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/31_r7_pcsup_lane_correction_20261028.md">the correction note</a> and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/evidence/a33_r7_pcsup_lane_correction_20261028.json">machine-readable correction</a>. All content below this notice is dated historical audit material, not the latest campaign result.</div>"""
+    current = """<div class="panel bad"><b>Current status (2026-10-29): no file is approved to submit.</b> The separate H34-COH TIFF is a negative, format-valid research artifact; the deployment-density PHCONG audit is a null; the nine focus-site best files remain duplicates. A33-R7 is exhausted at 3/3. The source-preflight review ranked three proposals but 0/3 passed its source gate and did not start an additional experiment or candidate TIFF. The shared holdout metadata count issue (3,199 total components mislabeled as withheld) is recorded as IR-33-20261029-HOLDOUT-COUNT-01 and is not a DTI input. See <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/33_hypothesis_slate_and_source_audit_20261029.md">the source-preflight review</a>, <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/38_h34_coh_result_and_b2_answer_20261029.md">the separate H34 result</a>, and <a href="https://github.com/buffedlizard55-lab/GEMSDOE33/blob/main/knowledge/34_density_audit_results_20261029.md">the density audit</a>."""
     return page("Latest forensic review & automatic gates · GEMSDOE33", current + body, "latest-review.html")
 
 
@@ -1119,6 +1174,17 @@ def main() -> int:
             json.dumps(dpps_card, indent=2, allow_nan=False) + "\n", encoding="utf-8"
         )
     for evidence_name in ("round4_run_card_20261026.json", "round4_input_feasibility_20261026.json"):
+        payload = read_json(ROOT / "evidence" / evidence_name)
+        if payload:
+            (data_dir / evidence_name).write_text(
+                json.dumps(payload, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+            )
+    for evidence_name in (
+        "hypothesis_slate_20261029.json",
+        "source_preflight_20261029.json",
+        "data_preparation_20261029.json",
+        "shared_pipeline_contract_review_20261029.json",
+    ):
         payload = read_json(ROOT / "evidence" / evidence_name)
         if payload:
             (data_dir / evidence_name).write_text(

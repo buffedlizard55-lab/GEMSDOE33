@@ -2,8 +2,13 @@
 from scripts import build_site
 
 
-def test_overview_marks_latest_artifact_as_surface_duplicate_and_not_uploadable():
+def test_overview_exposes_current_no_submit_source_block_and_archival_artifacts():
     page = build_site.build_index()
+    assert "Latest source-preflight review — 2026-10-29" in page
+    assert "A33-R7 is exhausted at 3/3" in page
+    assert "0/3 pass source-payload/schema/license/coverage checks" in page
+    assert "This review did not start another experiment or candidate TIFF, select a slot, or upload." in page
+    assert "separate H34-COH research TIFF" in page and "negative, research-only result" in page
     assert "gemsdoe33-a33-r7-pcsup-37654-20261028-d1f9cca0af02-zeros.tif" in page
     assert page.index("r7-pcsup") < page.index("a33-r3-llc")
     assert "surface duplicate stop" in page.lower()
@@ -17,13 +22,13 @@ def test_overview_marks_latest_artifact_as_surface_duplicate_and_not_uploadable(
     assert "no file is ok to submit" in page.lower()
     assert "0.2778" in page
     assert "USER/OWNER-REPORTED (NOT ORGANIZER-CONFIRMED)" in page
-    assert "0.3195 and 0.4413 conflict" in page
+    assert "0.3195" in page and "0.4413" in page and "conflict" in page.lower()
     assert "HOLDOUT-DTI is a catalogue proxy, not a leaderboard score estimate" in page
     assert "do not project holdout dti to the leaderboard" not in page.lower()
     assert "A33-R3-LLC" in page
     assert "Data/provenance status" in page
     assert "17 SHA-256-pinned owner-mirror inputs" in page
-    assert "shared 121-channel cache" in page
+    assert "121-channel research cache" in page
     assert "knowledge/27_20261028_safety_review.md" in page
 
 
@@ -76,10 +81,13 @@ def test_s33_seisdil_banner_has_download_and_explicit_negative_verdict():
     assert "5eb9572946fa62356ebc0cbfef22bb54aa2ef094cb8b4a84b52e6b80e120db96" in page
 
 
-def test_executive_summary_explains_process_and_blocks_failed_candidate():
+def test_executive_summary_has_one_current_per_site_table_and_blocks_submission():
     page = build_site.build_exec()
     assert "gemsdoe33-a33-r3-llc-37654-20261026-7f91f9f3ced9" in page
-    assert "OK TO SUBMIT: NO" in page
+    assert "Current decision — 2026-10-29" in page
+    assert "NO FILE IS OK TO SUBMIT" in page
+    assert "no identifiable current method paragraph" in page.lower()
+    assert "0/3 hypotheses pass" in page
     assert "do not upload any file until its banner says" in page
     assert "predicted" not in page.lower() or "score" in page.lower()
     assert "Note (≤140 characters)" in page
@@ -87,14 +95,17 @@ def test_executive_summary_explains_process_and_blocks_failed_candidate():
     assert "organizer receipt" in page
     assert "no DrivenData auth" in page
     assert "GEMSDOE32" in page and "0.2778" in page
-    assert "HIGHEST owner-reported focus-site value" in page
+    assert page.count("Not estimable from evidence") == 9
+    assert "GEMSDOE32 B2" in page and "deletion-only" in page
     assert "A33-R7-PCSUP" in page
     assert "pre-placement surface" in page
     assert "86.08%" in page
     assert "not unique under protocol" in page.lower()
+    assert "Current ranked hypotheses and source preflight (proposal only)" in page
+    assert "Priority 1" in page
 
 
-def test_hypothesis_page_has_ranked_round4_triage_and_historical_prior_art():
+def test_hypothesis_page_preserves_historical_round4_prior_art():
     page = build_site.build_hypotheses()
     assert "A33-R4-COULOMB" in page
     assert "A33-R4-CURVTRACE" in page
@@ -109,6 +120,26 @@ def test_hypothesis_page_has_ranked_round4_triage_and_historical_prior_art():
     assert "ComCat focal-mechanism" in page
     assert "H33-10" in page
     assert "No untested candidate is promoted" in page
+
+
+def test_current_hypothesis_slate_is_ranked_but_none_is_viable():
+    import json
+    from pathlib import Path
+
+    page = build_site.build_hypotheses()
+    slate = json.loads(Path("evidence/hypothesis_slate_20261029.json").read_text())
+    preflight = json.loads(Path("evidence/source_preflight_20261029.json").read_text())
+    assert "Current ranked hypotheses — proposal slate only (2026-10-29)" in page
+    for candidate_id in ("H33-HYDRO-MIX-01", "H33-MT-DEPTHWALL-01", "H33-3DEP-CHANNEL-KINK-01"):
+        assert candidate_id in page
+    assert "0/3 pass" in page and "NOT VIABLE NOW" in page
+    assert "expected leaderboard rank/score is not estimable" in page
+    assert len(slate["hypotheses"]) == 3
+    assert not any(item["viable_now"] for item in slate["hypotheses"])
+    assert slate["decision"]["holdout_experiments_run"] == 0
+    assert slate["decision"]["candidate_tif_created"] is False
+    assert preflight["decision"]["hypotheses_declared_viable"] == 0
+    assert preflight["sources"][0]["spatial_spot_checks"][0]["api_total_products"] == 4
 
 
 def test_research_page_exposes_failed_gate_duplicate_guard_and_run_card():
@@ -138,11 +169,24 @@ def test_a33_r3_hero_is_first_and_blocks_submission():
     assert exec_page.count("</html>") == 1
 
 
-def test_source_page_does_not_claim_restored_owner_mirrors_are_absent():
+def test_holdout_component_count_metadata_bug_is_disclosed():
+    page = build_site.build_irregularities()
+    assert "IR-33-20261029-HOLDOUT-COUNT-01" in page
+    assert "3,199" in page
+    assert "metadata, not a DTI input" in page
+
+
+def test_source_page_separates_catalog_pages_from_verified_payloads():
     page = build_site.build_sources()
-    assert "17 owner-mirror inputs restored and hash-verified" in page
+    assert "All 17 registered owner-mirror inputs were restored and hash-verified" in page
+    assert "121-channel research cache" in page
     assert "git-ignored" in page
     assert "do not authenticate organizer provenance" in page
+    assert "no candidate-required official binary is fully verified" in page
+    assert "GDR #1391/#1682 archive fetches returned HTTP 500" in page
+    assert "two finite-footprint sample cells" in page
+    assert "USGS Electrical Conductance Maps" in page
+    assert "source_preflight_20261029.json" in page
 
 
 def test_latest_review_discloses_restoration_and_parallel_negative_candidate():
@@ -165,12 +209,20 @@ def test_portal_range_error_is_not_claimed_fixed_by_zero_outside():
     assert "root cause unconfirmed" in irregularities
 
 
-def test_focus_table_explicitly_separates_estimates_and_historical_novelty():
+def test_current_focus_table_has_nine_scores_and_no_stale_duplicate_table():
     page = build_site.build_exec()
-    assert "Estimated leaderboard score" in page
-    assert page.count("Not estimable from available evidence") == 9
-    assert page.count("NO —") >= 9
-    assert "pixel-identical prediction set to GEMSDOE30" in page
-    assert "92.6%" in page
-    assert "contains all 37,654 GEMSDOE32 B2 dots exactly" in page
+    assert "Estimated score" in page
+    assert page.count("Not estimable from evidence") == 9
+    focus_sites = (
+        "GEMSDOE24", "GEMSDOE25", "GEMSDOE27", "GEMSDOE28", "GEMSDOE30",
+        "GEMSDOE31", "GEMSDOE32", "GEMSDOE33", "GEMSDOE36",
+    )
+    for site in focus_sites:
+        assert f"<b>{site}</b>" in page
+    assert page.count("owner-reported</span>") >= 9
+    assert "OK to submit?</th>" in page
+    assert "Which focus-site submission is the best to submit?" not in page
+    assert "the single current per-site inventory" in page
+    assert "GEMSDOE32" in page and "0.2778" in page
     assert "GEMSDOE33-h33d-analog-tip-stepover-r30-20261004-cb490425926e.tif" in page
+    assert "0.3195" in page and "0.4413" in page and "conflict" in page.lower()
