@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "date_utc": "2026-10-29",
+  "command": ".venv/bin/python scripts/prepare_data.py",
+  "result": "complete",
+  "runtime_seconds_reported": 199.0,
+  "input_manifest": "registry/owner_mirror_input_pins.json",
+  "input_audit": "evidence/input_grid_audit.json",
+  "owner_mirror_inputs_verified": "17/17 SHA-256 pins",
+  "training_features_sha256": "4371c82e3b8339b807bdffcf4ef59a225520fe2988d521be208ae33743123bc5",
+  "template_footprint_cells": 5167373,
+  "feature_channels_built": 121,
+  "generic_detector": "not run; unsupported and not part of the segment-buffered validation pipeline",
+  "shared_cache": "git-ignored local cache; not included in the repository or static site",
+  "provenance": "Matching pins verify owner-mirror bytes only. They do not authenticate organizer provenance, official licensing, or source coverage.",
+  "scientific_work": {
+    "candidate_generated": false,
+    "holdout_experiment_run": false,
+    "hypothesis_slate": "evidence/hypothesis_slate_20261029.json",
+    "experiment_lane": null,
+    "submission_slot_used": false,
+    "upload_made": false
+  }
+}

@@ -3,9 +3,9 @@
   "run_id": "nine-site-audit-20261029",
   "lane": "none (audit only; no candidate generated)",
   "experiments_used": 0,
-  "experiment_budget": "3 per lane / 2 h; not consumed by this audit; new lane requires owner confirmation",
+  "experiment_budget": "3 per lane / 2 h; this audit used 0; A33-R7 is exhausted at 3/3; no current method paragraph is identifiable, so no new experiment is authorized",
   "verdict": "NO FILE IS OK TO SUBMIT",
-  "ok_to_download": "research/education only: unique research TIFFs listed in knowledge/32 Table 3 (none is a submission)",
+  "ok_to_download": "Per-file status is given in the 2026-10-29 executive table: YES only where the research/learning bytes are separately labeled and local format passes; NO for format failures. Download permission is not submission approval.",
   "ok_to_submit": [],
   "selector": {
     "ok_to_submit": false,

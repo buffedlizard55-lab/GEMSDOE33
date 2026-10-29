@@ -239,6 +239,29 @@
       "url": "https://github.com/buffedlizard55-lab/GEMSDOE32",
       "used_for": "214 unique valid-grid GeoTIFFs (201 in published docs/downloads/ + local GEMSDOE33) fetched via GitHub API and byte-audited on 2026-10-25 for set-algebra forensics and pre-placement/final-dot uniqueness checks.",
       "evidence_class": "OWNER REPOSITORIES; byte-verified 2026-10-25 (scores remain user/owner-reported without organizer receipts)"
+    },
+    {
+      "id": "usgs-mt-conductance-20261029",
+      "title": "USGS Electrical Conductance Maps of the Great Basin, USA (ScienceBase item 62979746d34ec53d276c113b)",
+      "url": "https://www.sciencebase.gov/catalog/item/62979746d34ec53d276c113b",
+      "used_for": "Source preflight for the proposed depth-persistent MT conductance-wall hypothesis. The official record lists five conductance layers spanning 2–200 km depth. Page and attachment names were readable 2026-10-29; layer payloads, license terms, CRS/grid, target coverage, and edge-scale resolution were not audited. Not viable on listing alone; see evidence/source_preflight_20261029.json.",
+      "evidence_class": "OFFICIAL USGS SCIENCEBASE METADATA; page fetched 2026-10-29; no layer payload retrieved",
+      "doi": "https://doi.org/10.5066/P9TWT2LU"
+    },
+    {
+      "id": "gdr-1391-wellspring-gdb-20261029",
+      "title": "INGENIOUS GDR #1391 well/spring temperature and aqueous-geochemistry geodatabase",
+      "url": "https://gdr.openei.org/submissions/1391",
+      "download_url": "https://gdr.openei.org/files/1391/wellspringdata.gdb.zip",
+      "used_for": "Official page (CC BY 4.0) lists wellspringdata.gdb.zip at 19.85 MB and describes aqueous geochemistry. Direct asset fetch returned HTTP 500 on 2026-10-29; no official bytes/schema were obtained. The local owner-mirror CSV is not a substitute and contains the catalogue-derived dist_known_fault_px field. See evidence/source_preflight_20261029.json.",
+      "evidence_class": "OFFICIAL DOE GDR PAGE FETCHED 2026-10-29; BINARY FETCH FAILED HTTP 500; NOT STAGED"
+    },
+    {
+      "id": "tnm-3dep-api-preflight-20261029",
+      "title": "USGS The National Map access API — 1 m 3DEP DEM product catalog",
+      "url": "https://tnmaccess.nationalmap.gov/api/v1/products",
+      "used_for": "Catalog-level availability spot checks at two finite cells of the restored template footprint returned direct public-domain 1 m GeoTIFF URLs. Raw tiles, checksums, complete footprint coverage, and tile continuity were not audited. See evidence/source_preflight_20261029.json.",
+      "evidence_class": "OFFICIAL USGS API; sample product metadata retrieved 2026-10-29; payloads not downloaded"
     }
   ]
 }

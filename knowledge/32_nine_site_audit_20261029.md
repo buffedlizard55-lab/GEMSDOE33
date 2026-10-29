@@ -1,6 +1,6 @@
 # 32 — Nine-site uniqueness and validation audit (2026-10-29)
 
-**Decision: OK TO SUBMIT: NO for every file.** No experiment was run and no candidate was generated in this session. The experiment budget for a new lane needs owner confirmation (see "Remaining work").
+**Decision: OK TO SUBMIT: NO for every file.** No experiment was run and no candidate was generated in this session. A33-R7 is exhausted at 3/3, and no identifiable current method paragraph authorizes a new lane; no experiment was inferred.
 
 ## Scope
 - Owner-listed TIFFs on the nine focus sites (GEMSDOE24, 25, 27, 28, 30, 31, 32, 33, 36): 21 files. Each is pinned to a git blob SHA-1 in `registry/nine_site_best_files_20261029.json` (role `site_best` for the 9 highest, `site_listed` for 12 others).
@@ -45,7 +45,7 @@
 | One JSON run card | `evidence/run_card_nine_site_20261029.json`. |
 
 ## Remaining work (ranked)
-1. **Decide whether to start a new lane.** The only route to a unique, OK-to-submit TIFF is a new preregistered candidate that passes both the final-dot guard and the surface gate, and then the holdout gate. The A33-R7 lane is at 3/3. Confirm the budget for this session before starting one.
+1. **Do not infer or start a new lane from this audit.** The only route to a unique, OK-to-submit TIFF is a new preregistered candidate that passes both the surface and final-dot guards, and then the holdout gate. A33-R7 is exhausted at 3/3, and the current request has no identifiable method paragraph; this is a protocol blocker, not permission to choose a lane.
 2. Retract or re-scope the "unique" claims for LCHC, THKCOND and BASESTEP (`IR-33-20261029-MUTUAL-DUP-01`).
 3. Fix or retire the HMDT zeros file, which has out-of-footprint 1.0 values (`IR-33-20261029-HMDT-OUTSIDE-01`).
 4. Obtain organizer receipts for the owner-reported scores and reconcile 0.4413 / 0.3195 / 0.2778 (`IR-33-20261029-SCORE-CONFLICT-01`).

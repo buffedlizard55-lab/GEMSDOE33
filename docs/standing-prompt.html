@@ -3,7 +3,7 @@
 <meta name="description" content="GEMSDOE33: Evidence-led geothermal fault discovery research, holdout results, provenance and submission guidance. No candidate is currently slot-approved.">
 <title>Standing Brief · GEMSDOE33</title><link rel="stylesheet" href="assets/site.css"></head>
 <body><header><div class="wrap"><h1>GEMSDOE33 · DOE GEMS fault discovery</h1>
-<p>DrivenData #306 · evidence-led research · review status 2026-10-28</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html" aria-current=page>Standing brief</a></nav></div></header>
+<p>DrivenData #306 · evidence-led research · review status 2026-10-29</p><nav class="nav" aria-label="Primary"><a href="index.html">Overview</a><a href="executive-summary.html">How to submit</a><a href="results.html">Results &amp; Score Provenance</a><a href="latest-review.html">Latest audit &amp; gates</a><a href="hypotheses.html">Hypotheses</a><a href="data-sources.html">Domain Adaptation</a><a href="research.html">Research</a><a href="sources.html">Sources</a><a href="irregularities.html">Irregularities</a><a href="standing-prompt.html" aria-current=page>Standing brief</a></nav></div></header>
 <main class="wrap"><h2>Standing Brief & Operational Prompt</h2>
 <pre style="white-space:pre-wrap;background:#0d1520;padding:20px;border-radius:12px;"># GEMSDOE33 standing brief and operating contract
 
@@ -299,7 +299,7 @@ This addendum supersedes older &quot;next session&quot; suggestions where they c
 - `IR-33-PORTAL-RANGE-CLAIM-01`: never claim zero-outside or NaN encoding fixes the reported portal range error. The rejected bytes and organizer diagnostic are absent. A local `[0,1]` pass does not prove portal acceptance; the official-format wording recorded here says null/NaN outside, so semantics remain unresolved.
 - The current user request did not identify one single assigned method paragraph. Per the parallel-run lane constraint, do not infer permission to jump lanes. No holdout candidate was run.
 - Round-4 candidate feasibility: COULOMB is blocked because staged CSVs have no trace vertices/strike and the companion vector JSON has no declared CRS and coordinate values outside the EPSG:32611 target bounds; CURVTRACE needs raw 1 m USGS 3DEP data not staged; PFRT can use local channels but was not run without an explicit lane; HMDT already has a TIFF but lacks a reproducible fold-safe runner/card; PALEOTEMP needs an unstaged GDR payload. See `evidence/round4_input_feasibility_20261026.json`.
-- The next executable step is to define/freeze one explicit method lane and its no-post-hoc holdout protocol, then use the shared cache, evaluator and writer. No numerical contest-score estimate is allowed; HOLDOUT-DTI remains a mapped-catalogue proxy, not organizer truth. No slot may be spent without passing fresh screen, independent confirmation, canary, both uniqueness, format, and selector gates.
+- No candidate-execution step is authorized by this historical addendum: the request did not identify a single assigned method paragraph. Do not choose a lane from an old slate. If a future task explicitly supplies an authorized method paragraph and the official source gate is clear, reuse the shared cache/evaluator/writer and the no-post-hoc holdout protocol. No numerical contest-score estimate is allowed; HOLDOUT-DTI remains a mapped-catalogue proxy, not organizer truth. No slot may be spent without fresh screen, independent confirmation, canaries, both uniqueness checks, format validation and a separate selector gate.
 - Keep the nine-site table and first-screen decision clear: GEMSDOE32 B2&#x27;s 0.2778 is USER/OWNER-REPORTED, not ORGANIZER-CONFIRMED; the prompt&#x27;s 0.3195 and 0.4413 leaders conflict. Neither is a verified current score.
 
 ## Continuation checkpoint — restoration/claims audit, 2026-10-26
@@ -368,7 +368,38 @@ here. See `registry/irregularities.json` (`IR-33-R7-PCSUP-SURFACE-01`) for the c
 - The owner asked for a unique GeoTIFF that is not a duplicate of any listed site&#x27;s submission and for an unambiguous OK-to-download / OK-to-submit label. The standing rules are now copied into `README.md` under &quot;Standing prompt&quot; and must be read at the start of each session.
 - Nine-site audit (`scripts/nine_site_audit.py`, `evidence/nine_site_audit_20261029.json`) compares every owner-listed file on the nine focus sites with every other pinned file. Result: **no file is OK TO SUBMIT**. The nine site-best files are one family and all trigger the duplicate guard. The owner-reported best, GEMSDOE32 B2 (0.2778\*), is a deletion-only copy of GEMSDOE28/31 H27-4.
 - Irregularities recorded: `IR-33-20261029-NINE-FAMILY-01`, `-B2-DELETION-01`, `-MUTUAL-DUP-01`, `-HMDT-OUTSIDE-01`, `-PCSUP-SCOPE-01`, `-SCORE-CONFLICT-01`.
-- No new candidate and no experiment in this session. Confirming the experiment budget and choosing a new lane remain owner decisions.
+- No new candidate and no experiment in the nine-site audit. A33-R7 was already exhausted at 3/3, and no new method paragraph was identified; neither a new lane nor an experiment was inferred. The subsequent 2026-10-29 source-preflight and hypothesis-slate status is recorded in the dated addendum below.
+
+## 2026-10-29 continuation — source preflight and ranked slate
+
+Read `README.md` and this brief at the start of future sessions. This continuation does not reverse the
+no-submit decision and does not assign a method lane.
+
+- Restored and hash-verified 17/17 owner-mirror inputs and rebuilt the ignored shared 121-channel
+  research cache; owner-mirror identity is not organizer provenance. The template/sample-label
+  equality canary remains a fail-closed warning: sample values are metadata/mask only, never labels.
+- The official-source preflight is `evidence/source_preflight_20261029.json`. Official page/catalog
+  records are not payload downloads: GDR #1391 and #1682 direct archive attempts returned HTTP 500;
+  TNM returned 1 m DEM catalog records in two finite-footprint spot checks but no DEM bytes were
+  downloaded; MT conductance attachments were not staged or audited for grid, coverage, resolution,
+  or license. Do not call any dependent hypothesis viable based on the catalog listing alone.
+- Three proposals are ranked (hydrochemical mixing front; depth-persistent MT conductance wall;
+  cross-catchment 3DEP channel-profile discontinuity) in `evidence/hypothesis_slate_20261029.json`
+  and `knowledge/33_hypothesis_slate_and_source_audit_20261029.md`. All are proposals only; 0/3
+  pass the source gate; no score/projection is made; no experiment, candidate TIFF, slot selection,
+  or upload occurred. Existing BRIDGE, Gabbs 3D and ComCat concepts are excluded as prior art.
+- The pinned GEMSDOE24 holdout/metric/writer/validator hashes match their source manifest and targeted
+  holdout/metric/writer tests passed (contract record `evidence/shared_pipeline_contract_review_20261029.json`).
+  The implementation treats 8-connected raster components as a proxy, not expert geological trace IDs;
+  future candidate code must visibly restrict catalogue-derived features to each fold&#x27;s `visible` mask.
+  `n_unique_withheld_components` is a metadata bug (3,199 is total catalogue components, not withheld); see
+  `IR-33-20261029-HOLDOUT-COUNT-01` and do not reuse it as a withheld-component count.
+- The 2026-10-29 nine-site table in the executive summary is the single current per-site summary.
+  Historical artifact cards are explicitly research-only. Owner-reported scores remain unconfirmed;
+  GEMSDOE32 B2 0.2778* is deletion-only relative to H27-4, and neither conflicting 0.3195/0.4413
+  claim is reconciled. The public score is not estimable.
+- `IR-33-20261029-OFFICIAL-ACCESS-01` logs the official-payload access and provenance blocker.
+  Continue to preserve the three-pass process and update `knowledge/33...` with actual checks only.
 </pre></main>
 <footer><div class="wrap">Generated from repository evidence by <code>scripts/build_site.py</code>. No candidate is slot-approved and no DrivenData upload was made from this workspace. The selector checks declared evidence consistency, not the independent authenticity of measurements. A local format audit is not scientific validation or organizer acceptance. Owner reports, measured diagnostics, model outputs and official sources are distinguished in the evidence.</div></footer>
 </body></html>
